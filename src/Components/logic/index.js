@@ -547,7 +547,10 @@ class Logic extends Component {
 
     var { logic } = this.props;
 
-    if (!logic.insertState) {
+    // if (!logic.insertState) {
+    //   logic.insertState = true;
+    // } //removed by gautam to change to single click
+    if (type == null) {
       logic.insertState = true;
     } else {
       // this condition is for the  render the bolck wait click it action and then wait hadrware panke will open
