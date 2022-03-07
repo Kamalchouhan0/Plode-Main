@@ -148,8 +148,43 @@ class Workspace extends Component {
     // this.moveBibox(340, 90);
 
     // Update the PortConnections module
+    //console.log("workspaceprops", this.props);
+
+    console.log(
+      "workspace selectedcomponent from sidebar",
+      JSON.parse(sessionStorage.getItem("SelectedComp"))
+    );
+
+    //removing conncetions from removed components in sidebar --Gautam
     var { components, scale, offset } = this.props.workspace;
+    var selectedComponents = JSON.parse(sessionStorage.getItem("SelectedComp"));
+    // console.log("WorkspaceComponents from history", components);
+    var arr1 = [],
+      arr2 = [];
+    for (var k in components) {
+      if (k != undefined) arr1.push(k);
+    }
+    for (var k in selectedComponents) {
+      if (k != undefined) arr2.push(k);
+    }
+    for (var x in arr2) {
+      if (!arr1.includes(x)) {
+        arr1.pop(x);
+      }
+    }
+    //console.log("workspace diff", arr1);
+    for (var i = 0; i < arr1.length; i++) {
+      //console.log("workspacediffffff", difference[i]);
+      delete components[arr1[i]];
+    }
+    if (components != null || undefined) {
+      var { workspace } = this.props;
+      workspace.components = components;
+      this.props.update(workspace);
+    }
+
     var { PortConnections } = this.props.appState.assembly;
+    console.log("WorkspaceComponents from history", components);
     Object.keys(PortConnections).map((port) => (PortConnections[port] = null));
 
     // console.log("componentscomponentscomponentscomponents", components);
