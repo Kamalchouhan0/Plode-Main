@@ -879,13 +879,14 @@ h1 {
   .PS-txt-Menu {
     /* position: absolute; */
     /* z-index: 3; */
+    font-size: 20px;
     top: 4.5%;
-    left: 11%;
+    left: 10.5%;
   }
   .PS-programmenucard {
     /* position: absolute; */
     /* z-index: 1; */
-    top: -3%;
+    top: -5%;
     left: 4%;
   }
 }

@@ -12,7 +12,7 @@ class End extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "Loop",
+      name: "Repeat",
     };
   }
   selectRepeat = () => {
@@ -36,7 +36,7 @@ class End extends Component {
       this.props.onChange("end");
     } else {
       this.setState({
-        name: "Loop",
+        name: "Repeat",
       });
       sessionStorage.setItem("SelectedStatus", "rep");
       this.props.onChange("repeat");

@@ -355,3 +355,47 @@
     margin-top: -10px;
   }
 }
+/* @media screen and (max-width: 2124px) and (min-width: 1868px) {
+  .imgStyleMic {
+    margin-top: -10px;
+  }
+  .device .deviceContainer .imgStyleEyeL {
+    width: 9.5%;
+    height: 27px;
+    position: absolute;
+    top: 34%;
+    left: 32%;
+  }
+
+  .device .deviceContainer .imgStyleEyeR {
+    width: 9.5%;
+    height: 27px;
+    position: absolute;
+    top: 34%;
+    left: 60%;
+  }
+
+  .device .deviceContainer .imgStyleTeeth1 {
+    width: 2.7%;
+    height: 18px;
+    position: absolute;
+    top: 70.6%;
+    left: 39.7%;
+  }
+  .device .deviceContainer .imgStyleTeeth2 {
+    top: 72.1%;
+    left: 43%;
+  }
+
+  .device .deviceContainer .imgStyleTeeth3 {
+    top: 72.2%;
+  }
+
+  .device .deviceContainer .imgStyleTeeth4 {
+    top: 70.6%;
+  }
+
+  .device .deviceContainer .imgStyle4in1 {
+    top: 73%;
+  }
+} */

@@ -1324,12 +1324,12 @@ class Assembly extends Component {
                 />
               )} */}
 
-              <img
+              {/* <img
                 src={renderPrgImage("saveBtnInActive")}
                 className="iconBtnSize"
                 style={{ marginRight: "25px" }}
                 onClick={() => this.setState({ reConnecting: true })}
-              />
+              /> */}
 
               {/* <img
                 className="iconBtnSize"

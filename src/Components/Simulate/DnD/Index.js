@@ -50,24 +50,24 @@ const CustomNodeFlow = ({ compo, img, assembly, updateState, indexChange }) => {
 
     // setModel(true);
 
-    if (
-      compName !== "led" &&
-      compName !== "laser" &&
-      compName !== "dual_splitter"
-    ) {
-      let removeUnderScore = compName.replace(/_/g, " "); //returns my_name
-      console.log("THE DATA COMING", removeUnderScore);
+    // if (
+    //   compName !== "led" &&
+    //   compName !== "laser" &&
+    //   compName !== "dual_splitter"
+    // ) {
+    //   let removeUnderScore = compName.replace(/_/g, " "); //returns my_name
 
-      let data = event.target.getAttribute("id").slice(4, 6);
-      console.log("DATA, PORT ", data);
+    //   let data = event.target.getAttribute("id").slice(4, 6);
+    //   console.log("DATA, PORT ", data);
 
-      let valueRange = PortValuesRangeMapping[data][compName]();
+    //   let valueRange = PortValuesRangeMapping[data][compName]();
 
-      console.log(valueRange.max, "valueRange");
+    //   console.log(valueRange.max, "valueRange");
 
-      updateState(true, removeUnderScore, compName, valueRange.max);
-      indexChange();
-    }
+    //   updateState(true, removeUnderScore, compName, valueRange.max);
+    //   // updateState(true, compName, valueRange.max);
+    //   indexChange();
+    // }
   };
 
   const closeModel = () => {
@@ -911,12 +911,35 @@ const CustomNodeFlow = ({ compo, img, assembly, updateState, indexChange }) => {
               type="source"
               id={`${port}2`}
               // data-nodeid={`${port}2`}
+              style={{
+                position: "absolute",
+                top: "50px",
+                left: "33px",
+              }}
+            />
+          </div>
+        );
+      }
+      if (newArr[n] === "ultrasonic_sensor") {
+        return (
+          <div id={arr[n]}>
+            <img
+              // src={`/images/oldImages/component_${newArr[n]}.png`}
+              src={`/Bisoft_UI/Accessories/newComponents/component_${newArr[n]}.png`}
+              width="70"
+              alt=""
+              nameComp={newArr[n]}
+              id={`img_${port}`}
+              style={{ position: "absolute", top: "-40px", left: "-1px" }}
             />
           </div>
         );
       }
       return (
-        <div id={arr[n]}>
+        <div
+          id={arr[n]}
+          style={{ position: "absolute", top: "-88px", left: "7px" }}
+        >
           <img
             // src={`/images/oldImages/component_${newArr[n]}.png`}
             src={`/Bisoft_UI/Accessories/newComponents/component_${newArr[n]}.png`}
@@ -1262,28 +1285,28 @@ const CustomNodeFlow = ({ compo, img, assembly, updateState, indexChange }) => {
 
     const firstDotCondition = () => {
       if (port4 === "A" || port3 === "A" || port2 === "A" || port1 === "A") {
-        return { x: 40, y: 155 };
+        return { x: 980, y: 280 };
       } else if (
         port8 === "A" ||
         port5 === "A" ||
         port6 === "A" ||
         port7 === "A"
       ) {
-        return { x: 40, y: 155 };
+        return { x: 980, y: 280 };
       } else if (
         port9 === "A" ||
         port10 === "A" ||
         port11 === "A" ||
         port12 === "A"
       ) {
-        return { x: 40, y: 155 };
+        return { x: 980, y: 280 };
       } else if (
         port13 === "A" ||
         port14 === "A" ||
         port15 === "A" ||
         port16 === "A"
       ) {
-        return { x: 40, y: 155 };
+        return { x: 980, y: 280 };
       } else {
         return { x: 10000, y: 25 };
       }
@@ -1291,28 +1314,28 @@ const CustomNodeFlow = ({ compo, img, assembly, updateState, indexChange }) => {
 
     const secondDotCondition = () => {
       if (port4 === "B" || port3 === "B" || port2 === "B" || port1 === "B") {
-        return { x: 150, y: 285 };
+        return { x: 980, y: 400 };
       } else if (
         port8 === "B" ||
         port5 === "B" ||
         port6 === "B" ||
         port7 === "B"
       ) {
-        return { x: 150, y: 285 };
+        return { x: 980, y: 400 };
       } else if (
         port9 === "B" ||
         port10 === "B" ||
         port11 === "B" ||
         port12 === "B"
       ) {
-        return { x: 150, y: 285 };
+        return { x: 980, y: 400 };
       } else if (
         port13 === "B" ||
         port14 === "B" ||
         port15 === "B" ||
         port16 === "B"
       ) {
-        return { x: 150, y: 285 };
+        return { x: 980, y: 400 };
       } else {
         return { x: 10000, y: 25 };
       }
@@ -1320,28 +1343,28 @@ const CustomNodeFlow = ({ compo, img, assembly, updateState, indexChange }) => {
 
     const thirdDotCondition = () => {
       if (port4 === "C" || port3 === "C" || port2 === "C" || port1 === "C") {
-        return { x: 550, y: 25 };
+        return { x: 1420, y: 275 };
       } else if (
         port8 === "C" ||
         port5 === "C" ||
         port6 === "C" ||
         port7 === "C"
       ) {
-        return { x: 550, y: 25 };
+        return { x: 1420, y: 275 };
       } else if (
         port9 === "C" ||
         port10 === "C" ||
         port11 === "C" ||
         port12 === "C"
       ) {
-        return { x: 550, y: 25 };
+        return { x: 1420, y: 275 };
       } else if (
         port13 === "C" ||
         port14 === "C" ||
         port15 === "C" ||
         port16 === "C"
       ) {
-        return { x: 550, y: 25 };
+        return { x: 1420, y: 275 };
       } else {
         return { x: 10000, y: 25 };
       }
@@ -1349,28 +1372,28 @@ const CustomNodeFlow = ({ compo, img, assembly, updateState, indexChange }) => {
 
     const fourthDotCondition = () => {
       if (port4 === "D" || port3 === "D" || port2 === "D" || port1 === "D") {
-        return { x: 450, y: 285 };
+        return { x: 1430, y: 400 };
       } else if (
         port8 === "D" ||
         port5 === "D" ||
         port6 === "D" ||
         port7 === "D"
       ) {
-        return { x: 450, y: 285 };
+        return { x: 1430, y: 400 };
       } else if (
         port9 === "D" ||
         port10 === "D" ||
         port11 === "D" ||
         port12 === "D"
       ) {
-        return { x: 450, y: 285 };
+        return { x: 1430, y: 400 };
       } else if (
         port13 === "D" ||
         port14 === "D" ||
         port15 === "D" ||
         port16 === "D"
       ) {
-        return { x: 450, y: 285 };
+        return { x: 1430, y: 400 };
       } else {
         return { x: 10000, y: 25 };
       }
@@ -1397,7 +1420,7 @@ const CustomNodeFlow = ({ compo, img, assembly, updateState, indexChange }) => {
         type: "selectorNode",
         data: { onChange: onChange },
         style: { border: "1px solid #777", padding: 10 },
-        position: { x: 250, y: 50 },
+        position: { x: 1150, y: 250 },
       },
       {
         id: "3",

@@ -858,11 +858,11 @@ function InternalAccessoriesScreen(props) {
         />
 
         <div className="navbar-Action">
-          <img
+          {/* <img
             src={renderPrgImage("saveBtnActive")}
             className="iconBtnSize"
             style={{ marginRight: "25px", marginTop: "1%" }}
-          />
+          /> */}
 
           {isHelp == false ? (
             <img
