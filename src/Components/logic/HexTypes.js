@@ -27,7 +27,7 @@ var HexTypes = {
   // wait: { color: "#355599", image: "wait" },
 
   action: { color: "$37ACE8", image: "action" },
-  hardware: { color: "#37ACE8", image: "hardware" },
+  hardware: { color: "#176895", image: "hardware" },
   variable_output: { color: "#37ACE8", image: "variable 2", name: "variable" },
   wait: { color: "#37ACE8", image: "wait" },
 

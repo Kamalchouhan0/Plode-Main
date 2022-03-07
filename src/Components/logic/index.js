@@ -1195,11 +1195,11 @@ class Logic extends Component {
             />
 
             <div className="navbar-Action">
-              <img
+              {/* <img
                 src={renderPrgImage("saveBtnInActive")}
                 className="iconBtnSize"
                 style={{ marginRight: "25px" }}
-              />
+              /> */}
 
               {/* <img
                 className="iconBtnSize"

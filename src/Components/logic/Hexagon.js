@@ -1964,12 +1964,11 @@ class Hexagon extends Component {
       return `url(#insert)`;
     }
 
-    if (
-      componentName == "variable_output" ||
-      componentName == "hardware" ||
-      componentName == "wait"
-    ) {
+    if (componentName == "variable_output" || componentName == "hardware") {
       return `url(#variable_output)`;
+    }
+    if (componentName == "wait") {
+      return `url(#wait)`;
     } else {
       return HexTypes[componentName].color;
     }
@@ -2752,7 +2751,7 @@ class Hexagon extends Component {
           </linearGradient>
         </defs>
 
-        {/* variable_output - HARDWAR - WAIT */}
+        {/* variable_output - HARDWAR*/}
         <defs>
           <linearGradient
             id="variable_output"
@@ -2762,14 +2761,14 @@ class Hexagon extends Component {
             x2="0.961"
             gradientUnits="objectBoundingBox"
           >
-            <stop offset="0" stop-color="#3099CE" />
-            <stop offset="1" stop-color="#37AFEC" />
+            <stop offset="0" stop-color="#176895" />
+            <stop offset="1" stop-color="#176895" />
           </linearGradient>
         </defs>
-
+        {/** WAIT */}
         <defs>
           <linearGradient
-            id="variable_output"
+            id="wait"
             y1="0.766"
             x1="-0.11"
             y2="0.283"
@@ -2777,7 +2776,7 @@ class Hexagon extends Component {
             gradientUnits="objectBoundingBox"
           >
             <stop offset="0" stop-color="#3099CE" />
-            <stop offset="1" stop-color="#37AFEC" />
+            <stop offset="1" stop-color="#37ACE8" />
           </linearGradient>
         </defs>
 
