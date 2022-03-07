@@ -73,7 +73,7 @@
   width: 80px;
   height: 4px;
   position: absolute;
-  top: 22%;
+  top: 20%;
   left: 28%;
   background: #30a8ce;
   outline: none;
@@ -93,8 +93,8 @@
   width: 80px;
   height: 4px;
   position: absolute;
-  top: 22%;
-  right: 15%;
+  top: 20%;
+  right: 15.5%;
   background: #30a8ce;
   outline: none;
   border: none;
@@ -230,12 +230,21 @@
 
 @media only screen and (max-device-width: 1440px) {
   .visualProgram-container .VP-programmenucard {
-    top: -3%;
+    top: -5%;
     left: 4%;
   }
 
   .visualProgram-container .VP-txt-Menu {
     top: 4.5%;
+    font-size: 20px;
+    left: 10.5%;
+  }
+  .visualProgram-container .VP-hr {
+    /* width: 80px;
+    height: 4px;
+    position: absolute; */
+    left: 30%;
+    /* top: 23%; */
   }
 }
 @media only screen and (max-device-width: 1800px) and (min-device-width: 1441px) {
