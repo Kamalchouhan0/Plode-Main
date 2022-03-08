@@ -25,6 +25,7 @@ const componentSource = {
   beginDrag(props) {
     DraggingInfo.isDragging = true;
     const { type, index, left, top, connectedTo } = props;
+    console.log("component", left, top);
     sessionStorage.setItem("dragingItem", props.type);
     props.removeConnection({ type, index });
     DraggingInfo.newComponentPort = connectedTo;
@@ -278,7 +279,7 @@ class Component1 extends Component {
       var height = 140 * scale;
       var width = 140 * scale;
       left = left - 20;
-      top = top - 20;
+      top = top - 30;
 
       return connectDragSource(
         <div>
@@ -314,10 +315,10 @@ class Component1 extends Component {
             {this.props.connectedTo == "A"
               ? this.props.rangeA1
               : this.props.connectedTo == "B"
-                ? this.props.temp
-                : this.props.connectedTo == "C"
-                  ? this.props.one
-                  : null}
+              ? this.props.temp
+              : this.props.connectedTo == "C"
+              ? this.props.one
+              : null}
           </p>
           <p
             style={{
@@ -334,10 +335,10 @@ class Component1 extends Component {
             {this.props.connectedTo == "A"
               ? this.props.rangeA2
               : this.props.connectedTo == "B"
-                ? this.props.gas
-                : this.props.connectedTo == "C"
-                  ? this.props.two
-                  : null}
+              ? this.props.gas
+              : this.props.connectedTo == "C"
+              ? this.props.two
+              : null}
           </p>
         </div>
       );
@@ -393,10 +394,10 @@ class Component1 extends Component {
             {this.props.connectedTo == "A"
               ? this.props.rangeA1
               : this.props.connectedTo == "B"
-                ? this.props.temp
-                : this.props.connectedTo == "C"
-                  ? this.props.one
-                  : null}
+              ? this.props.temp
+              : this.props.connectedTo == "C"
+              ? this.props.one
+              : null}
           </p>
           <p
             style={{
@@ -413,10 +414,10 @@ class Component1 extends Component {
             {this.props.connectedTo == "A"
               ? this.props.rangeA2
               : this.props.connectedTo == "B"
-                ? this.props.gas
-                : this.props.connectedTo == "C"
-                  ? this.props.two
-                  : null}
+              ? this.props.gas
+              : this.props.connectedTo == "C"
+              ? this.props.two
+              : null}
           </p>
         </div>
       );
@@ -471,10 +472,10 @@ class Component1 extends Component {
             {this.props.connectedTo == "A"
               ? this.props.rangeA1
               : this.props.connectedTo == "B"
-                ? this.props.temp
-                : this.props.connectedTo == "C"
-                  ? this.props.one
-                  : null}
+              ? this.props.temp
+              : this.props.connectedTo == "C"
+              ? this.props.one
+              : null}
           </p>
           <p
             style={{
@@ -492,10 +493,10 @@ class Component1 extends Component {
             {this.props.connectedTo == "A"
               ? this.props.rangeA2
               : this.props.connectedTo == "B"
-                ? this.props.gas
-                : this.props.connectedTo == "C"
-                  ? this.props.two
-                  : null}
+              ? this.props.gas
+              : this.props.connectedTo == "C"
+              ? this.props.two
+              : null}
           </p>
         </div>
       );
@@ -577,10 +578,10 @@ class Component1 extends Component {
             {this.props.connectedTo == "A"
               ? this.props.rangeA1
               : this.props.connectedTo == "B"
-                ? this.props.temp
-                : this.props.connectedTo == "C"
-                  ? this.props.one
-                  : null}
+              ? this.props.temp
+              : this.props.connectedTo == "C"
+              ? this.props.one
+              : null}
           </p>
           <p
             style={{
@@ -598,10 +599,10 @@ class Component1 extends Component {
             {this.props.connectedTo == "A"
               ? this.props.rangeA2
               : this.props.connectedTo == "B"
-                ? this.props.gas
-                : this.props.connectedTo == "C"
-                  ? this.props.two
-                  : null}
+              ? this.props.gas
+              : this.props.connectedTo == "C"
+              ? this.props.two
+              : null}
           </p>
         </div>
       );
@@ -652,8 +653,8 @@ class Component1 extends Component {
             {this.props.connectedTo == "A"
               ? this.props.rangeA1
               : this.props.connectedTo == "C"
-                ? this.props.one
-                : null}
+              ? this.props.one
+              : null}
           </p>
         </div>
       );
@@ -703,10 +704,10 @@ class Component1 extends Component {
             {this.props.connectedTo == "A"
               ? this.props.rangeA1
               : this.props.connectedTo == "B"
-                ? this.props.temp
-                : this.props.connectedTo == "C"
-                  ? this.props.one
-                  : null}
+              ? this.props.temp
+              : this.props.connectedTo == "C"
+              ? this.props.one
+              : null}
           </p>
           <p
             style={{
@@ -723,10 +724,10 @@ class Component1 extends Component {
             {this.props.connectedTo == "A"
               ? this.props.rangeA2
               : this.props.connectedTo == "B"
-                ? this.props.gas
-                : this.props.connectedTo == "C"
-                  ? this.props.two
-                  : null}
+              ? this.props.gas
+              : this.props.connectedTo == "C"
+              ? this.props.two
+              : null}
           </p>
         </div>
       );
@@ -776,10 +777,10 @@ class Component1 extends Component {
             {this.props.connectedTo == "A"
               ? this.props.rangeA1
               : this.props.connectedTo == "B"
-                ? this.props.temp
-                : this.props.connectedTo == "C"
-                  ? this.props.one
-                  : null}
+              ? this.props.temp
+              : this.props.connectedTo == "C"
+              ? this.props.one
+              : null}
           </p>
           <p
             style={{
@@ -796,10 +797,10 @@ class Component1 extends Component {
             {this.props.connectedTo == "A"
               ? this.props.rangeA2
               : this.props.connectedTo == "B"
-                ? this.props.gas
-                : this.props.connectedTo == "C"
-                  ? this.props.two
-                  : null}
+              ? this.props.gas
+              : this.props.connectedTo == "C"
+              ? this.props.two
+              : null}
           </p>
         </div>
       );
@@ -849,10 +850,10 @@ class Component1 extends Component {
             {this.props.connectedTo == "A"
               ? this.props.rangeA1
               : this.props.connectedTo == "B"
-                ? this.props.temp
-                : this.props.connectedTo == "C"
-                  ? this.props.one
-                  : null}
+              ? this.props.temp
+              : this.props.connectedTo == "C"
+              ? this.props.one
+              : null}
           </p>
           <p
             style={{
@@ -869,10 +870,10 @@ class Component1 extends Component {
             {this.props.connectedTo == "A"
               ? this.props.rangeA2
               : this.props.connectedTo == "B"
-                ? this.props.gas
-                : this.props.connectedTo == "C"
-                  ? this.props.two
-                  : null}
+              ? this.props.gas
+              : this.props.connectedTo == "C"
+              ? this.props.two
+              : null}
           </p>
         </div>
       );
@@ -961,10 +962,10 @@ class Component1 extends Component {
             {this.props.connectedTo == "A"
               ? this.props.rangeA1
               : this.props.connectedTo == "B"
-                ? this.props.temp
-                : this.props.connectedTo == "C"
-                  ? this.props.one
-                  : null}
+              ? this.props.temp
+              : this.props.connectedTo == "C"
+              ? this.props.one
+              : null}
           </p>
           <p
             style={{
@@ -982,10 +983,10 @@ class Component1 extends Component {
             {this.props.connectedTo == "A"
               ? this.props.rangeA2
               : this.props.connectedTo == "B"
-                ? this.props.gas
-                : this.props.connectedTo == "C"
-                  ? this.props.two
-                  : null}
+              ? this.props.gas
+              : this.props.connectedTo == "C"
+              ? this.props.two
+              : null}
           </p>
         </div>
       );
@@ -1040,10 +1041,10 @@ class Component1 extends Component {
             {this.props.connectedTo == "A"
               ? this.props.rangeA1
               : this.props.connectedTo == "B"
-                ? this.props.temp
-                : this.props.connectedTo == "C"
-                  ? this.props.one
-                  : null}
+              ? this.props.temp
+              : this.props.connectedTo == "C"
+              ? this.props.one
+              : null}
           </p>
           <p
             style={{
@@ -1060,10 +1061,10 @@ class Component1 extends Component {
             {this.props.connectedTo == "A"
               ? this.props.rangeA2
               : this.props.connectedTo == "B"
-                ? this.props.gas
-                : this.props.connectedTo == "C"
-                  ? this.props.two
-                  : null}
+              ? this.props.gas
+              : this.props.connectedTo == "C"
+              ? this.props.two
+              : null}
           </p>
         </div>
       );

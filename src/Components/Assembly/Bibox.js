@@ -47,7 +47,9 @@ var style = {
 const biboxSource = {
   beginDrag(props) {
     DraggingInfo.isDragging = true;
+    console.log("dragging", props);
     const { left, top } = props;
+    document.getElementById("PC_dragSource").style.opacity = 0;
     return { left, top };
   },
   endDrag() {
@@ -59,7 +61,7 @@ const biboxSource = {
 
 class Bibox extends Component {
   componentDidMount() {}
-
+  useEffect() {}
   render() {
     let Url;
     let Device = sessionStorage.getItem("connectedDevice");
@@ -132,6 +134,7 @@ class Bibox extends Component {
       return connectDragSource(
         // PLEASE NOTE THIS IS ONLY FOR ACE/PLAYCOMPUTER
         <div
+          id="PC_dragSource"
           style={{
             ...style,
             left,
@@ -140,6 +143,7 @@ class Bibox extends Component {
             width,
             backgroundImage: `url("${Url}")`,
             overflow: "visible",
+
             // background: "red",
           }}
         >
