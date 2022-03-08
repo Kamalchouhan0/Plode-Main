@@ -782,6 +782,7 @@ class Assembly extends Component {
     return node;
   };
   removeFromWorkspace = (item) => {
+    //console.log("workspace remove", item);
     var prev_data = this.props;
     var port = item.port;
     var updated_prog = this.ParseNodeList(
@@ -1061,9 +1062,10 @@ class Assembly extends Component {
           var screenshot = document
             .getElementById("assemblyscreenid")
             .cloneNode(true);
-
-          screenshot.getElementsByClassName("assemblySidebar")[0].innerHTML =
-            "";
+          try {
+            screenshot.getElementsByClassName("assemblySidebar")[0].innerHTML =
+              "";
+          } catch (e) {}
           $(screenshot)
             .find(".assemblySidebar")
             .css("background-color", "transparent");

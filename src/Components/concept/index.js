@@ -374,6 +374,7 @@ class Content extends Component {
    * @param  {number} index Index wrt sidebar
    */
   remove = (index) => {
+    console.log("concept props", this.state);
     var { sidebarContents, components, workspace, coverflowActive, redata } =
       this.state;
     var removeIndex = sidebarContents[index];
@@ -381,7 +382,9 @@ class Content extends Component {
       coverflowActive = removeIndex;
     sidebarContents.splice(index, 1);
     components[removeIndex].selected = false;
-    delete workspace.components[components[removeIndex].type];
+
+    // delete workspace.components[components[removeIndex].type];
+    console.log("concept", workspace);
     if (this.props.tutorialMode == "true") {
       this.refs.concept.refs.tutorial.workspaceUpdate(index, components);
     }

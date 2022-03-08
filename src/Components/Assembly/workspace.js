@@ -148,35 +148,43 @@ class Workspace extends Component {
     // this.moveBibox(340, 90);
 
     // Update the PortConnections module
-    //console.log("workspaceprops", this.props);
+    console.log("workspaceprops", this.props);
 
     console.log(
       "workspace selectedcomponent from sidebar",
       JSON.parse(sessionStorage.getItem("SelectedComp"))
     );
+    var { components, scale, offset } = this.props.workspace;
 
     //removing conncetions from removed components in sidebar --Gautam
-    var { components, scale, offset } = this.props.workspace;
+
     var selectedComponents = JSON.parse(sessionStorage.getItem("SelectedComp"));
-    // console.log("WorkspaceComponents from history", components);
+    console.log("WorkspaceComponents from history", components);
     var arr1 = [],
       arr2 = [];
+
     for (var k in components) {
-      if (k != undefined) arr1.push(k);
+      arr1.push(k);
     }
-    for (var k in selectedComponents) {
-      if (k != undefined) arr2.push(k);
+    for (var k = 0; k < selectedComponents.length; k++) {
+      arr2.push(selectedComponents[k].type);
     }
-    for (var x in arr2) {
-      if (!arr1.includes(x)) {
-        arr1.pop(x);
+    console.log("workspace arrs", arr1, arr2);
+    for (var i = 0; i < arr1.length; i++) {
+      if (arr2.includes(arr1[i])) {
+        console.log("WorkspaceComponents present:", arr1[i]);
+      } else {
+        delete components[arr1[i]];
       }
     }
-    //console.log("workspace diff", arr1);
-    for (var i = 0; i < arr1.length; i++) {
-      //console.log("workspacediffffff", difference[i]);
-      delete components[arr1[i]];
-    }
+
+    // for (var i = 0; i < arr1.length; i++) {
+    //   //console.log("workspacediffffff", difference[i]);
+    //   if (arr1[i] != null || undefined) {
+    //     console.log("workspace", components[arr1[i]]);
+    //     delete components[arr1[i]];
+    //   }
+    // }
     if (components != null || undefined) {
       var { workspace } = this.props;
       workspace.components = components;
@@ -184,14 +192,14 @@ class Workspace extends Component {
     }
 
     var { PortConnections } = this.props.appState.assembly;
-    console.log("WorkspaceComponents from history", components);
+    //console.log("WorkspaceComponents after delete", components);
     Object.keys(PortConnections).map((port) => (PortConnections[port] = null));
 
     // console.log("componentscomponentscomponentscomponents", components);
 
     Object.keys(components).map((type) => {
       let SensorObj = componentsDataSensor.find((o) => o.type === type);
-      // console.log("SOUMITYA++++++++++++++++>", SensorObj);
+      //console.log("SOUMITYA++++++++++++++++>", SensorObj);
 
       components[type].map((component, index) => {
         if (component.connectedTo) {
@@ -407,7 +415,6 @@ class Workspace extends Component {
     this.props.update(workspace);
 
     var { components, scale, offset } = this.props.workspace;
-
     var { PortConnections } = this.props.appState.assembly;
     Object.keys(PortConnections).map((port) => (PortConnections[port] = null));
     Object.keys(components).map((type) => {
