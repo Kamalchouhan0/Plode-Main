@@ -166,9 +166,11 @@ class Workspace extends Component {
     for (var k in components) {
       arr1.push(k);
     }
-    for (var k = 0; k < selectedComponents.length; k++) {
-      arr2.push(selectedComponents[k].type);
-    }
+    try {
+      for (var k = 0; k < selectedComponents.length; k++) {
+        arr2.push(selectedComponents[k].type);
+      }
+    } catch (e) {}
     console.log("workspace arrs", arr1, arr2);
     for (var i = 0; i < arr1.length; i++) {
       if (arr2.includes(arr1[i])) {
