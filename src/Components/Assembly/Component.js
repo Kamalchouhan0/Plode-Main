@@ -1118,6 +1118,7 @@ class Component1 extends Component {
       return connectDragSource(
         <div>
           <div
+            id="normalcomponent"
             style={{
               ...style,
               left,

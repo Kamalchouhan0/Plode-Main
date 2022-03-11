@@ -67,7 +67,7 @@ function collect(monitor) {
           });
       }
     }
-  } else currentOffset = monitor.getSourceClientOffset();
+  } else currentOffset = monitor.getClientOffset();
   return {
     item: monitor.getItem(),
     itemType: monitor.getItemType(),

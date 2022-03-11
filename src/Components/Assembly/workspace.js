@@ -90,7 +90,7 @@ const workspaceTarget = {
       !DraggingInfo.draggingComponentOld
     ) {
       currentOffset = monitor.getClientOffset();
-    } else currentOffset = monitor.getSourceClientOffset();
+    } else currentOffset = monitor.getClientOffset();
     currentOffset.x -= document.body.clientWidth - width;
     currentOffset.y -= document.body.clientHeight - height;
     currentOffset.x = currentOffset.x / scale - offset.left;
