@@ -40,7 +40,12 @@ const customStyles = {
 
 const CustomNodeFlow = ({ compo, img, assembly, updateState, indexChange }) => {
   console.log("CustomNodeFlow PROPS", compo, img, assembly);
-
+  const onDragOver =
+    ((event) => {
+      event.preventDefault();
+      event.dataTransfer.dropEffect = "move";
+    },
+    []);
   const onElementClick = (event, element) => {
     console.log(event.target);
     console.log(event.target.getAttribute("namecomp"));
@@ -178,7 +183,7 @@ const CustomNodeFlow = ({ compo, img, assembly, updateState, indexChange }) => {
       });
     });
   }, []);
-
+  console.log("simcomp", compo, newArr);
   if (compo[newArr[1]]) {
     Object.values(compo[newArr[1]]).map((i) => {
       switch (i.connectedTo) {
@@ -1612,6 +1617,7 @@ const CustomNodeFlow = ({ compo, img, assembly, updateState, indexChange }) => {
         onNodeDragStop={onNodeDragStop}
         //   style={{ background: bgColor }}
         onLoad={onLoad}
+        onDragOver={onDragOver}
         nodeTypes={nodeTypes}
         connectionLineStyle={connectionLineStyle}
         snapToGrid={true}

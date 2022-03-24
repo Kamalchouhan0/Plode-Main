@@ -332,7 +332,7 @@ class Curve extends Component {
                 this.props.componentName != "dc_motor" &&
                 this.props.componentName != "servo_motor"
               ) {
-                if (component.connectedTo == "A") {
+                if (component.connectedTo == "A1") {
                   LeftF = component.left;
                   TopF = component.top;
                 }
@@ -401,13 +401,13 @@ class Curve extends Component {
           <path
             d={
               "M " +
-              (left + ImageSizes[ItemTypes.COMPONENT][0] / 2) +
+              (left - 10 + ImageSizes[ItemTypes.COMPONENT][0] / 2) +
               "," +
-              top +
+              (top + 85) +
               " C " +
               (left + ImageSizes[ItemTypes.COMPONENT][0] / 2) +
               "," +
-              (top - 2 * ImageSizes[ItemTypes.COMPONENT][1]) +
+              (top + 2 * ImageSizes[ItemTypes.COMPONENT][1]) +
               " " +
               cx2 +
               "," +
@@ -484,13 +484,13 @@ class Curve extends Component {
           <path
             d={
               "M " +
-              (left + ImageSizes[ItemTypes.COMPONENT][0] / 2) +
+              (left - 10 + ImageSizes[ItemTypes.COMPONENT][0] / 2) +
               "," +
-              top +
+              (top + 85) +
               " C " +
               (left + ImageSizes[ItemTypes.COMPONENT][0] / 2) +
               "," +
-              (top - 2 * ImageSizes[ItemTypes.COMPONENT][1]) +
+              (top + 2 * ImageSizes[ItemTypes.COMPONENT][1]) +
               " " +
               cx2 +
               "," +
@@ -528,13 +528,13 @@ class Curve extends Component {
           <path
             d={
               "M " +
-              (left + ImageSizes[ItemTypes.COMPONENT][0] / 2) +
+              (left - 10 + ImageSizes[ItemTypes.COMPONENT][0] / 2) +
               "," +
-              (top + 15) +
+              (top + 85) +
               " C " +
               (left + ImageSizes[ItemTypes.COMPONENT][0] / 2) +
               "," +
-              (top - 2 * ImageSizes[ItemTypes.COMPONENT][1]) +
+              (top + 2 * ImageSizes[ItemTypes.COMPONENT][1]) +
               " " +
               cx2 +
               "," +
@@ -559,6 +559,26 @@ class Curve extends Component {
                 if (component.connectedTo == "C") {
                   LeftF = component.left;
                   TopF = component.top;
+                }
+              }
+            });
+          }
+          if (dual_splitter == "dual_splitter") {
+            components[dual_splitter].map((component, index) => {
+              console.log("abcdefgh", this.props.componentName);
+              if (
+                this.props.componentName == "mini_geared_motor" ||
+                this.props.componentName == "dc_motor"
+              ) {
+                if (component.connectedTo == "C") {
+                  LeftF = component.left + 25;
+                  TopF = component.top + 5;
+                }
+              }
+              if (this.props.componentName == "servo_motor") {
+                if (component.connectedTo == "C") {
+                  LeftF = component.left - 25;
+                  TopF = component.top + 5;
                 }
               }
             });
@@ -611,13 +631,13 @@ class Curve extends Component {
           <path
             d={
               "M " +
-              (left + ImageSizes[ItemTypes.COMPONENT][0] / 2) +
+              (left - 10 + ImageSizes[ItemTypes.COMPONENT][0] / 2) +
               "," +
-              top +
+              (top + 85) +
               " C " +
               (left + ImageSizes[ItemTypes.COMPONENT][0] / 2) +
               "," +
-              (top - 2 * ImageSizes[ItemTypes.COMPONENT][1]) +
+              (top + 2 * ImageSizes[ItemTypes.COMPONENT][1]) +
               " " +
               cx2 +
               "," +
@@ -716,13 +736,13 @@ class Curve extends Component {
           <path
             d={
               "M " +
-              (left + ImageSizes[ItemTypes.COMPONENT][0] / 2) +
+              (left - 10 + ImageSizes[ItemTypes.COMPONENT][0] / 2) +
               "," +
-              top +
+              (top + 85) +
               " C " +
               (left + ImageSizes[ItemTypes.COMPONENT][0] / 2) +
               "," +
-              (top - 2 * ImageSizes[ItemTypes.COMPONENT][1]) +
+              (top + 2 * ImageSizes[ItemTypes.COMPONENT][1]) +
               " " +
               cx2 +
               "," +
@@ -754,13 +774,13 @@ class Curve extends Component {
           <path
             d={
               "M " +
-              (left + ImageSizes[ItemTypes.COMPONENT][0] / 2) +
+              (left - 10 + ImageSizes[ItemTypes.COMPONENT][0] / 2) +
               "," +
-              top +
+              (top + 85) +
               " C " +
               (left + ImageSizes[ItemTypes.COMPONENT][0] / 2) +
               "," +
-              (top - 2 * ImageSizes[ItemTypes.COMPONENT][1]) +
+              (top + 2 * ImageSizes[ItemTypes.COMPONENT][1]) +
               " " +
               cx2 +
               "," +
@@ -776,7 +796,8 @@ class Curve extends Component {
         connectedTo == "A" ||
         connectedTo == "B" ||
         connectedTo == "C" ||
-        connectedTo == "D"
+        connectedTo == "D" ||
+        connectedTo == "E"
       ) {
         Top = bibox.top;
         Left = bibox.left;
@@ -1677,6 +1698,8 @@ class PortCircle extends Component {
   };
 
   render() {
+    //console.log("konektion", this.props);
+
     if (
       ImageSizes[ItemTypes.PORT_CIRCLE][0] /
         (this.props.highlighted ? 1.4 : 0) ==
@@ -1700,6 +1723,8 @@ class PortCircle extends Component {
 
 class ComponentPort extends Component {
   render() {
+    console.log("konektion", this.props);
+
     var { left, top } = this.props.component;
     left += ImageSizes[ItemTypes.COMPONENT][0] / 2;
     return <PortCircle left={left} top={top} />;
@@ -1710,7 +1735,7 @@ class Connections extends Component {
   render() {
     const { bibox, components, extraComponent, Camera, PortConnections } =
       this.props;
-
+    //console.log("konektion", this.props);
     let connectedDevice = sessionStorage.getItem("connectedDevice");
 
     let internalAccessoriesData = JSON.parse(
@@ -1737,12 +1762,14 @@ class Connections extends Component {
       // var PortConnectionsTutor = JSON.parse(sessionStorage.getItem("tutorialPort"))
       var AllowedPortTypesTutor = AllowedPortTypes;
       // var AllowedPortTypesTutor = {}
+      console.log("dishoom123", AllowedPortTypesTutor);
+      console.log("dishoom1234", PortConnections);
 
       Object.entries(PortConnections).map(
         ([key, value]) => (AllowedPortTypesTutor[value] = [key])
       );
     }
-
+    console.log("dishoom", PortConnections);
     var positionCircleRight;
     var positionCircleLeft;
     var biboxType;
@@ -1949,6 +1976,7 @@ class Connections extends Component {
           />
         );
       }
+      console.log("konekkk", extraComponent);
       portCircles.push(
         <ComponentPort component={extraComponent} key={portCircles.length} />
       );
@@ -2192,6 +2220,22 @@ class Connections extends Component {
                             extraComponent.type != "mini_geared_motor" &&
                             extraComponent.type != "dc_motor" &&
                             extraComponent.type != "servo_motor"
+                          ) {
+                            if (component.connectedTo == "C") {
+                              Left = component.left;
+                              Top = component.top;
+                              highlighted = true;
+                            }
+                          }
+                        });
+                      }
+                      if (dual_splitter == "dual_splitter") {
+                        components[dual_splitter].map((component, index) => {
+                          if (
+                            extraComponent.type == "geared_motor" ||
+                            extraComponent.type == "mini_geared_motor" ||
+                            extraComponent.type == "dc_motor" ||
+                            extraComponent.type == "servo_motor"
                           ) {
                             if (component.connectedTo == "C") {
                               Left = component.left;
@@ -2960,7 +3004,7 @@ class Connections extends Component {
               }
 
               /* here we are checking that if led,dual splitter is connected to "A" then DRIVER_MOTOR will not connect to A, C ports*/
-              if (sessionStorage.getItem("dragingItem") == "pc_motor_driver") {
+              if (sessionStorage.getItem("dragingItem") == "dual_spliier") {
                 let daata = JSON.parse(
                   sessionStorage.getItem("assembly")
                 ).PortConnections;
@@ -3117,6 +3161,7 @@ class Connections extends Component {
                   }
                 }
               } else {
+                console.log("key", key);
                 return (
                   <g
                     key={key}

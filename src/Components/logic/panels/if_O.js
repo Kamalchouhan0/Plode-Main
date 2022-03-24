@@ -799,7 +799,6 @@ class IfPanel extends Component {
     Object.keys(PortConnections).forEach((port) => {
       if (port != "undefined" && PortConnections[port]) {
         if (!PortConnections[port]) return;
-
         var type = PortConnections[port].type;
 
         // if (type == "4_in_1_sensor") {
@@ -1304,7 +1303,10 @@ class IfPanel extends Component {
           <span className="sensor-txt">
             If the value of
             <Select
-              onChange={(value) => this.onChange("source", value)}
+              onChange={(value) => {
+                this.onChange("source", value);
+                //console.log(value, "gsk+++@@@@@");
+              }}
               color={HexTypes["if"].color}
               options={sourceOptions}
               order={sourceOptionsOrder}

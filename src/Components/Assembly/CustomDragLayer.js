@@ -67,7 +67,13 @@ function collect(monitor) {
           });
       }
     }
-  } else currentOffset = monitor.getClientOffset();
+  } else {
+    currentOffset = monitor.getClientOffset();
+    try {
+      currentOffset.x = currentOffset.x - 20;
+      currentOffset.y = currentOffset.y - 20;
+    } catch (e) {}
+  }
   return {
     item: monitor.getItem(),
     itemType: monitor.getItemType(),
@@ -84,17 +90,37 @@ class CustomDragLayer extends Component {
     var url;
     let Device = sessionStorage.getItem("connectedDevice");
     const { scale } = this.props.workspace;
+    const { left, top } = this.props.workspace.bibox;
     if (type === ItemTypes.BIBOX && Device == "Ace") {
       // url = "images/login/pc_1.png";
-      url = renderPrgImage("PlayComputerImg");
-      return (
-        <img
-          style={{ overflow: "visible", zIndex: 2 }}
-          src={url}
-          width={ImageSizes[type][0] * scale}
-          height={ImageSizes[type][1] * scale}
-        />
-      );
+      if (sessionStorage.getItem("shield") == "false") {
+        url = renderPrgImage("PlayComputerImg");
+        return (
+          <img
+            style={{ overflow: "visible", zIndex: 2 }}
+            src={url}
+            width={ImageSizes[type][0] * scale}
+            height={ImageSizes[type][1] * scale}
+          />
+        );
+      } else if (sessionStorage.getItem("shield") == "true") {
+        url = renderPrgImage("PlayComputerwithShieldImg");
+        return (
+          <img
+            style={{
+              overflow: "visible",
+              zIndex: 2,
+              height: "20%",
+              width: "20%",
+              left,
+              top,
+            }}
+            src={url}
+            width={ImageSizes[type][0] * scale}
+            height={ImageSizes[type][1] * scale}
+          />
+        );
+      }
     } else if (type === ItemTypes.BIBOX && Device == "Humanoid") {
       url = "images/login/humanoid_img.png";
 
@@ -115,6 +141,26 @@ class CustomDragLayer extends Component {
       );
     } else if (type === ItemTypes.BIBOX && Device == "Tern") {
       url = "images/Learn/tern.png";
+    } else if (item.type == "dual_splitter") {
+      url =
+        "Bisoft_UI/Accessories/newComponents/component_" + item.type + ".png";
+      return (
+        <img
+          src={url}
+          width={ImageSizes[type][0] * scale}
+          height={ImageSizes[type][1] * scale}
+        />
+      );
+    } else if (item.type == "play_shield") {
+      url =
+        "Bisoft_UI/Accessories/newComponents/component_" + item.type + ".png";
+      return (
+        <img
+          src={url}
+          width={ImageSizes[type][0] * scale}
+          height={ImageSizes[type][1] * scale}
+        />
+      );
     } else {
       // url = "images/oldImages/component_" + item.type + ".png";
 
@@ -125,7 +171,7 @@ class CustomDragLayer extends Component {
     return (
       <img
         src={url}
-        width={ImageSizes[type][0] * scale}
+        width={ImageSizes[type][0] * scale - 35}
         height={ImageSizes[type][1] * scale}
       />
     );
@@ -158,8 +204,9 @@ class CustomDragLayer extends Component {
         bibox.top = (y - Sizes.navHeight) / Camera.scale - Camera.offset.top;
       } else if (itemType === ItemTypes.COMPONENT) {
         extraComponent = {
-          left: (x - Sizes.sidebarWidth) / Camera.scale - Camera.offset.left,
-          top: (y - Sizes.navHeight) / Camera.scale - Camera.offset.top,
+          left:
+            (x - Sizes.sidebarWidth) / Camera.scale - Camera.offset.left - 1,
+          top: (y - Sizes.navHeight) / Camera.scale - Camera.offset.top - 1,
           type: item.type,
         };
 

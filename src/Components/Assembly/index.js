@@ -659,6 +659,7 @@ class Assembly extends Component {
         document.getElementById(`${val}`).checked = sessionDataCheckbox[val];
       });
     }
+    sessionStorage.setItem("shield", "false");
 
     var socket = socketIOClient.connect("http://localhost:3008");
     socket.emit("_usbDetection", "Hi");
@@ -731,7 +732,10 @@ class Assembly extends Component {
         node[nodeKey].type == "hardware"
       ) {
         //  for tern+
-        if (port.length == 1) {
+        try {
+          var l = port.length;
+        } catch (e) {}
+        if (l == 1) {
           if (obj["assign" + port + "1"]) {
             delete node[nodeKey].state["assign" + port + "1"];
           }
@@ -782,7 +786,7 @@ class Assembly extends Component {
     return node;
   };
   removeFromWorkspace = (item) => {
-    //console.log("workspace remove", item);
+    console.log("workspace remove", item);
     var prev_data = this.props;
     var port = item.port;
     var updated_prog = this.ParseNodeList(
@@ -886,6 +890,9 @@ class Assembly extends Component {
     var { workspace } = this.props.assembly;
     workspace.components[item.type].splice(item.index, 1);
     this.props.assemblyComponent(workspace);
+    if (item.type == "play_shield") {
+      window.location.reload();
+    }
   };
   /**
    * Pan event handler with throttling
@@ -967,8 +974,8 @@ class Assembly extends Component {
    */
   wheel = (e) => {
     const { clientX, clientY, deltaY } = e;
-    if (deltaY > 0) this.zoom(5 / 6, clientX, clientY);
-    else this.zoom(6 / 5, clientX, clientY);
+    // if (deltaY > 0) this.zoom(5 / 6, clientX, clientY);
+    // else this.zoom(6 / 5, clientX, clientY);
     e.preventDefault();
     return false;
   };

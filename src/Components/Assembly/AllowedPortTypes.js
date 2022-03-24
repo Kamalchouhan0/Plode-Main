@@ -10,7 +10,8 @@ var PortConnections_B = JSON.parse(sessionStorage.getItem("assembly"))
 if (Device == "Ace") {
   module.exports = {
     led: ["A", "B", "C", "D", "A1", "A2", "B1", "B2", "D1", "D2", "C1", "C2"],
-    laser: ["A", "B", "C", "D", "A1", "A2", "B1", "B2", "D1", "D2", "C1", "C2"],
+    led_1c: ["A", "B", "C", "D", "A1", "C1", "B1", "D1"],
+    laser: ["A", "B", "C", "D", "A1", "B1", "D1", "C1"],
     beeper: ["A", "B", "D", "A1", "A2", "B1", "B2", "D1", "D2"],
     replay_1_ch: [
       "A",
@@ -61,9 +62,10 @@ if (Device == "Ace") {
     rain_sensor: ["A", "B", "C", "A1", "A2", "B1", "B2", "C2", "C1"],
     metal_detector: ["A", "B", "C", "A1", "A2", "B1", "B2", "C2", "C1"],
     heartbeat_sensor: ["A", "B", "C", "A1", "A2", "B1", "B2", "C2", "C1"],
-    tact_switch: ["A", "B", "C", "A1", "A2", "B1", "B2", "C2", "C1"],
+    tact_switch: ["A", "B", "C", "A1", "B1", "C1"],
+    tact_switch_2c: ["A", "B", "C", "A1", "A2", "B1", "B2", "C2", "C1"],
     dual_switch: ["A", "B", "C", "A1", "A2", "B1", "B2", "C2", "C1"],
-    touch_sensor: ["A", "B", "C", "A1", "A2", "B1", "B2", "C2", "C1"],
+    touch_sensor: ["A", "B", "C", "A1", "B1", "C1"],
     pir_sensor: [
       "A",
       "B",

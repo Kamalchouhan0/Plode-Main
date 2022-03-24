@@ -112,6 +112,7 @@ import buzzerInActive from "../Assets/Bisoft_UI/Buttons/Inactive with shadow/buz
 import devicePc from "../Assets/Bisoft_UI/Main/PNG/PC_image@3x.png";
 
 import PlayComputerImg from "../Assets/Bisoft_UI/Main/PNG/PC_image@2x.png";
+import PlayComputerwithShieldImg from "../Assets/Bisoft_UI/Main/PNG/play_shield+pc@2x.png";
 
 // MIC
 import PcinternalMicInActive from "../Assets/Bisoft_UI/Play/SVG/internal mic - inactive.svg";
@@ -369,6 +370,8 @@ function renderPrgImage(imageName) {
       return devicePc;
     case "PlayComputerImg":
       return PlayComputerImg;
+    case "PlayComputerwithShieldImg":
+      return PlayComputerwithShieldImg;
     case "PcinternalMicActive":
       return PcinternalMicActive;
     case "PcinternalMicInActive":

@@ -1,5 +1,6 @@
 const IOComponents = {
   led: { output: true, input: false },
+  led_1c: { output: true, input: false },
   laser: { output: true, input: false },
   beeper: { output: true, input: false },
 
@@ -42,6 +43,7 @@ const IOComponents = {
   color_sensor: { output: false, input: true },
   rain_sensor: { output: false, input: true },
   tact_switch: { output: false, input: true },
+  tact_switch_2c: { output: false, input: true },
   dual_switch: { output: false, input: true },
   rotatory: { output: false, input: true },
   joystick: { output: false, input: true },

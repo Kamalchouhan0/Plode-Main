@@ -374,6 +374,7 @@ class Simulate extends Component {
   };
 
   play = (time) => {
+    console.log("props.logic.program", this.props.logic.program);
     setTimeout(() => {
       if (j < this.props.logic.program.length) {
         switch (this.props.logic.program[j].type) {

@@ -819,6 +819,37 @@ export default PortValuesRangeMapping = {
     },
   },
   A: {
+    joystick: function (port) {
+      return { min: 0, max: 1024 };
+    },
+    temp_dew: function (port) {
+      return { min: 0, max: 1024 };
+    },
+    temp_gas: function (port) {
+      return { min: 0, max: 1024 };
+    },
+    rotatory: function (port) {
+      return { min: 0, max: 1024 };
+    },
+    geared_motor: function (port) {
+      return { min: 0, max: 1024 };
+    },
+    mini_geared_motor: function (port) {
+      return { min: 0, max: 1024 };
+    },
+
+    dc_motor: function (port) {
+      return { min: 0, max: 1024 };
+    },
+
+    servo_motor: function (port) {
+      return { min: 0, max: 180 };
+    },
+
+    servo_motor_360: function (port) {
+      return { min: -100, max: +100 };
+    },
+
     dual_splitter: function (port) {
       return { min: 0, max: 225 };
     },
@@ -886,29 +917,63 @@ export default PortValuesRangeMapping = {
       return { min: 0, max: 1 };
     },
     ultrasonic_sensor: function (port) {
-      return { min: 0, max: 1024 };
-    },
-    rotatory: function (port) {
-      return { min: 0, max: 1024 };
+      return { min: 0, max: 400 };
     },
   },
   A1: {
+    joystick: function (port) {
+      return { min: 0, max: 1024 };
+    },
+    temp_dew: function (port) {
+      return { min: 0, max: 1024 };
+    },
+    temp_gas: function (port) {
+      return { min: 0, max: 1024 };
+    },
+
     rotatory: function (port) {
       return { min: 0, max: 1024 };
     },
-    ultrasonic_sensor: function (port) {
-      return { min: 0, max: 1024 };
+    geared_motor: function (port) {
+      return { min: -20, max: +20 };
     },
+
+    mini_geared_motor: function (port) {
+      return { min: -20, max: +20 };
+    },
+
+    dc_motor: function (port) {
+      return { min: -20, max: +20 };
+    },
+    servo_motor_360: function (port) {
+      return { min: -100, max: +100 };
+    },
+
+    servo_motor: function (port) {
+      return { min: 0, max: 180 };
+    },
+    stepper_motor: function (port) {
+      return { min: 0, max: 1 };
+    },
+
     led: function (port) {
       if (sessionStorage.getItem("connectedDevice") == "Ace") {
-        return { min: 0, max: 65535 };
+        return { min: 0, max: 100 };
       } else {
-        return { min: 0, max: 1 };
+        return { min: 0, max: 100 };
+      }
+    },
+    led_1c: function (port) {
+      if (sessionStorage.getItem("connectedDevice") == "Ace") {
+        return { min: 0, max: 100 };
+      } else {
+        return { min: 0, max: 100 };
       }
     },
     laser: function (port) {
       return { min: 0, max: 1 };
     },
+
     beeper: function (port) {
       return { min: 0, max: 1 };
     },
@@ -966,10 +1031,43 @@ export default PortValuesRangeMapping = {
     pir_sensor: function (port) {
       return { min: 0, max: 1 };
     },
+    ultrasonic_sensor: function (port) {
+      return { min: 0, max: 400 };
+    },
   },
   A2: {
-    led: function (port) {
+    joystick: function (port) {
+      return { min: 0, max: 1024 };
+    },
+    temp_dew: function (port) {
+      return { min: 0, max: 1024 };
+    },
+    temp_gas: function (port) {
+      return { min: 0, max: 1024 };
+    },
+    rotatory: function (port) {
+      return { min: 0, max: 1024 };
+    },
+    servo_motor_360: function (port) {
+      return { min: -100, max: +100 };
+    },
+
+    servo_motor: function (port) {
+      return { min: 0, max: 180 };
+    },
+    stepper_motor: function (port) {
       return { min: 0, max: 1 };
+    },
+
+    led: function (port) {
+      return { min: 0, max: 100 };
+    },
+    led_1c: function (port) {
+      if (sessionStorage.getItem("connectedDevice") == "Ace") {
+        return { min: 0, max: 100 };
+      } else {
+        return { min: 0, max: 100 };
+      }
     },
     laser: function (port) {
       return { min: 0, max: 1 };
@@ -980,9 +1078,7 @@ export default PortValuesRangeMapping = {
     servo_extender: function (port) {
       return { min: 0, max: 1 };
     },
-    servo_motor: function (port) {
-      return { min: 0, max: 180 };
-    },
+
     light_sensor: function (port) {
       return { min: 0, max: 1024 };
     },
@@ -1567,7 +1663,7 @@ export default PortValuesRangeMapping = {
       return { min: 0, max: 1 };
     },
     ultrasonic_sensor: function (port) {
-      return { min: 0, max: 1024 };
+      return { min: 0, max: 400 };
     },
   },
   G: {
@@ -1575,7 +1671,7 @@ export default PortValuesRangeMapping = {
       return { min: 0, max: 65535 };
     },
     ultrasonic_sensor: function (port) {
-      return { min: 0, max: 1024 };
+      return { min: 0, max: 400 };
     },
     dual_splitter: function (port) {
       return { min: 0, max: 225 };
@@ -2051,8 +2147,32 @@ export default PortValuesRangeMapping = {
     },
   },
   D2: {
-    led: function (port) {
+    temp_dew: function (port) {
+      return { min: 0, max: 1024 };
+    },
+    temp_gas: function (port) {
+      return { min: 0, max: 1024 };
+    },
+    rotatory: function (port) {
+      return { min: 0, max: 1024 };
+    },
+
+    servo_motor_360: function (port) {
+      return { min: -100, max: +100 };
+    },
+
+    servo_motor: function (port) {
+      return { min: 0, max: 180 };
+    },
+    stepper_motor: function (port) {
       return { min: 0, max: 1 };
+    },
+
+    led: function (port) {
+      return { min: 0, max: 100 };
+    },
+    led_1c: function (port) {
+      return { min: 0, max: 100 };
     },
     laser: function (port) {
       return { min: 0, max: 1 };
@@ -2116,12 +2236,46 @@ export default PortValuesRangeMapping = {
     },
   },
   D1: {
+    temp_dew: function (port) {
+      return { min: 0, max: 1024 };
+    },
+    temp_gas: function (port) {
+      return { min: 0, max: 1024 };
+    },
+    rotatory: function (port) {
+      return { min: 0, max: 1024 };
+    },
+
+    servo_motor_360: function (port) {
+      return { min: -100, max: +100 };
+    },
+
+    servo_motor: function (port) {
+      return { min: 0, max: 180 };
+    },
+    stepper_motor: function (port) {
+      return { min: -20, max: +20 };
+    },
+
+    geared_motor: function (port) {
+      return { min: -20, max: +20 };
+    },
+    mini_geared_motor: function (port) {
+      return { min: -20, max: +20 };
+    },
+    dc_motor: function (port) {
+      return { min: -20, max: +20 };
+    },
+
     led: function (port) {
       if (sessionStorage.getItem("connectedDevice") == "Ace") {
-        return { min: 0, max: 65535 };
+        return { min: 0, max: 100 };
       } else {
-        return { min: 0, max: 1 };
+        return { min: 0, max: 100 };
       }
+    },
+    led_1c: function (port) {
+      return { min: 0, max: 100 };
     },
     laser: function (port) {
       return { min: 0, max: 1 };
@@ -2183,13 +2337,28 @@ export default PortValuesRangeMapping = {
     pir_sensor: function (port) {
       return { min: 0, max: 1 };
     },
+    ultrasonic_sensor: function (port) {
+      return { min: 0, max: 400 };
+    },
   },
   D: {
+    temp_dew: function (port) {
+      return { min: 0, max: 1024 };
+    },
+    temp_gas: function (port) {
+      return { min: 0, max: 1024 };
+    },
+    rotatory: function (port) {
+      return { min: 0, max: 1024 };
+    },
+    ultrasonic_sensor: function (port) {
+      return { min: 0, max: 400 };
+    },
     dual_splitter: function (port) {
       return { min: 0, max: 225 };
     },
     led: function (port) {
-      return { min: 0, max: 1 };
+      return { min: 0, max: 100 };
     },
     laser: function (port) {
       return { min: 0, max: 1 };
@@ -2251,10 +2420,42 @@ export default PortValuesRangeMapping = {
     pir_sensor: function (port) {
       return { min: 0, max: 1 };
     },
+    servo_motor: function (port) {
+      return { min: 0, max: 180 };
+    },
+    servo_motor_360: function (port) {
+      return { min: -100, max: +100 };
+    },
   },
   C2: {
-    led: function (port) {
+    joystick: function (port) {
+      return { min: 0, max: 1024 };
+    },
+    temp_dew: function (port) {
+      return { min: 0, max: 1024 };
+    },
+    temp_gas: function (port) {
+      return { min: 0, max: 1024 };
+    },
+    rotatory: function (port) {
+      return { min: 0, max: 1024 };
+    },
+    servo_motor_360: function (port) {
+      return { min: -100, max: +100 };
+    },
+
+    servo_motor: function (port) {
+      return { min: 0, max: 180 };
+    },
+    stepper_motor: function (port) {
       return { min: 0, max: 1 };
+    },
+
+    led: function (port) {
+      return { min: 0, max: 100 };
+    },
+    led_1c: function (port) {
+      return { min: 0, max: 100 };
     },
     laser: function (port) {
       return { min: 0, max: 1 };
@@ -2318,15 +2519,51 @@ export default PortValuesRangeMapping = {
     },
   },
   C1: {
+    joystick: function (port) {
+      return { min: 0, max: 1024 };
+    },
+    temp_dew: function (port) {
+      return { min: 0, max: 1024 };
+    },
+    temp_gas: function (port) {
+      return { min: 0, max: 1024 };
+    },
     rotatory: function (port) {
       return { min: 0, max: 1024 };
     },
-    led: function (port) {
+    geared_motor: function (port) {
+      return { min: -20, max: +20 };
+    },
+    mini_geared_motor: function (port) {
+      return { min: -20, max: +20 };
+    },
+    dc_motor: function (port) {
+      return { min: -20, max: +20 };
+    },
+    servo_motor_360: function (port) {
+      return { min: -100, max: +100 };
+    },
+
+    servo_motor: function (port) {
+      return { min: 0, max: 180 };
+    },
+    stepper_motor: function (port) {
       return { min: 0, max: 1 };
+    },
+    led: function (port) {
+      if (sessionStorage.getItem("connectedDevice") == "Ace") {
+        return { min: 0, max: 100 };
+      } else {
+        return { min: 0, max: 1 };
+      }
+    },
+    led_1c: function (port) {
+      return { min: 0, max: 100 };
     },
     laser: function (port) {
       return { min: 0, max: 1 };
     },
+
     beeper: function (port) {
       return { min: 0, max: 1 };
     },
@@ -2383,14 +2620,33 @@ export default PortValuesRangeMapping = {
     },
     pir_sensor: function (port) {
       return { min: 0, max: 1 };
+    },
+    ultrasonic_sensor: function (port) {
+      return { min: 0, max: 400 };
     },
   },
   C: {
+    joystick: function (port) {
+      return { min: 0, max: 1024 };
+    },
+    temp_dew: function (port) {
+      return { min: 0, max: 1024 };
+    },
+    temp_gas: function (port) {
+      return { min: 0, max: 1024 };
+    },
     rotatory: function (port) {
       return { min: 0, max: 1024 };
     },
+    servo_motor_360: function (port) {
+      return { min: -100, max: +100 };
+    },
+
+    servo_motor: function (port) {
+      return { min: 0, max: 180 };
+    },
     led: function (port) {
-      return { min: 0, max: 1 };
+      return { min: 0, max: 100 };
     },
     laser: function (port) {
       return { min: 0, max: 1 };
@@ -2452,10 +2708,39 @@ export default PortValuesRangeMapping = {
     pir_sensor: function (port) {
       return { min: 0, max: 1 };
     },
+    ultrasonic_sensor: function (port) {
+      return { min: 0, max: 400 };
+    },
   },
   B2: {
-    led: function (port) {
+    joystick: function (port) {
+      return { min: 0, max: 1024 };
+    },
+    temp_dew: function (port) {
+      return { min: 0, max: 1024 };
+    },
+    temp_gas: function (port) {
+      return { min: 0, max: 1024 };
+    },
+    rotatory: function (port) {
+      return { min: 0, max: 1024 };
+    },
+    servo_motor_360: function (port) {
+      return { min: -100, max: +100 };
+    },
+
+    servo_motor: function (port) {
+      return { min: 0, max: 180 };
+    },
+    stepper_motor: function (port) {
       return { min: 0, max: 1 };
+    },
+
+    led: function (port) {
+      return { min: 0, max: 100 };
+    },
+    led_1c: function (port) {
+      return { min: 0, max: 100 };
     },
     laser: function (port) {
       return { min: 0, max: 1 };
@@ -2519,17 +2804,44 @@ export default PortValuesRangeMapping = {
     },
   },
   B1: {
+    joystick: function (port) {
+      return { min: 0, max: 1024 };
+    },
+    temp_dew: function (port) {
+      return { min: 0, max: 1024 };
+    },
+    temp_gas: function (port) {
+      return { min: 0, max: 1024 };
+    },
     rotatory: function (port) {
       return { min: 0, max: 1024 };
     },
-    servo_extender: function (port) {
-      return { min: 0, max: 1 };
+    geared_motor: function (port) {
+      return { min: -20, max: +20 };
     },
+    mini_geared_motor: function (port) {
+      return { min: -20, max: +20 };
+    },
+    dc_motor: function (port) {
+      return { min: -20, max: +20 };
+    },
+
+    servo_motor_360: function (port) {
+      return { min: -100, max: +100 };
+    },
+
     servo_motor: function (port) {
       return { min: 0, max: 180 };
     },
+    stepper_motor: function (port) {
+      return { min: 0, max: 1 };
+    },
+
     led: function (port) {
-      return { min: 0, max: 65535 };
+      return { min: 0, max: 100 };
+    },
+    led_1c: function (port) {
+      return { min: 0, max: 100 };
     },
     laser: function (port) {
       return { min: 0, max: 1 };
@@ -2593,9 +2905,22 @@ export default PortValuesRangeMapping = {
     },
   },
   B: {
+    joystick: function (port) {
+      return { min: 0, max: 1024 };
+    },
+    temp_dew: function (port) {
+      return { min: 0, max: 1024 };
+    },
+    temp_gas: function (port) {
+      return { min: 0, max: 1024 };
+    },
     rotatory: function (port) {
       return { min: 0, max: 1024 };
     },
+    servo_motor_360: function (port) {
+      return { min: -100, max: +100 };
+    },
+
     servo_extender: function (port) {
       return { min: 0, max: 1 };
     },
@@ -2606,7 +2931,7 @@ export default PortValuesRangeMapping = {
       return { min: 0, max: 225 };
     },
     led: function (port) {
-      return { min: 0, max: 1 };
+      return { min: 0, max: 100 };
     },
     laser: function (port) {
       return { min: 0, max: 1 };
@@ -2669,7 +2994,71 @@ export default PortValuesRangeMapping = {
       return { min: 0, max: 1 };
     },
   },
+
+  STPM: {
+    stepper_motor: function (port) {
+      return { min: 0, max: 1 };
+    },
+  },
+
+  // OLD UI DATA
+  FOUR_in_ONE_Sensor: {
+    FOUR_in_ONE_Sensor_RED: function () {
+      return { min: 0, max: 65535 };
+    },
+    FOUR_in_ONE_Sensor_BLUE: function () {
+      return { min: 0, max: 65535 };
+    },
+    FOUR_in_ONE_Sensor_GREEN: function () {
+      return { min: 0, max: 65535 };
+    },
+    FOUR_in_ONE_Sensor_DIST: function () {
+      return { min: 0, max: 65535 };
+    },
+
+    FOUR_in_ONE_Sensor_MOTION: function () {
+      return { min: 0, max: 4 };
+    },
+  },
+
+  // NEW UI DATA
+  MICROPHONE: function () {
+    return { min: 0, max: 65535 };
+  },
+
+  TEMPERATURE: function () {
+    return { min: 0, max: 1024 };
+  },
+
+  TOUCHZERO: function () {
+    return { min: 0, max: 1024 };
+  },
+  TOUCHONE: function () {
+    return { min: 0, max: 1024 };
+  },
+  TOUCHTWO: function () {
+    return { min: 0, max: 1024 };
+  },
+  FOUR_in_ONE_Sensor_DIST_: function () {
+    return { min: 0, max: 255 };
+  },
+  FOUR_in_ONE_Sensor_GESTURE_: function () {
+    return { min: 0, max: 255 };
+  },
+  FOUR_in_ONE_Sensor_LIGHT_: function () {
+    return { min: 0, max: 255 };
+  },
+  FOUR_in_ONE_Sensor_RED_: function () {
+    return { min: 0, max: 100 };
+  },
+  FOUR_in_ONE_Sensor_BLUE_: function () {
+    return { min: 0, max: 100 };
+  },
+  FOUR_in_ONE_Sensor_GREEN_: function () {
+    return { min: 0, max: 100 };
+  },
 };
+
 // module.exports = {
 //   F12: {
 //     mp3: function (port) {

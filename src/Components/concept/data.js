@@ -3,6 +3,14 @@ var componentType = sessionStorage.getItem("connectedDevice");
 if (componentType == "Ace") {
   module.exports = [
     {
+      type: "led_1c",
+      description:
+        "Led 1c: It emits light when powered up, available in different colors",
+      color: "#15909d",
+      name: "led 1c",
+      signalType: "null",
+    },
+    {
       type: "led",
       description:
         "Led: It emits light when powered up, available in different colors",
@@ -18,27 +26,70 @@ if (componentType == "Ace") {
       name: "laser",
       signalType: "null",
     },
-    {
-      type: "servo_motor",
-      description:
-        "Servo Motor 180: It is a motor with angular control, you can control its rotation from 0 to 180 degree.",
-      color: "#15909d",
-      name: "servo motor",
-    },
+    // {
+    //   type: "mini_geared_motor",
+    //   description:
+    //     "Mini Geared Motor: It is similar to Geared motor, smaller in size and efficient but with metal gears",
+    //   color: "#15909d",
+    //   name: "mini geared motor",
+    // },
+    // {
+    //   type: "dc_motor",
+    //   description:
+    //     "DC Motor: It rotates when you power it up, speed and direction of rotation can be varied",
+    //   color: "#15909d",
+    //   name: "dc motor",
+    // },
+    // {
+    //   type: "servo_motor",
+    //   description:
+    //     "Servo Motor 180: It is a motor with angular control, you can control its rotation from 0 to 180 degree.",
+    //   color: "#15909d",
+    //   name: "servo motor",
+    // },
 
-    {
-      type: "servo_motor_360",
-      description:
-        "Servo Motor 360: It is a continous rotation motor, You can control its rotation in both direction.",
-      color: "#15909d",
-      name: "servo motor 360",
-    },
+    // {
+    //   type: "servo_motor_360",
+    //   description:
+    //     "Servo Motor 360: It is a continous rotation motor, You can control its rotation in both direction.",
+    //   color: "#15909d",
+    //   name: "servo motor 360",
+    // },
+    // {
+    //   type: "dual_splitter",
+    //   description:
+    //     "Dual Splitter: Splits a single two channel port into two single channel port",
+    //   color: "#15909d",
+    //   name: "dual splitter",
+    // },
+    // {
+    //   type: "pc_motor_driver",
+    //   description:
+    //     "Motor Driver: Splits a single two channel port into two single channel port",
+    //   color: "#15909d",
+    //   name: "dual splitter",
+    // },
     {
       type: "tact_switch",
       description:
-        "Tact Switch: It is a simple tactile switch used for toggle operation",
+        "Button: It is a simple tactile switch used for toggle operation",
       color: "#ff8c19",
-      name: "tact switch",
+      name: "Button",
+      signalType: "analog",
+    },
+    {
+      type: "tact_switch_2c",
+      description:
+        "Button 2c: It is a simple tactile switch used for toggle operation",
+      color: "#ff8c19",
+      name: "Button 2c",
+    },
+
+    {
+      type: "dual_switch",
+      description: "Dual Switch: It is simple On-Off Switch",
+      color: "#ff8c19",
+      name: "dual switch",
       signalType: "analog",
     },
     {
@@ -49,13 +100,12 @@ if (componentType == "Ace") {
       name: "touch sensor",
       signalType: "analog",
     },
-    {
-      type: "dual_switch",
-      description: "Dual Switch: It is simple On-Off Switch",
-      color: "#ff8c19",
-      name: "dual switch",
-      signalType: "analog",
-    },
+    // {
+    //   type: "metal_detector",
+    //   description: "Metal Sensor: It detects metal upto 2cms distance",
+    //   color: "#ff8c19",
+    //   name: "metal_detector",
+    // },
     {
       type: "rotatory",
       description:
@@ -64,13 +114,7 @@ if (componentType == "Ace") {
       name: "Rotatory",
       signalType: "analog",
     },
-    {
-      type: "joystick",
-      description: "Joystick: A 2-axis joystick sensor",
-      color: "#15909d",
-      name: "joystick",
-      signalType: "analog",
-    },
+
     {
       type: "light_sensor",
       description:
@@ -82,27 +126,34 @@ if (componentType == "Ace") {
     {
       type: "distance_sensor",
       description:
-        "Distance Sensor: It is an IR sensor used to measure the distance of the object from it (max range 3-6cm)",
+        "Range Sensor: It is an IR sensor used to measure the distance of the object from it (max range 3-6cm)",
       color: "#ff8c19",
       name: "distance sensor",
       signalType: "null",
     },
+
     {
-      type: "temp_dew",
-      description:
-        "Temp Dew: It is a 2-in-1 sensor, with temperature sensor on channel 1 & humidity on channel 2",
+      type: "joystick",
+      description: "Joystick: A 2-axis joystick sensor",
       color: "#15909d",
-      name: "Temp - Dew",
+      name: "joystick",
       signalType: "analog",
     },
-    {
-      type: "temp_gas",
-      description:
-        "Temp Gas: It is a 2-in-1 sensor, with temperature sensor at channel 1 & gas sensor at channel 2",
-      color: "#15909d",
-      name: "Temp - Gas",
-      signalType: "analog",
-    },
+    // {
+    //   type: "temp",
+    //   description: "Temperature: Measures temperature",
+    //   color: "#15909d",
+    //   name: "Temp",
+    //   signalType: "analog",
+    // },
+    // {
+    //   type: "humidity",
+    //   description: "Humidity: Measures Humidity",
+    //   color: "#15909d",
+    //   name: "humidity",
+    //   signalType: "analog",
+    // },
+
     {
       type: "ultrasonic_sensor",
       description:
@@ -111,13 +162,62 @@ if (componentType == "Ace") {
       name: "ultrasonic sensor",
       signalType: "analog",
     },
-    {
-      type: "play_shield",
-      description: "Play Shield description goes here",
-      color: "#15909d",
-      name: "Play Shield",
-      signalType: "null",
-    },
+    // {
+    //   type: "DIP_switch",
+    //   description: "DIP Switch: DIP description ",
+    //   color: "#ff8c19",
+    //   name: "DIP switch",
+    //   signalType: "digital",
+    // },
+    // {
+    //   type: "gas",
+    //   description: "Gas: Measures gas",
+    //   color: "#15909d",
+    //   name: "Gas",
+    //   signalType: "analog",
+    // },
+    // {
+    //   type: "magnetic",
+    //   description: "magnetic description",
+    //   color: "#15909d",
+    //   name: "Magnetic Sensor",
+    //   signalType: "analog",
+    // },
+    // {
+    //   type: "Rain sensor",
+    //   description: "RAIN   description",
+    //   color: "#15909d",
+    //   name: "Rain Sensor",
+    //   signalType: "analog",
+    // },
+    // {
+    //   type: "linear_pot",
+    //   description: "linear pot description",
+    //   color: "#15909d",
+    //   name: "Linear Pot",
+    //   signalType: "analog",
+    // },
+    // {
+    //   type: "6-axis",
+    //   description: "6-axis description",
+    //   color: "#15909d",
+    //   name: "6 axis",
+    //   signalType: "analog",
+    // },
+    // {
+    //   type: "general",
+    //   description: "general sensors description",
+    //   color: "#15909d",
+    //   name: "General Sensor",
+    //   signalType: "analog",
+    // },
+    // {
+    //   type: "play_shield",
+    //   description: "Play Shield description goes here",
+    //   color: "#15909d",
+    //   name: "Play Shield",
+    //   signalType: "null",
+    // },
     // NEW UI DATA LASER,LED,RANGE,9-Axis,Rotatory,touchSwitch,Temp-dew,button,light,temp-gas,ultrasonice,RGBled,DOTmatrix
 
     // {
@@ -149,13 +249,7 @@ if (componentType == "Ace") {
     //   color: "#15909d",
     //   name: "2 channel relay",
     // },
-    // {
-    //   type: "dc_motor",
-    //   description:
-    //     "It rotates when you power it up, speed and direction of rotation can be varied",
-    //   color: "#15909d",
-    //   name: "dc motor",
-    // },
+
     // {
     //   type: "stepper_motor",
     //   description: "A Motor which rotates in steps of 1 degree each",
@@ -172,13 +266,6 @@ if (componentType == "Ace") {
     //   color: "#15909d",
     //   name: "geared motor",
     // },
-    // {
-    //   type: "mini_geared_motor",
-    //   description:
-    //     "It is similar to Geared motor, smaller in size and efficient but with metal gears",
-    //   color: "#15909d",
-    //   name: "mini geared motor",
-    // },
 
     // {
     //   type: "dc_motor",
@@ -193,13 +280,6 @@ if (componentType == "Ace") {
     //   description: "A Motor which rotates in steps of 1 degree each",
     //   color: "#15909d",
     //   name: "stepper motor",
-    // },
-    // {
-    //   type: "dual_splitter",
-    //   description:
-    //     "Splits a single two channel port into two single channel port",
-    //   color: "#15909d",
-    //   name: "dual splitter",
     // },
 
     // {
@@ -241,31 +321,7 @@ if (componentType == "Ace") {
     //   color: "#15909d",
     //   name: "octa splitter",
     // },
-    // {
-    //   type: "tact_switch",
-    //   description: "It is a simple tactile switch used for toggle operation",
-    //   color: "#ff8c19",
-    //   name: "tact switch",
-    // },
-    // {
-    //   type: "dual_switch",
-    //   description: "It is simple On-Off Switch",
-    //   color: "#ff8c19",
-    //   name: "dual switch",
-    // },
-    // {
-    //   type: "touch_sensor",
-    //   description:
-    //     "This is a button less switch, works on capacitive touch sensor",
-    //   color: "#ff8c19",
-    //   name: "touch sensor",
-    // },
-    // {
-    //   type: "metal_detector",
-    //   description: "It detects metal upto 2cms distance",
-    //   color: "#ff8c19",
-    //   name: "metal_detector",
-    // },
+
     // {
     //   type: "heartbeat_sensor",
     //   description: "It detects heart beat through one's fingertip",
