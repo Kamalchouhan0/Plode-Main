@@ -40,11 +40,9 @@ class Conditions extends Component {
       componentProps,
       bottomPanelDeleteKey,
     } = this.props;
-
     if (current == "condition") {
       current = "sensor";
     }
-
     return (
       <div>
         {current == "variable" ? (
