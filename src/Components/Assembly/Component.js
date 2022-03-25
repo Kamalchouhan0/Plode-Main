@@ -506,6 +506,86 @@ class Component1 extends Component {
           </p>
         </div>
       );
+    } else if (this.props.type == "tact_switch_2c") {
+      var { type, left, top, scale, connectDragSource, isDragging, children } =
+        this.props;
+      if (isDragging) {
+        return null;
+      }
+
+      //CONNECTION WIRE
+      var height = 100 * scale;
+      var width = 100 * scale;
+      top = top - 5;
+      left = left - 5;
+
+      return connectDragSource(
+        <div>
+          <div
+            id={this.props.type + this.props.index}
+            style={{
+              ...style,
+              left,
+              top,
+              // backgroundImage: "url(images/oldImages/component_" + type + ".png)",
+              backgroundImage: `url(Bisoft_UI/Accessories/newComponents/component_${type}.png)`,
+
+              height,
+              width,
+
+              // border: "1px solid red",
+            }}
+            onMouseDown={() => {
+              clickStartTimestamp = Date.now();
+            }}
+            onMouseUp={this.checkForLongPress}
+            onDoubleClick={() => this.typeCheck(this)}
+          />
+
+          <p
+            style={{
+              position: "absolute",
+              top,
+              marginTop: "1%",
+              marginLeft: "5.5%",
+              left,
+              zIndex: "3",
+              fontSize: "20px",
+              color: "#707070",
+            }}
+          >
+            {/* {this.props.one} */}
+            {this.props.connectedTo == "A"
+              ? this.props.rangeA1
+              : this.props.connectedTo == "B"
+              ? this.props.temp
+              : this.props.connectedTo == "C"
+              ? this.props.one
+              : null}
+          </p>
+          <p
+            style={{
+              position: "absolute",
+              top,
+              marginTop: "2%",
+              marginLeft: "12.5%",
+              left,
+              zIndex: "3",
+              fontSize: "20px",
+              color: "#707070",
+            }}
+          >
+            {/* {this.props.two} */}
+            {this.props.connectedTo == "A"
+              ? this.props.rangeA2
+              : this.props.connectedTo == "B"
+              ? this.props.gas
+              : this.props.connectedTo == "C"
+              ? this.props.two
+              : null}
+          </p>
+        </div>
+      );
     } else if (this.props.type == "dual_splitter") {
       var { type, left, top, scale, connectDragSource, isDragging, children } =
         this.props;

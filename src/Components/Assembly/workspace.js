@@ -495,6 +495,82 @@ class Workspace extends Component {
               };
             }
           }
+        } else if (type == "tact_switch") {
+          if (component.connectedTo) {
+            if (
+              component.connectedTo == "A" ||
+              component.connectedTo == "B" ||
+              component.connectedTo == "C"
+            ) {
+              PortConnections[component.connectedTo] = {
+                type,
+                index,
+                signalType: SensorObj.signalType,
+              };
+              PortConnections[`${component.connectedTo}1`] = {
+                type,
+                index,
+                signalType: SensorObj.signalType,
+              };
+            }
+          }
+        } else if (type == "touch_sensor") {
+          if (component.connectedTo) {
+            if (
+              component.connectedTo == "A" ||
+              component.connectedTo == "B" ||
+              component.connectedTo == "C"
+            ) {
+              PortConnections[component.connectedTo] = {
+                type,
+                index,
+                signalType: SensorObj.signalType,
+              };
+              PortConnections[`${component.connectedTo}1`] = {
+                type,
+                index,
+                signalType: SensorObj.signalType,
+              };
+            }
+          }
+        } else if (type == "light_sensor") {
+          if (component.connectedTo) {
+            if (
+              component.connectedTo == "A" ||
+              component.connectedTo == "B" ||
+              component.connectedTo == "C"
+            ) {
+              PortConnections[component.connectedTo] = {
+                type,
+                index,
+                signalType: SensorObj.signalType,
+              };
+              PortConnections[`${component.connectedTo}1`] = {
+                type,
+                index,
+                signalType: SensorObj.signalType,
+              };
+            }
+          }
+        } else if (type == "distance_sensor") {
+          if (component.connectedTo) {
+            if (
+              component.connectedTo == "A" ||
+              component.connectedTo == "B" ||
+              component.connectedTo == "C"
+            ) {
+              PortConnections[component.connectedTo] = {
+                type,
+                index,
+                signalType: SensorObj.signalType,
+              };
+              PortConnections[`${component.connectedTo}1`] = {
+                type,
+                index,
+                signalType: SensorObj.signalType,
+              };
+            }
+          }
         } else if (type == "dual_switch") {
           if (component.connectedTo) {
             if (
@@ -577,9 +653,8 @@ class Workspace extends Component {
       });
     });
 
-    console.log("========>", PortConnections);
-
     this.props.updatePort(PortConnections);
+    console.log("========>props", this.props);
   }
   /**
    * Connect a old component to a port in workspace (on drop)
