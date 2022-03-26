@@ -767,7 +767,6 @@ class IfPanel extends Component {
 
   render() {
     const { state, startState, PortConnections, componentProps } = this.props;
-
     var portsConnectedArray = [];
     for (var eachConnection in PortConnections) {
       portsConnectedArray.push(eachConnection);

@@ -34,6 +34,7 @@ import {
   pauseBtn,
   usbOFF,
   usbON,
+  PcinternalBuzzerActive,
 } from "../../source/index";
 import renderPrgImage from "../../source/programImg";
 import SimulatePrgm from "../ReusableComponents/PrgmSlider/SimulatePrgm/SimulatePrgm";
@@ -302,6 +303,96 @@ class Simulate extends Component {
       } else {
         myImage7.style.filter = "drop-shadow(0 0 0px #07b03f)";
       }
+    }
+    if (this.props.logic.program[j].state.assignBuzzer) {
+      var bz = document.getElementById("PcInternalBuzzer");
+      if (this.props.logic.program[j].state.valueBuzzerFrequency > 0) {
+        bz.src = renderPrgImage("PcinternalBuzzerActive");
+      } else {
+        bz.src = renderPrgImage("PcinternalBuzzerInActive");
+      }
+    }
+    if (this.props.logic.program[j].state.assignLeftEye) {
+      var bz = document.getElementById("PcinternalLeftEYE");
+      if (
+        this.props.logic.program[j].state.valueLeftEyeB > 0 ||
+        this.props.logic.program[j].state.valueLeftEyeR > 0 ||
+        this.props.logic.program[j].state.valueLeftEyeG > 0
+      ) {
+        bz.src = renderPrgImage("PcinternalEYEActive");
+      } else {
+        bz.src = renderPrgImage("PcinternalEYEInActive");
+      }
+    }
+    if (this.props.logic.program[j].state.assignRightEye) {
+      var bz = document.getElementById("PcinternalRightEYE");
+      if (
+        this.props.logic.program[j].state.valueRightEyeB > 0 ||
+        this.props.logic.program[j].state.valueRightEyeR > 0 ||
+        this.props.logic.program[j].state.valueRightEyeG > 0
+      ) {
+        bz.src = renderPrgImage("PcinternalEYEActive");
+      } else {
+        bz.src = renderPrgImage("PcinternalEYEInActive");
+      }
+    }
+    if (this.props.logic.program[j].state.assignSmileOne) {
+      var bz = document.getElementById("PcSmLed1");
+      if (this.props.logic.program[j].state.valueSmileOne > 0) {
+        bz.src = renderPrgImage("PcinternalTeethActive");
+      } else {
+        bz.src = renderPrgImage("PcinternalTeethInActive");
+      }
+    }
+    if (this.props.logic.program[j].state.assignSmileTwo) {
+      var bz = document.getElementById("PcSmLed2");
+      if (this.props.logic.program[j].state.valueSmileTwo > 0) {
+        bz.src = renderPrgImage("PcinternalTeethActive");
+      } else {
+        bz.src = renderPrgImage("PcinternalTeethInActive");
+      }
+    }
+    if (this.props.logic.program[j].state.assignSmileThree) {
+      var bz = document.getElementById("PcSmLed3");
+      if (this.props.logic.program[j].state.valueSmileThree > 0) {
+        bz.src = renderPrgImage("PcinternalTeethActive");
+      } else {
+        bz.src = renderPrgImage("PcinternalTeethInActive");
+      }
+    }
+    if (this.props.logic.program[j].state.assignSmileFour) {
+      var bz = document.getElementById("PcSmLed4");
+      if (this.props.logic.program[j].state.valueSmileFour > 0) {
+        bz.src = renderPrgImage("PcinternalTeethActive");
+      } else {
+        bz.src = renderPrgImage("PcinternalTeethInActive");
+      }
+    }
+    if (this.props.logic.program[j].state.assignTouchZeroOutput) {
+      var bz = document.getElementById("PcInternalTouchpad0");
+      //if (this.props.logic.program[j].state.valueSmileFour > 0) {
+      bz.src = renderPrgImage("PcinternalTouchpadsActive");
+    } else {
+      var bz = document.getElementById("PcInternalTouchpad0");
+
+      bz.src = renderPrgImage("PcinternalTouchpadsInActive");
+    }
+    if (this.props.logic.program[j].state.assignTouchOneOutput) {
+      var bz = document.getElementById("PcInternalTouchpad1");
+      //if (this.props.logic.program[j].state.valueSmileFour > 0) {
+      bz.src = renderPrgImage("PcinternalTouchpadsActive");
+    } else {
+      var bz = document.getElementById("PcInternalTouchpad1");
+
+      bz.src = renderPrgImage("PcinternalTouchpadsInActive");
+    }
+    if (this.props.logic.program[j].state.assignTouchTwoOutput) {
+      var bz = document.getElementById("PcInternalTouchpad2");
+      //if (this.props.logic.program[j].state.valueSmileFour > 0) {
+      bz.src = renderPrgImage("PcinternalTouchpadsActive");
+    } else {
+      var bz = document.getElementById("PcInternalTouchpad2");
+      bz.src = renderPrgImage("PcinternalTouchpadsInActive");
     }
   };
 
