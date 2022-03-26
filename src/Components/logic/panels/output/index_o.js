@@ -735,7 +735,7 @@ class OutputPanel extends Component {
       rangeStoreVal[`${name}${portName}`].value = value;
       state[`valueBuzzer${portName}`] = value;
     } else if (name == "LeftEye") {
-      //this.setState({ setportName: portName });
+      this.setState({ setportName: portName });
       rangeStoreVal[name][portName].value = value;
       state[`value${name}${portName}`] = value;
     } else if (name == "RightEye") {

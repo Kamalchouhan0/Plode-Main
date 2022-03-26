@@ -33,7 +33,7 @@ class Slider extends Component {
     value = parseInt(value);
     // if (value === this.props.value) return;
 
-    const { min, max } = this.prop;
+    const { min, max } = this.props;
     if (value > max) value = max;
     else if (value < min) value = min;
     if (shouldSliderNotUpdate) avoidSliderUpdate = true;
