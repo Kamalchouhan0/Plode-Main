@@ -23,6 +23,7 @@ import "../../css/logic.css";
 import { internalaccessoriesObj } from "../selectScreen/InternalAccessoriesScreen/InternalAccessoriesStorage";
 
 import { rangeStoreVal } from "../Assembly/CheckboxData";
+import getBytes from "./BytesGeneration/convertBytes";
 
 var oldDeltaX, oldDeltaY, panning;
 
@@ -179,7 +180,7 @@ class SimulateLogic extends Component {
 
     var Peripherial = JSON.parse(localStorage.getItem("Bluetooth"));
     // console.log("this.props.history DONE LOGIC", Peripherial[0]["mac"])
-
+    getBytes({ code: params });
     socket.emit("/getSimulateBytes", { code: params });
     socket.on("_getSimulateBytes", (data) => {});
   };
@@ -645,6 +646,10 @@ class SimulateLogic extends Component {
 
   anyFun = (value, compoName) => {
     this.childRef.current.simulateProgram(value, compoName); //it will call simulateProgram which is available at HexBoard.js(logic)
+    console.log(
+      "AFTER CLICKING UPLOAD BTN",
+      this.childRef.current.simulateProgram(value, compoName)
+    );
   };
 
   upload = () => {

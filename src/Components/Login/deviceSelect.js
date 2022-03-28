@@ -59,8 +59,9 @@ const DeviceSelect = (props) => {
     }
   };
 
-  const scanDevice = () => {
+  const scanDevice = async () => {
     console.log("clicked");
+    const port = await navigator.serial.requestPort();
 
     socket.emit("/scanDevice", (data) => {
       // console.log(data,'////////////////////////////////')
