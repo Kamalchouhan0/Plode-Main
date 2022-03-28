@@ -61,6 +61,7 @@ class Slider extends Component {
   }
   render() {
     var { value, max, min, disabled } = this.props;
+    console.log("onlyslider gkaay", this.props, this.state);
 
     return (
       <div

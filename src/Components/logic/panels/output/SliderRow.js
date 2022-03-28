@@ -162,6 +162,16 @@ class SliderRow extends Component {
     }
 
     if (name == "LeftEye") {
+      console.log("gkaay", this.props, this.state);
+      if (this.props.port == "R") {
+        value = this.props.valR;
+      }
+      if (this.props.port == "B") {
+        value = this.props.valB;
+      }
+      if (this.props.port == "G") {
+        value = this.props.valG;
+      }
       return (
         <div className="hardwareInfo-section">
           <div className="portDetails-hw" style={{}}>

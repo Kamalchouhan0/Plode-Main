@@ -1234,7 +1234,7 @@ class OutputPanel extends Component {
                   console.log("PROPS DATATA", this.state);
                   console.log(
                     "PROPS DATATA",
-                    this.state[`curValLeftEye${this.state.setportName}`]
+                    state[`valueLeftEye${this.state.setportName}`]
                   );
                   return (
                     <>
@@ -1242,9 +1242,13 @@ class OutputPanel extends Component {
                         name="LeftEye"
                         port={this.state.setportName}
                         value={
+                          //state[`valueLeftEye${this.state.setportName}`]
                           this.state[`curValLeftEye${this.state.portName}`]
                           //state[`valueLeftEye${this.state.setportName}`]
                         }
+                        valR={this.state.curValLeftEyeR}
+                        valB={this.state.curValLeftEyeB}
+                        valG={this.state.curValLeftEyeG}
                         key="LeftEye"
                         title="LeftEye"
                         assign={this.state.isClickLeftEye}
