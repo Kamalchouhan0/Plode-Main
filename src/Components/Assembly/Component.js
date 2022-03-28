@@ -25,9 +25,12 @@ const componentSource = {
   beginDrag(props) {
     DraggingInfo.isDragging = true;
     const { type, index, left, top, connectedTo } = props;
-    console.log("component", left, top);
+    console.log("component@@", props);
     sessionStorage.setItem("dragingItem", props.type);
     props.removeConnection({ type, index });
+    try {
+      document.getElementById(type + props.index).style.opacity = 0;
+    } catch (E) {}
     DraggingInfo.newComponentPort = connectedTo;
     DraggingInfo.draggingComponentOld = { type, index };
     return { type, index, left, top, connectedTo };
@@ -284,6 +287,7 @@ class Component1 extends Component {
       return connectDragSource(
         <div>
           <div
+            id={this.props.type + this.props.index}
             style={{
               ...style,
               left,
@@ -362,6 +366,7 @@ class Component1 extends Component {
       return connectDragSource(
         <div>
           <div
+            id={this.props.type + this.props.index}
             style={{
               ...style,
               left,
@@ -437,6 +442,87 @@ class Component1 extends Component {
       return connectDragSource(
         <div>
           <div
+            id={this.props.type + this.props.index}
+            style={{
+              ...style,
+              left,
+              top,
+              // backgroundImage: "url(images/oldImages/component_" + type + ".png)",
+              backgroundImage: `url(Bisoft_UI/Accessories/newComponents/component_${type}.png)`,
+
+              height,
+              width,
+
+              // border: "1px solid red",
+            }}
+            onMouseDown={() => {
+              clickStartTimestamp = Date.now();
+            }}
+            onMouseUp={this.checkForLongPress}
+            onDoubleClick={() => this.typeCheck(this)}
+          />
+
+          <p
+            style={{
+              position: "absolute",
+              top,
+              marginTop: "1%",
+              marginLeft: "5.5%",
+              left,
+              zIndex: "3",
+              fontSize: "20px",
+              color: "#707070",
+            }}
+          >
+            {/* {this.props.one} */}
+            {this.props.connectedTo == "A"
+              ? this.props.rangeA1
+              : this.props.connectedTo == "B"
+              ? this.props.temp
+              : this.props.connectedTo == "C"
+              ? this.props.one
+              : null}
+          </p>
+          <p
+            style={{
+              position: "absolute",
+              top,
+              marginTop: "2%",
+              marginLeft: "12.5%",
+              left,
+              zIndex: "3",
+              fontSize: "20px",
+              color: "#707070",
+            }}
+          >
+            {/* {this.props.two} */}
+            {this.props.connectedTo == "A"
+              ? this.props.rangeA2
+              : this.props.connectedTo == "B"
+              ? this.props.gas
+              : this.props.connectedTo == "C"
+              ? this.props.two
+              : null}
+          </p>
+        </div>
+      );
+    } else if (this.props.type == "tact_switch_2c") {
+      var { type, left, top, scale, connectDragSource, isDragging, children } =
+        this.props;
+      if (isDragging) {
+        return null;
+      }
+
+      //CONNECTION WIRE
+      var height = 100 * scale;
+      var width = 100 * scale;
+      top = top - 5;
+      left = left - 5;
+
+      return connectDragSource(
+        <div>
+          <div
+            id={this.props.type + this.props.index}
             style={{
               ...style,
               left,
@@ -510,10 +596,43 @@ class Component1 extends Component {
       var height = 120 * scale;
       var width = 120 * scale;
       top = top - 12;
+      left = left - 15;
+
+      return connectDragSource(
+        <div
+          id={this.props.type + this.props.index}
+          style={{
+            ...style,
+            left,
+            top,
+            // backgroundImage: "url(images/oldImages/component_" + type + ".png)",
+            backgroundImage: `url(Bisoft_UI/Accessories/newComponents/component_${type}.png)`,
+
+            height,
+            width,
+          }}
+          onMouseDown={() => {
+            clickStartTimestamp = Date.now();
+          }}
+          onMouseUp={this.checkForLongPress}
+          onDoubleClick={() => this.typeCheck(this)}
+        />
+      );
+    } else if (this.props.type == "dc_motor") {
+      var { type, left, top, scale, connectDragSource, isDragging, children } =
+        this.props;
+      if (isDragging) {
+        return null;
+      }
+
+      var height = 120 * scale;
+      var width = 120 * scale;
+      top = top - 12;
       left = left - 10;
 
       return connectDragSource(
         <div
+          id={this.props.type + this.props.index}
           style={{
             ...style,
             left,
@@ -546,6 +665,7 @@ class Component1 extends Component {
       return connectDragSource(
         <div>
           <div
+            id={this.props.type + this.props.index}
             style={{
               ...style,
               left,
@@ -621,6 +741,7 @@ class Component1 extends Component {
       return connectDragSource(
         <div>
           <div
+            id={this.props.type + this.props.index}
             style={{
               ...style,
               left,
@@ -673,6 +794,7 @@ class Component1 extends Component {
       return connectDragSource(
         <div>
           <div
+            id={this.props.type + this.props.index}
             style={{
               ...style,
               left,
@@ -746,6 +868,7 @@ class Component1 extends Component {
       return connectDragSource(
         <div>
           <div
+            id={this.props.type + this.props.index}
             style={{
               ...style,
               left,
@@ -819,6 +942,7 @@ class Component1 extends Component {
       return connectDragSource(
         <div>
           <div
+            id={this.props.type + this.props.index}
             style={{
               ...style,
               left,
@@ -895,6 +1019,7 @@ class Component1 extends Component {
       // var top1=100-top;
       return connectDragSource(
         <div
+          id={this.props.type + this.props.index}
           style={{
             ...style,
             left,
@@ -930,6 +1055,7 @@ class Component1 extends Component {
       return connectDragSource(
         <div>
           <div
+            id={this.props.type + this.props.index}
             style={{
               ...style,
               left,
@@ -1010,6 +1136,7 @@ class Component1 extends Component {
       return connectDragSource(
         <div>
           <div
+            id={this.props.type + this.props.index}
             style={{
               ...style,
               left,
@@ -1082,6 +1209,7 @@ class Component1 extends Component {
 
       return connectDragSource(
         <div
+          id={this.props.type + this.props.index}
           style={{
             ...style,
             left,
@@ -1099,6 +1227,44 @@ class Component1 extends Component {
           onDoubleClick={() => this.typeCheck(this)}
         />
       );
+    } else if (this.props.type == "play_shield") {
+      sessionStorage.setItem("shield", "true");
+      //this.forceUpdate();
+      var { type, left, top, scale, connectDragSource, isDragging, children } =
+        this.props;
+      if (isDragging) {
+        return null;
+      }
+      var { prop } = this.props;
+      //this.props.prop = prop;
+      // console.log("play_shield", this.props);
+      // var height = 300 * scale;
+      // var width = 310 * scale;
+      // top = this.props.prop.workspace.bibox.top + 115;
+      // left = this.props.prop.workspace.bibox.left - 180;
+      // var zIndex = 0;
+      return null;
+      // return connectDragSource(
+      //   <div
+      //     id={this.props.type + this.props.index}
+      //     style={{
+      //       ...style,
+      //       left,
+      //       top,
+      //       display: "none",
+      //       // backgroundImage: "url(images/oldImages/component_" + type + ".png)",
+      //       backgroundImage: `url(Bisoft_UI/Accessories/newComponents/component_${type}.png)`,
+      //       zIndex,
+      //       height,
+      //       width,
+      //     }}
+      //     onMouseDown={() => {
+      //       clickStartTimestamp = Date.now();
+      //     }}
+      //     onMouseUp={this.checkForLongPress}
+      //     onDoubleClick={() => this.typeCheck(this)}
+      //   />
+      // );
     } else {
       const {
         type,
@@ -1118,6 +1284,7 @@ class Component1 extends Component {
       return connectDragSource(
         <div>
           <div
+            id={this.props.type + this.props.index}
             style={{
               ...style,
               left,

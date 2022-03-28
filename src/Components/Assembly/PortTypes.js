@@ -7,15 +7,15 @@ if (Device == "Ace") {
     B: { color: "red", ports: ["B"] },
     C: { color: "red", ports: ["C"] },
     D: { color: "red", ports: ["D"] },
-    A1: { color: "green", ports: ["A1"] },
+    E: { color: "red", ports: ["E"] },
+    A1: { color: "red", ports: ["A1"] },
     B1: { color: "red", ports: ["B1"] },
-    C1: { color: "green", ports: ["C1"] },
+    C1: { color: "red", ports: ["C1"] },
     D1: { color: "green", ports: ["D1"] },
     A2: { color: "red", ports: ["A2"] },
     B2: { color: "red", ports: ["B2"] },
     C2: { color: "red", ports: ["C2"] },
     D2: { color: "green", ports: ["D2"] },
-
     STPM: { color: "yellow", ports: ["STPM"] },
   };
 } else if (Device == "Humanoid") {

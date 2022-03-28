@@ -62,13 +62,30 @@ const biboxSource = {
 class Bibox extends Component {
   componentDidMount() {}
   useEffect() {}
+  typeCheck = () => {
+    this.removeComponent();
+  };
+  removeComponent = () => {
+    console.log("remove shield", this.props);
+    var shield = sessionStorage.getItem("shield");
+    if (shield == "true") {
+      sessionStorage.setItem("shield", "false");
+    }
+    this.props.removeFromWorkspace({ type: "play_shield" });
+
+    this.forceUpdate();
+  };
   render() {
     let Url;
     let Device = sessionStorage.getItem("connectedDevice");
-    if (Device == "Ace") {
-      // Url = "images/login/pc_1.png";
+    let shield = sessionStorage.getItem("shield");
 
+    if (Device == "Ace" && shield == "false") {
+      // Url = "images/login/pc_1.png";
       Url = renderPrgImage("PlayComputerImg");
+    } else if (Device == "Ace" && shield == "true") {
+      // Url = "images/login/pc_1.png";
+      Url = renderPrgImage("PlayComputerwithShieldImg");
     } else if (Device == "Humanoid") {
       Url = "images/login/humanoid_img.png";
     } else {
@@ -76,6 +93,7 @@ class Bibox extends Component {
     }
     var { left, top, scale, connectDragSource, isDragging, workspaceConnect } =
       this.props;
+    console.log("bprops", this.props);
     if (isDragging) {
       return null;
     }
@@ -84,6 +102,13 @@ class Bibox extends Component {
       var height = ImageSizes[ItemTypes.BIBOX][1] * scale + 15;
       var width = ImageSizes[ItemTypes.BIBOX][0] * scale - 17;
     } else if (sessionStorage.getItem("connectedDevice") == "Humanoid") {
+      var height = ImageSizes[ItemTypes.BIBOX][1] * scale;
+      var width = ImageSizes[ItemTypes.BIBOX][0] * scale;
+    } else if (
+      sessionStorage.getItem("connectedDevice") == "Ace" &&
+      sessionStorage.getItem("shield") == "true"
+    ) {
+      scale = 1;
       var height = ImageSizes[ItemTypes.BIBOX][1] * scale;
       var width = ImageSizes[ItemTypes.BIBOX][0] * scale;
     } else {
@@ -137,8 +162,8 @@ class Bibox extends Component {
       isCheckedTouchTwo,
     };
 
-    console.log("kkkkkkkkkkDATA:_____>>", TouchPads);
-    if (Device == "Ace") {
+    console.log("kkkkkkkkkkDATA:_____>>", height, width);
+    if (Device == "Ace" && shield == "false") {
       return connectDragSource(
         // PLEASE NOTE THIS IS ONLY FOR ACE/PLAYCOMPUTER
         <div
@@ -154,6 +179,7 @@ class Bibox extends Component {
 
             // background: "red",
           }}
+          onDoubleClick={() => this.typeCheck(this)}
         >
           {isCheckedMic ? (
             <img
@@ -506,6 +532,254 @@ class Bibox extends Component {
           >
             {this.props.mic}
           </p>
+        </div>
+
+        // OLD RENDER IMG
+        // <img
+        //   className="user-select"
+        //   src={renderPrgImage Url}
+        //   id="biboxClass"
+        //   style={{
+        //     ...style,
+        //     left,
+        //     top,
+        //     height,
+        //     width,
+        //     border: "1px solid red",
+        //   }}
+        // />
+        // </div>
+      );
+    } else if (Device == "Ace" && shield == "true") {
+      return connectDragSource(
+        // PLEASE NOTE THIS IS ONLY FOR ACE/PLAYCOMPUTER
+        <div
+          id="PC_dragSource"
+          style={{
+            ...style,
+            left,
+            top,
+            height,
+            width,
+            backgroundImage: `url("${Url}")`,
+            overflow: "visible",
+
+            // background: "red",
+          }}
+          onDoubleClick={() => this.typeCheck(this)}
+        >
+          {isCheckedMic ? (
+            <img
+              src={renderPrgImage("PcinternalMicActive")}
+              style={{
+                height: "26%",
+                width: "15%",
+                marginTop: "-84px",
+                marginLeft: "41.5%",
+              }}
+            />
+          ) : (
+            <img
+              src={renderPrgImage("PcinternalMicInActive")}
+              style={{
+                height: "26%",
+                width: "15%",
+                marginTop: "-84px",
+                marginLeft: "41.5%",
+              }}
+            />
+          )}
+
+          {/*LEFT EYE  */}
+          {isCheckedEyeLeft ? (
+            <img
+              src={renderPrgImage("PcinternalEYEActive")}
+              style={{
+                height: "5%",
+                width: "8%",
+                position: "absolute",
+                top: "19%",
+                left: "40%",
+                transform: `translate(-34%,-31%)`,
+              }}
+            />
+          ) : (
+            <img
+              src={renderPrgImage("PcinternalEYEInActive")}
+              style={{
+                height: "5%",
+                width: "8%",
+                position: "absolute",
+                top: "19%",
+                left: "40%",
+                transform: `translate(-34%,-31%)`,
+              }}
+            />
+          )}
+
+          {/*RIGHT EYE  */}
+          {isCheckedEyeRight ? (
+            <img
+              src={renderPrgImage("PcinternalEYEActive")}
+              style={{
+                height: "5%",
+                width: "8%",
+                position: "absolute",
+                top: "19%",
+                left: "58.5%",
+                transform: `translate(-67.5%,-31%)`,
+              }}
+            />
+          ) : (
+            <img
+              src={renderPrgImage("PcinternalEYEInActive")}
+              style={{
+                height: "5%",
+                width: "8%",
+                position: "absolute",
+                top: "19%",
+                left: "58.5%",
+                transform: `translate(-67.5%,-31%)`,
+              }}
+            />
+          )}
+
+          {/* 1-teeth Active*/}
+          {isCheckedSimeleOne ? (
+            <img
+              src={renderPrgImage("PcinternalTeethActive")}
+              style={{
+                height: "2%",
+                width: "1.7%",
+                position: "absolute",
+                top: "34%",
+                left: "43.4%",
+                transform: `translate(-40.4%,-60%)`,
+              }}
+            />
+          ) : (
+            <img
+              src={renderPrgImage("PcinternalTeethInActive")}
+              style={{
+                height: "2%",
+                width: "1.7%",
+                position: "absolute",
+                top: "34%",
+                left: "43.4%",
+                transform: `translate(-40.4%,-60%)`,
+              }}
+            />
+          )}
+          {/* 2-teeth Active*/}
+          {isCheckedSimeleTwo ? (
+            <img
+              src={renderPrgImage("PcinternalTeethActive")}
+              style={{
+                height: "2%",
+                width: "1.7%",
+                position: "absolute",
+                top: "35%",
+                left: "45.5%",
+                transform: `translate(-43.5%,-61%)`,
+              }}
+            />
+          ) : (
+            <img
+              src={renderPrgImage("PcinternalTeethInActive")}
+              style={{
+                height: "2%",
+                width: "1.7%",
+                position: "absolute",
+                top: "35%",
+                left: "45.5%",
+                transform: `translate(-43.5%,-61%)`,
+              }}
+            />
+          )}
+
+          {/* 4-in-1 Sensor  */}
+          {isCheckedColorSensor ||
+          isCheckedDistanceSensors ||
+          isCheckedGestureSensor ||
+          isCheckedLightSensor ? (
+            <img
+              src={renderPrgImage("Pcinternal4in1Active")}
+              style={{
+                height: "2%",
+                width: "3%",
+                position: "absolute",
+                left: "48.5%",
+                top: "35%",
+                transform: `translate(-30%,-61%)`,
+              }}
+            />
+          ) : (
+            <img
+              src={renderPrgImage("Pcinternal4in1InActive")}
+              style={{
+                height: "2%",
+                width: "3%",
+                position: "absolute",
+                left: "48.5%",
+                top: "35%",
+                transform: `translate(-30%,-61%)`,
+              }}
+            />
+          )}
+
+          {/* 3-teeth Active*/}
+          {isCheckedSimeleThree ? (
+            <img
+              src={renderPrgImage("PcinternalTeethActive")}
+              style={{
+                height: "2%",
+                width: "1.7%",
+                position: "absolute",
+                top: "35%",
+                left: "52.5%",
+                transform: `translate(-57%,-61%)`,
+              }}
+            />
+          ) : (
+            <img
+              src={renderPrgImage("PcinternalTeethInActive")}
+              style={{
+                height: "2%",
+                width: "1.7%",
+                position: "absolute",
+                top: "35%",
+                left: "52.5%",
+                transform: `translate(-57%,-61%)`,
+              }}
+            />
+          )}
+
+          {/* 4-teeth Active*/}
+          {isCheckedSimeleFour ? (
+            <img
+              src={renderPrgImage("PcinternalTeethActive")}
+              style={{
+                height: "2%",
+                width: "1.7%",
+                position: "absolute",
+                top: "34%",
+                left: "54.5%",
+                transform: `translate(-60.3%,-60%)`,
+              }}
+            />
+          ) : (
+            <img
+              src={renderPrgImage("PcinternalTeethInActive")}
+              style={{
+                height: "2%",
+                width: "1.7%",
+                position: "absolute",
+                top: "34%",
+                left: "54.5%",
+                transform: `translate(-60.3%,-60%)`,
+              }}
+            />
+          )}
         </div>
 
         // OLD RENDER IMG

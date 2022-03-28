@@ -42,7 +42,7 @@ class Card extends Component {
   }
   render() {
     const { isDragging, connectDragSource, type } = this.props;
-
+    console.log("draggable", this.props);
     var widthSize;
     var leftPro;
 

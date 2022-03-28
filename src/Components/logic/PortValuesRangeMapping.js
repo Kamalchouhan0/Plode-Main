@@ -856,6 +856,9 @@ export default PortValuesRangeMapping = {
     led: function (port) {
       return { min: 0, max: 1 };
     },
+    led_1c: function (port) {
+      return { min: 0, max: 1 };
+    },
     laser: function (port) {
       return { min: 0, max: 1 };
     },
@@ -905,6 +908,9 @@ export default PortValuesRangeMapping = {
       return { min: 0, max: 1 };
     },
     tact_switch: function (port) {
+      return { min: 0, max: 1 };
+    },
+    tact_switch_2c: function (port) {
       return { min: 0, max: 1 };
     },
     dual_switch: function (port) {
@@ -963,6 +969,13 @@ export default PortValuesRangeMapping = {
         return { min: 0, max: 100 };
       }
     },
+    led_1c: function (port) {
+      if (sessionStorage.getItem("connectedDevice") == "Ace") {
+        return { min: 0, max: 100 };
+      } else {
+        return { min: 0, max: 100 };
+      }
+    },
     laser: function (port) {
       return { min: 0, max: 1 };
     },
@@ -1015,6 +1028,9 @@ export default PortValuesRangeMapping = {
     tact_switch: function (port) {
       return { min: 0, max: 1 };
     },
+    tact_switch_2c: function (port) {
+      return { min: 0, max: 1 };
+    },
     dual_switch: function (port) {
       return { min: 0, max: 1 };
     },
@@ -1054,6 +1070,13 @@ export default PortValuesRangeMapping = {
 
     led: function (port) {
       return { min: 0, max: 100 };
+    },
+    led_1c: function (port) {
+      if (sessionStorage.getItem("connectedDevice") == "Ace") {
+        return { min: 0, max: 100 };
+      } else {
+        return { min: 0, max: 100 };
+      }
     },
     laser: function (port) {
       return { min: 0, max: 1 };
@@ -1108,6 +1131,9 @@ export default PortValuesRangeMapping = {
       return { min: 0, max: 1 };
     },
     tact_switch: function (port) {
+      return { min: 0, max: 1 };
+    },
+    tact_switch_2c: function (port) {
       return { min: 0, max: 1 };
     },
     dual_switch: function (port) {
@@ -1175,6 +1201,9 @@ export default PortValuesRangeMapping = {
     tact_switch: function (port) {
       return { min: 0, max: 1 };
     },
+    tact_switch_2c: function (port) {
+      return { min: 0, max: 1 };
+    },
     dual_switch: function (port) {
       return { min: 0, max: 1 };
     },
@@ -1238,6 +1267,9 @@ export default PortValuesRangeMapping = {
       return { min: 0, max: 1 };
     },
     tact_switch: function (port) {
+      return { min: 0, max: 1 };
+    },
+    tact_switch_2c: function (port) {
       return { min: 0, max: 1 };
     },
     dual_switch: function (port) {
@@ -1308,6 +1340,9 @@ export default PortValuesRangeMapping = {
     tact_switch: function (port) {
       return { min: 0, max: 1 };
     },
+    tact_switch_2c: function (port) {
+      return { min: 0, max: 1 };
+    },
     dual_switch: function (port) {
       return { min: 0, max: 1 };
     },
@@ -1373,6 +1408,9 @@ export default PortValuesRangeMapping = {
     tact_switch: function (port) {
       return { min: 0, max: 1 };
     },
+    tact_switch_2c: function (port) {
+      return { min: 0, max: 1 };
+    },
     dual_switch: function (port) {
       return { min: 0, max: 1 };
     },
@@ -1436,6 +1474,9 @@ export default PortValuesRangeMapping = {
       return { min: 0, max: 1 };
     },
     tact_switch: function (port) {
+      return { min: 0, max: 1 };
+    },
+    tact_switch_2c: function (port) {
       return { min: 0, max: 1 };
     },
     dual_switch: function (port) {
@@ -1506,6 +1547,9 @@ export default PortValuesRangeMapping = {
     tact_switch: function (port) {
       return { min: 0, max: 1 };
     },
+    tact_switch_2c: function (port) {
+      return { min: 0, max: 1 };
+    },
     dual_switch: function (port) {
       return { min: 0, max: 1 };
     },
@@ -1569,6 +1613,9 @@ export default PortValuesRangeMapping = {
       return { min: 0, max: 1 };
     },
     tact_switch: function (port) {
+      return { min: 0, max: 1 };
+    },
+    tact_switch_2c: function (port) {
       return { min: 0, max: 1 };
     },
     dual_switch: function (port) {
@@ -1637,6 +1684,9 @@ export default PortValuesRangeMapping = {
       return { min: 0, max: 1 };
     },
     tact_switch: function (port) {
+      return { min: 0, max: 1 };
+    },
+    tact_switch_2c: function (port) {
       return { min: 0, max: 1 };
     },
     dual_switch: function (port) {
@@ -1716,6 +1766,9 @@ export default PortValuesRangeMapping = {
     tact_switch: function (port) {
       return { min: 0, max: 1 };
     },
+    tact_switch_2c: function (port) {
+      return { min: 0, max: 1 };
+    },
     dual_switch: function (port) {
       return { min: 0, max: 1 };
     },
@@ -1779,6 +1832,9 @@ export default PortValuesRangeMapping = {
       return { min: 0, max: 1 };
     },
     tact_switch: function (port) {
+      return { min: 0, max: 1 };
+    },
+    tact_switch_2c: function (port) {
       return { min: 0, max: 1 };
     },
     dual_switch: function (port) {
@@ -1852,6 +1908,9 @@ export default PortValuesRangeMapping = {
     tact_switch: function (port) {
       return { min: 0, max: 1 };
     },
+    tact_switch_2c: function (port) {
+      return { min: 0, max: 1 };
+    },
     dual_switch: function (port) {
       return { min: 0, max: 1 };
     },
@@ -1923,6 +1982,9 @@ export default PortValuesRangeMapping = {
     tact_switch: function (port) {
       return { min: 0, max: 1 };
     },
+    tact_switch_2c: function (port) {
+      return { min: 0, max: 1 };
+    },
     dual_switch: function (port) {
       return { min: 0, max: 1 };
     },
@@ -1989,6 +2051,9 @@ export default PortValuesRangeMapping = {
     tact_switch: function (port) {
       return { min: 0, max: 1 };
     },
+    tact_switch_2c: function (port) {
+      return { min: 0, max: 1 };
+    },
     dual_switch: function (port) {
       return { min: 0, max: 1 };
     },
@@ -2052,6 +2117,9 @@ export default PortValuesRangeMapping = {
       return { min: 0, max: 1 };
     },
     tact_switch: function (port) {
+      return { min: 0, max: 1 };
+    },
+    tact_switch_2c: function (port) {
       return { min: 0, max: 1 };
     },
     dual_switch: function (port) {
@@ -2122,6 +2190,9 @@ export default PortValuesRangeMapping = {
     tact_switch: function (port) {
       return { min: 0, max: 1 };
     },
+    tact_switch_2c: function (port) {
+      return { min: 0, max: 1 };
+    },
     dual_switch: function (port) {
       return { min: 0, max: 1 };
     },
@@ -2155,6 +2226,9 @@ export default PortValuesRangeMapping = {
     },
 
     led: function (port) {
+      return { min: 0, max: 100 };
+    },
+    led_1c: function (port) {
       return { min: 0, max: 100 };
     },
     laser: function (port) {
@@ -2206,6 +2280,9 @@ export default PortValuesRangeMapping = {
       return { min: 0, max: 1 };
     },
     tact_switch: function (port) {
+      return { min: 0, max: 1 };
+    },
+    tact_switch_2c: function (port) {
       return { min: 0, max: 1 };
     },
     dual_switch: function (port) {
@@ -2257,87 +2334,7 @@ export default PortValuesRangeMapping = {
         return { min: 0, max: 100 };
       }
     },
-    laser: function (port) {
-      return { min: 0, max: 1 };
-    },
-    beeper: function (port) {
-      return { min: 0, max: 1 };
-    },
-    light_sensor: function (port) {
-      return { min: 0, max: 1024 };
-    },
-    bend_sensor: function (port) {
-      return { min: 0, max: 1024 };
-    },
-    gas_sensor: function (port) {
-      return { min: 0, max: 1024 };
-    },
-    distance_sensor: function (port) {
-      return { min: 0, max: 1024 };
-    },
-    sound_sensor: function (port) {
-      return { min: 0, max: 1024 };
-    },
-    temperature_sensor: function (port) {
-      return { min: 0, max: 1024 };
-    },
-    rain_sensor: function (port) {
-      return { min: 0, max: 1024 };
-    },
-    rotational_sensor: function (port) {
-      return { min: 0, max: 1024 };
-    },
-    accelerometer: function (port) {
-      return { min: 0, max: 1024 };
-    },
-    solar_panel: function (port) {
-      return { min: 0, max: 1024 };
-    },
-    humidity_sensor: function (port) {
-      return { min: 0, max: 1024 };
-    },
-    hall_sensor: function (port) {
-      return { min: 0, max: 1024 };
-    },
-    metal_detector: function (port) {
-      return { min: 0, max: 1 };
-    },
-    heartbeat_sensor: function (port) {
-      return { min: 0, max: 1 };
-    },
-    tact_switch: function (port) {
-      return { min: 0, max: 1 };
-    },
-    dual_switch: function (port) {
-      return { min: 0, max: 1 };
-    },
-    touch_sensor: function (port) {
-      return { min: 0, max: 1 };
-    },
-    pir_sensor: function (port) {
-      return { min: 0, max: 1 };
-    },
-    ultrasonic_sensor: function (port) {
-      return { min: 0, max: 400 };
-    },
-  },
-  D: {
-    temp_dew: function (port) {
-      return { min: 0, max: 1024 };
-    },
-    temp_gas: function (port) {
-      return { min: 0, max: 1024 };
-    },
-    rotatory: function (port) {
-      return { min: 0, max: 1024 };
-    },
-    ultrasonic_sensor: function (port) {
-      return { min: 0, max: 400 };
-    },
-    dual_splitter: function (port) {
-      return { min: 0, max: 225 };
-    },
-    led: function (port) {
+    led_1c: function (port) {
       return { min: 0, max: 100 };
     },
     laser: function (port) {
@@ -2389,6 +2386,98 @@ export default PortValuesRangeMapping = {
       return { min: 0, max: 1 };
     },
     tact_switch: function (port) {
+      return { min: 0, max: 1 };
+    },
+    tact_switch_2c: function (port) {
+      return { min: 0, max: 1 };
+    },
+    dual_switch: function (port) {
+      return { min: 0, max: 1 };
+    },
+    touch_sensor: function (port) {
+      return { min: 0, max: 1 };
+    },
+    pir_sensor: function (port) {
+      return { min: 0, max: 1 };
+    },
+    ultrasonic_sensor: function (port) {
+      return { min: 0, max: 400 };
+    },
+  },
+  D: {
+    temp_dew: function (port) {
+      return { min: 0, max: 1024 };
+    },
+    temp_gas: function (port) {
+      return { min: 0, max: 1024 };
+    },
+    rotatory: function (port) {
+      return { min: 0, max: 1024 };
+    },
+    ultrasonic_sensor: function (port) {
+      return { min: 0, max: 400 };
+    },
+    dual_splitter: function (port) {
+      return { min: 0, max: 225 };
+    },
+    led: function (port) {
+      return { min: 0, max: 100 };
+    },
+    led_1c: function (port) {
+      return { min: 0, max: 1 };
+    },
+    laser: function (port) {
+      return { min: 0, max: 1 };
+    },
+    beeper: function (port) {
+      return { min: 0, max: 1 };
+    },
+    light_sensor: function (port) {
+      return { min: 0, max: 1024 };
+    },
+    bend_sensor: function (port) {
+      return { min: 0, max: 1024 };
+    },
+    gas_sensor: function (port) {
+      return { min: 0, max: 1024 };
+    },
+    distance_sensor: function (port) {
+      return { min: 0, max: 1024 };
+    },
+    sound_sensor: function (port) {
+      return { min: 0, max: 1024 };
+    },
+    temperature_sensor: function (port) {
+      return { min: 0, max: 1024 };
+    },
+    rain_sensor: function (port) {
+      return { min: 0, max: 1024 };
+    },
+    rotational_sensor: function (port) {
+      return { min: 0, max: 1024 };
+    },
+    accelerometer: function (port) {
+      return { min: 0, max: 1024 };
+    },
+    solar_panel: function (port) {
+      return { min: 0, max: 1024 };
+    },
+    humidity_sensor: function (port) {
+      return { min: 0, max: 1024 };
+    },
+    hall_sensor: function (port) {
+      return { min: 0, max: 1024 };
+    },
+    metal_detector: function (port) {
+      return { min: 0, max: 1 };
+    },
+    heartbeat_sensor: function (port) {
+      return { min: 0, max: 1 };
+    },
+    tact_switch: function (port) {
+      return { min: 0, max: 1 };
+    },
+    tact_switch_2c: function (port) {
       return { min: 0, max: 1 };
     },
     dual_switch: function (port) {
@@ -2434,6 +2523,9 @@ export default PortValuesRangeMapping = {
     led: function (port) {
       return { min: 0, max: 100 };
     },
+    led_1c: function (port) {
+      return { min: 0, max: 100 };
+    },
     laser: function (port) {
       return { min: 0, max: 1 };
     },
@@ -2483,6 +2575,9 @@ export default PortValuesRangeMapping = {
       return { min: 0, max: 1 };
     },
     tact_switch: function (port) {
+      return { min: 0, max: 1 };
+    },
+    tact_switch_2c: function (port) {
       return { min: 0, max: 1 };
     },
     dual_switch: function (port) {
@@ -2534,6 +2629,9 @@ export default PortValuesRangeMapping = {
         return { min: 0, max: 1 };
       }
     },
+    led_1c: function (port) {
+      return { min: 0, max: 100 };
+    },
     laser: function (port) {
       return { min: 0, max: 1 };
     },
@@ -2584,6 +2682,9 @@ export default PortValuesRangeMapping = {
       return { min: 0, max: 1 };
     },
     tact_switch: function (port) {
+      return { min: 0, max: 1 };
+    },
+    tact_switch_2c: function (port) {
       return { min: 0, max: 1 };
     },
     dual_switch: function (port) {
@@ -2622,6 +2723,9 @@ export default PortValuesRangeMapping = {
     led: function (port) {
       return { min: 0, max: 100 };
     },
+    led_1c: function (port) {
+      return { min: 0, max: 1 };
+    },
     laser: function (port) {
       return { min: 0, max: 1 };
     },
@@ -2671,6 +2775,9 @@ export default PortValuesRangeMapping = {
       return { min: 0, max: 1 };
     },
     tact_switch: function (port) {
+      return { min: 0, max: 1 };
+    },
+    tact_switch_2c: function (port) {
       return { min: 0, max: 1 };
     },
     dual_switch: function (port) {
@@ -2713,6 +2820,9 @@ export default PortValuesRangeMapping = {
     led: function (port) {
       return { min: 0, max: 100 };
     },
+    led_1c: function (port) {
+      return { min: 0, max: 100 };
+    },
     laser: function (port) {
       return { min: 0, max: 1 };
     },
@@ -2762,6 +2872,9 @@ export default PortValuesRangeMapping = {
       return { min: 0, max: 1 };
     },
     tact_switch: function (port) {
+      return { min: 0, max: 1 };
+    },
+    tact_switch_2c: function (port) {
       return { min: 0, max: 1 };
     },
     dual_switch: function (port) {
@@ -2811,94 +2924,7 @@ export default PortValuesRangeMapping = {
     led: function (port) {
       return { min: 0, max: 100 };
     },
-    laser: function (port) {
-      return { min: 0, max: 1 };
-    },
-    beeper: function (port) {
-      return { min: 0, max: 1 };
-    },
-    light_sensor: function (port) {
-      return { min: 0, max: 1024 };
-    },
-    bend_sensor: function (port) {
-      return { min: 0, max: 1024 };
-    },
-    gas_sensor: function (port) {
-      return { min: 0, max: 1024 };
-    },
-    distance_sensor: function (port) {
-      return { min: 0, max: 1024 };
-    },
-    sound_sensor: function (port) {
-      return { min: 0, max: 1024 };
-    },
-    temperature_sensor: function (port) {
-      return { min: 0, max: 1024 };
-    },
-    rain_sensor: function (port) {
-      return { min: 0, max: 1024 };
-    },
-    rotational_sensor: function (port) {
-      return { min: 0, max: 1024 };
-    },
-    accelerometer: function (port) {
-      return { min: 0, max: 1024 };
-    },
-    solar_panel: function (port) {
-      return { min: 0, max: 1024 };
-    },
-    humidity_sensor: function (port) {
-      return { min: 0, max: 1024 };
-    },
-    hall_sensor: function (port) {
-      return { min: 0, max: 1024 };
-    },
-    metal_detector: function (port) {
-      return { min: 0, max: 1 };
-    },
-    heartbeat_sensor: function (port) {
-      return { min: 0, max: 1 };
-    },
-    tact_switch: function (port) {
-      return { min: 0, max: 1 };
-    },
-    dual_switch: function (port) {
-      return { min: 0, max: 1 };
-    },
-    touch_sensor: function (port) {
-      return { min: 0, max: 1 };
-    },
-    pir_sensor: function (port) {
-      return { min: 0, max: 1 };
-    },
-  },
-  B: {
-    joystick: function (port) {
-      return { min: 0, max: 1024 };
-    },
-    temp_dew: function (port) {
-      return { min: 0, max: 1024 };
-    },
-    temp_gas: function (port) {
-      return { min: 0, max: 1024 };
-    },
-    rotatory: function (port) {
-      return { min: 0, max: 1024 };
-    },
-    servo_motor_360: function (port) {
-      return { min: -100, max: +100 };
-    },
-
-    servo_extender: function (port) {
-      return { min: 0, max: 1 };
-    },
-    servo_motor: function (port) {
-      return { min: 0, max: 180 };
-    },
-    dual_splitter: function (port) {
-      return { min: 0, max: 225 };
-    },
-    led: function (port) {
+    led_1c: function (port) {
       return { min: 0, max: 100 };
     },
     laser: function (port) {
@@ -2950,6 +2976,105 @@ export default PortValuesRangeMapping = {
       return { min: 0, max: 1 };
     },
     tact_switch: function (port) {
+      return { min: 0, max: 1 };
+    },
+    tact_switch_2c: function (port) {
+      return { min: 0, max: 1 };
+    },
+    dual_switch: function (port) {
+      return { min: 0, max: 1 };
+    },
+    touch_sensor: function (port) {
+      return { min: 0, max: 1 };
+    },
+    pir_sensor: function (port) {
+      return { min: 0, max: 1 };
+    },
+  },
+  B: {
+    joystick: function (port) {
+      return { min: 0, max: 1024 };
+    },
+    temp_dew: function (port) {
+      return { min: 0, max: 1024 };
+    },
+    temp_gas: function (port) {
+      return { min: 0, max: 1024 };
+    },
+    rotatory: function (port) {
+      return { min: 0, max: 1024 };
+    },
+    servo_motor_360: function (port) {
+      return { min: -100, max: +100 };
+    },
+
+    servo_extender: function (port) {
+      return { min: 0, max: 1 };
+    },
+    servo_motor: function (port) {
+      return { min: 0, max: 180 };
+    },
+    dual_splitter: function (port) {
+      return { min: 0, max: 225 };
+    },
+    led: function (port) {
+      return { min: 0, max: 100 };
+    },
+    led_1c: function (port) {
+      return { min: 0, max: 1 };
+    },
+    laser: function (port) {
+      return { min: 0, max: 1 };
+    },
+    beeper: function (port) {
+      return { min: 0, max: 1 };
+    },
+    light_sensor: function (port) {
+      return { min: 0, max: 1024 };
+    },
+    bend_sensor: function (port) {
+      return { min: 0, max: 1024 };
+    },
+    gas_sensor: function (port) {
+      return { min: 0, max: 1024 };
+    },
+    distance_sensor: function (port) {
+      return { min: 0, max: 1024 };
+    },
+    sound_sensor: function (port) {
+      return { min: 0, max: 1024 };
+    },
+    temperature_sensor: function (port) {
+      return { min: 0, max: 1024 };
+    },
+    rain_sensor: function (port) {
+      return { min: 0, max: 1024 };
+    },
+    rotational_sensor: function (port) {
+      return { min: 0, max: 1024 };
+    },
+    accelerometer: function (port) {
+      return { min: 0, max: 1024 };
+    },
+    solar_panel: function (port) {
+      return { min: 0, max: 1024 };
+    },
+    humidity_sensor: function (port) {
+      return { min: 0, max: 1024 };
+    },
+    hall_sensor: function (port) {
+      return { min: 0, max: 1024 };
+    },
+    metal_detector: function (port) {
+      return { min: 0, max: 1 };
+    },
+    heartbeat_sensor: function (port) {
+      return { min: 0, max: 1 };
+    },
+    tact_switch: function (port) {
+      return { min: 0, max: 1 };
+    },
+    tact_switch_2c: function (port) {
       return { min: 0, max: 1 };
     },
     dual_switch: function (port) {

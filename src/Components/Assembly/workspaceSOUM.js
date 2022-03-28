@@ -114,9 +114,6 @@ const workspaceTarget = {
     //   width,
     //   height
     // );
-    if (item.type == "play_shield") {
-      window.location.reload(); ///cheat to force react to re render
-    }
   },
 };
 
@@ -155,9 +152,7 @@ class Workspace extends Component {
     // this.moveBibox(340, 90);
 
     // Update the PortConnections module
-    var { PortConnections } = this.props.appState.assembly;
-
-    console.log("workspaceprops", this.props.appState.assembly);
+    console.log("workspaceprops", this.props);
 
     console.log(
       "workspace selectedcomponent from sidebar",
@@ -180,7 +175,6 @@ class Workspace extends Component {
         arr2.push(selectedComponents[k].type);
       }
     } catch (e) {}
-    console.log("WorkspaceComponents in deleteion", components[arr1[i]]);
     console.log("workspace arrs", arr1, arr2);
     for (var i = 0; i < arr1.length; i++) {
       if (arr2.includes(arr1[i])) {
@@ -215,8 +209,157 @@ class Workspace extends Component {
 
       components[type].map((component, index) => {
         if (component.connectedTo) {
-          console.log("component.connectedTo 1", component.connectedTo);
-          PortConnections[component.connectedTo] = { type, index };
+          if (type == "pc_motor_driver") {
+            if (component.connectedTo) {
+              if (
+                component.connectedTo == "A" ||
+                component.connectedTo == "C"
+              ) {
+                PortConnections["A"] = {
+                  type,
+                  index,
+                  signalType: SensorObj.signalType,
+                };
+                PortConnections["C"] = {
+                  type,
+                  index,
+                  signalType: SensorObj.signalType,
+                };
+              }
+              if (
+                component.connectedTo == "B" ||
+                component.connectedTo == "D"
+              ) {
+                PortConnections["B"] = {
+                  type,
+                  index,
+                  signalType: SensorObj.signalType,
+                };
+                PortConnections["D"] = {
+                  type,
+                  index,
+                  signalType: SensorObj.signalType,
+                };
+              }
+            }
+          } else if (type == "stepper_motor") {
+            if (component.connectedTo) {
+              if (
+                JSON.parse(sessionStorage.getItem("assembly")).PortConnections
+                  .B !== null
+              ) {
+                if (
+                  JSON.parse(sessionStorage.getItem("assembly")).PortConnections
+                    .B.type == "pc_motor_driver"
+                ) {
+                  if (
+                    components["pc_motor_driver"][0].connectedTo == "B" ||
+                    components["pc_motor_driver"][0].connectedTo == "D"
+                  ) {
+                    PortConnections["B1"] = {
+                      type,
+                      index,
+                      signalType: SensorObj.signalType,
+                    };
+                    PortConnections["B2"] = {
+                      type,
+                      index,
+                      signalType: SensorObj.signalType,
+                    };
+                    PortConnections["D1"] = {
+                      type,
+                      index,
+                      signalType: SensorObj.signalType,
+                    };
+                    PortConnections["D2"] = {
+                      type,
+                      index,
+                      signalType: SensorObj.signalType,
+                    };
+                  }
+                }
+              } else if (
+                JSON.parse(sessionStorage.getItem("assembly")).PortConnections
+                  .A !== null
+              ) {
+                if (
+                  JSON.parse(sessionStorage.getItem("assembly")).PortConnections
+                    .A.type == "pc_motor_driver"
+                ) {
+                  if (
+                    components["pc_motor_driver"][0].connectedTo == "A" ||
+                    components["pc_motor_driver"][0].connectedTo == "C"
+                  ) {
+                    PortConnections["A1"] = {
+                      type,
+                      index,
+                      signalType: SensorObj.signalType,
+                    };
+                    PortConnections["A2"] = {
+                      type,
+                      index,
+                      signalType: SensorObj.signalType,
+                    };
+                    PortConnections["C1"] = {
+                      type,
+                      index,
+                      signalType: SensorObj.signalType,
+                    };
+                    PortConnections["C2"] = {
+                      type,
+                      index,
+                      signalType: SensorObj.signalType,
+                    };
+                  }
+                }
+              }
+            }
+          } else {
+            // type == "led"
+            if (
+              type != "ultrasonic_sensor" &&
+              type != "servo_motor" &&
+              type != "servo_motor_360" &&
+              type != "rotatory"
+            ) {
+              if (component.connectedTo) {
+                if (
+                  component.connectedTo == "A" ||
+                  component.connectedTo == "B" ||
+                  component.connectedTo == "C" ||
+                  component.connectedTo == "D"
+                ) {
+                  PortConnections[component.connectedTo] = {
+                    type,
+                    index,
+                    signalType: SensorObj.signalType,
+                  };
+                  PortConnections[`${component.connectedTo}1`] = {
+                    type,
+                    index,
+                    signalType: SensorObj.signalType,
+                  };
+                  PortConnections[`${component.connectedTo}2`] = {
+                    type,
+                    index,
+                    signalType: SensorObj.signalType,
+                  };
+                } else {
+                  PortConnections[component.connectedTo] = {
+                    type,
+                    index,
+                    signalType: SensorObj.signalType,
+                  };
+                }
+              }
+            } else {
+              PortConnections[component.connectedTo] = {
+                type,
+                index,
+                signalType: SensorObj.signalType,
+              };
+            }
+          }
         }
       });
     });
@@ -281,136 +424,176 @@ class Workspace extends Component {
     var { PortConnections } = this.props.appState.assembly;
     Object.keys(PortConnections).map((port) => (PortConnections[port] = null));
     Object.keys(components).map((type) => {
-      components[type].map((component, index) => {
-        let SensorObj = componentsDataSensor.find((o) => o.type === type);
+      let SensorObj = componentsDataSensor.find((o) => o.type === type);
+      // console.log("SOUMITYA++++++++++++++++>", SensorObj);
 
-        if (type == "led") {
-          if (component.connectedTo) {
-            if (
-              component.connectedTo == "A" ||
-              component.connectedTo == "B" ||
-              component.connectedTo == "C" ||
-              component.connectedTo == "D"
-            ) {
-              PortConnections[component.connectedTo] = {
-                type,
-                index,
-                signalType: SensorObj.signalType,
-              };
-              PortConnections[`${component.connectedTo}1`] = {
-                type,
-                index,
-                signalType: SensorObj.signalType,
-              };
-              PortConnections[`${component.connectedTo}2`] = {
-                type,
-                index,
-                signalType: SensorObj.signalType,
-              };
-            }
-          }
-        } else if (type == "tact_switch_2c") {
-          if (component.connectedTo) {
-            if (
-              component.connectedTo == "A" ||
-              component.connectedTo == "B" ||
-              component.connectedTo == "C"
-            ) {
-              PortConnections[component.connectedTo] = {
-                type,
-                index,
-                signalType: SensorObj.signalType,
-              };
-              PortConnections[`${component.connectedTo}1`] = {
-                type,
-                index,
-                signalType: SensorObj.signalType,
-              };
-              PortConnections[`${component.connectedTo}2`] = {
-                type,
-                index,
-                signalType: SensorObj.signalType,
-              };
-            }
-          }
-        } else if (type == "dual_switch") {
-          if (component.connectedTo) {
-            if (
-              component.connectedTo == "A" ||
-              component.connectedTo == "B" ||
-              component.connectedTo == "C"
-            ) {
-              PortConnections[component.connectedTo] = {
-                type,
-                index,
-                signalType: SensorObj.signalType,
-              };
-              PortConnections[`${component.connectedTo}1`] = {
-                type,
-                index,
-                signalType: SensorObj.signalType,
-              };
-              PortConnections[`${component.connectedTo}2`] = {
-                type,
-                index,
-                signalType: SensorObj.signalType,
-              };
-            }
-          }
-        } else if (type == "joystick") {
-          if (component.connectedTo) {
-            if (
-              component.connectedTo == "A" ||
-              component.connectedTo == "B" ||
-              component.connectedTo == "C"
-            ) {
-              PortConnections[component.connectedTo] = {
-                type,
-                index,
-                signalType: SensorObj.signalType,
-              };
-              PortConnections[`${component.connectedTo}1`] = {
-                type,
-                index,
-                signalType: SensorObj.signalType,
-              };
-              PortConnections[`${component.connectedTo}2`] = {
-                type,
-                index,
-                signalType: SensorObj.signalType,
-              };
-            }
-          }
-        } else if (type == "ultrasonic_sensor") {
+      components[type].map((component, index) => {
+        if (type == "pc_motor_driver") {
           if (component.connectedTo) {
             if (component.connectedTo == "A" || component.connectedTo == "C") {
-              PortConnections[component.connectedTo] = {
+              // PortConnections[component.connectedTo] = { type, index, signalType:SensorObj.signalType  };
+
+              PortConnections["A"] = {
                 type,
                 index,
                 signalType: SensorObj.signalType,
               };
-              PortConnections[`${component.connectedTo}1`] = {
+              PortConnections["C"] = {
                 type,
                 index,
                 signalType: SensorObj.signalType,
               };
-              PortConnections[`${component.connectedTo}2`] = {
+            }
+            if (component.connectedTo == "B" || component.connectedTo == "D") {
+              PortConnections["B"] = {
                 type,
                 index,
                 signalType: SensorObj.signalType,
               };
+              PortConnections["D"] = {
+                type,
+                index,
+                signalType: SensorObj.signalType,
+              };
+            }
+          }
+        } else if (type == "stepper_motor") {
+          if (component.connectedTo) {
+            if (
+              JSON.parse(sessionStorage.getItem("assembly")).PortConnections
+                .B !== null
+            ) {
+              if (
+                JSON.parse(sessionStorage.getItem("assembly")).PortConnections.B
+                  .type == "pc_motor_driver"
+              ) {
+                if (
+                  components["pc_motor_driver"][0].connectedTo == "B" ||
+                  components["pc_motor_driver"][0].connectedTo == "D"
+                ) {
+                  PortConnections["B1"] = {
+                    type,
+                    index,
+                    signalType: SensorObj.signalType,
+                  };
+                  PortConnections["B2"] = {
+                    type,
+                    index,
+                    signalType: SensorObj.signalType,
+                  };
+                  PortConnections["D1"] = {
+                    type,
+                    index,
+                    signalType: SensorObj.signalType,
+                  };
+                  PortConnections["D2"] = {
+                    type,
+                    index,
+                    signalType: SensorObj.signalType,
+                  };
+                }
+              }
+            } else if (
+              JSON.parse(sessionStorage.getItem("assembly")).PortConnections
+                .A !== null
+            ) {
+              if (
+                JSON.parse(sessionStorage.getItem("assembly")).PortConnections.A
+                  .type == "pc_motor_driver"
+              ) {
+                if (
+                  components["pc_motor_driver"][0].connectedTo == "A" ||
+                  components["pc_motor_driver"][0].connectedTo == "C"
+                ) {
+                  PortConnections["A1"] = {
+                    type,
+                    index,
+                    signalType: SensorObj.signalType,
+                  };
+                  PortConnections["A2"] = {
+                    type,
+                    index,
+                    signalType: SensorObj.signalType,
+                  };
+                  PortConnections["C1"] = {
+                    type,
+                    index,
+                    signalType: SensorObj.signalType,
+                  };
+                  PortConnections["C2"] = {
+                    type,
+                    index,
+                    signalType: SensorObj.signalType,
+                  };
+                }
+              }
             }
           }
         } else if (component.connectedTo) {
+          // type == "led")
           if (
-            type != "servo_motor" ||
-            type != "servo_motor_360" ||
-            type != "dc_motor" ||
-            type != "mini_geared_motor"
+            type != "ultrasonic_sensor" &&
+            type != "servo_motor" &&
+            type != "servo_motor_360"
           ) {
-            console.log("component.connectedTo 1", component.connectedTo);
-            PortConnections[component.connectedTo] = { type, index };
+            if (component.connectedTo) {
+              if (
+                component.connectedTo == "A" ||
+                component.connectedTo == "B" ||
+                component.connectedTo == "C" ||
+                component.connectedTo == "D"
+              ) {
+                PortConnections[component.connectedTo] = {
+                  type,
+                  index,
+                  signalType: SensorObj.signalType,
+                };
+                PortConnections[`${component.connectedTo}1`] = {
+                  type,
+                  index,
+                  signalType: SensorObj.signalType,
+                };
+                PortConnections[`${component.connectedTo}2`] = {
+                  type,
+                  index,
+                  signalType: SensorObj.signalType,
+                };
+              } else {
+                PortConnections[component.connectedTo] = {
+                  type,
+                  index,
+                  signalType: SensorObj.signalType,
+                };
+              }
+            }
+          } else {
+            PortConnections[component.connectedTo] = {
+              type,
+              index,
+              signalType: SensorObj.signalType,
+            };
           }
+
+          // if (component.connectedTo == "A") {
+          //   PortConnections["C"] = {
+          //     notDriverMotot: "notConnectedDriverMotor",
+          //   };
+          // }
+          // if (component.connectedTo == "C") {
+          //   PortConnections["A"] = {
+          //     notDriverMotot: "notConnectedDriverMotor",
+          //   };
+          // }
+          // if (component.connectedTo == "B") {
+          //   PortConnections["D"] = {
+          //     notDriverMotot: "notConnectedDriverMotor",
+          //   };
+          // }
+          // if (component.connectedTo == "D") {
+          //   PortConnections["B"] = {
+          //     notDriverMotot: "notConnectedDriverMotor",
+          //   };
+          // }
         }
       });
     });
@@ -443,218 +626,164 @@ class Workspace extends Component {
     var { PortConnections } = this.props.appState.assembly;
     Object.keys(PortConnections).map((port) => (PortConnections[port] = null));
     Object.keys(components).map((type) => {
-      components[type].map((component, index) => {
-        let SensorObj = componentsDataSensor.find((o) => o.type === type);
+      let SensorObj = componentsDataSensor.find((o) => o.type === type);
+      // console.log("SOUMITYA++++++++++++++++>", SensorObj);
 
-        if (type == "led") {
-          if (component.connectedTo) {
-            if (
-              component.connectedTo == "A" ||
-              component.connectedTo == "B" ||
-              component.connectedTo == "C" ||
-              component.connectedTo == "D"
-            ) {
-              PortConnections[component.connectedTo] = {
-                type,
-                index,
-                signalType: SensorObj.signalType,
-              };
-              PortConnections[`${component.connectedTo}1`] = {
-                type,
-                index,
-                signalType: SensorObj.signalType,
-              };
-              PortConnections[`${component.connectedTo}2`] = {
-                type,
-                index,
-                signalType: SensorObj.signalType,
-              };
-            }
-          }
-        } else if (type == "tact_switch_2c") {
-          if (component.connectedTo) {
-            if (
-              component.connectedTo == "A" ||
-              component.connectedTo == "B" ||
-              component.connectedTo == "C"
-            ) {
-              PortConnections[component.connectedTo] = {
-                type,
-                index,
-                signalType: SensorObj.signalType,
-              };
-              PortConnections[`${component.connectedTo}1`] = {
-                type,
-                index,
-                signalType: SensorObj.signalType,
-              };
-              PortConnections[`${component.connectedTo}2`] = {
-                type,
-                index,
-                signalType: SensorObj.signalType,
-              };
-            }
-          }
-        } else if (type == "tact_switch") {
-          if (component.connectedTo) {
-            if (
-              component.connectedTo == "A" ||
-              component.connectedTo == "B" ||
-              component.connectedTo == "C"
-            ) {
-              PortConnections[component.connectedTo] = {
-                type,
-                index,
-                signalType: SensorObj.signalType,
-              };
-              PortConnections[`${component.connectedTo}1`] = {
-                type,
-                index,
-                signalType: SensorObj.signalType,
-              };
-            }
-          }
-        } else if (type == "touch_sensor") {
-          if (component.connectedTo) {
-            if (
-              component.connectedTo == "A" ||
-              component.connectedTo == "B" ||
-              component.connectedTo == "C"
-            ) {
-              PortConnections[component.connectedTo] = {
-                type,
-                index,
-                signalType: SensorObj.signalType,
-              };
-              PortConnections[`${component.connectedTo}1`] = {
-                type,
-                index,
-                signalType: SensorObj.signalType,
-              };
-            }
-          }
-        } else if (type == "light_sensor") {
-          if (component.connectedTo) {
-            if (
-              component.connectedTo == "A" ||
-              component.connectedTo == "B" ||
-              component.connectedTo == "C"
-            ) {
-              PortConnections[component.connectedTo] = {
-                type,
-                index,
-                signalType: SensorObj.signalType,
-              };
-              PortConnections[`${component.connectedTo}1`] = {
-                type,
-                index,
-                signalType: SensorObj.signalType,
-              };
-            }
-          }
-        } else if (type == "distance_sensor") {
-          if (component.connectedTo) {
-            if (
-              component.connectedTo == "A" ||
-              component.connectedTo == "B" ||
-              component.connectedTo == "C"
-            ) {
-              PortConnections[component.connectedTo] = {
-                type,
-                index,
-                signalType: SensorObj.signalType,
-              };
-              PortConnections[`${component.connectedTo}1`] = {
-                type,
-                index,
-                signalType: SensorObj.signalType,
-              };
-            }
-          }
-        } else if (type == "dual_switch") {
-          if (component.connectedTo) {
-            if (
-              component.connectedTo == "A" ||
-              component.connectedTo == "B" ||
-              component.connectedTo == "C"
-            ) {
-              PortConnections[component.connectedTo] = {
-                type,
-                index,
-                signalType: SensorObj.signalType,
-              };
-              PortConnections[`${component.connectedTo}1`] = {
-                type,
-                index,
-                signalType: SensorObj.signalType,
-              };
-              PortConnections[`${component.connectedTo}2`] = {
-                type,
-                index,
-                signalType: SensorObj.signalType,
-              };
-            }
-          }
-        } else if (type == "joystick") {
-          if (component.connectedTo) {
-            if (
-              component.connectedTo == "A" ||
-              component.connectedTo == "B" ||
-              component.connectedTo == "C"
-            ) {
-              PortConnections[component.connectedTo] = {
-                type,
-                index,
-                signalType: SensorObj.signalType,
-              };
-              PortConnections[`${component.connectedTo}1`] = {
-                type,
-                index,
-                signalType: SensorObj.signalType,
-              };
-              PortConnections[`${component.connectedTo}2`] = {
-                type,
-                index,
-                signalType: SensorObj.signalType,
-              };
-            }
-          }
-        } else if (type == "ultrasonic_sensor") {
+      components[type].map((component, index) => {
+        if (type == "pc_motor_driver") {
           if (component.connectedTo) {
             if (component.connectedTo == "A" || component.connectedTo == "C") {
-              PortConnections[component.connectedTo] = {
+              // PortConnections[component.connectedTo] = { type, index, signalType:SensorObj.signalType  };
+
+              PortConnections["A"] = {
                 type,
                 index,
                 signalType: SensorObj.signalType,
               };
-              PortConnections[`${component.connectedTo}1`] = {
+              PortConnections["C"] = {
                 type,
                 index,
                 signalType: SensorObj.signalType,
               };
-              PortConnections[`${component.connectedTo}2`] = {
+            }
+            if (component.connectedTo == "B" || component.connectedTo == "D") {
+              PortConnections["B"] = {
                 type,
                 index,
                 signalType: SensorObj.signalType,
               };
+              PortConnections["D"] = {
+                type,
+                index,
+                signalType: SensorObj.signalType,
+              };
+            }
+          }
+        }
+
+        if (type == "stepper_motor") {
+          if (component.connectedTo) {
+            if (
+              JSON.parse(sessionStorage.getItem("assembly")).PortConnections
+                .B !== null
+            ) {
+              if (
+                JSON.parse(sessionStorage.getItem("assembly")).PortConnections.B
+                  .type == "pc_motor_driver"
+              ) {
+                if (
+                  components["pc_motor_driver"][0].connectedTo == "B" ||
+                  components["pc_motor_driver"][0].connectedTo == "D"
+                ) {
+                  PortConnections["B1"] = {
+                    type,
+                    index,
+                    signalType: SensorObj.signalType,
+                  };
+                  PortConnections["B2"] = {
+                    type,
+                    index,
+                    signalType: SensorObj.signalType,
+                  };
+                  PortConnections["D1"] = {
+                    type,
+                    index,
+                    signalType: SensorObj.signalType,
+                  };
+                  PortConnections["D2"] = {
+                    type,
+                    index,
+                    signalType: SensorObj.signalType,
+                  };
+                }
+              }
+            } else if (
+              JSON.parse(sessionStorage.getItem("assembly")).PortConnections
+                .A !== null
+            ) {
+              if (
+                JSON.parse(sessionStorage.getItem("assembly")).PortConnections.A
+                  .type == "pc_motor_driver"
+              ) {
+                if (
+                  components["pc_motor_driver"][0].connectedTo == "A" ||
+                  components["pc_motor_driver"][0].connectedTo == "C"
+                ) {
+                  PortConnections["A1"] = {
+                    type,
+                    index,
+                    signalType: SensorObj.signalType,
+                  };
+                  PortConnections["A2"] = {
+                    type,
+                    index,
+                    signalType: SensorObj.signalType,
+                  };
+                  PortConnections["C1"] = {
+                    type,
+                    index,
+                    signalType: SensorObj.signalType,
+                  };
+                  PortConnections["C2"] = {
+                    type,
+                    index,
+                    signalType: SensorObj.signalType,
+                  };
+                }
+              }
             }
           }
         } else if (component.connectedTo) {
+          // type == "led")
           if (
-            type != "servo_motor" ||
-            type != "servo_motor_360" ||
-            type != "dc_motor" ||
-            type != "mini_geared_motor"
+            type != "ultrasonic_sensor" &&
+            type != "servo_motor" &&
+            type != "servo_motor_360"
           ) {
-            console.log("component.connectedTo 1", component.connectedTo);
-            PortConnections[component.connectedTo] = { type, index };
+            if (component.connectedTo) {
+              if (
+                component.connectedTo == "A" ||
+                component.connectedTo == "B" ||
+                component.connectedTo == "C" ||
+                component.connectedTo == "D"
+              ) {
+                PortConnections[component.connectedTo] = {
+                  type,
+                  index,
+                  signalType: SensorObj.signalType,
+                };
+                PortConnections[`${component.connectedTo}1`] = {
+                  type,
+                  index,
+                  signalType: SensorObj.signalType,
+                };
+                PortConnections[`${component.connectedTo}2`] = {
+                  type,
+                  index,
+                  signalType: SensorObj.signalType,
+                };
+              } else {
+                PortConnections[component.connectedTo] = {
+                  type,
+                  index,
+                  signalType: SensorObj.signalType,
+                };
+              }
+            }
+          } else {
+            PortConnections[component.connectedTo] = {
+              type,
+              index,
+              signalType: SensorObj.signalType,
+            };
           }
         }
       });
     });
 
+    console.log("========>", PortConnections);
+
     this.props.updatePort(PortConnections);
-    console.log("========>props", this.props);
   }
   /**
    * Connect a old component to a port in workspace (on drop)

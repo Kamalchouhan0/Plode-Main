@@ -1523,7 +1523,11 @@ class OutputPanel extends Component {
                 }
               } else if (value == "isLeftEye") {
                 if (internalAccessories[value] == true) {
-                  console.log(PortValuesRangeMapping[value]);
+                  console.log("PROPS DATATA", this.state);
+                  console.log(
+                    "PROPS DATATA",
+                    this.state[`curValLeftEye${this.state.setportName}`]
+                  );
                   return (
                     <>
                       <SliderRow
@@ -1531,6 +1535,7 @@ class OutputPanel extends Component {
                         port={this.state.setportName}
                         value={
                           this.state[`curValLeftEye${this.state.portName}`]
+                          //state[`valueLeftEye${this.state.setportName}`]
                         }
                         key="LeftEye"
                         title="LeftEye"
@@ -1554,6 +1559,7 @@ class OutputPanel extends Component {
                         port={this.state.setportName}
                         value={
                           this.state[`curValRightEye${this.state.portName}`]
+                          //state[`valueLeftEye${this.state.setportName}`]
                         }
                         key="RightEye"
                         title="RightEye"

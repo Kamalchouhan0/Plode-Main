@@ -909,9 +909,6 @@ class IfPanel extends Component {
 
   render() {
     const { state, startState, PortConnections, componentProps } = this.props;
-
-    console.log(this.props, "PROPS______________");
-
     var portsConnectedArray = [];
     for (var eachConnection in PortConnections) {
       portsConnectedArray.push(eachConnection);
@@ -941,7 +938,6 @@ class IfPanel extends Component {
     Object.keys(PortConnections).forEach((port) => {
       if (port != "undefined" && PortConnections[port]) {
         if (!PortConnections[port]) return;
-
         var type = PortConnections[port].type;
 
         // if (type == "4_in_1_sensor") {
@@ -1495,7 +1491,10 @@ class IfPanel extends Component {
           <span className="sensor-txt">
             If the value of
             <Select
-              onChange={(value) => this.onChange("source", value)}
+              onChange={(value) => {
+                this.onChange("source", value);
+                //console.log(value, "gsk+++@@@@@");
+              }}
               color={HexTypes["if"].color}
               options={sourceOptions}
               order={sourceOptionsOrder}
@@ -1506,7 +1505,7 @@ class IfPanel extends Component {
         </div>
 
         <div className="select-Condition margin-section">
-          {this.state.isGraterThan ? (
+          {state.condition == "gt" ? (
             <div className="item">
               <img
                 src={renderPrgImage("greaterthanActive")}
@@ -1524,7 +1523,7 @@ class IfPanel extends Component {
             </div>
           )}
 
-          {this.state.isLessThan ? (
+          {state.condition == "lt" ? (
             <div className="item">
               <img
                 src={renderPrgImage("lessthanActive")}
@@ -1542,7 +1541,7 @@ class IfPanel extends Component {
             </div>
           )}
 
-          {this.state.isInBtween ? (
+          {state.condition == "bw" ? (
             <div className="item">
               <img
                 src={renderPrgImage("inbetweenActive")}
@@ -1560,7 +1559,7 @@ class IfPanel extends Component {
             </div>
           )}
 
-          {this.state.isEqualTo ? (
+          {state.condition == "eq" ? (
             <div className="item">
               <img
                 src={renderPrgImage("equaltoActive")}
@@ -1578,7 +1577,7 @@ class IfPanel extends Component {
             </div>
           )}
 
-          {this.state.isNotequalTo ? (
+          {state.condition == "ne" ? (
             <div className="item">
               <img
                 src={renderPrgImage("notequaltoActive")}
