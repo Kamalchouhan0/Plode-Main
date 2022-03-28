@@ -104,7 +104,7 @@ module.exports = [
     type: "tact_switch",
     description: "It is a simple tactile switch used for toggle operation",
     color: "#ff8c19",
-    name: "tact switch",
+    name: "Button",
   },
   {
     type: "dual_switch",

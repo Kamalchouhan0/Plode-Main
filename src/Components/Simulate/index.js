@@ -511,29 +511,32 @@ class Simulate extends Component {
     }
     if (this.props.logic.program[j].state.assignTouchZeroOutput) {
       var bz = document.getElementById("PcInternalTouchpad0");
-      //if (this.props.logic.program[j].state.valueSmileFour > 0) {
-      bz.src = renderPrgImage("PcinternalTouchpadsActive");
-    } else {
-      var bz = document.getElementById("PcInternalTouchpad0");
+      if (this.props.logic.program[j].state.valueTouchZeroOutput > 0) {
+        bz.src = renderPrgImage("PcinternalTouchpadsActive");
+      } else {
+        var bz = document.getElementById("PcInternalTouchpad0");
 
-      bz.src = renderPrgImage("PcinternalTouchpadsInActive");
+        bz.src = renderPrgImage("PcinternalTouchpadsInActive");
+      }
     }
     if (this.props.logic.program[j].state.assignTouchOneOutput) {
       var bz = document.getElementById("PcInternalTouchpad1");
-      //if (this.props.logic.program[j].state.valueSmileFour > 0) {
-      bz.src = renderPrgImage("PcinternalTouchpadsActive");
-    } else {
-      var bz = document.getElementById("PcInternalTouchpad1");
+      if (this.props.logic.program[j].state.valueTouchOneOutput > 0) {
+        bz.src = renderPrgImage("PcinternalTouchpadsActive");
+      } else {
+        var bz = document.getElementById("PcInternalTouchpad1");
 
-      bz.src = renderPrgImage("PcinternalTouchpadsInActive");
+        bz.src = renderPrgImage("PcinternalTouchpadsInActive");
+      }
     }
     if (this.props.logic.program[j].state.assignTouchTwoOutput) {
       var bz = document.getElementById("PcInternalTouchpad2");
-      //if (this.props.logic.program[j].state.valueSmileFour > 0) {
-      bz.src = renderPrgImage("PcinternalTouchpadsActive");
-    } else {
-      var bz = document.getElementById("PcInternalTouchpad2");
-      bz.src = renderPrgImage("PcinternalTouchpadsInActive");
+      if (this.props.logic.program[j].state.valueTouchTwoOutput > 0) {
+        bz.src = renderPrgImage("PcinternalTouchpadsActive");
+      } else {
+        var bz = document.getElementById("PcInternalTouchpad2");
+        bz.src = renderPrgImage("PcinternalTouchpadsInActive");
+      }
     }
   };
 
