@@ -323,19 +323,6 @@ class SliderRow extends Component {
     }
 
     if (name == "LeftEye") {
-<<<<<<< HEAD
-      console.log("gkaay KAMAL", this.props.port);
-
-      // var por = this.props.port;
-      // if (por == "R") {
-      //   var valueR = this.props.valR;
-      // }
-      // if (por == "B") {
-      //   var valueB = this.props.valB;
-      // }
-      // if (por == "G") {
-      //   var valueG = this.props.valG;
-=======
       console.log("gkaay", this.props, this.state);
       // if (this.props.port == "R") {
       //   value = this.props.valR;
@@ -345,7 +332,6 @@ class SliderRow extends Component {
       // }
       // if (this.props.port == "G") {
       //   value = this.props.valG;
->>>>>>> 8288986ca262c18d76c9bed599086a5ac817d769
       // }
       return (
         <div className="hardwareInfo-section">
