@@ -393,3 +393,42 @@ p1 {
 .renderClicktrue {
   background-color: #fff;
 }
+.start-checkBox-conatiner {
+  height: 16%;
+  width: 7%;
+  /* display: flex; */
+  position: relative;
+  top: 25%;
+  left: 60%;
+
+  border: 2px solid #797777;
+}
+
+.start-renderClickfalse {
+  /* content: "✔"; */
+  color: black;
+  /* border: 2px solid #09090a; */
+
+  background-color: #fffdfd;
+}
+.start-renderClicktrue {
+  /* content: "✔"; */
+  border: 2px solid #00008b;
+  color: rgb(248, 245, 245);
+  /* display: flex;
+  justify-content: center;
+  align-items: baseline; */
+  /* font-size: 50px; */
+  background-color: #00008b;
+}
+.tick-Activetrue {
+  display: block;
+  position: relative;
+  top: -18%;
+  left: -5%;
+  transform: translate(-50% -50%);
+}
+.tick-Activefalse {
+  /* display: none; */
+  visibility: hidden;
+}

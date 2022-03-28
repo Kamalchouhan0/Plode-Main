@@ -8,6 +8,8 @@ import logicVariables from "../logicVariables";
 import socketIOClient from "socket.io-client";
 import PortValuesRangeMapping from "../PortValuesRangeMapping";
 import unicodeToChar from "../../../utils/unicodeToChar";
+import { connect } from "react-redux";
+import { webSerialAction } from "../../../redux/actions/index";
 import PortConnections from "../../Assembly/PortConnections";
 import { Link } from "react-router-dom";
 import {
@@ -148,7 +150,7 @@ class IfPanel extends Component {
       isEqualTo: false,
       isInBtween: false,
       isRead: false,
-
+      flags: false,
       responceTp0: "",
       responceTp1: "",
       responceTp2: "",
@@ -158,6 +160,7 @@ class IfPanel extends Component {
       rangeA2: "",
       tactswitch: "",
       mic: "",
+      temprature: "",
       temp: "",
       gas: "",
       one: "",
@@ -170,13 +173,153 @@ class IfPanel extends Component {
       distance: "",
       readToggel: "",
     };
+    window.addEventListener("load", async (e) => {
+      console.log("HEY_CALIIN", this.props.state);
+
+      try {
+        const portList = await navigator.serial.getPorts();
+
+        if (portList.length === 1) {
+          console.log(portList, "Hardware connected");
+
+          await props.webSerialAction({ port: portList[0] }); // dispatching function of redux
+
+          this.setState.p1({
+            selected: true,
+            port: portList[0],
+          });
+        } else {
+          console.log("No hardware");
+
+          this.setState.p1(this.state.p1);
+        }
+      } catch (err) {
+        console.log(err.message);
+      }
+    });
   }
 
   hexTypeCheck = () => {
     this.props.hexTypeCheck("sensor");
   };
+  OpenReadComPort = async () => {
+    const port = this.props.webSerial;
+    console.log("PORTLIST", port);
+    // console.log(port, "pPort");
+    try {
+      await port.open({ baudRate: 115200 });
+    } catch (e) {
+      console.log(e);
+    }
+    this.writePort("notWrite");
+
+    // try {
+    this.readdata();
+    // }, 1000);
+  };
+
+  async readdata() {
+    const port = this.props.webSerial;
+
+    try {
+      const reader = port.readable.getReader();
+      console.log("DATA OTT 1");
+      // Listen to data coming from the serial device.
+      while (true) {
+        const { value, done } = await reader.read();
+        if (done) {
+          reader.releaseLock();
+          break;
+        }
+        console.log(value);
+
+        // value is a string.
+        if (value.length == 32) {
+          var v = unicodeToChar(value);
+          // var v = value;
+          console.log(v);
+        }
+        // if (value.length == 23) {
+        //   var v = unicodeToChar(value);
+        //   // var v = value;
+        //   console.log(v);
+        // }
+        if (value.length == 7) {
+          var vi = unicodeToChar(value);
+          // var vi = value;
+          console.log(vi);
+        }
+        if (value.length == 9) {
+          var vi = unicodeToChar(value);
+          // var vi = value;
+          console.log(vi);
+        }
+        if (value.length == 14) {
+          var vi = unicodeToChar(value);
+          // var vi = value;
+          console.log(vi);
+        }
+        if (value.length == 17) {
+          var vi = unicodeToChar(value);
+          // var vi = value;
+          console.log(vi);
+        }
+        if (value.length == 12) {
+          var vi = unicodeToChar(value);
+          // var vi = value;
+          console.log(vi);
+        }
+        // if (value.lenght != 1) {
+        //   var vae = v + vi;
+        // }
+        if ((value.lenght == 32 && value.lenght == 12) || value.lenght == 11) {
+          var vae = v + " " + vi;
+          console.log(vae, "ORRRR");
+        }
+        var vae = v + vi;
+        let i = vae;
+        this.state.flags = i;
+        console.log("ADDED I", i);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  }
+  async writePort(data) {
+    try {
+      const ports = await navigator.serial.getPorts();
+      console.log("portsss", ports);
+
+      console.log("portsss", ports[0].writable);
+      // const outputStream = ports[0].writable,
+      const writer = ports[0].writable.getWriter();
+      // writer = outputStream.getWriter();
+      const sata = data;
+      const data1 = new Uint8Array(sata); // hello// 82, 76, 0, 0, 0, 82, 0, 0, 0, 66, 0, 0, 1, 0, 1,
+      console.log("send data:+", data1);
+
+      await writer.write(data1);
+
+      writer.releaseLock();
+    } catch (e) {
+      console.log(e);
+    }
+  }
 
   componentDidUpdate() {
+    let no_port = this.props.webserialPort;
+
+    if (typeof no_port !== undefined) {
+      console.log("WORKING>>>>>>>>");
+      this.OpenReadComPort();
+    } else {
+      // this.OpenReadComPort();
+      console.log(JSON.parse(sessionStorage.getItem("webSerialPortList")));
+      console.log("SERIAL PORT NOT CONNECTED");
+    }
+    let BAR = this.state.flags.toString();
+    // let BAR = "153 1 142 2 237 2 122 1 233 1 0 0 100 100 124 20 10 0 0";
+    console.log(BAR, "VAlies");
     let valresponceTp0 = "";
     let valresponceTp1 = "";
     let valresponceTp2 = "";
@@ -195,7 +338,8 @@ class IfPanel extends Component {
       valblue = "",
       vallight = "",
       valges = "",
-      valdis = "";
+      valdis = "",
+      valTemprature = "";
 
     if (this.state.isRead) {
       var socket = socketIOClient.connect("http://localhost:3008");
@@ -325,103 +469,170 @@ class IfPanel extends Component {
       }
 
       console.log(bytesData);
-      this.writePort(bytesData);
       socket.emit("/codereadBytes", bytesData);
+      this.writePort(bytesData);
+      var v = BAR.split(" ");
+      console.log("RAJPUT", v);
+      if (v[13] > 255 || v[17] === 0) {
+        v[14] = v[13].slice(-2, 4);
+        v[13] = v[13].slice(0, 2);
 
-      socket.on("/CodePcBytes", async function (data) {
-        var str = await data;
-        console.log("SATTA", str);
+        v[18] = "0";
+      }
+      console.log(v, "JJ");
 
-        if (str.slice(str.length - 40, str.length - 36) != "0000") {
-          console.log(
-            "MMNNNMNJHBNN<<<<<<<<<<<<<<<<<<<",
-            str.slice(str.length - 40, str.length - 36)
-          );
-          socket.on("/A1-port", function (data2) {
-            valrangeA1 = data2;
-            console.log("A1:::::>>>>", valrangeA1);
-
-            // console.log("MATAta:", valrangeA1);
-          });
-
-          socket.on("/A2-port", function (data2) {
-            valrangeA2 = data2;
-
-            console.log("MATA:", valgas);
-          });
+      if (v.length == "19") {
+        if (v[0] != "0" || v[2] != "0") {
+          if (v[0] != "0") {
+            var byte_val1 = v[0] & 0xff;
+            var byte_val2 = v[1] & 0xff;
+            console.log(byte_val1, byte_val2, "A1");
+            var valOfSensor = (byte_val2 << 8) + byte_val1;
+            console.log("LSB+MSB:-", valOfSensor);
+            if (valOfSensor <= 1024) {
+              valrangeA1 = valOfSensor;
+            }
+          }
+          if (v[2] != "0") {
+            var byte_val1 = v[2] & 0xff;
+            var byte_val2 = v[3] & 0xff;
+            var valOfSensor = (byte_val2 << 8) + byte_val1;
+            console.log("LSB+MSB:-", valOfSensor);
+            valrangeA2 = valOfSensor;
+          }
         }
-        if (str.slice(str.length - 35, str.length - 31) != "0000") {
-          socket.on("/B1-port", function (data2) {
-            valtemp = data2;
-            console.log("B port value", data2);
-          });
-          socket.on("/B2-port", function (data2) {
-            valgas = data2;
-          });
+        if (v[4] != "0" || v[6] != "0") {
+          if (v[4] != "0") {
+            var byte_val1 = v[4] & 0xff;
+            var byte_val2 = v[5] & 0xff;
+            var valOfSensor = (byte_val2 << 8) + byte_val1;
+            console.log("LSB+MSB:-", valOfSensor);
+            valtemp = valOfSensor;
+          }
+          if (v[6] != "0") {
+            var byte_val1 = v[6] & 0xff;
+            var byte_val2 = v[7] & 0xff;
+            var valOfSensor = (byte_val2 << 8) + byte_val1;
+            console.log("LSB+MSB:-", valOfSensor);
+            valgas = valOfSensor;
+          }
         }
-        if (str.slice(str.length - 25, str.length - 21) != "0000") {
-          socket.on("/C1-port", function (data2) {
-            valone = data2;
-          });
-          socket.on("/C2-port", function (data2) {
-            valtwo = data2;
-          });
-        }
-
-        ///////////////////         F0ur in 0ne RGB      ///////////////////////////
-        if (str.slice(str.length - 10, str.length - 4) != "000000") {
-          socket.on("/4IN1R-port", function (data) {
-            valred = data;
-          });
-          // valmic = 15611;
-        }
-        if (str.slice(str.length - 10, str.length - 4) != "000000") {
-          socket.on("/4IN1G-port", function (data) {
-            valgreen = data;
-          });
-          // valmic = 15611;
-        }
-        if (str.slice(str.length - 10, str.length - 4) != "000000") {
-          socket.on("/4IN1B-port", function (data) {
-            valblue = data;
-          });
-          // valmic = 15611;
-        }
-
-        //////////////////   MIC       /////////////////////////////////////
-        if (str.slice(str.length - 4, str.length) != "0000") {
-          socket.on("/Mic-port", function (data) {
-            valmic = data;
-          });
-          // valmic = 15611;
+        if (v[8] != "0" || v[10] != "0") {
+          if (v[8] != "0") {
+            var byte_val1 = v[8] & 0xff;
+            var byte_val2 = v[9] & 0xff;
+            var valOfSensor = (byte_val2 << 8) + byte_val1;
+            console.log("LSB+MSB:-", valOfSensor);
+            valone = valOfSensor;
+          }
+          if (v[10] != "0") {
+            var byte_val1 = v[10] & 0xff;
+            var byte_val2 = v[11] & 0xff;
+            var valOfSensor = (byte_val2 << 8) + byte_val1;
+            console.log("LSB+MSB:-", valOfSensor);
+            valtwo = valOfSensor;
+          } else {
+            valtwo = 0;
+          }
         }
 
-        ////////////////  F0ur in 0ne Light,distance    /////////////////////////////////
-        if (str.slice(str.length - 10, str.length - 8) != "00") {
-          socket.on("/4IN1light-port", function (data) {
+        if (sessionData.internalaccessories.Four_in_one_sensor.isLightSensor) {
+          if (v[12] != "0") {
+            var data = v[12];
+
             vallight = data;
-          });
-          // valmic = 15611;
+            console.log(" 23 DISTANCE SENSOR:--", valdis);
+          } else {
+            vallight = " ";
+          }
         }
-        if (str.slice(str.length - 8, str.length - 6) != "00") {
-          socket.on("/4IN1ges-port", function (data) {
-            valges = data;
-          });
-          // valmic = 15611;
-        }
-        if (str.slice(str.length - 6, str.length - 4) != "00") {
-          socket.on("/4IN1dis-port", function (data) {
+        if (
+          sessionData.internalaccessories.Four_in_one_sensor.isDistanceSensors
+        ) {
+          if (v[13] != "0" && v[13] <= "255") {
+            var data = v[13];
+
             valdis = data;
-          });
-          // valmic = 15611;
+            console.log(" 23 DISTANCE SENSOR:--", valdis);
+          } else {
+            valdis = " ";
+          }
         }
+        if (
+          sessionData.internalaccessories.Four_in_one_sensor.isGestureSensor
+        ) {
+          if (v[14] != "0") {
+            var data = v[14];
 
-        console.log(str.slice(str.length - 6, str.length - 4), "3rd last");
-        console.log(str.slice(str.length - 4, str.length - 2), "2nd last");
-        console.log(str.slice(str.length - 2, str.length), "last");
+            valges = data;
+            console.log(" 23 DISTANCE SENSOR:--", valdis);
+          } else {
+            valges = " ";
+          }
+        }
+        if (sessionData.internalaccessories.isMic) {
+          if (v[15] != "0") {
+            var byte_val1 = v[15] & 0xff;
+            var byte_val2 = v[16] & 0xff;
+            var valOfSensor = (byte_val2 << 8) + byte_val1;
+            console.log("LSB+MSB:-", valOfSensor);
+            valmic = valOfSensor;
+          }
+        }
+        if (sessionData.internalaccessories.Four_in_one_sensor.isColorSensor) {
+          if (v[12] != "0") {
+            var data = v[12];
 
-        // <h2>{data}</h2>;
-      });
+            valred = data;
+            console.log(" 23 DISTANCE SENSOR:--", valdis);
+          }
+          if (v[13] != "0" && v[13] < 256) {
+            var data = v[13];
+
+            valgreen = data;
+            console.log(" 23 DISTANCE SENSOR:--", valdis);
+          } else {
+            valgreen = 115;
+          }
+          if (v[14] != "0" && v[14] < 256) {
+            var data = v[14];
+
+            valblue = data;
+            console.log(" 23 DISTANCE SENSOR:--", valdis);
+          } else {
+            valblue = 105;
+          }
+        }
+        if (sessionData.internalaccessories.isTemprature) {
+          var byte_val1 = v[17] & 0xff;
+          var byte_val2 = v[18] & 0xff;
+          var valOfSensor = (byte_val2 << 8) + byte_val1;
+          console.log("LSB+MSB:-", valOfSensor);
+          valTemprature = valOfSensor;
+        }
+        if (sessionData.internalaccessories.isTouchZero) {
+          var byte_val1 = v[0] & 0xff;
+          var byte_val2 = v[1] & 0xff;
+          var valOfSensor = (byte_val2 << 8) + byte_val1;
+          console.log("LSB+MSB:-", valOfSensor);
+          valrangeA1 = valOfSensor;
+        }
+        if (sessionData.internalaccessories.isTouchOne) {
+          var byte_val1 = v[4] & 0xff;
+          var byte_val2 = v[5] & 0xff;
+          var valOfSensor = (byte_val2 << 8) + byte_val1;
+          console.log("LSB+MSB:-", valOfSensor);
+          valtemp = valOfSensor;
+        }
+        if (sessionData.internalaccessories.isTouchTwo) {
+          var byte_val1 = v[8] & 0xff;
+          var byte_val2 = v[9] & 0xff;
+          var valOfSensor = (byte_val2 << 8) + byte_val1;
+          console.log("LSB+MSB:-", valOfSensor);
+          valone = valOfSensor;
+        }
+      }
+
       setTimeout(() => {
         console.log("valrespnse 22222222", valresponceTp0);
 
@@ -446,6 +657,7 @@ class IfPanel extends Component {
           light: vallight,
           gesture: valges,
           distance: valdis,
+          temprature: valTemprature,
         });
       }, 1000);
     }
@@ -453,77 +665,7 @@ class IfPanel extends Component {
 
   componentDidMount() {
     // console.log("CALLING componentDidMount :");
-    this.OpenReadComPort();
   }
-  // componentDidMount = () => {
-  //   let no_port = this.props.webserialPort.name;
-  //   if (no_port == "Not Connected") {
-  //     console.log(JSON.parse(sessionStorage.getItem("webSerialPortList")));
-  //     console.log("SERIAL PORT NOT CONNECTED");
-  //   } else {
-  //     this.OpenReadComPort();
-  //   }
-  // };
-  async OpenReadComPort() {
-    const p_Port = this.props.webSerial;
-    console.log(p_Port, "p_Port");
-
-    try {
-      console.log("OPENED");
-      await p_Port.open({ baudRate: 115200 });
-    } catch (e) {
-      console.log(e);
-      // p_Port.close();
-      // await p_Port.open({ baudRate: 115200 });
-    }
-
-    this.writePort("notWrite");
-
-    try {
-      const portReader = p_Port.readable.getReader();
-
-      // let portWriter = p_Port.writable.getWriter();
-
-      while (true) {
-        const { value, done } = await portReader.read();
-        // console.log("value", value);
-        console.log("done", done);
-
-        const strg = unicodeToChar(value);
-        let str = strg.trim();
-
-        console.log(str, "uniCodeTOCHAR");
-        if (done) {
-          console.log("[readLoop] DONE", done);
-          portReader.releaseLock();
-          break;
-        }
-      }
-    } catch (e) {
-      console.log(e);
-    }
-
-    console.log(p_Port, "p_Port");
-  }
-
-  writePort = async (data) => {
-    try {
-      const ports = await navigator.serial.getPorts();
-      console.log("portsss", ports);
-
-      console.log("portsss", ports[0].writable);
-      // const outputStream = ports[0].writable,
-      const writer = ports[0].writable.getWriter();
-      // writer = outputStream.getWriter();
-      const sata = data;
-      const data1 = new Uint8Array(sata); // hello// 82, 76, 0, 0, 0, 82, 0, 0, 0, 66, 0, 0, 1, 0, 1,
-      console.log("send data:+", data1);
-
-      await writer.write(data1);
-
-      writer.releaseLock();
-    } catch (e) {}
-  };
 
   // call just after components updates
   // STORING RANGE/SEEK bar value with this method
@@ -911,7 +1053,7 @@ class IfPanel extends Component {
     Object.keys(internalaccessoriesData).map((val, index) => {
       if (val == "isTouchZero") {
         if (internalaccessoriesData[val]) {
-          var positionPorts = ["TouchZero"];
+          var positionPorts = ["TOUCH PAD 0"];
           for (var i = 0; i < positionPorts.length; i++) {
             console.log(positionPorts, "positionPorts");
             console.log("i", i);
@@ -921,7 +1063,7 @@ class IfPanel extends Component {
       }
       if (val == "isTouchOne") {
         if (internalaccessoriesData[val]) {
-          var positionPorts = ["TouchOne"];
+          var positionPorts = ["TOUCH PAD 1"];
           for (var i = 0; i < positionPorts.length; i++) {
             sourceOptionsOrder.push(positionPorts[i]);
           }
@@ -929,7 +1071,7 @@ class IfPanel extends Component {
       }
       if (val == "isTouchTwo") {
         if (internalaccessoriesData[val]) {
-          var positionPorts = ["TouchTwo"];
+          var positionPorts = ["TOUCH PAD 2"];
           for (var i = 0; i < positionPorts.length; i++) {
             sourceOptionsOrder.push(positionPorts[i]);
           }
@@ -999,9 +1141,46 @@ class IfPanel extends Component {
     //sourceOptionsOrder.push('irr');
     //sourceOptions.irr = 'IR Remote \u2192 IR';
     Object.keys(startState).forEach((name) => {
-      if (!startState[name] || name === "bmp3") return;
-      // sourceOptionsOrder.push(name);
-      sourceOptions[name] = logicVariables[name];
+      if (name == "usbrx") {
+        if (startState[name]) {
+          var positionPorts = ["USB RX"];
+          for (var i = 0; i < positionPorts.length; i++) {
+            sourceOptionsOrder.push(positionPorts[i]);
+          }
+        }
+      }
+      if (name == "btRx") {
+        if (startState[name]) {
+          var positionPorts = ["BT RX1"];
+          for (var i = 0; i < positionPorts.length; i++) {
+            sourceOptionsOrder.push(positionPorts[i]);
+          }
+        }
+        if (startState[name]) {
+          var positionPorts = ["BT RX2"];
+          for (var i = 0; i < positionPorts.length; i++) {
+            sourceOptionsOrder.push(positionPorts[i]);
+          }
+        }
+        if (startState[name]) {
+          var positionPorts = ["BT RX3"];
+          for (var i = 0; i < positionPorts.length; i++) {
+            sourceOptionsOrder.push(positionPorts[i]);
+          }
+        }
+        if (startState[name]) {
+          var positionPorts = ["BT RX4"];
+          for (var i = 0; i < positionPorts.length; i++) {
+            sourceOptionsOrder.push(positionPorts[i]);
+          }
+        }
+        if (startState[name]) {
+          var positionPorts = ["BT RX5"];
+          for (var i = 0; i < positionPorts.length; i++) {
+            sourceOptionsOrder.push(positionPorts[i]);
+          }
+        }
+      }
     });
 
     if (this.props.startState && this.props.startState.slider) {
@@ -1017,8 +1196,8 @@ class IfPanel extends Component {
       sourceOptions.remote = "BT Remote";
     }
 
-    sourceOptionsOrder.push("battery");
-    sourceOptions.battery = "Select Items";
+    // sourceOptionsOrder.push("battery");
+    // sourceOptions.battery = "Select Items";
 
     // sourceOptionsOrder.push('timeElapsed');
     // sourceOptions.timeElapsed = 'Time elapsed(sec)';
@@ -1110,11 +1289,11 @@ class IfPanel extends Component {
           range = PortValuesRangeMapping[Originalport]();
         } else if (Originalport == "TEMPERATURE") {
           range = PortValuesRangeMapping[Originalport]();
-        } else if (Originalport == "TouchZero") {
+        } else if (Originalport == "TOUCH PAD 0") {
           range = PortValuesRangeMapping["TOUCHZERO"]();
-        } else if (Originalport == "TouchOne") {
+        } else if (Originalport == "TOUCH PAD 1") {
           range = PortValuesRangeMapping["TOUCHONE"]();
-        } else if (Originalport == "TouchTwo") {
+        } else if (Originalport == "TOUCH PAD 2") {
           range = PortValuesRangeMapping["TOUCHTWO"]();
         } else if (Originalport == "4-IN-1 SENSOR  →  DIST") {
           range = PortValuesRangeMapping["FOUR_in_ONE_Sensor_DIST_"]();
@@ -1128,6 +1307,18 @@ class IfPanel extends Component {
           range = PortValuesRangeMapping["FOUR_in_ONE_Sensor_BLUE_"]();
         } else if (Originalport == "4-IN-1 SENSOR  →  GREEN") {
           range = PortValuesRangeMapping["FOUR_in_ONE_Sensor_GREEN_"]();
+        } else if (Originalport == "USB RX") {
+          range = PortValuesRangeMapping["USBRX"]();
+        } else if (Originalport == "BT RX1") {
+          range = PortValuesRangeMapping["BTRX1"]();
+        } else if (Originalport == "BT RX2") {
+          range = PortValuesRangeMapping["BTRX2"]();
+        } else if (Originalport == "BT RX3") {
+          range = PortValuesRangeMapping["BTRX3"]();
+        } else if (Originalport == "BT RX4") {
+          range = PortValuesRangeMapping["BTRX4"]();
+        } else if (Originalport == "BT RX5") {
+          range = PortValuesRangeMapping["BTRX5"]();
         } else {
           var comp = PortConnections[Originalport].type;
 
@@ -1434,6 +1625,7 @@ class IfPanel extends Component {
                   background: "#fafafa",
                   borderRadius: "15px",
                   color: "#000",
+                  marginTop: "21%",
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
@@ -1441,39 +1633,39 @@ class IfPanel extends Component {
                 onClick={() => this.handleRead()}
               >
                 {this.state.readToggel == "A1" ? (
-                  <p>{this.state.rangeA1}</p>
+                  <p style={{ marginTop: "20%" }}>{this.state.rangeA1}</p>
                 ) : this.state.readToggel == "A2" ? (
-                  <p>{this.state.rangeA2}</p>
+                  <p style={{ marginTop: "20%" }}>{this.state.rangeA2}</p>
                 ) : this.state.readToggel == "B1" ? (
-                  <p>{this.state.temp}</p>
+                  <p style={{ marginTop: "20%" }}>{this.state.temp}</p>
                 ) : this.state.readToggel == "B2" ? (
-                  <p>{this.state.gas}</p>
+                  <p style={{ marginTop: "20%" }}>{this.state.gas}</p>
                 ) : this.state.readToggel == "C1" ? (
-                  <p>{this.state.one}</p>
+                  <p style={{ marginTop: "20%" }}>{this.state.one}</p>
                 ) : this.state.readToggel == "C2" ? (
-                  <p>{this.state.two}</p>
-                ) : this.state.readToggel == "TouchZero" ? (
-                  <p>{this.state.rangeA1}</p>
-                ) : this.state.readToggel == "TouchOne" ? (
-                  <p>{this.state.temp}</p>
-                ) : this.state.readToggel == "TouchTwo" ? (
-                  <p>{this.state.one}</p>
+                  <p style={{ marginTop: "20%" }}>{this.state.two}</p>
+                ) : this.state.readToggel == "TOUCH PAD 0" ? (
+                  <p style={{ marginTop: "20%" }}>{this.state.rangeA1}</p>
+                ) : this.state.readToggel == "TOUCH PAD 1" ? (
+                  <p style={{ marginTop: "20%" }}>{this.state.temp}</p>
+                ) : this.state.readToggel == "TOUCH PAD 2" ? (
+                  <p style={{ marginTop: "20%" }}>{this.state.one}</p>
                 ) : this.state.readToggel == "MICROPHONE" ? (
-                  <p>{this.state.mic}</p>
-                ) : this.state.readToggel == "TEMPERATURE" ? (
-                  <p>{this.state.mic}</p>
+                  <p style={{ marginTop: "20%" }}>{this.state.mic}</p>
+                ) : this.state.readToggel == "TEMPRATURE" ? (
+                  <p style={{ marginTop: "20%" }}>{this.state.temprature}</p>
                 ) : this.state.readToggel == "4-IN-1 SENSOR  →  BLUE" ? (
-                  <p>{this.state.blue}</p>
+                  <p style={{ marginTop: "20%" }}>{this.state.blue}</p>
                 ) : this.state.readToggel == "4-IN-1 SENSOR  →  GREEN" ? (
-                  <p>{this.state.green}</p>
+                  <p style={{ marginTop: "20%" }}>{this.state.green}</p>
                 ) : this.state.readToggel == "4-IN-1 SENSOR  →  RED" ? (
-                  <p>{this.state.red}</p>
+                  <p style={{ marginTop: "20%" }}>{this.state.red}</p>
                 ) : this.state.readToggel == "4-IN-1 SENSOR  →  LIGHT" ? (
-                  <p>{this.state.light}</p>
+                  <p style={{ marginTop: "20%" }}>{this.state.light}</p>
                 ) : this.state.readToggel == "4-IN-1 SENSOR  →  GESTURE" ? (
-                  <p>{this.state.gesture}</p>
+                  <p style={{ marginTop: "20%" }}>{this.state.gesture}</p>
                 ) : this.state.readToggel == "4-IN-1 SENSOR  →  DIST" ? (
-                  <p>{this.state.distance}</p>
+                  <p style={{ marginTop: "20%" }}>{this.state.distance}</p>
                 ) : null}
               </div>
             ) : (
@@ -1483,6 +1675,7 @@ class IfPanel extends Component {
                   height: "45px",
                   background: "#25245E",
                   borderRadius: "15px",
+                  marginTop: "21%",
                   color: "#fff",
                   display: "flex",
                   justifyContent: "center",
@@ -1515,8 +1708,22 @@ class IfPanel extends Component {
     );
   }
 }
+const mapStateToProps = (state) => {
+  console.log("ASSEMBLY LOG", state);
+  return state;
+  // return { state, webserialPort: state.webSerial };
+};
 
-export default IfPanel;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    webSerialAction: (data) => {
+      console.log("mapDispatchToProps", data);
+      dispatch(webSerialAction(data));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(IfPanel);
 
 // <div className="outertabDiv">
 // <div className="tabDiv">

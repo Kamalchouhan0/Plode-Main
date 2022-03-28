@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import "./InternalAccessoriesScreen.css";
 import { connect } from "react-redux";
 import io from "socket.io-client";
@@ -166,7 +166,49 @@ function InternalAccessoriesScreen(props) {
     top: "7%",
     position: "relative",
   };
+  useLayoutEffect(() => {
+    setTouchZero(props.indexData.concept.internalaccessories.isTouchZero);
+    setTouchOne(props.indexData.concept.internalaccessories.isTouchOne);
+    setTouchTwo(props.indexData.concept.internalaccessories.isTouchTwo);
 
+    setTouchZeroOutput(
+      props.indexData.concept.internalaccessories.isTouchZeroOutput
+    );
+    setTouchOneOutput(
+      props.indexData.concept.internalaccessories.isTouchOneOutput
+    );
+    setTouchTwoOutput(
+      props.indexData.concept.internalaccessories.isTouchTwoOutput
+    );
+
+    setEyeLeft(props.indexData.concept.internalaccessories.isLeftEye);
+    setEyeRight(props.indexData.concept.internalaccessories.isRightEye);
+    setbuzzer(props.indexData.concept.internalaccessories.isbuzzer);
+
+    setSimleOne(props.indexData.concept.internalaccessories.isSmileOne);
+    setSimleTwo(props.indexData.concept.internalaccessories.isSmileTwo);
+    setSimleThree(props.indexData.concept.internalaccessories.isSmileThree);
+    setSimleFour(props.indexData.concept.internalaccessories.isSmileFour);
+
+    setLightSensor(
+      props.indexData.concept.internalaccessories.Four_in_one_sensor
+        .isLightSensor
+    );
+    setColorSensor(
+      props.indexData.concept.internalaccessories.Four_in_one_sensor
+        .isColorSensor
+    );
+    setGestureSensor(
+      props.indexData.concept.internalaccessories.Four_in_one_sensor
+        .isGestureSensor
+    );
+    setDistanceSensors(
+      props.indexData.concept.internalaccessories.Four_in_one_sensor
+        .isDistanceSensors
+    );
+    setTemperature(props.indexData.concept.internalaccessories.isTemperature);
+    setMic(props.indexData.concept.internalaccessories.isMic);
+  });
   useEffect(() => {
     socket.emit("_usbDetection", "Hi i am firoz");
     socket.on("/usbDetection1", (data) => {
@@ -1016,7 +1058,8 @@ function InternalAccessoriesScreen(props) {
                 />
               )}
 
-              {props.indexData.concept.internalaccessories.isTouchZero ? (
+              {props.indexData.concept.internalaccessories.isTouchZero ||
+              props.indexData.concept.internalaccessories.isTouchZeroOutput ? (
                 <img
                   src={renderPrgImage("PcinternalTouchpadsActive")}
                   className="imgStyleTouchpads1"
@@ -1028,7 +1071,8 @@ function InternalAccessoriesScreen(props) {
                 />
               )}
 
-              {props.indexData.concept.internalaccessories.isTouchOne ? (
+              {props.indexData.concept.internalaccessories.isTouchOne ||
+              props.indexData.concept.internalaccessories.isTouchOneOutput ? (
                 <img
                   src={renderPrgImage("PcinternalTouchpadsActive")}
                   className="imgStyleTouchpads2"
@@ -1040,7 +1084,8 @@ function InternalAccessoriesScreen(props) {
                 />
               )}
 
-              {props.indexData.concept.internalaccessories.isTouchTwo ? (
+              {props.indexData.concept.internalaccessories.isTouchTwo ||
+              props.indexData.concept.internalaccessories.isTouchTwoOutput ? (
                 <img
                   src={renderPrgImage("PcinternalTouchpadsActive")}
                   className="imgStyleTouchpads3"

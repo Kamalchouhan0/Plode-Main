@@ -171,6 +171,12 @@ export var rangeStoreVal = {
   TouchZeroOutput: { value: 0, isChecked: false },
   TouchOneOutput: { value: 0, isChecked: false },
   TouchTwoOutput: { value: 0, isChecked: false },
+  BIFLAG1: { value: 0, isChecked: false },
+  BIFLAG2: { value: 0, isChecked: false },
+  USBTX: { value: 0, isChecked: false },
+  BTTX: { value: 0, isChecked: false },
+  BICOUNTER1: { value: 0, isChecked: false },
+  BICOUNTER2: { value: 0, isChecked: false },
 
   SmileOne: {
     value: 0,

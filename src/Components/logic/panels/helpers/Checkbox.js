@@ -28,56 +28,102 @@ class Checkbox extends Component {
       borderRadius: "20px",
       marginRight: "1em",
       backgroundColor: "white",
-      border: "2px solid green",
     };
     if (checked) {
       style.boxShadow = "inset 0 0 0 0em #FFF";
       style.backgroundColor = "green";
     }
 
-    return (
-      <div
-        className={`checkBox-conatiner renderClick${this.state.isClickChecked}`}
-        onClick={this.handleClickChecked}
-      >
-        {activePort !== undefined ? (
-          <>
+    if (this.props.hexComponentType === "start") {
+      return (
+        <div
+          className={`start-checkBox-conatiner start-renderClick${this.state.isClickChecked}`}
+          onClick={this.handleClickChecked}
+        >
+          <p className={`tick-Active${this.state.isClickChecked}`}>✔</p>
+          {activePort !== undefined ? (
+            <>
+              <p
+                style={{
+                  textAlign: "center",
+                  position: "absolute",
+                  top: "30%",
+                  left: "10%",
+                }}
+              >
+                Port {activePort} :
+              </p>
+              <p
+                style={{
+                  textAlign: "center",
+                  position: "absolute",
+                  top: "60%",
+                  left: "10%",
+                }}
+              >
+                {label}{" "}
+              </p>
+            </>
+          ) : (
             <p
               style={{
-                textAlign: "center",
                 position: "absolute",
-                top: "30%",
-                left: "10%",
-              }}
-            >
-              Port {activePort} :
-            </p>
-            <p
-              style={{
-                textAlign: "center",
-                position: "absolute",
-                top: "60%",
-                left: "10%",
+                top: "50%",
+                left: "50%",
+                transform: `translate(-50%,-50%)`,
+                whiteSpace: "nowrap",
               }}
             >
               {label}{" "}
             </p>
-          </>
-        ) : (
-          <p
-            style={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: `translate(-50%,-50%)`,
-              whiteSpace: "nowrap",
-            }}
-          >
-            {label}{" "}
-          </p>
-        )}
-      </div>
-    );
+          )}
+        </div>
+      );
+    } else {
+      return (
+        <div
+          className={`checkBox-conatiner renderClick${this.state.isClickChecked}`}
+          onClick={this.handleClickChecked}
+        >
+          {activePort !== undefined ? (
+            <>
+              <p
+                style={{
+                  textAlign: "center",
+                  position: "absolute",
+                  top: "30%",
+                  left: "10%",
+                }}
+              >
+                Port {activePort} :
+              </p>
+              <p
+                style={{
+                  textAlign: "center",
+                  position: "absolute",
+                  top: "60%",
+                  left: "10%",
+                }}
+              >
+                {label}{" "}
+              </p>
+            </>
+          ) : (
+            <p
+              style={{
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: `translate(-50%,-50%)`,
+                whiteSpace: "nowrap",
+              }}
+            >
+              {label}{" "}
+            </p>
+          )}
+        </div>
+      );
+    }
   }
 }
 

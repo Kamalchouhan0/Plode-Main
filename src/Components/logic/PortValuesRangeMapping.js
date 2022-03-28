@@ -2991,11 +2991,29 @@ export default PortValuesRangeMapping = {
 
   // NEW UI DATA
   MICROPHONE: function () {
-    return { min: 0, max: 65535 };
+    return { min: 0, max: 2000 };
   },
 
   TEMPERATURE: function () {
     return { min: 0, max: 1024 };
+  },
+  USBRX: function () {
+    return { min: 0, max: 255 };
+  },
+  BTRX1: function () {
+    return { min: 0, max: 255 };
+  },
+  BTRX2: function () {
+    return { min: 0, max: 255 };
+  },
+  BTRX3: function () {
+    return { min: 0, max: 255 };
+  },
+  BTRX4: function () {
+    return { min: 0, max: 255 };
+  },
+  BTRX5: function () {
+    return { min: 0, max: 255 };
   },
 
   TOUCHZERO: function () {
@@ -3011,19 +3029,19 @@ export default PortValuesRangeMapping = {
     return { min: 0, max: 255 };
   },
   FOUR_in_ONE_Sensor_GESTURE_: function () {
-    return { min: 0, max: 255 };
+    return { min: 0, max: 4 };
   },
   FOUR_in_ONE_Sensor_LIGHT_: function () {
     return { min: 0, max: 255 };
   },
   FOUR_in_ONE_Sensor_RED_: function () {
-    return { min: 0, max: 100 };
+    return { min: 0, max: 255 };
   },
   FOUR_in_ONE_Sensor_BLUE_: function () {
-    return { min: 0, max: 100 };
+    return { min: 0, max: 255 };
   },
   FOUR_in_ONE_Sensor_GREEN_: function () {
-    return { min: 0, max: 100 };
+    return { min: 0, max: 255 };
   },
 };
 

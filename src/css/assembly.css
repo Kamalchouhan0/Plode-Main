@@ -86,6 +86,17 @@ button {
   top: 50%;
   right: 7%;
   transform: translateY(-50%);
+  height: 160px;
+  width: 160px;
+  border-radius: 36px;
+  background: #f4f4f4;
+  z-index: 999999;
+}
+.propertyPanel .propertyPanel-Details-colorSensor-Temp {
+  position: absolute;
+  top: 50%;
+  right: 7%;
+  transform: translateY(-50%);
   height: 100px;
   width: 160px;
   border-radius: 36px;
@@ -105,28 +116,113 @@ button {
   grid-template-rows: 100%;
   grid-gap: 5%;
 }
+.propertyPanel-Details-colorSensor-Temp .colorSensor-container {
+  height: 70px;
+  width: 82%;
+  /* background: red; */
+  margin-top: 10.5%;
+  margin-left: 7.5%;
+  position: relative;
+  display: grid;
+  grid-template-columns: 40% 50%;
+  grid-template-rows: 100%;
+  grid-gap: 5%;
+}
+.propertyPanel-Details-colorSensor .colorSensor-container2 {
+  height: 50px;
+  width: 82%;
+  /* background: red; */
+  margin-top: 10.5%;
+  margin-left: 7.5%;
+  position: relative;
+}
+
+.colorSensor-container2 p {
+  font-size: 12px;
+  color: #707070;
+  margin: -33px;
+  margin-left: 9px;
+  /* margin: 0; */
+  text-align: center;
+}
 
 .propertyPanel .propertyPanel-Details {
   position: absolute;
   top: 50%;
   right: 7%;
   transform: translateY(-50%);
+  /* height: 100px;
+  width: 65px; */
+  height: 147px;
+  width: 119px;
+  border-radius: 46px;
+  background: #f4f4f4;
+}
+.propertyPanel .propertyPanel-Details {
+  position: absolute;
+  top: 50%;
+  right: 7%;
+  transform: translateY(-50%);
+  /* height: 100px;
+  width: 65px; */
+  height: 147px;
+  width: 119px;
+  border-radius: 46px;
+  background: #f4f4f4;
+}
+.propertyPanel .propertyPanel-Details-FIO {
+  position: absolute;
+  top: 50%;
+  right: 7%;
+  transform: translateY(-50%);
   height: 100px;
   width: 65px;
+
   border-radius: 46px;
   background: #f4f4f4;
 }
 
-.propertyPanel-Details .Item {
-  height: 70%;
+.propertyPanel-Details-FIO .Item3 {
+  height: 30%;
   width: 70%;
-  margin-top: 25%;
+  margin-top: 20%;
+  margin-left: 15%;
+}
+.Item3 p {
+  font-size: 12px;
+  color: #707070;
+  /* margin: -33px;
+  margin-left: 9px; */
+  margin: 0;
+  text-align: center;
+}
+
+.propertyPanel-Details .Item {
+  height: 30%;
+  width: 70%;
+  margin-top: 20%;
   margin-left: 15%;
 }
 .Item p {
   font-size: 12px;
   color: #707070;
-  margin: 0;
+  margin: -33px;
+  margin-left: 9px;
+  /* margin: 0; */
+  text-align: center;
+}
+.propertyPanel-Details .Item2 {
+  height: 30%;
+  width: 70%;
+  margin-top: 12%;
+  margin-left: 15%;
+}
+.Item2 p {
+  font-size: 12px;
+  color: #707070;
+  margin: -33px;
+  margin-left: 9px;
+  /* margin: 0; */
   text-align: center;
 }
 .iconBtnSize1 {
@@ -159,7 +255,29 @@ button {
   text-align: center;
   margin-top: 5px;
 }
+.propertyPanel-Details-colorSensor-Temp
+  .colorSensor-container
+  div:nth-child(1) {
+  /* background: yellow; */
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+}
 
+.propertyPanel-Details-colorSensor-Temp
+  .colorSensor-container
+  div:nth-child(2) {
+  background: #fff;
+  border-radius: 5px;
+}
+
+.colorSensor-container div:nth-child(2) p {
+  font-size: 12px;
+  width: 100%;
+  margin: 0%;
+  text-align: center;
+  margin-top: 5px;
+}
 .AssemblycheckBoxContainer {
   z-index: 9999;
   position: absolute;
