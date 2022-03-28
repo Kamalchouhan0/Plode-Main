@@ -66,6 +66,11 @@ class SliderRow extends Component {
 
     var { name, assign, port, value, onChange, handlecheckbox, getRangeVal } =
       this.props;
+    // var values = JSON.parse(sessionStorage.getItem("rangeValCheckbox"));
+    // var Lb = values.LeftEye.B.value;
+    // var Lg = values.LeftEye.G.value;
+    // var Lr = values.LeftEye.R.value;
+    // console.log("VALUES",Lr,Lg ,Lb);
 
     // if (assign == undefined) {//temporaray fix
     //   assign = true
@@ -318,16 +323,18 @@ class SliderRow extends Component {
     }
 
     if (name == "LeftEye") {
-      console.log("gkaay", this.props, this.state);
-      if (this.props.port == "R") {
-        value = this.props.valR;
-      }
-      if (this.props.port == "B") {
-        value = this.props.valB;
-      }
-      if (this.props.port == "G") {
-        value = this.props.valG;
-      }
+      console.log("gkaay KAMAL", this.props.port);
+
+      // var por = this.props.port;
+      // if (por == "R") {
+      //   var valueR = this.props.valR;
+      // }
+      // if (por == "B") {
+      //   var valueB = this.props.valB;
+      // }
+      // if (por == "G") {
+      //   var valueG = this.props.valG;
+      // }
       return (
         <div className="hardwareInfo-section">
           <div className="portDetails-hw" style={{}}>
@@ -356,7 +363,7 @@ class SliderRow extends Component {
               <Slider
                 title=""
                 disabled={!assign}
-                value={value || 0}
+                value={this.props.valR || 0}
                 min={min}
                 max={max}
                 onChange={(value, name) => {
@@ -379,7 +386,7 @@ class SliderRow extends Component {
               <Slider
                 title=""
                 disabled={!assign}
-                value={value || 0}
+                value={this.props.valG || 0}
                 min={min}
                 max={max}
                 onChange={(value, name) => {
@@ -403,7 +410,7 @@ class SliderRow extends Component {
               <Slider
                 title=""
                 disabled={!assign}
-                value={value || 0}
+                value={this.props.valB || 0}
                 min={min}
                 max={max}
                 onChange={(value, name) => {
@@ -454,7 +461,7 @@ class SliderRow extends Component {
               <Slider
                 title=""
                 disabled={!assign}
-                value={value || 0}
+                value={this.props.valR || 0}
                 min={min}
                 max={max}
                 onChange={(value, name) => {
@@ -477,7 +484,7 @@ class SliderRow extends Component {
               <Slider
                 title=""
                 disabled={!assign}
-                value={value || 0}
+                value={this.props.valG || 0}
                 min={min}
                 max={max}
                 onChange={(value, name) => {
@@ -501,7 +508,7 @@ class SliderRow extends Component {
               <Slider
                 title=""
                 disabled={!assign}
-                value={value || 0}
+                value={this.props.valB || 0}
                 min={min}
                 max={max}
                 onChange={(value, name) => {

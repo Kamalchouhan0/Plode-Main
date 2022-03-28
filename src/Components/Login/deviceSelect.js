@@ -62,6 +62,10 @@ const DeviceSelect = (props) => {
   const scanDevice = async () => {
     console.log("clicked");
     const port = await navigator.serial.requestPort();
+    console.log("BRAUD RATE", port.readable);
+    if (port.readable == null) {
+      history.push("/Selection");
+    }
 
     socket.emit("/scanDevice", (data) => {
       // console.log(data,'////////////////////////////////')

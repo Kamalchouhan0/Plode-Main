@@ -1123,6 +1123,9 @@ class OutputPanel extends Component {
   };
 
   render() {
+    console.log("LeftEye R", this.state.curValLeftEyeR);
+    console.log("LeftEye B", this.state.curValLeftEyeB);
+    console.log("LeftEye G", this.state.curValLeftEyeG);
     // for (const key in rangeStoreVal) {
     //   // console.log(rangeStoreVal[key]);
 
@@ -1565,6 +1568,9 @@ class OutputPanel extends Component {
                           this.state[`curValRightEye${this.state.portName}`]
                           //state[`valueLeftEye${this.state.setportName}`]
                         }
+                        valR={this.state.curValRightEyeR}
+                        valB={this.state.curValRightEyeB}
+                        valG={this.state.curValRightEyeG}
                         key="RightEye"
                         title="RightEye"
                         assign={this.state.isClickRightEye}
