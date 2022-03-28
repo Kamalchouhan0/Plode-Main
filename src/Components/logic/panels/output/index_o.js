@@ -977,19 +977,19 @@ class OutputPanel extends Component {
 
     console.log("RANGE VALUE CHECKBOX", this.props.state);
 
-    console.log("data::", name, portName, value);
+    console.log("data::", name + ",", portName + ",", value);
 
     console.log(name, "name");
 
     console.log(portName, "portName");
-    if (name == "TouchZeroOutput") {
-      rangeStoreVal[name].value = value;
+    if (name == "Touch 0 Output") {
+      rangeStoreVal["TouchZeroOutput"].value = value;
       state["valueTouchZeroOutput"] = value;
-    } else if (name == "TouchOneOutput") {
-      rangeStoreVal[name].value = value;
+    } else if (name == "Touch 1 Output") {
+      rangeStoreVal["TouchOneOutput"].value = value;
       state["valueTouchOneOutput"] = value;
-    } else if (name == "TouchTwoOutput") {
-      rangeStoreVal[name].value = value;
+    } else if (name == "Touch 2 Output") {
+      rangeStoreVal["TouchTwoOutput"].value = value;
       state["valueTouchTwoOutput"] = value;
     } else if (name == "SmileOne") {
       rangeStoreVal[name].value = value;
@@ -1032,7 +1032,7 @@ class OutputPanel extends Component {
       rangeStoreVal[name][portName].value = value;
       state[`value${name}${portName}`] = value;
     }
-    console.log("rangeStoreVal", rangeStoreVal);
+    console.log("data:: rangeStoreVal", rangeStoreVal);
 
     sessionStorage.setItem("rangeValCheckbox", JSON.stringify(rangeStoreVal));
 

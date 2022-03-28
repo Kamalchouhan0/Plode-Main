@@ -371,7 +371,7 @@ class Workspace extends Component {
             <div className="navbar" style={{ marginLeft: "4%" }}>
               Assemble
             </div>
-            <div className="navbar">Create</div>
+            <div className="navbar">Code</div>
             <div className="navbar" style={{ marginLeft: "4%" }}>
               Simulate
             </div>
