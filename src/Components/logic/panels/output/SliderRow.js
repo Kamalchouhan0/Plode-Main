@@ -66,6 +66,11 @@ class SliderRow extends Component {
 
     var { name, assign, port, value, onChange, handlecheckbox, getRangeVal } =
       this.props;
+    // var values = JSON.parse(sessionStorage.getItem("rangeValCheckbox"));
+    // var Lb = values.LeftEye.B.value;
+    // var Lg = values.LeftEye.G.value;
+    // var Lr = values.LeftEye.R.value;
+    // console.log("VALUES",Lr,Lg ,Lb);
 
     // if (assign == undefined) {//temporaray fix
     //   assign = true

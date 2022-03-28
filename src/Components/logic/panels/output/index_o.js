@@ -1123,6 +1123,9 @@ class OutputPanel extends Component {
   };
 
   render() {
+    console.log("LeftEye R", this.state.curValLeftEyeR);
+    console.log("LeftEye B", this.state.curValLeftEyeB);
+    console.log("LeftEye G", this.state.curValLeftEyeG);
     // for (const key in rangeStoreVal) {
     //   // console.log(rangeStoreVal[key]);
 
