@@ -4,6 +4,7 @@ import io from "socket.io-client";
 import Hammer from "react-hammerjs";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { DragDropContext } from "react-dnd";
+import { webSerialAction } from "../../redux/actions/index";
 import unicodeToChar from "../../utils/unicodeToChar";
 // import DragDropContext from 'react-dnd';
 // import TouchBackend from 'react-dnd-touch-backend';
@@ -163,6 +164,30 @@ class Logic extends Component {
       checkEndProgram: false,
       clickedBottom: false,
     };
+    window.addEventListener("load", async (e) => {
+      console.log("HEY_CALIIN", this.props.state);
+
+      try {
+        const portList = await navigator.serial.getPorts();
+
+        if (portList.length === 1) {
+          console.log(portList, "Hardware connected");
+
+          await props.webSerialAction({ port: portList[0] }); // dispatching function of redux
+
+          this.setState.p1({
+            selected: true,
+            port: portList[0],
+          });
+        } else {
+          console.log("No hardware");
+
+          this.setState.p1(this.state.p1);
+        }
+      } catch (err) {
+        console.log(err.message);
+      }
+    });
   }
 
   componentWillMount = () => {
@@ -196,7 +221,27 @@ class Logic extends Component {
       this.deleteNode
     );
   }
+  OpenReadComPort = async () => {
+    const port = this.props.webSerial;
+    console.log("PORTLIST", port);
+    // console.log(port, "pPort");
+    try {
+      await port.open({ baudRate: 115200 });
+    } catch (e) {
+      console.log(e);
+    }
+    // this.writePort("notWrite");
+    // let valresponceTp0 = "",
+    //   valdis = "";
+    // // setTimeout(async () => {
+    // if (this.state.readbytes) {
+    // this.readdata();
+    // }
+
+    // }, 1000);
+  };
   componentDidUpdate(prevProps, prevState) {
+    this.OpenReadComPort();
     drawing.updated = false;
     // drawingNew.updated = false;
   }
@@ -1698,13 +1743,7 @@ class Logic extends Component {
 const mapStateToProps = (state) => {
   return state;
 };
-const mapStateToProp = (state) => {
-  console.log("mapStateToProps", state);
 
-  return {
-    webserialPort: state.webSerial,
-  };
-};
 const mapDispatchToProps = (dispatch) => {
   return {
     update: (data) => {
@@ -1713,10 +1752,13 @@ const mapDispatchToProps = (dispatch) => {
     PortConnections: (data) => {
       dispatch({ type: "PORT_Connection", payload: data });
     },
+    webSerialAction: (data) => {
+      console.log("mapDispatchToProps", data);
+      dispatch(webSerialAction(data));
+    },
   };
 };
 // Logic = DragDropContext(TouchBackend({ enableMouseEvents: true }))(Logic);
 Logic = withRouter(DragDropContext(HTML5Backend)(Logic));
 Logic = connect(mapStateToProps, mapDispatchToProps)(Logic);
-// export default Logic;
-export default connect(mapStateToProp)(Logic);
+export default Logic;

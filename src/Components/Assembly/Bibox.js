@@ -137,6 +137,14 @@ class Bibox extends Component {
       .internalaccessories["isTouchTwo"];
     let isCheckedTouchZero = JSON.parse(sessionStorage.getItem("concept"))
       .internalaccessories["isTouchZero"];
+
+    let isCheckedTouchOneOutput = JSON.parse(sessionStorage.getItem("concept"))
+      .internalaccessories["isTouchOneOutput"];
+    let isCheckedTouchTwoOutput = JSON.parse(sessionStorage.getItem("concept"))
+      .internalaccessories["isTouchTwoOutput"];
+    let isCheckedTouchZeroOutput = JSON.parse(sessionStorage.getItem("concept"))
+      .internalaccessories["isTouchZeroOutput"];
+
     let isCheckedbuzzer = JSON.parse(sessionStorage.getItem("concept"))
       .internalaccessories["isbuzzer"];
     let isCheckedColorSensor = JSON.parse(sessionStorage.getItem("concept"))
@@ -387,7 +395,7 @@ class Bibox extends Component {
           )}
 
           {/*  0 Touch Pad*/}
-          {isCheckedTouchZero ? (
+          {isCheckedTouchZero || isCheckedTouchZeroOutput ? (
             <img
               src={renderPrgImage("PcinternalTouchpadsActive")}
               style={{
@@ -414,7 +422,7 @@ class Bibox extends Component {
           )}
 
           {/*  1 Touch Pad*/}
-          {isCheckedTouchOne ? (
+          {isCheckedTouchOne || isCheckedTouchOneOutput ? (
             <img
               src={renderPrgImage("PcinternalTouchpadsActive")}
               style={{
@@ -441,7 +449,7 @@ class Bibox extends Component {
           )}
 
           {/*  2 Touch Pad*/}
-          {isCheckedTouchTwo ? (
+          {isCheckedTouchTwo || isCheckedTouchTwoOutput ? (
             <img
               src={renderPrgImage("PcinternalTouchpadsActive")}
               style={{
@@ -472,9 +480,9 @@ class Bibox extends Component {
               fontSize: "18px",
               height: "5%",
               width: "20%",
-              // position: "fixed",
-              marginTop: "37%",
-              marginLeft: "-17%",
+              position: "fixed",
+              marginTop: "15%",
+              marginLeft: "1.5%",
               color: "#707070",
             }}
           >
@@ -489,8 +497,8 @@ class Bibox extends Component {
               height: "5%",
               width: "20%",
               position: "fixed",
-              marginTop: "3%",
-              marginLeft: " -3%",
+              marginTop: "15%",
+              marginLeft: "4.2%",
               color: "#707070",
             }}
           >
@@ -502,8 +510,8 @@ class Bibox extends Component {
               height: "5%",
               width: "20%",
               position: "fixed",
-              marginTop: "-1%",
-              marginLeft: "19%",
+              marginTop: "15%",
+              marginLeft: "7%",
               color: "#707070",
             }}
           >

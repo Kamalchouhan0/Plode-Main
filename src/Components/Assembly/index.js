@@ -94,13 +94,16 @@ class Assembly extends Component {
       isHelp: false,
       visible: nextVisbilityButton,
       isClickFourInOneSensor: false,
+      isClickTempratureSensor: false,
       p1: {
         selected: false,
         port: {},
       },
 
       reConnecting: false,
-
+      flag: false,
+      k: false,
+      keepReading: true,
       responceTp0: "",
       responceTp1: "",
       responceTp2: "",
@@ -110,6 +113,7 @@ class Assembly extends Component {
       rangeA2: "",
       tactswitch: "",
       mic: "",
+      temprature: "",
       temp: "",
       gas: "",
       one: "",
@@ -163,41 +167,88 @@ class Assembly extends Component {
     const port = this.props.webSerial;
     console.log("PORTLIST", port);
     // console.log(port, "pPort");
-    setTimeout(async () => {
-      try {
-        await port.open({ baudRate: 115200 });
-      } catch (e) {
-        console.log(e);
-      }
-    }, 100);
+
+    try {
+      await port.open({ baudRate: 115200 });
+    } catch (e) {
+      console.log(e);
+    }
 
     this.writePort("notWrite");
-    setTimeout(async () => {
-      try {
-        let portReader = port.readable.getReader();
+    // let valresponceTp0 = "",
+    //   valdis = "";
+    // // setTimeout(async () => {
+    // if (this.state.readbytes) {
+    this.readLoop();
+    // }
 
-        // let portWriter = portList.writable.getWriter();
-
-        while (true) {
-          const { value, done } = await portReader.read();
-          console.log("value", value);
-          console.log("done", done);
-
-          const strg = unicodeToChar(value);
-          let str = strg.trim();
-
-          console.log(str, "uniCodeTOCHAR");
-          if (done) {
-            console.log("[readLoop] DONE", done);
-            portReader.releaseLock();
-            break;
-          }
-        }
-      } catch (e) {
-        console.log(e);
-      }
-    }, 1000);
+    // }, 1000);
   };
+  async readLoop() {
+    const port = this.props.webSerial;
+
+    try {
+      const reader = port.readable.getReader();
+
+      // Listen to data coming from the serial device.
+      while (true) {
+        const { value, done } = await reader.read();
+        if (this.state.k === true) {
+          console.log("MAI CHAL GAYA");
+          reader.releaseLock();
+        }
+        console.log(value);
+        // value is a string.
+        if (value.length == 32) {
+          var v = unicodeToChar(value);
+          // var v = value;
+          console.log(v);
+        }
+        // if (value.length == 23) {
+        //   var v = unicodeToChar(value);
+        //   // var v = value;
+        //   console.log(v);
+        // }
+        if (value.length == 7) {
+          var vi = unicodeToChar(value);
+          // var vi = value;
+          console.log(vi);
+        }
+        if (value.length == 9) {
+          var vi = unicodeToChar(value);
+          // var vi = value;
+          console.log(vi);
+        }
+        if (value.length == 14) {
+          var vi = unicodeToChar(value);
+          // var vi = value;
+          console.log(vi);
+        }
+        if (value.length == 17) {
+          var vi = unicodeToChar(value);
+          // var vi = value;
+          console.log(vi);
+        }
+        if (value.length == 12) {
+          var vi = unicodeToChar(value);
+          // var vi = value;
+          console.log(vi);
+        }
+        // if (value.lenght != 1) {
+        //   var vae = v + vi;
+        // }
+        if ((value.lenght == 32 && value.lenght == 12) || value.lenght == 11) {
+          var vae = v + " " + vi;
+          console.log(vae, "ORRRR");
+        }
+        var vae = v + vi;
+        this.state.flag = vae;
+        console.log("ADDED", vae);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  }
 
   async writePort(data) {
     try {
@@ -235,7 +286,9 @@ class Assembly extends Component {
       console.log(JSON.parse(sessionStorage.getItem("webSerialPortList")));
       console.log("SERIAL PORT NOT CONNECTED");
     }
-
+    let BAR = this.state.flag.toString();
+    // let BAR = "153 1 142 2 237 2 122 1 233 1 0 0 100 100 124 20 10 32 5";
+    console.log(BAR, "VAlies");
     console.log("componentDidUpdate");
     let valresponceTp0 = "";
     let valresponceTp1 = "";
@@ -250,6 +303,7 @@ class Assembly extends Component {
       valone = "",
       valtwo = "",
       valmic = "",
+      valtemprature = "",
       valred = "",
       valgreen = "",
       valblue = "",
@@ -391,217 +445,168 @@ class Assembly extends Component {
       this.writePort(bytesData);
       socket.emit("/assemblyreadBytes", bytesData);
 
-      socket.on("/PcBytes", async function (data) {
-        var str = await data;
-        console.log("SATTA", str);
+      var v = BAR.split(" ");
+      console.log("RAJPUT", v);
+      if (v[13] > 255 || v[17] === 0) {
+        v[14] = v[13].slice(-2, 4);
+        v[13] = v[13].slice(0, 2);
 
-        //Touch pad part(1) !!!!
-        if (str.slice(str.length - 16, str.length - 14) === "31") {
-          valresponceTp0 = 1;
-        }
-        if (str.slice(str.length - 16, str.length - 14) === "30") {
-          valresponceTp0 = 0;
-        }
-        if (str.slice(str.length - 14, str.length - 12) === "31") {
-          valresponceTp1 = 1;
-        }
-        if (str.slice(str.length - 14, str.length - 12) === "30") {
-          valresponceTp1 = 0;
-        }
-        if (str.slice(str.length - 12, str.length - 10) == "31") {
-          valresponceTp2 = 1;
-        }
-        if (str.slice(str.length - 12, str.length - 10) == "30") {
-          valresponceTp2 = 0;
-        }
+        v[18] = "0";
+      }
+      console.log(v, "JJ");
 
-        //Touch pad part(2) !!!!
-        if (str.slice(str.length - 6, str.length - 4) === "31") {
-          valresponceTp0 = 1;
+      if (v.length == "19") {
+        if (v[0] != "0" || v[2] != "0") {
+          if (v[0] != "0") {
+            var byte_val1 = v[0] & 0xff;
+            var byte_val2 = v[1] & 0xff;
+            console.log(byte_val1, byte_val2, "A1");
+            var valOfSensor = (byte_val2 << 8) + byte_val1;
+            console.log("LSB+MSB:-", valOfSensor);
+            if (valOfSensor <= 1024) {
+              valrangeA1 = valOfSensor;
+            }
+          }
+          if (v[2] != "0") {
+            var byte_val1 = v[2] & 0xff;
+            var byte_val2 = v[3] & 0xff;
+            var valOfSensor = (byte_val2 << 8) + byte_val1;
+            console.log("LSB+MSB:-", valOfSensor);
+            valrangeA2 = valOfSensor;
+          }
         }
-        if (str.slice(str.length - 6, str.length - 4) === "30") {
-          valresponceTp0 = 0;
+        if (v[4] != "0" || v[6] != "0") {
+          if (v[4] != "0") {
+            var byte_val1 = v[4] & 0xff;
+            var byte_val2 = v[5] & 0xff;
+            var valOfSensor = (byte_val2 << 8) + byte_val1;
+            console.log("LSB+MSB:-", valOfSensor);
+            valtemp = valOfSensor;
+          }
+          if (v[6] != "0") {
+            var byte_val1 = v[6] & 0xff;
+            var byte_val2 = v[7] & 0xff;
+            var valOfSensor = (byte_val2 << 8) + byte_val1;
+            console.log("LSB+MSB:-", valOfSensor);
+            valgas = valOfSensor;
+          }
         }
-        if (str.slice(str.length - 4, str.length - 2) === "31") {
-          valresponceTp1 = 1;
-        }
-        if (str.slice(str.length - 4, str.length - 2) === "30") {
-          valresponceTp1 = 0;
-        }
-        if (str.slice(str.length - 2, str.length) == "31") {
-          valresponceTp2 = 1;
-        }
-        if (str.slice(str.length - 2, str.length) == "30") {
-          valresponceTp2 = 0;
-        }
-
-        /// Digital touch pad dragging ////
-        if (str.slice(str.length - 6, str.length - 4) == "31") {
-          valtouch_pad = 1;
-        }
-        if (str.slice(str.length - 6, str.length - 4) == "30") {
-          valtouch_pad = 0;
-        }
-        if (str.slice(str.length - 2, str.length) == "31") {
-          valtouch_pad2 = 1;
-        }
-        if (str.slice(str.length - 2, str.length) == "30") {
-          valtouch_pad2 = 0;
-        }
-
-        if (str.slice(str.length - 16, str.length - 14) == "31") {
-          valtouch_pad = 1;
-        }
-        if (str.slice(str.length - 16, str.length - 14) == "30") {
-          valtouch_pad = 0;
-        }
-        if (str.slice(str.length - 12, str.length - 10) == "31") {
-          valtouch_pad2 = 1;
-        }
-        if (str.slice(str.length - 12, str.length - 10) == "30") {
-          valtouch_pad2 = 0;
+        if (v[8] != "0" || v[10] != "0") {
+          if (v[8] != "0") {
+            var byte_val1 = v[8] & 0xff;
+            var byte_val2 = v[9] & 0xff;
+            var valOfSensor = (byte_val2 << 8) + byte_val1;
+            console.log("LSB+MSB:-", valOfSensor);
+            valone = valOfSensor;
+          }
+          if (v[10] != "0") {
+            var byte_val1 = v[10] & 0xff;
+            var byte_val2 = v[11] & 0xff;
+            var valOfSensor = (byte_val2 << 8) + byte_val1;
+            console.log("LSB+MSB:-", valOfSensor);
+            valtwo = valOfSensor;
+          } else {
+            valtwo = 0;
+          }
         }
 
-        if (str.slice(str.length - 40, str.length - 36) != "0000") {
-          console.log(
-            "MMNNNMNJHBNN<<<<<<<<<<<<<<<<<<<",
-            str.slice(str.length - 40, str.length - 36)
-          );
-          socket.on("/A1-port", function (data2) {
-            valrangeA1 = data2;
+        if (sessionData.internalaccessories.Four_in_one_sensor.isLightSensor) {
+          if (v[12] != "0" && v[12] <= "255") {
+            var data = v[12];
 
-            console.log("MATAta:", valrangeA1);
-          });
-
-          socket.on("/A2-port", function (data2) {
-            valrangeA2 = data2;
-
-            console.log("MATA:", valgas);
-          });
-        }
-        if (str.slice(str.length - 35, str.length - 31) != "0000") {
-          socket.on("/B1-port", function (data2) {
-            valtemp = data2;
-            console.log("B port value", data2);
-          });
-          socket.on("/B2-port", function (data2) {
-            valgas = data2;
-          });
-        }
-        if (str.slice(str.length - 25, str.length - 21) != "0000") {
-          socket.on("/C1-port", function (data2) {
-            valone = data2;
-          });
-          socket.on("/C2-port", function (data2) {
-            valtwo = data2;
-          });
-        }
-
-        ///////////////////         F0ur in 0ne RGB      ///////////////////////////
-        if (str.slice(str.length - 10, str.length - 4) != "000000") {
-          socket.on("/4IN1R-port", function (data) {
-            valred = data;
-          });
-          // valmic = 15611;
-        }
-        if (str.slice(str.length - 10, str.length - 4) != "000000") {
-          socket.on("/4IN1G-port", function (data) {
-            valgreen = data;
-          });
-          // valmic = 15611;
-        }
-        if (str.slice(str.length - 10, str.length - 4) != "000000") {
-          socket.on("/4IN1B-port", function (data) {
-            valblue = data;
-          });
-          // valmic = 15611;
-        }
-
-        //////////////////   MIC       /////////////////////////////////////
-        if (str.slice(str.length - 4, str.length) != "0000") {
-          socket.on("/Mic-port", function (data) {
-            valmic = data;
-          });
-          // valmic = 15611;
-        }
-
-        ////////////////  F0ur in 0ne Light,distance    /////////////////////////////////
-        if (str.slice(str.length - 10, str.length - 8) != "00") {
-          socket.on("/4IN1light-port", function (data) {
             vallight = data;
-          });
-          // valmic = 15611;
+            console.log(" 23 DISTANCE SENSOR:--", valdis);
+          } else {
+            vallight = " ";
+          }
         }
-        if (str.slice(str.length - 8, str.length - 6) != "00") {
-          socket.on("/4IN1ges-port", function (data) {
-            valges = data;
-          });
-          // valmic = 15611;
-        }
-        if (str.slice(str.length - 6, str.length - 4) != "00") {
-          socket.on("/4IN1dis-port", function (data) {
+        if (
+          sessionData.internalaccessories.Four_in_one_sensor.isDistanceSensors
+        ) {
+          if (v[13] != "0" && v[13] <= "255") {
+            var data = v[13];
+
             valdis = data;
-          });
-          // valmic = 15611;
+            console.log(" 23 DISTANCE SENSOR:--", valdis);
+          } else {
+            valdis = " ";
+          }
         }
+        if (
+          sessionData.internalaccessories.Four_in_one_sensor.isGestureSensor
+        ) {
+          if (v[14] != "0") {
+            var data = v[14];
 
-        // if (str.slice(str.length - 30, str.length - 26) != "0000") {
-        //   socket.on("/B1-port", function (data2) {
-        //     valone = data2;
-        //   });
-        //   socket.on("/B2-port", function (data2) {
-        //     valtwo = data2;
-        //   });
-        // }
-        // if (str.slice(str.length - 25, str.length - 21) != "0000") {
-        //   socket.on("/C1-port", function (data2) {
-        //     valrangeA1 = data2;
-        //   });
-        //   socket.on("/C2-port", function (data2) {
-        //     valrangeA2 = data2;
-        //   });
-        // }
+            valges = data;
+            console.log(" 23 DISTANCE SENSOR:--", valdis);
+          } else {
+            valges = " ";
+          }
+        }
+        if (sessionData.internalaccessories.isMic) {
+          if (v[15] != "0") {
+            var byte_val1 = v[15] & 0xff;
+            var byte_val2 = v[16] & 0xff;
+            var valOfSensor = (byte_val2 << 8) + byte_val1;
+            console.log("LSB+MSB:-", valOfSensor);
+            valmic = valOfSensor;
+          }
+        }
+        if (sessionData.internalaccessories.Four_in_one_sensor.isColorSensor) {
+          if (v[12] != "0") {
+            var data = v[12];
 
-        // if (str.slice(str.length - 40, str.length - 36) != "0000") {
-        //   console.log(
-        //     "MMNNNMNJHBNN<<<<<<<<<<<<<<<<<<<",
-        //     str.slice(str.length - 40, str.length - 36)
-        //   );
-        //   socket.on("/A1-port", function (data2) {
-        //     valone = data2;
+            valred = data;
+            console.log(" 23 DISTANCE SENSOR:--", valdis);
+          }
+          if (v[13] != "0" && v[13] < 256) {
+            var data = v[13];
 
-        //     console.log("MATAta:", valtemp);
-        //   });
+            valgreen = data;
+            console.log(" 23 DISTANCE SENSOR:--", valdis);
+          } else {
+            valgreen = 115;
+          }
+          if (v[14] != "0" && v[14] < 256) {
+            var data = v[14];
 
-        //   socket.on("/A2-port", function (data2) {
-        //     valtwo = data2;
-
-        //     console.log("MATA:", valgas);
-        //   });
-        // }
-        // if (str.slice(str.length - 30, str.length - 26) != "0000") {
-        //   socket.on("/B1-port", function (data2) {
-        //     valrangeA1 = data2;
-        //   });
-        //   socket.on("/B2-port", function (data2) {
-        //     valrangeA2 = data2;
-        //   });
-        // }
-        // if (str.slice(str.length - 25, str.length - 21) != "0000") {
-        //   socket.on("/C1-port", function (data2) {
-        //     valtemp = data2;
-        //   });
-        //   socket.on("/C2-port", function (data2) {
-        //     valgas = data2;
-        //   });
-        // }
-
-        console.log(str.slice(str.length - 6, str.length - 4), "3rd last");
-        console.log(str.slice(str.length - 4, str.length - 2), "2nd last");
-        console.log(str.slice(str.length - 2, str.length), "last");
-
-        // <h2>{data}</h2>;
-      });
+            valblue = data;
+            console.log(" 23 DISTANCE SENSOR:--", valdis);
+          } else {
+            valblue = 105;
+          }
+        }
+        if (sessionData.internalaccessories.isTemperature) {
+          var byte_val1 = v[17] & 0xff;
+          var byte_val2 = v[18] & 0xff;
+          var valOfSensor = (byte_val2 << 8) + byte_val1;
+          console.log("LSB+MSB:-", valOfSensor);
+          valtemprature = valOfSensor;
+          console.log("TEMRATURE SSS VALUE", valtemprature);
+        }
+        if (sessionData.internalaccessories.isTouchZero) {
+          var byte_val1 = v[0] & 0xff;
+          var byte_val2 = v[1] & 0xff;
+          var valOfSensor = (byte_val2 << 8) + byte_val1;
+          console.log("LSB+MSB:-", valOfSensor);
+          valrangeA1 = valOfSensor;
+        }
+        if (sessionData.internalaccessories.isTouchOne) {
+          var byte_val1 = v[4] & 0xff;
+          var byte_val2 = v[5] & 0xff;
+          var valOfSensor = (byte_val2 << 8) + byte_val1;
+          console.log("LSB+MSB:-", valOfSensor);
+          valtemp = valOfSensor;
+        }
+        if (sessionData.internalaccessories.isTouchTwo) {
+          var byte_val1 = v[8] & 0xff;
+          var byte_val2 = v[9] & 0xff;
+          var valOfSensor = (byte_val2 << 8) + byte_val1;
+          console.log("LSB+MSB:-", valOfSensor);
+          valone = valOfSensor;
+        }
+      }
 
       setTimeout(() => {
         console.log("valrespnse 22222222", valresponceTp0);
@@ -621,6 +626,7 @@ class Assembly extends Component {
           two: valtwo,
           activePort: "A1",
           mic: valmic,
+          temprature: valtemprature,
           red: valred,
           green: valgreen,
           blue: valblue,
@@ -637,6 +643,12 @@ class Assembly extends Component {
       valtouch_pad = "";
       valtouch_pad2 = "";
       valtactswitch = "";
+      valtemp = " ";
+      valone = " ";
+      valrangeA1 = " ";
+      valrangeA2 = "";
+      valgas = "";
+      valtwo = "";
       console.log("going---------------->");
     }
     console.log("valrespnse", valresponceTp0);
@@ -1206,6 +1218,17 @@ class Assembly extends Component {
       });
     }
   };
+  handleTempratureSensor = (e) => {
+    if (this.state.isClickTempratureSensor) {
+      this.setState({
+        isClickTempratureSensor: false,
+      });
+    } else {
+      this.setState({
+        isClickTempratureSensor: true,
+      });
+    }
+  };
 
   handleReadByte = () => {
     let sessionData = JSON.parse(sessionStorage.getItem("concept"));
@@ -1288,7 +1311,11 @@ class Assembly extends Component {
         return false;
       }
     });
-
+    const isTempratureSensor = Object.keys(
+      JSON.parse(sessionStorage.getItem("concept")).internalaccessories
+        .isTemperature
+    );
+    console.log("GAYA", isTempratureSensor);
     return (
       <>
         {/* NAV BAR */}
@@ -1504,59 +1531,143 @@ class Assembly extends Component {
               <div className="propertyPanel">
                 {JSON.parse(sessionStorage.getItem("concept"))
                   .internalaccessories.Four_in_one_sensor.isColorSensor ? (
-                  <div
-                    className="propertyPanel-Details-colorSensor"
-                    style={propertyPanelStyle}
-                  >
-                    <div className="colorSensor-container">
-                      <div>
-                        <img
-                          src={renderPrgImage("colorsensorActive")}
-                          style={{
-                            height: "45px",
-                            width: "45px",
-                            marginTop: "5px",
-                          }}
-                        />
-                        <p
-                          style={{
-                            color: "#707070",
-                            fontSize: "12px",
-                            marginTop: "5px",
-                            transform: "translateX(20%)",
-                          }}
-                        ></p>
+                  <div>
+                    {JSON.parse(sessionStorage.getItem("concept"))
+                      .internalaccessories.isTemperature ? (
+                      <div
+                        className="propertyPanel-Details-colorSensor"
+                        style={propertyPanelStyle}
+                      >
+                        <div className="colorSensor-container">
+                          <div>
+                            <img
+                              src={renderPrgImage("colorsensorActive")}
+                              style={{
+                                height: "45px",
+                                width: "45px",
+                                marginTop: "5px",
+                              }}
+                            />
+                            <p
+                              style={{
+                                color: "#707070",
+                                fontSize: "12px",
+                                marginTop: "5px",
+                                transform: "translateX(20%)",
+                              }}
+                            ></p>
+                          </div>
+                          <div>
+                            <p style={{ color: "#F16178" }}>
+                              {" "}
+                              R : {this.state.red}
+                            </p>
+                            <p style={{ color: "#3BB273" }}>
+                              {" "}
+                              G : {this.state.green}
+                            </p>
+                            <p style={{ color: "#30A8CE" }}>
+                              {" "}
+                              B : {this.state.blue}
+                            </p>
+                          </div>
+                        </div>
+                        <div className="colorSensor-container2">
+                          <img
+                            src={renderPrgImage("tempActive")}
+                            style={{ height: "45px", width: "45px" }}
+                          />
+
+                          <p>{this.state.temprature}</p>
+                        </div>
                       </div>
-                      <div>
-                        <p style={{ color: "#F16178" }}>
-                          {" "}
-                          R : {this.state.red}
-                        </p>
-                        <p style={{ color: "#3BB273" }}>
-                          {" "}
-                          G : {this.state.green}
-                        </p>
-                        <p style={{ color: "#30A8CE" }}>
-                          {" "}
-                          B : {this.state.blue}
-                        </p>
+                    ) : (
+                      <div
+                        className="propertyPanel-Details-colorSensor-Temp"
+                        style={propertyPanelStyle}
+                      >
+                        <div className="colorSensor-container">
+                          <div>
+                            <img
+                              src={renderPrgImage("colorsensorActive")}
+                              style={{
+                                height: "45px",
+                                width: "45px",
+                                marginTop: "5px",
+                              }}
+                            />
+                            <p
+                              style={{
+                                color: "#707070",
+                                fontSize: "12px",
+                                marginTop: "5px",
+                                transform: "translateX(20%)",
+                              }}
+                            ></p>
+                          </div>
+                          <div>
+                            <p style={{ color: "#F16178" }}>
+                              {" "}
+                              R : {this.state.red}
+                            </p>
+                            <p style={{ color: "#3BB273" }}>
+                              {" "}
+                              G : {this.state.green}
+                            </p>
+                            <p style={{ color: "#30A8CE" }}>
+                              {" "}
+                              B : {this.state.blue}
+                            </p>
+                          </div>
+                        </div>
                       </div>
-                    </div>
+                    )}
                   </div>
                 ) : (
-                  <div
-                    className="propertyPanel-Details"
-                    style={propertyPanelStyle}
-                  >
-                    <div className="Item">
-                      <img
-                        src={this.renderImg()}
-                        style={{ height: "45px", width: "45px" }}
-                      />
-                      <p>{this.state.light} </p>
-                      <p>{this.state.distance} </p>
-                      <p>{this.state.gesture} </p>
-                    </div>
+                  <div>
+                    {JSON.parse(sessionStorage.getItem("concept"))
+                      .internalaccessories.isTemperature == true ? (
+                      <div
+                        className="propertyPanel-Details"
+                        style={propertyPanelStyle}
+                      >
+                        <div className="Item">
+                          <img
+                            src={this.renderImg()}
+                            style={{ height: "45px", width: "45px" }}
+                          />
+
+                          <p>{this.state.light} </p>
+                          <p>{this.state.distance} </p>
+                          <p>{this.state.gesture} </p>
+                        </div>
+
+                        <div className="Item2">
+                          <img
+                            src={renderPrgImage("tempActive")}
+                            style={{ height: "45px", width: "45px" }}
+                          />
+
+                          <p>{this.state.temprature} </p>
+                        </div>
+                      </div>
+                    ) : (
+                      <div
+                        className="propertyPanel-Details-FIO"
+                        style={propertyPanelStyle}
+                      >
+                        <div className="Item3">
+                          <img
+                            src={this.renderImg()}
+                            style={{ height: "45px", width: "45px" }}
+                          />
+
+                          <p>{this.state.light} </p>
+                          <p>{this.state.distance} </p>
+                          <p>{this.state.gesture} </p>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 )}
 
@@ -1580,6 +1691,84 @@ class Assembly extends Component {
                 </div>
               </div>
             )
+          ) : null}
+          {isTempratureSensor ? (
+            <div>
+              {" "}
+              {isFourInOneSensor ? null : this.state.isClickTempratureSensor ==
+                true ? (
+                <div>
+                  <div className="propertyPanel">
+                    <div
+                      style={{
+                        position: "absolute",
+                        top: "50%",
+                        right: "7%",
+                        transform: "translateY(-50%)",
+                        height: "100px",
+                        width: "65px",
+
+                        borderRadius: "46px",
+                        background: "#f4f4f4",
+                      }}
+                    >
+                      <div
+                        style={{
+                          fontSize: "12px",
+                          color: "#707070",
+                          margin: "10px",
+                          textAlign: "center",
+                        }}
+                      >
+                        <img
+                          src={renderPrgImage("tempActive")}
+                          style={{ height: "45px", width: "45px" }}
+                        />
+
+                        <p style={{ marginTop: "5px" }}>
+                          {this.state.temprature}{" "}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="propertyPanel-closeBtn">
+                    <img
+                      src={renderPrgImage("readPCActive")}
+                      style={{
+                        position: "absolute",
+                        top: "50%",
+                        right: "2%",
+                        transform: "translateY(-50%)",
+                        height: "60px",
+                        width: "60px",
+                        zIndex: "999999",
+                      }}
+                      onClick={() => {
+                        this.handleTempratureSensor();
+                        this.handleReadByte();
+                      }}
+                    />
+                  </div>
+                </div>
+              ) : (
+                <img
+                  src={renderPrgImage("readPCInActive")}
+                  style={{
+                    position: "absolute",
+                    top: "50%",
+                    right: "2%",
+                    transform: "translateY(-50%)",
+                    height: "60px",
+                    width: "60px",
+                    zIndex: "999999",
+                  }}
+                  onClick={() => {
+                    this.handleTempratureSensor();
+                    this.handleReadByte();
+                  }}
+                />
+              )}
+            </div>
           ) : null}
 
           {/* CHECK BOX OLD UI  */}

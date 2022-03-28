@@ -55,6 +55,18 @@ class OutputPanel extends Component {
       isClickBuzzerFrequency: false,
       isClickBuzzerTone: false,
 
+      isClickBif1: false,
+      isClickBif2: false,
+      isClickBic1: false,
+      isClickBic2: false,
+      isClickUsbtx: false,
+      isClickUsbrx: false,
+      isClickbtTx1: false,
+      isClickbtTx2: false,
+      isClickbtTx3: false,
+      isClickbtTx4: false,
+      isClickbtTx5: false,
+
       setportName: "",
 
       isClickLeftEye: false,
@@ -88,6 +100,18 @@ class OutputPanel extends Component {
       curValTouchZeroOutput: 0,
       curValTouchOneOutput: 0,
       curValTouchTwoOutput: 0,
+
+      curValBic1: 0,
+      curValBic2: 0,
+      curValBif1: 0,
+      curValBif2: 0,
+      curValUsbtx: 0,
+      curValUsbrx: 0,
+      curValbtTx1: 0,
+      curValbtTx2: 0,
+      curValbtTx3: 0,
+      curValbtTx4: 0,
+      curValbtTx5: 0,
 
       curValSmileOne: 0,
       curValSmileTwo: 0,
@@ -144,6 +168,18 @@ class OutputPanel extends Component {
       curValTouchZeroOutput: props.state.valueTouchZeroOutput,
       curValTouchOneOutput: props.state.valueTouchOneOutput,
       curValTouchTwoOutput: props.state.valueTouchTwoOutput,
+
+      curValBic1: props.state.valueBic1,
+      curValBic2: props.state.valueBic2,
+      curValBif1: props.state.valueBif1,
+      curValBif2: props.state.valueBif2,
+      curValUsbtx: props.state.valueUsbtx,
+      curValUsbrx: props.state.valueUsbrx,
+      curValbtTx1: props.state.valuebtTx,
+      curValbtTx2: props.state.valuebtTx,
+      curValbtTx3: props.state.valuebtTx,
+      curValbtTx4: props.state.valuebtTx,
+      curValbtTx5: props.state.valuebtTx,
 
       curValSmileOne: props.state.valueSmileOne,
       curValSmileTwo: props.state.valueSmileTwo,
@@ -207,8 +243,8 @@ class OutputPanel extends Component {
 
     let dataas = key.slice(key.length - 2, key.length);
 
-    let asdasdasd =
-      this.props.PortConnections[key.slice(key.length - 2, key.length)].type;
+    // let asdasdasd =
+    //   this.props.PortConnections[key.slice(key.length - 2, key.length)].type;
 
     state[key] = value;
 
@@ -443,6 +479,242 @@ class OutputPanel extends Component {
 
     onChange(state, "hardware");
   };
+
+  onBic1Handle = () => {
+    const { state, onChange } = this.props;
+
+    if (this.state.isClickBic1) {
+      this.setState({
+        isClickBic1: false,
+      });
+      state[`assignBic1`] = false;
+
+      rangeStoreVal["BICOUNTER1"].isChecked = false;
+    } else {
+      this.setState({
+        isClickBic1: true,
+      });
+      state[`assignBic1`] = true;
+      rangeStoreVal["BICOUNTER1"].isChecked = true;
+    }
+
+    console.log(this.state.isClickBic1, "SMILE ONE CLICK");
+    console.log(this.state.isClickBic1, "SMILE ONE CLICK");
+
+    onChange(state, "hardware");
+  };
+
+  onBic2Handle = () => {
+    const { state, onChange } = this.props;
+
+    if (this.state.isClickBic2) {
+      this.setState({
+        isClickBic2: false,
+      });
+      state[`assignBic2`] = false;
+
+      rangeStoreVal["BICOUNTER2"].isChecked = false;
+    } else {
+      this.setState({
+        isClickBic2: true,
+      });
+      state[`assignBic2`] = true;
+      rangeStoreVal["BICOUNTER2"].isChecked = true;
+    }
+
+    console.log(this.state.isClickBic2, "SMILE ONE CLICK");
+    console.log(this.state.isClickBic2, "SMILE ONE CLICK");
+
+    onChange(state, "hardware");
+  };
+
+  onBif1Handle = () => {
+    const { state, onChange } = this.props;
+
+    if (this.state.isClickBif1) {
+      this.setState({
+        isClickBif1: false,
+      });
+      state[`assignBif1`] = false;
+
+      rangeStoreVal["BIFLAG1"].isChecked = false;
+    } else {
+      this.setState({
+        isClickBif1: true,
+      });
+      state[`assignBif1`] = true;
+      rangeStoreVal["BIFLAG1"].isChecked = true;
+    }
+
+    console.log(this.state.isClickBif1, "SMILE ONE CLICK");
+    console.log(this.state.isClickBif1, "SMILE ONE CLICK");
+
+    onChange(state, "hardware");
+  };
+
+  onBif2Handle = () => {
+    const { state, onChange } = this.props;
+
+    if (this.state.isClickBif2) {
+      this.setState({
+        isClickBif2: false,
+      });
+      state[`assignBif2`] = false;
+
+      rangeStoreVal["BIFLAG2"].isChecked = false;
+    } else {
+      this.setState({
+        isClickBif2: true,
+      });
+      state[`assignBif2`] = true;
+      rangeStoreVal["BIFLAG2"].isChecked = true;
+    }
+
+    console.log(this.state.isClickBif2, "SMILE ONE CLICK");
+    console.log(this.state.isClickBif2, "SMILE ONE CLICK");
+
+    onChange(state, "hardware");
+  };
+
+  onUsbtxHandle = () => {
+    const { state, onChange } = this.props;
+
+    if (this.state.isClickUsbtx) {
+      this.setState({
+        isClickUsbtx: false,
+      });
+      state[`assignUsbtx`] = false;
+
+      rangeStoreVal["USBTX"].isChecked = false;
+    } else {
+      this.setState({
+        isClickUsbtx: true,
+      });
+      state[`assignUsbtx`] = true;
+      rangeStoreVal["USBTX"].isChecked = true;
+    }
+
+    console.log(this.state.isClickUsbtx, "SMILE ONE CLICK");
+    console.log(this.state.isClickUsbtx, "SMILE ONE CLICK");
+
+    onChange(state, "hardware");
+  };
+  onbtTxHandle = () => {
+    const { state, onChange } = this.props;
+
+    if (this.state.isClickbtTx1) {
+      this.setState({
+        isClickbtTx1: false,
+      });
+      state[`assignbtTx`] = false;
+
+      rangeStoreVal["BTTX"].isChecked = false;
+    } else {
+      this.setState({
+        isClickbtTx1: true,
+      });
+      state[`assignbtTx`] = true;
+      rangeStoreVal["BTTX"].isChecked = true;
+    }
+
+    console.log(this.state.isClickbtTx1, "SMILE ONE CLICK");
+    console.log(this.state.isClickbtTx1, "SMILE ONE CLICK");
+
+    onChange(state, "hardware");
+  };
+  onbtTx2Handle = () => {
+    const { state, onChange } = this.props;
+
+    if (this.state.isClickbtTx2) {
+      this.setState({
+        isClickbtTx2: false,
+      });
+      state[`assignbtTx`] = false;
+
+      rangeStoreVal["BTTX"].isChecked = false;
+    } else {
+      this.setState({
+        isClickbtTx2: true,
+      });
+      state[`assignbtTx`] = true;
+      rangeStoreVal["BTTX"].isChecked = true;
+    }
+
+    console.log(this.state.isClickbtTx2, "SMILE ONE CLICK");
+    console.log(this.state.isClickbtTx2, "SMILE ONE CLICK");
+
+    onChange(state, "hardware");
+  };
+  onbtTx3Handle = () => {
+    const { state, onChange } = this.props;
+
+    if (this.state.isClickbtTx3) {
+      this.setState({
+        isClickbtTx3: false,
+      });
+      state[`assignbtTx`] = false;
+
+      rangeStoreVal["BTTX"].isChecked = false;
+    } else {
+      this.setState({
+        isClickbtTx3: true,
+      });
+      state[`assignbtTx`] = true;
+      rangeStoreVal["BTTX"].isChecked = true;
+    }
+
+    console.log(this.state.isClickbtTx3, "SMILE ONE CLICK");
+    console.log(this.state.isClickbtTx3, "SMILE ONE CLICK");
+
+    onChange(state, "hardware");
+  };
+  onbtTx4Handle = () => {
+    const { state, onChange } = this.props;
+
+    if (this.state.isClickbtTx4) {
+      this.setState({
+        isClickbtTx4: false,
+      });
+      state[`assignbtTx`] = false;
+
+      rangeStoreVal["BTTX"].isChecked = false;
+    } else {
+      this.setState({
+        isClickbtTx4: true,
+      });
+      state[`assignbtTx`] = true;
+      rangeStoreVal["BTTX"].isChecked = true;
+    }
+
+    console.log(this.state.isClickbtTx4, "SMILE ONE CLICK");
+    console.log(this.state.isClickbtTx4, "SMILE ONE CLICK");
+
+    onChange(state, "hardware");
+  };
+  onbtTx5Handle = () => {
+    const { state, onChange } = this.props;
+
+    if (this.state.isClickbtTx5) {
+      this.setState({
+        isClickbtTx5: false,
+      });
+      state[`assignbtTx`] = false;
+
+      rangeStoreVal["BTTX"].isChecked = false;
+    } else {
+      this.setState({
+        isClickbtTx5: true,
+      });
+      state[`assignbtTx`] = true;
+      rangeStoreVal["BTTX"].isChecked = true;
+    }
+
+    console.log(this.state.isClickbtTx5, "SMILE ONE CLICK");
+    console.log(this.state.isClickbtTx5, "SMILE ONE CLICK");
+
+    onChange(state, "hardware");
+  };
+
   onSmileTwoHandle = () => {
     const { state, onChange } = this.props;
 
@@ -731,6 +1003,24 @@ class OutputPanel extends Component {
     } else if (name == "SmileFour") {
       rangeStoreVal[name].value = value;
       state["valueSmileFour"] = value;
+    } else if (name == "BICOUNTER1") {
+      rangeStoreVal[name].value = value;
+      state["valueBic1"] = value;
+    } else if (name == "BICOUNTER2") {
+      rangeStoreVal[name].value = value;
+      state["valueBic2"] = value;
+    } else if (name == "BIFLAG1") {
+      rangeStoreVal[name].value = value;
+      state["valueBif1"] = value;
+    } else if (name == "BIFLAG2") {
+      rangeStoreVal[name].value = value;
+      state["valueBif2"] = value;
+    } else if (name == "USBTX") {
+      rangeStoreVal[name].value = value;
+      state["valueUsbtx"] = value;
+    } else if (name == "BTTX") {
+      rangeStoreVal[name].value = value;
+      state["valuebtTx"] = value;
     } else if (name == "Buzzer") {
       rangeStoreVal[`${name}${portName}`].value = value;
       state[`valueBuzzer${portName}`] = value;
@@ -876,7 +1166,9 @@ class OutputPanel extends Component {
       sessionStorage.getItem("concept")
     ).internalaccessories;
 
-    // console.log("YELO DATA", internalAccessories);
+    const startTypes = JSON.parse(sessionStorage.getItem("logic")).program[0]
+      .state;
+    console.log("YELO DATA", startTypes);
 
     console.log(assemblyCheckbox, "assemblyCheckbox");
 
@@ -1287,6 +1579,202 @@ class OutputPanel extends Component {
                 }
               }
             })}
+            {Object.keys(startTypes).map((value, index) => {
+              if (value == "bic2") {
+                if (startTypes[value] == true) {
+                  console.log(PortValuesRangeMapping[value]);
+                  return (
+                    // <CountRow
+                    //   name={name}
+                    //   key={name}
+                    //   assign={state["assignCount" + name]}
+                    //   value={state["valueCount" + name]}
+                    //   valueNum={state["valueNumCount" + name]}
+                    //   onChange={this.onChange}
+                    // />
+                    <SliderRow
+                      name="bic"
+                      port=""
+                      value={this.state.curValBic2}
+                      key="BICOUNTER2"
+                      title="BI COUNTER 2"
+                      assign={this.state.isClickBic2}
+                      handlecheckbox={this.onBic2Handle}
+                      min={-1}
+                      max={1}
+                      getRangeVal={this.onRangeValue_Buzzer_smile_Eyes}
+                    />
+                  );
+                }
+              } else if (value == "bic1") {
+                if (startTypes[value] == true) {
+                  console.log(PortValuesRangeMapping[value]);
+                  return (
+                    // <CountRow
+                    //   name={name}
+                    //   key={name}
+                    //   assign={state["assignCount" + name]}
+                    //   value={state["valueCount" + name]}
+                    //   valueNum={state["valueNumCount" + name]}
+                    //   onChange={this.onChange}
+                    // />
+                    <SliderRow
+                      name="bic"
+                      port=""
+                      value={this.state.curValBic1}
+                      key="BICOUNTER1"
+                      title="BI COUNTER 1"
+                      assign={this.state.isClickBic1}
+                      handlecheckbox={this.onBic1Handle}
+                      min={-1}
+                      max={1}
+                      getRangeVal={this.onRangeValue_Buzzer_smile_Eyes}
+                    />
+                  );
+                }
+              } else if (value == "bif1") {
+                if (startTypes[value] == true) {
+                  console.log(PortValuesRangeMapping[value]);
+                  return (
+                    <SliderRow
+                      name="bif"
+                      port=""
+                      value={this.state.curValBif1}
+                      key="BIFLAG1"
+                      title="BI FLAG 1"
+                      assign={this.state.isClickBif1}
+                      handlecheckbox={this.onBif1Handle}
+                      min={0}
+                      max={1}
+                      getRangeVal={this.onRangeValue_Buzzer_smile_Eyes}
+                    />
+                  );
+                }
+              } else if (value == "bif2") {
+                if (startTypes[value] == true) {
+                  console.log(PortValuesRangeMapping[value]);
+                  return (
+                    <SliderRow
+                      name="bif"
+                      port=""
+                      value={this.state.curValBif2}
+                      key="BIFLAG2"
+                      title="BI FLAG 2"
+                      assign={this.state.isClickBif2}
+                      handlecheckbox={this.onBif2Handle}
+                      min={0}
+                      max={1}
+                      getRangeVal={this.onRangeValue_Buzzer_smile_Eyes}
+                    />
+                  );
+                }
+              } else if (value == "usbtx") {
+                if (startTypes[value] == true) {
+                  console.log(PortValuesRangeMapping[value]);
+                  return (
+                    <SliderRow
+                      name="usbtx"
+                      port=""
+                      value={this.state.curValUsbtx}
+                      key="USBTX"
+                      title="USB TX"
+                      assign={this.state.isClickUsbtx}
+                      handlecheckbox={this.onUsbtxHandle}
+                      min={0}
+                      max={255}
+                      getRangeVal={this.onRangeValue_Buzzer_smile_Eyes}
+                    />
+                  );
+                }
+              } else if (value == "btTx") {
+                if (startTypes[value] == true) {
+                  console.log(PortValuesRangeMapping[value]);
+                  return (
+                    <>
+                      <SliderRow
+                        name="btTx"
+                        port=""
+                        value={this.state.curValbtTx1}
+                        key="BTTX"
+                        title="BT TX1"
+                        assign={this.state.isClickbtTx1}
+                        handlecheckbox={this.onbtTxHandle}
+                        min={0}
+                        max={255}
+                        getRangeVal={this.onRangeValue_Buzzer_smile_Eyes}
+                      />
+                      <SliderRow
+                        name="btTx"
+                        port=""
+                        value={this.state.curValbtTx2}
+                        key="BTTX"
+                        title="BT TX2"
+                        assign={this.state.isClickbtTx2}
+                        handlecheckbox={this.onbtTx2Handle}
+                        min={0}
+                        max={255}
+                        getRangeVal={this.onRangeValue_Buzzer_smile_Eyes}
+                      />
+                      <SliderRow
+                        name="btTx"
+                        port=""
+                        value={this.state.curValbtTx3}
+                        key="BTTX"
+                        title="BT TX3"
+                        assign={this.state.isClickbtTx3}
+                        handlecheckbox={this.onbtTx3Handle}
+                        min={0}
+                        max={255}
+                        getRangeVal={this.onRangeValue_Buzzer_smile_Eyes}
+                      />
+                      <SliderRow
+                        name="btTx"
+                        port=""
+                        value={this.state.curValbtTx4}
+                        key="BTTX"
+                        title="BT TX4"
+                        assign={this.state.isClickbtTx4}
+                        handlecheckbox={this.onbtTx4Handle}
+                        min={0}
+                        max={255}
+                        getRangeVal={this.onRangeValue_Buzzer_smile_Eyes}
+                      />
+                      <SliderRow
+                        name="btTx"
+                        port=""
+                        value={this.state.curValbtTx5}
+                        key="BTTX"
+                        title="BT TX5"
+                        assign={this.state.isClickbtTx5}
+                        handlecheckbox={this.onbtTx5Handle}
+                        min={0}
+                        max={255}
+                        getRangeVal={this.onRangeValue_Buzzer_smile_Eyes}
+                      />
+                    </>
+                  );
+                }
+              }
+              // else if (value == "btTx") {
+              //   if (startTypes[value] == true) {
+              //     console.log(PortValuesRangeMapping[value]);
+              //     return (
+              //       <SliderRow
+              //         name="btTx"
+              //         port=""
+              //         value={this.state.curValbtTx2}
+              //         key="BTTX"
+              //         title="BT TX2"
+              //         assign={this.state.isClickbtTx2}
+              //         handlecheckbox={this.onbtTx2Handle}
+              //         min={0}
+              //         max={255}
+              //         getRangeVal={this.onRangeValue_Buzzer_smile_Eyes}
+              //       />
+              //     );
+              //   }
+              // }
+            })}
 
             {Object.keys(PortConnections).map((port) => {
               if (!PortConnections[port]) return null;
@@ -1438,15 +1926,31 @@ class OutputPanel extends Component {
             <AssignRow name={'irr'} key={'irr'} assign={state['assignirr']} value={state['valueirr']}
                valuenum={state['valuenumirr']} onChange={this.onChange} SelectOptionsOrder={SelectOptionsOrder}/>*/}
             {/* {startStateOrder.map((name) => {
-              if (!name.startsWith('bic')) return null;
+              if (!name.startsWith("bic")) return null;
               if (startState[name])
                 return (
-                  <CountRow name={name} key={name} assign={state['assignCount' + name]}
-                    value={state['valueCount' + name]} valueNum={state['valueNumCount' + name]}
-                    onChange={this.onChange} />
+                  // <CountRow
+                  //   name={name}
+                  //   key={name}
+                  //   assign={state["assignCount" + name]}
+                  //   value={state["valueCount" + name]}
+                  //   valueNum={state["valueNumCount" + name]}
+                  //   onChange={this.onChange}
+                  // />
+                  <SliderRow
+                    name={name}
+                    key={name}
+                    assign={state["assign" + name]}
+                    value={state["valueCount" + name]}
+                    valueNum={state["valueNumCount" + name]}
+                    onChange={this.onChange}
+                    min={-1}
+                    max={1}
+                  />
                 );
               else return null;
             })} */}
+
             {/* {startStateOrder.map((name) => {
               if (!name.startsWith('bif')) return null;
               if (startState[name])

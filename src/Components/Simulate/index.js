@@ -10,6 +10,8 @@ import "../../css/simulate.css";
 import CustomNodeFlowHumanoid from "./DnDHumanoid/Index";
 import SimulateLogic from "./simulateLogic";
 import $ from "jquery";
+import { webSerialAction } from "../../redux/actions/index";
+import unicodeToChar from "../../utils/unicodeToChar";
 import socketIOClient from "socket.io-client";
 
 import {
@@ -121,16 +123,155 @@ class Simulate extends Component {
 
       countClick: 0,
     };
+
+    window.addEventListener("load", async (e) => {
+      console.log("HEY_CALIIN", this.props.state);
+
+      try {
+        const portList = await navigator.serial.getPorts();
+
+        if (portList.length === 1) {
+          console.log(portList, "Hardware connected");
+
+          await props.webSerialAction({ port: portList[0] }); // dispatching function of redux
+
+          this.setState.p1({
+            selected: true,
+            port: portList[0],
+          });
+        } else {
+          console.log("No hardware");
+
+          this.setState.p1(this.state.p1);
+        }
+      } catch (err) {
+        console.log(err.message);
+      }
+    });
     this.myRef = React.createRef();
     this.handleLoad = this.handleLoad.bind(this);
   }
+  OpenReadComPort = async () => {
+    const port = this.props.webSerial;
+    console.log("PORTLIST", port);
+    // console.log(port, "pPort");
+    try {
+      await port.open({ baudRate: 115200 });
+    } catch (e) {
+      console.log(e);
+    }
+    this.writePort("notWrite");
+    // let valresponceTp0 = "",
+    //   valdis = "";
+    // // setTimeout(async () => {
+    // if (this.state.readbytes) {
+    // this.readLoop();
+    // }
 
+    // }, 1000);
+  };
+  async readLoop() {
+    const port = this.props.webSerial;
+
+    try {
+      const reader = port.readable.getReader();
+
+      // Listen to data coming from the serial device.
+      while (true) {
+        const { value, done } = await reader.read();
+        if (this.state.k === true) {
+          console.log("MAI CHAL GAYA");
+          reader.releaseLock();
+        }
+        console.log(value);
+        // value is a string.
+        if (value.length == 32) {
+          var v = unicodeToChar(value);
+          // var v = value;
+          console.log(v);
+        }
+        // if (value.length == 23) {
+        //   var v = unicodeToChar(value);
+        //   // var v = value;
+        //   console.log(v);
+        // }
+        if (value.length == 7) {
+          var vi = unicodeToChar(value);
+          // var vi = value;
+          console.log(vi);
+        }
+        if (value.length == 9) {
+          var vi = unicodeToChar(value);
+          // var vi = value;
+          console.log(vi);
+        }
+        if (value.length == 14) {
+          var vi = unicodeToChar(value);
+          // var vi = value;
+          console.log(vi);
+        }
+        if (value.length == 17) {
+          var vi = unicodeToChar(value);
+          // var vi = value;
+          console.log(vi);
+        }
+        if (value.length == 12) {
+          var vi = unicodeToChar(value);
+          // var vi = value;
+          console.log(vi);
+        }
+        // if (value.lenght != 1) {
+        //   var vae = v + vi;
+        // }
+        if ((value.lenght == 32 && value.lenght == 12) || value.lenght == 11) {
+          var vae = v + " " + vi;
+          console.log(vae, "ORRRR");
+        }
+        var vae = v + vi;
+        this.state.flag = vae;
+        console.log("ADDED", vae);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  }
+  async writePort(data) {
+    try {
+      const ports = await navigator.serial.getPorts();
+      console.log("portsss", ports);
+
+      console.log("portsss", ports[0].writable);
+      // const outputStream = ports[0].writable,
+      const writer = ports[0].writable.getWriter();
+      // writer = outputStream.getWriter();
+      const sata = data;
+      const data1 = new Uint8Array(sata); // hello// 82, 76, 0, 0, 0, 82, 0, 0, 0, 66, 0, 0, 1, 0, 1,
+      console.log("send data:+", data1);
+
+      await writer.write(data1);
+
+      writer.releaseLock();
+    } catch (e) {
+      console.log(e);
+    }
+  }
   handleUsb = (e) => {
     this.setState({ isusb: !this.state.isusb });
   };
   helpBtn = (e) => {
     this.setState({ isHelp: !this.state.isHelp });
   };
+  componentDidUpdate() {
+    let no_port = this.props.webserialPort;
+    if (typeof no_port !== undefined) {
+      console.log("WORKING>>>>>>>>");
+      this.OpenReadComPort();
+    } else {
+      // this.OpenReadComPort();
+      console.log(JSON.parse(sessionStorage.getItem("webSerialPortList")));
+      console.log("SERIAL PORT NOT CONNECTED");
+    }
+  }
   componentDidMount() {
     var socket = io.connect("http://localhost:3008");
     socket.emit("_usbDetection", "Hi");
@@ -1843,7 +1984,12 @@ class Simulate extends Component {
   };
 
   uploadProgram = () => {
-    this.myRef.current.upload(); //it will call anyFun which is available at simulateLogic.js
+    let bytes = sessionStorage.getItem("convert_Bytes");
+    var data = bytes.split(",");
+    console.log(data, "KAMAL SIMULATE");
+    this.myRef.current.upload();
+    this.writePort(data);
+    console.log("UPLOAD DATA", this.myRef.current.upload()); //it will call anyFun which is available at simulateLogic.js
   };
 
   indexChange = (t, component) => {
@@ -2252,4 +2398,12 @@ class Simulate extends Component {
 const mapStateToProps = (state) => {
   return state;
 };
-export default connect(mapStateToProps)(Simulate);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    webSerialAction: (data) => {
+      console.log("mapDispatchToProps", data);
+      dispatch(webSerialAction(data));
+    },
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Simulate);

@@ -160,6 +160,162 @@ class SliderRow extends Component {
         </div>
       );
     }
+    if (name == "bic") {
+      return (
+        <div className={`hardwareInfo-section`}>
+          <div className="portDetails-hw" style={{}}>
+            <Checkbox
+              checked={assign || false}
+              onChange={() => {
+                handlecheckbox();
+              }}
+              label={this.props.title}
+            />
+          </div>
+          <div
+            className={`portSlider-hw  isActivehardwareInfo${assign}`}
+            style={{ position: "relative" }}
+          >
+            <Slider
+              title="Intensity"
+              disabled={!assign}
+              value={value || 0}
+              min={min}
+              max={max}
+              onChange={(value, name) => {
+                console.log("RANGE CLCIK");
+
+                getRangeVal(this.props.title, port, value);
+              }}
+              renderIn="hardwarePropertyPanel"
+            />
+            <p style={{ position: "absolute", left: "27%", bottom: "10%" }}>
+              {min}
+            </p>
+            <p style={{ position: "absolute", right: "12%", bottom: "10%" }}>
+              {max}
+            </p>
+          </div>
+        </div>
+      );
+    }
+    if (name == "bif") {
+      return (
+        <div className={`hardwareInfo-section`}>
+          <div className="portDetails-hw" style={{}}>
+            <Checkbox
+              checked={assign || false}
+              onChange={() => {
+                handlecheckbox();
+              }}
+              label={this.props.title}
+            />
+          </div>
+          <div
+            className={`portSlider-hw  isActivehardwareInfo${assign}`}
+            style={{ position: "relative" }}
+          >
+            <Slider
+              title="Intensity"
+              disabled={!assign}
+              value={value || 0}
+              min={min}
+              max={max}
+              onChange={(value, name) => {
+                console.log("RANGE CLCIK");
+
+                getRangeVal(this.props.title, port, value);
+              }}
+              renderIn="hardwarePropertyPanel"
+            />
+            <p style={{ position: "absolute", left: "27%", bottom: "10%" }}>
+              {min}
+            </p>
+            <p style={{ position: "absolute", right: "12%", bottom: "10%" }}>
+              {max}
+            </p>
+          </div>
+        </div>
+      );
+    }
+    if (name == "usbtx") {
+      return (
+        <div className={`hardwareInfo-section`}>
+          <div className="portDetails-hw" style={{}}>
+            <Checkbox
+              checked={assign || false}
+              onChange={() => {
+                handlecheckbox();
+              }}
+              label={this.props.title}
+            />
+          </div>
+          <div
+            className={`portSlider-hw  isActivehardwareInfo${assign}`}
+            style={{ position: "relative" }}
+          >
+            <Slider
+              title="Intensity"
+              disabled={!assign}
+              value={value || 0}
+              min={min}
+              max={max}
+              onChange={(value, name) => {
+                console.log("RANGE CLCIK");
+
+                getRangeVal(this.props.title, port, value);
+              }}
+              renderIn="hardwarePropertyPanel"
+            />
+            <p style={{ position: "absolute", left: "27%", bottom: "10%" }}>
+              {min}
+            </p>
+            <p style={{ position: "absolute", right: "12%", bottom: "10%" }}>
+              {max}
+            </p>
+          </div>
+        </div>
+      );
+    }
+    if (name == "btTx") {
+      return (
+        <div className={`hardwareInfo-section`}>
+          <div className="portDetails-hw" style={{}}>
+            <Checkbox
+              checked={assign || false}
+              onChange={() => {
+                handlecheckbox();
+              }}
+              label={this.props.title}
+            />
+          </div>
+          <div
+            className={`portSlider-hw  isActivehardwareInfo${assign}`}
+            style={{ position: "relative" }}
+          >
+            <Slider
+              title="Intensity"
+              disabled={!assign}
+              value={value || 0}
+              min={min}
+              max={max}
+              onChange={(value, name) => {
+                console.log("RANGE CLCIK");
+
+                getRangeVal(this.props.title, port, value);
+              }}
+              renderIn="hardwarePropertyPanel"
+            />
+            <p style={{ position: "absolute", left: "27%", bottom: "10%" }}>
+              {min}
+            </p>
+            <p style={{ position: "absolute", right: "12%", bottom: "10%" }}>
+              {max}
+            </p>
+          </div>
+        </div>
+      );
+    }
 
     if (name == "LeftEye") {
       console.log("gkaay", this.props, this.state);
