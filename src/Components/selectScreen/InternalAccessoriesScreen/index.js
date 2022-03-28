@@ -432,7 +432,6 @@ function InternalAccessoriesScreen(props) {
       case "touch0": {
         if (isTouchZero) {
           props.selecteComponent({ isTouchZero: false });
-          console.log("halo", props);
           internalaccessoriesObj.isTouchZero = false;
           setTouchZero(false);
           var x = document.getElementById("snackbar3");
@@ -519,6 +518,16 @@ function InternalAccessoriesScreen(props) {
         if (isTouchZeroOutput) {
           props.selecteComponent({ isTouchZeroOutput: false });
 
+          //to change props in logic.program for correct simulation
+          for (var key in props.indexData.logic.program) {
+            console.log("halo key", props.indexData.logic.program[key]);
+            if (props.indexData.logic.program[key].type == "hardware") {
+              props.indexData.logic.program[
+                key
+              ].state.assignTouchZeroOutput = false;
+            }
+          } //for sim
+
           internalaccessoriesObj.isTouchZeroOutput = false;
           setTouchZeroOutput(false);
           var x = document.getElementById("snackbar6");
@@ -531,6 +540,16 @@ function InternalAccessoriesScreen(props) {
             isTouchZeroOutput: true,
             isTouchZero: false,
           });
+
+          //to change props in logic.program for correct simulation
+          for (var key in props.indexData.logic.program) {
+            //console.log("halo key", props.indexData.logic.program[key]);
+            if (props.indexData.logic.program[key].type == "hardware") {
+              props.indexData.logic.program[
+                key
+              ].state.assignTouchZeroOutput = true;
+            }
+          } //for sim
 
           internalaccessoriesObj.isTouchZeroOutput = true;
           internalaccessoriesObj.isTouchZero = false;
@@ -551,6 +570,16 @@ function InternalAccessoriesScreen(props) {
           internalaccessoriesObj.isTouchOneOutput = false;
           setTouchOneOutput(false);
 
+          //to change props in logic.program for correct simulation
+          for (var key in props.indexData.logic.program) {
+            //console.log("halo key", props.indexData.logic.program[key]);
+            if (props.indexData.logic.program[key].type == "hardware") {
+              props.indexData.logic.program[
+                key
+              ].state.assignTouchOneOutput = false;
+            }
+          } //for sim
+
           var x = document.getElementById("snackbar7");
           x.className = "show";
           setTimeout(function () {
@@ -561,6 +590,16 @@ function InternalAccessoriesScreen(props) {
 
           internalaccessoriesObj.isTouchOneOutput = true;
           internalaccessoriesObj.isTouchOne = false;
+
+          //to change props in logic.program for correct simulation
+          for (var key in props.indexData.logic.program) {
+            //console.log("halo key", props.indexData.logic.program[key]);
+            if (props.indexData.logic.program[key].type == "hardware") {
+              props.indexData.logic.program[
+                key
+              ].state.assignTouchOneOutput = true;
+            }
+          } //for sim
 
           setTouchOneOutput(true);
           setTouchOne(false);
@@ -578,6 +617,17 @@ function InternalAccessoriesScreen(props) {
           props.selecteComponent({ isTouchTwoOutput: false });
           internalaccessoriesObj.isTouchTwoOutput = false;
           setTouchTwoOutput(false);
+
+          //to change props in logic.program for correct simulation
+          for (var key in props.indexData.logic.program) {
+            //console.log("halo key", props.indexData.logic.program[key]);
+            if (props.indexData.logic.program[key].type == "hardware") {
+              props.indexData.logic.program[
+                key
+              ].state.assignTouchTwoOutput = false;
+            }
+          } //for sim
+
           var x = document.getElementById("snackbar8");
           x.className = "show";
           setTimeout(function () {
@@ -588,6 +638,16 @@ function InternalAccessoriesScreen(props) {
 
           internalaccessoriesObj.isTouchTwoOutput = true;
           internalaccessoriesObj.isTouchTwo = false;
+
+          //to change props in logic.program for correct simulation
+          for (var key in props.indexData.logic.program) {
+            //console.log("halo key", props.indexData.logic.program[key]);
+            if (props.indexData.logic.program[key].type == "hardware") {
+              props.indexData.logic.program[
+                key
+              ].state.assignTouchTwoOutput = true;
+            }
+          } //for sim
 
           setTouchTwoOutput(true);
           setTouchTwo(false);
@@ -606,6 +666,15 @@ function InternalAccessoriesScreen(props) {
 
           internalaccessoriesObj.isLeftEye = false;
           setEyeLeft(false);
+
+          //to change props in logic.program for correct simulation
+          for (var key in props.indexData.logic.program) {
+            // console.log("halo key", props.indexData.logic.program[key]);
+            if (props.indexData.logic.program[key].type == "hardware") {
+              props.indexData.logic.program[key].state.assignLeftEye = false;
+            }
+          } //for sim
+
           var x = document.getElementById("snackbar9");
           x.className = "show";
           setTimeout(function () {
@@ -615,6 +684,14 @@ function InternalAccessoriesScreen(props) {
           props.selecteComponent({ isLeftEye: true });
 
           internalaccessoriesObj.isLeftEye = true;
+
+          //to change props in logic.program for correct simulation
+          for (var key in props.indexData.logic.program) {
+            // console.log("halo key", props.indexData.logic.program[key]);
+            if (props.indexData.logic.program[key].type == "hardware") {
+              props.indexData.logic.program[key].state.assignLeftEye = true;
+            }
+          } //for sim
 
           setEyeLeft(true);
           var x = document.getElementById("snackbar9");
@@ -632,6 +709,15 @@ function InternalAccessoriesScreen(props) {
 
           internalaccessoriesObj.isRightEye = false;
           setEyeRight(false);
+
+          //to change props in logic.program for correct simulation
+          for (var key in props.indexData.logic.program) {
+            // console.log("halo key", props.indexData.logic.program[key]);
+            if (props.indexData.logic.program[key].type == "hardware") {
+              props.indexData.logic.program[key].state.assignRightEye = false;
+            }
+          } //for sim
+
           var x = document.getElementById("snackbar10");
           x.className = "show";
           setTimeout(function () {
@@ -641,6 +727,15 @@ function InternalAccessoriesScreen(props) {
           props.selecteComponent({ isRightEye: true });
 
           internalaccessoriesObj.isRightEye = true;
+
+          //to change props in logic.program for correct simulation
+          for (var key in props.indexData.logic.program) {
+            // console.log("halo key", props.indexData.logic.program[key]);
+            if (props.indexData.logic.program[key].type == "hardware") {
+              props.indexData.logic.program[key].state.assignRightEye = true;
+            }
+          } //for sim
+
           setEyeRight(true);
           var x = document.getElementById("snackbar10");
           x.className = "show";
@@ -657,6 +752,15 @@ function InternalAccessoriesScreen(props) {
 
           internalaccessoriesObj.isbuzzer = false;
           setbuzzer(false);
+
+          //to change props in logic.program for correct simulation
+          for (var key in props.indexData.logic.program) {
+            //console.log("halo key", props.indexData.logic.program[key]);
+            if (props.indexData.logic.program[key].type == "hardware") {
+              props.indexData.logic.program[key].state.assignBuzzer = false;
+            }
+          } //for sim
+
           var x = document.getElementById("snackbar11");
           x.className = "show";
           setTimeout(function () {
@@ -666,6 +770,15 @@ function InternalAccessoriesScreen(props) {
           props.selecteComponent({ isbuzzer: true });
 
           internalaccessoriesObj.isbuzzer = true;
+
+          //to change props in logic.program for correct simulation
+          for (var key in props.indexData.logic.program) {
+            //console.log("halo key", props.indexData.logic.program[key]);
+            if (props.indexData.logic.program[key].type == "hardware") {
+              props.indexData.logic.program[key].state.assignBuzzer = true;
+            }
+          } //for sim
+
           setbuzzer(true);
           var x = document.getElementById("snackbar11");
           x.className = "show";
@@ -682,6 +795,15 @@ function InternalAccessoriesScreen(props) {
 
           internalaccessoriesObj.isSmileOne = false;
           setSimleOne(false);
+
+          //to change props in logic.program for correct simulation
+          for (var key in props.indexData.logic.program) {
+            //console.log("halo key", props.indexData.logic.program[key]);
+            if (props.indexData.logic.program[key].type == "hardware") {
+              props.indexData.logic.program[key].state.assignSmileOne = false;
+            }
+          } //for sim
+
           var x = document.getElementById("snackbar12");
           x.className = "show";
           setTimeout(function () {
@@ -691,6 +813,15 @@ function InternalAccessoriesScreen(props) {
           props.selecteComponent({ isSmileOne: true });
           internalaccessoriesObj.isSmileOne = true;
           setSimleOne(true);
+
+          //to change props in logic.program for correct simulation
+          for (var key in props.indexData.logic.program) {
+            //console.log("halo key", props.indexData.logic.program[key]);
+            if (props.indexData.logic.program[key].type == "hardware") {
+              props.indexData.logic.program[key].state.assignSmileOne = true;
+            }
+          } //for sim
+
           var x = document.getElementById("snackbar12");
           x.className = "show";
           setTimeout(function () {
@@ -706,6 +837,15 @@ function InternalAccessoriesScreen(props) {
 
           internalaccessoriesObj.isSmileTwo = false;
           setSimleTwo(false);
+
+          //to change props in logic.program for correct simulation
+          for (var key in props.indexData.logic.program) {
+            //console.log("halo key", props.indexData.logic.program[key]);
+            if (props.indexData.logic.program[key].type == "hardware") {
+              props.indexData.logic.program[key].state.assignSmileTwo = false;
+            }
+          } //for sim
+
           var x = document.getElementById("snackbar13");
           x.className = "show";
           setTimeout(function () {
@@ -715,6 +855,15 @@ function InternalAccessoriesScreen(props) {
           props.selecteComponent({ isSmileTwo: true });
 
           internalaccessoriesObj.isSmileTwo = true;
+
+          //to change props in logic.program for correct simulation
+          for (var key in props.indexData.logic.program) {
+            //console.log("halo key", props.indexData.logic.program[key]);
+            if (props.indexData.logic.program[key].type == "hardware") {
+              props.indexData.logic.program[key].state.assignSmileTwo = true;
+            }
+          } //for sim
+
           setSimleTwo(true);
           var x = document.getElementById("snackbar13");
           x.className = "show";
@@ -731,6 +880,15 @@ function InternalAccessoriesScreen(props) {
 
           internalaccessoriesObj.isSmileThree = false;
           setSimleThree(false);
+
+          //to change props in logic.program for correct simulation
+          for (var key in props.indexData.logic.program) {
+            //console.log("halo key", props.indexData.logic.program[key]);
+            if (props.indexData.logic.program[key].type == "hardware") {
+              props.indexData.logic.program[key].state.assignSmileThree = false;
+            }
+          } //for sim
+
           var x = document.getElementById("snackbar14");
           x.className = "show";
           setTimeout(function () {
@@ -740,6 +898,15 @@ function InternalAccessoriesScreen(props) {
           props.selecteComponent({ isSmileThree: true });
 
           internalaccessoriesObj.isSmileThree = true;
+
+          //to change props in logic.program for correct simulation
+          for (var key in props.indexData.logic.program) {
+            //console.log("halo key", props.indexData.logic.program[key]);
+            if (props.indexData.logic.program[key].type == "hardware") {
+              props.indexData.logic.program[key].state.assignSmileThree = true;
+            }
+          } //for sim
+
           setSimleThree(true);
           var x = document.getElementById("snackbar14");
           x.className = "show";
@@ -757,6 +924,15 @@ function InternalAccessoriesScreen(props) {
 
           internalaccessoriesObj.isSmileFour = false;
           setSimleFour(false);
+
+          //to change props in logic.program for correct simulation
+          for (var key in props.indexData.logic.program) {
+            //console.log("halo key", props.indexData.logic.program[key]);
+            if (props.indexData.logic.program[key].type == "hardware") {
+              props.indexData.logic.program[key].state.assignSmileFour = false;
+            }
+          } //for sim
+
           var x = document.getElementById("snackbar15");
           x.className = "show";
           setTimeout(function () {
@@ -766,6 +942,15 @@ function InternalAccessoriesScreen(props) {
           props.selecteComponent({ isSmileFour: true });
 
           internalaccessoriesObj.isSmileFour = true;
+
+          //to change props in logic.program for correct simulation
+          for (var key in props.indexData.logic.program) {
+            //console.log("halo key", props.indexData.logic.program[key]);
+            if (props.indexData.logic.program[key].type == "hardware") {
+              props.indexData.logic.program[key].state.assignSmileFour = true;
+            }
+          } //for sim
+
           setSimleFour(true);
           var x = document.getElementById("snackbar15");
           x.className = "show";
