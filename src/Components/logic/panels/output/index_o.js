@@ -1032,7 +1032,7 @@ class OutputPanel extends Component {
       rangeStoreVal[name][portName].value = value;
       state[`value${name}${portName}`] = value;
     }
-    console.log("rangeStoreVal", rangeStoreVal);
+    console.log("data:: rangeStoreVal", rangeStoreVal);
 
     sessionStorage.setItem("rangeValCheckbox", JSON.stringify(rangeStoreVal));
 
@@ -1565,6 +1565,9 @@ class OutputPanel extends Component {
                           this.state[`curValRightEye${this.state.portName}`]
                           //state[`valueLeftEye${this.state.setportName}`]
                         }
+                        valR={this.state.curValRightEyeR}
+                        valB={this.state.curValRightEyeB}
+                        valG={this.state.curValRightEyeG}
                         key="RightEye"
                         title="RightEye"
                         assign={this.state.isClickRightEye}
