@@ -432,7 +432,7 @@ function InternalAccessoriesScreen(props) {
       case "touch0": {
         if (isTouchZero) {
           props.selecteComponent({ isTouchZero: false });
-
+          console.log("halo", props);
           internalaccessoriesObj.isTouchZero = false;
           setTouchZero(false);
           var x = document.getElementById("snackbar3");
@@ -890,7 +890,7 @@ function InternalAccessoriesScreen(props) {
         <div className="navbar_content">
           <div className="navbar_new isActive">Select</div>
           <div className="navbar_new">Assemble</div>
-          <div className="navbar_new">Create</div>
+          <div className="navbar_new">Code</div>
           <div className="navbar_new">Simulate</div>
         </div>
 

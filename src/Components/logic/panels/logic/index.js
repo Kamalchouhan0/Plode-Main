@@ -1300,7 +1300,7 @@ class Logic extends Component {
               <div>Select</div>
             </div>
             <div className="navbar_new">Assemble</div>
-            <div className="navbar_new">Create</div>
+            <div className="navbar_new">Code</div>
             <div className="navbar_new">Simulate</div>
           </div>
           <div className="navbarContainer_logic"></div>
