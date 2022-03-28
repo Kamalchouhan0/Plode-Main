@@ -5,11 +5,11 @@ var HexTypes = {
   "": { color: Colors.blue },
   // start: { color: "#55C11E" },
 
-  start: { color: "#40D3C4" },
-  end: { color: "	#FF4500" },
+  start: { color: "#40D3C4", name: "Start" },
+  end: { color: "	#FF4500", name: "END" },
 
   // condition: { color: Colors.purple, image: "condition" },
-  condition: { color: "#8888EB", image: "condition" },
+  condition: { color: "#8888EB", image: "condition", name: "Decision" },
 
   if: { color: Colors.if },
   sensor: { color: "#8282E0", image: "sensor" },
@@ -27,13 +27,17 @@ var HexTypes = {
   // wait: { color: "#355599", image: "wait" },
 
   action: { color: "$37ACE8", image: "action" },
-  hardware: { color: "#176895", image: "hardware" },
+  hardware: { color: "#176895", image: "hardware", name: "Action" },
   variable_output: { color: "#37ACE8", image: "variable 2", name: "variable" },
   wait: { color: "#37ACE8", image: "wait" },
 
   code: { color: "#883902" },
-  end_if: { color: Colors.purple, name: "END IF", image: "end if" },
-  end_condition: { color: Colors.purple, name: "END IF", image: "end if" },
+  end_if: { color: Colors.purple, name: "End Decision", image: "end if" },
+  end_condition: {
+    color: Colors.purple,
+    name: "End Decision",
+    image: "end if",
+  },
 
   end_variable: { color: "#5A00B9", name: "END IF", image: "end if" },
   end_sensor: { color: "#6F11D2", name: "End IF", image: "end if" },
@@ -42,7 +46,7 @@ var HexTypes = {
   // end_loop: { color: "#FF9757", name: "End Loop", image: "end" },
 
   loop: { color: "#EE8E7A", name: "Repeat", image: "repeat" },
-  end_loop: { color: "#EE8E7A", name: "End Loop", image: "end" },
+  end_loop: { color: "#EE8E7A", name: "End Repeat", image: "end" },
 
   hand: { color: Colors.grey, image: "touch" },
   active_hand: { color: Colors.flash_yellow, name: "Select", image: "touch" },

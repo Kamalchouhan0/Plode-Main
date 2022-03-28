@@ -2861,28 +2861,54 @@ class Hexagon extends Component {
         {this.renderCompnentImage(cx, r, hextype)}
 
         {/* TEXT INSIDE THE BLOCK */}
-        <text
-          x={cx}
-          y={r / 3 + r / 8 + r / 12}
-          fontSize={r / 4}
-          textAnchor="middle"
-          style={{
-            letterSpacing: "-0.05em",
-          }}
-          fill="white"
-        >
-          {/* {HexTypes[hextype].name} */}
+        {hextype == "loop" ? ( //condition to increase height of text of loop block
+          <text
+            x={cx}
+            y={r / 3 + r / 8 + r / 12}
+            fontSize={r / 4}
+            textAnchor="middle"
+            style={{
+              letterSpacing: "-0.05em",
+            }}
+            fill="white"
+          >
+            {/* {HexTypes[hextype].name} */}
 
-          {hextype == "repeat"
-            ? "repeat"
-            : hextype == "loop"
-            ? "loop"
-            : hextype == "sensor"
-            ? "condition"
-            : hextype == "end"
-            ? "stop"
-            : HexTypes[hextype].name}
-        </text>
+            {hextype == "repeat"
+              ? "Loop"
+              : hextype == "loop"
+              ? "Repeat"
+              : hextype == "sensor"
+              ? "Decision"
+              : hextype == "end"
+              ? "Stop"
+              : HexTypes[hextype].name}
+          </text>
+        ) : (
+          //else part that sets height of every other text in block
+          <text
+            x={cx}
+            y={r / 3 + r / 8 + r / 12 - 2}
+            fontSize={r / 4}
+            textAnchor="middle"
+            style={{
+              letterSpacing: "-0.05em",
+            }}
+            fill="white"
+          >
+            {/* {HexTypes[hextype].name} */}
+
+            {hextype == "repeat"
+              ? "Loop"
+              : hextype == "loop"
+              ? "Repeat"
+              : hextype == "sensor"
+              ? "Decision"
+              : hextype == "end"
+              ? "Stop"
+              : HexTypes[hextype].name}
+          </text>
+        )}
       </g>
     );
   }
