@@ -481,8 +481,8 @@ class Bibox extends Component {
               height: "5%",
               width: "20%",
               position: "fixed",
-              marginTop: "15%",
-              marginLeft: "1.5%",
+              marginTop: "18.5%",
+              marginLeft: "1.8%",
               color: "#707070",
             }}
           >
@@ -497,8 +497,8 @@ class Bibox extends Component {
               height: "5%",
               width: "20%",
               position: "fixed",
-              marginTop: "15%",
-              marginLeft: "4.2%",
+              marginTop: "18.5%",
+              marginLeft: "5.2%",
               color: "#707070",
             }}
           >
@@ -510,8 +510,8 @@ class Bibox extends Component {
               height: "5%",
               width: "20%",
               position: "fixed",
-              marginTop: "15%",
-              marginLeft: "7%",
+              marginTop: "18.5%",
+              marginLeft: "8.5%",
               color: "#707070",
             }}
           >

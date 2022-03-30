@@ -749,6 +749,7 @@ class Logic extends Component {
     this.props.update(logic);
   };
   bottomPanelChange = (state, type) => {
+    console.log("TYPE AND STATE", type, state);
     // alert("BOTTOMPANEL CHANGE");
     var { logic } = this.props;
 
@@ -1533,6 +1534,15 @@ class Logic extends Component {
                   marginTop: "1%",
                 }}
               >
+                {/* <img
+                  style={{
+                    position: "absolute",
+                    top: "4.8%",
+                    rotate: "-90deg",
+                    left: "36.5%",
+                  }}
+                  src={renderPrgImage("StartArrow")}
+                ></img> */}
                 <svg
                   height="100%"
                   width="100%"
