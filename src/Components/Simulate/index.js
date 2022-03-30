@@ -2066,6 +2066,7 @@ class Simulate extends Component {
         data[i].value = value;
       }
     }
+    console.log("close modal clicked");
     this.setState({
       model: false,
       rangeValue_: 0,
