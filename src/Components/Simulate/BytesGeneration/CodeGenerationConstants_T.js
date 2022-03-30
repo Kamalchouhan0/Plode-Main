@@ -1,6 +1,4 @@
-var exports = (module.exports = {});
-
-exports.PortsAndPortbytes = {
+let PortsAndPortbytes = {
   A1: ["A1"],
   B1: ["B1"],
   C1: ["C1"],
@@ -109,8 +107,7 @@ exports.PortsAndPortbytes = {
   Break_Dance: ["Break_Dance"],
   Gangnam_style: ["Gangnam_style"],
 };
-
-exports.CorrespondingPortCode = {
+let CorrespondingPortCode = {
   // setting the program bytes
   // RGB: "L",
   // Buzzer: "B",
@@ -185,7 +182,7 @@ exports.CorrespondingPortCode = {
   joystick: "A",
 };
 
-exports.PortByteValuesIf = {
+let PortByteValuesIf = {
   A1: "1",
   A2: "2",
   B1: "3",
@@ -229,7 +226,7 @@ exports.PortByteValuesIf = {
   IOT10: ["IOT10"],
 };
 
-exports.PortByteNumericalValuesIf = {
+let PortByteNumericalValuesIf = {
   A1: "1",
   A2: "2",
   B1: "3",
@@ -304,7 +301,7 @@ exports.PortByteNumericalValuesIf = {
   TouchTwo: "32",
 };
 
-exports.PortByteNumericalValuesOutput = {
+let PortByteNumericalValuesOutput = {
   A1: "1",
   A2: "2",
   B1: "3",
@@ -385,7 +382,7 @@ exports.PortByteNumericalValuesOutput = {
   Break_Dance: "100",
   Gangnam_style: "100",
 };
-exports.BiDataValuesOutput = {
+let BiDataValuesOutput = {
   A1: "1",
   A2: "2",
   B1: "3",
@@ -416,7 +413,7 @@ exports.BiDataValuesOutput = {
   L: "72",
 };
 
-exports.nodeDefaultCodes = {
+let nodeDefaultCodes = {
   //main changes is here.
   wait: "w",
   if: "d",
@@ -442,4 +439,13 @@ exports.nodeDefaultCodes = {
 
   repeat: "RST",
   end: "END",
+};
+export {
+  BiDataValuesOutput,
+  nodeDefaultCodes,
+  PortsAndPortbytes,
+  CorrespondingPortCode,
+  PortByteNumericalValuesIf,
+  PortByteValuesIf,
+  PortByteNumericalValuesOutput,
 };

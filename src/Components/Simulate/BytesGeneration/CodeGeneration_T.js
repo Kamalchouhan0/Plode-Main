@@ -2,7 +2,15 @@
 // var fs = require("fs");
 import fs from "fs";
 import CodeGenerationRangeValues from "./CodeGenerationRangeValues_T.js";
-import CodeGenerationConstants from "./CodeGenerationConstants_T.js";
+import {
+  PortsAndPortbytes,
+  CorrespondingPortCode,
+  PortByteValuesIf,
+  PortByteNumericalValuesIf,
+  PortByteNumericalValuesOutput,
+  BiDataValuesOutput,
+  nodeDefaultCodes,
+} from "./CodeGenerationConstants_T.js";
 import process from "process";
 // var CodeGenerationRangeValues = require("./CodeGenerationRangeValues_T.js");
 // var CodeGenerationConstants = require("./CodeGenerationConstants_T.js");
@@ -471,20 +479,20 @@ function genCodeString(logicComponents) {
 
   var Uploadprogram = "SET";
 
-  var PortsAndPortbytes = CodeGenerationConstants.PortsAndPortbytes;
+  // var PortsAndPortbytes = CodeGenerationConstants.PortsAndPortbytes;
 
-  var CorrespondingPortCode = CodeGenerationConstants.CorrespondingPortCode;
+  // var CorrespondingPortCode = CodeGenerationConstants.CorrespondingPortCode;
 
-  var PortByteValuesIf = CodeGenerationConstants.PortByteValuesIf;
+  // var PortByteValuesIf = CodeGenerationConstants.PortByteValuesIf;
 
-  var PortByteNumericalValuesIf =
-    CodeGenerationConstants.PortByteNumericalValuesIf;
+  // var PortByteNumericalValuesIf =
+  //   CodeGenerationConstants.PortByteNumericalValuesIf;
 
-  var PortByteNumericalValuesOutput =
-    CodeGenerationConstants.PortByteNumericalValuesOutput;
+  // var PortByteNumericalValuesOutput =
+  //   CodeGenerationConstants.PortByteNumericalValuesOutput;
 
-  var BiDataValuesOutput = CodeGenerationConstants.BiDataValuesOutput;
-  var nodeDefaultCodes = CodeGenerationConstants.nodeDefaultCodes;
+  // var BiDataValuesOutput = CodeGenerationConstants.BiDataValuesOutput;
+  // var nodeDefaultCodes = CodeGenerationConstants.nodeDefaultCodes;
 
   for (var key in PortByteNumericalValuesOutput) {
     if (MAX_OUTPUT_PORT_CODE < Number(PortByteNumericalValuesOutput[key])) {
