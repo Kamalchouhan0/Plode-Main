@@ -1311,10 +1311,9 @@ class Assembly extends Component {
         return false;
       }
     });
-    const isTempratureSensor = Object.keys(
-      JSON.parse(sessionStorage.getItem("concept")).internalaccessories
-        .isTemperature
-    );
+    const isTempratureSensor = JSON.parse(sessionStorage.getItem("concept"))
+      .internalaccessories.isTemperature;
+
     console.log("GAYA", isTempratureSensor);
     return (
       <>
@@ -1489,7 +1488,7 @@ class Assembly extends Component {
                 transform: "translateY(-50%)",
                 height: "60px",
                 width: "60px",
-                zIndex: "999999",
+                zIndex: "10",
               }}
               onClick={this.handleReadByte}
             />
@@ -1520,7 +1519,7 @@ class Assembly extends Component {
                   transform: "translateY(-50%)",
                   height: "60px",
                   width: "60px",
-                  zIndex: "999999",
+                  zIndex: "10",
                 }}
                 onClick={() => {
                   this.handleFourInOneSensor();
@@ -1681,7 +1680,7 @@ class Assembly extends Component {
                       transform: "translateY(-50%)",
                       height: "60px",
                       width: "60px",
-                      zIndex: "999999",
+                      zIndex: "10",
                     }}
                     onClick={() => {
                       this.handleFourInOneSensor();
@@ -1741,7 +1740,7 @@ class Assembly extends Component {
                         transform: "translateY(-50%)",
                         height: "60px",
                         width: "60px",
-                        zIndex: "999999",
+                        zIndex: "10",
                       }}
                       onClick={() => {
                         this.handleTempratureSensor();
@@ -1760,7 +1759,7 @@ class Assembly extends Component {
                     transform: "translateY(-50%)",
                     height: "60px",
                     width: "60px",
-                    zIndex: "999999",
+                    zIndex: "10",
                   }}
                   onClick={() => {
                     this.handleTempratureSensor();

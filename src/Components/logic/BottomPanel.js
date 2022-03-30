@@ -285,6 +285,7 @@ class BottomPanel extends Component {
                 width: "60px",
                 left: "87%",
                 top: "6.5%",
+                zIndex: "10",
               }}
               onClick={toggle}
               src={renderPrgImage("closeBtnShadow")}
