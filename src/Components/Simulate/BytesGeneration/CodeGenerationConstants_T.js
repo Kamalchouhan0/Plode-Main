@@ -107,7 +107,6 @@ let PortsAndPortbytes = {
   Break_Dance: ["Break_Dance"],
   Gangnam_style: ["Gangnam_style"],
 };
-
 let CorrespondingPortCode = {
   // setting the program bytes
   // RGB: "L",
@@ -441,13 +440,12 @@ let nodeDefaultCodes = {
   repeat: "RST",
   end: "END",
 };
-
-export default {
-  PortsAndPortbytes,
-  CorrespondingPortCode,
-  PortByteValuesIf,
-  PortByteNumericalValuesIf,
-  PortByteNumericalValuesOutput,
+export {
   BiDataValuesOutput,
   nodeDefaultCodes,
+  PortsAndPortbytes,
+  CorrespondingPortCode,
+  PortByteNumericalValuesIf,
+  PortByteValuesIf,
+  PortByteNumericalValuesOutput,
 };
