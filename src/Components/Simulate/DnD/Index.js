@@ -53,26 +53,26 @@ const CustomNodeFlow = ({ compo, img, assembly, updateState, indexChange }) => {
 
     console.log("click", element);
 
-    // setModel(true);
+    setModel(true);
 
-    // if (
-    //   compName !== "led" &&
-    //   compName !== "laser" &&
-    //   compName !== "dual_splitter"
-    // ) {
-    //   let removeUnderScore = compName.replace(/_/g, " "); //returns my_name
+    if (
+      compName !== "led" &&
+      compName !== "laser" &&
+      compName !== "dual_splitter"
+    ) {
+      let removeUnderScore = compName.replace(/_/g, " "); //returns my_name
 
-    //   let data = event.target.getAttribute("id").slice(4, 6);
-    //   console.log("DATA, PORT ", data);
+      let data = event.target.getAttribute("id").slice(4, 6);
+      console.log("DATA, PORT ", data);
 
-    //   let valueRange = PortValuesRangeMapping[data][compName]();
+      let valueRange = PortValuesRangeMapping[data][compName]();
 
-    //   console.log(valueRange.max, "valueRange");
+      console.log(valueRange.max, "valueRange");
 
-    //   updateState(true, removeUnderScore, compName, valueRange.max);
-    //   // updateState(true, compName, valueRange.max);
-    //   indexChange();
-    // }
+      updateState(true, removeUnderScore, compName, valueRange.max);
+      // updateState(true, compName, valueRange.max);
+      indexChange();
+    }
   };
 
   const closeModel = () => {
