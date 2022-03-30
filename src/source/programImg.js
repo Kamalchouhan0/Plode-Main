@@ -237,6 +237,7 @@ import SimulatePrgf2 from "../Assets/Bisoft_UI/Help screen/Program/Group 3203@2x
 import SavePrgf1 from "../Assets/Bisoft_UI/Help screen/Program/Group 3204@2x.png";
 import SavePrgf2 from "../Assets/Bisoft_UI/Help screen/Program/Group 3205@2x.png";
 import SavePrgf3 from "../Assets/Bisoft_UI/Help screen/Program/Group 3206@2x.png";
+import StartArrow from "../Assets/Bisoft_UI/Program/PNG/startArrow.png";
 
 // ACE EXTERNAL Accessories ex- led,lease
 // import LEDComponent from "../Assets/Bisoft_UI/PC Accessories/Mask Group 27@3x.png";
@@ -545,6 +546,9 @@ function renderPrgImage(imageName) {
       return SavePrgf2;
     case "SavePrgf3":
       return SavePrgf3;
+
+    case "StartArrow":
+      return StartArrow;
   }
 }
 
