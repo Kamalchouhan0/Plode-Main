@@ -84,7 +84,7 @@ const customStyles = {
     border: "2px solid #188dcc",
   },
 };
-const socket = io("http://localhost:3008");
+//const socket = io("http://localhost:3008");
 
 var Peripherial;
 let newconn;
@@ -159,57 +159,57 @@ class Speak extends Component {
       console.log("stopCmd", stopCmd);
       if (stopCmd[0] === "go" && stopCmd[1] === "forward") {
         console.log("forward emit");
-        socket.emit(
-          "/speak",
-          ["S".charCodeAt(), "1".charCodeAt()],
-          Peripherial
-        );
+        //  socket.emit(
+        //   "/speak",
+        //   ["S".charCodeAt(), "1".charCodeAt()],
+        //   Peripherial
+        // );
       } else if (stopCmd[0] === "go" && stopCmd[1] === "backward") {
-        socket.emit(
-          "/speak",
-          ["S".charCodeAt(), "2".charCodeAt()],
-          Peripherial
-        );
+        // socket.emit(
+        //   "/speak",
+        //   ["S".charCodeAt(), "2".charCodeAt()],
+        //   Peripherial
+        // );
         console.log("backward emit");
       } else if (stopCmd[0] === "go" && stopCmd[1] === "left") {
-        socket.emit(
-          "/speak",
-          ["S".charCodeAt(), "3".charCodeAt()],
-          Peripherial
-        );
+        // socket.emit(
+        //   "/speak",
+        //   ["S".charCodeAt(), "3".charCodeAt()],
+        //   Peripherial
+        // );
         console.log("left emit");
       } else if (stopCmd[0] === "go" && stopCmd[1] === "right") {
-        socket.emit(
-          "/speak",
-          ["S".charCodeAt(), "4".charCodeAt()],
-          Peripherial
-        );
+        // socket.emit(
+        //   "/speak",
+        //   ["S".charCodeAt(), "4".charCodeAt()],
+        //   Peripherial
+        // );
         console.log("right emit");
       } else if (stopCmd[0] === "आगे" && stopCmd[1] === "जाओ") {
         console.log("forward emit");
-        socket.emit(
-          "/speak",
-          ["S".charCodeAt(), "1".charCodeAt()],
-          Peripherial
-        );
+        // socket.emit(
+        //   "/speak",
+        //   ["S".charCodeAt(), "1".charCodeAt()],
+        //   Peripherial
+        // );
       } else if (stopCmd[0] === "पीछे " && stopCmd[1] === "जाओ") {
-        socket.emit(
-          "/speak",
-          ["S".charCodeAt(), "2".charCodeAt()],
-          Peripherial
-        );
+        // socket.emit(
+        //   "/speak",
+        //   ["S".charCodeAt(), "2".charCodeAt()],
+        //   Peripherial
+        // );
       } else if (stopCmd[0] === "बाएं " && stopCmd[1] === "जाओ") {
-        socket.emit(
-          "/speak",
-          ["S".charCodeAt(), "3".charCodeAt()],
-          Peripherial
-        );
+        // socket.emit(
+        //   "/speak",
+        //   ["S".charCodeAt(), "3".charCodeAt()],
+        //   Peripherial
+        // );
       } else if (stopCmd[0] === "दाएं " && stopCmd[1] === "जाओ") {
-        socket.emit(
-          "/speak",
-          ["S".charCodeAt(), "4".charCodeAt()],
-          Peripherial
-        );
+        // socket.emit(
+        //   "/speak",
+        //   ["S".charCodeAt(), "4".charCodeAt()],
+        //   Peripherial
+        // );
       }
 
       if (stopCmd[0] === "stop" && stopCmd[1] === "listening") {
@@ -227,11 +227,11 @@ class Speak extends Component {
   }
 
   componentDidMount = () => {
-    socket.emit("_usbDetection", "Hi");
-    socket.on("/usbDetection", (data) => {
-      console.log("...............0", data);
-      this.setState({ detected: data.detected, usbOpen: !data.detected });
-    });
+    // socket.emit("_usbDetection", "Hi");
+    // socket.on("/usbDetection", (data) => {
+    //   console.log("...............0", data);
+    //   this.setState({ detected: data.detected, usbOpen: !data.detected });
+    // });
     newconn = sessionStorage.getItem("connectionMode");
   };
 

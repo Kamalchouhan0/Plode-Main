@@ -70,7 +70,7 @@ import { Link, useHistory } from "react-router-dom";
 import renderPrgImage from "../../../source/programImg";
 import InternalScPrgm from "../../ReusableComponents/PrgmSlider/InternalPrgm/InternalScPrgm";
 
-const socket = io.connect("http://localhost:3008");
+//const socket = io.connect("http://localhost:3008");
 
 // sessionStorage.setItem(
 //   "interAccessoriesData",
@@ -210,18 +210,18 @@ function InternalAccessoriesScreen(props) {
     setMic(props.indexData.concept.internalaccessories.isMic);
   });
   useEffect(() => {
-    socket.emit("_usbDetection", "Hi i am firoz");
-    socket.on("/usbDetection1", (data) => {
-      console.log("...............1", data);
-      // let kill = Array.from(data);
-      // console.log("...............5", kill);
-      if (data == 1) {
-        setUsb(true);
-        console.log("LLLLLLLLLLLLLLL", data);
-      } else {
-        setUsb(false);
-      }
-    });
+    // socket.emit("_usbDetection", "Hi i am firoz");
+    // socket.on("/usbDetection1", (data) => {
+    //   console.log("...............1", data);
+    //   // let kill = Array.from(data);
+    //   // console.log("...............5", kill);
+    //   if (data == 1) {
+    //     setUsb(true);
+    //     console.log("LLLLLLLLLLLLLLL", data);
+    //   } else {
+    //     setUsb(false);
+    //   }
+    // });
     let data = JSON.parse(sessionStorage.getItem("user"));
 
     if (data === 1) {

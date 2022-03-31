@@ -342,7 +342,7 @@ class IfPanel extends Component {
       valTemprature = "";
 
     if (this.state.isRead) {
-      var socket = socketIOClient.connect("http://localhost:3008");
+      // var socket = socketIOClient.connect("http://localhost:3008");
       let bytesData = Array(9).fill("O".charCodeAt());
 
       bytesData.unshift("A".charCodeAt());
@@ -469,7 +469,7 @@ class IfPanel extends Component {
       }
 
       console.log(bytesData);
-      socket.emit("/codereadBytes", bytesData);
+      //socket.emit("/codereadBytes", bytesData);
       this.writePort(bytesData);
       var v = BAR.split(" ");
       console.log("RAJPUT", v);

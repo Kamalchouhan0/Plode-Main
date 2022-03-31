@@ -41,7 +41,7 @@ var editorRendered = true;
 var http = new XMLHttpRequest();
 
 var socket;
-var socketHost = "http://localhost:9009";
+//var socketHost = "http://localhost:9009";
 // http.onreadystatechange = function() {
 //   if (http.readyState == XMLHttpRequest.DONE) {
 //     // alert(xhr.responseText);
@@ -72,7 +72,7 @@ var Logic = React.createClass({
       currentNode: {},
       currentNodeIndex: 0,
       nodeCount: 1,
-      socket: io.connect(socketHost),
+      //socket: io.connect(socketHost),
     };
   },
   componentWillMount: function () {
@@ -117,9 +117,9 @@ var Logic = React.createClass({
     var curLogicScreen;
     curLogicScreen = sessionStorage.getItem("CurrentLogicScreen");
     // console.log("curLogicScreen", curLogicScreen);
-    var socket = this.state.socket;
+    //var socket = this.state.socket;
     // console.log("DEVICE IS DETECTED", localStorage.getItem("biboxTypes"));
-    socket.emit("/pathForC", { path: localStorage.getItem("biboxTypes") });
+    //socket.emit("/pathForC", { path: localStorage.getItem("biboxTypes") });
 
     // console.log(typeof(curLogicScreen));
     if (curLogicScreen == "text") {

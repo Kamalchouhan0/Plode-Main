@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import components from "./concept/data"; //component details
 
 import PortConnections from "./Assembly/PortConnections";
-const socket = openSocket("http://localhost:3008");
+//const socket = openSocket("http://localhost:3008");
 
 class Level extends Component {
   constructor(props) {
@@ -77,33 +77,30 @@ class Level extends Component {
     // this.props.history.push("/concept")
     var selectionType = localStorage.getItem("programMode");
     if (selectionType == "learn") {
-      socket.emit("/tutorialLevel", "Final.txt");
-      socket.on(
-        "_tutorialLevel",
-        (
-          dataToSend,
-          portToSend,
-          logicToSend,
-          Description,
-          end,
-          conceptHelp,
-          assemblyHelp,
-          logicHelp
-        ) => {
-          sessionStorage.setItem("tutorialConcept", dataToSend);
-          sessionStorage.setItem("tutorialPort", JSON.stringify(portToSend));
-          sessionStorage.setItem("tutorialLogic", JSON.stringify(logicToSend));
-          sessionStorage.setItem("tutorialEnd", JSON.stringify(end));
-
-          sessionStorage.setItem("logicHelp", logicHelp);
-          sessionStorage.setItem("conceptHelp", conceptHelp);
-          sessionStorage.setItem("assemblyHelp", assemblyHelp);
-
-          // sessionStorage.setItem("tutorialDesc", JSON.stringify(Description))
-
-          this.props.history.push("/concept");
-        }
-      );
+      // socket.emit("/tutorialLevel", "Final.txt");
+      // socket.on(
+      //   "_tutorialLevel",
+      //   (
+      //     dataToSend,
+      //     portToSend,
+      //     logicToSend,
+      //     Description,
+      //     end,
+      //     conceptHelp,
+      //     assemblyHelp,
+      //     logicHelp
+      //   ) => {
+      //     sessionStorage.setItem("tutorialConcept", dataToSend);
+      //     sessionStorage.setItem("tutorialPort", JSON.stringify(portToSend));
+      //     sessionStorage.setItem("tutorialLogic", JSON.stringify(logicToSend));
+      //     sessionStorage.setItem("tutorialEnd", JSON.stringify(end));
+      //     sessionStorage.setItem("logicHelp", logicHelp);
+      //     sessionStorage.setItem("conceptHelp", conceptHelp);
+      //     sessionStorage.setItem("assemblyHelp", assemblyHelp);
+      //     // sessionStorage.setItem("tutorialDesc", JSON.stringify(Description))
+      //     this.props.history.push("/concept");
+      //   }
+      // );
     } else {
       this.props.history.push("/concept");
     }

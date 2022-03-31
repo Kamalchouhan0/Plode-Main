@@ -222,30 +222,30 @@ class Workspace extends Component {
     });
     this.props.updatePort(PortConnections);
 
-    var socket = socketIOClient.connect("http://localhost:3008");
-    socket.emit("_usbDetection", "Hi");
-    socket.on("/usbDetection", (data) => {
-      if (data.detected) {
-        var c = document.getElementById("assemblyConnections");
-        var d = document.getElementById("biboxClass");
-        var e = document.getElementById("connectPort");
+    // var socket = socketIOClient.connect("http://localhost:3008");
+    // socket.emit("_usbDetection", "Hi");
+    // socket.on("/usbDetection", (data) => {
+    //   if (data.detected) {
+    //     var c = document.getElementById("assemblyConnections");
+    //     var d = document.getElementById("biboxClass");
+    //     var e = document.getElementById("connectPort");
 
-        // c.style.zIndex = 2;
-        // d.style.zIndex = 2;
-        // e.style.zIndex = 2;
-        this.setState({ detected: data.detected, usbOpen: !data.detected });
-      } else {
-        // var c = document.getElementById("assemblyConnections");
-        // var d = document.getElementById("biboxClass");
-        // var e = document.getElementById("connectPort");
+    //     // c.style.zIndex = 2;
+    //     // d.style.zIndex = 2;
+    //     // e.style.zIndex = 2;
+    //     this.setState({ detected: data.detected, usbOpen: !data.detected });
+    //   } else {
+    //     // var c = document.getElementById("assemblyConnections");
+    //     // var d = document.getElementById("biboxClass");
+    //     // var e = document.getElementById("connectPort");
 
-        // to remove  Device not connected..  also set the zindex2
-        // c.style.zIndex = 4;
-        // d.style.zIndex = 4;
-        // e.style.zIndex = 4;
-        this.setState({ detected: data.detected, usbOpen: !data.detected });
-      }
-    });
+    //     // to remove  Device not connected..  also set the zindex2
+    //     // c.style.zIndex = 4;
+    //     // d.style.zIndex = 4;
+    //     // e.style.zIndex = 4;
+    //     this.setState({ detected: data.detected, usbOpen: !data.detected });
+    //   }
+    // });
   };
 
   /**

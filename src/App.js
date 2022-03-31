@@ -87,7 +87,7 @@ import ConformationPopup from "./Components/Login/ConformationPopup";
 
 // import musick from "./Assets/music group button.svg";
 
-const socket = socketIOClient("http://localhost:3008");
+//const socket = socketIOClient("http://localhost:3008");
 
 const history = createBrowserHistory();
 
@@ -100,9 +100,9 @@ class App extends Component {
     //   console.log("Alive is Getting Called ...");
     //   socket.emit("_Alive", {"info" : window.location.href})
     // })
-    socket.on("Alive", (e) => {
-      socket.emit("_Alive", (e) => {});
-    });
+    // socket.on("Alive", (e) => {
+    //   socket.emit("_Alive", (e) => {});
+    // });
     window.addEventListener("resize", (e) => {
       const height = document.body.clientHeight;
       const width = document.body.clientWidth;
@@ -123,14 +123,12 @@ class App extends Component {
         // console.log("refresh", e.returnValue)
         // e.returnValue = `Are you sure you want to leave?`;
         // e.preventDefault()
-
-        if (window.location.href.includes("scratch-tool")) {
-          socket.emit("Browserclose", "scratch-tool");
-        } else {
-          socket.emit("Browserclose", "hye");
-        }
+        // if (window.location.href.includes("scratch-tool")) {
+        //   socket.emit("Browserclose", "scratch-tool");
+        // } else {
+        //   socket.emit("Browserclose", "hye");
+        // }
         // return "Leaving this page will reset the wizard";
-
         // if (performance.navigation.type == 1) {
         //   console.info("This page is reloaded");
         //   socket.emit("Browserclose", "refresh")
@@ -139,7 +137,6 @@ class App extends Component {
         //   console.info("This page is not reloaded");
         //   socket.emit("Browserclose", "HYE")
         //   return "Do you really want to leave our brilliant application?";
-
         // }
       },
       false

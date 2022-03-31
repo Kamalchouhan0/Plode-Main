@@ -50,7 +50,7 @@ import RemSlider from "../../../../ReusableComponents/RemSlider/RemSlider";
 // var myVar = mydata.PortConnections || "defaultValue";
 // console.log("CACHE VALUE:-", myVar);
 
-const socket = io.connect("http://localhost:3008");
+//const socket = io.connect("http://localhost:3008");
 
 let initalRender = true;
 
@@ -335,11 +335,11 @@ function RemoteSection(props) {
 
     if (pre != 0 && pre[2] != cur[2]) {
       setTimeout(() => {
-        socket.emit("/remote", data, "IF ");
+        //socket.emit("/remote", data, "IF ");
       }, 400);
       writePort(data);
     } else if (pre != 0 && pre[1] == cur[1] && pre[2] == cur[2]) {
-      socket.emit("/remote", cur, "IF INITIAL");
+      // socket.emit("/remote", cur, "IF INITIAL");
     }
     // else if (cur == 0 && pre[0] == cur[0]) {
     //   socket.emit("/remote", cur);
@@ -440,7 +440,7 @@ function RemoteSection(props) {
       isSmile4 ? 1 : 0,
     ];
     console.log("emitting EyeData ", data);
-    socket.emit("/remote", data, "firoz");
+    //socket.emit("/remote", data, "firoz");
     let no = props.webserialPort.name;
     if (no != "Not Connected") {
       writePort(data);
@@ -474,18 +474,18 @@ function RemoteSection(props) {
   }
 
   useEffect(() => {
-    socket.emit("_usbDetection", "Hi i am firoz");
-    socket.on("/usbDetection1", (data) => {
-      // console.log("...............1", data);
-      // // let kill = Array.from(data);
-      // // console.log("...............5", kill);
-      // if (data == 1) {
-      //   // setUsb(true);
-      //   console.log("LLLLLLLLLLLLLLL", data);
-      // } else {
-      //   // setUsb(false);
-      // }
-    });
+    // socket.emit("_usbDetection", "Hi i am firoz");
+    // socket.on("/usbDetection1", (data) => {
+    //   // console.log("...............1", data);
+    //   // // let kill = Array.from(data);
+    //   // // console.log("...............5", kill);
+    //   // if (data == 1) {
+    //   //   // setUsb(true);
+    //   //   console.log("LLLLLLLLLLLLLLL", data);
+    //   // } else {
+    //   //   // setUsb(false);
+    //   // }
+    // });
     let data = JSON.parse(sessionStorage.getItem("user"));
 
     if (data === 1) {

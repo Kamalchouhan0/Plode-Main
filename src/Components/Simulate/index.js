@@ -273,19 +273,19 @@ class Simulate extends Component {
     }
   }
   componentDidMount() {
-    var socket = io.connect("http://localhost:3008");
-    socket.emit("_usbDetection", "Hi");
-    socket.on("/usbDetection1", (data) => {
-      // console.log("...............1", data);
-      // // let kill = Array.from(data);
-      // // console.log("...............5", kill);
-      // if (data == 1) {
-      //   this.handleUsb(true);
-      //   console.log("LLLLLLLLLLLLLLL", data);
-      // } else {
-      //   this.handleUsb(false);
-      // }
-    });
+    //var socket = io.connect("http://localhost:3008");
+    //socket.emit("_usbDetection", "Hi");
+    //socket.on("/usbDetection1", (data) => {
+    // console.log("...............1", data);
+    // // let kill = Array.from(data);
+    // // console.log("...............5", kill);
+    // if (data == 1) {
+    //   this.handleUsb(true);
+    //   console.log("LLLLLLLLLLLLLLL", data);
+    // } else {
+    //   this.handleUsb(false);
+    // }
+    //});
     let data = JSON.parse(sessionStorage.getItem("user"));
 
     if (data === 1) {

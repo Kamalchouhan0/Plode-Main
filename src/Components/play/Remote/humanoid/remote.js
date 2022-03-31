@@ -36,7 +36,7 @@ const customStyles = {
     border: "2px solid #188dcc",
   },
 };
-const socket = io("http://localhost:3008");
+//const socket = io("http://localhost:3008");
 
 Math.degrees = function (radians) {
   return (radians * 180) / Math.PI;
@@ -70,12 +70,12 @@ class HumanoidRemote extends Component {
 
     document.addEventListener("mouseup", this.handleMouseUp.bind(this));
 
-    socket.emit("_usbDetection", "Hi");
+    //socket.emit("_usbDetection", "Hi");
 
-    socket.on("/usbDetection", (data) => {
-      console.log("...............0", data);
-      this.setState({ detected: data.detected, usbOpen: !data.detected });
-    });
+    //socket.on("/usbDetection", (data) => {
+    //  console.log("...............0", data);
+    //  this.setState({ detected: data.detected, usbOpen: !data.detected });
+    // });
 
     newconn = sessionStorage.getItem("connectionMode");
     console.log(newconn, "newconn");
@@ -434,23 +434,23 @@ class HumanoidRemote extends Component {
 
   rightJoyStick = () => {
     let data = ["R".charCodeAt(), "r".charCodeAt(), "r".charCodeAt(), 0];
-    socket.emit("/remote", data, Peripherial);
+    //socket.emit("/remote", data, Peripherial);
     console.log("emiiting rightJoy ", data, Peripherial);
   };
   leftJoyStick = () => {
     let data = ["R".charCodeAt(), "l".charCodeAt(), "l".charCodeAt(), 0];
-    socket.emit("/remote", data, Peripherial);
+    //socket.emit("/remote", data, Peripherial);
     console.log("emiiting rightJoy ", data, Peripherial);
   };
   forwardJoyStick = () => {
     let data = ["R".charCodeAt(), "u".charCodeAt(), "u".charCodeAt(), 0];
-    socket.emit("/remote", data, Peripherial);
+    //socket.emit("/remote", data, Peripherial);
     console.log("emiiting rightJoy ", data, Peripherial);
   };
 
   backwordJoyStick = () => {
     let data = ["R".charCodeAt(), "d".charCodeAt(), "d".charCodeAt(), 0];
-    socket.emit("/remote", data, Peripherial);
+    //socket.emit("/remote", data, Peripherial);
     console.log("emiiting rightJoy ", data, Peripherial);
   };
 
@@ -459,34 +459,34 @@ class HumanoidRemote extends Component {
 
     let data = ["R".charCodeAt(), "l".charCodeAt(), "l".charCodeAt(), speed];
     console.log("emiiting leftjoy ", data);
-    socket.emit("/remote", data);
+    //socket.emit("/remote", data);
 
-    socket.emit("/remote", data, Peripherial);
+    //socket.emit("/remote", data, Peripherial);
   };
 
   rightJoy = (speed) => {
     // console.log("right");
 
     let data = ["R".charCodeAt(), "r".charCodeAt(), "r".charCodeAt(), speed];
-    socket.emit("/remote", data, Peripherial);
+    //socket.emit("/remote", data, Peripherial);
     console.log("emiiting rightJoy ", data, Peripherial);
   };
 
   forwardJoy = (speed) => {
     let data = ["R".charCodeAt(), "u".charCodeAt(), "u".charCodeAt(), speed];
-    socket.emit("/remote", data, Peripherial);
+    //socket.emit("/remote", data, Peripherial);
     console.log("emiiting Forwardjoy ", data, Peripherial);
   };
   backwardJoy = (speed) => {
     let data = ["R".charCodeAt(), "d".charCodeAt(), "d".charCodeAt(), speed];
-    socket.emit("/remote", data, Peripherial);
+    //socket.emit("/remote", data, Peripherial);
     console.log("emiiting backwardJoy ", data, Peripherial);
   };
 
   forwardLeftJoy = (speed) => {
     // console.log("forward");
     let data = ["R".charCodeAt(), "u".charCodeAt(), "l".charCodeAt(), speed];
-    socket.emit("/remote", data, Peripherial);
+    // socket.emit("/remote", data, Peripherial);
     console.log("emiiting forwardLeftJoy ", data, Peripherial);
   };
   forwardRightJoy = (speed) => {
@@ -497,19 +497,19 @@ class HumanoidRemote extends Component {
 
     console.log("data Remote", data);
 
-    socket.emit("/remote", data, Peripherial);
+    //socket.emit("/remote", data, Peripherial);
     console.log("emiiting forwardRightJoy ", data, Peripherial);
   };
   backwardLeftJoy = (speed) => {
     // console.log("backward");
     let data = ["R".charCodeAt(), "d".charCodeAt(), "l".charCodeAt(), speed];
-    socket.emit("/remote", data, Peripherial);
+    // socket.emit("/remote", data, Peripherial);
     console.log("emiiting backwardLeftJoy ", data);
   };
   backwardRightJoy = (speed) => {
     // console.log("backward");
     let data = ["R".charCodeAt(), "d".charCodeAt(), "r".charCodeAt(), speed];
-    socket.emit("/remote", data, Peripherial);
+    //socket.emit("/remote", data, Peripherial);
     console.log("emiiting backwardRightJoy ", data);
   };
 
@@ -518,26 +518,26 @@ class HumanoidRemote extends Component {
   followMeClick = () => {
     // console.log("followMeclick");
     let data = ["R".charCodeAt(), "f".charCodeAt()];
-    socket.emit("/remote", data, Peripherial);
+    //socket.emit("/remote", data, Peripherial);
   };
   // smart mode
   smartClick = () => {
     // console.log("Smart click");
     let data = ["R".charCodeAt(), "a".charCodeAt()];
-    socket.emit("/remote", data, Peripherial);
+    // socket.emit("/remote", data, Peripherial);
   };
   // disco mode
   discoClick = () => {
     // console.log("Disco click");
     let data = ["R".charCodeAt(), "l".charCodeAt()];
-    socket.emit("/remote", data, Peripherial);
+    //socket.emit("/remote", data, Peripherial);
   };
   // follow line mode
 
   followLineClick = () => {
     // console.log("Follow Line click");
     let data = ["R".charCodeAt(), "g".charCodeAt()];
-    socket.emit("/remote", data, Peripherial);
+    //  socket.emit("/remote", data, Peripherial);
   };
   // ----------------Special Mode
   // Horn click
@@ -545,38 +545,38 @@ class HumanoidRemote extends Component {
   pushUpClick = () => {
     console.log("pushup Click ..HUMENOID");
     let data = ["R".charCodeAt(), "a".charCodeAt()];
-    socket.emit("/remote", data, Peripherial);
+    //socket.emit("/remote", data, Peripherial);
   };
 
   squatClick = () => {
     console.log("pushup Click ..HUMENOID");
     let data = ["R".charCodeAt(), "e".charCodeAt()];
-    socket.emit("/remote", data, Peripherial);
+    //socket.emit("/remote", data, Peripherial);
   };
 
   bowClick = () => {
     console.log("Horn Click ..HUMENOID");
     let data = ["R".charCodeAt(), "h".charCodeAt()];
-    socket.emit("/remote", data, Peripherial);
+    // socket.emit("/remote", data, Peripherial);
   };
   // Light
   attentionClick = () => {
     // console.log("Light click");
     let data = ["R".charCodeAt(), "b".charCodeAt()];
-    socket.emit("/remote", data, Peripherial);
+    //socket.emit("/remote", data, Peripherial);
   };
 
   // Spin
   saluteClick = () => {
     // console.log("Spin click");
     let data = ["R".charCodeAt(), "s".charCodeAt()];
-    socket.emit("/remote", data, Peripherial);
+    // socket.emit("/remote", data, Peripherial);
   };
 
   danceClick = () => {
     // console.log("Spin click");
     let data = ["R".charCodeAt(), "d".charCodeAt()];
-    socket.emit("/remote", data, Peripherial);
+    //socket.emit("/remote", data, Peripherial);
   };
 
   closeUsb = () => {

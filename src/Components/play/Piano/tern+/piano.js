@@ -46,7 +46,7 @@ import {
 import renderImage from "../../../../source/importImg";
 import MuscSlider from "../../../ReusableComponents/MuscSlider/MuscSlider";
 import "./pianoo.css";
-const socket = io("http://localhost:3008");
+//const socket = io("http://localhost:3008");
 
 function Music(props) {
   let history = useHistory();
@@ -68,42 +68,42 @@ function Music(props) {
   const [isPcPiano, setPcPiano] = useState(false);
 
   const M1 = () => {
-    socket.emit("/music-keys", ["M".charCodeAt(), "0".charCodeAt()]);
+    //socket.emit("/music-keys", ["M".charCodeAt(), "0".charCodeAt()]);
     let data = ["M".charCodeAt(), "0".charCodeAt()];
     writePort(data);
   };
   const M2 = () => {
-    socket.emit("/music-keys", ["M".charCodeAt(), "1".charCodeAt()]);
+    // socket.emit("/music-keys", ["M".charCodeAt(), "1".charCodeAt()]);
     let data = ["M".charCodeAt(), "1".charCodeAt()];
     writePort(data);
   };
   const M3 = () => {
-    socket.emit("/music-keys", ["M".charCodeAt(), "2".charCodeAt()]);
+    //socket.emit("/music-keys", ["M".charCodeAt(), "2".charCodeAt()]);
     let data = ["M".charCodeAt(), "2".charCodeAt()];
     writePort(data);
   };
   const M4 = () => {
-    socket.emit("/music-keys", ["M".charCodeAt(), "3".charCodeAt()]);
+    //socket.emit("/music-keys", ["M".charCodeAt(), "3".charCodeAt()]);
     let data = ["M".charCodeAt(), "3".charCodeAt()];
     writePort(data);
   };
   const M5 = () => {
-    socket.emit("/music-keys", ["M".charCodeAt(), "4".charCodeAt()]);
+    //socket.emit("/music-keys", ["M".charCodeAt(), "4".charCodeAt()]);
     let data = ["M".charCodeAt(), "4".charCodeAt()];
     writePort(data);
   };
   const M6 = () => {
-    socket.emit("/music-keys", ["M".charCodeAt(), "5".charCodeAt()]);
+    //socket.emit("/music-keys", ["M".charCodeAt(), "5".charCodeAt()]);
     let data = ["M".charCodeAt(), "5".charCodeAt()];
     writePort(data);
   };
   const M7 = () => {
-    socket.emit("/music-keys", ["M".charCodeAt(), "6".charCodeAt()]);
+    //socket.emit("/music-keys", ["M".charCodeAt(), "6".charCodeAt()]);
     let data = ["M".charCodeAt(), "6".charCodeAt()];
     writePort(data);
   };
   const M8 = () => {
-    socket.emit("/music-keys", ["M".charCodeAt(), "7".charCodeAt()]);
+    //socket.emit("/music-keys", ["M".charCodeAt(), "7".charCodeAt()]);
     let data = ["M".charCodeAt(), "7".charCodeAt()];
     writePort(data);
   };
@@ -445,18 +445,18 @@ function Music(props) {
   };
 
   useEffect(() => {
-    socket.emit("_usbDetection", "Hi i am firoz");
-    socket.on("/usbDetection1", (data) => {
-      // console.log("...............6", data);
-      // // let kill = Array.from(data);
-      // // console.log("...............5", kill);
-      // if (data == 1) {
-      //   // setUsb(true);
-      //   console.log("LLLLLLLLLLLLLLL", data);
-      // } else {
-      //   // setUsb(false);
-      // }
-    });
+    //socket.emit("_usbDetection", "Hi i am firoz");
+    //socket.on("/usbDetection1", (data) => {
+    // console.log("...............6", data);
+    // // let kill = Array.from(data);
+    // // console.log("...............5", kill);
+    // if (data == 1) {
+    //   // setUsb(true);
+    //   console.log("LLLLLLLLLLLLLLL", data);
+    // } else {
+    //   // setUsb(false);
+    // }
+    //});
     let data = JSON.parse(sessionStorage.getItem("user"));
 
     if (data === 1) {

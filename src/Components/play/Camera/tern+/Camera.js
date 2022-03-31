@@ -137,7 +137,7 @@ function Camera(props) {
 
   let interval;
 
-  const socket = io("http://localhost:3008");
+  //const socket = io("http://localhost:3008");
 
   useEffect(() => {
     let no_port = props.webserialPort.name;
@@ -299,18 +299,18 @@ function Camera(props) {
   // ++++++++++++++ //
 
   useEffect(() => {
-    socket.emit("_usbDetection", "Hi i am firoz");
-    socket.on("/usbDetection1", (data) => {
-      // console.log("...............8", data);
-      // // let kill = Array.from(data);
-      // // console.log("...............5", kill);
-      // if (data == 1) {
-      //   setUsb(true);
-      //   console.log("LLLLLLLLLLLLLLL", data);
-      // } else {
-      //   setUsb(false);
-      // }
-    });
+    //socket.emit("_usbDetection", "Hi i am firoz");
+    //socket.on("/usbDetection1", (data) => {
+    // console.log("...............8", data);
+    // // let kill = Array.from(data);
+    // // console.log("...............5", kill);
+    // if (data == 1) {
+    //   setUsb(true);
+    //   console.log("LLLLLLLLLLLLLLL", data);
+    // } else {
+    //   setUsb(false);
+    // }
+    // });
     let data = JSON.parse(sessionStorage.getItem("user"));
 
     if (data === 1) {

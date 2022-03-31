@@ -312,7 +312,7 @@ class Assembly extends Component {
       valdis = "";
 
     if (this.state.readbytes) {
-      var socket = socketIOClient.connect("http://localhost:3008");
+      // var socket = socketIOClient.connect("http://localhost:3008");
       let bytesData = Array(9).fill("O".charCodeAt());
 
       bytesData.unshift("A".charCodeAt());
@@ -443,7 +443,7 @@ class Assembly extends Component {
 
       console.log(bytesData);
       this.writePort(bytesData);
-      socket.emit("/assemblyreadBytes", bytesData);
+      // socket.emit("/assemblyreadBytes", bytesData);
 
       var v = BAR.split(" ");
       console.log("RAJPUT", v);
@@ -673,19 +673,19 @@ class Assembly extends Component {
     }
     sessionStorage.setItem("shield", "false");
 
-    var socket = socketIOClient.connect("http://localhost:3008");
-    socket.emit("_usbDetection", "Hi");
-    socket.on("/usbDetection1", (data) => {
-      // console.log("...............1", data);
-      // // let kill = Array.from(data);
-      // // console.log("...............5", kill);
-      // if (data == 1) {
-      //   this.handleUsb(true);
-      //   console.log("LLLLLLLLLLLLLLL", data);
-      // } else {
-      //   this.handleUsb(false);
-      // }
-    });
+    // var socket = socketIOClient.connect("http://localhost:3008");
+    // socket.emit("_usbDetection", "Hi");
+    // socket.on("/usbDetection1", (data) => {
+    //   // console.log("...............1", data);
+    //   // // let kill = Array.from(data);
+    //   // // console.log("...............5", kill);
+    //   // if (data == 1) {
+    //   //   this.handleUsb(true);
+    //   //   console.log("LLLLLLLLLLLLLLL", data);
+    //   // } else {
+    //   //   this.handleUsb(false);
+    //   // }
+    // });
     let data = JSON.parse(sessionStorage.getItem("user"));
 
     if (data === 1) {
@@ -1015,20 +1015,20 @@ class Assembly extends Component {
       var PortConnections = JSON.parse(
         sessionStorage.getItem("assembly")
       ).PortConnections;
-      var socket = socketIOClient("http://localhost:3008");
-      socket.emit("/checkAssembly", PortConnections);
-      socket.on("/assemblyResult", (data) => {
-        if (!data) {
-          this.setState({ modalIsOpen: true });
-          return true;
-        } else {
-          this.props.history.push("/logic");
-          // history.push('/logic');
-          // window.location.href = "/logic"
-          return false;
-          // this.props.history.push("/Learn")
-        }
-      });
+      // var socket = socketIOClient("http://localhost:3008");
+      // socket.emit("/checkAssembly", PortConnections);
+      // socket.on("/assemblyResult", (data) => {
+      //   if (!data) {
+      //     this.setState({ modalIsOpen: true });
+      //     return true;
+      //   } else {
+      //     this.props.history.push("/logic");
+      //     // history.push('/logic');
+      //     // window.location.href = "/logic"
+      //     return false;
+      //     // this.props.history.push("/Learn")
+      //   }
+      // });
     } else {
       this.props.history.push("/logic");
     }

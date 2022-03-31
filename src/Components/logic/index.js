@@ -253,19 +253,19 @@ class Logic extends Component {
     this.setState({ isHelp: !this.state.isHelp });
   };
   componentDidMount = () => {
-    var socket = io.connect("http://localhost:3008");
-    socket.emit("_usbDetection", "Hi");
-    socket.on("/usbDetection1", (data) => {
-      // console.log("...............1", data);
-      // // let kill = Array.from(data);
-      // // console.log("...............5", kill);
-      // if (data == 1) {
-      //   this.handleUsb(true);
-      //   console.log("LLLLLLLLLLLLLLL", data);
-      // } else {
-      //   this.handleUsb(false);
-      // }
-    });
+    // var socket = io.connect("http://localhost:3008");
+    // socket.emit("_usbDetection", "Hi");
+    // socket.on("/usbDetection1", (data) => {
+    //   // console.log("...............1", data);
+    //   // // let kill = Array.from(data);
+    //   // // console.log("...............5", kill);
+    //   // if (data == 1) {
+    //   //   this.handleUsb(true);
+    //   //   console.log("LLLLLLLLLLLLLLL", data);
+    //   // } else {
+    //   //   this.handleUsb(false);
+    //   // }
+    // });
     let data = JSON.parse(sessionStorage.getItem("user"));
 
     if (data === 1) {
@@ -273,10 +273,10 @@ class Logic extends Component {
     } else {
       // this.handleUsb();
     }
-    socket.on("/usbDetection", (data) => {
-      console.log("DATAE:----", data);
-      this.setState({ detected: data.detected, usbOpen: !data.detected });
-    });
+    // socket.on("/usbDetection", (data) => {
+    //   console.log("DATAE:----", data);
+    //   this.setState({ detected: data.detected, usbOpen: !data.detected });
+    // });
     // this.setState({ hexType: "wait" })
     if (sessionStorage.getItem("programEnd") != null) {
       this.setState({ readyForSimulation: "repeat" });
@@ -853,35 +853,33 @@ class Logic extends Component {
       this.setState({ uploadOpen: false });
     }, 2000);
 
-    var socket = socketIOClient("http://localhost:3008");
+    //var socket = socketIOClient("http://localhost:3008");
     if (localStorage.getItem("programMode") == "learn") {
-      socket.emit("/checkLogic", program, end, "Final");
-      socket.on("/logicResult", (data) => {
-        if (!data) {
-          this.setState({ modalIsOpen: true });
-          return true;
-        } else {
-          var params = {
-            screen: "hexa",
-            logic: this.props.logic,
-            components: this.props.assembly.PortConnections,
-          };
-          var Peripherial = JSON.parse(localStorage.getItem("Bluetooth"));
-          // console.log("this.props.history DONE LOGIC", Peripherial[0]["mac"])
-
-          if (Peripherial) {
-            socket.emit("/upload", { code: params }, Peripherial[0]["mac"]);
-          } else {
-            socket.emit("/upload", { code: params });
-          }
-
-          socket.on("_upload", (data) => {
-            // this.setState({ modalIsOpen: true })
-          });
-          return false;
-          // this.props.history.push("/Learn")
-        }
-      });
+      // socket.emit("/checkLogic", program, end, "Final");
+      // socket.on("/logicResult", (data) => {
+      //   if (!data) {
+      //     this.setState({ modalIsOpen: true });
+      //     return true;
+      //   } else {
+      //     var params = {
+      //       screen: "hexa",
+      //       logic: this.props.logic,
+      //       components: this.props.assembly.PortConnections,
+      //     };
+      //     var Peripherial = JSON.parse(localStorage.getItem("Bluetooth"));
+      //     // console.log("this.props.history DONE LOGIC", Peripherial[0]["mac"])
+      //     if (Peripherial) {
+      //       socket.emit("/upload", { code: params }, Peripherial[0]["mac"]);
+      //     } else {
+      //       socket.emit("/upload", { code: params });
+      //     }
+      //     socket.on("_upload", (data) => {
+      //       // this.setState({ modalIsOpen: true })
+      //     });
+      //     return false;
+      //     // this.props.history.push("/Learn")
+      //   }
+      // });
     } else {
       var params = {
         screen: "hexa",
@@ -891,15 +889,15 @@ class Logic extends Component {
       var Peripherial = JSON.parse(localStorage.getItem("Bluetooth"));
       // console.log("this.props.history DONE LOGIC", Peripherial[0]["mac"])
 
-      if (Peripherial) {
-        socket.emit("/upload", { code: params }, Peripherial[0]["mac"]);
-      } else {
-        socket.emit("/upload", { code: params });
-      }
+      // if (Peripherial) {
+      //   socket.emit("/upload", { code: params }, Peripherial[0]["mac"]);
+      // } else {
+      //   socket.emit("/upload", { code: params });
+      // }
 
-      socket.on("_upload", (data) => {
-        // this.setState({ modalIsOpen: true })
-      });
+      // socket.on("_upload", (data) => {
+      //   // this.setState({ modalIsOpen: true })
+      // });
       return false;
       // this.props.history.push("/Learn")
     }

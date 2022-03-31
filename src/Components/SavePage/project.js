@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import "./save.css";
 
 import socketIOClient from "socket.io-client";
-var socket = socketIOClient("http://localhost:3008");
+//var socket = socketIOClient("http://localhost:3008");
 
 // class Project extends Component {
 //   constructor(props) {
@@ -225,11 +225,11 @@ class Project extends Component {
 
   upload = () => {
     let Peripherial = JSON.parse(localStorage.getItem("Bluetooth"));
-    socket.emit(
-      "/uploadProjectByte",
-      this.state.projectDetail.bytes,
-      Peripherial
-    );
+    // socket.emit(
+    //   "/uploadProjectByte",
+    //   this.state.projectDetail.bytes,
+    //   Peripherial
+    // );
   };
 
   explore = () => {

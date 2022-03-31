@@ -64,19 +64,19 @@ class Save extends Component {
       // logic2: document.getElementById("logic2").value,
     };
 
-    var socket = socketIOClient("http://localhost:3008");
-    socket.emit(
-      "/saveTutorials",
-      name,
-      SelectedComp,
-      PortConnections,
-      end,
-      program,
-      Description
-    );
-    socket.on("_saveTutorial", () => {
-      this.setState({ saveOpen: true });
-    });
+    //var socket = socketIOClient("http://localhost:3008");
+    // socket.emit(
+    //   "/saveTutorials",
+    //   name,
+    //   SelectedComp,
+    //   PortConnections,
+    //   end,
+    //   program,
+    //   Description
+    // );
+    // socket.on("_saveTutorial", () => {
+    //   this.setState({ saveOpen: true });
+    // });
   };
   closeSave = () => {
     this.setState({ saveOpen: false });

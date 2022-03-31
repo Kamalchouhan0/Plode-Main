@@ -273,7 +273,7 @@ function Camera() {
 
   let interval;
 
-  const socket = io("http://localhost:3008");
+  //const socket = io("http://localhost:3008");
 
   useEffect(() => {
     // Anything in here is fired on component mount.
@@ -294,26 +294,26 @@ function Camera() {
       if (data === "Left") {
         let data = ["C".charCodeAt(), "2".charCodeAt()];
         console.log(" emit L ", data);
-        socket.emit("/camera", data, Peripherial);
+        //socket.emit("/camera", data, Peripherial);
       } else if (data === "Right") {
         let data = ["C".charCodeAt(), "1".charCodeAt()];
-        socket.emit("/camera", data, Peripherial);
+        // socket.emit("/camera", data, Peripherial);
         console.log("emit R ", data);
       } else if (data === "Center") {
         let data = ["C".charCodeAt(), "0".charCodeAt()];
-        socket.emit("/camera", data, Peripherial);
+        // socket.emit("/camera", data, Peripherial);
         console.log("emit C ", data);
       } else if (data === "Top") {
         let data = ["C".charCodeAt(), "3".charCodeAt()];
-        socket.emit("/camera", data, Peripherial);
+        // socket.emit("/camera", data, Peripherial);
         console.log("emit T ", data);
       } else if (data === "Bottom") {
         let data = ["C".charCodeAt(), "4".charCodeAt()];
-        socket.emit("/camera", data, Peripherial);
+        // socket.emit("/camera", data, Peripherial);
         console.log("emit B ", data);
       } else if (data === "Smile") {
         let data = ["C".charCodeAt(), "5".charCodeAt()];
-        socket.emit("/camera", data, Peripherial);
+        //socket.emit("/camera", data, Peripherial);
         console.log("emit S ", data);
       } else return;
     }, 500);

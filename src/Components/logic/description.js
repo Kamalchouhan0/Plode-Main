@@ -152,12 +152,12 @@ class Logic extends Component {
     // drawingNew.updated = false;
   }
   componentDidMount = () => {
-    var socket = io.connect("http://localhost:3008");
-    socket.emit("_usbDetection", "Hi");
-    socket.on("/usbDetection", (data) => {
-      // console.log("...............", data);
-      this.setState({ detected: data.detected, usbOpen: !data.detected });
-    });
+    // var socket = io.connect("http://localhost:3008");
+    // socket.emit("_usbDetection", "Hi");
+    // socket.on("/usbDetection", (data) => {
+    //   // console.log("...............", data);
+    //   this.setState({ detected: data.detected, usbOpen: !data.detected });
+    // });
     // console.log("indexLog")
     // this.setState({ hexType: "wait" })
   };
@@ -669,35 +669,35 @@ class Logic extends Component {
       this.setState({ uploadOpen: false });
     }, 2000);
 
-    var socket = socketIOClient("http://localhost:3008");
+    // var socket = socketIOClient("http://localhost:3008");
 
-    socket.emit("/checkLogic", program, end);
-    socket.on("/logicResult", (data) => {
-      if (!data) {
-        this.setState({ modalIsOpen: true });
-        return true;
-      } else {
-        var params = {
-          screen: "hexa",
-          logic: this.props.logic,
-          components: this.props.assembly.PortConnections,
-        };
-        var Peripherial = JSON.parse(sessionStorage.getItem("Bluetooth"));
-        // console.log("this.props.history DONE LOGIC", Peripherial[0]["mac"])
+    // socket.emit("/checkLogic", program, end);
+    // socket.on("/logicResult", (data) => {
+    //   if (!data) {
+    //     this.setState({ modalIsOpen: true });
+    //     return true;
+    //   } else {
+    //     var params = {
+    //       screen: "hexa",
+    //       logic: this.props.logic,
+    //       components: this.props.assembly.PortConnections,
+    //     };
+    //     var Peripherial = JSON.parse(sessionStorage.getItem("Bluetooth"));
+    //     // console.log("this.props.history DONE LOGIC", Peripherial[0]["mac"])
 
-        if (Peripherial) {
-          socket.emit("/upload", { code: params }, Peripherial[0]["mac"]);
-        } else {
-          socket.emit("/upload", { code: params });
-        }
+    //     if (Peripherial) {
+    //       socket.emit("/upload", { code: params }, Peripherial[0]["mac"]);
+    //     } else {
+    //       socket.emit("/upload", { code: params });
+    //     }
 
-        socket.on("_upload", (data) => {
-          // this.setState({ modalIsOpen: true })
-        });
-        return false;
-        // this.props.history.push("/Learn")
-      }
-    });
+    //     socket.on("_upload", (data) => {
+    //       // this.setState({ modalIsOpen: true })
+    //     });
+    //     return false;
+    //     // this.props.history.push("/Learn")
+    //   }
+    // });
   };
   tutor = () => {
     this.props.history.push("/saveTutorials");

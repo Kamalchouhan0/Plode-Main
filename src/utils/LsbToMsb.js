@@ -52,7 +52,7 @@ function binaryToDecimal(str) {
     bits *= 2;
   }
   console.log(decimal, "A1");
-  socket.emit("/A1-port", decimal);
+  //socket.emit("/A1-port", decimal);
 }
 
 //   // no retunr
@@ -68,7 +68,7 @@ function binaryToDecimal2(string) {
     bits *= 2;
   }
   console.log(decimal, "A2");
-  socket.emit("/A2-port", decimal);
+  //socket.emit("/A2-port", decimal);
 }
 function binaryToDecimal22(string) {
   let decimal = +0;
@@ -81,7 +81,7 @@ function binaryToDecimal22(string) {
     bits *= 2;
   }
   console.log(decimal, "ges");
-  socket.emit("/4IN1ges-port", decimal);
+  //socket.emit("/4IN1ges-port", decimal);
 }
 function binaryToDecimal3(string) {
   let decimal = +0;
@@ -94,7 +94,7 @@ function binaryToDecimal3(string) {
     bits *= 2;
   }
   console.log(decimal, "B1");
-  socket.emit("/B1-port", decimal);
+  // socket.emit("/B1-port", decimal);
 }
 function binaryToDecimal33(string) {
   let decimal = +0;
@@ -107,7 +107,7 @@ function binaryToDecimal33(string) {
     bits *= 2;
   }
   console.log(decimal, "dis");
-  socket.emit("/4IN1dis-port", decimal);
+  //socket.emit("/4IN1dis-port", decimal);
 }
 function binaryToDecimal4(string) {
   let decimal = +0;
@@ -120,7 +120,7 @@ function binaryToDecimal4(string) {
     bits *= 2;
   }
   console.log(decimal, "B2");
-  socket.emit("/B2-port", decimal);
+  //socket.emit("/B2-port", decimal);
 }
 function binaryToDecimal5(string) {
   let decimal = +0;
@@ -133,7 +133,7 @@ function binaryToDecimal5(string) {
     bits *= 2;
   }
   console.log(decimal, "C1");
-  socket.emit("/C1-port", decimal);
+  //socket.emit("/C1-port", decimal);
 }
 function binaryToDecimal6(string) {
   let decimal = +0;
@@ -146,7 +146,7 @@ function binaryToDecimal6(string) {
     bits *= 2;
   }
   console.log(decimal, "C2");
-  socket.emit("/C2-port", decimal);
+  // socket.emit("/C2-port", decimal);
 }
 function binaryToDecimal7(string) {
   let decimal = +0;
@@ -159,7 +159,7 @@ function binaryToDecimal7(string) {
     bits *= 2;
   }
   console.log(decimal, "4IN1");
-  socket.emit("/4IN1R-port", decimal);
+  // socket.emit("/4IN1R-port", decimal);
 }
 function binaryToDecimal9(string) {
   let decimal = +0;
@@ -172,7 +172,7 @@ function binaryToDecimal9(string) {
     bits *= 2;
   }
   console.log(decimal, "4IN1");
-  socket.emit("/4IN1G-port", decimal);
+  //socket.emit("/4IN1G-port", decimal);
 }
 function binaryToDecimal10(string) {
   let decimal = +0;
@@ -185,7 +185,7 @@ function binaryToDecimal10(string) {
     bits *= 2;
   }
   console.log(decimal, "4IN1");
-  socket.emit("/4IN1B-port", decimal);
+  // socket.emit("/4IN1B-port", decimal);
 }
 function binaryToDecimal11(string) {
   let decimal = +0;
@@ -198,7 +198,7 @@ function binaryToDecimal11(string) {
     bits *= 2;
   }
   console.log(decimal, "4IN1Calc");
-  socket.emit("/4IN1light-port", decimal);
+  //socket.emit("/4IN1light-port", decimal);
 }
 function binaryToDecimal8(string) {
   let decimal = +0;
@@ -211,7 +211,7 @@ function binaryToDecimal8(string) {
     bits *= 2;
   }
   console.log(decimal, "MIC");
-  socket.emit("/Mic-port", decimal);
+  //socket.emit("/Mic-port", decimal);
 }
 
 function binary_Decimal(str) {
@@ -226,7 +226,7 @@ function binary_Decimal(str) {
   }
   // if (valuee3) {
   console.log(decimal, "A1");
-  socket.emit("/A1-port", decimal);
+  //socket.emit("/A1-port", decimal);
   // }
 }
 

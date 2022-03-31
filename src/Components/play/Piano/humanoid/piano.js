@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import io from "socket.io-client";
 import Modal from "react-modal";
 import { buttonBackSrc } from "../../../../source/source";
-const socket = io("http://localhost:3008");
+//const socket = io("http://localhost:3008");
 const customStyles = {
   content: {
     top: "50%",
@@ -63,74 +63,74 @@ class HumanoidPiano extends Component {
   componentDidMount = () => {
     Peripherial = JSON.parse(localStorage.getItem("Bluetooth"));
   };
-  M1 = () => {
-    socket.emit(
-      "/music/keys",
-      ["M".charCodeAt(), "1".charCodeAt()],
-      Peripherial
-    );
-    console.log("1");
-  };
-  M2 = () => {
-    socket.emit(
-      "/music/keys",
-      ["M".charCodeAt(), "2".charCodeAt()],
-      Peripherial
-    );
-    console.log("2");
-  };
-  M3 = () => {
-    socket.emit(
-      "/music/keys",
-      ["M".charCodeAt(), "3".charCodeAt()],
-      Peripherial
-    );
-    console.log("3");
-  };
-  M4 = () => {
-    socket.emit(
-      "/music/keys",
-      ["M".charCodeAt(), "4".charCodeAt()],
-      Peripherial
-    );
-    console.log("4");
-  };
-  M5 = () => {
-    socket.emit(
-      "/music/keys",
-      ["M".charCodeAt(), "5".charCodeAt()],
-      Peripherial
-    );
+  // M1 = () => {
+  //   socket.emit(
+  //     "/music/keys",
+  //     ["M".charCodeAt(), "1".charCodeAt()],
+  //     Peripherial
+  //   );
+  //   console.log("1");
+  // };
+  // M2 = () => {
+  //   socket.emit(
+  //     "/music/keys",
+  //     ["M".charCodeAt(), "2".charCodeAt()],
+  //     Peripherial
+  //   );
+  //   console.log("2");
+  // };
+  // M3 = () => {
+  //   socket.emit(
+  //     "/music/keys",
+  //     ["M".charCodeAt(), "3".charCodeAt()],
+  //     Peripherial
+  //   );
+  //   console.log("3");
+  // };
+  // M4 = () => {
+  //   socket.emit(
+  //     "/music/keys",
+  //     ["M".charCodeAt(), "4".charCodeAt()],
+  //     Peripherial
+  //   );
+  //   console.log("4");
+  // };
+  // M5 = () => {
+  //   socket.emit(
+  //     "/music/keys",
+  //     ["M".charCodeAt(), "5".charCodeAt()],
+  //     Peripherial
+  //   );
 
-    console.log("5");
-  };
-  M6 = () => {
-    socket.emit(
-      "/music/keys",
-      ["M".charCodeAt(), "6".charCodeAt()],
-      Peripherial
-    );
+  //   console.log("5");
+  // };
+  // M6 = () => {
+  //   socket.emit(
+  //     "/music/keys",
+  //     ["M".charCodeAt(), "6".charCodeAt()],
+  //     Peripherial
+  //   );
 
-    console.log("6");
-  };
-  M7 = () => {
-    socket.emit(
-      "/music/keys",
-      ["M".charCodeAt(), "7".charCodeAt()],
-      Peripherial
-    );
+  //   console.log("6");
+  // };
+  // M7 = () => {
+  //   socket.emit(
+  //     "/music/keys",
+  //     ["M".charCodeAt(), "7".charCodeAt()],
+  //     Peripherial
+  //   );
 
-    console.log("7");
-  };
-  M8 = () => {
-    socket.emit(
-      "/music/keys",
-      ["M".charCodeAt(), "8".charCodeAt()],
-      Peripherial
-    );
+  //   console.log("7");
+  // };
+  // M8 = () => {
+  //   socket.emit(
+  //     "/music/keys",
+  //     ["M".charCodeAt(), "8".charCodeAt()],
+  //     Peripherial
+  //   );
 
-    console.log("8");
-  };
+  //   console.log("8");
+  // };
   render() {
     return (
       <div className="play-introduction">

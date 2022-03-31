@@ -23,20 +23,20 @@ import { data } from "@tensorflow/tfjs";
 import renderImage from "../../source/importImg";
 
 const ENDPOINT = "localhost:3008";
-let socket = socketIOClient("http://localhost:3008");
+//let socket = socketIOClient("http://localhost:3008");
 
 const DeviceSelect = (props) => {
   const [variDevice, setvariDevice] = useState(false);
   useEffect(() => {
-    socket.emit("_usbDetection", "Hi i am firoz");
-    socket.on("/usbDetection", (data) => {
-      console.log("...............0", data);
-      if (data == { detected: true }) {
-        console.log("trur");
-        let data1 = 1;
-        socket.emit("/connected", data1);
-      }
-    });
+    // socket.emit("_usbDetection", "Hi i am firoz");
+    // socket.on("/usbDetection", (data) => {
+    //   console.log("...............0", data);
+    //   if (data == { detected: true }) {
+    //     console.log("trur");
+    //     let data1 = 1;
+    //     socket.emit("/connected", data1);
+    //   }
+    // });
   });
 
   let history = useHistory();
@@ -67,18 +67,18 @@ const DeviceSelect = (props) => {
       history.push("/Selection");
     }
 
-    socket.emit("/scanDevice", (data) => {
-      // console.log(data,'////////////////////////////////')
-    });
+    //socket.emit("/scanDevice", (data) => {
+    // console.log(data,'////////////////////////////////')
+    // });
     // alert();
     // socket.emit("/scanclick", (data) => {
     //   data = 1;
     // });
   };
-  socket.on("/verifiedDevice", (res) => {
-    setvariDevice(res);
-    // console.log(res,"response come from server")
-  });
+  // socket.on("/verifiedDevice", (res) => {
+  //   setvariDevice(res);
+  //   // console.log(res,"response come from server")
+  // });
 
   // async function connect() {
   //   let port = await navigator.serial.requestPort();

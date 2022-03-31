@@ -43,7 +43,7 @@ const SpeechRecognition =
   window.SpeechRecognition || window.webkitSpeechRecognition;
 const recognition = new SpeechRecognition();
 
-const socket = io("http://localhost:3008");
+//const socket = io("http://localhost:3008");
 // recognition.start();
 
 function Speech(props) {
@@ -91,7 +91,7 @@ function Speech(props) {
       console.log("stopCmd", stopCmd);
       if (stopCmd[0] === "Light" && stopCmd[1] === "off.") {
         console.log("forward emit");
-        socket.emit("/speak", ["S".charCodeAt(), "0".charCodeAt()]);
+        // socket.emit("/speak", ["S".charCodeAt(), "0".charCodeAt()]);
         let data = ["S".charCodeAt(), "0".charCodeAt()];
         writePort(data);
       } else if (
@@ -99,7 +99,7 @@ function Speech(props) {
         stopCmd[1] === "light" &&
         stopCmd[2] === "on."
       ) {
-        socket.emit("/speak", ["S".charCodeAt(), "1".charCodeAt()]);
+        //socket.emit("/speak", ["S".charCodeAt(), "1".charCodeAt()]);
         console.log("white light emit");
         let data = ["S".charCodeAt(), "1".charCodeAt()];
         writePort(data);
@@ -108,7 +108,7 @@ function Speech(props) {
         stopCmd[1] === "light" &&
         stopCmd[2] === "on."
       ) {
-        socket.emit("/speak", ["S".charCodeAt(), "2".charCodeAt()]);
+        // socket.emit("/speak", ["S".charCodeAt(), "2".charCodeAt()]);
         console.log("red light emit");
         let data = ["S".charCodeAt(), "2".charCodeAt()];
         writePort(data);
@@ -117,7 +117,7 @@ function Speech(props) {
         stopCmd[1] === "light" &&
         stopCmd[2] === "on"
       ) {
-        socket.emit("/speak", ["S".charCodeAt(), "3".charCodeAt()]);
+        //socket.emit("/speak", ["S".charCodeAt(), "3".charCodeAt()]);
         console.log("green light emit");
         let data = ["S".charCodeAt(), "3".charCodeAt()];
         writePort(data);
@@ -155,7 +155,7 @@ function Speech(props) {
       //Small Letters
       if (stopCmd[0] === "light" && stopCmd[1] === "off") {
         console.log("forward emit");
-        socket.emit("/speak", ["S".charCodeAt(), "0".charCodeAt()]);
+        // socket.emit("/speak", ["S".charCodeAt(), "0".charCodeAt()]);
         let data = ["S".charCodeAt(), "0".charCodeAt()];
         writePort(data);
       } else if (
@@ -163,7 +163,7 @@ function Speech(props) {
         stopCmd[1] === "light" &&
         stopCmd[2] === "on"
       ) {
-        socket.emit("/speak", ["S".charCodeAt(), "1".charCodeAt()]);
+        //socket.emit("/speak", ["S".charCodeAt(), "1".charCodeAt()]);
         console.log("white light emit");
         let data = ["S".charCodeAt(), "1".charCodeAt()];
         writePort(data);
@@ -172,7 +172,7 @@ function Speech(props) {
         stopCmd[1] === "light" &&
         stopCmd[2] === "on"
       ) {
-        socket.emit("/speak", ["S".charCodeAt(), "2".charCodeAt()]);
+        // socket.emit("/speak", ["S".charCodeAt(), "2".charCodeAt()]);
         console.log("red light emit");
         let data = ["S".charCodeAt(), "2".charCodeAt()];
         writePort(data);
@@ -181,7 +181,7 @@ function Speech(props) {
         stopCmd[1] === "light" &&
         stopCmd[2] === "on."
       ) {
-        socket.emit("/speak", ["S".charCodeAt(), "3".charCodeAt()]);
+        //socket.emit("/speak", ["S".charCodeAt(), "3".charCodeAt()]);
         let data = ["S".charCodeAt(), "3".charCodeAt()];
         writePort(data);
         console.log("green light emit");
@@ -191,7 +191,7 @@ function Speech(props) {
         stopCmd[2] === "on"
       ) {
         console.log("blue light emit");
-        socket.emit("/speak", ["S".charCodeAt(), "4".charCodeAt()]);
+        //socket.emit("/speak", ["S".charCodeAt(), "4".charCodeAt()]);
         let data = ["S".charCodeAt(), "4".charCodeAt()];
         writePort(data);
       }
@@ -308,18 +308,18 @@ function Speech(props) {
   };
 
   useEffect(() => {
-    socket.emit("_usbDetection", "Hi i am firoz");
-    socket.on("/usbDetection1", (data) => {
-      // console.log("...............6", data);
-      // // let kill = Array.from(data);
-      // // console.log("...............5", kill);
-      // if (data == 1) {
-      //   // setUsb(true);
-      //   console.log("LLLLLLLLLLLLLLL", data);
-      // } else {
-      //   // setUsb(false);
-      // }
-    });
+    // socket.emit("_usbDetection", "Hi i am firoz");
+    // socket.on("/usbDetection1", (data) => {
+    //   // console.log("...............6", data);
+    //   // // let kill = Array.from(data);
+    //   // // console.log("...............5", kill);
+    //   // if (data == 1) {
+    //   //   // setUsb(true);
+    //   //   console.log("LLLLLLLLLLLLLLL", data);
+    //   // } else {
+    //   //   // setUsb(false);
+    //   // }
+    // });
     let data = JSON.parse(sessionStorage.getItem("user"));
 
     if (data === 1) {

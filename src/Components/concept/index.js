@@ -115,7 +115,7 @@ import { backBtn, nextBtn } from "../../source/index";
 import socketIOClient from "socket.io-client";
 import renderPrgImage from "../../source/programImg";
 
-var socket = socketIOClient("http://localhost:3008");
+//var socket = socketIOClient("http://localhost:3008");
 var data;
 var nextButtonVisibilty = "visible";
 
@@ -298,21 +298,21 @@ class Content extends Component {
     // }
 
     if (localStorage.getItem("programMode") == "learn") {
-      socket.emit("/tutorialLevel", "Final.txt");
-      socket.on("_loadCarousel", (data) => {
-        if (
-          data.comp != 0 &&
-          JSON.parse(sessionStorage.getItem("AppDetails")) == null
-        ) {
-          this.setState({ Alldata: data.comp, components: data.comp });
-        }
-      });
+      // socket.emit("/tutorialLevel", "Final.txt");
+      // socket.on("_loadCarousel", (data) => {
+      //   if (
+      //     data.comp != 0 &&
+      //     JSON.parse(sessionStorage.getItem("AppDetails")) == null
+      //   ) {
+      //     this.setState({ Alldata: data.comp, components: data.comp });
+      //   }
+      // });
     }
 
-    socket.emit("_usbDetection", "Hi");
-    socket.on("/usbDetection", (data) => {
-      this.setState({ detected: data.detected, usbOpen: !data.detected });
-    });
+    // socket.emit("_usbDetection", "Hi");
+    // socket.on("/usbDetection", (data) => {
+    //   this.setState({ detected: data.detected, usbOpen: !data.detected });
+    // });
 
     // when the concept screen reload/refresed it will set value as true/false this is for get the correct coverflow card on reload time
 
@@ -443,14 +443,14 @@ class Content extends Component {
       // for restriction...
 
       var SelectedComp = JSON.parse(sessionStorage.getItem("SelectedComp"));
-      socket.emit("/checkConcept", SelectedComp, "Final");
-      socket.on("/conceptResult", (data) => {
-        if (!data) {
-          this.setState({ modalIsOpen: true });
-        } else {
-          this.props.history.push("/Assembly");
-        }
-      });
+      // socket.emit("/checkConcept", SelectedComp, "Final");
+      // socket.on("/conceptResult", (data) => {
+      //   if (!data) {
+      //     this.setState({ modalIsOpen: true });
+      //   } else {
+      //     this.props.history.push("/Assembly");
+      //   }
+      // });
     }
   };
   close = () => {

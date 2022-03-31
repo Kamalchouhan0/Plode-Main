@@ -34,7 +34,7 @@ const customStyles = {
     border: "2px solid #188dcc",
   },
 };
-const socket = io("http://localhost:3008");
+//const socket = io("http://localhost:3008");
 var Peripherial;
 
 Math.degrees = function (radians) {
@@ -67,11 +67,11 @@ class RemotePage extends Component {
 
     Peripherial = JSON.parse(localStorage.getItem("Bluetooth"));
 
-    socket.emit("_usbDetection", "Hi");
-    socket.on("/usbDetection", (data) => {
-      console.log("...............0", data);
-      this.setState({ detected: data.detected, usbOpen: !data.detected });
-    });
+    // socket.emit("_usbDetection", "Hi");
+    // socket.on("/usbDetection", (data) => {
+    //   console.log("...............0", data);
+    //   this.setState({ detected: data.detected, usbOpen: !data.detected });
+    // });
   };
 
   handleMouseDown(event) {
@@ -502,50 +502,50 @@ class RemotePage extends Component {
 
     let data = ["R".charCodeAt(), "l".charCodeAt(), "l".charCodeAt(), speed];
     console.log("emiiting leftjoy ", data);
-    socket.emit("/remote", data, Peripherial);
+    //socket.emit("/remote", data, Peripherial);
   };
 
   rightJoy = (speed) => {
     // console.log("right");
 
     let data = ["R".charCodeAt(), "r".charCodeAt(), "r".charCodeAt(), speed];
-    socket.emit("/remote", data, Peripherial);
+    // socket.emit("/remote", data, Peripherial);
     console.log("emiiting rightJoy ", data);
   };
 
   forwardJoy = (speed) => {
     let data = ["R".charCodeAt(), "u".charCodeAt(), "u".charCodeAt(), speed];
-    socket.emit("/remote", data, Peripherial);
+    //socket.emit("/remote", data, Peripherial);
     console.log("emiiting Forwardjoy ", data);
   };
   backwardJoy = (speed) => {
     let data = ["R".charCodeAt(), "d".charCodeAt(), "d".charCodeAt(), speed];
-    socket.emit("/remote", data, Peripherial);
+    //socket.emit("/remote", data, Peripherial);
     console.log("emiiting backwardJoy ", data);
   };
 
   forwardLeftJoy = (speed) => {
     // console.log("forward");
     let data = ["R".charCodeAt(), "u".charCodeAt(), "l".charCodeAt(), speed];
-    socket.emit("/remote", data, Peripherial);
+    //socket.emit("/remote", data, Peripherial);
     console.log("emiiting forwardLeftJoy ", data);
   };
   forwardRightJoy = (speed) => {
     // console.log("forward");
     let data = ["R".charCodeAt(), "u".charCodeAt(), "r".charCodeAt(), speed];
-    socket.emit("/remote", data, Peripherial);
+    //socket.emit("/remote", data, Peripherial);
     console.log("emiiting forwardRightJoy ", data);
   };
   backwardLeftJoy = (speed) => {
     // console.log("backward");
     let data = ["R".charCodeAt(), "d".charCodeAt(), "l".charCodeAt(), speed];
-    socket.emit("/remote", data, Peripherial);
+    //socket.emit("/remote", data, Peripherial);
     console.log("emiiting backwardLeftJoy ", data);
   };
   backwardRightJoy = (speed) => {
     // console.log("backward");
     let data = ["R".charCodeAt(), "d".charCodeAt(), "r".charCodeAt(), speed];
-    socket.emit("/remote", data, Peripherial);
+    //socket.emit("/remote", data, Peripherial);
     console.log("emiiting backwardRightJoy ", data);
   };
 
@@ -554,39 +554,39 @@ class RemotePage extends Component {
   followMeClick = () => {
     // console.log("followMeclick");
     let data = ["R".charCodeAt(), "f".charCodeAt()];
-    socket.emit("/remote", data, Peripherial);
+    //socket.emit("/remote", data, Peripherial);
   };
   // smart mode
   smartClick = () => {
     // console.log("Smart click");
     let data = ["R".charCodeAt(), "a".charCodeAt()];
-    socket.emit("/remote", data, Peripherial);
+    //socket.emit("/remote", data, Peripherial);
   };
   // disco mode
   discoClick = () => {
     // console.log("Disco click");
     let data = ["R".charCodeAt(), "l".charCodeAt()];
-    socket.emit("/remote", data, Peripherial);
+    //socket.emit("/remote", data, Peripherial);
   };
   // follow line mode
 
   followLineClick = () => {
     // console.log("Follow Line click");
     let data = ["R".charCodeAt(), "g".charCodeAt()];
-    socket.emit("/remote", data, Peripherial);
+    //socket.emit("/remote", data, Peripherial);
   };
   // ----------------Special Mode
   // Horn click
   hornClick = () => {
     console.log("Horn Click ...TERN");
     let data = ["R".charCodeAt(), "h".charCodeAt()];
-    socket.emit("/remote", data, Peripherial);
+    // socket.emit("/remote", data, Peripherial);
   };
   // Light
   lightClick = () => {
     // console.log("Light click");
     let data = ["R".charCodeAt(), "b".charCodeAt()];
-    socket.emit("/remote", data, Peripherial);
+    //socket.emit("/remote", data, Peripherial);
   };
 
   // Spin
@@ -594,7 +594,7 @@ class RemotePage extends Component {
   spinClick = () => {
     // console.log("Spin click");
     let data = ["R".charCodeAt(), "s".charCodeAt()];
-    socket.emit("/remote", data, Peripherial);
+    //socket.emit("/remote", data, Peripherial);
   };
   closeUsb = () => {
     this.setState({ usbOpen: false });

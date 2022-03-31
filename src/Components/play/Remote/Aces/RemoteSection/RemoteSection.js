@@ -8,7 +8,7 @@ import { useHistory } from "react-router-dom";
 // import SliderRange2 from '../../../../ReusableComponents/SliderRange2/SliderRange2';
 // import sessionStorage from '../../../../LocalStorage/LocalStorage';
 
-const socket = io("http://localhost:3008");
+//const socket = io("http://localhost:3008");
 function RemoteSection() {
   let history = useHistory();
 
@@ -123,12 +123,12 @@ function RemoteSection() {
   React.useEffect(() => {
     Peripherial = JSON.parse(localStorage.getItem("Bluetooth"));
     console.log(Peripherial);
-    socket.emit("_usbDetection", "Hi");
-    socket.on("/usbDetection", (data) => {
-      console.log("...............0", data);
-      setDetected(data.detected);
-      setUsbOpen(!data.detected);
-    });
+    // socket.emit("_usbDetection", "Hi");
+    // socket.on("/usbDetection", (data) => {
+    //   console.log("...............0", data);
+    //   setDetected(data.detected);
+    //   setUsbOpen(!data.detected);
+    // });
   }, []);
 
   const handlerRightEye = (e) => {
@@ -144,21 +144,21 @@ function RemoteSection() {
     // console.log("Follow Line click");
     let data = ["R".charCodeAt(), "D".charCodeAt(), disco ? 1 : 0];
     console.log("Emitting disco data", data, Peripherial);
-    socket.emit("/remote", data, Peripherial);
+    //socket.emit("/remote", data, Peripherial);
   };
 
   const talkClick = () => {
     // console.log("Follow Line click");
     let data = ["R".charCodeAt(), "T".charCodeAt(), talk ? 1 : 0];
     console.log("Emitting talk data", data);
-    socket.emit("/remote", data, Peripherial);
+    // socket.emit("/remote", data, Peripherial);
   };
 
   const gestureClick = () => {
     // console.log("Follow Line click");
     let data = ["R".charCodeAt(), "G".charCodeAt(), gesture ? 1 : 0];
     console.log("Emitting gesture data", data);
-    socket.emit("/remote", data, Peripherial);
+    //socket.emit("/remote", data, Peripherial);
   };
 
   const leftEyeData = () => {
@@ -178,7 +178,7 @@ function RemoteSection() {
     ];
     Peripherial = JSON.parse(localStorage.getItem("Bluetooth"));
     console.log("emitting EyeData ", data);
-    socket.emit("/remote", data, Peripherial);
+    //socket.emit("/remote", data, Peripherial);
   };
 
   return (

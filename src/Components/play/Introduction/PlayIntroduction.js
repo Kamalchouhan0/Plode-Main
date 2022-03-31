@@ -16,7 +16,7 @@ import { faCoffee, faTimesCircle } from "@fortawesome/free-solid-svg-icons";
 import { BackgroundSrc } from "../../../source/source";
 
 const element = <FontAwesomeIcon icon={faCoffee} />;
-const socket = io("http://localhost:3008");
+//const socket = io("http://localhost:3008");
 var slide = "";
 
 class PlayIntroduction extends Component {
@@ -28,11 +28,11 @@ class PlayIntroduction extends Component {
     };
   }
   componentDidMount = () => {
-    socket.emit("checkDongle", "HEY");
-    socket.on("/_checkDongle", (data) => {
-      console.log("...............0", data);
-      this.setState({ detected: data.detected, usbOpen: !data.detected });
-    });
+    //socket.emit("checkDongle", "HEY");
+    // socket.on("/_checkDongle", (data) => {
+    //   console.log("...............0", data);
+    //   this.setState({ detected: data.detected, usbOpen: !data.detected });
+    // });
   };
   nextbtn = () => {
     slide = slide + Slide.name;

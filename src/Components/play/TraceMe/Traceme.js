@@ -393,7 +393,7 @@ const customStyles = {
     border: "2px solid #188dcc",
   },
 };
-const socket = io("http://localhost:3008");
+//const socket = io("http://localhost:3008");
 
 var pathData;
 var clear = 0;
@@ -437,13 +437,13 @@ class Traceme extends React.Component {
       .addEventListener("mouseup", this.handleMouseUp);
     // let data = ["T".charCodeAt(), "1".charCodeAt()];
     if (sessionStorage.getItem("type") != "USB") {
-      socket.emit("/traceMe", Peripherial);
+      // socket.emit("/traceMe", Peripherial);
     }
-    socket.emit("_usbDetection", "Hi");
-    socket.on("/usbDetection", (data) => {
-      console.log("...............0", data);
-      this.setState({ detected: data.detected, usbOpen: !data.detected });
-    });
+    // socket.emit("_usbDetection", "Hi");
+    // socket.on("/usbDetection", (data) => {
+    //   console.log("...............0", data);
+    //   this.setState({ detected: data.detected, usbOpen: !data.detected });
+    // });
   }
 
   componentWillUnmount() {
@@ -451,7 +451,7 @@ class Traceme extends React.Component {
       .getElementById("DrawAREA")
       .removeEventListener("mouseup", this.handleMouseUp);
     if (sessionStorage.getItem("type") != "USB") {
-      socket.emit("/disconnectTrace", "disconnection");
+      //socket.emit("/disconnectTrace", "disconnection");
     }
   }
 
@@ -626,7 +626,7 @@ class Traceme extends React.Component {
     var as = this.state.arr;
     console.log("Required data is ..", as);
 
-    socket.emit("/uploadTraceData", as); //for server.js
+    //socket.emit("/uploadTraceData", as); //for server.js
 
     //for currentserver.js
 
