@@ -1,15 +1,7 @@
 import React, { useState } from "react";
 import "./VisualProgram.css";
 import { Link, useHistory } from "react-router-dom";
-import {
-  backBtn,
-  blockbased,
-  Cgroupbutton,
-  flowchartbasedgroupbutton,
-  programmenucard,
-  projectbased,
-  pythoncodingbutton,
-} from "../../../source/index";
+
 import renderPrgImage from "../../../source/programImg";
 import VisualPrgm from "../../ReusableComponents/PrgmSlider/VisualPrgm/VisualPrgm";
 function VisualProgram() {
