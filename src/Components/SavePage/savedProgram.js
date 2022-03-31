@@ -210,7 +210,7 @@ class SavedProgram extends Component {
               }}
             >
               <div className="loading">
-                <h1>Loading Projects </h1>
+                <h1>Coming Soon </h1>
                 <ReactLoading
                   type="bubbles"
                   color="blue"
