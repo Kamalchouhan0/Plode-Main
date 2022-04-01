@@ -8,7 +8,7 @@ import { webSerialAction } from "../../redux/actions/index";
 import unicodeToChar from "../../utils/unicodeToChar";
 // import DragDropContext from 'react-dnd';
 // import TouchBackend from 'react-dnd-touch-backend';
-
+import getBytes from "../Simulate/BytesGeneration/convertBytes";
 import { connect } from "react-redux";
 import HexBoard from "./HexBoard";
 import BottomPanel from "./BottomPanel";
@@ -1025,6 +1025,43 @@ class Logic extends Component {
   // ITS =(e) => {
   //   alert(e)
   // }
+  async writePort(data) {
+    try {
+      const ports = await navigator.serial.getPorts();
+      console.log("portsss", ports);
+
+      console.log("portsss", ports[0].writable);
+      // const outputStream = ports[0].writable,
+      const writer = ports[0].writable.getWriter();
+      // writer = outputStream.getWriter();
+      const sata = data;
+      const data1 = new Uint8Array(sata); // hello// 82, 76, 0, 0, 0, 82, 0, 0, 0, 66, 0, 0, 1, 0, 1,
+      console.log("send data:+", data1);
+
+      await writer.write(data1);
+
+      writer.releaseLock();
+    } catch (e) {
+      console.log(e);
+    }
+  }
+  uploadProgram = () => {
+    var params = {
+      screen: "hexa",
+      logic: this.props.logic,
+      components: this.props.assembly.PortConnections,
+      internalaccessories: JSON.parse(sessionStorage.getItem("concept"))
+        .internalaccessories,
+    };
+
+    getBytes({ code: params });
+    let bytes = sessionStorage.getItem("convert_Bytes");
+    var data = bytes.split(",");
+    console.log(data, "KAMAL SIMULATE");
+    //this.myRef.current.upload();
+    this.writePort(data);
+    // console.log("UPLOAD DATA", this.myRef.current.upload()); //it will call anyFun which is available at simulateLogic.js
+  };
   render = () => {
     const { program, scale, offset, currentProgramGuide, active } =
       this.props.logic;
@@ -1736,13 +1773,14 @@ class Logic extends Component {
           />
         </div>
 
-        {/* <button
-          onClick={this.checkForSimulation}
-          className="nextButton"
-          style={{ visibility: "visible" }}
-        >
-          NEXT
-        </button> */}
+        <img
+          onClick={this.uploadProgram}
+          className="nextButton" //search for ".nextButton" in project directory to edit style
+          src={renderPrgImage("uploadBtn")}
+          style={{
+            visibility: "visible",
+          }}
+        ></img>
       </div>
     );
   };

@@ -242,13 +242,12 @@
 .nextButton {
   outline: none;
 
-  height: 6vh;
-  width: 8vw;
+  height: 8vh;
+
   border-radius: 50px;
-  border-color: black;
-  background-color: #311b92;
-  top: 90vh;
-  right: 5vw;
+  cursor: pointer;
+  top: 81.5vh;
+  right: 2.7vw;
   position: absolute;
   color: white;
   text-align: center;
