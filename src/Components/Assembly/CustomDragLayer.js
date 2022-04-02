@@ -97,7 +97,12 @@ class CustomDragLayer extends Component {
         url = renderPrgImage("PlayComputerImg");
         return (
           <img
-            style={{ overflow: "visible", zIndex: 2 }}
+            style={{
+              overflow: "visible",
+              zIndex: 2,
+              marginLeft: -120,
+              marginTop: -100,
+            }}
             src={url}
             width={ImageSizes[type][0] * scale}
             height={ImageSizes[type][1] * scale}

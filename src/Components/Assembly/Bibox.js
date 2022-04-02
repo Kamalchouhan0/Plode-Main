@@ -48,7 +48,8 @@ const biboxSource = {
   beginDrag(props) {
     DraggingInfo.isDragging = true;
     console.log("dragging", props);
-    const { left, top } = props;
+    var { left, top } = props;
+    // left = left - 500;
     document.getElementById("PC_dragSource").style.opacity = 0;
     return { left, top };
   },
@@ -70,8 +71,8 @@ class Bibox extends Component {
     var shield = sessionStorage.getItem("shield");
     if (shield == "true") {
       sessionStorage.setItem("shield", "false");
+      this.props.removeFromWorkspace({ type: "play_shield" });
     }
-    this.props.removeFromWorkspace({ type: "play_shield" });
 
     this.forceUpdate();
   };
@@ -164,6 +165,12 @@ class Bibox extends Component {
 
     console.log("kkkkkkkkkkDATA:_____>>", height, width);
     if (Device == "Ace" && shield == "false") {
+      if (left != 328 && top != 162) {
+        //conditon to escape first load and values offset for mouse to center on PC image while dragging
+        left = left - 120;
+        top = top - 100;
+      }
+      console.log("initial left nd right", left, top);
       return connectDragSource(
         // PLEASE NOTE THIS IS ONLY FOR ACE/PLAYCOMPUTER
         <div
@@ -179,7 +186,7 @@ class Bibox extends Component {
 
             // background: "red",
           }}
-          onDoubleClick={() => this.typeCheck(this)}
+          //onDoubleClick={() => this.typeCheck(this)}
         >
           {isCheckedMic ? (
             <img
