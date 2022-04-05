@@ -736,7 +736,7 @@ class Component1 extends Component {
       var height = 100 * scale;
       var width = 100 * scale;
       left = left - 10;
-      top = top + 10;
+      top = top + 15;
 
       return connectDragSource(
         <div>
