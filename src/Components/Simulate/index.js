@@ -379,7 +379,11 @@ class Simulate extends Component {
     $(`#img_C1`);
     $(`#img_D1`);
   }
-
+  startsimulate = () => {
+    let bytes = sessionStorage.getItem("convert_Bytes");
+    var programBytes = bytes.split(",").slice(67);
+    console.log("heelloo", programBytes);
+  };
   hardware = (j) => {
     if (this.props.logic.program[j].state.assignA1) {
       myImage = document.getElementById(`img_A1`);
@@ -2268,7 +2272,9 @@ class Simulate extends Component {
                 <div
                   className="iconBtnSize simulateBtn"
                   onClick={() => {
-                    this.play(0, true);
+                    //this.play(0, true);
+                    this.startsimulate();
+
                     this.myRef.current.anyFun();
                   }}
                 >
