@@ -82,6 +82,7 @@ class Card extends Component {
             backgroundPosition: "center",
             backgroundSize: "contain",
             backgroundColor: "rgba(245, 244, 244, 0.98)",
+
             marginTop: "2%",
             marginLeft: "2%",
             marginRight: "2%",

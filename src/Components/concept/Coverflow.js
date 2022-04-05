@@ -188,6 +188,7 @@ class ContentLeft extends Component {
           timeConstant={150}
           active={this.convertIndexToPresent(this.props.active)}
           //active="10"
+
           displayQuantityOfSide={2}
           navigation
           infiniteScroll
