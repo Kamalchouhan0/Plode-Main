@@ -101,6 +101,55 @@ const styleSimulate_ = {
     marginLeft: "5%",
   },
 };
+const timer = (ms) => new Promise((res) => setTimeout(res, ms));
+var notflag = false;
+async function decison(arg1, arg2, op) {
+  //start inner switch
+  var response;
+  switch (op) {
+    case ">": {
+      if (arg1 > arg2) {
+        console.log("TRUE");
+        response = true;
+      } else {
+        console.log("FALSE");
+        response = false;
+      }
+      break;
+    }
+    case "<": {
+      if (arg1 < arg2) {
+        console.log("TRUE");
+        response = true;
+      } else {
+        console.log("FALSE");
+        response = false;
+      }
+      break;
+    }
+    case "=": {
+      if (!notflag) {
+        if (arg1 == arg2) {
+          console.log("TRUE");
+          response = true;
+        } else {
+          console.log("FALSE");
+          response = false;
+        }
+      } else {
+        if (arg1 != arg2) {
+          console.log("TRUE");
+          response = true;
+        } else {
+          console.log("FALSE");
+          response = false;
+        }
+      }
+      break;
+    }
+  } ///end inner switch
+  return response;
+}
 class Simulate extends Component {
   constructor(props) {
     super(props);
@@ -379,10 +428,465 @@ class Simulate extends Component {
     $(`#img_C1`);
     $(`#img_D1`);
   }
+
+  async processbytes(bytes, inputopcodes, settingsbytes) {
+    //console.log("iop:", inputopcodes);
+    //var center = document.getElementById("centerStage");
+
+    //var i = await initSliders(inputopcodes);
+    var iterartions;
+    var repartstart;
+    var resetflag = false;
+
+    for (var b = 0; b < bytes.length; b++) {
+      //console.log("count:", b);
+
+      if (sessionStorage.getItem("sim_btn") == "false") {
+        console.log("breakin in");
+        resetflag = true;
+        break;
+      }
+      if (
+        bytes[b] == "R".charCodeAt(0) &&
+        bytes[b + 1] == "S".charCodeAt(0) &&
+        bytes[b + 2] == "T".charCodeAt(0)
+      ) {
+        //forever condition
+        await timer(10);
+        console.log("RST");
+        b = 0;
+      }
+
+      //if condition
+      if (bytes[b] == "d".charCodeAt(0)) {
+        console.log("in decison");
+        b += 3;
+        var ar1 = bytes[b + 1].toString(2);
+        var ar2 = bytes[b + 2].toString(2);
+        console.log(ar1);
+        console.log(ar2);
+        var op = String.fromCharCode(bytes[b + 3]);
+        if (bytes[b + 4] == "33") {
+          notflag = true;
+        }
+        var ar3 = ar1 + ar2;
+        console.log(ar3);
+        var arg2 = parseInt(ar3, 2);
+        var condition;
+        switch (parseInt(bytes[b])) {
+          case 1: {
+            var arg1 = parseInt(document.getElementById("a1_s").value);
+
+            condition = await decison(arg1, arg2, op);
+            break;
+          }
+          case 2: {
+            var arg1 = parseInt(document.getElementById("a1_s").value);
+
+            condition = await decison(arg1, arg2, op);
+            break;
+          }
+          case 3: {
+            var arg1 = parseInt(document.getElementById("b1_s").value);
+            console.log(arg1);
+            console.log(arg2);
+            condition = await decison(arg1, arg2, op);
+            break;
+          }
+          case 4: {
+            var arg1 = parseInt(document.getElementById("b1_s").value);
+
+            condition = await decison(arg1, arg2, op);
+            break;
+          }
+          case 5: {
+            var arg1 = parseInt(document.getElementById("c1_s").value);
+
+            condition = await decison(arg1, arg2, op);
+            break;
+          }
+          case 6: {
+            var arg1 = parseInt(document.getElementById("c1_s").value);
+
+            condition = await decison(arg1, arg2, op);
+            break;
+          }
+          case 7: {
+            var arg1 = parseInt(document.getElementById("d1_s").value);
+
+            condition = await decison(arg1, arg2, op);
+            break;
+          }
+          case 8: {
+            var arg1 = parseInt(document.getElementById("d1_s").value);
+
+            condition = await decison(arg1, arg2, op);
+            break;
+          }
+          case 29: {
+            var arg1 = parseInt(document.getElementById("mic_s").value);
+
+            condition = await decison(arg1, arg2, op);
+            break;
+          }
+          case 23 || 24 || 25 || 26 || 27 || 28: {
+            var arg1 = parseInt(document.getElementById("4in1_s").value);
+
+            condition = await decison(arg1, arg2, op);
+            break;
+          }
+          case 30: {
+            var arg1 = parseInt(document.getElementById("t0s").value);
+            console.log(arg1);
+            console.log(arg2);
+            condition = await decison(arg1, arg2, op);
+            break;
+          }
+          case 31: {
+            var arg1 = parseInt(document.getElementById("t1s").value);
+
+            condition = await decison(arg1, arg2, op);
+            break;
+          }
+          case 32: {
+            var arg1 = parseInt(document.getElementById("t2s").value);
+
+            condition = await decison(arg1, arg2, op);
+            break;
+          }
+        } ///end outer switch
+        b = b + 3;
+        if (condition == false) {
+          console.log("in false");
+          for (var k = b; k < bytes.length; k++) {
+            if (
+              bytes[k] == "E".charCodeAt(0) &&
+              bytes[k + 1] == "D".charCodeAt(0)
+            ) {
+              b = k + 1;
+              console.log("b after ED", b);
+              break;
+            }
+          }
+        }
+      }
+
+      ///repat conditon
+      if (bytes[b] == "l".charCodeAt(0)) {
+        console.log("in repat");
+        iterartions = parseInt(bytes[b + 3]);
+        repartstart = b + 4;
+        b += 4;
+      }
+      if (bytes[b] == "E".charCodeAt(0) && bytes[b + 1] == "L".charCodeAt(0)) {
+        console.log("in EL");
+        iterartions--;
+        if (iterartions > 0) {
+          b = repartstart;
+          await timer(50);
+        }
+      }
+
+      ///wait conditon
+      if (bytes[b] == "w".charCodeAt(0)) {
+        console.log("inside wait conditon");
+        var w1 = parseInt(bytes[b + 1]).toString(2);
+        var w2 = parseInt(bytes[b + 2]).toString(2);
+        var w3 = parseInt(bytes[b + 3]).toString(2);
+        var w4 = parseInt(bytes[b + 4]).toString(2);
+        var wait = w1 + w2 + w3 + w4;
+        console.log(wait);
+        wait = parseInt(wait, 2);
+        console.log(wait);
+        await timer(wait);
+
+        console.log("wait over");
+        b = b + 4;
+      }
+
+      ///output condition
+      if (bytes[b] == "o".charCodeAt(0)) {
+        console.log("inside output condition");
+        var i = b + 2;
+        while (bytes[i] != "}".charCodeAt(0)) {
+          //console.log("byte:", bytes[i]);
+          // console.log("on/off:", bytes[i + 2]);
+          switch (parseInt(bytes[i])) {
+            case 1: {
+              ///a1
+              if (parseInt(bytes[i + 2]) > 0) {
+                console.log("PORT A IS ON");
+                document.getElementById(`img_A1`).style.filter =
+                  "drop-shadow(0 0 10px #07b03f)";
+                //document.getElementById("a1").style.visibility = "visible";
+              } else if (bytes[i + 2] == "0") {
+                console.log("PORT A IS OFF");
+                document.getElementById(`img_A1`).style.filter =
+                  "drop-shadow(0 0 0)";
+                //document.getElementById("a1").style.visibility = "hidden";
+              }
+              i = i + 2;
+              break;
+            }
+            case 2: {
+              ///a2
+              if (parseInt(bytes[i + 2]) > 0) {
+                //console.log("SMILE LED1 ON");
+                document.getElementById(`img_A1`).style.filter =
+                  "drop-shadow(0 0 10px #07b03f)";
+              } else if (bytes[i + 2] == "0") {
+                //console.log("SMILE LED1 OFF");
+                document.getElementById(`img_A1`).style.filter =
+                  "drop-shadow(0 0 0)";
+              }
+              i = i + 2;
+              break;
+            }
+            case 3: {
+              //b1
+              if (parseInt(bytes[i + 2]) > 0) {
+                //console.log("SMILE LED1 ON");
+                document.getElementById(`img_B1`).style.filter =
+                  "drop-shadow(0 0 10px #07b03f)";
+              } else if (bytes[i + 2] == "0") {
+                //console.log("SMILE LED1 OFF");
+                document.getElementById(`img_B1`).style.filter =
+                  "drop-shadow(0 0 0)";
+              }
+              i = i + 2;
+              break;
+            }
+            case 4: {
+              //b2
+              if (parseInt(bytes[i + 2]) > 0) {
+                //console.log("SMILE LED1 ON");
+                document.getElementById(`img_B1`).style.filter =
+                  "drop-shadow(0 0 10px #07b03f)";
+              } else if (bytes[i + 2] == "0") {
+                //console.log("SMILE LED1 OFF");
+                document.getElementById(`img_B1`).style.filter =
+                  "drop-shadow(0 0 0)";
+              }
+              i = i + 2;
+              break;
+            }
+            case 5: {
+              //c1
+              if (parseInt(bytes[i + 2]) > 0) {
+                //console.log("SMILE LED1 ON");
+                document.getElementById(`img_C1`).style.filter =
+                  "drop-shadow(0 0 10px #07b03f)";
+              } else if (bytes[i + 2] == "0") {
+                //console.log("SMILE LED1 OFF");
+                document.getElementById(`img_C1`).style.filter =
+                  "drop-shadow(0 0 0)";
+              }
+              i = i + 2;
+              break;
+            }
+            case 6: {
+              //c2
+              if (parseInt(bytes[i + 2]) > 0) {
+                //console.log("SMILE LED1 ON");
+                document.getElementById(`img_C1`).style.filter =
+                  "drop-shadow(0 0 10px #07b03f)";
+              } else if (bytes[i + 2] == "0") {
+                //console.log("SMILE LED1 OFF");
+                document.getElementById(`img_C1`).style.filter =
+                  "drop-shadow(0 0 0)";
+              }
+              i = i + 2;
+              break;
+            }
+            case 7: {
+              //d1
+              if (parseInt(bytes[i + 2]) > 0) {
+                //console.log("SMILE LED1 ON");
+                document.getElementById(`img_D1`).style.filter =
+                  "drop-shadow(0 0 10px #07b03f)";
+              } else if (bytes[i + 2] == "0") {
+                //console.log("SMILE LED1 OFF");
+                document.getElementById(`img_D1`).style.filter =
+                  "drop-shadow(0 0 0)";
+              }
+              i = i + 2;
+              break;
+            }
+            case 8: {
+              //d2
+              if (parseInt(bytes[i + 2]) > 0) {
+                //console.log("SMILE LED1 ON");
+                document.getElementById(`img_D1`).style.filter =
+                  "drop-shadow(0 0 10px #07b03f)";
+              } else if (bytes[i + 2] == "0") {
+                //console.log("SMILE LED1 OFF");
+                document.getElementById(`img_D1`).style.filter =
+                  "drop-shadow(0 0 0)";
+              }
+              i = i + 2;
+              break;
+            }
+            case 19: {
+              if (bytes[i + 2] == "1") {
+                //console.log("SMILE LED1 ON");
+                document.getElementById("PcSmLed1").src = renderPrgImage(
+                  "PcinternalTeethActive"
+                );
+              } else if (bytes[i + 2] == "0") {
+                //console.log("SMILE LED1 OFF");
+                document.getElementById("PcSmLed1").src = renderPrgImage(
+                  "PcinternalTeethInActive"
+                );
+              }
+              i = i + 2;
+              break;
+            }
+            case 20: {
+              if (bytes[i + 2] == "1") {
+                //console.log("SMILE LED2 ON");
+                document.getElementById("PcSmLed2").src = renderPrgImage(
+                  "PcinternalTeethActive"
+                );
+              } else if (bytes[i + 2] == "0") {
+                // console.log("SMILE LED2 OFF");
+                document.getElementById("PcSmLed2").src = renderPrgImage(
+                  "PcinternalTeethInActive"
+                );
+              }
+              i = i + 2;
+              break;
+            }
+            case 21: {
+              if (bytes[i + 2] == "1") {
+                //console.log("SMILE LED3 ON");
+                document.getElementById("PcSmLed3").src = renderPrgImage(
+                  "PcinternalTeethActive"
+                );
+              } else if (bytes[i + 2] == "0") {
+                // console.log("SMILE LED3 OFF");
+                document.getElementById("PcSmLed3").src = renderPrgImage(
+                  "PcinternalTeethInActive"
+                );
+              }
+              i = i + 2;
+              break;
+            }
+            case 22: {
+              if (bytes[i + 2] == "1") {
+                //console.log("SMILE LED4 ON");
+                document.getElementById("PcSmLed4").src = renderPrgImage(
+                  "PcinternalTeethActive"
+                );
+              } else if (bytes[i + 2] == "0") {
+                //console.log("SMILE LED4 OFF");
+                document.getElementById("PcSmLed4").src = renderPrgImage(
+                  "PcinternalTeethInActive"
+                );
+              }
+              i = i + 2;
+              break;
+            }
+            case 23: {
+              var bz1 = bytes[i + 1].toString(2);
+              var bz2 = bytes[i + 2].toString(2);
+              var bzval = parseInt(bz1 + bz2, 2);
+              console.log("buzzer:", bzval);
+              if (bzval > 0) {
+                document.getElementById("PcInternalBuzzer").src =
+                  renderPrgImage("PcinternalBuzzerActive");
+                //document.getElementById("bz2").style.visibility = "visible";
+              } else {
+                document.getElementById("PcInternalBuzzer").src =
+                  renderPrgImage("PcinternalBuzzerInActive"); //document.getElementById("bz2").style.visibility = "hidden";
+              }
+              break;
+            }
+            case 24 || 25 || 26: {
+              if (bytes[i + 2] > 0) {
+                console.log("Left EYE ON");
+                document.getElementById("PcinternalLeftEYE").src =
+                  renderPrgImage("PcinternalEYEActive");
+              } else {
+                console.log("Left EYE OFF");
+                document.getElementById("PcinternalLeftEYE").src =
+                  renderPrgImage("PcinternalEYEInActive");
+              }
+              i = i + 2;
+              break;
+            }
+            case 27 || 28 || 29: {
+              if (bytes[i + 2] > 0) {
+                console.log("Right EYE ON");
+                document.getElementById("PcinternalRightEYE").src =
+                  renderPrgImage("PcinternalEYEActive");
+              } else {
+                console.log("Right EYE OFF");
+                document.getElementById("PcinternalRightEYE").src =
+                  renderPrgImage("PcinternalEYEInActive");
+              }
+              i = i + 2;
+              break;
+            }
+            case 34: {
+              //touchpad 0 output
+              if (bytes[i + 2] > 0) {
+                console.log("T0 ON");
+                document.getElementById("PcInternalTouchpad0").src =
+                  renderPrgImage("PcinternalTouchpadsActive");
+              } else {
+                console.log("T0 OFF");
+                document.getElementById("PcInternalTouchpad0").src =
+                  renderPrgImage("PcinternalTouchpadsInActive");
+              }
+              i = i + 2;
+              break;
+            }
+            case 35: {
+              //touchpad 1 output
+              if (bytes[i + 2] > 0) {
+                console.log("T1 ON");
+                document.getElementById("PcInternalTouchpad1").src =
+                  renderPrgImage("PcinternalTouchpadsActive");
+              } else {
+                console.log("T1 OFF");
+                document.getElementById("PcInternalTouchpad1").src =
+                  renderPrgImage("PcinternalTouchpadsInActive");
+              }
+              i = i + 2;
+              break;
+            }
+            case 36: {
+              //touchpad 1 output
+              if (bytes[i + 2] > 0) {
+                console.log("T2 ON");
+                document.getElementById("PcInternalTouchpad2").src =
+                  renderPrgImage("PcinternalTouchpadsActive");
+              } else {
+                console.log("T2 OFF");
+                document.getElementById("PcInternalTouchpad2").src =
+                  renderPrgImage("PcinternalTouchpadsInActive");
+              }
+              i = i + 2;
+              break;
+            }
+          }
+          i++;
+          // console.log(bytes);
+          //console.log("output loop count", i);
+        }
+        b = i;
+      }
+      //console.log("byte:", bytes[b]);
+    }
+    // reset(resetflag);
+
+    console.log("broken loop");
+  }
   startsimulate = () => {
     let bytes = sessionStorage.getItem("convert_Bytes");
     var programBytes = bytes.split(",").slice(67);
     console.log("heelloo", programBytes);
+    this.processbytes(programBytes);
   };
   hardware = (j) => {
     if (this.props.logic.program[j].state.assignA1) {
@@ -2272,10 +2776,7 @@ class Simulate extends Component {
                 <div
                   className="iconBtnSize simulateBtn"
                   onClick={() => {
-                    //this.play(0, true);
-                    this.startsimulate();
-
-                    this.myRef.current.anyFun();
+                    // this.play(0, true);
                   }}
                 >
                   <img
@@ -2286,11 +2787,17 @@ class Simulate extends Component {
                         : renderPrgImage("pauseBtn")
                     }
                     onClick={() => {
+                      this.myRef.current.anyFun();
                       this.setState({
                         paly_pause_btn: !this.state.paly_pause_btn,
                       });
-                      if (this.state.paly_pause_btn === false)
-                        window.location.reload();
+                      if (this.state.paly_pause_btn === false) {
+                        sessionStorage.setItem("sim_btn", "false");
+                        //window.location.reload();
+                      } else {
+                        sessionStorage.setItem("sim_btn", "true");
+                      }
+                      this.startsimulate();
                     }}
                     alt="save"
                   />
