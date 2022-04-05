@@ -166,6 +166,17 @@ class CustomDragLayer extends Component {
           height={ImageSizes[type][1] * scale}
         />
       );
+    } else if (item.type == "ultrasonic_sensor") {
+      url =
+        "Bisoft_UI/Accessories/newComponents/component_" + item.type + ".png";
+      return (
+        <img
+          src={url}
+          style={{ position: "absolute", top: 30, left: -5 }}
+          width={ImageSizes[type][0] * scale}
+          height={ImageSizes[type][1] * scale - 20}
+        />
+      );
     } else {
       // url = "images/oldImages/component_" + item.type + ".png";
 

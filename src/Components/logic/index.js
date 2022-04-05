@@ -1053,13 +1053,17 @@ class Logic extends Component {
       internalaccessories: JSON.parse(sessionStorage.getItem("concept"))
         .internalaccessories,
     };
-
+    this.setState({ uploadOpen: true });
     getBytes({ code: params });
     let bytes = sessionStorage.getItem("convert_Bytes");
     var data = bytes.split(",");
     console.log(data, "KAMAL SIMULATE");
     //this.myRef.current.upload();
     this.writePort(data);
+    setTimeout(() => {
+      this.setState({ uploadOpen: false });
+    }, 1000);
+
     // console.log("UPLOAD DATA", this.myRef.current.upload()); //it will call anyFun which is available at simulateLogic.js
   };
   render = () => {
@@ -1774,7 +1778,13 @@ class Logic extends Component {
         </div>
 
         <img
-          onClick={this.uploadProgram}
+          onClick={() => {
+            if (this.state.readyForSimulation !== "repeat") {
+              this.setState({ checkEndProgram: true });
+            } else {
+              this.uploadProgram();
+            }
+          }}
           className="nextButton" //search for ".nextButton" in project directory to edit style
           src={renderPrgImage("uploadBtn")}
           style={{
