@@ -394,11 +394,6 @@ class Workspace extends Component {
                 index,
                 signalType: SensorObj.signalType,
               };
-              PortConnections[`${component.connectedTo}2`] = {
-                type,
-                index,
-                signalType: SensorObj.signalType,
-              };
             }
           }
         } else if (component.connectedTo) {
@@ -628,11 +623,6 @@ class Workspace extends Component {
                 signalType: SensorObj.signalType,
               };
               PortConnections[`${component.connectedTo}1`] = {
-                type,
-                index,
-                signalType: SensorObj.signalType,
-              };
-              PortConnections[`${component.connectedTo}2`] = {
                 type,
                 index,
                 signalType: SensorObj.signalType,
