@@ -150,6 +150,7 @@ async function decison(arg1, arg2, op) {
   } ///end inner switch
   return response;
 }
+sessionStorage.setItem("play_btn", true);
 class Simulate extends Component {
   constructor(props) {
     super(props);
@@ -441,7 +442,7 @@ class Simulate extends Component {
     for (var b = 0; b < bytes.length; b++) {
       //console.log("count:", b);
 
-      if (sessionStorage.getItem("sim_btn") == "false") {
+      if (sessionStorage.getItem("play_btn") == "true") {
         console.log("breakin in");
         resetflag = true;
         break;
@@ -827,7 +828,7 @@ class Simulate extends Component {
               i = i + 2;
               break;
             }
-            case 34: {
+            case 31: {
               //touchpad 0 output
               if (bytes[i + 2] > 0) {
                 console.log("T0 ON");
@@ -841,7 +842,7 @@ class Simulate extends Component {
               i = i + 2;
               break;
             }
-            case 35: {
+            case 32: {
               //touchpad 1 output
               if (bytes[i + 2] > 0) {
                 console.log("T1 ON");
@@ -855,7 +856,7 @@ class Simulate extends Component {
               i = i + 2;
               break;
             }
-            case 36: {
+            case 33: {
               //touchpad 1 output
               if (bytes[i + 2] > 0) {
                 console.log("T2 ON");
@@ -879,6 +880,14 @@ class Simulate extends Component {
       //console.log("byte:", bytes[b]);
     }
     // reset(resetflag);
+
+    document.getElementById("paly_pause_btn").src =
+      renderPrgImage("playrunBtn");
+    //this.setState({ paly_pause_btn: !this.state.paly_pause_btn });
+    setTimeout(() => {
+      //timeout set to delay setting of sessionstaorage so that pause icon is rendered properly
+      sessionStorage.setItem("play_btn", "true");
+    }, 5);
 
     console.log("broken loop");
   }
@@ -2781,23 +2790,25 @@ class Simulate extends Component {
                 >
                   <img
                     style={{ height: "100%", width: "100%" }}
+                    id="paly_pause_btn"
                     src={
-                      this.state.paly_pause_btn
+                      sessionStorage.getItem("play_btn") == "true"
                         ? renderPrgImage("playrunBtn")
                         : renderPrgImage("pauseBtn")
                     }
                     onClick={() => {
-                      this.myRef.current.anyFun();
                       this.setState({
                         paly_pause_btn: !this.state.paly_pause_btn,
                       });
-                      if (this.state.paly_pause_btn === false) {
-                        sessionStorage.setItem("sim_btn", "false");
+                      if (sessionStorage.getItem("play_btn") == "false") {
+                        sessionStorage.setItem("play_btn", true);
+                        console.log("play btn set");
                         //window.location.reload();
                       } else {
-                        sessionStorage.setItem("sim_btn", "true");
+                        sessionStorage.setItem("play_btn", false);
+                        this.startsimulate();
+                        this.myRef.current.anyFun();
                       }
-                      this.startsimulate();
                     }}
                     alt="save"
                   />

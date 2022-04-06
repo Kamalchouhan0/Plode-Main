@@ -165,11 +165,11 @@ class Bibox extends Component {
 
     console.log("kkkkkkkkkkDATA:_____>>", height, width);
     if (Device == "Ace" && shield == "false") {
-      if (left != 328 && top != 162) {
-        //conditon to escape first load and values offset for mouse to center on PC image while dragging
-        left = left - 120;
-        top = top - 100;
-      }
+      // if (left != 328 && top != 162) {
+      //   //conditon to escape first load and values offset for mouse to center on PC image while dragging
+      //   left = left - 120;
+      //   top = top - 100;
+      // }
       console.log("initial left nd right", left, top);
       return connectDragSource(
         // PLEASE NOTE THIS IS ONLY FOR ACE/PLAYCOMPUTER

@@ -100,8 +100,6 @@ class CustomDragLayer extends Component {
             style={{
               overflow: "visible",
               zIndex: 2,
-              marginLeft: -120,
-              marginTop: -100,
             }}
             src={url}
             width={ImageSizes[type][0] * scale}
