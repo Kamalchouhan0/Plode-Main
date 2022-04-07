@@ -21,11 +21,7 @@ export class MainSlider extends Component {
         <div className={MainStyle.container}></div>
         <Slider {...settings}>
           <div className={MainStyle.wdt}>
-            <img
-              className={MainStyle.img}
-              src={renderImage("AddInfo")}
-              className={MainStyle.img}
-            />
+            <img className={MainStyle.img} src={renderImage("AddInfo")} />
             <div className={MainStyle.Hel}>
               <p className={MainStyle.Hel_P}>
                 {" "}
@@ -48,11 +44,7 @@ export class MainSlider extends Component {
             />
           </div> */}
           <div className={MainStyle.wdt}>
-            <img
-              className={MainStyle.img}
-              src={renderImage("PlyComp")}
-              className={MainStyle.img}
-            />
+            <img className={MainStyle.img} src={renderImage("PlyComp")} />
             <div className={MainStyle.con}>
               <p className={MainStyle.con_P}>
                 Select the device you will be using from the list

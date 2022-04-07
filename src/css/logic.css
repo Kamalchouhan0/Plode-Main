@@ -318,7 +318,7 @@ p1 {
   margin-top: 10px;
   text-decoration: none;
   color: #311b92;
-  border: 2px solid#311B92;
+  border: 2px solid #311b92;
   border-top: none;
   border-radius: 0 0 10px 10px;
 }
@@ -388,38 +388,38 @@ p1 {
 }
 
 .renderClickfalse {
-  background-color: #e6e6e6;
+  background-image: linear-gradient(#e6e6e6, #7171719c);
 }
 .renderClicktrue {
-  background-color: #fff;
+  background-image: linear-gradient(#ffbc45, #f87b62);
 }
 .start-checkBox-conatiner {
-  height: 16%;
-  width: 7%;
-  /* display: flex; */
+  height: 50%;
+  width: 75%;
+  border-radius: 6px;
   position: relative;
   top: 25%;
-  left: 60%;
+  left: 10%;
 
-  border: 2px solid #797777;
+  /* border: 2px solid #f75206; */
 }
 
 .start-renderClickfalse {
   /* content: "✔"; */
-  color: black;
+  /* color: black; */
   /* border: 2px solid #09090a; */
 
-  background-color: #fffdfd;
+  background-image: linear-gradient(#e6e6e6, #7171719c);
 }
 .start-renderClicktrue {
   /* content: "✔"; */
-  border: 2px solid #00008b;
-  color: rgb(248, 245, 245);
+  /* border: 2px solid #f75206; */
+  color: #ffff;
   /* display: flex;
   justify-content: center;
   align-items: baseline; */
   /* font-size: 50px; */
-  background-color: #00008b;
+  background-image: linear-gradient(#ffbc45, #f87b62);
 }
 .tick-Activetrue {
   display: block;

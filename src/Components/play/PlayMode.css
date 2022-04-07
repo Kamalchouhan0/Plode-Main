@@ -58,7 +58,8 @@
   position: absolute;
   top: 50%;
   left: 21%;
-  /* cursor: default; */
+  z-index: -1;
+  cursor: pointer;
   transform: translate(-50%, -50%);
 }
 
@@ -83,8 +84,10 @@
   height: auto;
   width: 21%;
   position: absolute;
+  cursor: pointer;
   top: 50%;
   left: 40%;
+  z-index: -1;
   transform: translate(-50%, -50%);
 }
 
@@ -102,6 +105,7 @@
   position: absolute;
   top: 50%;
   left: 59%;
+  z-index: -1;
   transform: translate(-50%, -50%);
 }
 .Camera_Card {
@@ -109,6 +113,7 @@
   width: 21%;
   position: absolute;
   top: 50%;
+  z-index: -1;
   left: 78%;
   transform: translate(-50%, -50%);
 }
@@ -121,6 +126,7 @@
   text-align: center;
   position: absolute;
   top: 53%;
+  cursor: pointer;
   left: 19%;
   transform: translate(-50%, -50%);
 }
@@ -133,6 +139,7 @@
   text-align: center;
   position: absolute;
   top: 53%;
+  cursor: pointer;
   left: 38%;
   transform: translate(-50%, -50%);
 }
@@ -145,6 +152,7 @@
   font-family: "Halcyon_SemiBold" !important ;
   position: absolute;
   top: 53%;
+  cursor: pointer;
   left: 57%;
   transform: translate(-50%, -50%);
 }
@@ -157,6 +165,7 @@
   font-family: "Halcyon_SemiBold" !important ;
   position: absolute;
   top: 53%;
+  cursor: pointer;
   left: 75.5%;
   transform: translate(-50%, -50%);
 }

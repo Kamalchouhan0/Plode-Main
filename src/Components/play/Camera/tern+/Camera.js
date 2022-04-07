@@ -46,9 +46,6 @@ function Camera(props) {
   let history = useHistory();
 
   const gobackUrl = () => {
-    setTimeout(function () {
-      window.location.reload();
-    }, 100);
     history.goBack();
   };
 
@@ -429,7 +426,8 @@ function Camera(props) {
 
       <div>
         <h3 className="Camera_Instruc">
-          Tap the microphone to start talking to your Play Computer
+          Tilt your head in different directions to see the Play Coumputer
+          respond
         </h3>
       </div>
     </div>

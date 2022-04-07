@@ -13,7 +13,7 @@ if (componentType == "Ace") {
     {
       type: "led",
       description:
-        "Led: It emits light when powered up, available in different colors",
+        "Led 2c: It emits light when powered up, available in different colors",
       color: "#15909d",
       name: "led",
       signalType: "analog",
@@ -72,7 +72,7 @@ if (componentType == "Ace") {
     {
       type: "tact_switch",
       description:
-        "Button: It is a simple tactile switch used for toggle operation",
+        "Button 1c: It is a simple tactile switch used for toggle operation",
       color: "#ff8c19",
       name: "Button",
       signalType: "analog",

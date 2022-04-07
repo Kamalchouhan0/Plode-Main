@@ -46,7 +46,7 @@
   position: absolute;
   top: 4%;
   width: 4%;
-  right: 8%;
+  right: 3%;
 }
 .Devices_Button {
   height: auto;
@@ -136,14 +136,14 @@
 .instr3 {
   position: absolute;
   top: 77%;
-  right: 10.5%;
+  right: 1%;
   transform: translate(-50%, -50%);
   line-height: 1.4;
-  background: #ffffff;
+  background: #fafafa;
   padding: 14px, 28px;
   border-radius: 12px;
-  height: 9%;
-  width: 22%;
+  height: 12%;
+  width: 38%;
   /* border: 1px solid #9b9797; */
   /* max-width: 600px; */
   /* min-width: 300px; */
@@ -199,8 +199,8 @@
   color: #707070;
   font-family: "Halcyon_Regular" !important;
   position: absolute;
-  top: 15%;
-  left: 5%;
+  top: 10%;
+  left: 3%;
   height: 5%;
   width: 100%;
 }

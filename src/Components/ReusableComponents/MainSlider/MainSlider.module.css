@@ -155,6 +155,12 @@
   .wdt {
     margin-top: 5%;
   }
+  .Rem_P {
+    left: 6%;
+  }
+  .Hel_P {
+    left: 3%;
+  }
 }
 @media only screen and (max-device-width: 1535px) and (min-device-width: 1481px) {
   .wdt {
