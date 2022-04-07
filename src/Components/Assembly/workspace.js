@@ -150,7 +150,9 @@ class Workspace extends Component {
   componentDidMount = () => {
     const { height, width } = this.props;
     this.removeConnection = this.removeConnection.bind(this);
-
+    let componentsDataSensor = JSON.parse(
+      sessionStorage.getItem("concept")
+    ).counter;
     // Move Bibox to center
     // this.moveBibox(340, 90);
 
@@ -266,7 +268,9 @@ class Workspace extends Component {
    */
   updateOldComponent(left, top) {
     // alert("dataa");
-
+    let componentsDataSensor = JSON.parse(
+      sessionStorage.getItem("concept")
+    ).counter;
     var { workspace } = this.props;
     var item = DraggingInfo.draggingComponentOld;
     workspace.components[item.type][item.index].top = top;
@@ -283,7 +287,7 @@ class Workspace extends Component {
     Object.keys(components).map((type) => {
       components[type].map((component, index) => {
         let SensorObj = componentsDataSensor.find((o) => o.type === type);
-
+        console.log(SensorObj);
         if (type == "led") {
           if (component.connectedTo) {
             if (
@@ -420,7 +424,9 @@ class Workspace extends Component {
    */
   newComponent(type, left, top) {
     console.log("new dataa", type);
-
+    let componentsDataSensor = JSON.parse(
+      sessionStorage.getItem("concept")
+    ).counter;
     var { workspace } = this.props;
     if (!workspace.components[type]) workspace.components[type] = [];
     var component = { left: left, top: top }; //IMP
@@ -440,7 +446,7 @@ class Workspace extends Component {
     Object.keys(components).map((type) => {
       components[type].map((component, index) => {
         let SensorObj = componentsDataSensor.find((o) => o.type === type);
-
+        console.log(SensorObj, componentsDataSensor);
         if (type == "led") {
           if (component.connectedTo) {
             if (
@@ -667,7 +673,9 @@ class Workspace extends Component {
       delete obj.connectedTo;
     }
     this.props.update(workspace);
-
+    let componentsDataSensor = JSON.parse(
+      sessionStorage.getItem("concept")
+    ).counter;
     var { components, scale, offset } = this.props.workspace;
     var { PortConnections } = this.props.appState.assembly;
     Object.keys(PortConnections).map((port) => (PortConnections[port] = null));

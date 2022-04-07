@@ -16,7 +16,7 @@ if (Device == "Ace") {
     B2: { color: "red", ports: ["B2"] },
     C2: { color: "red", ports: ["C2"] },
     D2: { color: "green", ports: ["D2"] },
-    STPM: { color: "yellow", ports: ["STPM"] },
+    //STPM: { color: "yellow", ports: ["STPM"] },
   };
 } else if (Device == "Humanoid") {
   module.exports = {

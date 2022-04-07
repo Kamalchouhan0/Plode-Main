@@ -429,13 +429,13 @@ class Content extends Component {
     let reloadRetrive = sessionStorage.getItem("Reload");
     if (localStorage.getItem("programMode") == "program") {
       this.props.history.push("/Assembly");
-      window.location.href = "/Assembly";
+      //window.location.href = "/Assembly";
 
       if (reloadRetrive) {
-        window.location.reload();
-        const portList = await navigator.serial.getPorts();
-        console.log(">>>>>>>>>>>>>>>>>>>>>>>>", portList);
-        this.props.webSerialAction({ port: portList[0] }); // dispatching function of redux
+        // window.location.reload();
+        //  const portList = await navigator.serial.getPorts();
+        //console.log(">>>>>>>>>>>>>>>>>>>>>>>>", portList);
+        // this.props.webSerialAction({ port: portList[0] }); // dispatching function of redux
 
         sessionStorage.setItem("Reload", true);
       }

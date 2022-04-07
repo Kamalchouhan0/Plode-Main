@@ -34,11 +34,11 @@ if (Device == "Ace" && shield == "true") {
     // G: [110, 190],
     // H: [190, 43],
     // I: [190, 43],
-    STPM: [50, 10],
+    // STPM: [50, 10],
     // MOTOR1: [142, 393],
     // MOTOR2: [250, 393],
   };
-} else if (Device == "Ace" && shield == "false") {
+} else if (Device == "Ace") {
   module.exports = {
     A1: [5, 7],
     A2: [75, 12],
@@ -67,7 +67,7 @@ if (Device == "Ace" && shield == "true") {
     // G: [110, 190],
     // H: [190, 43],
     // I: [190, 43],
-    STPM: [50, 10],
+    // STPM: [50, 10],
     // MOTOR1: [142, 393],
     // MOTOR2: [250, 393],
   };

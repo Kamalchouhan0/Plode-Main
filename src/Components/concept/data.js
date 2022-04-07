@@ -16,7 +16,7 @@ if (componentType == "Ace") {
         "Led: It emits light when powered up, available in different colors",
       color: "#15909d",
       name: "led",
-      signalType: "null",
+      signalType: "analog",
     },
     {
       type: "laser",
