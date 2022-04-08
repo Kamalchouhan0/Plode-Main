@@ -410,7 +410,7 @@ p1 {
   /* color: black; */
   /* border: 2px solid #09090a; */
 
-  background-image: linear-gradient(#e6e6e6, #7171719c);
+  background-image: linear-gradient(to left, #e6e6e6, #7171719c);
 }
 .start-renderClicktrue {
   /* content: "✔"; */
@@ -420,7 +420,7 @@ p1 {
   justify-content: center;
   align-items: baseline; */
   /* font-size: 50px; */
-  background-image: linear-gradient(#ffbc45, #f87b62);
+  background-image: linear-gradient(to right, #ffbc45, #f87b62);
 }
 .tick-Activetrue {
   display: block;
