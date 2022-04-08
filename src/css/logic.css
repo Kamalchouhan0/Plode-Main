@@ -388,10 +388,11 @@ p1 {
 }
 
 .renderClickfalse {
-  background-image: linear-gradient(#e6e6e6, #7171719c);
+  background-image: linear-gradient(to left, #e6e6e6, #7171719c);
 }
 .renderClicktrue {
-  background-image: linear-gradient(#ffbc45, #f87b62);
+  color: #ffff;
+  background-image: linear-gradient(to right, #ffbc45, #f87b62);
 }
 .start-checkBox-conatiner {
   height: 50%;
