@@ -96,9 +96,11 @@ class Component1 extends Component {
         if (obj["assign" + port] && port.length == 1) {
           if (obj["assign" + port + "1"]) {
             delete node[nodeKey].state["assign" + port + "1"];
+            delete node[nodeKey].state["assign" + port + "2"];
           }
           if (obj["value" + port + "1"]) {
             delete node[nodeKey].state["value" + port + "1"];
+            delete node[nodeKey].state["value" + port + "2"];
           }
           if (type == "dot_matrix") {
             for (var key in obj) {
@@ -145,7 +147,7 @@ class Component1 extends Component {
   };
   removeComponent = () => {
     const { type, index } = this.props;
-
+    console.log("geethu", this.props);
     // var prop = this.props.prop;
     // if (sessionStorage.getItem("AppDetails-" + prop.projId)) {
     var prev_data = this.props.appState;
@@ -225,7 +227,21 @@ class Component1 extends Component {
           prev_data.assembly.PortConnections["D2"] = null;
         }
       } else {
-        prev_data.assembly.PortConnections[port] = null;
+        if (port == "A") {
+          prev_data.assembly.PortConnections["A1"] = null;
+          prev_data.assembly.PortConnections["A2"] = null;
+        } else if (port == "B") {
+          prev_data.assembly.PortConnections["B1"] = null;
+          prev_data.assembly.PortConnections["B2"] = null;
+        } else if (port == "C") {
+          prev_data.assembly.PortConnections["C1"] = null;
+          prev_data.assembly.PortConnections["C2"] = null;
+        } else if (port == "D") {
+          prev_data.assembly.PortConnections["D1"] = null;
+          prev_data.assembly.PortConnections["D2"] = null;
+        } else {
+          prev_data.assembly.PortConnections[port] = null;
+        }
       }
     } else {
       prev_data.assembly.PortConnections[port] = null;

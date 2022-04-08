@@ -6,6 +6,9 @@ module.exports = {
     led: function (value) {
       return value;
     },
+    led_1c: function (value) {
+      return value;
+    },
     laser: function (value) {
       return value;
     },
@@ -90,6 +93,9 @@ module.exports = {
     led: function (value) {
       return value;
     },
+    led_1c: function (value) {
+      return value;
+    },
     laser: function (value) {
       return value;
     },
@@ -161,6 +167,9 @@ module.exports = {
     led: function (value) {
       return value;
     },
+    led_1c: function (value) {
+      return value;
+    },
     laser: function (value) {
       return value;
     },
@@ -230,6 +239,9 @@ module.exports = {
     led: function (value) {
       return value;
     },
+    led_1c: function (value) {
+      return value;
+    },
     laser: function (value) {
       return value;
     },
@@ -293,6 +305,9 @@ module.exports = {
   },
   I1: {
     led: function (value) {
+      return value;
+    },
+    led_1c: function (value) {
       return value;
     },
     laser: function (value) {
@@ -363,6 +378,9 @@ module.exports = {
     led: function (value) {
       return value;
     },
+    led_1c: function (value) {
+      return value;
+    },
     laser: function (value) {
       return value;
     },
@@ -428,6 +446,9 @@ module.exports = {
     led: function (value) {
       return value;
     },
+    led_1c: function (value) {
+      return value;
+    },
     laser: function (value) {
       return value;
     },
@@ -491,6 +512,9 @@ module.exports = {
   },
   H1: {
     led: function (value) {
+      return value;
+    },
+    led_1c: function (value) {
       return value;
     },
     laser: function (value) {
@@ -561,6 +585,9 @@ module.exports = {
     led: function (value) {
       return value;
     },
+    led_1c: function (value) {
+      return value;
+    },
     laser: function (value) {
       return value;
     },
@@ -626,6 +653,9 @@ module.exports = {
     led: function (value) {
       return value;
     },
+    led_1c: function (value) {
+      return value;
+    },
     laser: function (value) {
       return value;
     },
@@ -689,6 +719,9 @@ module.exports = {
   },
   G1: {
     led: function (value) {
+      return value;
+    },
+    led_1c: function (value) {
       return value;
     },
     laser: function (value) {
@@ -765,6 +798,9 @@ module.exports = {
     led: function (value) {
       return value;
     },
+    led_1c: function (value) {
+      return value;
+    },
     laser: function (value) {
       return value;
     },
@@ -828,6 +864,9 @@ module.exports = {
   },
   F2: {
     led: function (value) {
+      return value;
+    },
+    led_1c: function (value) {
       return value;
     },
     laser: function (value) {
@@ -899,6 +938,9 @@ module.exports = {
       return value;
     },
     led: function (value) {
+      return value;
+    },
+    led_1c: function (value) {
       return value;
     },
     laser: function (value) {
@@ -975,6 +1017,9 @@ module.exports = {
     led: function (value) {
       return value;
     },
+    led_1c: function (value) {
+      return value;
+    },
     laser: function (value) {
       return value;
     },
@@ -1040,6 +1085,9 @@ module.exports = {
     led: function (value) {
       return value;
     },
+    led_1c: function (value) {
+      return value;
+    },
     laser: function (value) {
       return value;
     },
@@ -1103,6 +1151,9 @@ module.exports = {
   },
   E1: {
     led: function (value) {
+      return value;
+    },
+    led_1c: function (value) {
       return value;
     },
     laser: function (value) {
@@ -1171,6 +1222,9 @@ module.exports = {
       return value;
     },
     led: function (value) {
+      return value;
+    },
+    led_1c: function (value) {
       return value;
     },
     laser: function (value) {
@@ -1242,6 +1296,9 @@ module.exports = {
       return value;
     },
     led: function (value) {
+      return value;
+    },
+    led_1c: function (value) {
       return value;
     },
     laser: function (value) {
@@ -1326,6 +1383,9 @@ module.exports = {
     led: function (value) {
       return value;
     },
+    led_1c: function (value) {
+      return value;
+    },
     laser: function (value) {
       return value;
     },
@@ -1392,6 +1452,9 @@ module.exports = {
       return value;
     },
     led: function (value) {
+      return value;
+    },
+    led_1c: function (value) {
       return value;
     },
     laser: function (value) {
@@ -1463,6 +1526,9 @@ module.exports = {
       return value;
     },
     led: function (value) {
+      return value;
+    },
+    led_1c: function (value) {
       return value;
     },
     laser: function (value) {
@@ -1580,6 +1646,9 @@ module.exports = {
     led: function (value) {
       return value;
     },
+    led_1c: function (value) {
+      return value;
+    },
     laser: function (value) {
       return value;
     },
@@ -1646,6 +1715,9 @@ module.exports = {
       return value;
     },
     led: function (value) {
+      return value;
+    },
+    led_1c: function (value) {
       return value;
     },
     laser: function (value) {
@@ -1717,6 +1789,9 @@ module.exports = {
       return value;
     },
     led: function (value) {
+      return value;
+    },
+    led_1c: function (value) {
       return value;
     },
     laser: function (value) {
@@ -1806,6 +1881,9 @@ module.exports = {
     led: function (value) {
       return value;
     },
+    led_1c: function (value) {
+      return value;
+    },
     laser: function (value) {
       return value;
     },
@@ -1878,6 +1956,9 @@ module.exports = {
       return value;
     },
     led: function (value) {
+      return value;
+    },
+    led_1c: function (value) {
       return value;
     },
     laser: function (value) {

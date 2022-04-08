@@ -542,7 +542,13 @@ function genCodeString(logicComponents) {
   if (connectionsList["A1"] == "led") {
     PortBytesToComponentcode["A1"] = "P";
   }
+  if (connectionsList["A1"] == "led_1c") {
+    PortBytesToComponentcode["A1"] = "P";
+  }
   if (connectionsList["C1"] == "led") {
+    PortBytesToComponentcode["C1"] = "P";
+  }
+  if (connectionsList["C1"] == "led_1c") {
     PortBytesToComponentcode["C1"] = "P";
   }
 

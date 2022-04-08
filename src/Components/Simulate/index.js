@@ -895,6 +895,7 @@ class Simulate extends Component {
     let bytes = sessionStorage.getItem("convert_Bytes");
     var programBytes = bytes.split(",").slice(67);
     console.log("heelloo", programBytes);
+
     this.processbytes(programBytes);
   };
   hardware = (j) => {
@@ -2612,6 +2613,8 @@ class Simulate extends Component {
   };
   render() {
     //bytes code
+    console.log("props", this.props);
+
     var takingInput = (
       <Modal
         isOpen={this.state.model}

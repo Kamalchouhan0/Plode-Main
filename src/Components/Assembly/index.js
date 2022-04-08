@@ -750,9 +750,11 @@ class Assembly extends Component {
         if (l == 1) {
           if (obj["assign" + port + "1"]) {
             delete node[nodeKey].state["assign" + port + "1"];
+            delete node[nodeKey].state["assign" + port + "2"];
           }
           if (obj["value" + port + "1"]) {
             delete node[nodeKey].state["value" + port + "1"];
+            delete node[nodeKey].state["value" + port + "2"];
           }
           if (type == "dot_matrix") {
             for (var key in obj) {
