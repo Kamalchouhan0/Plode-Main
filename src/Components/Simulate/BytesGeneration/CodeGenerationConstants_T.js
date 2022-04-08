@@ -130,6 +130,7 @@ let CorrespondingPortCode = {
   TouchTwo: "T",
 
   led: "P",
+  led_1c: "P",
   laser: "O",
   dual_splitter: "O",
   beeper: "O",
@@ -152,6 +153,7 @@ let CorrespondingPortCode = {
   rfid: "R",
   color_sensor: "C",
   tact_switch: "I",
+  tact_switch_2c: "I",
   dual_switch: "I",
   touch_sensor: "I",
   pir_sensor: "I",
