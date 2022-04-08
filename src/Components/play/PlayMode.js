@@ -39,6 +39,27 @@ function Play(props) {
       setHelp(true);
     }
   };
+  const divstyle = {
+    height: "90%",
+    width: "90%",
+    marginTop: "5%",
+    marginLeft: "5%",
+    cursor: "pointer",
+  };
+
+  const RemoteBtn = () => {
+    history.push("/remote-Ace");
+  };
+  const SpeechBtn = () => {
+    console.log("SPEECH CLICKED");
+    history.push("/speak");
+  };
+  const MusicBtn = () => {
+    history.push("/music");
+  };
+  const CameraBtn = () => {
+    history.push("/camera");
+  };
 
   // const [p1, setP1] = useState({
   //   selected: false,
@@ -97,7 +118,6 @@ function Play(props) {
             onClick={handleHelpBtn}
           ></img>
         ) : null}
-        {/* <img className="Help_Button" src={help}></img> */}
       </div>
       <div className="Play_Functions">
         <div></div>
@@ -114,20 +134,15 @@ function Play(props) {
           </div>
         ) : (
           <div>
-            <Link
-              to={{
-                pathname: `/remote-Ace`,
-                // state: { port: p1 },
-              }}
-            >
-              <img
-                className="Remote_Card"
-                src={renderImage("RemoteCard_Svg")}
-                // onClick={AskUserForComport}
-              ></img>
+            <div style={divstyle} onClick={RemoteBtn}></div>
+            <img
+              className="Remote_Card"
+              src={renderImage("RemoteCard_Svg")}
+            ></img>
 
-              <h1 className="Remote_txt">Remote</h1>
-            </Link>
+            <h1 className="Remote_txt" onClick={RemoteBtn}>
+              Remote
+            </h1>
           </div>
         )}
 
@@ -140,26 +155,26 @@ function Play(props) {
                 className="Speech_Card"
                 src={renderImage("SpeechCard_Svg")}
               ></img>
-              {/* <Link to="/speech"> */}
+
               <h1 className="Speech_txt">Speech</h1>
             </Link>
           </div>
         ) : (
           <div>
-            <Link to="/speak">
-              <img
-                className="Speech_Card"
-                src={renderImage("SpeechCard_Svg")}
-              ></img>
-              {/* <Link to="/speech"> */}
-              <h1 className="Speech_txt">Speech</h1>
-            </Link>
+            <div style={divstyle} onClick={SpeechBtn}></div>
+
+            <img
+              className="Speech_Card"
+              src={renderImage("SpeechCard_Svg")}
+            ></img>
+
+            <h1 className="Speech_txt" onClick={SpeechBtn}>
+              Speech
+            </h1>
           </div>
         )}
         <div></div>
-        {/* <div>
-          // {p1.selected === true ? <RemoteSection port={setP1} /> : null}
-        </div> */}
+
         {isHelp ? (
           <div style={{ zIndex: "-10" }}>
             <Link to="/music">
@@ -167,20 +182,21 @@ function Play(props) {
                 className="Music_Card"
                 src={renderImage("MusicCard_Svg")}
               ></img>
-              {/* <Link to="/music"> */}
+
               <h1 className="Music_txt">Music</h1>
             </Link>
           </div>
         ) : (
           <div>
-            <Link to="/music">
-              <img
-                className="Music_Card"
-                src={renderImage("MusicCard_Svg")}
-              ></img>
-              {/* <Link to="/music"> */}
-              <h1 className="Music_txt">Music</h1>
-            </Link>
+            <div style={divstyle} onClick={MusicBtn}></div>
+            <img
+              className="Music_Card"
+              src={renderImage("MusicCard_Svg")}
+            ></img>
+
+            <h1 className="Music_txt" onClick={MusicBtn}>
+              Music
+            </h1>
           </div>
         )}
 
@@ -193,20 +209,18 @@ function Play(props) {
                 className="Camera_Card"
                 src={renderImage("Camera_Svg")}
               ></img>
-              {/* <Link to="/camera"> */}
+
               <h1 className="Camera_txt">Camera</h1>
             </Link>
           </div>
         ) : (
           <div>
-            <Link to="/camera">
-              <img
-                className="Camera_Card"
-                src={renderImage("Camera_Svg")}
-              ></img>
-              {/* <Link to="/camera"> */}
-              <h1 className="Camera_txt">Camera</h1>
-            </Link>
+            <div style={divstyle} onClick={CameraBtn}></div>
+            <img className="Camera_Card" src={renderImage("Camera_Svg")}></img>
+
+            <h1 className="Camera_txt" onClick={CameraBtn}>
+              Camera
+            </h1>
           </div>
         )}
 

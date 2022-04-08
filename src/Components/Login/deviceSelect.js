@@ -186,7 +186,9 @@ const DeviceSelect = (props) => {
               </div>
               <div className={DeviceSelectStyle.instr3}>
                 <p className={DeviceSelectStyle.instr3_P}>
-                  Add Button to add or scan for new devices you like to program{" "}
+                  Skip button will skip the scanning and connecting over
+                  bluetooth to playcomputer.If you skip you will not be able to
+                  send data to playcomputer.{" "}
                 </p>
               </div>
               <img src={renderImage("Connect")}></img>
@@ -203,7 +205,7 @@ const DeviceSelect = (props) => {
           ) : null}
           {/* <img className="DeviceSelectStyle.Help_btn" src={help}></img> */}
         </div>
-        {isHelp ? (
+        {/* {isHelp ? (
           <div style={{ zIndex: "-1" }}>
             <img
               className={DeviceSelectStyle.Devices_Button}
@@ -217,7 +219,7 @@ const DeviceSelect = (props) => {
               src={renderImage("devices")}
             ></img>
           </div>
-        )}
+        )} */}
       </div>
       <div className={DeviceSelectStyle.Connect_div}>
         <img

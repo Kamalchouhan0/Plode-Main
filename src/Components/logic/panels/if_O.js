@@ -1672,7 +1672,7 @@ class IfPanel extends Component {
                 style={{
                   width: "120px",
                   height: "45px",
-                  background: "#25245E",
+                  background: "#30A8CE",
                   borderRadius: "15px",
                   marginTop: "21%",
                   color: "#fff",

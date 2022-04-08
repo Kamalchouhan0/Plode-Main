@@ -24,7 +24,7 @@ const PopupCD = {
   zIndex: 110,
   top: "5%",
   left: "5%",
-
+  // border: "5px solid black",
   position: "relative",
 };
 
@@ -59,11 +59,13 @@ function ConformationPopup() {
               src={renderImage("clos")}
               onClick={gobackUrl}
             ></img>
-            <img
-              className={ConformationPopupStyle.Reconnect_Button}
-              src={renderImage("reconnect")}
-            ></img>
+
             <Link to="/Selection">
+              <img
+                className={ConformationPopupStyle.Reconnect_Button}
+                src={renderImage("reconnect")}
+              ></img>
+
               <h4 className={ConformationPopupStyle.Reconnect_txt}>Yes</h4>
             </Link>
           </div>

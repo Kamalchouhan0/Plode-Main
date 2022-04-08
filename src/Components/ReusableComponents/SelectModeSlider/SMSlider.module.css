@@ -195,3 +195,15 @@
 .slick-slide img {
   display: grayscale;
 }
+
+@media only screen and (max-device-width: 1440px) and (min-device-width: 1025px) {
+  /* .wdt {
+    margin-top: 5%;
+  } */
+  .Rem_P {
+    left: 7%;
+  }
+  .Hel_P {
+    left: 3%;
+  }
+}

@@ -9,9 +9,6 @@ import {
   backBtn,
   helpBtnInActive,
   helpBtnActive,
-  // play,
-  // build,
-  // program,
   Pc,
   PlayCard,
   PlayCard2,
@@ -72,62 +69,20 @@ function Selection(props) {
       await p_Port.open({ baudRate: 115200 });
     } catch (e) {
       console.log(e);
-      // p_Port.close();
-      // await p_Port.open({ baudRate: 115200 });
     }
-
-    // writePort("notWrite");
-    // let portReader = p_Port.readable.getReader();
-
-    // let portWriter = p_Port.writable.getWriter();
-
-    // while (true) {
-    //   const { value, done } = await portReader.read();
-    //   // console.log("value", value);
-    //   console.log("done", done);
-
-    //   const strg = unicodeToChar(value);
-    //   let str = strg.trim();
-
-    //   console.log(str, "uniCodeTOCHAR");
-    //   if (done) {
-    //     console.log("[readLoop] DONE", done);
-    //     portReader.releaseLock();
-    //     break;
-    //   }
-    // }
 
     console.log(p_Port, "p_Port");
   };
-
-  // async function writePort(data) {
-  //   const ports = await navigator.serial.getPorts();
-  //   console.log("portsss", ports);
-
-  //   console.log("portsss", ports[0].writable);
-  //   // const outputStream = ports[0].writable,
-  //   const writer = ports[0].writable.getWriter();
-  //   // writer = outputStream.getWriter();
-  //   const sata = data;
-  //   const data1 = new Uint8Array(sata); // hello// 82, 76, 0, 0, 0, 82, 0, 0, 0, 66, 0, 0, 1, 0, 1,
-  //   console.log("send data:+", data1);
-
-  //   await writer.write(data1);
-
-  //   writer.releaseLock();
-  // }
 
   return (
     <div className={SelectionStyle.Main_Select}>
       <div className={SelectionStyle.Select_Header}>
         <div>
-          {/* <Link to="/connect-device"> */}
           <img
             className={SelectionStyle.Back_Btn}
             src={backBtn}
             onClick={gobackUrl}
           ></img>
-          {/* </Link> */}
         </div>
         <div>
           <p className={SelectionStyle.Play_Comp}>Play Computer</p>
@@ -158,26 +113,61 @@ function Selection(props) {
       <div className={SelectionStyle.Play_Body}>
         <div></div>
 
-        {/* <Link to="/play"> */}
         <div className={SelectionStyle.Play_Div}>
-          <div onClick={playBtn}>
+          <div
+            style={{
+              height: "65%",
+              width: "85%",
+              marginTop: "15%",
+              marginLeft: "10%",
+              cursor: "pointer",
+            }}
+            onClick={playBtn}
+          ></div>
+          <div>
             <img className={SelectionStyle.Play_Button} src={play}></img>
-            {/* <img className={SelectionStyle.Play_Btn} src={PlayCard_Svg}></img> */}
-            <h1 className={SelectionStyle.Play_txt}>Play</h1>
+
+            <h1 className={SelectionStyle.Play_txt} onClick={playBtn}>
+              Play
+            </h1>
           </div>
         </div>
-        {/* </Link> */}
+
         <div></div>
         <div>
-          <div onClick={programBtn}>
+          <div
+            style={{
+              height: "65%",
+              width: "75%",
+              marginTop: "15%",
+              marginLeft: "10%",
+              cursor: "pointer",
+            }}
+            onClick={programBtn}
+          ></div>
+          <div>
             <img className={SelectionStyle.Program_Button} src={program}></img>
-            <h1 className={SelectionStyle.Program_txt}>Program</h1>
+            <h1 className={SelectionStyle.Program_txt} onClick={programBtn}>
+              Program
+            </h1>
           </div>
         </div>
         <div></div>
-        <div onClick={buildBtn}>
+        <div>
+          <div
+            style={{
+              height: "65%",
+              width: "83%",
+              marginTop: "15%",
+              marginLeft: "2%",
+              cursor: "pointer",
+            }}
+            onClick={buildBtn}
+          ></div>
           <img className={SelectionStyle.Build_Button} src={build}></img>
-          <h1 className={SelectionStyle.Build_txt}>Build</h1>
+          <h1 className={SelectionStyle.Build_txt} onClick={buildBtn}>
+            Build
+          </h1>
         </div>
         <div></div>
       </div>
@@ -185,7 +175,6 @@ function Selection(props) {
     </div>
   );
 }
-// export default Selection;
 
 const mapStateToProps = (state) => {
   console.log("mapStateToProps", state);

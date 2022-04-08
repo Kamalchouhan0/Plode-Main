@@ -24,13 +24,13 @@ function VisualProgram() {
     backgroundImage: `url("${renderPrgImage("Cgroupbutton")}")`,
     backgroundSize: "100% 100%",
     backgroundRepeat: "no-repeat",
-    opacity: "70%",
+    opacity: "0.5",
   };
   const item5Styl = {
     backgroundImage: `url("${renderPrgImage("pythoncodingbutton")}")`,
     backgroundSize: "100% 100%",
     backgroundRepeat: "no-repeat",
-    opacity: "70%",
+    opacity: "0.5",
   };
   const [isHelp, setHelp] = useState(false);
 

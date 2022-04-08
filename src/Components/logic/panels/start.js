@@ -5,10 +5,7 @@ import InputNumber from "./helpers/InputNumber";
 import Colors from "../Colors";
 
 const cellstyle = {
-  // borderRight: "0.125em solid " + Colors.bordergrey,
-  // padding: "0.5em",
-
-  color: "#00008B",
+  color: "black",
 };
 const padding = { padding: "0.5em", color: "black" };
 const paddingNoRight = { padding: "0.5em", paddingRight: 0 };
@@ -42,7 +39,7 @@ class StartPanel extends Component {
         keys_arr.push("IOT_counter");
         keys_arr.push("IOTROW");
       }
-      // console.log('keys to delete', keys_arr);
+
       for (var deleteKey in keys_arr) {
         this.props.bottomPanelDeleteKey(keys_arr[deleteKey]);
       }
@@ -60,10 +57,8 @@ class StartPanel extends Component {
           style={{
             color: "#FFF",
             position: "absolute",
-            top: "12%",
-            left: "15%",
-            // padding: '0.5em',
-            // border: "2px solid red",
+            top: "19%",
+            left: "17%",
             fontWeight: "bold",
             width: "70%",
             height: "50vh",
@@ -81,69 +76,35 @@ class StartPanel extends Component {
                   hexComponentType="start"
                   checked={state.bic1 || false}
                   onChange={(value) => this.onChange("bic1", value)}
+                  label="Counter 1"
                 />{" "}
-                <label style={{ position: "relative", top: "5%" }}>
-                  COUNTER 1
-                </label>{" "}
               </td>
-              <tr>
-                <td
-                  style={{
-                    width: "0.5%",
-                    height: "12%",
-                    backgroundColor: "#00008B",
-                    left: "28%",
-                    top: "15%",
-                    position: "absolute",
-                  }}
-                  colSpan={1}
-                />
-              </tr>
-              <td style={cellstyle} colSpan={1}>
+
+              <td style={cellstyle} colSpan={2}>
                 {" "}
                 <Checkbox
                   hexComponentType="start"
                   checked={state.bic2 || false}
                   onChange={(value) => this.onChange("bic2", value)}
+                  label="Counter 2"
                 />
-                <label style={{ position: "relative", top: "5%" }}>
-                  COUNTER 2
-                </label>
               </td>
 
-              <tr>
-                <td
-                  style={{
-                    width: "0.5%",
-                    height: "12%",
-                    backgroundColor: "#00008B",
-                    top: "15%",
-                    left: "62%",
-                    position: "absolute",
-                  }}
-                  colSpan={1}
-                />
-              </tr>
               <td
                 style={{
-                  color: "#00008B",
-                  width: "35%",
+                  color: "black",
+                  width: "33%",
                 }}
-                colSpan={1}
+                colSpan={2}
               >
                 {" "}
                 <Checkbox
                   hexComponentType="start"
                   checked={state.btTx || false}
                   onChange={(value) => this.onChange("btTx", value)}
+                  label="BT TX"
                 />
-                <label style={{ position: "relative", left: "10%", top: "5%" }}>
-                  BT TX
-                </label>
               </td>
-            </tr>
-            <tr>
-              <td style={blank} colSpan={6} />
             </tr>
 
             <tr>
@@ -152,186 +113,51 @@ class StartPanel extends Component {
                   hexComponentType="start"
                   checked={state.bif1 || false}
                   onChange={(value) => this.onChange("bif1", value)}
+                  label="Flag 1"
                 />
-                <label style={{ position: "relative", top: "5%" }}>
-                  FLAG 1
-                </label>
               </td>
-              <tr>
-                <td
-                  style={{
-                    width: "0.5%",
-                    height: "12%",
-                    backgroundColor: "#00008B",
-                    top: "47%",
-                    left: "28%",
-                    position: "absolute",
-                  }}
-                  colSpan={1}
-                />
-              </tr>
-              <td style={cellstyle} colSpan={1}>
+
+              <td style={cellstyle} colSpan={2}>
                 <Checkbox
                   hexComponentType="start"
                   checked={state.bif2 || false}
                   onChange={(value) => this.onChange("bif2", value)}
+                  label="Flag 2"
                 />
-                <label style={{ position: "relative", top: "5%" }}>
-                  FLAG 2
-                </label>
               </td>
-              <tr>
-                <td
-                  style={{
-                    width: "0.5%",
-                    height: "12%",
-                    backgroundColor: "#00008B",
-                    top: "47%",
-                    left: "62%",
-                    position: "absolute",
-                  }}
-                  colSpan={1}
-                />
-              </tr>
-              <td style={{ color: "#00008B" }} colSpan={1}>
+
+              <td style={cellstyle} colSpan={2}>
                 {" "}
                 <Checkbox
                   checked={state.btRx || false}
                   onChange={(value) => this.onChange("btRx", value)}
                   hexComponentType="start"
+                  label="BT RX"
                 />
-                <label style={{ position: "relative", left: "10%", top: "5%" }}>
-                  BT RX{" "}
-                </label>
               </td>
             </tr>
-            {/* <tr>
-            <td style={paddingNoRight}>
-              <Checkbox
-               hexComponentType="start" checked={state.bif1 || false} onChange={(value) => this.onChange('bif1', value)}/>
-            </td>
-            <td style={{...cellstyle,...paddingNoLeft}}>
-              <InputNumber value={0} disabled/>
-            </td>
-            <td style={paddingNoRight}>
-              <Checkbox
-               hexComponentType="start" checked={state.bif2 || false} onChange={(value) => this.onChange('bif2', value)}/>
-            </td>
-            <td style={{...cellstyle,...paddingNoLeft}}>
-              <InputNumber value={0} disabled/>
-            </td>
-            <td style={paddingNoRight}>
-              <Checkbox
-               hexComponentType="start" checked={state.bif3 || false} onChange={(value) => this.onChange('bif3', value)}/>
-            </td>
-            <td style={{...padding,...paddingNoLeft}}>
-              <InputNumber value={0} disabled/>
-            </td>
-          </tr> */}
-            <tr>
-              <td style={blank} colSpan={6} />
-            </tr>
+
             <tr style={{}}>
-              <td style={{ color: "#00008B" }} colSpan={2}>
+              <td style={cellstyle} colSpan={2}>
                 <Checkbox
                   hexComponentType="start"
                   checked={state.usbtx || false}
                   onChange={(value) => this.onChange("usbtx", value)}
+                  label="USB TX"
                 />
-                <label style={{ position: "relative", top: "5%" }}>
-                  USB TX
-                </label>
               </td>
-              <tr>
-                <td
-                  style={{
-                    width: "0.5%",
-                    height: "12%",
-                    backgroundColor: "#00008B",
-                    top: "80%",
-                    left: "28%",
-                    position: "absolute",
-                  }}
-                  colSpan={1}
-                />
-              </tr>
-              <td style={cellstyle} colSpan={1}>
+
+              <td style={cellstyle} colSpan={2}>
                 <Checkbox
                   hexComponentType="start"
                   checked={state.usbrx || false}
                   onChange={(value) => this.onChange("usbrx", value)}
+                  label="USB RX"
                 />
-                <label style={{ position: "relative", top: "5%" }}>
-                  USB RX{" "}
-                </label>
               </td>
-
-              {/* <td style={{ color: "#00008B" }} colSpan={1}>
-                <Checkbox
-                  hexComponentType="start"
-                  checked={state.usbtx || false}
-                  onChange={(value) => this.onChange("usbtx", value)}
-                />
-                <label>USB TX</label>
-              </td> */}
             </tr>
 
-            {/* <tr>
-            <td style={paddingNoRight}>
-              <Checkbox
-               hexComponentType="start" checked={state.bid1 || false} onChange={(value) => this.onChange('bid1', value)}/>
-            </td>
-            <td style={{...cellstyle,...paddingNoLeft}}>
-              <InputNumber value={0} disabled/>
-            </td>
-            <td style={paddingNoRight}>
-              <Checkbox
-               hexComponentType="start" checked={state.bid2 || false} onChange={(value) => this.onChange('bid2', value)}/>
-            </td>
-            <td style={{...cellstyle,...paddingNoLeft}}>
-              <InputNumber value={0} disabled/>
-            </td>
-            <td style={paddingNoRight}>
-              <Checkbox
-               hexComponentType="start" checked={state.bid3 || false} onChange={(value) => this.onChange('bid3', value)}/>
-            </td>
-            <td style={{...padding, ...paddingNoLeft}}>
-              <InputNumber value={0} disabled/>
-            </td>
-          </tr> */}
-            <tr>
-              <td style={blank} colSpan={6} />
-            </tr>
-            {/* <tr><td  style={cellstyle} colSpan={2}><Checkbox
-             hexComponentType="start" checked={state.bmp3 || false} onChange={(value) => this.onChange('bmp3', value)}/> Bluetooth MP3</td>
-              <td  style={cellstyle} colSpan={2}><Checkbox
-               hexComponentType="start" checked={state.btr || false} onChange={(value) => this.onChange('btr', value)}/>BT Remote</td>
-              <td style={padding} colSpan={2}> <Checkbox
-               hexComponentType="start" checked={state.iot || false} onChange={(value) => this.onChange('iot', value)}/>IOT</td>
-          </tr> */}
-            <tr>
-              {/* <td style={paddingNoRight}>
-              <Checkbox
-               hexComponentType="start" checked={state.bmp3 || false} onChange={(value) => this.onChange('bmp3', value)}/>
-            </td>
-            <td style={{...cellstyle,...paddingNoLeft}}>
-              <InputNumber value={0} disabled/>
-            </td>
-            <td style={paddingNoRight}>
-              <Checkbox
-               hexComponentType="start" checked={state.btr || false} onChange={(value) => this.onChange('btr', value)}/>
-            </td>
-            <td style={{...cellstyle,...paddingNoLeft}}>
-              <InputNumber value={0} disabled/>
-            </td>
-            <td style={paddingNoRight}>
-              <Checkbox
-               hexComponentType="start" checked={state.iot || false} onChange={(value) => this.onChange('iot', value)}/>
-            </td>
-            <td style={{...padding,...paddingNoLeft}}>
-              <InputNumber value={0} disabled/>
-            </td> */}
-            </tr>
+            <tr></tr>
           </tbody>
         </table>
       </div>

@@ -40,7 +40,7 @@ class Checkbox extends Component {
           className={`start-checkBox-conatiner start-renderClick${this.state.isClickChecked}`}
           onClick={this.handleClickChecked}
         >
-          <p className={`tick-Active${this.state.isClickChecked}`}>✔</p>
+          {/* <p className={`tick-Active${this.state.isClickChecked}`}>✔</p> */}
           {activePort !== undefined ? (
             <>
               <p
