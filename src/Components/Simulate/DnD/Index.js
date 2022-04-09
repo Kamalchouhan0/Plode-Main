@@ -50,15 +50,30 @@ const CustomNodeFlow = ({ compo, img, assembly, updateState, indexChange }) => {
     console.log(event.target);
     console.log(event.target.getAttribute("namecomp"));
     let compName = event.target.getAttribute("namecomp");
+    let compPort = event.target.getAttribute("id");
+    switch (compPort) {
+      case "img_A1":
+        compPort = "A";
+        break;
+      case "img_B1":
+        compPort = "B";
+        break;
+      case "img_C1":
+        compPort = "C";
+        break;
+      case "img_D1":
+        compPort = "D";
+        break;
+    }
+    console.log("click", compPort, element, compName);
 
-    console.log("click", element);
-
-    setModel(true);
+    //setModel(true);
 
     if (
       compName !== "led" &&
       compName !== "laser" &&
-      compName !== "dual_splitter"
+      compName !== "dual_splitter" &&
+      compName !== "led_1c"
     ) {
       let removeUnderScore = compName.replace(/_/g, " "); //returns my_name
 
@@ -68,8 +83,34 @@ const CustomNodeFlow = ({ compo, img, assembly, updateState, indexChange }) => {
       let valueRange = PortValuesRangeMapping[data][compName]();
 
       console.log(valueRange.max, "valueRange");
+      var simulation = JSON.parse(sessionStorage.getItem("simulate"));
+      var currrangeValue;
 
-      updateState(true, removeUnderScore, compName, valueRange.max);
+      for (var key in Object.entries(simulation)) {
+        if (simulation[key].componentName == compName) {
+          if (simulation[key].port == compPort) {
+            try {
+              currrangeValue = simulation[key].value;
+              if (currrangeValue == undefined) {
+                currrangeValue = 0;
+              }
+            } catch (e) {
+              currrangeValue = 0;
+            }
+          }
+        }
+      }
+
+      console.log(currrangeValue);
+
+      updateState(
+        true,
+        removeUnderScore,
+        compName,
+        valueRange.max,
+        currrangeValue,
+        compPort
+      );
       // updateState(true, compName, valueRange.max);
       indexChange();
     }
@@ -860,7 +901,7 @@ const CustomNodeFlow = ({ compo, img, assembly, updateState, indexChange }) => {
     const textSplitter = (n, port) => {
       let ports = JSON.parse(sessionStorage.getItem("assembly"));
       let connections = ports.PortConnections;
-
+      console.log("==he", n, port, newArr, n);
       return (
         <div id={arr[n]}>
           <img
@@ -1597,7 +1638,10 @@ const CustomNodeFlow = ({ compo, img, assembly, updateState, indexChange }) => {
       {/* < img onClick={this.closeModel} className="closeconceptModal" src="images/login/button_exit@2x.png"></img> */}
       <div className="connectconceptMsg">
         <h3>
-          Give an input for the <span style={{ color: "red" }}>WELCOME</span>
+          Give an input for the{" "}
+          <span style={{ color: "black", textTransform: "uppercase" }}>
+            WELCOME
+          </span>
         </h3>
         <input type="number" id="inputValue" min="0" />
         <button style={{ margin: "10px" }} onClick={closeModel}>

@@ -167,7 +167,7 @@ class Simulate extends Component {
       isConditionEnd: false,
       isusb: false,
       isHelp: false,
-
+      compPort: "",
       rangeCountNumber_: 0,
       rangeValue_: 0,
 
@@ -474,52 +474,116 @@ class Simulate extends Component {
         console.log(ar3);
         var arg2 = parseInt(ar3, 2);
         var condition;
+        var simulation = JSON.parse(sessionStorage.getItem("simulate"));
         switch (parseInt(bytes[b])) {
           case 1: {
-            var arg1 = parseInt(document.getElementById("a1_s").value);
+            for (var key in Object.entries(simulation)) {
+              if (simulation[key].port == "A") {
+                var arg1 = simulation[key].value;
+                if (arg1 == undefined) {
+                  arg1 = 0;
+                }
+              }
+            }
+            //var arg1 = parseInt(document.getElementById("a1_s").value);
 
             condition = await decison(arg1, arg2, op);
             break;
           }
           case 2: {
-            var arg1 = parseInt(document.getElementById("a1_s").value);
+            for (var key in Object.entries(simulation)) {
+              if (simulation[key].port == "A") {
+                var arg1 = simulation[key].value;
+                if (arg1 == undefined) {
+                  arg1 = 0;
+                }
+              }
+            }
+            //var arg1 = parseInt(document.getElementById("a1_s").value);
 
             condition = await decison(arg1, arg2, op);
             break;
           }
           case 3: {
-            var arg1 = parseInt(document.getElementById("b1_s").value);
-            console.log(arg1);
-            console.log(arg2);
+            for (var key in Object.entries(simulation)) {
+              if (simulation[key].port == "B") {
+                var arg1 = simulation[key].value;
+                if (arg1 == undefined) {
+                  arg1 = 0;
+                }
+              }
+            }
+            //var arg1 = parseInt(document.getElementById("b1_s").value);
+
             condition = await decison(arg1, arg2, op);
             break;
           }
           case 4: {
-            var arg1 = parseInt(document.getElementById("b1_s").value);
+            for (var key in Object.entries(simulation)) {
+              if (simulation[key].port == "B") {
+                var arg1 = simulation[key].value;
+                if (arg1 == undefined) {
+                  arg1 = 0;
+                }
+              }
+            }
+            //var arg1 = parseInt(document.getElementById("b1_s").value);
 
             condition = await decison(arg1, arg2, op);
             break;
           }
           case 5: {
-            var arg1 = parseInt(document.getElementById("c1_s").value);
+            for (var key in Object.entries(simulation)) {
+              if (simulation[key].port == "C") {
+                var arg1 = simulation[key].value;
+                if (arg1 == undefined) {
+                  arg1 = 0;
+                }
+              }
+            }
+            // var arg1 = parseInt(document.getElementById("c1_s").value);
 
             condition = await decison(arg1, arg2, op);
             break;
           }
           case 6: {
-            var arg1 = parseInt(document.getElementById("c1_s").value);
+            for (var key in Object.entries(simulation)) {
+              if (simulation[key].port == "C") {
+                var arg1 = simulation[key].value;
+                if (arg1 == undefined) {
+                  arg1 = 0;
+                }
+              }
+            }
+            //var arg1 = parseInt(document.getElementById("c1_s").value);
 
             condition = await decison(arg1, arg2, op);
             break;
           }
           case 7: {
-            var arg1 = parseInt(document.getElementById("d1_s").value);
+            for (var key in Object.entries(simulation)) {
+              if (simulation[key].port == "D") {
+                var arg1 = simulation[key].value;
+                if (arg1 == undefined) {
+                  arg1 = 0;
+                }
+              }
+            }
+            // var arg1 = parseInt(document.getElementById("d1_s").value);
 
             condition = await decison(arg1, arg2, op);
             break;
           }
           case 8: {
-            var arg1 = parseInt(document.getElementById("d1_s").value);
+            for (var key in Object.entries(simulation)) {
+              if (simulation[key].port == "D") {
+                var arg1 = simulation[key].value;
+                if (arg1 == undefined) {
+                  arg1 = 0;
+                }
+              }
+            }
+            //var arg1 = parseInt(document.getElementById("d1_s").value);
 
             condition = await decison(arg1, arg2, op);
             break;
@@ -895,7 +959,8 @@ class Simulate extends Component {
     let bytes = sessionStorage.getItem("convert_Bytes");
     var programBytes = bytes.split(",").slice(67);
     console.log("heelloo", programBytes);
-
+    let data = JSON.parse(sessionStorage.getItem("simulate"));
+    console.log("heelloo", data);
     this.processbytes(programBytes);
   };
   hardware = (j) => {
@@ -2521,7 +2586,7 @@ class Simulate extends Component {
           let index = document.querySelector(".animation");
 
           document.getElementById("hex-Board-Grid").style.display = "none";
-          index.style.zIndex = "0";
+          index.style.zIndex = "5000";
           document.getElementById("HW/SW-Display").style.zIndex = "-1";
           this.setState({
             countClick: 1,
@@ -2550,7 +2615,7 @@ class Simulate extends Component {
 
           document.getElementById("hex-Board-Grid").style.display = "block";
 
-          document.getElementById("HW/SW-Display").style.zIndex = "3000";
+          document.getElementById("HW/SW-Display").style.zIndex = "-1";
 
           this.setState({
             countClick: 0,
@@ -2561,7 +2626,7 @@ class Simulate extends Component {
     } else {
       this.setState({ clicked: false });
       let index = document.querySelector(".animation");
-      index.style.zIndex = "-1";
+      index.style.zIndex = "0";
     }
 
     // if (t === "clicked") {
@@ -2579,8 +2644,12 @@ class Simulate extends Component {
   closeModel = () => {
     let value = document.getElementById("inputValue").value;
     let data = JSON.parse(sessionStorage.getItem("simulate"));
+    console.log("closeModel", this.state.compPort);
     for (let i = 0; i < data.length; i++) {
-      if (data[i].componentName === this.state.componentClicked) {
+      if (
+        data[i].componentName === this.state.componentClicked &&
+        data[i].port === this.state.compPort
+      ) {
         data[i].value = value;
       }
     }
@@ -2596,12 +2665,22 @@ class Simulate extends Component {
     index.style.zIndex = "1000";
   };
 
-  updateState = (values, compName, realName, rangeValue) => {
+  updateState = (
+    values,
+    compName,
+
+    realName,
+    rangeValue,
+    currvalueRange,
+    compPort
+  ) => {
     this.setState({
       model: values,
       componentClicked: realName,
       compName: compName,
+      compPort: compPort,
       rangeValue_: rangeValue,
+      rangeCountNumber_: currvalueRange,
     });
 
     this.indexChange();
@@ -2627,7 +2706,9 @@ class Simulate extends Component {
             {/* Give an input for the{" "} */}
             <span
               style={{
-                color: "red",
+                textTransform: "uppercase",
+
+                position: "absolute",
                 position: "absolute",
                 top: "15%",
                 left: "50%",
@@ -2888,7 +2969,7 @@ class Simulate extends Component {
               width: "100vw",
               position: "absolute",
               float: "left",
-              zIndex: "50000",
+              opacity: "0",
               opacity: "0",
             }}
           ></div>
