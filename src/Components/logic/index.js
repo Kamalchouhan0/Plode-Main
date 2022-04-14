@@ -751,6 +751,7 @@ class Logic extends Component {
   bottomPanelChange = (state, type) => {
     console.log("TYPE AND STATE", type, state);
     // alert("BOTTOMPANEL CHANGE");
+    console.log(drawing.activeRef.state, "types");
     var { logic } = this.props;
 
     if (type) {

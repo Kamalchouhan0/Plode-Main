@@ -238,7 +238,11 @@ import SavePrgf1 from "../Assets/Bisoft_UI/Help screen/Program/Group 3204@2x.png
 import SavePrgf2 from "../Assets/Bisoft_UI/Help screen/Program/Group 3205@2x.png";
 import SavePrgf3 from "../Assets/Bisoft_UI/Help screen/Program/Group 3206@2x.png";
 import StartArrow from "../Assets/Bisoft_UI/Program/PNG/startArrow.png";
+import repeatInactive from "../Assets/Bisoft_UI/Buttons/Inactive - without shadow/repeat button@2x.png";
+import repeatActive from "../Assets/Bisoft_UI/Buttons/Active without shadow/repeat button@2x.png";
 
+import stopInactive from "../Assets/Bisoft_UI/Buttons/Inactive - without shadow/stop button@2x.png";
+import stopActive from "../Assets/Bisoft_UI/Buttons/Active without shadow/stop button@2x.png";
 // ACE EXTERNAL Accessories ex- led,lease
 // import LEDComponent from "../Assets/Bisoft_UI/PC Accessories/Mask Group 27@3x.png";
 
@@ -549,6 +553,18 @@ function renderPrgImage(imageName) {
 
     case "StartArrow":
       return StartArrow;
+
+    case "repeatInactive":
+      return repeatInactive;
+
+    case "repeatActive":
+      return repeatActive;
+
+    case "stopInactive":
+      return stopInactive;
+
+    case "stopActive":
+      return stopActive;
   }
 }
 

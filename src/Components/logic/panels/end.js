@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Logic from "..";
 
 import LogicSwitchComp from "./helpers/SwitchComp/LogicSwitchComp";
+import renderPrgImage from "../../../source/programImg";
 
 import SwitchComp from "../../humanoidFlowChart/ReusableComp/SwitchComp/SwitchComp";
 import SwitchCompThree from "../../humanoidFlowChart/ReusableComp/SwitchCompThree/SwitchCompThree";
@@ -13,8 +14,11 @@ class End extends Component {
     super(props);
     this.state = {
       name: "Repeat",
+      isrepeat: false,
+      isend: false,
     };
   }
+
   selectRepeat = () => {
     sessionStorage.setItem("SelectedStatus", "rep");
   };
@@ -23,25 +27,66 @@ class End extends Component {
   };
 
   switchActionHandler = (e) => {
-    let value = e.target.value;
-    let isChecked = e.target.checked;
+    sessionStorage.setItem("SelectedStatus", "end");
 
-    if (isChecked) {
-      sessionStorage.setItem("SelectedStatus", "end");
+    this.setState({
+      name: "Stop",
+    });
+    console.log(this.props, "PROPS");
 
+    this.props.onChange("end");
+  };
+  switchActionHandler1 = (e) => {
+    this.setState({
+      name: "Repeat",
+    });
+    console.log(this.props, "PROPS");
+
+    sessionStorage.setItem("SelectedStatus", "rep");
+    this.props.onChange("repeat");
+  };
+
+  RepeatHandler = (e) => {
+    this.setState({ isrepeat: !this.state.isrepeat });
+    this.setState({
+      isend: false,
+    });
+  };
+  EndHandler = (e) => {
+    this.setState({ isend: !this.state.isend });
+    this.setState({
+      isrepeat: false,
+    });
+  };
+
+  componentDidMount = () => {
+    if (this.props.value == "repeat") {
       this.setState({
-        name: "End",
+        isrepeat: true,
       });
 
-      this.props.onChange("end");
-    } else {
+      console.log("TRUUE");
+    }
+    if (this.props.value == "end") {
       this.setState({
-        name: "Repeat",
+        isend: true,
       });
-      sessionStorage.setItem("SelectedStatus", "rep");
-      this.props.onChange("repeat");
+      console.log("FALLLSE");
     }
   };
+
+  // ClickHandle = (e) => {
+  //   if (this.state.isrepeat == true) {
+  //     this.setState({
+  //       isend: false,
+  //     });
+  //   }
+  //   if (this.state.isend == true) {
+  //     this.setState({
+  //       isrepeat: false,
+  //     });
+  //   }
+  // };
 
   render() {
     const { state, onChange } = this.props;
@@ -57,14 +102,107 @@ class End extends Component {
           position: "relative",
           left: "50%",
           top: "50%",
+          // border: "2px solid red",
           transform: "translate(-50%,-50%)",
         }}
       >
-        <div
+        {this.state.isrepeat ? (
+          <img
+            style={{
+              height: "15%",
+              width: "10%",
+              position: "absolute",
+              left: "56%",
+              top: "35%",
+            }}
+            src={renderPrgImage("repeatActive")}
+            onClick={(e) => {
+              this.RepeatHandler();
+            }}
+          ></img>
+        ) : (
+          <img
+            style={{
+              height: "15%",
+              width: "10%",
+              position: "absolute",
+              left: "56%",
+              top: "35%",
+            }}
+            src={renderPrgImage("repeatInactive")}
+            onClick={(e) => {
+              this.switchActionHandler1();
+              this.RepeatHandler();
+              // this.ClickHandle();
+            }}
+          ></img>
+        )}
+        <p
+          style={{
+            color: "#311B92",
+            fontSize: "20px",
+            fontWeight: "500",
+            position: "absolute",
+            left: "61%",
+            top: "52%",
+
+            transform: "translate(-54%,-50%)",
+          }}
+        >
+          Loop
+        </p>
+
+        {this.state.isend ? (
+          <img
+            style={{
+              height: "15%",
+              width: "10%",
+              position: "absolute",
+              left: "36%",
+              top: "35%",
+            }}
+            src={renderPrgImage("stopActive")}
+            onClick={(e) => {
+              this.EndHandler();
+            }}
+          ></img>
+        ) : (
+          <img
+            style={{
+              height: "15%",
+              width: "10%",
+              position: "absolute",
+              left: "36%",
+              top: "35%",
+            }}
+            src={renderPrgImage("stopInactive")}
+            onClick={(e) => {
+              this.switchActionHandler();
+              this.EndHandler();
+              // this.ClickHandle();
+            }}
+          ></img>
+        )}
+        <p
+          style={{
+            color: "#311B92",
+            fontSize: "20px",
+            fontWeight: "500",
+            position: "absolute",
+            left: "41%",
+            top: "52%",
+
+            transform: "translate(-54%,-50%)",
+          }}
+        >
+          Stop
+        </p>
+        {/* <div
           style={{
             position: "absolute",
             left: "50%",
             top: "50%",
+            border: "2px solid red",
             transform: "translate(-50%,-50%)",
           }}
         >
@@ -72,8 +210,9 @@ class End extends Component {
             ComponentName="END/Loop"
             switchActionHandler={this.switchActionHandler}
           />
-        </div>
-        <p
+        </div> */}
+
+        {/* <p
           style={{
             color: "#311B92",
             fontSize: "20px",
@@ -81,11 +220,13 @@ class End extends Component {
             position: "absolute",
             left: "54%",
             top: "50%",
+            
+
             transform: "translate(-54%,-50%)",
           }}
         >
           {this.state.name}
-        </p>
+        </p> */}
       </div>
     );
   }
