@@ -85,57 +85,130 @@
 }
 
 
-/* Input and Digital css */
+/* Inputs and Digital css */
 
-.flow-left-upper {
-      position: relative;
-      top: 14vh;
-      right: -16vw;
-      width: 302pt;
-      height: 178pt;
-      background: transparent url("../../Assets/img/popup card@2x.png") 0% 0% no-repeat
-        padding-box;
-}
-.flow-left-upper-grp {
-    position: relative;
-    top: 11vh;
-    right: -9vw;
+
+/* true */
+.flowchart-switch-button-true {
+  display: inline-block;
+  background: #e6e6e6;
+  border-radius: 30px;
+  overflow: hidden;
+  text-align: center;
+  color: #717171 !important;
+  position: relative;
+  right: 8%;
+  bottom : -20px;
+  opacity: 1;
+  width: 210px;
+  height: 35px;
+  text-align: center;
+  position: relative;
+  position: relative;
+  margin: 10px 0px 0px 0px;
 }
 
-.upper-label-input > span,
-.lower-label-input > span {
-  top: -1vh !important;
-}
 
-@media screen and (max-width:1200px) {
-  .flow-left-upper-grp {
-    top: 10.5vh;
-    right: -12vw;
+.flowchart-switch-button-true input {
+ position: absolute;
+ opacity: 0;
 }
+.flowchart-switch-button-true input + label {
+ float:left;
+ cursor: pointer;
+ margin: 0;
+ position: relative;
+ padding: 5px 0px;
+ text-align: end;
+ width: 65px;
+ display: inline-block;
 }
-/* @media screen and (min-width:1450px) and (max-width:1600px) {
-  .flow-left-upper-grp {
-    top: 10vh;
-    right: -9vw;
-  }
+/* .flowchart-switch-button-true input:checked + label {
+ background: #30a8ce;
+ transition: smooth 300ms;
 } */
-@media screen and (min-width:1600px){
-  .flow-left-upper-grp {
-    top: 10vh;
-    right: -7.5vw;
-  }
+#digital-slider-A1,#digital-slider-A2,
+#digital-slider-B1,#digital-slider-B2,
+#digital-slider-C1,#digital-slider-C2,
+#digital-slider-D1,#digital-slider-D2{
+  background: #30a8ce;
+  border-radius: 30px;
+  height: 100%;
+  width: 35%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translateX(0px);
+  transition: transform 200ms linear;
 }
+.slide-A1-digital,.slide-A2-digital,
+.slide-B1-digital,.slide-B2-digital,
+.slide-C1-digital,.slide-C2-digital,
+.slide-D1-digital,.slide-D2-digital{
+  transform: translateX(0px) !important;
+}
+.slide-A1-analog,.slide-A2-analog,
+.slide-B1-analog,.slide-B2-analog,
+.slide-C1-analog,.slide-C2-analog,
+.slide-D1-analog,.slide-D2-analog{
+  transform: translateX(75px) !important;
+}
+.slide-A1-servo,.slide-A2-servo,
+.slide-B1-servo,.slide-B2-servo,
+.slide-C1-servo,.slide-C2-servo,
+.slide-D1-servo,.slide-D2-servo{
+  transform: translateX(145px) !important;
+}
+
+/* .flowchart-switch-button-label-span{
+  position: relative;
+  left: 23px;
+} */
+
+/* false */
+.flowchart-switch-button-false {
+  opacity: 0.3;
+  display: inline-block;
+  background: #e6e6e6;
+  border-radius: 30px;
+  overflow: hidden;
+  text-align: center;
+  color: #717171 !important;
+  position: relative;
+  right: 8%;
+  bottom : -20px;
+  width: max-content;
+  height: 35px;
+  text-align: center;
+  position: relative;
+  position: relative;
+  margin: 10px 0px 0px 0px;
+}
+.flowchart-switch-button-false input {
+ position: absolute;
+ opacity: 0;
+}
+.flowchart-switch-button-false input + label {
+  cursor: pointer;
+  margin: 0;
+  position: relative;
+  padding: 5px 0px;
+  text-align: initial;
+  width: 75px;
+  display: inline-block;
+}
+
 
 /* ================================================================= */
 
-/* Port Input Digital css*/
+/* Port Inputs Digital css*/
 
 .MainContainer {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
-  top: 23vh;
+  height: 100%;
+  overflow: hidden;
   @media (max-width: 800px) {
     transform: scale(0.96);
     left: 2%;
@@ -178,7 +251,8 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  top: 15vh;
+  height: 100%;
+  overflow: hidden;
   @media (max-width: 800px) {
     transform: scale(0.96);
     left: 2%;
@@ -216,6 +290,67 @@
     }
   }
 }
+/*  PORT */
+.ports-Container{
+  display: flex;
+  position: relative;
+  background-color: #eee;
+  width: 100%;
+  left: 20%;
+  height: 100%;
+}
+.properties-Container{
+  position: relative;
+  flex:20%;
+  top: 15%;
+  right: 8%;
+}
+.properties-b {
+  width: 10em;
+  height: 22em;
+  background-repeat: no-repeat;
+  /* background-size: 100% 100%; */
+  background-size: 400px 400px;
+  background-position-x: -99px;
+  background-image:  url("../../Assets/properties small bg.svg");
+  opacity: 1;
+}
+.properties-bIn {
+  display: flex;
+  font-size: 0;
+  position: relative;
+  flex-wrap: wrap;
+  flex-direction: column;
+  top: 22%;
+  left: 39%;
+  width: 100%;
+}
+.properties-InputLabel {
+  color: white;
+  padding-bottom: 15px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.properties-InputCheckBox {
+  appearance: none;
+  width: 70px;
+  height: 70px;
+  background-size: 100%;
+  background-image: url("../../Assets/a1.svg");
+  background-repeat: no-repeat;
+  position: relative;
+
+}
+.properties-InputCheckBox:checked {
+  width: 70px;
+  height: 70px;
+  background-size: 100%;
+  background-image: url("../../Assets/a1.svg");
+  background-repeat: no-repeat;
+  color: white;
+  position: relative;
+}
 .ButtonBackground {
   border: 2px solid #311b92;
   padding: 10px;
@@ -223,7 +358,6 @@
   border-radius: 35px;
   display: flex;
   justify-content: space-around;
-
   width: 100%;
 }
 /* .ButtonBackground .im {
@@ -241,9 +375,10 @@
 } */
 
 .ButtonDiv {
+  flex: 40%;
   position: relative;
-  top: 0vh;
-  right: 8vw;
+  top: 5vh;
+  right: 12vw;
   @media (max-width: 810px) {
     right: 45px;
   }
@@ -256,9 +391,10 @@
 }
 
 .ButtonRightDiv {
+  flex: 40%;
   position: relative;
-  top: 0vh;
-  right: 7vw;
+  top: 5vh;
+  right: 21vw;
   @media (max-width: 810px) {
     right: 45px;
   }
@@ -272,8 +408,7 @@
 
 .ButtonDivInput {
   position: relative;
-  top: -15vh;
-  right: 15vw;
+  right: 28%;
   @media (max-width: 810px) {
     right: 45px;
   }
@@ -286,8 +421,7 @@
 }
 .ButtonRightDivInput {
   position: relative;
-  top: -15vh;
-  right: 18vw;
+  right: 30%;
   @media (max-width: 810px) {
     right: 45px;
   }
@@ -300,7 +434,7 @@
 }
 .CenterImg {
   display: flex;
-  width: 18%;
+  width: 25%;
   position: relative;
 }
 .iconBtnSize {
@@ -309,65 +443,33 @@
 }
 .InputLabel {
   color: white;
-  padding-bottom: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
 }
 
 .InputCheckBox {
-  /* margin-left: 8px; */
   appearance: none;
-
-  /* width: 25px;
-  height: 25px; */
-  /* border-radius: 25px; */
-  /* top: 164px;
-  left: 232px; */
-  width: 40px;
-  height: 40px;
-  background: transparent url("../../Assets/img/a1.png") 0% 0% no-repeat padding-box;
-
+  width: 70px;
+  height: 70px;
+  background-repeat: no-repeat;
+  background-image: url("../../Assets/img/a1.png");
   position: relative;
-  /* top: 7px; */
-/*   &:checked {
-    background-color: green;
-  }
-
-  &:focus {
-    outline: none !important;
-  }
-  @media (max-width: 768px) {
-    padding: 0;
-    margin: 0;
-  } */
+  background-size: 70px 70px;
 }
 .InputCheckBox:checked {
-  width: 40px;
-  height: 40px;
-  background: transparent url("../../Assets/img/a-1.png") 0% 0% no-repeat
-    padding-box;
+  width: 70px;
+  height: 70px;
+  background-image:url("../../Assets/img/a-1.png");
+  background-repeat: no-repeat;
   color: white;
   position: relative;
-/*   &:checked {
-    background-color: green;
-  }
-
-  &:focus {
-    outline: none !important;
-  }
-  @media (max-width: 768px) {
-    padding: 0;
-    margin: 0;
-  } */
+  background-size: 70px 70px;
 }
 
 .A1 {
   color: black;
   position: relative;
-  top: -1.2em;
-  left: -2.1em;
-  font-size: 0.8em;
-
+  top: -1.5em;
+  left: -16%;
+  font-size: 1.1em;
   pointer-events: none;
 }
 .BottomContainer {
@@ -390,22 +492,18 @@
   position: relative;
   top: 0vh;
   right: -7vw;
-  width: 150pt;
-  height: 91pt;
-  background: transparent url("../../Assets/img/popup card.png") 0% 0% no-repeat
-    padding-box;
+  width: 210pt;
+  background-size: 210pt 150pt;
+  height: 115pt;
+  background-repeat: no-repeat;
+  background-position-y: center;
+  background-image: url("../../Assets/img/popup card.png");
   opacity: 1;
 }
 .tlbIn {
-  padding: 10px;
-  margin: 12px;
-  border-radius: 35px;
-  /* display: flex; */
-  justify-content: space-around;
   position: relative;
-  left: 12%;
-  top: 30%;
-  width: 100%;
+  left: 22%;
+  top: 28%;
 }
 
 .textsp {
@@ -453,8 +551,233 @@ label {
 .CenterImg {
   display: flex;
   position: relative;
-  top: 1vh;
-  left: 0.7em;
+  left: 8em;
+}
+/* ---------------------------------------------------------------- */
+
+/* INPUT  */
+
+.Inputs-flow-left-upper {
+  width: 270pt;
+  height: 120pt;
+  background-image: url("../../Assets/img/popup card@2x.png");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.Inputs-flow-left-upper-grp {
+  position: relative;
+  top: 22%;
+  left: 30%;
+}
+
+.Inputs-ports-Container{
+  display: flex;
+  position: relative;
+  background-color: #eee;
+  width: 100%;
+  left: 20%;
+  height: 100%;
+}
+.Inputs-properties-Container{
+  position: relative;
+  flex:20%;
+  top: 15%;
+  right: 8%;
+}
+.Inputs-properties-b {
+  width: 10em;
+  height: 22em;
+  background-repeat: no-repeat;
+  /* background-size: 100% 100%; */
+  background-size: 400px 400px;
+  background-position-x: -99px;
+  background-image:  url("../../Assets/properties small bg.svg");
+  opacity: 1;
+}
+.Inputs-properties-bIn {
+  display: flex;
+  font-size: 0;
+  position: relative;
+  flex-wrap: wrap;
+  flex-direction: column;
+  top: 22%;
+  left: 39%;
+  width: 100%;
+}
+.Inputs-properties-InputLabel {
+  color: white;
+  padding-bottom: 15px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.Inputs-properties-InputCheckBox {
+  appearance: none;
+  width: 70px;
+  height: 70px;
+  background-size: 100%;
+  background-image: url("../../Assets/a1.svg");
+  background-repeat: no-repeat;
+  position: relative;
+}
+.Inputs-properties-InputCheckBox:checked {
+  width: 70px;
+  height: 70px;
+  background-size: 100%;
+  background-image: url("../../Assets/a1.svg");
+  background-repeat: no-repeat;
+  color: white;
+  position: relative;
 }
 
 /* ---------------------------------------------------------------- */
+
+/* Digital  */
+.Digital{
+  overflow: hidden;
+  height: 100%;
+}
+.digital-ButtonDivInput {
+  position: relative;
+  right: 25%;
+  @media (max-width: 810px) {
+    right: 45px;
+  }
+  @media (max-width: 715px) {
+    right: 20px;
+  }
+  @media (max-width: 500px) {
+    right: 20px;
+  }
+}
+.digital-ButtonRightDivInput {
+  position: relative;
+  right: 25%;
+  @media (max-width: 810px) {
+    right: 45px;
+  }
+  @media (max-width: 715px) {
+    right: 20px;
+  }
+  @media (max-width: 500px) {
+    right: 20px;
+  }
+}
+
+
+.upper-label-input > span,
+.lower-label-input > span {
+  top: -1vh !important;
+}
+
+.digital-flow-left-upper {
+  position: relative;
+  height: 106pt;
+  background-size: 500px 230px;
+  background-repeat: no-repeat;
+  background-image: url("../../Assets/img/popup card@2x.png");
+  background-position: center;
+  background-position-y: -33px;
+}
+.digital-flow-left-upper-grp {
+position: relative;
+left: 30%;
+top : 10%;
+}
+.Digital-flow-left-upper {
+  width: 280pt;
+  height: 125pt;
+  background-image: url("../../Assets/img/popup card@2x.png");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.Digital-flow-left-upper-grp {
+  position: relative;
+  top: 22%;
+  left: 30%;
+}
+
+.upper-label-input >.digital-textsp{
+  left: -60px !important;
+  top: 1.5vh !important;
+}
+/* 
+.Digital-CenterImg{
+  left: -20vh !important;
+  top: 0;
+} */
+.Digital-ports-Container{
+  display: flex;
+  position: relative;
+  background-color: #eee;
+  width: 100%;
+  left: 20%;
+  height: 100%;
+}
+.Digital-properties-Container{
+  position: relative;
+  flex:20%;
+  top: 15%;
+  right: 8%;
+}
+
+.Digital-ports-Container{
+  display: flex;
+  position: relative;
+  background-color: #eee;
+  width: 100%;
+  left: 20%;
+  height: 100%;
+}
+.Digital-properties-Container{
+  position: relative;
+  flex:20%;
+  top: 15%;
+  right: 8%;
+}
+.Digital-properties-b {
+  width: 10em;
+  height: 22em;
+  background-repeat: no-repeat;
+  /* background-size: 100% 100%; */
+  background-size: 400px 400px;
+  background-position-x: -99px;
+  background-image:  url("../../Assets/properties small bg.svg");
+  opacity: 1;
+}
+.Digital-properties-bDi {
+  display: flex;
+  font-size: 0;
+  position: relative;
+  flex-wrap: wrap;
+  flex-direction: column;
+  top: 22%;
+  left: 39%;
+  width: 100%;
+}
+.Digital-properties-DigitalLabel {
+  color: white;
+  padding-bottom: 15px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.Digital-properties-DigitalCheckBox {
+  appearance: none;
+  width: 70px;
+  height: 70px;
+  background-size: 100%;
+  background-image: url("../../Assets/a1.svg");
+  background-repeat: no-repeat;
+  position: relative;
+
+}
+.Digital-properties-DigitalCheckBox:checked {
+  width: 70px;
+  height: 70px;
+  background-size: 100%;
+  background-image: url("../../Assets/a1.svg");
+  background-repeat: no-repeat;
+  color: white;
+  position: relative;
+}

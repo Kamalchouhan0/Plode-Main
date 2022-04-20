@@ -53,6 +53,14 @@ function InputOutput() {
   const C2 = JSON.parse(sessionStorage.getItem("C2"));
   const D1 = JSON.parse(sessionStorage.getItem("D1"));
   const D2 = JSON.parse(sessionStorage.getItem("D2"));
+  const E1 = JSON.parse(sessionStorage.getItem("E1"));
+  const E2 = JSON.parse(sessionStorage.getItem("E2"));
+  const F1 = JSON.parse(sessionStorage.getItem("F1"));
+  const F2 = JSON.parse(sessionStorage.getItem("F2"));
+  const M1 = JSON.parse(sessionStorage.getItem("M1"));
+  const M2 = JSON.parse(sessionStorage.getItem("M2"));
+  const M3 = JSON.parse(sessionStorage.getItem("M3"));
+  const M4 = JSON.parse(sessionStorage.getItem("M4"));
 
   const isDistanceSensors = JSON.parse(
     sessionStorage.getItem("isDistanceSensors")
@@ -90,6 +98,14 @@ function InputOutput() {
   const [c2Checked, setC2Checked] = useLocalStorage("c2-I/O", false);
   const [d1Checked, setD1Checked] = useLocalStorage("d1-I/O", false);
   const [d2Checked, setD2Checked] = useLocalStorage("d2-I/O", false);
+  const [f1Checked, setF1Checked] = useLocalStorage("f1-I/O", false);
+  const [f2Checked, setF2Checked] = useLocalStorage("f2-I/O", false);
+  const [e1Checked, setE1Checked] = useLocalStorage("e1-I/O", false);
+  const [e2Checked, setE2Checked] = useLocalStorage("e2-I/O", false);
+  const [m1Checked, setM1Checked] = useLocalStorage("m1-I/O", false);
+  const [m2Checked, setM2Checked] = useLocalStorage("m2-I/O", false);
+  const [m3Checked, setM3Checked] = useLocalStorage("m3-I/O", false);
+  const [m4Checked, setM4Checked] = useLocalStorage("m4-I/O", false);
 
   const [uart, setUart] = useLocalStorage("uart", false);
   const [spi, setSpi] = useLocalStorage("spi", false);
@@ -232,6 +248,76 @@ function InputOutput() {
     setD2Checked(!d2Checked);
   };
 
+  const f1CheckedState = () => {
+    setF1Checked(!f1Checked);
+    if (f1Checked) {
+      document.getElementById("in9").style.cssText = "  color: #fcfcfc;";
+      document.getElementById("s9").style.cssText = "color: #717171;";
+    } else {
+      document.getElementById("in9").style.cssText = "color: #717171; ";
+      document.getElementById("s9").style.cssText = "  color: #fcfcfc;";
+    }
+  };
+  const f2CheckedState = () => {
+    setF2Checked(!f2Checked);
+    if (f2Checked) {
+      document.getElementById("in10").style.cssText = "  color: #fcfcfc;";
+      document.getElementById("s10").style.cssText = "color: #717171;";
+    } else {
+      document.getElementById("in10").style.cssText = "color: #717171; ";
+      document.getElementById("s10").style.cssText = "  color: #fcfcfc;";
+    }
+  };
+
+  const e1CheckedState = () => {
+    setE1Checked(!e1Checked);
+    if (e1Checked) {
+      document.getElementById("in11").style.cssText = "  color: #fcfcfc;";
+      document.getElementById("s11").style.cssText = "color: #717171;";
+    } else {
+      document.getElementById("in11").style.cssText = "color: #717171; ";
+      document.getElementById("s11").style.cssText = "  color: #fcfcfc;";
+    }
+  };
+
+  const e2CheckedState = () => {
+    setE2Checked(!e2Checked);
+    if (e2Checked) {
+      document.getElementById("in12").style.cssText = "  color: #fcfcfc;";
+      document.getElementById("s12").style.cssText = "color: #717171;";
+    } else {
+      document.getElementById("in12").style.cssText = "color: #717171; ";
+      document.getElementById("s12").style.cssText = "  color: #fcfcfc;";
+    }
+  };
+  const m1CheckedState = () => {
+    setM1Checked(!m1Checked);
+    if (m1Checked) {
+      document.getElementById("in13").style.cssText = "  color: #fcfcfc;";
+      document.getElementById("s13").style.cssText = "color: #717171;";
+    } else {
+      document.getElementById("in13").style.cssText = "color: #717171; ";
+      document.getElementById("s13").style.cssText = "  color: #fcfcfc;";
+    }
+  };
+  const m2CheckedState = () => {
+    setM2Checked(!m2Checked);
+    if (m2Checked) {
+      document.getElementById("in14").style.cssText = "  color: #fcfcfc;";
+      document.getElementById("s14").style.cssText = "color: #717171;";
+    } else {
+      document.getElementById("in14").style.cssText = "color: #717171; ";
+      document.getElementById("s14").style.cssText = "  color: #fcfcfc;";
+    }
+  };
+  const m3CheckedState = () => {
+    setM3Checked(!m3Checked);
+  };
+
+  const m4CheckedState = () => {
+    setM4Checked(!m4Checked);
+  };
+
   const onSpiCircleClick = () => {
     if (C1 && C2 && D1 && D2) {
       setShowPopupSpi(!showPopupSpi);
@@ -258,7 +344,7 @@ function InputOutput() {
   let I2c;
 
   return (
-    <div>
+    <>
       <div className="HeaderContainer">
         <div
           style={{
@@ -326,88 +412,6 @@ function InputOutput() {
         </div>
       </div>
       <div className="MainContainerInput">
-        <div className="ButtonDivInput">
-          <div className="flow-left-upper">
-            <div className="flow-left-upper-grp">
-              <label className={A1 + "input upper-label-input"}>
-                <span className={(A1 || false) + "-span textsp"}>A1</span>
-                <div class={"switch-button-" + (A1 || false)} id="s1">
-                  <input
-                    disabled={!A1}
-                    checked={a1Checked}
-                    onChange={a1CheckedState}
-                    class="switch-button-checkbox"
-                    type="checkbox"
-                  ></input>
-                  <label class="switch-button-label" for="">
-                    <span class="switch-button-label-span" id="in1">
-                      Input
-                    </span>
-                  </label>
-                </div>
-              </label>
-              <br />
-              <label className={A2 + "input upper-label-input"}>
-                <span className={(A2 || false) + "-span textsp"}>A2</span>
-                <div class={"switch-button-" + (A2 || false)} id="s2">
-                  <input
-                    disabled={!A2}
-                    checked={a2Checked}
-                    onChange={a2CheckedState}
-                    class="switch-button-checkbox"
-                    type="checkbox"
-                  ></input>
-                  <label class="switch-button-label" for="">
-                    <span class="switch-button-label-span" id="in2">
-                      Input
-                    </span>
-                  </label>
-                </div>
-              </label>
-            </div>
-          </div>
-          <div className="flow-left-upper">
-            <div className="flow-left-upper-grp">
-              <label className={B1 + "input upper-label-input"}>
-                <span className={(B1 || false) + "-span textsp"}>B1</span>
-
-                <div class={"switch-button-" + (B1 || false)} id="s3">
-                  <input
-                    disabled={!B1}
-                    checked={b1Checked}
-                    onChange={b1CheckedState}
-                    class="switch-button-checkbox"
-                    type="checkbox"
-                  ></input>
-                  <label class="switch-button-label" for="">
-                    <span class="switch-button-label-span " id="in3">
-                      Input
-                    </span>
-                  </label>
-                </div>
-              </label>
-              <br />
-              <label className={B2 + "input upper-label-input"}>
-                <span className={(B2 || false) + "-span textsp"}>B2</span>
-
-                <div class={"switch-button-" + (B2 || false)} id="s4">
-                  <input
-                    disabled={!B2}
-                    checked={b2Checked}
-                    onChange={b2CheckedState}
-                    class="switch-button-checkbox"
-                    type="checkbox"
-                  ></input>
-                  <label class="switch-button-label" for="">
-                    <span class="switch-button-label-span" id="in4">
-                      Input
-                    </span>
-                  </label>
-                </div>
-              </label>
-            </div>
-          </div>
-        </div>
         <div className="CenterImg">
           <img
             src={pcImg}
@@ -454,9 +458,9 @@ function InputOutput() {
             )}
 
             {isDistanceSensors ||
-            isColorSensor ||
-            isGestureSensor ||
-            isLightSensor ? (
+              isColorSensor ||
+              isGestureSensor ||
+              isLightSensor ? (
               <img src={Pcinternal4in1Active} className="imgStyle4in1" />
             ) : (
               <img src={Pcinternal4in1InActive} className="imgStyle4in1" />
@@ -509,99 +513,401 @@ function InputOutput() {
             )}
           </div>
         </div>
-        <div className="ButtonRightDivInput">
-          <div className="flow-left-upper">
-            <div className="flow-left-upper-grp">
-              <label className={C1 + "input upper-label-input"}>
-                <span className={(C1 || false) + "-span textsp"}>C1</span>
-
-                <div class={"switch-button-" + (C1 || false)} id="s5">
+        <div className="Inputs-ports-Container">
+          <div className="Inputs-properties-Container">
+            <div className="Inputs-properties-b">
+              <div className="Inputs-properties-bIn">
+                <span className="Inputs-properties-InputLabel">
                   <input
-                    disabled={!C1}
-                    checked={c1Checked}
-                    onChange={c1CheckedState}
-                    class="switch-button-checkbox"
+                    className="Inputs-properties-InputCheckBox"
                     type="checkbox"
-                  ></input>
-                  <label class="switch-button-label" for="">
-                    <span class="switch-button-label-span" id="in5">
-                      Input
-                    </span>
-                  </label>
-                </div>
-              </label>
-              <br />
-              <label className={C2 + "input upper-label-input"}>
-                <span className={(C2 || false) + "-span textsp"}>C2</span>
-
-                <div class={"switch-button-" + (C2 || false)} id="s6">
+                  // checked={a1}
+                  // onClick={() => myFunction1()}
+                  // onChange={() => onA1ValueChange()}
+                  />
+                  <span disabled="disabled" className="A1" id="foo1">
+                    A1
+                  </span>
+                </span>
+                <span className="Inputs-properties-InputLabel">
                   <input
-                    disabled={!C2}
-                    checked={c2Checked}
-                    onChange={c2CheckedState}
-                    class="switch-button-checkbox"
+                    className="Inputs-properties-InputCheckBox"
                     type="checkbox"
-                  ></input>
-                  <label class="switch-button-label" for="">
-                    <span class="switch-button-label-span" id="in6">
-                      Input
-                    </span>
-                  </label>
-                </div>
-              </label>
+                  // checked={a2}
+                  // onClick={() => myFunction2()}
+                  // onChange={() => onA2ValueChange()}
+                  />
+                  <span disabled="disabled" className="A1" id="foo2">
+                    A2
+                  </span>
+                </span>
+                <span className="Inputs-properties-InputLabel">
+                  <input
+                    className="Inputs-properties-InputCheckBox"
+                    type="checkbox"
+                  // checked={a2}
+                  // onClick={() => myFunction2()}
+                  // onChange={() => onA2ValueChange()}
+                  />
+                  <span disabled="disabled" className="A1" id="foo2">
+                    A2
+                  </span>
+                </span>
+              </div>
             </div>
           </div>
-          <div className="flow-left-upper">
-            <div className="flow-left-upper-grp">
-              <label className={D1 + "input upper-label-input"}>
-                <span className={(D1 || false) + "-span textsp"}>D1</span>
-                <div
-                  class={"switch-button-" + false}
-                  style={{ color: "#fcfcfc" }}
-                >
-                  <input
-                    disabled={true}
-                    checked={true}
-                    onChange={d1CheckedState}
-                    class="switch-button-checkbox"
-                    type="checkbox"
-                  ></input>
-                  <label class="switch-button-label" for="">
-                    <span
-                      class="switch-button-label-span"
-                      style={{ color: "#717171" }}
-                    >
-                      Input
-                    </span>
-                  </label>
-                </div>
-              </label>
-              <br />
-              <label className={D2 + "input upper-label-input"}>
-                <span className={(D2 || false) + "-span textsp"}>D2</span>
-
-                <div
-                  class={"switch-button-" + false}
-                  style={{ color: "#fcfcfc" }}
-                >
-                  <input
-                    disabled={true}
-                    checked={true}
-                    onChange={d2CheckedState}
-                    class="switch-button-checkbox"
-                    type="checkbox"
-                  ></input>
-                  <label class="switch-button-label" for="">
-                    <span
-                      class="switch-button-label-span"
-                      style={{ color: "#717171" }}
-                    >
-                      Input
-                    </span>
-                  </label>
-                </div>
-              </label>
+          <div className="ButtonDivInput">
+            <div className="Inputs-flow-left-upper">
+              <div className="Inputs-flow-left-upper-grp">
+                <label className={A1 + "input upper-label-input"}>
+                  <span className={(A1 || false) + "-span textsp"}>A1</span>
+                  <div class={"switch-button-" + (A1 || false)} id="s1">
+                    <input
+                      disabled={!A1}
+                      checked={a1Checked}
+                      onChange={a1CheckedState}
+                      class="switch-button-checkbox"
+                      type="checkbox"
+                    ></input>
+                    <label class="switch-button-label" for="">
+                      <span class="switch-button-label-span" id="in1">
+                        Input
+                      </span>
+                    </label>
+                  </div>
+                </label>
+                <br />
+                <label className={A2 + "input upper-label-input"}>
+                  <span className={(A2 || false) + "-span textsp"}>A2</span>
+                  <div class={"switch-button-" + (A2 || false)} id="s2">
+                    <input
+                      disabled={!A2}
+                      checked={a2Checked}
+                      onChange={a2CheckedState}
+                      class="switch-button-checkbox"
+                      type="checkbox"
+                    ></input>
+                    <label class="switch-button-label" for="">
+                      <span class="switch-button-label-span" id="in2">
+                        Input
+                      </span>
+                    </label>
+                  </div>
+                </label>
+              </div>
             </div>
+            <div className="Inputs-flow-left-upper">
+              <div className="Inputs-flow-left-upper-grp">
+                <label className={B1 + "input upper-label-input"}>
+                  <span className={(B1 || false) + "-span textsp"}>B1</span>
+
+                  <div class={"switch-button-" + (B1 || false)} id="s3">
+                    <input
+                      disabled={!B1}
+                      checked={b1Checked}
+                      onChange={b1CheckedState}
+                      class="switch-button-checkbox"
+                      type="checkbox"
+                    ></input>
+                    <label class="switch-button-label" for="">
+                      <span class="switch-button-label-span " id="in3">
+                        Input
+                      </span>
+                    </label>
+                  </div>
+                </label>
+                <br />
+                <label className={B2 + "input upper-label-input"}>
+                  <span className={(B2 || false) + "-span textsp"}>B2</span>
+
+                  <div class={"switch-button-" + (B2 || false)} id="s4">
+                    <input
+                      disabled={!B2}
+                      checked={b2Checked}
+                      onChange={b2CheckedState}
+                      class="switch-button-checkbox"
+                      type="checkbox"
+                    ></input>
+                    <label class="switch-button-label" for="">
+                      <span class="switch-button-label-span" id="in4">
+                        Input
+                      </span>
+                    </label>
+                  </div>
+                </label>
+              </div>
+            </div>
+            <div className="Inputs-flow-left-upper">
+              <div className="Inputs-flow-left-upper-grp">
+                <label className={E1 + "input upper-label-input"}>
+                  <span className={(E1 || false) + "-span textsp"}>E1</span>
+                  <div class={"switch-button-" + (E1 || false)} id="s9">
+                    <input
+                      disabled={!E1}
+                      checked={e1Checked}
+                      onChange={e1CheckedState}
+                      class="switch-button-checkbox"
+                      type="checkbox"
+                    ></input>
+                    <label class="switch-button-label" for="">
+                      <span class="switch-button-label-span" id="in9">
+                        Input
+                      </span>
+                    </label>
+                  </div>
+                </label>
+                <br />
+                <label className={E2 + "input upper-label-input"}>
+                  <span className={(E2 || false) + "-span textsp"}>E2</span>
+                  <div class={"switch-button-" + (E2 || false)} id="s10">
+                    <input
+                      disabled={!E2}
+                      checked={e2Checked}
+                      onChange={e2CheckedState}
+                      class="switch-button-checkbox"
+                      type="checkbox"
+                    ></input>
+                    <label class="switch-button-label" for="">
+                      <span class="switch-button-label-span" id="in10">
+                        Input
+                      </span>
+                    </label>
+                  </div>
+                </label>
+              </div>
+            </div>
+            <div className="Inputs-flow-left-upper">
+              <div className="Inputs-flow-left-upper-grp">
+                <label className={F1 + "input upper-label-input"}>
+                  <span className={(F1 || false) + "-span textsp"}>F1</span>
+
+                  <div class={"switch-button-" + (F1 || false)} id="s11">
+                    <input
+                      disabled={!F1}
+                      checked={f1Checked}
+                      onChange={f1CheckedState}
+                      class="switch-button-checkbox"
+                      type="checkbox"
+                    ></input>
+                    <label class="switch-button-label" for="">
+                      <span class="switch-button-label-span " id="in11">
+                        Input
+                      </span>
+                    </label>
+                  </div>
+                </label>
+                <br />
+                <label className={F2 + "input upper-label-input"}>
+                  <span className={(F2 || false) + "-span textsp"}>F2</span>
+
+                  <div class={"switch-button-" + (F2 || false)} id="s12">
+                    <input
+                      disabled={!F2}
+                      checked={f2Checked}
+                      onChange={f2CheckedState}
+                      class="switch-button-checkbox"
+                      type="checkbox"
+                    ></input>
+                    <label class="switch-button-label" for="">
+                      <span class="switch-button-label-span" id="in12">
+                        Input
+                      </span>
+                    </label>
+                  </div>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div className="ButtonRightDivInput">
+            <div className="Inputs-flow-left-upper">
+              <div className="Inputs-flow-left-upper-grp">
+                <label className={C1 + "input upper-label-input"}>
+                  <span className={(C1 || false) + "-span textsp"}>C1</span>
+
+                  <div class={"switch-button-" + (C1 || false)} id="s5">
+                    <input
+                      disabled={!C1}
+                      checked={c1Checked}
+                      onChange={c1CheckedState}
+                      class="switch-button-checkbox"
+                      type="checkbox"
+                    ></input>
+                    <label class="switch-button-label" for="">
+                      <span class="switch-button-label-span" id="in5">
+                        Input
+                      </span>
+                    </label>
+                  </div>
+                </label>
+                <br />
+                <label className={C2 + "input upper-label-input"}>
+                  <span className={(C2 || false) + "-span textsp"}>C2</span>
+
+                  <div class={"switch-button-" + (C2 || false)} id="s6">
+                    <input
+                      disabled={!C2}
+                      checked={c2Checked}
+                      onChange={c2CheckedState}
+                      class="switch-button-checkbox"
+                      type="checkbox"
+                    ></input>
+                    <label class="switch-button-label" for="">
+                      <span class="switch-button-label-span" id="in6">
+                        Input
+                      </span>
+                    </label>
+                  </div>
+                </label>
+              </div>
+            </div>
+            <div className="Inputs-flow-left-upper">
+              <div className="Inputs-flow-left-upper-grp">
+                <label className={D1 + "input upper-label-input"}>
+                  <span className={(D1 || false) + "-span textsp"}>D1</span>
+                  <div
+                    class={"switch-button-" + false}
+                    style={{ color: "#fcfcfc" }}
+                  >
+                    <input
+                      disabled={true}
+                      checked={true}
+                      onChange={d1CheckedState}
+                      class="switch-button-checkbox"
+                      type="checkbox"
+                    ></input>
+                    <label class="switch-button-label" for="">
+                      <span
+                        class="switch-button-label-span"
+                        style={{ color: "#717171" }}
+                      >
+                        Input
+                      </span>
+                    </label>
+                  </div>
+                </label>
+                <br />
+                <label className={D2 + "input upper-label-input"}>
+                  <span className={(D2 || false) + "-span textsp"}>D2</span>
+
+                  <div
+                    class={"switch-button-" + false}
+                    style={{ color: "#fcfcfc" }}
+                  >
+                    <input
+                      disabled={true}
+                      checked={true}
+                      onChange={d2CheckedState}
+                      class="switch-button-checkbox"
+                      type="checkbox"
+                    ></input>
+                    <label class="switch-button-label" for="">
+                      <span
+                        class="switch-button-label-span"
+                        style={{ color: "#717171" }}
+                      >
+                        Input
+                      </span>
+                    </label>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <div className="Inputs-flow-left-upper">
+              <div className="Inputs-flow-left-upper-grp">
+                <label className={M1 + "input upper-label-input"}>
+                  <span className={(M1 || false) + "-span textsp"}>M1</span>
+
+                  <div class={"switch-button-" + (M1 || false)} id="s13">
+                    <input
+                      disabled={!M1}
+                      checked={m1Checked}
+                      onChange={m1CheckedState}
+                      class="switch-button-checkbox"
+                      type="checkbox"
+                    ></input>
+                    <label class="switch-button-label" for="">
+                      <span class="switch-button-label-span" id="in13">
+                        Input
+                      </span>
+                    </label>
+                  </div>
+                </label>
+                <br />
+                <label className={M2 + "input upper-label-input"}>
+                  <span className={(M2 || false) + "-span textsp"}>M2</span>
+
+                  <div class={"switch-button-" + (M2 || false)} id="s14">
+                    <input
+                      disabled={!M2}
+                      checked={m2Checked}
+                      onChange={m2CheckedState}
+                      class="switch-button-checkbox"
+                      type="checkbox"
+                    ></input>
+                    <label class="switch-button-label" for="">
+                      <span class="switch-button-label-span" id="in14">
+                        Input
+                      </span>
+                    </label>
+                  </div>
+                </label>
+              </div>
+            </div>
+            <div className="Inputs-flow-left-upper">
+              <div className="Inputs-flow-left-upper-grp">
+                <label className={M3 + "input upper-label-input"}>
+                  <span className={(M3 || false) + "-span textsp"}>M3</span>
+                  <div
+                    class={"switch-button-" + (M3 || false)}
+                    style={{ color: "#fcfcfc" }}
+                  >
+                    <input
+                      disabled={!M3}
+                      checked={m3Checked}
+                      onChange={m3CheckedState}
+                      class="switch-button-checkbox"
+                      type="checkbox"
+                    ></input>
+                    <label class="switch-button-label" for="">
+                      <span
+                        class="switch-button-label-span"
+                        style={{ color: "#717171" }}
+                      >
+                        Input
+                      </span>
+                    </label>
+                  </div>
+                </label>
+                <br />
+                <label className={M4 + "input upper-label-input"}>
+                  <span className={(M4 || false) + "-span textsp"}>M4</span>
+
+                  <div
+                    class={"switch-button-" + (M4 || false)}
+                    style={{ color: "#fcfcfc" }}
+                  >
+                    <input
+                      disabled={!M4}
+                      checked={m4Checked}
+                      onChange={m4CheckedState}
+                      class="switch-button-checkbox"
+                      type="checkbox"
+                    ></input>
+                    <label class="switch-button-label" for="">
+                      <span
+                        class="switch-button-label-span"
+                        style={{ color: "#717171" }}
+                      >
+                        Input
+                      </span>
+                    </label>
+                  </div>
+                </label>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
@@ -622,7 +928,7 @@ function InputOutput() {
           />
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

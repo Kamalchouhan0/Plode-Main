@@ -14,7 +14,7 @@ import Header from "./Header";
 
 function Flow(props) {
   return (
-    <div>
+    <>
       <Switch>
         <Route exact path="/flow" component={ProgramSelection} />
         <Route
@@ -27,7 +27,7 @@ function Flow(props) {
         <Route exact path="/flow/digital-analog" component={Digital} />
         <Route exact path="/flow/flowchart" component={FlowchartPage} />
       </Switch>
-    </div>
+    </>
   );
 }
 

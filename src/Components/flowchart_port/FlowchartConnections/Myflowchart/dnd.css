@@ -35,7 +35,7 @@ aside{
 }
 
 .dndnode_if {
-  background-image: url("/src/Assets/flowchart/condition2.png");
+  background-image: url("/src/Assets/flowchart/decision.png");
 
   background-position: center;
   background-repeat: no-repeat;
@@ -45,7 +45,7 @@ aside{
   margin-bottom: 20px;
 }
 .dndnode_loop {
-  background-image: url("/src/Assets/flowchart/loop.png");
+  background-image: url("/src/Assets/flowchart/repeat.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -54,7 +54,7 @@ aside{
   margin-bottom: 20px;
 }
 .dndnode_output {
-  background-image: url("/src/Assets/flowchart/hardware.png");
+  background-image: url("/src/Assets/flowchart/action.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -72,7 +72,7 @@ aside{
   margin-bottom: 20px;
 }
 .dndnode_end-repeat {
-  background-image: url("/src/Assets/flowchart/repeat.png");
+  background-image: url("/src/Assets/flowchart/loop.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;

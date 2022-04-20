@@ -1,5 +1,9 @@
 import backbtn from "../Assets/Bisoft_UI/Buttons/Active with shadow/back@2x.png";
 
+import leftArrow from "../Assets/Bisoft_UI/Buttons/Active without shadow/left-arrow.png";
+
+import rightArrow from "../Assets/Bisoft_UI/Buttons/Active without shadow/right-arrow.png";
+
 import PlayCard_Svg from "../Assets/Bisoft_UI/Play/SVG/play menu card - small.svg";
 
 import helpBtnInActive from "../Assets/Bisoft_UI/Buttons/Inactive with shadow/help@2x.png";
@@ -188,6 +192,12 @@ function renderImage(imageName) {
 
     case "backBtn":
       return backbtn;
+
+    case "rightArrow":
+      return rightArrow;
+
+    case "leftArrow":
+      return leftArrow;
 
     case "PlayCard_Svg":
       return PlayCard_Svg;

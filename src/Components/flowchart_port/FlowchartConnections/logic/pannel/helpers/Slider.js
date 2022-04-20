@@ -79,6 +79,7 @@ class Slider extends Component {
         style={{
           display: "inline-block",
           width: "100%",
+          height : "100%",
         }}
       >
         {/* render for waitProperty Panels */}
@@ -86,7 +87,7 @@ class Slider extends Component {
           <table width="100%">
             <tbody>
               <tr style={{ verticalAlign: "middle" }}>
-                <td>
+                {this.props.title ? <td>
                   <p
                     className="waitPropertyTxt"
                     style={{
@@ -97,6 +98,8 @@ class Slider extends Component {
                     {this.props.title}
                   </p>
                 </td>
+                : null
+                }
                 <td
                   style={{
                     width: "100%",

@@ -20,6 +20,7 @@ class LoopPanel extends Component {
     // this.props.onChange({ times: value });
   };
   render() {
+    sessionStorage.setItem(`loop${this.props.check}`, this.state.times);
     return (
       <div className="outertabDiv-loop">
         <div

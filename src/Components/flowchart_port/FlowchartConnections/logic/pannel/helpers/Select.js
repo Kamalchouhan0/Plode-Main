@@ -7,6 +7,15 @@ let C1 = JSON.parse(sessionStorage.getItem("C1"));
 let C2 = JSON.parse(sessionStorage.getItem("C2"));
 let D1 = JSON.parse(sessionStorage.getItem("D1"));
 let D2 = JSON.parse(sessionStorage.getItem("D2"));
+let E1 = JSON.parse(sessionStorage.getItem("E1"));
+let E2 = JSON.parse(sessionStorage.getItem("E2"));
+let F1 = JSON.parse(sessionStorage.getItem("F1"));
+let F2 = JSON.parse(sessionStorage.getItem("F2"));
+let M1 = JSON.parse(sessionStorage.getItem("M1"));
+let M2 = JSON.parse(sessionStorage.getItem("M2"));
+let M3 = JSON.parse(sessionStorage.getItem("M3"));
+let M4 = JSON.parse(sessionStorage.getItem("M4"));
+
 let a1Checked = JSON.parse(sessionStorage.getItem("a1-I/O"));
 let a1Digi = JSON.parse(sessionStorage.getItem("A1DIGI"));
 let a2Checked = JSON.parse(sessionStorage.getItem("a2-I/O"));
@@ -23,6 +32,22 @@ let d1Checked = JSON.parse(sessionStorage.getItem("D1"));
 let d1Digi = JSON.parse(sessionStorage.getItem("D1DIGI"));
 let d2Checked = JSON.parse(sessionStorage.getItem("D2"));
 let d2Digi = JSON.parse(sessionStorage.getItem("D2DIGI"));
+let e1Checked = JSON.parse(sessionStorage.getItem("e1-I/O"));
+let e1Digi = JSON.parse(sessionStorage.getItem("E1DIGI"));
+let e2Checked = JSON.parse(sessionStorage.getItem("E2"));
+let e2Digi = JSON.parse(sessionStorage.getItem("E2DIGI"));
+let f1Checked = JSON.parse(sessionStorage.getItem("f1-I/O"));
+let f1Digi = JSON.parse(sessionStorage.getItem("F1DIGI"));
+let f2Checked = JSON.parse(sessionStorage.getItem("f2-I/O"));
+let f2Digi = JSON.parse(sessionStorage.getItem("F2DIGI"));
+let m1Checked = JSON.parse(sessionStorage.getItem("m1-I/O"));
+let m1Digi = JSON.parse(sessionStorage.getItem("M1DIGI"));
+let m2Checked = JSON.parse(sessionStorage.getItem("m2-I/O"));
+let m2Digi = JSON.parse(sessionStorage.getItem("M2DIGI"));
+let m3Checked = JSON.parse(sessionStorage.getItem("m3-I/O"));
+let m3Digi = JSON.parse(sessionStorage.getItem("M3DIGI"));
+let m4Checked = JSON.parse(sessionStorage.getItem("m4-I/O"));
+let m4Digi = JSON.parse(sessionStorage.getItem("M4DIGI"));
 let isMic = JSON.parse(sessionStorage.getItem("isMic"));
 let isDistanceSensors = JSON.parse(sessionStorage.getItem("isDistanceSensors"));
 let isGestureSensor = JSON.parse(sessionStorage.getItem("isGestureSensor"));
@@ -53,6 +78,22 @@ class Select extends Component {
     C2 = JSON.parse(sessionStorage.getItem("C2"));
     c1Checked = JSON.parse(sessionStorage.getItem("c1-I/O"));
     c2Checked = JSON.parse(sessionStorage.getItem("c2-I/O"));
+    e1Checked = JSON.parse(sessionStorage.getItem("e1-I/O"));
+    e1Digi = JSON.parse(sessionStorage.getItem("E1DIGI"));
+    e2Checked = JSON.parse(sessionStorage.getItem("e2-I/O"));
+    e2Digi = JSON.parse(sessionStorage.getItem("E2DIGI"));
+    f1Checked = JSON.parse(sessionStorage.getItem("f1-I/O"));
+    f1Digi = JSON.parse(sessionStorage.getItem("F1DIGI"));
+    f2Checked = JSON.parse(sessionStorage.getItem("f2-I/O"));
+    f2Digi = JSON.parse(sessionStorage.getItem("F2DIGI"));
+    m1Checked = JSON.parse(sessionStorage.getItem("m1-I/O"));
+    m1Digi = JSON.parse(sessionStorage.getItem("M1DIGI"));
+    m2Checked = JSON.parse(sessionStorage.getItem("m2-I/O"));
+    m2Digi = JSON.parse(sessionStorage.getItem("M2DIGI"));
+    m3Checked = JSON.parse(sessionStorage.getItem("m3-I/O"));
+    m3Digi = JSON.parse(sessionStorage.getItem("M3DIGI"));
+    m4Checked = JSON.parse(sessionStorage.getItem("m4-I/O"));
+    m4Digi = JSON.parse(sessionStorage.getItem("M4DIGI"));
     isMic = JSON.parse(sessionStorage.getItem("isMic"));
     isDistanceSensors = JSON.parse(sessionStorage.getItem("isDistanceSensors"));
     isGestureSensor = JSON.parse(sessionStorage.getItem("isGestureSensor"));
@@ -136,6 +177,62 @@ class Select extends Component {
           ) : (
             <></>
           )}
+          {!e1Checked && E1 ? (
+            <>
+              <option value="port E1">PORT E1</option>
+            </>
+          ) : (
+            <></>
+          )}
+          {!e2Checked && E2 ? (
+            <>
+              <option value="port E2">PORT E2</option>
+            </>
+          ) : (
+            <></>
+          )}
+          {!f1Checked && F1 ? (
+            <>
+              <option value="port F1">PORT F1</option>
+            </>
+          ) : (
+            <></>
+          )}
+          {!f2Checked && F2 ? (
+            <>
+              <option value="port F2">PORT F2</option>
+            </>
+          ) : (
+            <></>
+          )}
+          {!m1Checked && M1 ? (
+            <>
+              <option value="port M1">PORT M1</option>
+            </>
+          ) : (
+            <></>
+          )}
+          {!m2Checked && M2 ? (
+            <>
+              <option value="port M2">PORT M2</option>
+            </>
+          ) : (
+            <></>
+          )}
+          {!m3Checked && M3 ? (
+            <>
+              <option value="port M3">PORT M3</option>
+            </>
+          ) : (
+            <></>
+          )}
+          {!m4Checked && M4 ? (
+            <>
+              <option value="port M4">PORT M4</option>
+            </>
+          ) : (
+            <></>
+          )}
           {isMic ? (
             <>
               <option value="microphone">Microphone</option>
@@ -166,7 +263,9 @@ class Select extends Component {
           )}
           {isColorSensor ? (
             <>
-              <option value="colorSensor">Color Sensor</option>
+              <option value="colorSensorRed">4-IN-1 SENSOR → RED</option>
+              <option value="colorSensorGreen">4-IN-1 SENSOR → GREEN</option>
+              <option value="colorSensorBlue">4-IN-1 SENSOR → BLUE</option>
             </>
           ) : (
             <></>

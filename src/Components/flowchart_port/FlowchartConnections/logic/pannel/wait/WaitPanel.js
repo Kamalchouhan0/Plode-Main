@@ -3,7 +3,7 @@ import Slider from "../helpers/Slider";
 import { Link } from "react-router-dom";
 import { timericon } from "../../../../../../source/index";
 import "./wait.css";
-
+import { useLocalStorage } from "../../../../../LocalStorage/LocalStorage";
 var h = [];
 var m = [];
 var s = [];
@@ -86,7 +86,10 @@ class WaitPanel extends Component {
     const min = this.props.min || 0;
     const max = this.props.max || 255;
     const { name, assign, value, port, state, onChange } = this.props;
-
+    sessionStorage.setItem(`milliSec${this.props.check}`, this.state.milliSec);
+    sessionStorage.setItem(`sec${this.props.check}`, this.state.sec);
+    sessionStorage.setItem(`min${this.props.check}`, this.state.min);
+    sessionStorage.setItem(`hr${this.props.check}`, this.state.hr);
     var timeDelays = ["Milliseconds", "Seconds", "Minutes", "Hours"];
     return (
       <div className="outertabDiv-wait">
