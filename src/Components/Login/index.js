@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./login.css";
+import "./googleloginbtn.scss";
 import {
   BrowserRouter as Router,
   Route,
@@ -17,7 +18,7 @@ import { leading_page } from "../../source/index";
 import { useHistory } from "react-router-dom";
 import animationStyle from "./loginAnimation.module.css";
 import renderImage from "../../source/importImg";
-
+import GoogleLogin from "react-google-login";
 class login extends Component {
   constructor(props) {
     super(props);
@@ -86,13 +87,22 @@ class login extends Component {
     this.props.logicComponent(logic);
 
     setTimeout(() => {
-      this.props.history.push("/biboxSelection");
+      //this.props.history.push("/biboxSelection");
     }, 3500);
   };
 
   render() {
     sessionStorage.clear();
-
+    const loginFail = (response) => {
+      window.prompt(
+        "Sign in Google failed try again with a different Google account"
+      );
+      console.log(response);
+    };
+    const loginSuccess = (response) => {
+      sessionStorage.setItem("userData", JSON.stringify(response.profileObj));
+      this.props.history.push("/biboxSelection");
+    };
     return (
       <div className={animationStyle.MainSec}>
         <div
@@ -103,6 +113,7 @@ class login extends Component {
             borderStartEndRadius: "40% 100%",
           }}
         >
+          {" "}
           <img
             className={animationStyle.Main_Sec_Title}
             src={renderImage("bisoft_logo1")}
@@ -113,6 +124,33 @@ class login extends Component {
             src={renderImage("leading_page")}
           ></img>
           {/* </Link> */}
+        </div>
+        <div className={animationStyle.Google_Login}>
+          <GoogleLogin
+            clientId="798914613502-eeirsjatcut3f8pljkbknd1hdkampga8.apps.googleusercontent.com"
+            buttonText="Login"
+            render={(renderProps) => (
+              <div
+                onClick={renderProps.onClick}
+                disabled={renderProps.disabled}
+              >
+                <div class="google-btn">
+                  <div class="google-icon-wrapper">
+                    <img
+                      class="google-icon"
+                      src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
+                    />
+                  </div>
+                  <p class="btn-text">
+                    <b> Sign in with google</b>
+                  </p>
+                </div>
+              </div>
+            )}
+            onSuccess={loginSuccess}
+            onFailure={loginFail}
+            cookiePolicy={"single_host_origin"}
+          />
         </div>
       </div>
     );

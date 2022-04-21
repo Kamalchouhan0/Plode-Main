@@ -2101,6 +2101,23 @@ const DnDFlow = () => {
     a.push(sessionStorage.getItem(`s2Chk${i}`));
     a.push(sessionStorage.getItem(`s3Chk${i}`));
     a.push(sessionStorage.getItem(`s4Chk${i}`));
+    a.push(sessionStorage.getItem(`e1${i}`));
+    a.push(sessionStorage.getItem(`e1Chk${i}`));
+    a.push(sessionStorage.getItem(`e2${i}`));
+    a.push(sessionStorage.getItem(`e2Chk${i}`));
+    a.push(sessionStorage.getItem(`f1${i}`));
+    a.push(sessionStorage.getItem(`f1Chk${i}`));
+    a.push(sessionStorage.getItem(`f2${i}`));
+    a.push(sessionStorage.getItem(`f2Chk${i}`));
+    a.push(sessionStorage.getItem(`m1${i}`));
+    a.push(sessionStorage.getItem(`m1Chk${i}`));
+    a.push(sessionStorage.getItem(`m2${i}`));
+    a.push(sessionStorage.getItem(`m2Chk${i}`));
+    a.push(sessionStorage.getItem(`m3${i}`));
+    a.push(sessionStorage.getItem(`m3Chk${i}`));
+    a.push(sessionStorage.getItem(`m4${i}`));
+    a.push(sessionStorage.getItem(`m4Chk${i}`));
+
     return a;
   };
   const ifArray = (i) => {
@@ -2358,10 +2375,10 @@ const DnDFlow = () => {
       C2: portInfo("C2"),
       D1: portInfo("D1"),
       D2: portInfo("D2"),
-      E1: null,
-      E2: null,
-      F1: null,
-      F2: null,
+      E1: portInfo("E1"),
+      E2: portInfo("E2"),
+      F1: portInfo("F1"),
+      F2: portInfo("F2"),
       G1: null,
       G2: null,
       H1: null,
@@ -2374,8 +2391,8 @@ const DnDFlow = () => {
       B: portInfo("B1"),
       C: portInfo("C1"),
       D: portInfo("D1"),
-      E: null,
-      F: null,
+      E: portInfo("E1"),
+      F: portInfo("F1"),
       G: null,
       H: null,
       I: null,
@@ -2479,14 +2496,22 @@ const DnDFlow = () => {
             assignBuzzerTone: Boolean(a[35] === "true" || parseInt(a[35])),
             valueBuzzerFrequency: 0,
             valueBuzzerTone: parseInt(a[13]),
-            assignSmileOne: Boolean(a[36] === "true" || parseInt(a[36])),
-            valueSmileOne: parseInt(a[14]),
-            assignSmileTwo: Boolean(a[37] === "true" || parseInt(a[37])),
-            valueSmileTwo: parseInt(a[15]),
-            assignSmileThree: Boolean(a[38] === "true" || parseInt(a[38])),
-            valueSmileThree: parseInt(a[16]),
-            assignSmileFour: Boolean(a[39] === "true" || parseInt(a[39])),
-            valueSmileFour: parseInt(a[17]),
+            assignSmileOne:
+              Boolean(a[36] === "true" || parseInt(a[36])) ||
+              Boolean(a[49] === "true" || parseInt(a[49])),
+            valueSmileOne: parseInt(a[14]) || parseInt(a[48]),
+            assignSmileTwo:
+              Boolean(a[37] === "true" || parseInt(a[37])) ||
+              Boolean(a[51] === "true" || parseInt(a[51])),
+            valueSmileTwo: parseInt(a[15]) || parseInt(a[50]),
+            assignSmileThree:
+              Boolean(a[38] === "true" || parseInt(a[38])) ||
+              Boolean(a[53] === "true" || parseInt(a[53])),
+            valueSmileThree: parseInt(a[16]) || parseInt(a[52]),
+            assignSmileFour:
+              Boolean(a[39] === "true" || parseInt(a[39])) ||
+              Boolean(a[55] === "true" || parseInt(a[55])),
+            valueSmileFour: parseInt(a[17]) || parseInt(a[54]),
             assignA1: Boolean(a[18] === "true" || parseInt(a[18])),
             valueA1: parseInt(a[0]),
             assignA2: Boolean(a[19] === "true" || parseInt(a[19])),
@@ -2503,6 +2528,14 @@ const DnDFlow = () => {
             valueD1: parseInt(a[6]),
             assignD2: Boolean(a[25] === "true" || parseInt(a[25])),
             valueD2: parseInt(a[7]),
+            assignE1: Boolean(a[41] === "true" || parseInt(a[41])),
+            valueE1: parseInt(a[40]),
+            assignE2: Boolean(a[43] === "true" || parseInt(a[43])),
+            valueE2: parseInt(a[42]),
+            assignF1: Boolean(a[45] === "true" || parseInt(a[45])),
+            valueF1: parseInt(a[44]),
+            assignF2: Boolean(a[47] === "true" || parseInt(a[47])),
+            valueF2: parseInt(a[46]),
           },
         });
       } else if (testSingleD[i].data.specificElType === "loop") {

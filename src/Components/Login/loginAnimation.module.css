@@ -24,6 +24,12 @@
   animation: move 2s ease 0.5s backwards;
   /* animation-duration: 5s; */
 }
+.Google_Login {
+  position: absolute;
+  right: 15%;
+  top: 50%;
+  animation: rocket 4s ease;
+}
 .Main_Sec_Rock {
   height: 400px;
   width: 300px;
