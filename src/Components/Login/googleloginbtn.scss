@@ -3,10 +3,10 @@ $google-blue: #4285f4;
 $button-active-blue: #1669f2;
 
 .google-btn {
-  width: 184px;
+  width: 185px;
   height: 42px;
   background-color: $google-blue;
-  border-radius: 2px;
+  border-radius: 30px;
   box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.25);
   .google-icon-wrapper {
     position: absolute;
@@ -14,19 +14,19 @@ $button-active-blue: #1669f2;
     margin-left: 1px;
     width: 40px;
     height: 40px;
-    border-radius: 2px;
+    border-radius: 30px;
     background-color: $white;
   }
   .google-icon {
     position: absolute;
     margin-top: 11px;
     margin-left: 11px;
-    width: 18px;
-    height: 18px;
+    width: 19px;
+    height: 19px;
   }
   .btn-text {
     position: absolute;
-    right: -4px;
+    right: -3px;
     float: right;
     margin: 11px 11px 0 0;
     color: $white;
