@@ -377,8 +377,7 @@ const OutputPanel = (props) => {
       setvalLeyeG(value);
     } else if (key === "leyeB") {
       setvalLeyeB(value);
-    }
-    else if (key === "reye") {
+    } else if (key === "reye") {
       setvalReye(!valReye);
     } else if (key === "reyeR") {
       setvalReyeR(value);
@@ -386,12 +385,10 @@ const OutputPanel = (props) => {
       setvalReyeG(value);
     } else if (key === "reyeB") {
       setvalReyeB(value);
-    }
-    else if (key === "buzz") {
+    } else if (key === "buzz") {
       setvalBuzz(value);
-    }
-    else if (key === "buzzCheckbox") {
-      setBuzzCheckbox(!buzzCheckbox)
+    } else if (key === "buzzCheckbox") {
+      setBuzzCheckbox(!buzzCheckbox);
     } else if (key === "sm1") {
       setvalSm1(value);
     } else if (key === "sm2") {
@@ -401,67 +398,51 @@ const OutputPanel = (props) => {
     } else if (key === "sm4") {
       setvalSm4(value);
     } else if (key === "a1Checkbox") {
-      setA1Checkbox(!a1Checkbox)
-    }
-    else if (key === "a2Checkbox") {
-      setA2Checkbox(!a2Checkbox)
-    }
-    else if (key === "b1Checkbox") {
-      setB1Checkbox(!b1Checkbox)
-    }
-    else if (key === "b2Checkbox") {
-      setB2Checkbox(!b2Checkbox)
-    }
-    else if (key === "c1Checkbox") {
-      setC1Checkbox(!c1Checkbox)
-    }
-    else if (key === "c2Checkbox") {
-      setC2Checkbox(!c2Checkbox)
-    }
-    else if (key === "d1Checkbox") {
-      setD1Checkbox(!d1Checkbox)
-    }
-    else if (key === "d2Checkbox") {
-      setD2Checkbox(!d2Checkbox)
-    }
-    else if (key === "e1Checkbox") {
-      setE1Checkbox(!e1Checkbox)
-    }
-    else if (key === "e2Checkbox") {
-      setE2Checkbox(!e2Checkbox)
-    }
-    else if (key === "f1Checkbox") {
-      setF1Checkbox(!f1Checkbox)
-    }
-    else if (key === "f2Checkbox") {
-      setF2Checkbox(!f2Checkbox)
-    }
-    else if (key === "m1Checkbox") {
-      setM1Checkbox(!m1Checkbox)
-    }
-    else if (key === "m2Checkbox") {
-      setM2Checkbox(!m2Checkbox)
-    }
-    else if (key === "m3Checkbox") {
-      setM3Checkbox(!m3Checkbox)
-    }
-    else if (key === "m4Checkbox") {
-      setM4Checkbox(!m4Checkbox)
-    }
-    else if (key === "s1Checkbox") {
-      setS1Checkbox(!s1Checkbox)
+      setA1Checkbox(!a1Checkbox);
+    } else if (key === "a2Checkbox") {
+      setA2Checkbox(!a2Checkbox);
+    } else if (key === "b1Checkbox") {
+      setB1Checkbox(!b1Checkbox);
+    } else if (key === "b2Checkbox") {
+      setB2Checkbox(!b2Checkbox);
+    } else if (key === "c1Checkbox") {
+      setC1Checkbox(!c1Checkbox);
+    } else if (key === "c2Checkbox") {
+      setC2Checkbox(!c2Checkbox);
+    } else if (key === "d1Checkbox") {
+      setD1Checkbox(!d1Checkbox);
+    } else if (key === "d2Checkbox") {
+      setD2Checkbox(!d2Checkbox);
+    } else if (key === "e1Checkbox") {
+      setE1Checkbox(!e1Checkbox);
+    } else if (key === "e2Checkbox") {
+      setE2Checkbox(!e2Checkbox);
+    } else if (key === "f1Checkbox") {
+      setF1Checkbox(!f1Checkbox);
+    } else if (key === "f2Checkbox") {
+      setF2Checkbox(!f2Checkbox);
+    } else if (key === "m1Checkbox") {
+      setM1Checkbox(!m1Checkbox);
+    } else if (key === "m2Checkbox") {
+      setM2Checkbox(!m2Checkbox);
+    } else if (key === "m3Checkbox") {
+      setM3Checkbox(!m3Checkbox);
+    } else if (key === "m4Checkbox") {
+      setM4Checkbox(!m4Checkbox);
+    } else if (key === "s1Checkbox") {
+      setS1Checkbox(!s1Checkbox);
     } else if (key === "s2Checkbox") {
-      setS2Checkbox(!s2Checkbox)
+      setS2Checkbox(!s2Checkbox);
     } else if (key === "s3Checkbox") {
-      setS3Checkbox(!s3Checkbox)
+      setS3Checkbox(!s3Checkbox);
     } else if (key === "s4Checkbox") {
-      setS4Checkbox(!s4Checkbox)
+      setS4Checkbox(!s4Checkbox);
     } else if (key === "t0Checkbox") {
-      setT0Checkbox(!t0Checkbox)
+      setT0Checkbox(!t0Checkbox);
     } else if (key === "t1Checkbox") {
-      setT1Checkbox(!t1Checkbox)
+      setT1Checkbox(!t1Checkbox);
     } else if (key === "t2Checkbox") {
-      setT2Checkbox(!t2Checkbox)
+      setT2Checkbox(!t2Checkbox);
     }
     // if (key === "a1") {
     //   if (!a1Digi) {
@@ -603,19 +584,46 @@ const OutputPanel = (props) => {
     <div className="outertabDiv-output">
       <div className="slider-section">
         {a1Checked && A1 ? (
-          <div className="slider-item1" style={{ position: "relative" }}>
+          <div
+            className="slider-item1-flowchart"
+            style={{ position: "relative" }}
+          >
             {" "}
             {!a1Digi ? (
               <>
                 <div className="portDetails-flowchart">
-                  <div id="A1" onClick={() => onChange("a1Checkbox")} className={"renderClick" + (a1Checkbox || false) + "  checkBox-conatiner"}>
-                    <p style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", whiteSpace: "nowrap" }}>A1 Digital</p>
+                  <div
+                    id="A1"
+                    onClick={() => onChange("a1Checkbox")}
+                    className={
+                      "renderClick" +
+                      (a1Checkbox || false) +
+                      "  checkBox-conatiner"
+                    }
+                  >
+                    <p
+                      style={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      A1 Digital
+                    </p>
                     {/*   <input type ="checkbox" id="A1" checked={a1Checkbox} onChange={() => onChange("a1Checkbox")}></input>
                       {console.log("checkbox@@@@@@@@",document.getElementById("A1"))}
                       <span className="hardwareText">A1 Digital</span> */}
                   </div>
                 </div>
-                <div className={"portSlider-flowchart" + " isActivePortInfo" + (a1Checkbox || false)}>
+                <div
+                  className={
+                    "portSlider-flowchart" +
+                    " isActivePortInfo" +
+                    (a1Checkbox || false)
+                  }
+                >
                   <Slider
                     title="Intensity"
                     value={valA1}
@@ -651,13 +659,37 @@ const OutputPanel = (props) => {
             ) : (
               <>
                 <div className="portDetails-flowchart">
-                  <div id="A1" onClick={() => onChange("a1Checkbox")} className={"renderClick" + (a1Checkbox || false) + "  checkBox-conatiner"}>
-                    <p style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", whiteSpace: "nowrap" }}>A1 Analog</p>
+                  <div
+                    id="A1"
+                    onClick={() => onChange("a1Checkbox")}
+                    className={
+                      "renderClick" +
+                      (a1Checkbox || false) +
+                      "  checkBox-conatiner"
+                    }
+                  >
+                    <p
+                      style={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      A1 Analog
+                    </p>
                   </div>
                 </div>
                 {/*        <input type ="checkbox" id="A1" checked={a1Checkbox} onChange={() => onChange("a1Checkbox")}></input>
                     <span className="hardwareText">A1 Analog</span> */}
-                <div className={"portSlider-flowchart" + " isActivePortInfo" + (a1Checkbox || false)}>
+                <div
+                  className={
+                    "portSlider-flowchart" +
+                    " isActivePortInfo" +
+                    (a1Checkbox || false)
+                  }
+                >
                   <Slider
                     title="Intensity"
                     value={valA1 || 0}
@@ -695,17 +727,44 @@ const OutputPanel = (props) => {
         ) : null}
 
         {a2Checked && A2 ? (
-          <div className="slider-item1" style={{ position: "relative" }}>
+          <div
+            className="slider-item1-flowchart"
+            style={{ position: "relative" }}
+          >
             {!a2Digi ? (
               <>
                 <div className="portDetails-flowchart">
-                  <div id="A2" onClick={() => onChange("a2Checkbox")} className={"renderClick" + (a2Checkbox || false) + "  checkBox-conatiner"}>
-                    <p style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", whiteSpace: "nowrap" }}>A2 Digital</p>
+                  <div
+                    id="A2"
+                    onClick={() => onChange("a2Checkbox")}
+                    className={
+                      "renderClick" +
+                      (a2Checkbox || false) +
+                      "  checkBox-conatiner"
+                    }
+                  >
+                    <p
+                      style={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      A2 Digital
+                    </p>
                   </div>
                 </div>
                 {/* <input type ="checkbox" id="A2" checked={a2Checkbox} onChange={() => onChange("a2Checkbox")}></input>
                     <span className="hardwareText">A2 Digital</span> */}
-                <div className={"portSlider-flowchart" + " isActivePortInfo" + (a2Checkbox || false)}>
+                <div
+                  className={
+                    "portSlider-flowchart" +
+                    " isActivePortInfo" +
+                    (a2Checkbox || false)
+                  }
+                >
                   <Slider
                     title="Intensity"
                     value={valA2 || 0}
@@ -741,14 +800,38 @@ const OutputPanel = (props) => {
             ) : (
               <>
                 <div className="portDetails-flowchart">
-                  <div id="A2" onClick={() => onChange("a2Checkbox")} className={"renderClick" + (a2Checkbox || false) + "  checkBox-conatiner"}>
-                    <p style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", whiteSpace: "nowrap" }}>A2 Analog</p>
+                  <div
+                    id="A2"
+                    onClick={() => onChange("a2Checkbox")}
+                    className={
+                      "renderClick" +
+                      (a2Checkbox || false) +
+                      "  checkBox-conatiner"
+                    }
+                  >
+                    <p
+                      style={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      A2 Analog
+                    </p>
                   </div>
                 </div>
                 {/* <input type ="checkbox" id="A2" checked={a2Checkbox} onChange={() => onChange("a2Checkbox")}></input>
                     <span className="hardwareText">A2 Analog</span> */}
 
-                <div className={"portSlider-flowchart" + " isActivePortInfo" + (a2Checkbox || false)}>
+                <div
+                  className={
+                    "portSlider-flowchart" +
+                    " isActivePortInfo" +
+                    (a2Checkbox || false)
+                  }
+                >
                   <Slider
                     title="Intensity"
                     value={valA2 || 0}
@@ -783,22 +866,47 @@ const OutputPanel = (props) => {
               </>
             )}
           </div>
-        ) : (
-          null
-        )}
+        ) : null}
 
         {b1Checked && B1 ? (
-          <div className="slider-item1" style={{ position: "relative" }}>
+          <div
+            className="slider-item1-flowchart"
+            style={{ position: "relative" }}
+          >
             {!b1Digi ? (
               <>
                 <div className="portDetails-flowchart">
-                  <div id="b1" onClick={() => onChange("b1Checkbox")} className={"renderClick" + (b1Checkbox || false) + "  checkBox-conatiner"}>
-                    <p style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", whiteSpace: "nowrap" }}>B1 Digital</p>
+                  <div
+                    id="b1"
+                    onClick={() => onChange("b1Checkbox")}
+                    className={
+                      "renderClick" +
+                      (b1Checkbox || false) +
+                      "  checkBox-conatiner"
+                    }
+                  >
+                    <p
+                      style={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      B1 Digital
+                    </p>
                   </div>
                 </div>
                 {/* <input type ="checkbox" id="b1" checked={b1Checkbox} onChange={() => onChange("b1Checkbox")}></input>
                     <span className="hardwareText">B1 Digital</span> */}
-                <div className={"portSlider-flowchart" + " isActivePortInfo" + (b1Checkbox || false)}>
+                <div
+                  className={
+                    "portSlider-flowchart" +
+                    " isActivePortInfo" +
+                    (b1Checkbox || false)
+                  }
+                >
                   <Slider
                     title="Intensity"
                     value={valB1 || 0}
@@ -834,14 +942,38 @@ const OutputPanel = (props) => {
             ) : (
               <>
                 <div className="portDetails-flowchart">
-                  <div id="b1" onClick={() => onChange("b1Checkbox")} className={"renderClick" + (b1Checkbox || false) + "  checkBox-conatiner"}>
-                    <p style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", whiteSpace: "nowrap" }}>B1 Analog</p>
+                  <div
+                    id="b1"
+                    onClick={() => onChange("b1Checkbox")}
+                    className={
+                      "renderClick" +
+                      (b1Checkbox || false) +
+                      "  checkBox-conatiner"
+                    }
+                  >
+                    <p
+                      style={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      B1 Analog
+                    </p>
                   </div>
                 </div>
 
                 {/* <input type ="checkbox" id="B1" checked={b1Checkbox} onChange={() => onChange("b1Checkbox")}></input>
                     <span className="hardwareText">B1 Analog</span> */}
-                <div className={"portSlider-flowchart" + " isActivePortInfo" + (b1Checkbox || false)}>
+                <div
+                  className={
+                    "portSlider-flowchart" +
+                    " isActivePortInfo" +
+                    (b1Checkbox || false)
+                  }
+                >
                   <Slider
                     title="Intensity"
                     value={valB1 || 0}
@@ -876,21 +1008,47 @@ const OutputPanel = (props) => {
               </>
             )}
           </div>
-        ) : (null
-        )}
+        ) : null}
 
         {b2Checked && B2 ? (
-          <div className="slider-item1" style={{ position: "relative" }}>
+          <div
+            className="slider-item1-flowchart"
+            style={{ position: "relative" }}
+          >
             {!b2Digi ? (
               <>
                 <div className="portDetails-flowchart">
-                  <div id="B2" onClick={() => onChange("b2Checkbox")} className={"renderClick" + (b2Checkbox || false) + "  checkBox-conatiner"}>
-                    <p style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", whiteSpace: "nowrap" }}>B2 Digital</p>
+                  <div
+                    id="B2"
+                    onClick={() => onChange("b2Checkbox")}
+                    className={
+                      "renderClick" +
+                      (b2Checkbox || false) +
+                      "  checkBox-conatiner"
+                    }
+                  >
+                    <p
+                      style={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      B2 Digital
+                    </p>
                   </div>
                 </div>
                 {/* <input type ="checkbox" id="B2" checked={b2Checkbox} onChange={() => onChange("b2Checkbox")}></input>
                     <span className="hardwareText">B2 Digital</span> */}
-                <div className={"portSlider-flowchart" + " isActivePortInfo" + (b2Checkbox || false)}>
+                <div
+                  className={
+                    "portSlider-flowchart" +
+                    " isActivePortInfo" +
+                    (b2Checkbox || false)
+                  }
+                >
                   <Slider
                     title="Intensity"
                     value={valB2 || 0}
@@ -926,13 +1084,37 @@ const OutputPanel = (props) => {
             ) : (
               <>
                 <div className="portDetails-flowchart">
-                  <div id="B2" onClick={() => onChange("b2Checkbox")} className={"renderClick" + (b2Checkbox || false) + "  checkBox-conatiner"}>
-                    <p style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", whiteSpace: "nowrap" }}>B2 Analog</p>
+                  <div
+                    id="B2"
+                    onClick={() => onChange("b2Checkbox")}
+                    className={
+                      "renderClick" +
+                      (b2Checkbox || false) +
+                      "  checkBox-conatiner"
+                    }
+                  >
+                    <p
+                      style={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      B2 Analog
+                    </p>
                   </div>
                 </div>
                 {/* <input type ="checkbox" id="B2" checked={b2Checkbox} onChange={() => onChange("b2Checkbox")}></input>
                     <span className="hardwareText">B2 Analog</span> */}
-                <div className={"portSlider-flowchart" + " isActivePortInfo" + (b2Checkbox || false)}>
+                <div
+                  className={
+                    "portSlider-flowchart" +
+                    " isActivePortInfo" +
+                    (b2Checkbox || false)
+                  }
+                >
                   <Slider
                     title="Intensity"
                     value={valB2 || 0}
@@ -967,22 +1149,48 @@ const OutputPanel = (props) => {
               </>
             )}
           </div>
-        ) : (null
-        )}
+        ) : null}
 
         {c1Checked && C1 ? (
-          <div className="slider-item1" style={{ position: "relative" }}>
+          <div
+            className="slider-item1-flowchart"
+            style={{ position: "relative" }}
+          >
             {" "}
             {!c1Digi ? (
               <>
                 <div className="portDetails-flowchart">
-                  <div id="C1" onClick={() => onChange("c1Checkbox")} className={"renderClick" + (c1Checkbox || false) + "  checkBox-conatiner"}>
-                    <p style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", whiteSpace: "nowrap" }}>C1 Digital</p>
+                  <div
+                    id="C1"
+                    onClick={() => onChange("c1Checkbox")}
+                    className={
+                      "renderClick" +
+                      (c1Checkbox || false) +
+                      "  checkBox-conatiner"
+                    }
+                  >
+                    <p
+                      style={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      C1 Digital
+                    </p>
                   </div>
                 </div>
                 {/* <input type ="checkbox" id="C1" checked={c1Checkbox} onChange={() => onChange("c1Checkbox")}></input>
                     <span className="hardwareText">C1 Digital</span> */}
-                <div className={"portSlider-flowchart" + " isActivePortInfo" + (c1Checkbox || false)}>
+                <div
+                  className={
+                    "portSlider-flowchart" +
+                    " isActivePortInfo" +
+                    (c1Checkbox || false)
+                  }
+                >
                   <Slider
                     title="Intensity"
                     value={valC1 || 0}
@@ -1018,13 +1226,37 @@ const OutputPanel = (props) => {
             ) : (
               <>
                 <div className="portDetails-flowchart">
-                  <div id="C1" onClick={() => onChange("c1Checkbox")} className={"renderClick" + (c1Checkbox || false) + "  checkBox-conatiner"}>
-                    <p style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", whiteSpace: "nowrap" }}>C1 Analog</p>
+                  <div
+                    id="C1"
+                    onClick={() => onChange("c1Checkbox")}
+                    className={
+                      "renderClick" +
+                      (c1Checkbox || false) +
+                      "  checkBox-conatiner"
+                    }
+                  >
+                    <p
+                      style={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      C1 Analog
+                    </p>
                   </div>
                 </div>
                 {/* <input type ="checkbox" id="C1" checked={c1Checkbox} onChange={() => onChange("c1Checkbox")}></input>
                     <span className="hardwareText">C1 Analog</span> */}
-                <div className={"portSlider-flowchart" + " isActivePortInfo" + (c1Checkbox || false)}>
+                <div
+                  className={
+                    "portSlider-flowchart" +
+                    " isActivePortInfo" +
+                    (c1Checkbox || false)
+                  }
+                >
                   <Slider
                     title="Intensity"
                     value={valC1 || 0}
@@ -1059,21 +1291,47 @@ const OutputPanel = (props) => {
               </>
             )}
           </div>
-        ) : (null
-        )}
+        ) : null}
 
         {c2Checked && C2 ? (
-          <div className="slider-item1" style={{ position: "relative" }}>
+          <div
+            className="slider-item1-flowchart"
+            style={{ position: "relative" }}
+          >
             {!c2Digi ? (
               <>
                 <div className="portDetails-flowchart">
-                  <div id="C2" onClick={() => onChange("c2Checkbox")} className={"renderClick" + (c2Checkbox || false) + "  checkBox-conatiner"}>
-                    <p style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", whiteSpace: "nowrap" }}>C2 Digital</p>
+                  <div
+                    id="C2"
+                    onClick={() => onChange("c2Checkbox")}
+                    className={
+                      "renderClick" +
+                      (c2Checkbox || false) +
+                      "  checkBox-conatiner"
+                    }
+                  >
+                    <p
+                      style={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      C2 Digital
+                    </p>
                   </div>
                 </div>
                 {/* <input type ="checkbox" id="C2" checked={c2Checkbox} onChange={() => onChange("c2Checkbox")}></input>
                     <span className="hardwareText">C2 Digital</span> */}
-                <div className={"portSlider-flowchart" + " isActivePortInfo" + (c2Checkbox || false)}>
+                <div
+                  className={
+                    "portSlider-flowchart" +
+                    " isActivePortInfo" +
+                    (c2Checkbox || false)
+                  }
+                >
                   <Slider
                     title="Intensity"
                     value={valC2 || 0}
@@ -1109,13 +1367,37 @@ const OutputPanel = (props) => {
             ) : (
               <>
                 <div className="portDetails-flowchart">
-                  <div id="C2" onClick={() => onChange("c2Checkbox")} className={"renderClick" + (c2Checkbox || false) + "  checkBox-conatiner"}>
-                    <p style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", whiteSpace: "nowrap" }}>C2 Analog</p>
+                  <div
+                    id="C2"
+                    onClick={() => onChange("c2Checkbox")}
+                    className={
+                      "renderClick" +
+                      (c2Checkbox || false) +
+                      "  checkBox-conatiner"
+                    }
+                  >
+                    <p
+                      style={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      C2 Analog
+                    </p>
                   </div>
                 </div>
                 {/* <input type ="checkbox" id="C2" checked={c2Checkbox} onChange={() => onChange("c2Checkbox")}></input>
                     <span className="hardwareText">C2 Analog</span> */}
-                <div className={"portSlider-flowchart" + " isActivePortInfo" + (c2Checkbox || false)}>
+                <div
+                  className={
+                    "portSlider-flowchart" +
+                    " isActivePortInfo" +
+                    (c2Checkbox || false)
+                  }
+                >
                   <Slider
                     title="Intensity"
                     value={valC2 || 0}
@@ -1150,22 +1432,48 @@ const OutputPanel = (props) => {
               </>
             )}
           </div>
-        ) : (null
-        )}
+        ) : null}
 
         {d1Checked && D1 ? (
-          <div className="slider-item1" style={{ position: "relative" }}>
+          <div
+            className="slider-item1-flowchart"
+            style={{ position: "relative" }}
+          >
             {!d1Digi ? (
               <>
                 <div className="portDetails-flowchart">
-                  <div id="D1" onClick={() => onChange("d1Checkbox")} className={"renderClick" + (d1Checkbox || false) + "  checkBox-conatiner"}>
-                    <p style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", whiteSpace: "nowrap" }}>D1 Digital</p>
+                  <div
+                    id="D1"
+                    onClick={() => onChange("d1Checkbox")}
+                    className={
+                      "renderClick" +
+                      (d1Checkbox || false) +
+                      "  checkBox-conatiner"
+                    }
+                  >
+                    <p
+                      style={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      D1 Digital
+                    </p>
                   </div>
                 </div>
 
                 {/* <input type ="checkbox" id="D1" checked={d1Checkbox} onChange={() => onChange("d1Checkbox")}></input>
                     <span className="hardwareText">D1 Digital</span> */}
-                <div className={"portSlider-flowchart" + " isActivePortInfo" + (d1Checkbox || false)}>
+                <div
+                  className={
+                    "portSlider-flowchart" +
+                    " isActivePortInfo" +
+                    (d1Checkbox || false)
+                  }
+                >
                   <Slider
                     title="Intensity"
                     value={valD1 || 0}
@@ -1201,13 +1509,37 @@ const OutputPanel = (props) => {
             ) : (
               <>
                 <div className="portDetails-flowchart">
-                  <div id="D1" onClick={() => onChange("d1Checkbox")} className={"renderClick" + (d1Checkbox || false) + "  checkBox-conatiner"}>
-                    <p style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", whiteSpace: "nowrap" }}>D1 Analog</p>
+                  <div
+                    id="D1"
+                    onClick={() => onChange("d1Checkbox")}
+                    className={
+                      "renderClick" +
+                      (d1Checkbox || false) +
+                      "  checkBox-conatiner"
+                    }
+                  >
+                    <p
+                      style={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      D1 Analog
+                    </p>
                   </div>
                 </div>
                 {/* <input type ="checkbox" id="D1" checked={d1Checkbox} onChange={() => onChange("d1Checkbox")}></input>
                     <span className="hardwareText">D1 Analog</span> */}
-                <div className={"portSlider-flowchart" + " isActivePortInfo" + (d1Checkbox || false)}>
+                <div
+                  className={
+                    "portSlider-flowchart" +
+                    " isActivePortInfo" +
+                    (d1Checkbox || false)
+                  }
+                >
                   <Slider
                     title="Intensity"
                     value={valD1 || 0}
@@ -1242,22 +1574,48 @@ const OutputPanel = (props) => {
               </>
             )}
           </div>
-        ) : (null
-        )}
+        ) : null}
 
         {d2Checked && D2 ? (
-          <div className="slider-item1" style={{ position: "relative" }}>
+          <div
+            className="slider-item1-flowchart"
+            style={{ position: "relative" }}
+          >
             {!d2Digi ? (
               <>
                 <div className="portDetails-flowchart">
-                  <div id="D2" onClick={() => onChange("d2Checkbox")} className={"renderClick" + (d2Checkbox || false) + "  checkBox-conatiner"}>
-                    <p style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", whiteSpace: "nowrap" }}>D2 Digital</p>
+                  <div
+                    id="D2"
+                    onClick={() => onChange("d2Checkbox")}
+                    className={
+                      "renderClick" +
+                      (d2Checkbox || false) +
+                      "  checkBox-conatiner"
+                    }
+                  >
+                    <p
+                      style={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      D2 Digital
+                    </p>
                   </div>
                 </div>
 
                 {/* <input type ="checkbox" id="D2" checked={d2Checkbox} onChange={() => onChange("d2Checkbox")}></input>
                     <span className="hardwareText">D2 Digital</span> */}
-                <div className={"portSlider-flowchart" + " isActivePortInfo" + (d2Checkbox || false)}>
+                <div
+                  className={
+                    "portSlider-flowchart" +
+                    " isActivePortInfo" +
+                    (d2Checkbox || false)
+                  }
+                >
                   <Slider
                     title="Intensity"
                     value={valD2 || 0}
@@ -1293,13 +1651,37 @@ const OutputPanel = (props) => {
             ) : (
               <>
                 <div className="portDetails-flowchart">
-                  <div id="D2" onClick={() => onChange("d2Checkbox")} className={"renderClick" + (d2Checkbox || false) + "  checkBox-conatiner"}>
-                    <p style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", whiteSpace: "nowrap" }}>D2 Analog</p>
+                  <div
+                    id="D2"
+                    onClick={() => onChange("d2Checkbox")}
+                    className={
+                      "renderClick" +
+                      (d2Checkbox || false) +
+                      "  checkBox-conatiner"
+                    }
+                  >
+                    <p
+                      style={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      D2 Analog
+                    </p>
                   </div>
                 </div>
                 {/* <input type ="checkbox" id="D2" checked={d2Checkbox} onChange={() => onChange("d2Checkbox")}></input>
                     <span className="hardwareText">D2 Analog</span> */}
-                <div className={"portSlider-flowchart" + " isActivePortInfo" + (d2Checkbox || false)}>
+                <div
+                  className={
+                    "portSlider-flowchart" +
+                    " isActivePortInfo" +
+                    (d2Checkbox || false)
+                  }
+                >
                   <Slider
                     title="Intensity"
                     value={valD2 || 0}
@@ -1334,21 +1716,47 @@ const OutputPanel = (props) => {
               </>
             )}
           </div>
-        ) : (null
-        )}
+        ) : null}
         {e1Checked && E1 ? (
-          <div className="slider-item1" style={{ position: "relative" }}>
+          <div
+            className="slider-item1-flowchart"
+            style={{ position: "relative" }}
+          >
             {!e1Digi ? (
               <>
                 <div className="portDetails-flowchart">
-                  <div id="E1" onClick={() => onChange("e1Checkbox")} className={"renderClick" + (e1Checkbox || false) + "  checkBox-conatiner"}>
-                    <p style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", whiteSpace: "nowrap" }}>E1 Digital</p>
+                  <div
+                    id="E1"
+                    onClick={() => onChange("e1Checkbox")}
+                    className={
+                      "renderClick" +
+                      (e1Checkbox || false) +
+                      "  checkBox-conatiner"
+                    }
+                  >
+                    <p
+                      style={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      E1 Digital
+                    </p>
                   </div>
                 </div>
 
                 {/* <input type ="checkbox" id="D1" checked={d1Checkbox} onChange={() => onChange("d1Checkbox")}></input>
                     <span className="hardwareText">D1 Digital</span> */}
-                <div className={"portSlider-flowchart" + " isActivePortInfo" + (e1Checkbox || false)}>
+                <div
+                  className={
+                    "portSlider-flowchart" +
+                    " isActivePortInfo" +
+                    (e1Checkbox || false)
+                  }
+                >
                   <Slider
                     title="Intensity"
                     value={valE1 || 0}
@@ -1384,13 +1792,37 @@ const OutputPanel = (props) => {
             ) : (
               <>
                 <div className="portDetails-flowchart">
-                  <div id="E1" onClick={() => onChange("e1Checkbox")} className={"renderClick" + (e1Checkbox || false) + "  checkBox-conatiner"}>
-                    <p style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", whiteSpace: "nowrap" }}>E1 Analog</p>
+                  <div
+                    id="E1"
+                    onClick={() => onChange("e1Checkbox")}
+                    className={
+                      "renderClick" +
+                      (e1Checkbox || false) +
+                      "  checkBox-conatiner"
+                    }
+                  >
+                    <p
+                      style={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      E1 Analog
+                    </p>
                   </div>
                 </div>
                 {/* <input type ="checkbox" id="D1" checked={d1Checkbox} onChange={() => onChange("d1Checkbox")}></input>
                     <span className="hardwareText">D1 Analog</span> */}
-                <div className={"portSlider-flowchart" + " isActivePortInfo" + (e1Checkbox || false)}>
+                <div
+                  className={
+                    "portSlider-flowchart" +
+                    " isActivePortInfo" +
+                    (e1Checkbox || false)
+                  }
+                >
                   <Slider
                     title="Intensity"
                     value={valE1 || 0}
@@ -1425,21 +1857,47 @@ const OutputPanel = (props) => {
               </>
             )}
           </div>
-        ) : (null
-        )}
+        ) : null}
         {e2Checked && E2 ? (
-          <div className="slider-item1" style={{ position: "relative" }}>
+          <div
+            className="slider-item1-flowchart"
+            style={{ position: "relative" }}
+          >
             {!e2Digi ? (
               <>
                 <div className="portDetails-flowchart">
-                  <div id="E2" onClick={() => onChange("e2Checkbox")} className={"renderClick" + (e2Checkbox || false) + "  checkBox-conatiner"}>
-                    <p style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", whiteSpace: "nowrap" }}>E2 Digital</p>
+                  <div
+                    id="E2"
+                    onClick={() => onChange("e2Checkbox")}
+                    className={
+                      "renderClick" +
+                      (e2Checkbox || false) +
+                      "  checkBox-conatiner"
+                    }
+                  >
+                    <p
+                      style={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      E2 Digital
+                    </p>
                   </div>
                 </div>
 
                 {/* <input type ="checkbox" id="D1" checked={d1Checkbox} onChange={() => onChange("d1Checkbox")}></input>
                     <span className="hardwareText">D1 Digital</span> */}
-                <div className={"portSlider-flowchart" + " isActivePortInfo" + (e2Checkbox || false)}>
+                <div
+                  className={
+                    "portSlider-flowchart" +
+                    " isActivePortInfo" +
+                    (e2Checkbox || false)
+                  }
+                >
                   <Slider
                     title="Intensity"
                     value={valE2 || 0}
@@ -1475,13 +1933,37 @@ const OutputPanel = (props) => {
             ) : (
               <>
                 <div className="portDetails-flowchart">
-                  <div id="E2" onClick={() => onChange("e2Checkbox")} className={"renderClick" + (e2Checkbox || false) + "  checkBox-conatiner"}>
-                    <p style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", whiteSpace: "nowrap" }}>E2 Analog</p>
+                  <div
+                    id="E2"
+                    onClick={() => onChange("e2Checkbox")}
+                    className={
+                      "renderClick" +
+                      (e2Checkbox || false) +
+                      "  checkBox-conatiner"
+                    }
+                  >
+                    <p
+                      style={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      E2 Analog
+                    </p>
                   </div>
                 </div>
                 {/* <input type ="checkbox" id="D1" checked={d1Checkbox} onChange={() => onChange("d1Checkbox")}></input>
                     <span className="hardwareText">D1 Analog</span> */}
-                <div className={"portSlider-flowchart" + " isActivePortInfo" + (e2Checkbox || false)}>
+                <div
+                  className={
+                    "portSlider-flowchart" +
+                    " isActivePortInfo" +
+                    (e2Checkbox || false)
+                  }
+                >
                   <Slider
                     title="Intensity"
                     value={valE2 || 0}
@@ -1516,21 +1998,47 @@ const OutputPanel = (props) => {
               </>
             )}
           </div>
-        ) : (null
-        )}
+        ) : null}
         {f1Checked && F1 ? (
-          <div className="slider-item1" style={{ position: "relative" }}>
+          <div
+            className="slider-item1-flowchart"
+            style={{ position: "relative" }}
+          >
             {!f1Digi ? (
               <>
                 <div className="portDetails-flowchart">
-                  <div id="f1" onClick={() => onChange("f1Checkbox")} className={"renderClick" + (f1Checkbox || false) + "  checkBox-conatiner"}>
-                    <p style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", whiteSpace: "nowrap" }}>F1 Digital</p>
+                  <div
+                    id="f1"
+                    onClick={() => onChange("f1Checkbox")}
+                    className={
+                      "renderClick" +
+                      (f1Checkbox || false) +
+                      "  checkBox-conatiner"
+                    }
+                  >
+                    <p
+                      style={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      F1 Digital
+                    </p>
                   </div>
                 </div>
 
                 {/* <input type ="checkbox" id="D1" checked={d1Checkbox} onChange={() => onChange("d1Checkbox")}></input>
                     <span className="hardwareText">D1 Digital</span> */}
-                <div className={"portSlider-flowchart" + " isActivePortInfo" + (f1Checkbox || false)}>
+                <div
+                  className={
+                    "portSlider-flowchart" +
+                    " isActivePortInfo" +
+                    (f1Checkbox || false)
+                  }
+                >
                   <Slider
                     title="Intensity"
                     value={valF1 || 0}
@@ -1566,13 +2074,37 @@ const OutputPanel = (props) => {
             ) : (
               <>
                 <div className="portDetails-flowchart">
-                  <div id="F1" onClick={() => onChange("f1Checkbox")} className={"renderClick" + (f1Checkbox || false) + "  checkBox-conatiner"}>
-                    <p style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", whiteSpace: "nowrap" }}>F1 Analog</p>
+                  <div
+                    id="F1"
+                    onClick={() => onChange("f1Checkbox")}
+                    className={
+                      "renderClick" +
+                      (f1Checkbox || false) +
+                      "  checkBox-conatiner"
+                    }
+                  >
+                    <p
+                      style={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      F1 Analog
+                    </p>
                   </div>
                 </div>
                 {/* <input type ="checkbox" id="D1" checked={d1Checkbox} onChange={() => onChange("d1Checkbox")}></input>
                     <span className="hardwareText">D1 Analog</span> */}
-                <div className={"portSlider-flowchart" + " isActivePortInfo" + (f1Checkbox || false)}>
+                <div
+                  className={
+                    "portSlider-flowchart" +
+                    " isActivePortInfo" +
+                    (f1Checkbox || false)
+                  }
+                >
                   <Slider
                     title="Intensity"
                     value={valF1 || 0}
@@ -1607,21 +2139,47 @@ const OutputPanel = (props) => {
               </>
             )}
           </div>
-        ) : (null
-        )}
+        ) : null}
         {f2Checked && F2 ? (
-          <div className="slider-item1" style={{ position: "relative" }}>
+          <div
+            className="slider-item1-flowchart"
+            style={{ position: "relative" }}
+          >
             {!f2Digi ? (
               <>
                 <div className="portDetails-flowchart">
-                  <div id="F2" onClick={() => onChange("f2Checkbox")} className={"renderClick" + (f2Checkbox || false) + "  checkBox-conatiner"}>
-                    <p style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", whiteSpace: "nowrap" }}>F2 Digital</p>
+                  <div
+                    id="F2"
+                    onClick={() => onChange("f2Checkbox")}
+                    className={
+                      "renderClick" +
+                      (f2Checkbox || false) +
+                      "  checkBox-conatiner"
+                    }
+                  >
+                    <p
+                      style={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      F2 Digital
+                    </p>
                   </div>
                 </div>
 
                 {/* <input type ="checkbox" id="D1" checked={d1Checkbox} onChange={() => onChange("d1Checkbox")}></input>
                     <span className="hardwareText">D1 Digital</span> */}
-                <div className={"portSlider-flowchart" + " isActivePortInfo" + (f2Checkbox || false)}>
+                <div
+                  className={
+                    "portSlider-flowchart" +
+                    " isActivePortInfo" +
+                    (f2Checkbox || false)
+                  }
+                >
                   <Slider
                     title="Intensity"
                     value={valF2 || 0}
@@ -1657,13 +2215,37 @@ const OutputPanel = (props) => {
             ) : (
               <>
                 <div className="portDetails-flowchart">
-                  <div id="F2" onClick={() => onChange("f2Checkbox")} className={"renderClick" + (f2Checkbox || false) + "  checkBox-conatiner"}>
-                    <p style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", whiteSpace: "nowrap" }}>F2 Analog</p>
+                  <div
+                    id="F2"
+                    onClick={() => onChange("f2Checkbox")}
+                    className={
+                      "renderClick" +
+                      (f2Checkbox || false) +
+                      "  checkBox-conatiner"
+                    }
+                  >
+                    <p
+                      style={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      F2 Analog
+                    </p>
                   </div>
                 </div>
                 {/* <input type ="checkbox" id="D1" checked={d1Checkbox} onChange={() => onChange("d1Checkbox")}></input>
                     <span className="hardwareText">D1 Analog</span> */}
-                <div className={"portSlider-flowchart" + " isActivePortInfo" + (f2Checkbox || false)}>
+                <div
+                  className={
+                    "portSlider-flowchart" +
+                    " isActivePortInfo" +
+                    (f2Checkbox || false)
+                  }
+                >
                   <Slider
                     title="Intensity"
                     value={valF2 || 0}
@@ -1698,21 +2280,47 @@ const OutputPanel = (props) => {
               </>
             )}
           </div>
-        ) : (null
-        )}
+        ) : null}
         {m1Checked && M1 ? (
-          <div className="slider-item1" style={{ position: "relative" }}>
+          <div
+            className="slider-item1-flowchart"
+            style={{ position: "relative" }}
+          >
             {!m1Digi ? (
               <>
                 <div className="portDetails-flowchart">
-                  <div id="f1" onClick={() => onChange("m1Checkbox")} className={"renderClick" + (m1Checkbox || false) + "  checkBox-conatiner"}>
-                    <p style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", whiteSpace: "nowrap" }}>M1 Digital</p>
+                  <div
+                    id="f1"
+                    onClick={() => onChange("m1Checkbox")}
+                    className={
+                      "renderClick" +
+                      (m1Checkbox || false) +
+                      "  checkBox-conatiner"
+                    }
+                  >
+                    <p
+                      style={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      M1 Digital
+                    </p>
                   </div>
                 </div>
 
                 {/* <input type ="checkbox" id="D1" checked={d1Checkbox} onChange={() => onChange("d1Checkbox")}></input>
                     <span className="hardwareText">D1 Digital</span> */}
-                <div className={"portSlider-flowchart" + " isActivePortInfo" + (m1Checkbox || false)}>
+                <div
+                  className={
+                    "portSlider-flowchart" +
+                    " isActivePortInfo" +
+                    (m1Checkbox || false)
+                  }
+                >
                   <Slider
                     title="Intensity"
                     value={valM1 || 0}
@@ -1748,13 +2356,37 @@ const OutputPanel = (props) => {
             ) : (
               <>
                 <div className="portDetails-flowchart">
-                  <div id="m1" onClick={() => onChange("m1Checkbox")} className={"renderClick" + (m1Checkbox || false) + "  checkBox-conatiner"}>
-                    <p style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", whiteSpace: "nowrap" }}>M1 Analog</p>
+                  <div
+                    id="m1"
+                    onClick={() => onChange("m1Checkbox")}
+                    className={
+                      "renderClick" +
+                      (m1Checkbox || false) +
+                      "  checkBox-conatiner"
+                    }
+                  >
+                    <p
+                      style={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      M1 Analog
+                    </p>
                   </div>
                 </div>
                 {/* <input type ="checkbox" id="D1" checked={d1Checkbox} onChange={() => onChange("d1Checkbox")}></input>
                     <span className="hardwareText">D1 Analog</span> */}
-                <div className={"portSlider-flowchart" + " isActivePortInfo" + (m1Checkbox || false)}>
+                <div
+                  className={
+                    "portSlider-flowchart" +
+                    " isActivePortInfo" +
+                    (m1Checkbox || false)
+                  }
+                >
                   <Slider
                     title="Intensity"
                     value={valM1 || 0}
@@ -1789,21 +2421,47 @@ const OutputPanel = (props) => {
               </>
             )}
           </div>
-        ) : (null
-        )}
+        ) : null}
         {m2Checked && M2 ? (
-          <div className="slider-item1" style={{ position: "relative" }}>
+          <div
+            className="slider-item1-flowchart"
+            style={{ position: "relative" }}
+          >
             {!m2Digi ? (
               <>
                 <div className="portDetails-flowchart">
-                  <div id="M2" onClick={() => onChange("m2Checkbox")} className={"renderClick" + (m2Checkbox || false) + "  checkBox-conatiner"}>
-                    <p style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", whiteSpace: "nowrap" }}>M2 Digital</p>
+                  <div
+                    id="M2"
+                    onClick={() => onChange("m2Checkbox")}
+                    className={
+                      "renderClick" +
+                      (m2Checkbox || false) +
+                      "  checkBox-conatiner"
+                    }
+                  >
+                    <p
+                      style={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      M2 Digital
+                    </p>
                   </div>
                 </div>
 
                 {/* <input type ="checkbox" id="D1" checked={d1Checkbox} onChange={() => onChange("d1Checkbox")}></input>
                     <span className="hardwareText">D1 Digital</span> */}
-                <div className={"portSlider-flowchart" + " isActivePortInfo" + (m2Checkbox || false)}>
+                <div
+                  className={
+                    "portSlider-flowchart" +
+                    " isActivePortInfo" +
+                    (m2Checkbox || false)
+                  }
+                >
                   <Slider
                     title="Intensity"
                     value={valM2 || 0}
@@ -1839,13 +2497,37 @@ const OutputPanel = (props) => {
             ) : (
               <>
                 <div className="portDetails-flowchart">
-                  <div id="M2" onClick={() => onChange("m2Checkbox")} className={"renderClick" + (m2Checkbox || false) + "  checkBox-conatiner"}>
-                    <p style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", whiteSpace: "nowrap" }}>M2 Analog</p>
+                  <div
+                    id="M2"
+                    onClick={() => onChange("m2Checkbox")}
+                    className={
+                      "renderClick" +
+                      (m2Checkbox || false) +
+                      "  checkBox-conatiner"
+                    }
+                  >
+                    <p
+                      style={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      M2 Analog
+                    </p>
                   </div>
                 </div>
                 {/* <input type ="checkbox" id="D1" checked={d1Checkbox} onChange={() => onChange("d1Checkbox")}></input>
                     <span className="hardwareText">D1 Analog</span> */}
-                <div className={"portSlider-flowchart" + " isActivePortInfo" + (m2Checkbox || false)}>
+                <div
+                  className={
+                    "portSlider-flowchart" +
+                    " isActivePortInfo" +
+                    (m2Checkbox || false)
+                  }
+                >
                   <Slider
                     title="Intensity"
                     value={valM2 || 0}
@@ -1880,21 +2562,47 @@ const OutputPanel = (props) => {
               </>
             )}
           </div>
-        ) : (null
-        )}
+        ) : null}
         {m3Checked && M3 ? (
-          <div className="slider-item1" style={{ position: "relative" }}>
+          <div
+            className="slider-item1-flowchart"
+            style={{ position: "relative" }}
+          >
             {!m3Digi ? (
               <>
                 <div className="portDetails-flowchart">
-                  <div id="M3" onClick={() => onChange("m3Checkbox")} className={"renderClick" + (m3Checkbox || false) + "  checkBox-conatiner"}>
-                    <p style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", whiteSpace: "nowrap" }}>M3 Digital</p>
+                  <div
+                    id="M3"
+                    onClick={() => onChange("m3Checkbox")}
+                    className={
+                      "renderClick" +
+                      (m3Checkbox || false) +
+                      "  checkBox-conatiner"
+                    }
+                  >
+                    <p
+                      style={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      M3 Digital
+                    </p>
                   </div>
                 </div>
 
                 {/* <input type ="checkbox" id="D1" checked={d1Checkbox} onChange={() => onChange("d1Checkbox")}></input>
                     <span className="hardwareText">D1 Digital</span> */}
-                <div className={"portSlider-flowchart" + " isActivePortInfo" + (m3Checkbox || false)}>
+                <div
+                  className={
+                    "portSlider-flowchart" +
+                    " isActivePortInfo" +
+                    (m3Checkbox || false)
+                  }
+                >
                   <Slider
                     title="Intensity"
                     value={valM3 || 0}
@@ -1930,13 +2638,37 @@ const OutputPanel = (props) => {
             ) : (
               <>
                 <div className="portDetails-flowchart">
-                  <div id="M3" onClick={() => onChange("m3Checkbox")} className={"renderClick" + (m3Checkbox || false) + "  checkBox-conatiner"}>
-                    <p style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", whiteSpace: "nowrap" }}>M3 Analog</p>
+                  <div
+                    id="M3"
+                    onClick={() => onChange("m3Checkbox")}
+                    className={
+                      "renderClick" +
+                      (m3Checkbox || false) +
+                      "  checkBox-conatiner"
+                    }
+                  >
+                    <p
+                      style={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      M3 Analog
+                    </p>
                   </div>
                 </div>
                 {/* <input type ="checkbox" id="D1" checked={d1Checkbox} onChange={() => onChange("d1Checkbox")}></input>
                     <span className="hardwareText">D1 Analog</span> */}
-                <div className={"portSlider-flowchart" + " isActivePortInfo" + (m3Checkbox || false)}>
+                <div
+                  className={
+                    "portSlider-flowchart" +
+                    " isActivePortInfo" +
+                    (m3Checkbox || false)
+                  }
+                >
                   <Slider
                     title="Intensity"
                     value={valM3 || 0}
@@ -1971,21 +2703,47 @@ const OutputPanel = (props) => {
               </>
             )}
           </div>
-        ) : (null
-        )}
+        ) : null}
         {m4Checked && M4 ? (
-          <div className="slider-item1" style={{ position: "relative" }}>
+          <div
+            className="slider-item1-flowchart"
+            style={{ position: "relative" }}
+          >
             {!m4Digi ? (
               <>
                 <div className="portDetails-flowchart">
-                  <div id="M4" onClick={() => onChange("m4Checkbox")} className={"renderClick" + (m4Checkbox || false) + "  checkBox-conatiner"}>
-                    <p style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", whiteSpace: "nowrap" }}>M4 Digital</p>
+                  <div
+                    id="M4"
+                    onClick={() => onChange("m4Checkbox")}
+                    className={
+                      "renderClick" +
+                      (m4Checkbox || false) +
+                      "  checkBox-conatiner"
+                    }
+                  >
+                    <p
+                      style={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      M4 Digital
+                    </p>
                   </div>
                 </div>
 
                 {/* <input type ="checkbox" id="D1" checked={d1Checkbox} onChange={() => onChange("d1Checkbox")}></input>
                     <span className="hardwareText">D1 Digital</span> */}
-                <div className={"portSlider-flowchart" + " isActivePortInfo" + (m4Checkbox || false)}>
+                <div
+                  className={
+                    "portSlider-flowchart" +
+                    " isActivePortInfo" +
+                    (m4Checkbox || false)
+                  }
+                >
                   <Slider
                     title="Intensity"
                     value={valM4 || 0}
@@ -2021,13 +2779,37 @@ const OutputPanel = (props) => {
             ) : (
               <>
                 <div className="portDetails-flowchart">
-                  <div id="M4" onClick={() => onChange("m4Checkbox")} className={"renderClick" + (m4Checkbox || false) + "  checkBox-conatiner"}>
-                    <p style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", whiteSpace: "nowrap" }}>M4 Analog</p>
+                  <div
+                    id="M4"
+                    onClick={() => onChange("m4Checkbox")}
+                    className={
+                      "renderClick" +
+                      (m4Checkbox || false) +
+                      "  checkBox-conatiner"
+                    }
+                  >
+                    <p
+                      style={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      M4 Analog
+                    </p>
                   </div>
                 </div>
                 {/* <input type ="checkbox" id="D1" checked={d1Checkbox} onChange={() => onChange("d1Checkbox")}></input>
                     <span className="hardwareText">D1 Analog</span> */}
-                <div className={"portSlider-flowchart" + " isActivePortInfo" + (m4Checkbox || false)}>
+                <div
+                  className={
+                    "portSlider-flowchart" +
+                    " isActivePortInfo" +
+                    (m4Checkbox || false)
+                  }
+                >
                   <Slider
                     title="Intensity"
                     value={valM4 || 0}
@@ -2062,19 +2844,43 @@ const OutputPanel = (props) => {
               </>
             )}
           </div>
-        ) : (null
-        )}
+        ) : null}
         {isTouchZeroOutput ? (
-          <div className="slider-item1" style={{ position: "relative" }}>
+          <div
+            className="slider-item1-flowchart"
+            style={{ position: "relative" }}
+          >
             <div className="portDetails-flowchart">
-              <div id="T0" onClick={() => onChange("t0Checkbox")} className={"renderClick" + (t0Checkbox || false) + "  checkBox-conatiner"}>
-                <p style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", whiteSpace: "nowrap" }}>TouchPad Zero</p>
+              <div
+                id="T0"
+                onClick={() => onChange("t0Checkbox")}
+                className={
+                  "renderClick" + (t0Checkbox || false) + "  checkBox-conatiner"
+                }
+              >
+                <p
+                  style={{
+                    position: "absolute",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  TouchPad Zero
+                </p>
               </div>
             </div>
 
             {/* <input type ="checkbox" id="T0" checked={t0Checkbox} onChange={() => onChange("t0Checkbox")}></input>      
                 <span className="hardwareText">TouchPad Zero</span> */}
-            <div className={"portSlider-flowchart" + " isActivePortInfo" + (t0Checkbox || false)}>
+            <div
+              className={
+                "portSlider-flowchart" +
+                " isActivePortInfo" +
+                (t0Checkbox || false)
+              }
+            >
               <Slider
                 title="Intensity"
                 value={valT0 || 0}
@@ -2107,20 +2913,43 @@ const OutputPanel = (props) => {
               </p>
             </div>
           </div>
-        ) : (
-          null
-        )}
+        ) : null}
 
         {isTouchOneOutput ? (
-          <div className="slider-item1" style={{ position: "relative" }}>
+          <div
+            className="slider-item1-flowchart"
+            style={{ position: "relative" }}
+          >
             <div className="portDetails-flowchart">
-              <div id="T1" onClick={() => onChange("t1Checkbox")} className={"renderClick" + (t1Checkbox || false) + "  checkBox-conatiner"}>
-                <p style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", whiteSpace: "nowrap" }}>TouchPad One</p>
+              <div
+                id="T1"
+                onClick={() => onChange("t1Checkbox")}
+                className={
+                  "renderClick" + (t1Checkbox || false) + "  checkBox-conatiner"
+                }
+              >
+                <p
+                  style={{
+                    position: "absolute",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  TouchPad One
+                </p>
               </div>
             </div>
             {/* <input type ="checkbox" id="T1" checked={t1Checkbox} onChange={() => onChange("t1Checkbox")}></input>      
                 <span className="hardwareText">TouchPad One</span> */}
-            <div className={"portSlider-flowchart" + " isActivePortInfo" + (t1Checkbox || false)}>
+            <div
+              className={
+                "portSlider-flowchart" +
+                " isActivePortInfo" +
+                (t1Checkbox || false)
+              }
+            >
               <Slider
                 title="Intensity"
                 value={valT1 || 0}
@@ -2153,22 +2982,44 @@ const OutputPanel = (props) => {
               </p>
             </div>
           </div>
-        ) : (
-          null
-        )}
-
+        ) : null}
 
         {isTouchTwoOutput ? (
-          <div className="slider-item1" style={{ position: "relative" }}>
+          <div
+            className="slider-item1-flowchart"
+            style={{ position: "relative" }}
+          >
             <div className="portDetails-flowchart">
-              <div id="T2" onClick={() => onChange("t2Checkbox")} className={"renderClick" + (t2Checkbox || false) + "  checkBox-conatiner"}>
-                <p style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", whiteSpace: "nowrap" }}>TouchPad Two</p>
+              <div
+                id="T2"
+                onClick={() => onChange("t2Checkbox")}
+                className={
+                  "renderClick" + (t2Checkbox || false) + "  checkBox-conatiner"
+                }
+              >
+                <p
+                  style={{
+                    position: "absolute",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  TouchPad Two
+                </p>
               </div>
             </div>
 
             {/* <input type ="checkbox" id="T2" checked={t2Checkbox} onChange={() => onChange("t2Checkbox")}></input>      
                 <span className="hardwareText">TouchPad Two</span> */}
-            <div className={"portSlider-flowchart" + " isActivePortInfo" + (t2Checkbox || false)}>
+            <div
+              className={
+                "portSlider-flowchart" +
+                " isActivePortInfo" +
+                (t2Checkbox || false)
+              }
+            >
               <Slider
                 title="Intensity"
                 value={valT2 || 0}
@@ -2201,21 +3052,53 @@ const OutputPanel = (props) => {
               </p>
             </div>
           </div>
-        ) : (
-          null
-        )}
+        ) : null}
 
         {isEyeLeft ? (
-          <div className="slider-item1" style={{ position: "relative", height: "300px" }}>
+          <div
+            className="slider-item1-flowchart"
+            style={{ position: "relative", height: "300px" }}
+          >
             <div className="portDetails-flowchart">
-              <div id="le" onClick={() => onChange("leye")} className={"renderClick" + (valLeye || false) + "  checkBox-conatiner"}>
-                <p style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", whiteSpace: "nowrap" }}>Left Eye</p>
+              <div
+                id="le"
+                onClick={() => onChange("leye")}
+                className={
+                  "renderClick" + (valLeye || false) + "  checkBox-conatiner"
+                }
+              >
+                <p
+                  style={{
+                    position: "absolute",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  Left Eye
+                </p>
               </div>
             </div>
             {/* <input type ="checkbox" id="le" checked={valLeye} onChange={() => onChange("leye")}></input>      
                 <span className="hardwareText">Left Eye</span> */}
-            <div className={"portSlider-flowchart" + " isActivePortInfo" + (valLeye || false)} style={{ position: "relative", height: "250px", display: "flex", flexDirection: "column", justifyContent: "space-around" }}>
-              <div style={{ position: "relative", height: "auto", width: "100%" }} >
+            <div
+              className={
+                "portSlider-flowchart" +
+                " isActivePortInfo" +
+                (valLeye || false)
+              }
+              style={{
+                position: "relative",
+                height: "250px",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-around",
+              }}
+            >
+              <div
+                style={{ position: "relative", height: "auto", width: "100%" }}
+              >
                 <Slider
                   title={null}
                   value={valLeyeR || 0}
@@ -2248,7 +3131,9 @@ const OutputPanel = (props) => {
                   100
                 </p>
               </div>
-              <div style={{ position: "relative", height: "auto", width: "100%" }} >
+              <div
+                style={{ position: "relative", height: "auto", width: "100%" }}
+              >
                 <Slider
                   title={null}
                   value={valLeyeG || 0}
@@ -2281,7 +3166,9 @@ const OutputPanel = (props) => {
                   100
                 </p>
               </div>
-              <div style={{ position: "relative", height: "auto", width: "100%" }} >
+              <div
+                style={{ position: "relative", height: "auto", width: "100%" }}
+              >
                 <Slider
                   title={null}
                   value={valLeyeB || 0}
@@ -2316,22 +3203,54 @@ const OutputPanel = (props) => {
               </div>
             </div>
           </div>
-        ) : (
-          null
-        )}
+        ) : null}
 
         {isEyeRight ? (
-          <div className="slider-item1" style={{ position: "relative" }}>
+          <div
+            className="slider-item1-flowchart"
+            style={{ position: "relative" }}
+          >
             <div className="portDetails-flowchart">
-              <div id="re" onClick={() => onChange("reye")} className={"renderClick" + (valReye || false) + "  checkBox-conatiner"}>
-                <p style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", whiteSpace: "nowrap" }}>Right Eye</p>
+              <div
+                id="re"
+                onClick={() => onChange("reye")}
+                className={
+                  "renderClick" + (valReye || false) + "  checkBox-conatiner"
+                }
+              >
+                <p
+                  style={{
+                    position: "absolute",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  Right Eye
+                </p>
               </div>
             </div>
             {/* <input type ="checkbox" id="re" checked={valReye} onChange={() => onChange("reye")}></input>      
                 <span className="hardwareText">Right Eye</span> */}
 
-            <div className={"portSlider-flowchart" + " isActivePortInfo" + (valReye || false)} style={{ position: "relative", height: "250px", display: "flex", flexDirection: "column", justifyContent: "space-around" }}>
-              <div style={{ position: "relative", height: "auto", width: "100%" }} >
+            <div
+              className={
+                "portSlider-flowchart" +
+                " isActivePortInfo" +
+                (valReye || false)
+              }
+              style={{
+                position: "relative",
+                height: "250px",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-around",
+              }}
+            >
+              <div
+                style={{ position: "relative", height: "auto", width: "100%" }}
+              >
                 <Slider
                   value={valReyeR || 0}
                   min={0}
@@ -2363,7 +3282,9 @@ const OutputPanel = (props) => {
                   100
                 </p>
               </div>
-              <div style={{ position: "relative", height: "auto", width: "100%" }} >
+              <div
+                style={{ position: "relative", height: "auto", width: "100%" }}
+              >
                 <Slider
                   value={valReyeG || 0}
                   min={0}
@@ -2395,7 +3316,9 @@ const OutputPanel = (props) => {
                   100
                 </p>
               </div>
-              <div style={{ position: "relative", height: "auto", width: "100%" }} >
+              <div
+                style={{ position: "relative", height: "auto", width: "100%" }}
+              >
                 <Slider
                   value={valReyeB || 0}
                   min={0}
@@ -2429,20 +3352,45 @@ const OutputPanel = (props) => {
               </div>
             </div>
           </div>
-        ) : (
-          null
-        )}
+        ) : null}
 
         {isBuzzer ? (
-          <div className="slider-item1" style={{ position: "relative" }}>
+          <div
+            className="slider-item1-flowchart"
+            style={{ position: "relative" }}
+          >
             <div className="portDetails-flowchart">
-              <div id="Buzz" onClick={() => onChange("buzzCheckbox")} className={"renderClick" + (buzzCheckbox || false) + "  checkBox-conatiner"}>
-                <p style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", whiteSpace: "nowrap" }}>Buzzer</p>
+              <div
+                id="Buzz"
+                onClick={() => onChange("buzzCheckbox")}
+                className={
+                  "renderClick" +
+                  (buzzCheckbox || false) +
+                  "  checkBox-conatiner"
+                }
+              >
+                <p
+                  style={{
+                    position: "absolute",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  Buzzer
+                </p>
               </div>
             </div>
             {/* <input type ="checkbox" id="Buzz" checked={buzzCheckbox} onChange={() => onChange("buzzCheckbox")}></input>
                 <span className="hardwareText">Buzzer</span> */}
-            <div className={"portSlider-flowchart" + " isActivePortInfo" + (buzzCheckbox || false)}>
+            <div
+              className={
+                "portSlider-flowchart" +
+                " isActivePortInfo" +
+                (buzzCheckbox || false)
+              }
+            >
               <Slider
                 title="Intensity"
                 value={valBuzz || 0}
@@ -2475,20 +3423,43 @@ const OutputPanel = (props) => {
               </p>
             </div>
           </div>
-        ) : (
-          null
-        )}
+        ) : null}
 
         {isSmileOne ? (
-          <div className="slider-item1" style={{ position: "relative" }}>
+          <div
+            className="slider-item1-flowchart"
+            style={{ position: "relative" }}
+          >
             <div className="portDetails-flowchart">
-              <div id="S1" onClick={() => onChange("s1Checkbox")} className={"renderClick" + (s1Checkbox || false) + "  checkBox-conatiner"}>
-                <p style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", whiteSpace: "nowrap" }}>Smile LED One</p>
+              <div
+                id="S1"
+                onClick={() => onChange("s1Checkbox")}
+                className={
+                  "renderClick" + (s1Checkbox || false) + "  checkBox-conatiner"
+                }
+              >
+                <p
+                  style={{
+                    position: "absolute",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  Smile LED One
+                </p>
               </div>
             </div>
             {/* <input type ="checkbox" id="S1" checked={s1Checkbox} onChange={() => onChange("s1Checkbox")}></input>      
                 <span className="hardwareText">Smile LED One</span> */}
-            <div className={"portSlider-flowchart" + " isActivePortInfo" + (s1Checkbox || false)}>
+            <div
+              className={
+                "portSlider-flowchart" +
+                " isActivePortInfo" +
+                (s1Checkbox || false)
+              }
+            >
               <Slider
                 title="Intensity"
                 value={valSm1 || 0}
@@ -2521,20 +3492,43 @@ const OutputPanel = (props) => {
               </p>
             </div>
           </div>
-        ) : (
-          null
-        )}
+        ) : null}
 
         {isSmileTwo ? (
-          <div className="slider-item1" style={{ position: "relative" }}>
+          <div
+            className="slider-item1-flowchart"
+            style={{ position: "relative" }}
+          >
             <div className="portDetails-flowchart">
-              <div id="S2" onClick={() => onChange("s2Checkbox")} className={"renderClick" + (s2Checkbox || false) + "  checkBox-conatiner"}>
-                <p style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", whiteSpace: "nowrap" }}>Smile LED Two</p>
+              <div
+                id="S2"
+                onClick={() => onChange("s2Checkbox")}
+                className={
+                  "renderClick" + (s2Checkbox || false) + "  checkBox-conatiner"
+                }
+              >
+                <p
+                  style={{
+                    position: "absolute",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  Smile LED Two
+                </p>
               </div>
             </div>
             {/* <input type ="checkbox" id="S2" checked={s2Checkbox} onChange={() => onChange("s2Checkbox")}></input>      
                 <span className="hardwareText">Smile LED Two</span> */}
-            <div className={"portSlider-flowchart" + " isActivePortInfo" + (s2Checkbox || false)}>
+            <div
+              className={
+                "portSlider-flowchart" +
+                " isActivePortInfo" +
+                (s2Checkbox || false)
+              }
+            >
               <Slider
                 title="Intensity"
                 value={valSm2 || 0}
@@ -2567,20 +3561,43 @@ const OutputPanel = (props) => {
               </p>
             </div>
           </div>
-        ) : (
-          null
-        )}
+        ) : null}
 
         {isSmileThree ? (
-          <div className="slider-item1" style={{ position: "relative" }}>
+          <div
+            className="slider-item1-flowchart"
+            style={{ position: "relative" }}
+          >
             <div className="portDetails-flowchart">
-              <div id="S3" onClick={() => onChange("s3Checkbox")} className={"renderClick" + (s3Checkbox || false) + "  checkBox-conatiner"}>
-                <p style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", whiteSpace: "nowrap" }}>Smile LED Three</p>
+              <div
+                id="S3"
+                onClick={() => onChange("s3Checkbox")}
+                className={
+                  "renderClick" + (s3Checkbox || false) + "  checkBox-conatiner"
+                }
+              >
+                <p
+                  style={{
+                    position: "absolute",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  Smile LED Three
+                </p>
               </div>
             </div>
             {/* <input type ="checkbox" id="S3" checked={s3Checkbox} onChange={() => onChange("s3Checkbox")}></input>      
                 <span className="hardwareText">Smile LED Three</span> */}
-            <div className={"portSlider-flowchart" + " isActivePortInfo" + (s3Checkbox || false)}>
+            <div
+              className={
+                "portSlider-flowchart" +
+                " isActivePortInfo" +
+                (s3Checkbox || false)
+              }
+            >
               <Slider
                 title="Intensity"
                 value={valSm3 || 0}
@@ -2613,20 +3630,43 @@ const OutputPanel = (props) => {
               </p>
             </div>
           </div>
-        ) : (
-          null
-        )}
+        ) : null}
 
         {isSmileFour ? (
-          <div className="slider-item1" style={{ position: "relative" }}>
+          <div
+            className="slider-item1-flowchart"
+            style={{ position: "relative" }}
+          >
             <div className="portDetails-flowchart">
-              <div id="S4" onClick={() => onChange("s4Checkbox")} className={"renderClick" + (s4Checkbox || false) + "  checkBox-conatiner"}>
-                <p style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", whiteSpace: "nowrap" }}>Smile LED Four</p>
+              <div
+                id="S4"
+                onClick={() => onChange("s4Checkbox")}
+                className={
+                  "renderClick" + (s4Checkbox || false) + "  checkBox-conatiner"
+                }
+              >
+                <p
+                  style={{
+                    position: "absolute",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  Smile LED Four
+                </p>
               </div>
             </div>
             {/* <input type ="checkbox" id="S4" checked={s4Checkbox} onChange={() => onChange("s4Checkbox")}></input>      
                 <span className="hardwareText">Smile LED Four</span> */}
-            <div className={"portSlider-flowchart" + " isActivePortInfo" + (s4Checkbox || false)}>
+            <div
+              className={
+                "portSlider-flowchart" +
+                " isActivePortInfo" +
+                (s4Checkbox || false)
+              }
+            >
               <Slider
                 title="Intensity"
                 value={valSm4 || 0}
@@ -2659,10 +3699,7 @@ const OutputPanel = (props) => {
               </p>
             </div>
           </div>
-        ) : (
-          null
-        )}
-
+        ) : null}
       </div>
     </div>
   );

@@ -94,176 +94,176 @@ class WaitPanel extends Component {
     return (
       <div className="outertabDiv-wait">
         <div className="wait-container">
-        <div className="slider-section">
-          <div className="slider-item1" style={{ position: "relative" }}>
-            <Slider
-              title="Milliseconds"
-              name="milliseconds"
-              options={_0to1000}
-              value={this.state.milliSec || state["ms"] || 0}
-              min={0}
-              max={950}
-              renderIn="waitPropertyPanel"
-              onChange={(value) => this.onChange("ms", value)}
-            />
+          <div className="slider-section">
+            <div className="slider-item1" style={{ position: "relative" }}>
+              <Slider
+                title="Milliseconds"
+                name="milliseconds"
+                options={_0to1000}
+                value={this.state.milliSec || state["ms"] || 0}
+                min={0}
+                max={950}
+                renderIn="waitPropertyPanel"
+                onChange={(value) => this.onChange("ms", value)}
+              />
 
-            <p
-              style={{
-                position: "absolute",
-                top: "35%",
-                left: "33%",
-                fontSize: "16px",
-              }}
-            >
-              0
-            </p>
-            <p
-              style={{
-                position: "absolute",
-                top: "35%",
+              <p
+                style={{
+                  position: "absolute",
+                  top: "35%",
+                  left: "33%",
+                  fontSize: "16px",
+                }}
+              >
+                0
+              </p>
+              <p
+                style={{
+                  position: "absolute",
+                  top: "35%",
 
-                fontSize: "16px",
-                right: "13%",
-              }}
-            >
-              950
-            </p>
-          </div>
-          <div className="slider-item1" style={{ position: "relative" }}>
-            <Slider
-              title="Seconds"
-              name="seconds"
-              value={this.state.sec || state["s"] || 0}
-              options={_0to60}
-              min={0}
-              max={59}
-              renderIn="waitPropertyPanel"
-              onChange={(value) => this.onChange("s", value)}
-            />
+                  fontSize: "16px",
+                  right: "13%",
+                }}
+              >
+                950
+              </p>
+            </div>
+            <div className="slider-item1" style={{ position: "relative" }}>
+              <Slider
+                title="Seconds"
+                name="seconds"
+                value={this.state.sec || state["s"] || 0}
+                options={_0to60}
+                min={0}
+                max={59}
+                renderIn="waitPropertyPanel"
+                onChange={(value) => this.onChange("s", value)}
+              />
 
-            <p
-              style={{
-                position: "absolute",
-                top: "35%",
+              <p
+                style={{
+                  position: "absolute",
+                  top: "35%",
 
-                left: "33%",
-                fontSize: "16px",
-              }}
-            >
-              0
-            </p>
-            <p
-              style={{
-                position: "absolute",
-                top: "35%",
+                  left: "33%",
+                  fontSize: "16px",
+                }}
+              >
+                0
+              </p>
+              <p
+                style={{
+                  position: "absolute",
+                  top: "35%",
 
-                fontSize: "16px",
-                right: "13%",
-              }}
-            >
-              59
-            </p>
-          </div>
+                  fontSize: "16px",
+                  right: "13%",
+                }}
+              >
+                59
+              </p>
+            </div>
 
-          <div className="slider-item1" style={{ position: "relative" }}>
-            <Slider
-              title="Minutes"
-              name="minutes"
-              value={this.state.min || state["m"] || 0}
-              options={_0to60}
-              min={0}
-              max={59}
-              renderIn="waitPropertyPanel"
-              onChange={(value) => this.onChange("m", value)}
-            />
+            <div className="slider-item1" style={{ position: "relative" }}>
+              <Slider
+                title="Minutes"
+                name="minutes"
+                value={this.state.min || state["m"] || 0}
+                options={_0to60}
+                min={0}
+                max={59}
+                renderIn="waitPropertyPanel"
+                onChange={(value) => this.onChange("m", value)}
+              />
 
-            <p
-              style={{
-                position: "absolute",
-                top: "35%",
+              <p
+                style={{
+                  position: "absolute",
+                  top: "35%",
 
-                left: "33%",
-                fontSize: "16px",
-              }}
-            >
-              0
-            </p>
-            <p
-              style={{
-                position: "absolute",
-                top: "35%",
+                  left: "33%",
+                  fontSize: "16px",
+                }}
+              >
+                0
+              </p>
+              <p
+                style={{
+                  position: "absolute",
+                  top: "35%",
 
-                fontSize: "16px",
-                right: "13%",
-              }}
-            >
-              59
-            </p>
-          </div>
+                  fontSize: "16px",
+                  right: "13%",
+                }}
+              >
+                59
+              </p>
+            </div>
 
-          <div className="slider-item1" style={{ position: "relative" }}>
-            <Slider
-              title="Hours"
-              name="hours"
-              value={this.state.hr || state["h"] || 0}
-              options={_0to24}
-              max={23}
-              min={0}
-              renderIn="waitPropertyPanel"
-              onChange={(value) => this.onChange("h", value)}
-            />
+            <div className="slider-item1" style={{ position: "relative" }}>
+              <Slider
+                title="Hours"
+                name="hours"
+                value={this.state.hr || state["h"] || 0}
+                options={_0to24}
+                max={23}
+                min={0}
+                renderIn="waitPropertyPanel"
+                onChange={(value) => this.onChange("h", value)}
+              />
 
-            <p
-              style={{
-                position: "absolute",
-                top: "35%",
+              <p
+                style={{
+                  position: "absolute",
+                  top: "35%",
 
-                left: "33%",
-                fontSize: "16px",
-              }}
-            >
-              0
-            </p>
-            <p
-              style={{
-                position: "absolute",
-                top: "35%",
+                  left: "33%",
+                  fontSize: "16px",
+                }}
+              >
+                0
+              </p>
+              <p
+                style={{
+                  position: "absolute",
+                  top: "35%",
 
-                fontSize: "16px",
-                right: "13%",
-              }}
-            >
-              23
-            </p>
-          </div>
-        </div>
-
-        <div className="timer-section">
-          <img src={timericon} style={{ height: "40%", width: "90%" }} />
-          <div
-            style={{
-              height: "10%",
-              width: "53%",
-              border: "0.5px solid #25245E",
-              borderRadius: "5px",
-              position: "relative",
-            }}
-          >
-            <div
-              style={{
-                position: "absolute",
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%,-50%)",
-              }}
-            >
-              <p style={{marginBottom: "0px"}}>
-                {this.state.hr}:{this.state.min}:{this.state.sec}:
-                {this.state.milliSec}
+                  fontSize: "16px",
+                  right: "13%",
+                }}
+              >
+                23
               </p>
             </div>
           </div>
-        </div>
+
+          <div className="timer-section">
+            <img src={timericon} style={{ height: "40%", width: "90%" }} />
+            <div
+              style={{
+                height: "10%",
+                width: "53%",
+                border: "0.5px solid #25245E",
+                borderRadius: "5px",
+                position: "relative",
+              }}
+            >
+              <div
+                style={{
+                  position: "absolute",
+                  top: "50%",
+                  left: "50%",
+                  transform: "translate(-50%,-50%)",
+                }}
+              >
+                <p style={{ marginBottom: "0px" }}>
+                  {this.state.hr}:{this.state.min}:{this.state.sec}:
+                  {this.state.milliSec}
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     );

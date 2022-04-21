@@ -958,9 +958,9 @@ class Simulate extends Component {
   startsimulate = () => {
     let bytes = sessionStorage.getItem("convert_Bytes");
     var programBytes = bytes.split(",").slice(67);
-    console.log("heelloo", programBytes);
+    //console.log("heelloo", programBytes);
     let data = JSON.parse(sessionStorage.getItem("simulate"));
-    console.log("heelloo", data);
+    // console.log("heelloo", data);
     this.processbytes(programBytes);
   };
   hardware = (j) => {
