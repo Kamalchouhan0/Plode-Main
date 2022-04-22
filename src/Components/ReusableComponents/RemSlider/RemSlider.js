@@ -101,11 +101,7 @@ export class RemSlider extends Component {
         <div className={RemStyle.container}></div>
         <Slider {...settings}>
           <div className={RemStyle.wdt}>
-            <img
-              className={RemStyle.img}
-              src={renderImage("Remt1")}
-              className={RemStyle.img}
-            />
+            <img className={RemStyle.img} src={renderImage("Remt1")} />
             <div className={RemStyle.Hel}>
               <p className={RemStyle.Hel_P}>
                 {" "}
@@ -125,11 +121,7 @@ export class RemSlider extends Component {
           </div>
 
           <div className={RemStyle.wdt}>
-            <img
-              className={RemStyle.img}
-              src={renderImage("Remt2")}
-              className={RemStyle.img}
-            />
+            <img className={RemStyle.img} src={renderImage("Remt2")} />
             <div className={RemStyle.con}>
               <p className={RemStyle.con_P}>
                 You can make the playcomputer’s beeper play various tones from
@@ -138,11 +130,7 @@ export class RemSlider extends Component {
             </div>
           </div>
           <div className={RemStyle.wdt}>
-            <img
-              className={RemStyle.img}
-              src={renderImage("Remt3")}
-              className={RemStyle.img}
-            />
+            <img className={RemStyle.img} src={renderImage("Remt3")} />
             <div className={RemStyle.Mus}>
               <p className={RemStyle.Mus_P}>
                 The playcomputer has 2 RGB LED as eye, which you can control
@@ -152,11 +140,7 @@ export class RemSlider extends Component {
             </div>
           </div>
           <div className={RemStyle.wdt}>
-            <img
-              className={RemStyle.img}
-              src={renderImage("Remt4")}
-              className={RemStyle.img}
-            />
+            <img className={RemStyle.img} src={renderImage("Remt4")} />
             <div className={RemStyle.Cam}>
               <p className={RemStyle.Cam_P}>
                 The playcomputer has 2 RGB LED as eye, which you can control
@@ -166,11 +150,7 @@ export class RemSlider extends Component {
             </div>
           </div>
           <div className={RemStyle.wdt}>
-            <img
-              className={RemStyle.img}
-              src={renderImage("Remt5")}
-              className={RemStyle.img}
-            />
+            <img className={RemStyle.img} src={renderImage("Remt5")} />
             <div className={RemStyle.Re5}>
               <p className={RemStyle.Re5_P}>
                 You can turn ON/OFF each of the 4 Smile leds using the buttons
@@ -179,11 +159,7 @@ export class RemSlider extends Component {
           </div>
 
           <div className={RemStyle.wdt}>
-            <img
-              className={RemStyle.img}
-              src={renderImage("Remt6")}
-              className={RemStyle.img}
-            />
+            <img className={RemStyle.img} src={renderImage("Remt6")} />
             <div className={RemStyle.Re6}>
               <p className={RemStyle.Re6_P}>
                 {" "}
@@ -196,11 +172,7 @@ export class RemSlider extends Component {
           </div>
 
           <div className={RemStyle.wdt}>
-            <img
-              className={RemStyle.img}
-              src={renderImage("Remt6")}
-              className={RemStyle.img}
-            />
+            <img className={RemStyle.img} src={renderImage("Remt6")} />
             <div className={RemStyle.Re6}>
               <p className={RemStyle.Re7_P}>
                 Gesture mode: The playcomputer’s gesture sensor can detect the
@@ -211,11 +183,7 @@ export class RemSlider extends Component {
             </div>
           </div>
           <div className={RemStyle.wdt}>
-            <img
-              className={RemStyle.img}
-              src={renderImage("Remt6")}
-              className={RemStyle.img}
-            />
+            <img className={RemStyle.img} src={renderImage("Remt6")} />
             <div className={RemStyle.Re8}>
               <p className={RemStyle.Re8_P}>
                 Disco mode: This is mode that will put the Playcomputer in Disco

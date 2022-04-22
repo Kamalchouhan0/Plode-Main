@@ -131,6 +131,7 @@ class Logic extends Component {
     }
 
     drawing = ProgramToDrawing(
+      undefined,
       logic.program,
       logic.end,
       logic.currentProgramGuide,
@@ -166,7 +167,18 @@ class Logic extends Component {
     };
     window.addEventListener("load", async (e) => {
       console.log("HEY_CALIIN", this.props.state);
+      navigator.serial.addEventListener("connect", (e) => {
+        var user = 1;
+        sessionStorage.setItem("user", JSON.stringify(user));
+        this.handleUsb();
+        window.location.reload();
+      });
 
+      navigator.serial.addEventListener("disconnect", (e) => {
+        var user = 0;
+        sessionStorage.setItem("user", JSON.stringify(user));
+        this.handleUsb();
+      });
       try {
         const portList = await navigator.serial.getPorts();
 
@@ -195,6 +207,7 @@ class Logic extends Component {
       this.props.logic;
 
     drawing = ProgramToDrawing(
+      undefined,
       program,
       end,
       currentProgramGuide,
@@ -211,6 +224,7 @@ class Logic extends Component {
       this.props.logic;
 
     drawing = ProgramToDrawing(
+      undefined,
       program,
       end,
       currentProgramGuide,
@@ -243,7 +257,18 @@ class Logic extends Component {
   componentDidUpdate(prevProps, prevState) {
     this.OpenReadComPort();
     drawing.updated = false;
+    sessionStorage.setItem("PET", undefined);
     // drawingNew.updated = false;
+    navigator.serial.addEventListener("connect", (e) => {
+      var user = 1;
+      sessionStorage.setItem("user", JSON.stringify(user));
+    });
+
+    navigator.serial.addEventListener("disconnect", (e) => {
+      // this.handleUsb();
+      var user = 0;
+      sessionStorage.setItem("user", JSON.stringify(user));
+    });
   }
 
   handleUsb = (e) => {
@@ -270,8 +295,13 @@ class Logic extends Component {
 
     if (data === 1) {
       this.handleUsb();
-    } else {
-      // this.handleUsb();
+      console.log("Logic AD !!");
+      // this.setState({ isusb: true });
+    }
+    if (data === 0) {
+      this.handleUsb();
+      console.log("Logic AD");
+      // this.setState({ isusb: false });
     }
     // socket.on("/usbDetection", (data) => {
     //   console.log("DATAE:----", data);
@@ -465,6 +495,7 @@ class Logic extends Component {
       logic.active = [row, col];
 
       drawing = ProgramToDrawing(
+        undefined,
         logic.program,
         logic.end,
         logic.currentProgramGuide,
@@ -490,6 +521,7 @@ class Logic extends Component {
       // Uncomment the following line to auto-minimize bottomPanel on blank space click
       // logic.bottomPanel = 'border';
       drawing = ProgramToDrawing(
+        undefined,
         logic.program,
         logic.end,
         logic.currentProgramGuide,
@@ -545,8 +577,9 @@ class Logic extends Component {
       type === "end_sensor" ||
       type === "end_condition" ||
       type === "end_if" ||
-      type === "end_loop" ||
-      type === "repeat"
+      type === "end_loop"
+      // ||
+      // type === "repeat"
     )
       logic.currentProgramGuide--;
     else {
@@ -570,6 +603,7 @@ class Logic extends Component {
     }
 
     drawing = ProgramToDrawing(
+      type,
       logic.program,
       logic.end,
       logic.currentProgramGuide,
@@ -634,6 +668,7 @@ class Logic extends Component {
     }
 
     drawing = ProgramToDrawing(
+      type,
       logic.program,
       logic.end,
       logic.currentProgramGuide,
@@ -641,8 +676,7 @@ class Logic extends Component {
       this.add,
       logic.insertState,
       this.insertNode,
-      this.deleteNode,
-      type
+      this.deleteNode
     );
     var logicState = {};
     logicState["type"] = this.state.currentLogicScreen;
@@ -672,11 +706,16 @@ class Logic extends Component {
       if (currentProgramGuide < logic.currentProgramGuide)
         logic.currentProgramGuide = currentProgramGuide;
     }
+
+    if (drawing.activeRef.type === "end") {
+      logic.currentProgramGuide = 0;
+    }
     // alert(drawing.activeIndex)
     drawing.activeParentRef.splice(drawing.activeIndex, 1);
     logic.active = [-1, -1];
 
     drawing = ProgramToDrawing(
+      undefined,
       logic.program,
       logic.end,
       logic.currentProgramGuide,
@@ -759,11 +798,19 @@ class Logic extends Component {
     }
     // if (state) {
     drawing.activeRef.state = state;
+    if (state == "end") {
+      drawing.activeRef.type = "end";
+      sessionStorage.setItem("EndSwitch", "end");
+    }
+    if (state == "repeat") {
+      drawing.activeRef.type = "repeat";
+    }
     // }
 
     if (drawing.activeRef.type === "end") console.log("bottomPanelChange end");
 
     drawing = ProgramToDrawing(
+      undefined,
       logic.program,
       logic.end,
       logic.currentProgramGuide,
@@ -1021,6 +1068,16 @@ class Logic extends Component {
   };
   closecheckEndProgram = () => {
     this.setState({ checkEndProgram: false });
+  };
+  HdleUsb = async (e) => {
+    const filters = [{ usbVendorId: 0x1a86, usbProductId: 0x7523 }];
+
+    // Prompt user to select an Arduino Uno device.
+    const port = await navigator.serial.requestPort({ filters });
+    console.log("Ye Mera Port hai", port);
+    if (port.onconnect == null) {
+      window.location.reload();
+    }
   };
 
   // ITS =(e) => {
@@ -1312,9 +1369,9 @@ class Logic extends Component {
                 ></img>
               ) : null}
               {this.state.isusb ? (
-                <img src={renderPrgImage("usbON")} />
+                <img src={renderPrgImage("usbON")} onClick={this.HdleUsb} />
               ) : (
-                <img src={renderPrgImage("usbOFF")} />
+                <img src={renderPrgImage("usbOFF")} onClick={this.HdleUsb} />
               )}
               {/* <img src={usbOFF} /> */}
             </div>

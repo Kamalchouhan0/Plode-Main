@@ -23,5 +23,5 @@ export default Colors = {
   if: "#d65858",
   wait: "#8c5ab8",
   repeat: "#53a65f",
-  delete: "#e81a1a",
+  delete: "#3FD0C1",
 };

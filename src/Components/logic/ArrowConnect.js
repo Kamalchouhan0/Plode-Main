@@ -17,7 +17,13 @@ var ArrowConnect = createReactClass({
       var cx = (hex1c + 1) * Sizes.xdiff + (Sizes.r * 0.1 * Math.sqrt(3)) / 2;
       const cy = hex1r * Sizes.ydiff;
       for (let i = 0; i <= 3 * (hex2c - hex1c - 1); cx += 34, i++) {
-        list.push(<Arrow cx={cx} cy={cy} color={color} key={i} />);
+        if (color == "#3FD0C1") {
+          list.push(<Arrow cx={cx} cy={cy} color={color} key={i} data />);
+        } else {
+          list.push(
+            <Arrow cx={cx} cy={cy} color={color} key={i} data={false} />
+          );
+        }
       }
     } else if (hex1c == hex2c) {
       var cy = hex1r * Sizes.ydiff;
