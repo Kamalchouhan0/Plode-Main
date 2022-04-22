@@ -1,9 +1,9 @@
 import React, { memo } from "react";
 import renderPrgImage from "../../../source/programImg";
 import { Handle } from "react-flow-renderer";
+import CustomNodeFlow from "./Index";
 // import {IllusLoginSrc} from '../../../source/source';
 var assembly = JSON.parse(sessionStorage.getItem("assembly"));
-console.log("gkaay", assembly);
 export default memo(({ data }) => {
   var style = {
     position: "relative",
@@ -53,6 +53,10 @@ export default memo(({ data }) => {
             width: "25%",
             marginTop: "-75px",
             marginLeft: "37.5%",
+          }}
+          onclick={(event) => {
+            console.log(event, "i/p");
+            //CustomNodeFlow.onElementClick(event, { id: "1", type: "input" });
           }}
         />
         <img

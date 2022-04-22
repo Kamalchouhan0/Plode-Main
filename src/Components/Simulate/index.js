@@ -336,6 +336,23 @@ class Simulate extends Component {
     //   this.handleUsb(false);
     // }
     //});
+    var flatPrograms = [];
+    async function flattenLogic(programs) {
+      for (var i in programs) {
+        if (
+          programs[i].type == "condition" ||
+          programs[i].type == "loop" ||
+          programs[i].type == "sensor"
+        ) {
+          flatPrograms.push(programs[i]);
+          flattenLogic(programs[i].subprogram);
+        } else {
+          flatPrograms.push(programs[i]);
+        }
+      }
+    }
+    flattenLogic(this.props.logic.program);
+    sessionStorage.setItem("flatPrograms", JSON.stringify(flatPrograms));
     let data = JSON.parse(sessionStorage.getItem("user"));
 
     if (data === 1) {
@@ -438,9 +455,14 @@ class Simulate extends Component {
     var iterartions;
     var repartstart;
     var resetflag = false;
-
+    var loopflag = false;
+    var hexid = 0;
+    var programs = JSON.parse(sessionStorage.getItem("flatPrograms"));
     for (var b = 0; b < bytes.length; b++) {
       //console.log("count:", b);
+      if (loopflag) {
+        hexidloopoffset++;
+      }
 
       if (sessionStorage.getItem("play_btn") == "true") {
         console.log("breakin in");
@@ -456,11 +478,14 @@ class Simulate extends Component {
         await timer(10);
         console.log("RST");
         b = 0;
+        hexid = 0;
       }
 
       //if condition
       if (bytes[b] == "d".charCodeAt(0)) {
         console.log("in decison");
+        hexid++;
+
         b += 3;
         var ar1 = bytes[b + 1].toString(2);
         var ar2 = bytes[b + 2].toString(2);
@@ -632,12 +657,23 @@ class Simulate extends Component {
               console.log("b after ED", b);
               break;
             }
+            if (
+              bytes[k] == "d".charCodeAt(0) ||
+              bytes[k] == "w".charCodeAt(0) ||
+              bytes[k] == "o".charCodeAt(0) ||
+              bytes[k] == "l".charCodeAt(0)
+            ) {
+              hexid++;
+            }
           }
         }
       }
 
       ///repat conditon
       if (bytes[b] == "l".charCodeAt(0)) {
+        loopflag = true;
+        var hexidloopoffset = 0;
+        hexid++;
         console.log("in repat");
         iterartions = parseInt(bytes[b + 3]);
         repartstart = b + 4;
@@ -648,12 +684,20 @@ class Simulate extends Component {
         iterartions--;
         if (iterartions > 0) {
           b = repartstart;
+          hexid = hexid - hexidloopoffset + 1;
+          hexidloopoffset = 0;
           await timer(50);
+        } else {
+          loopflag = false;
         }
       }
 
       ///wait conditon
       if (bytes[b] == "w".charCodeAt(0)) {
+        hexid++;
+        console.log(programs[hexid], "hexid", hexid);
+        var myImage = document.getElementById(`${programs[hexid].id}`);
+        myImage.style.stroke = "#5ed649";
         console.log("inside wait conditon");
         var w1 = parseInt(bytes[b + 1]).toString(2);
         var w2 = parseInt(bytes[b + 2]).toString(2);
@@ -664,13 +708,17 @@ class Simulate extends Component {
         wait = parseInt(wait, 2);
         console.log(wait);
         await timer(wait);
-
+        myImage.style.stroke = "white";
         console.log("wait over");
         b = b + 4;
       }
 
       ///output condition
       if (bytes[b] == "o".charCodeAt(0)) {
+        hexid++;
+        console.log(programs[hexid], "hexid", hexid);
+        var myImage = document.getElementById(`${programs[hexid].id}`);
+        myImage.style.stroke = "#5ed649";
         console.log("inside output condition");
         var i = b + 2;
         while (bytes[i] != "}".charCodeAt(0)) {
@@ -939,6 +987,8 @@ class Simulate extends Component {
           // console.log(bytes);
           //console.log("output loop count", i);
         }
+        myImage.style.stroke = "white";
+
         b = i;
       }
       //console.log("byte:", bytes[b]);
@@ -2891,7 +2941,7 @@ class Simulate extends Component {
                       } else {
                         sessionStorage.setItem("play_btn", false);
                         this.startsimulate();
-                        this.myRef.current.anyFun();
+                        //this.myRef.current.anyFun();
                       }
                     }}
                     alt="save"
