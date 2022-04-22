@@ -47,7 +47,7 @@ const CustomNodeFlow = ({ compo, img, assembly, updateState, indexChange }) => {
     },
     []);
   const onElementClick = (event, element) => {
-    console.log(event.target);
+    console.log(event, element, "i/p");
     console.log(event.target.getAttribute("namecomp"));
     let compName = event.target.getAttribute("namecomp");
     let compPort = event.target.getAttribute("id");
