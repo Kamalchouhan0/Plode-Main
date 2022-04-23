@@ -277,6 +277,13 @@ class Logic extends Component {
   helpBtn = (e) => {
     this.setState({ isHelp: !this.state.isHelp });
   };
+
+  clearProgram = () => {
+    console.log("clearProgram");
+    sessionStorage.removeItem("logic");
+
+    window.location.reload();
+  };
   componentDidMount = () => {
     // var socket = io.connect("http://localhost:3008");
     // socket.emit("_usbDetection", "Hi");
@@ -1349,6 +1356,11 @@ class Logic extends Component {
                 src={renderPrgImage("helpBtnInActive")}
                 style={{ marginRight: "25px" }}
               /> */}
+              <img
+                className="iconBtnSize"
+                src={renderPrgImage("helpBtnInActive")}
+                onClick={this.clearProgram}
+              ></img>
               {this.state.isHelp ? (
                 <div className="Ss_slide">
                   <LogicPrgm />
