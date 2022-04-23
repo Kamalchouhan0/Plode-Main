@@ -106,7 +106,7 @@ let initialElements = [
     },
   },
 ];
-var socket = io.connect("http://localhost:3008");
+//var socket = io.connect("http://localhost:3008");
 let d = "M 120 450 l 170 -100";
 let modal;
 const onDragOver = (event) => {
@@ -3052,7 +3052,7 @@ const DnDFlow = () => {
       bottomPanel: "border",
     });
     console.log(params);
-    socket.emit("/getSimulateBytes", { code: params });
+    //socket.emit("/getSimulateBytes", { code: params });
   };
   const handleClose = () => {
     setShow(false);
