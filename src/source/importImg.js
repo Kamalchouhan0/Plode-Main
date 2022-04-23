@@ -37,7 +37,7 @@ import devices from "../Assets/Bisoft_UI/Buttons/Inactive with shadow/devices.pn
 import Computer from "../Assets/Bisoft_UI/Main/PNG/computer.png";
 import reconnect from "../Assets/Bisoft_UI/Buttons/Active without shadow/cta button 152x52 - fill.png";
 
-import skip from "../Assets/Bisoft_UI/Buttons/Inactive with shadow/skip.png";
+import skip from "../Assets/Bisoft_UI/Buttons/Inactive with shadow/skip@3x.png";
 import popup_Svg from "../Assets/Bisoft_UI/Play/SVG/popup card.svg";
 
 //SPEECH Screen
@@ -106,17 +106,17 @@ import smile3 from "../Assets/Bisoft_UI/Buttons/Inactive with shadow/smile 3.png
 
 import smile4 from "../Assets/Bisoft_UI/Buttons/Inactive with shadow/smile 4.png";
 
-import talk_IA from "../Assets/Bisoft_UI/Buttons/Inactive with shadow/talkback.png";
+import talk_IA from "../Assets/Bisoft_UI/Buttons/Inactive with shadow/talkback@3x.png";
 
-import disco_IA from "../Assets/Bisoft_UI/Buttons/Inactive with shadow/disco.png";
+import disco_IA from "../Assets/Bisoft_UI/Buttons/Inactive with shadow/disco@3x.png";
 
-import gesture_IA from "../Assets/Bisoft_UI/Buttons/Inactive with shadow/gesture.png";
+import gesture_IA from "../Assets/Bisoft_UI/Buttons/Inactive with shadow/gesture@3x.png";
 
-import talk_Ac from "../Assets/Bisoft_UI/Buttons/Active with shadow/talkback.png";
+import talk_Ac from "../Assets/Bisoft_UI/Buttons/Active with shadow/talkback@3x.png";
 
-import disco_Ac from "../Assets/Bisoft_UI/Buttons/Active with shadow/disco.png";
+import disco_Ac from "../Assets/Bisoft_UI/Buttons/Active with shadow/disco@3x.png";
 
-import gesture_Ac from "../Assets/Bisoft_UI/Buttons/Active with shadow/gesture.png";
+import gesture_Ac from "../Assets/Bisoft_UI/Buttons/Active with shadow/gesture@3x.png";
 
 import Bild from "../Assets/Bisoft_UI/Help screen/Play/Group 3176@2x.png";
 import Ply from "../Assets/Bisoft_UI/Help screen/Play/Group 3174@2x.png";

@@ -420,7 +420,7 @@ function Camera(props) {
           src={renderImage("Disconnected_Svg")}
         ></img>
 
-        <img className="Camera_Ace" src={renderImage("Pc")}></img>
+        <img className="Camera_Ace" src={renderImage("PC")}></img>
         {/* <h1>{faceData}</h1> */}
       </div>
 

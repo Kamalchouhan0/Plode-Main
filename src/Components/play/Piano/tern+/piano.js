@@ -543,7 +543,7 @@ function Music(props) {
             </div>
           )}
           {isPcPiano == false ? null : (
-            <img className="Music_Ac" src={renderImage("Pc")}></img>
+            <img className="Music_Ac" src={renderImage("PC")}></img>
           )}
         </div>
         <div className="">
@@ -562,7 +562,7 @@ function Music(props) {
         </div>
         <div className="">
           {isPianoKey == false ? null : (
-            <img className="Music_Ace" src={renderImage("Pc")}></img>
+            <img className="Music_Ace" src={renderImage("PC")}></img>
           )}
           {isPcPiano == false ? null : (
             <img
