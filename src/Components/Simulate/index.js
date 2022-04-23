@@ -663,7 +663,7 @@ class Simulate extends Component {
               bytes[k] == "o".charCodeAt(0) ||
               bytes[k] == "l".charCodeAt(0)
             ) {
-              hexid++;
+              // hexid++;
             }
           }
         }
@@ -900,8 +900,8 @@ class Simulate extends Component {
               break;
             }
             case 23: {
-              var bz1 = bytes[i + 1].toString(2);
-              var bz2 = bytes[i + 2].toString(2);
+              var bz1 = parseInt(bytes[i + 1]).toString(2);
+              var bz2 = parseInt(bytes[i + 2]).toString(2);
               var bzval = parseInt(bz1 + bz2, 2);
               console.log("buzzer:", bzval);
               if (bzval > 0) {
@@ -915,7 +915,8 @@ class Simulate extends Component {
               break;
             }
             case 24 || 25 || 26: {
-              if (bytes[i + 2] > 0) {
+              console.log(parseInt(bytes[i + 2]), "left eye");
+              if (parseInt(bytes[i + 2]) > 0) {
                 console.log("Left EYE ON");
                 document.getElementById("PcinternalLeftEYE").src =
                   renderPrgImage("PcinternalEYEActive");
@@ -928,7 +929,7 @@ class Simulate extends Component {
               break;
             }
             case 27 || 28 || 29: {
-              if (bytes[i + 2] > 0) {
+              if (parseInt(bytes[i + 2]) > 0) {
                 console.log("Right EYE ON");
                 document.getElementById("PcinternalRightEYE").src =
                   renderPrgImage("PcinternalEYEActive");
