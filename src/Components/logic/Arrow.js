@@ -9,7 +9,7 @@ const Sizes = require("./Sizes");
 var Arrow = createReactClass({
   mixins: [PureRenderMixin],
   render() {
-    const { cx, cy, color, rotated } = this.props;
+    const { cx, cy, color, rotated, data } = this.props;
     return (
       <g
         transform={
@@ -18,7 +18,19 @@ var Arrow = createReactClass({
           "," +
           cy +
           ") " +
-          (rotated ? "rotate(90) " : "") +
+          (cx === 153
+            ? "translate(-1,-29) , rotate(90)"
+            : cx == 106.67653718043597 || cx == 140.67653718043596
+            ? "translate(100,5509)"
+            : cy == 51
+            ? "rotate(270), translate(30)"
+            : data
+            ? "rotate(180)"
+            : color == "\t#FF4500" || color == "\t#FF4500 "
+            ? "translate(100,5509)"
+            : rotated
+            ? "rotate(90) "
+            : "") +
           "translate(-17,-14)"
         }
         fill={color}

@@ -1192,8 +1192,11 @@ class IfPanel extends Component {
       sourceOptions.remote = "BT Remote";
     }
 
-    // sourceOptionsOrder.push("battery");
-    // sourceOptions.battery = "Select Items";
+    sourceOptionsOrder.push("battery");
+    sourceOptions.battery = "Select Items";
+    if (this.props.state.source != "battery") {
+      sourceOptionsOrder.pop("battery");
+    }
 
     // sourceOptionsOrder.push('timeElapsed');
     // sourceOptions.timeElapsed = 'Time elapsed(sec)';
@@ -1222,7 +1225,7 @@ class IfPanel extends Component {
       conditions["bw"] = "In between";
       //conditions['nbw']='Not in between';
     }
-    if (sourceOptionsOrder.indexOf(source) < 0) source = "slider";
+    // if (sourceOptionsOrder.indexOf(source) < 0) source = "slider";
     if (
       source === "irr" ||
       source.startsWith("bic") ||

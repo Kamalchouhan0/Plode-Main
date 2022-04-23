@@ -52,7 +52,7 @@ var HexTypes = {
   active_hand: { color: Colors.flash_yellow, name: "Select", image: "touch" },
   highlighted_hand: { color: Colors.cyan, name: "", image: "touch" },
   // blank: { color: Colors.white, name: "" },
-  blank: { color: "#D9F6FE", name: "" },
+  blank: { color: "#3FD0C1", name: "" },
   insert: { color: Colors.insert, image: "insert" },
   delete: { color: Colors.delete, image: "delete" },
 };

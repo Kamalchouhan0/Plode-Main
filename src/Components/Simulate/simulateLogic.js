@@ -77,6 +77,7 @@ class SimulateLogic extends Component {
     var tutorialLogic = sessionStorage.getItem("tutorialLogic");
 
     drawing = ProgramToDrawing(
+      undefined,
       logic.program,
       logic.end,
       logic.currentProgramGuide,
@@ -110,6 +111,7 @@ class SimulateLogic extends Component {
       this.props.logic;
 
     drawing = ProgramToDrawing(
+      undefined,
       program,
       end,
       currentProgramGuide,
@@ -126,6 +128,7 @@ class SimulateLogic extends Component {
       this.props.logic;
 
     drawing = ProgramToDrawing(
+      undefined,
       program,
       end,
       currentProgramGuide,
@@ -423,6 +426,7 @@ class SimulateLogic extends Component {
     }
 
     drawing = ProgramToDrawing(
+      type,
       logic.program,
       logic.end,
       logic.currentProgramGuide,
@@ -464,6 +468,7 @@ class SimulateLogic extends Component {
       logic.active = [-1, -1];
     }
     drawing = ProgramToDrawing(
+      type,
       logic.program,
       logic.end,
       logic.currentProgramGuide,
@@ -503,6 +508,7 @@ class SimulateLogic extends Component {
     drawing.activeParentRef.splice(drawing.activeIndex, 1);
     logic.active = [-1, -1];
     drawing = ProgramToDrawing(
+      undefined,
       logic.program,
       logic.end,
       logic.currentProgramGuide,
@@ -586,6 +592,7 @@ class SimulateLogic extends Component {
 
     if (drawing.activeRef.type === "end")
       drawing = ProgramToDrawing(
+        undefined,
         logic.program,
         logic.end,
         logic.currentProgramGuide,

@@ -78,6 +78,31 @@ function recurse(instructions, active) {
         curRow -= 2;
         setCurCol(oldCol);
       }
+      //Creating arrow from repeat to start
+      if (instruction.type === "repeat") {
+        sessionStorage.setItem("PET", "repeat");
+        connections.push({
+          from: [0, 0],
+          to: [0, curCol + 0.5],
+        });
+        console.log("CURRENT LOG", curCol + 1, curRow);
+        connections.push({
+          from: [0, 1],
+          to: [1, 1],
+        });
+
+        connections.push({
+          from: [0, 1],
+          to: [1, 1],
+        });
+
+        connections.push({
+          from: [0, curCol],
+          to: [1, curCol],
+          vl: [1],
+        });
+        console.log("CURRENT LOG2", curCol);
+      }
 
       while (board.length <= curRow) addRow();
 
@@ -100,8 +125,16 @@ function recurse(instructions, active) {
   }
 }
 
-function drawHands(currentProgramGuide, active, add, insertNode) {
+function drawHands(
+  currentProgramGuide,
+  active,
+  add,
+  insertNode,
+  componentName
+) {
   // console.log(add, "drawHands add");
+  let CompName = sessionStorage.getItem("PET");
+  let CompNames = sessionStorage.getItem("EndSwitch");
 
   var row = 1;
 
@@ -154,6 +187,12 @@ function drawHands(currentProgramGuide, active, add, insertNode) {
 
       board[row][col + 1] = { type: type, onClick: () => add(type) };
     }
+  }
+  // Creating blank hex next to repeat
+  else if (CompName == "repeat" || CompNames == "end") {
+    console.log(componentName, "KHFHHHHKH");
+    board[row][board[row].length - 1] = { type: "blank" };
+    console.log("KAMAL @@@@@@");
   } else {
     // if (typeof board[row] == "undefined") {
     //   console.log("YES");
@@ -168,6 +207,7 @@ function drawHands(currentProgramGuide, active, add, insertNode) {
 var typeOfComponent;
 
 export default function (
+  componentName,
   program,
   end,
   currentProgramGuide,
@@ -175,8 +215,7 @@ export default function (
   add,
   insertState,
   insertNode,
-  deleteNode,
-  componentName
+  deleteNode
 ) {
   if (componentName != undefined) {
     typeOfComponent = componentName;
@@ -206,7 +245,14 @@ export default function (
     activeIndex = program.length;
   }
 
-  drawHands(currentProgramGuide, active, add, insertNode);
+  //Passing Component name repeat to drawhands
+  if (componentName == "repeat") {
+    drawHands(currentProgramGuide, active, add, insertNode, {
+      componentName: "repeat",
+    });
+  } else {
+    drawHands(currentProgramGuide, active, add, insertNode, componentName);
+  }
 
   if (active[0] !== -1 && active[1] !== -1) {
     board[active[0]][active[1]].highlighted = true;
