@@ -7,6 +7,7 @@ import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
+import { browserName, browserVersion } from "react-device-detect";
 // import Learn from './components/learn';
 // import MidProgramming from './components/learn/mid_program_homePage';
 // import Level from './components/level';
@@ -26,12 +27,43 @@ const store = createStore(
   window.__REDUX_DEVTOOLS_EXTENSION__ &&
     window.__REDUX_DEVTOOLS_EXTENSION__({ trace: true, traceLimit: 25 })
 );
+var supportedBrowser = false;
+console.log(browserName, browserVersion);
+if (
+  browserName == "Chrome" ||
+  browserName == "Edge" ||
+  browserName == "Opera"
+) {
+  if (parseInt(browserVersion) > 89) {
+    console.log(parseInt(browserVersion), "versionbrowser");
+    supportedBrowser = true;
+  }
+}
+// const isOpera =
+//   (!!window.opr && !!opr.addons) ||
+//   !!window.opera ||
+//   navigator.userAgent.indexOf(" OPR/") >= 0;
+// const isSafari =
+//   /constructor/i.test(window.HTMLElement) ||
+//   (function (p) {
+//     return p.toString() === "[object SafariRemoteNotification]";
+//   })(
+//     !window["safari"] ||
+//       (typeof safari !== "undefined" && safari.pushNotification)
+//   );
 
 ReactDOM.render(
   <BrowserRouter>
     <Provider store={store}>
       {/* <React.StrictMode> */}
-      <App />
+      {supportedBrowser ? (
+        <App />
+      ) : (
+        window.alert(
+          "Kindly use the latest version of Google Chrome or Microsoft Edge to view this website"
+        )
+      )}
+
       {/* </React.StrictMode> */}
     </Provider>
   </BrowserRouter>,

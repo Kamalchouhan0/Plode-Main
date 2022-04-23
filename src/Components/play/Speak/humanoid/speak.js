@@ -14,11 +14,11 @@ import {
   playSpeakButtonTalkSrc,
   playSpeakIllusVoiceSrc,
 } from "../../../../source/source";
-
-const SpeechRecognition =
-  window.SpeechRecognition || window.webkitSpeechRecognition;
-const recognition = new SpeechRecognition();
-
+try {
+  var SpeechRecognition =
+    window.SpeechRecognition || window.webkitSpeechRecognition;
+  var recognition = new SpeechRecognition();
+} catch (e) {}
 const styles = {
   container: {
     display: "flex",

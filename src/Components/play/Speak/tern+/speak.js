@@ -38,11 +38,11 @@ import usboof from "../../../../Assets/usb - off@2x.png";
 import backx from "../../../../Assets/back@2x.png";
 
 import SpchSlider from "../../../ReusableComponents/SpchSlider/SpchSlider";
-
-const SpeechRecognition =
-  window.SpeechRecognition || window.webkitSpeechRecognition;
-const recognition = new SpeechRecognition();
-
+try {
+  var SpeechRecognition =
+    window.SpeechRecognition || window.webkitSpeechRecognition;
+  var recognition = new SpeechRecognition();
+} catch (e) {}
 //const socket = io("http://localhost:3008");
 // recognition.start();
 
