@@ -217,8 +217,37 @@ class Workspace extends Component {
 
       components[type].map((component, index) => {
         if (component.connectedTo) {
-          console.log("component.connectedTo 1", component.connectedTo);
-          PortConnections[component.connectedTo] = { type, index };
+          console.log("component.connectedTo 1", component.connectedTo, type);
+          if (type == "led") {
+            switch (component.connectedTo) {
+              case "A": {
+                PortConnections["A"] = { type, index };
+                PortConnections["A1"] = { type, index };
+                PortConnections["A2"] = { type, index };
+                break;
+              }
+              case "B": {
+                PortConnections["B"] = { type, index };
+                PortConnections["B1"] = { type, index };
+                PortConnections["B2"] = { type, index };
+                break;
+              }
+              case "C": {
+                PortConnections["C"] = { type, index };
+                PortConnections["C1"] = { type, index };
+                PortConnections["C2"] = { type, index };
+                break;
+              }
+              case "D": {
+                PortConnections["D"] = { type, index };
+                PortConnections["D1"] = { type, index };
+                PortConnections["D2"] = { type, index };
+                break;
+              }
+            }
+          } else {
+            PortConnections[component.connectedTo] = { type, index };
+          }
         }
       });
     });

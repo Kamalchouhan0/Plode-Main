@@ -19,6 +19,8 @@ import uploadBtn from "../Assets/Bisoft_UI/Buttons/Active with shadow/upload@2x.
 
 import playrunBtn from "../Assets/Bisoft_UI/Buttons/Active with shadow/play-run@2x.png";
 
+import clearProgram from "../Assets/Bisoft_UI/Buttons/Inactive with shadow/clearProgram.png";
+
 import pauseBtn from "../Assets/Bisoft_UI/Buttons/Active with shadow/pause_btn@3x.png";
 
 import usbOFF from "../Assets/Bisoft_UI/Buttons/Active with shadow/usb - off@2x.png";
@@ -264,6 +266,8 @@ function renderPrgImage(imageName) {
     //   return bluetoothBtnActive;
     // case "bluetoothBtnInActive":
     //   return bluetoothBtnInActive;
+    case "clearProgram":
+      return clearProgram;
     case "uploadBtn":
       return uploadBtn;
     case "playrunBtn":

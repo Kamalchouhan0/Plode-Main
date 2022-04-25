@@ -1358,7 +1358,7 @@ class Logic extends Component {
               /> */}
               <img
                 className="iconBtnSize"
-                src={renderPrgImage("helpBtnInActive")}
+                src={renderPrgImage("clearProgram")}
                 onClick={this.clearProgram}
               ></img>
               {this.state.isHelp ? (
