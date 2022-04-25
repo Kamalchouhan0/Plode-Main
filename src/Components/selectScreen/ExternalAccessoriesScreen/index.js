@@ -2,6 +2,7 @@ import { React, useEffect } from "react";
 // import "./ExternalAccessories.css";
 import "./ExternalAccessories.css";
 import { createBrowserHistory } from "history";
+import { connect } from "react-redux";
 import io from "socket.io-client";
 
 import CenterMode from "../../concept/index";
@@ -134,4 +135,11 @@ function ExternalAccessoriesScreen(props) {
   );
 }
 
-export default ExternalAccessoriesScreen;
+const mapStateToProps = (state) => {
+  // return state;
+  console.log("mapStateToProps", state);
+
+  return state;
+};
+export default connect(mapStateToProps)(ExternalAccessoriesScreen);
+// export default ExternalAccessoriesScreen;

@@ -4,6 +4,7 @@ import io from "socket.io-client";
 import { useHistory } from "react-router";
 import { connect } from "react-redux";
 import unicodeToChar from "../../../../utils/unicodeToChar";
+import { webSerialAction } from "../../../../redux/actions/index";
 
 // import {
 //   backBtn,
@@ -209,19 +210,69 @@ function Speech(props) {
       console.log("Error occurred in recognition: " + event.error);
     };
   };
+  const HdleUsb = async (e) => {
+    const filters = [{ usbVendorId: 0x1a86, usbProductId: 0x7523 }];
+    const port = await navigator.serial.requestPort({ filters });
+    if (port.onconnect == null) {
+      setUsb(true);
+    }
+  };
 
   useEffect(() => {
-    let no_port = props.webserialPort.name;
+    let no_port = props.webSerial.name;
     if (no_port == "Not Connected") {
       console.log(JSON.parse(sessionStorage.getItem("webSerialPortList")));
       console.log("SERIAL PORT NOT CONNECTED");
     } else {
       OpenReadComPort();
     }
-  }, []);
+  });
+  useEffect(() => {
+    let data = JSON.parse(sessionStorage.getItem("user"));
+
+    if (data === 1) {
+      setUsb(true);
+      console.log("LLLLLLLLLLLLLLL", data);
+    } else {
+      setUsb(false);
+    }
+  });
+  useEffect(async () => {
+    navigator.serial.addEventListener("connect", (e) => {
+      setUsb(true);
+      var user = 1;
+      sessionStorage.setItem("user", JSON.stringify(user));
+    });
+
+    navigator.serial.addEventListener("disconnect", (e) => {
+      setUsb(false);
+      var user = 0;
+      sessionStorage.setItem("user", JSON.stringify(user));
+    });
+    try {
+      const portList = await navigator.serial.getPorts();
+
+      if (portList.length === 1) {
+        console.log(portList, "Hardware connected");
+
+        await props.webSerialAction({ port: portList[0] }); // dispatching function of redux
+
+        this.setState.p1({
+          selected: true,
+          port: portList[0],
+        });
+      } else {
+        console.log("No hardware");
+
+        this.setState.p1(this.state.p1);
+      }
+    } catch (err) {
+      console.log(err.message);
+    }
+  });
 
   const OpenReadComPort = async () => {
-    const p_Port = props.webserialPort;
+    const p_Port = props.webSerial;
     console.log(p_Port, "p_Port");
 
     try {
@@ -322,12 +373,12 @@ function Speech(props) {
     // });
     let data = JSON.parse(sessionStorage.getItem("user"));
 
-    if (data === 1) {
-      setUsb(true);
-      console.log("LLLLLLLLLLLLLLL", data);
-    } else {
-      setUsb(false);
-    }
+    // if (data === 1) {
+    //   setUsb(true);
+    //   console.log("LLLLLLLLLLLLLLL", data);
+    // } else {
+    //   setUsb(false);
+    // }
   });
 
   return (
@@ -384,9 +435,17 @@ function Speech(props) {
         </div>
         <div>
           {isUsb ? (
-            <img className="Bluetooth_Button" src={renderImage("UsbOn")}></img>
+            <img
+              className="Bluetooth_Button"
+              src={renderImage("UsbOn")}
+              onClick={HdleUsb}
+            ></img>
           ) : (
-            <img className="Bluetooth_Button" src={renderImage("UsbOff")}></img>
+            <img
+              className="Bluetooth_Button"
+              src={renderImage("UsbOff")}
+              onClick={HdleUsb}
+            ></img>
           )}
         </div>
       </div>
@@ -480,9 +539,15 @@ function Speech(props) {
 const mapStateToProps = (state) => {
   console.log("mapStateToProps", state);
 
+  return state;
+};
+const mapDispatchToProps = (dispatch) => {
   return {
-    webserialPort: state.webSerial,
+    webSerialAction: (data) => {
+      console.log("mapDispatchToProps", data);
+      dispatch(webSerialAction(data));
+    },
   };
 };
 
-export default connect(mapStateToProps)(Speech);
+export default connect(mapStateToProps, mapDispatchToProps)(Speech);
