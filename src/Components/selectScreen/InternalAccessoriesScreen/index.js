@@ -233,8 +233,12 @@ function InternalAccessoriesScreen(props) {
   });
 
   const handleFounInOneSensor = (e) => {
+    const assembly = JSON.parse(sessionStorage.getItem("assembly"));
     switch (e.target.alt) {
       case "distancesensors": {
+        if (assembly.PortConnections.D != null) {
+          break;
+        }
         if (isDistanceSensors) {
           internalaccessoriesObj.Four_in_one_sensor.isDistanceSensors = false;
           props.selecteComponent({ isDistanceSensors: false });
@@ -272,6 +276,9 @@ function InternalAccessoriesScreen(props) {
         break;
       }
       case "gesturesensor": {
+        if (assembly.PortConnections.D != null) {
+          break;
+        }
         if (isGestureSensor) {
           props.selecteComponent({ isGestureSensor: false });
           internalaccessoriesObj.Four_in_one_sensor.isGestureSensor = false;
@@ -306,6 +313,9 @@ function InternalAccessoriesScreen(props) {
         break;
       }
       case "lightsensor": {
+        if (assembly.PortConnections.D != null) {
+          break;
+        }
         if (isLightSensor) {
           internalaccessoriesObj.Four_in_one_sensor.isLightSensor = false;
           props.selecteComponent({ isLightSensor: false });
@@ -341,6 +351,9 @@ function InternalAccessoriesScreen(props) {
         break;
       }
       case "colorsensor": {
+        if (assembly.PortConnections.D != null) {
+          break;
+        }
         if (isColorSensor) {
           internalaccessoriesObj.Four_in_one_sensor.isColorSensor = false;
           props.selecteComponent({ isColorSensor: false });
@@ -378,6 +391,7 @@ function InternalAccessoriesScreen(props) {
   };
 
   const handleEventsClick = (e) => {
+    const assembly = JSON.parse(sessionStorage.getItem("assembly"));
     switch (e.target.alt) {
       case "mic": {
         if (isMic) {
@@ -430,6 +444,9 @@ function InternalAccessoriesScreen(props) {
       }
 
       case "touch0": {
+        if (assembly.PortConnections.A != null) {
+          break;
+        }
         if (isTouchZero) {
           props.selecteComponent({ isTouchZero: false });
           internalaccessoriesObj.isTouchZero = false;
@@ -460,6 +477,9 @@ function InternalAccessoriesScreen(props) {
       }
 
       case "touch1": {
+        if (assembly.PortConnections.B != null) {
+          break;
+        }
         if (isTouchOne) {
           props.selecteComponent({ isTouchOne: false });
 
@@ -487,6 +507,9 @@ function InternalAccessoriesScreen(props) {
         break;
       }
       case "touch2": {
+        if (assembly.PortConnections.C != null) {
+          break;
+        }
         if (isTouchTwo) {
           props.selecteComponent({ isTouchTwo: false });
 
@@ -515,6 +538,10 @@ function InternalAccessoriesScreen(props) {
       }
 
       case "touch0Output": {
+        if (assembly.PortConnections.A != null) {
+          break;
+        }
+        console.log(props, "select props");
         if (isTouchZeroOutput) {
           props.selecteComponent({ isTouchZeroOutput: false });
 
@@ -547,7 +574,7 @@ function InternalAccessoriesScreen(props) {
             if (props.indexData.logic.program[key].type == "hardware") {
               props.indexData.logic.program[
                 key
-              ].state.assignTouchZeroOutput = true;
+              ].state.assignTouchZeroOutput = false;
             }
           } //for sim
 
@@ -565,6 +592,9 @@ function InternalAccessoriesScreen(props) {
         break;
       }
       case "touch1Output": {
+        if (assembly.PortConnections.B != null) {
+          break;
+        }
         if (isTouchOneOutput) {
           props.selecteComponent({ isTouchOneOutput: false });
           internalaccessoriesObj.isTouchOneOutput = false;
@@ -613,6 +643,9 @@ function InternalAccessoriesScreen(props) {
       }
 
       case "touch2Output": {
+        if (assembly.PortConnections.C != null) {
+          break;
+        }
         if (isTouchTwoOutput) {
           props.selecteComponent({ isTouchTwoOutput: false });
           internalaccessoriesObj.isTouchTwoOutput = false;
@@ -645,7 +678,7 @@ function InternalAccessoriesScreen(props) {
             if (props.indexData.logic.program[key].type == "hardware") {
               props.indexData.logic.program[
                 key
-              ].state.assignTouchTwoOutput = true;
+              ].state.assignTouchTwoOutput = false;
             }
           } //for sim
 
@@ -689,7 +722,7 @@ function InternalAccessoriesScreen(props) {
           for (var key in props.indexData.logic.program) {
             // console.log("halo key", props.indexData.logic.program[key]);
             if (props.indexData.logic.program[key].type == "hardware") {
-              props.indexData.logic.program[key].state.assignLeftEye = true;
+              props.indexData.logic.program[key].state.assignLeftEye = false;
             }
           } //for sim
 
@@ -732,7 +765,7 @@ function InternalAccessoriesScreen(props) {
           for (var key in props.indexData.logic.program) {
             // console.log("halo key", props.indexData.logic.program[key]);
             if (props.indexData.logic.program[key].type == "hardware") {
-              props.indexData.logic.program[key].state.assignRightEye = true;
+              props.indexData.logic.program[key].state.assignRightEye = false;
             }
           } //for sim
 
@@ -775,7 +808,7 @@ function InternalAccessoriesScreen(props) {
           for (var key in props.indexData.logic.program) {
             //console.log("halo key", props.indexData.logic.program[key]);
             if (props.indexData.logic.program[key].type == "hardware") {
-              props.indexData.logic.program[key].state.assignBuzzer = true;
+              props.indexData.logic.program[key].state.assignBuzzer = false;
             }
           } //for sim
 
@@ -818,7 +851,7 @@ function InternalAccessoriesScreen(props) {
           for (var key in props.indexData.logic.program) {
             //console.log("halo key", props.indexData.logic.program[key]);
             if (props.indexData.logic.program[key].type == "hardware") {
-              props.indexData.logic.program[key].state.assignSmileOne = true;
+              props.indexData.logic.program[key].state.assignSmileOne = false;
             }
           } //for sim
 
@@ -860,7 +893,7 @@ function InternalAccessoriesScreen(props) {
           for (var key in props.indexData.logic.program) {
             //console.log("halo key", props.indexData.logic.program[key]);
             if (props.indexData.logic.program[key].type == "hardware") {
-              props.indexData.logic.program[key].state.assignSmileTwo = true;
+              props.indexData.logic.program[key].state.assignSmileTwo = false;
             }
           } //for sim
 
@@ -903,7 +936,7 @@ function InternalAccessoriesScreen(props) {
           for (var key in props.indexData.logic.program) {
             //console.log("halo key", props.indexData.logic.program[key]);
             if (props.indexData.logic.program[key].type == "hardware") {
-              props.indexData.logic.program[key].state.assignSmileThree = true;
+              props.indexData.logic.program[key].state.assignSmileThree = false;
             }
           } //for sim
 
@@ -947,7 +980,7 @@ function InternalAccessoriesScreen(props) {
           for (var key in props.indexData.logic.program) {
             //console.log("halo key", props.indexData.logic.program[key]);
             if (props.indexData.logic.program[key].type == "hardware") {
-              props.indexData.logic.program[key].state.assignSmileFour = true;
+              props.indexData.logic.program[key].state.assignSmileFour = false;
             }
           } //for sim
 

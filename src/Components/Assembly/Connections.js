@@ -1677,19 +1677,31 @@ class Curve extends Component {
 
 class PortCircle extends Component {
   renderhighlighted = () => {
+    let internalAccessoriesData = JSON.parse(
+      sessionStorage.getItem("concept")
+    ).internalaccessories;
+    console.log(this.props.portName, "renderhighlighted");
     if (
       this.props.portName == "A" &&
-      internalAccessoriesData.isTouchZero == true
+      (internalAccessoriesData.isTouchZero == true ||
+        internalAccessoriesData.isTouchZeroOutput == true)
     ) {
       return 0;
     } else if (
       this.props.portName == "B" &&
-      internalAccessoriesData.isTouchOne == true
+      (internalAccessoriesData.isTouchOne == true ||
+        internalAccessoriesData.isTouchOneOutput == true)
     ) {
       return 0;
     } else if (
       this.props.portName == "C" &&
-      internalAccessoriesData.isTouchTwo == true
+      (internalAccessoriesData.isTouchTwo == true ||
+        internalAccessoriesData.isTouchTwoOutput == true)
+    ) {
+      return 0;
+    } else if (
+      this.props.portName == "D" &&
+      internalAccessoriesData.isFour_in_one_sensor == true
     ) {
       return 0;
     } else {

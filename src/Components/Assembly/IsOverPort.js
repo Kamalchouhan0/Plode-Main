@@ -233,11 +233,28 @@ var IsOverPort = function (
         if (PortConnections[port]) {
           // ABCD
           return false;
-        } else if (port == "A" && internalAccessoriesData.isTouchZero == true) {
+        } else if (
+          port == "A" &&
+          (internalAccessoriesData.isTouchZero == true ||
+            internalAccessoriesData.isTouchZeroOutput == true)
+        ) {
           return false;
-        } else if (port == "B" && internalAccessoriesData.isTouchOne == true) {
+        } else if (
+          port == "B" &&
+          (internalAccessoriesData.isTouchOne == true ||
+            internalAccessoriesData.isTouchOneOutput == true)
+        ) {
           return false;
-        } else if (port == "C" && internalAccessoriesData.isTouchTwo == true) {
+        } else if (
+          port == "C" &&
+          (internalAccessoriesData.isTouchTwo == true ||
+            internalAccessoriesData.isTouchTwoOutput == true)
+        ) {
+          return false;
+        } else if (
+          port == "D" &&
+          internalAccessoriesData.isFour_in_one_sensor == true
+        ) {
           return false;
         }
 
