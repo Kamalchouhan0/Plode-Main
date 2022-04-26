@@ -273,6 +273,29 @@ class Assembly extends Component {
 
   async componentDidUpdate() {
     // await PortConnect();
+    navigator.serial.addEventListener("connect", (e) => {
+      // if (this.state.isusb) {
+      // console.log("TRUE");
+      // } else {
+      //   this.handleUsb();
+      // }
+      // this.OpenReadComPort();
+      window.location.reload();
+      // this.onload();
+      var user = 1;
+      sessionStorage.setItem("user", JSON.stringify(user));
+      // this.handleUsb();
+    });
+
+    navigator.serial.addEventListener("disconnect", (e) => {
+      // if (this.state.isusb == false) {
+      //   this.handleUsb();
+      //   console.log("FALSE");
+      // }
+      var user = 0;
+      sessionStorage.setItem("user", JSON.stringify(user));
+      this.handleUsb();
+    });
 
     console.log(this.props.webSerial, "MMMMLLLL");
     // console.log(this.props.webserialPort, "852+963852");
@@ -655,7 +678,16 @@ class Assembly extends Component {
   }
 
   handleUsb = (e) => {
-    this.setState({ isusb: !this.state.isusb });
+    if (this.state.isusb) {
+      this.setState({
+        isusb: false,
+      });
+    } else {
+      this.setState({
+        isusb: true,
+      });
+    }
+    // this.setState({ isusb: !this.state.isusb });
   };
   helpBtn = (e) => {
     this.setState({ isHelp: !this.state.isHelp });
@@ -690,8 +722,9 @@ class Assembly extends Component {
 
     if (data === 1) {
       this.handleUsb();
-    } else {
-      // this.handleUsb(false);
+    }
+    if (data === 0) {
+      this.handleUsb();
     }
     Sizes._update(document.body.clientWidth, document.body.clientHeight);
     window.addEventListener("resize", (e) => {
@@ -1208,6 +1241,17 @@ class Assembly extends Component {
 
     // sessionStorage.setItem("assembly", JSON.stringify(obj));
   };
+  HdleUsb = async (e) => {
+    const filters = [{ usbVendorId: 0x1a86, usbProductId: 0x7523 }];
+
+    // Prompt user to select an Arduino Uno device.
+    const port = await navigator.serial.requestPort({ filters });
+    console.log("Ye Mera Port hai", port);
+    // if (port.onconnect == null) {
+    //   window.location.reload();
+    //   // this.OpenReadComPort();
+    // }
+  };
 
   handleFourInOneSensor = (e) => {
     if (this.state.isClickFourInOneSensor) {
@@ -1395,9 +1439,9 @@ class Assembly extends Component {
               ) : null}
 
               {this.state.isusb ? (
-                <img src={renderPrgImage("usbON")} />
+                <img src={renderPrgImage("usbON")} onClick={this.HdleUsb} />
               ) : (
-                <img src={renderPrgImage("usbOFF")} />
+                <img src={renderPrgImage("usbOFF")} onClick={this.HdleUsb} />
               )}
             </div>
           </div>

@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import unicodeToChar from "../../../../../utils/unicodeToChar";
 import io from "socket.io-client";
 import Slider from "../../../../ReusableComponents/Slider/Slider";
+import { webSerialAction } from "../../../../../redux/actions/index";
 import { Link } from "react-router-dom";
 // import usbDetect from "usb-detection";
 
@@ -158,8 +159,8 @@ function RemoteSection(props) {
         let d1 = [82, curActive, 1];
         let d2 = [82, 116, 0];
         console.log(d1, d2, "TalkBACK");
-        writePort(d1);
-        writePort(d2);
+        let D = d1.concat(d2);
+        writePort(D);
       }
     }
   }, [isTalkback]);
@@ -185,8 +186,9 @@ function RemoteSection(props) {
         console.log("DISCO CURRENT", curActive);
         let d1 = [82, curActive, 1];
         let d2 = [82, 100, 0];
-        writePort(d1);
-        writePort(d2);
+        let D = d1.concat(d2);
+
+        writePort(D);
 
         // [[82, curActive, 1,][82, 100, 0]]
         // socket.emit("/remote", [data[1], [82, 100, 0]], "ELSE");
@@ -223,8 +225,8 @@ function RemoteSection(props) {
         console.log("GESTURE CURRENT", curActive);
         let d1 = [82, curActive, 1];
         let d2 = [82, 103, 0];
-        writePort(d1);
-        writePort(d2);
+        let D = d1.concat(d2);
+        writePort(D);
         // console.log(data[1]);
       }
     }
@@ -327,19 +329,19 @@ function RemoteSection(props) {
 
   // data = [pre, cur];
 
-  data = cur;
+  let d1 = pre;
+  let d2 = cur;
   console.log("sent hardware data", data);
 
   useEffect(() => {
     // alert("SOCKET EMITs");
 
     if (pre != 0 && pre[2] != cur[2]) {
-      setTimeout(() => {
-        //socket.emit("/remote", data, "IF ");
-      }, 400);
-      writePort(data);
+      let D = d1.concat(d2);
+      writePort(D);
     } else if (pre != 0 && pre[1] == cur[1] && pre[2] == cur[2]) {
       // socket.emit("/remote", cur, "IF INITIAL");
+      writePort(cur);
     }
     // else if (cur == 0 && pre[0] == cur[0]) {
     //   socket.emit("/remote", cur);
@@ -401,6 +403,14 @@ function RemoteSection(props) {
   const handleSimle4 = (e) => {
     setSmile4(!isSmile4);
   };
+  const HdleUsb = async (e) => {
+    const filters = [{ usbVendorId: 0x1a86, usbProductId: 0x7523 }];
+    const port = await navigator.serial.requestPort({ filters });
+    if (port.onconnect == null) {
+      // window.location.reload();
+      setUsb(true);
+    }
+  };
 
   // 24/02/2022   /////
 
@@ -441,7 +451,7 @@ function RemoteSection(props) {
     ];
     console.log("emitting EyeData ", data);
     //socket.emit("/remote", data, "firoz");
-    let no = props.webserialPort.name;
+    let no = props.webSerial.name;
     if (no != "Not Connected") {
       writePort(data);
     }
@@ -486,6 +496,11 @@ function RemoteSection(props) {
     //   //   // setUsb(false);
     //   // }
     // });
+    let no_port = props.webSerial;
+    if (typeof no_port !== undefined) {
+      console.log("WORKING>>>>>>>>");
+      OpenReadComPort();
+    }
     let data = JSON.parse(sessionStorage.getItem("user"));
 
     if (data === 1) {
@@ -496,15 +511,54 @@ function RemoteSection(props) {
     }
   });
 
-  useEffect(() => {
-    let no_port = props.webserialPort.name;
-    if (no_port == "Not Connected") {
-      console.log(JSON.parse(sessionStorage.getItem("webSerialPortList")));
-      console.log("SERIAL PORT NOT CONNECTED");
-    } else {
-      OpenReadComPort();
+  // useEffect(() => {
+  //   let no_port = props.webserialPort.name;
+  //   if (no_port == "Not Connected") {
+  //     console.log(JSON.parse(sessionStorage.getItem("webSerialPortList")));
+  //     console.log("SERIAL PORT NOT CONNECTED");
+  //   } else {
+  //     OpenReadComPort();
+  //   }
+  // }, []);
+  const [p1, setP1] = useState({
+    selected: false,
+    port: {},
+  });
+
+  useEffect(async () => {
+    navigator.serial.addEventListener("connect", (e) => {
+      // setUsb(true);
+      var user = 1;
+      sessionStorage.setItem("user", JSON.stringify(user));
+    });
+
+    navigator.serial.addEventListener("disconnect", (e) => {
+      // setUsb(false);
+      var user = 0;
+      sessionStorage.setItem("user", JSON.stringify(user));
+    });
+
+    try {
+      const portList = await navigator.serial.getPorts();
+
+      if (portList.length === 1) {
+        console.log(portList, "Hardware connected");
+
+        await props.webSerialAction({ port: portList[0] }); // dispatching function of redux
+
+        setP1({
+          selected: true,
+          port: portList[0],
+        });
+      } else {
+        console.log("No hardware");
+
+        setP1({ p1 });
+      }
+    } catch (err) {
+      console.log(err.message);
     }
-  }, []);
+  });
 
   const OpenReadComPort = async () => {
     const p_Port = props.webserialPort;
@@ -587,9 +641,17 @@ function RemoteSection(props) {
         </div>
         <div>
           {isUsb ? (
-            <img className="Bluetooth_Button" src={renderImage("UsbOn")}></img>
+            <img
+              className="Bluetooth_Button"
+              src={renderImage("UsbOn")}
+              onClick={HdleUsb}
+            ></img>
           ) : (
-            <img className="Bluetooth_Button" src={renderImage("UsbOff")}></img>
+            <img
+              className="Bluetooth_Button"
+              src={renderImage("UsbOff")}
+              onClick={HdleUsb}
+            ></img>
           )}
         </div>
       </div>
@@ -640,6 +702,31 @@ function RemoteSection(props) {
             </div>
             <div className="Slider_Div1">
               <div>
+                {isLeftRedSlider > 0 ? (
+                  <Slider
+                    rangImgName="red_slider"
+                    title="Left_red_slider"
+                    onChangehandler={Sliderhandler}
+                    componentName="L_red"
+                    leftEyeData={leftEyeData}
+                    max={100}
+                    setL_Red={setL_Red}
+                    isL_Red={isL_Red}
+                  />
+                ) : (
+                  <Slider
+                    rangImgName="inactiveslider"
+                    title="Left_red_slider"
+                    onChangehandler={Sliderhandler}
+                    componentName="L_red"
+                    leftEyeData={leftEyeData}
+                    max={100}
+                    setL_Red={setL_Red}
+                    isL_Red={isL_Red}
+                  />
+                )}
+              </div>
+              <div>
                 {isLeftGreenSlider > 0 ? (
                   <Slider
                     rangImgName="green_slider"
@@ -686,31 +773,6 @@ function RemoteSection(props) {
                     max={100}
                     setL_Blue={setL_Blue}
                     isL_Blue={isL_Blue}
-                  />
-                )}
-              </div>
-              <div>
-                {isLeftRedSlider > 0 ? (
-                  <Slider
-                    rangImgName="red_slider"
-                    title="Left_red_slider"
-                    onChangehandler={Sliderhandler}
-                    componentName="L_red"
-                    leftEyeData={leftEyeData}
-                    max={100}
-                    setL_Red={setL_Red}
-                    isL_Red={isL_Red}
-                  />
-                ) : (
-                  <Slider
-                    rangImgName="inactiveslider"
-                    title="Left_red_slider"
-                    onChangehandler={Sliderhandler}
-                    componentName="L_red"
-                    leftEyeData={leftEyeData}
-                    max={100}
-                    setL_Red={setL_Red}
-                    isL_Red={isL_Red}
                   />
                 )}
               </div>
@@ -967,6 +1029,32 @@ function RemoteSection(props) {
             </div>
             <div className="Slider_Div2">
               <div>
+                {isRightRedSlider > 0 ? (
+                  <Slider
+                    rangImgName="red_slider"
+                    title="Right_red_slider"
+                    onChangehandler={Sliderhandler}
+                    componentName="R_red"
+                    leftEyeData={leftEyeData}
+                    max={101}
+                    setR_Red={setR_Red}
+                    isR_Red={isR_Red}
+                  />
+                ) : (
+                  <Slider
+                    rangImgName="inactiveslider"
+                    title="Right_red_slider"
+                    onChangehandler={Sliderhandler}
+                    componentName="R_red"
+                    leftEyeData={leftEyeData}
+                    max={101}
+                    setR_Red={setR_Red}
+                    isR_Red={isR_Red}
+                  />
+                )}
+              </div>
+
+              <div>
                 {isRightGreenSlider > 0 ? (
                   <Slider
                     rangImgName="green_slider"
@@ -1017,31 +1105,6 @@ function RemoteSection(props) {
                   />
                 )}
               </div>
-              <div>
-                {isRightRedSlider > 0 ? (
-                  <Slider
-                    rangImgName="red_slider"
-                    title="Right_red_slider"
-                    onChangehandler={Sliderhandler}
-                    componentName="R_red"
-                    leftEyeData={leftEyeData}
-                    max={101}
-                    setR_Red={setR_Red}
-                    isR_Red={isR_Red}
-                  />
-                ) : (
-                  <Slider
-                    rangImgName="inactiveslider"
-                    title="Right_red_slider"
-                    onChangehandler={Sliderhandler}
-                    componentName="R_red"
-                    leftEyeData={leftEyeData}
-                    max={101}
-                    setR_Red={setR_Red}
-                    isR_Red={isR_Red}
-                  />
-                )}
-              </div>
             </div>
           </div>
         </div>
@@ -1055,9 +1118,15 @@ function RemoteSection(props) {
 const mapStateToProps = (state) => {
   console.log("mapStateToProps", state);
 
+  return state;
+};
+const mapDispatchToProps = (dispatch) => {
   return {
-    webserialPort: state.webSerial,
+    webSerialAction: (data) => {
+      console.log("mapDispatchToProps", data);
+      dispatch(webSerialAction(data));
+    },
   };
 };
 
-export default connect(mapStateToProps)(RemoteSection);
+export default connect(mapStateToProps, mapDispatchToProps)(RemoteSection);

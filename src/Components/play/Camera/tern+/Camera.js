@@ -4,6 +4,7 @@ import unicodeToChar from "../../../../utils/unicodeToChar";
 
 import "./camera.css";
 import { useHistory } from "react-router";
+import { webSerialAction } from "../../../../redux/actions/index";
 
 // import {
 //   backBtn,
@@ -56,6 +57,14 @@ function Camera(props) {
       setHelp(false);
     } else {
       setHelp(true);
+    }
+  };
+  const HdleUsb = async (e) => {
+    const filters = [{ usbVendorId: 0x1a86, usbProductId: 0x7523 }];
+    const port = await navigator.serial.requestPort({ filters });
+    if (port.onconnect == null) {
+      // window.location.reload();
+      setUsb(true);
     }
   };
   // setup
@@ -137,51 +146,51 @@ function Camera(props) {
   //const socket = io("http://localhost:3008");
 
   useEffect(() => {
-    let no_port = props.webserialPort.name;
-    if (no_port == "Not Connected") {
-      console.log("SERIAL PORT NOT CONNECTED");
-    } else {
-      interval = setInterval(() => {
-        let data = localStorage.getItem("faceSide");
-        let url = window.location.href;
-        let path = "http://localhost:3008/camera";
-        console.log("5ms : ", url);
-        if (data === "Left") {
-          let data = ["C".charCodeAt(), "2".charCodeAt()];
-          console.log(" emit L ", data);
-          // socket.emit("/camera", data);
-          writePort(data);
-        } else if (data === "Right") {
-          let data = ["C".charCodeAt(), "1".charCodeAt()];
-          // socket.emit("/camera", data);
-          writePort(data);
-          console.log("emit R ", data);
-        } else if (data === "Center") {
-          let data = ["C".charCodeAt(), "0".charCodeAt()];
-          // socket.emit("/camera", data);
-          writePort(data);
-          console.log("emit C ", data);
-        } else if (data === "Up") {
-          let data = ["C".charCodeAt(), "3".charCodeAt()];
-          // socket.emit("/camera", data);
-          writePort(data);
-          console.log("emit T ", data);
-        } else if (data === "Down") {
-          let data = ["C".charCodeAt(), "4".charCodeAt()];
-          // socket.emit("/camera", data);
-          writePort(data);
-          console.log("emit B ", data);
-        } else if (data === "Smile") {
-          let data = ["C".charCodeAt(), "5".charCodeAt()];
-          // socket.emit("/camera", data);
-          writePort(data);
-          console.log("emit S ", data);
-        } else return;
-      }, 500);
-      return () => {
-        clearInterval(interval);
-      };
-    }
+    // let no_port = props.webserialPort.name;
+    // if (no_port == "Not Connected") {
+    //   console.log("SERIAL PORT NOT CONNECTED");
+    // } else {
+    interval = setInterval(() => {
+      let data = localStorage.getItem("faceSide");
+      let url = window.location.href;
+      let path = "http://localhost:3008/camera";
+      console.log("5ms : ", url);
+      if (data === "Left") {
+        let data = ["C".charCodeAt(), "2".charCodeAt()];
+        console.log(" emit L ", data);
+        // socket.emit("/camera", data);
+        writePort(data);
+      } else if (data === "Right") {
+        let data = ["C".charCodeAt(), "1".charCodeAt()];
+        // socket.emit("/camera", data);
+        writePort(data);
+        console.log("emit R ", data);
+      } else if (data === "Center") {
+        let data = ["C".charCodeAt(), "0".charCodeAt()];
+        // socket.emit("/camera", data);
+        writePort(data);
+        console.log("emit C ", data);
+      } else if (data === "Up") {
+        let data = ["C".charCodeAt(), "3".charCodeAt()];
+        // socket.emit("/camera", data);
+        writePort(data);
+        console.log("emit T ", data);
+      } else if (data === "Down") {
+        let data = ["C".charCodeAt(), "4".charCodeAt()];
+        // socket.emit("/camera", data);
+        writePort(data);
+        console.log("emit B ", data);
+      } else if (data === "Smile") {
+        let data = ["C".charCodeAt(), "5".charCodeAt()];
+        // socket.emit("/camera", data);
+        writePort(data);
+        console.log("emit S ", data);
+      } else return;
+    }, 500);
+    return () => {
+      clearInterval(interval);
+    };
+    // }
   }, []);
   console.log("interval", interval);
 
@@ -189,16 +198,48 @@ function Camera(props) {
 
   //  WEB SERIAL   //
   useEffect(() => {
-    let no_port = props.webserialPort.name;
+    let no_port = props.webSerial.name;
     if (no_port == "Not Connected") {
       console.log("SERIAL PORT NOT CONNECTED");
     } else {
       OpenReadComPort();
     }
-  }, []);
+  });
+  useEffect(async () => {
+    navigator.serial.addEventListener("connect", (e) => {
+      setUsb(true);
+      var user = 1;
+      sessionStorage.setItem("user", JSON.stringify(user));
+    });
 
+    navigator.serial.addEventListener("disconnect", (e) => {
+      setUsb(false);
+      var user = 0;
+      sessionStorage.setItem("user", JSON.stringify(user));
+    });
+    try {
+      const portList = await navigator.serial.getPorts();
+
+      if (portList.length === 1) {
+        console.log(portList, "Hardware connected");
+
+        await props.webSerialAction({ port: portList[0] }); // dispatching function of redux
+
+        this.setState.p1({
+          selected: true,
+          port: portList[0],
+        });
+      } else {
+        console.log("No hardware");
+
+        this.setState.p1(this.state.p1);
+      }
+    } catch (err) {
+      console.log(err.message);
+    }
+  });
   const OpenReadComPort = async () => {
-    const p_Port = props.webserialPort;
+    const p_Port = props.webSerial;
     console.log(p_Port, "p_Port");
 
     try {
@@ -254,7 +295,9 @@ function Camera(props) {
     //     break;
     //   }
     // }
-
+    if (p_Port.ondisconnect == null) {
+      setUsb(true);
+    }
     console.log(p_Port, "p_Port");
   };
   async function writePort(data) {
@@ -358,9 +401,17 @@ function Camera(props) {
         <div>
           {" "}
           {isUsb ? (
-            <img className="Bluetooth_Button" src={renderImage("UsbOn")}></img>
+            <img
+              className="Bluetooth_Button"
+              src={renderImage("UsbOn")}
+              onClick={HdleUsb}
+            ></img>
           ) : (
-            <img className="Bluetooth_Button" src={renderImage("UsbOff")}></img>
+            <img
+              className="Bluetooth_Button"
+              src={renderImage("UsbOff")}
+              onClick={HdleUsb}
+            ></img>
           )}
         </div>
       </div>
@@ -437,10 +488,15 @@ function Camera(props) {
 
 const mapStateToProps = (state) => {
   console.log("mapStateToProps", state);
-
+  return state;
+};
+const mapDispatchToProps = (dispatch) => {
   return {
-    webserialPort: state.webSerial,
+    webSerialAction: (data) => {
+      console.log("mapDispatchToProps", data);
+      dispatch(webSerialAction(data));
+    },
   };
 };
 
-export default connect(mapStateToProps)(Camera);
+export default connect(mapStateToProps, mapDispatchToProps)(Camera);

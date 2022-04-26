@@ -176,6 +176,18 @@ class Simulate extends Component {
 
     window.addEventListener("load", async (e) => {
       console.log("HEY_CALIIN", this.props.state);
+      navigator.serial.addEventListener("connect", (e) => {
+        window.location.reload();
+        var user = 1;
+        sessionStorage.setItem("user", JSON.stringify(user));
+        this.handleUsb();
+      });
+
+      navigator.serial.addEventListener("disconnect", (e) => {
+        var user = 0;
+        sessionStorage.setItem("user", JSON.stringify(user));
+        this.handleUsb();
+      });
 
       try {
         const portList = await navigator.serial.getPorts();
@@ -230,7 +242,7 @@ class Simulate extends Component {
       while (true) {
         const { value, done } = await reader.read();
         if (this.state.k === true) {
-          console.log("MAI CHAL GAYA");
+          // console.log("MAI CHAL GAYA");
           reader.releaseLock();
         }
         console.log(value);
@@ -308,6 +320,16 @@ class Simulate extends Component {
   handleUsb = (e) => {
     this.setState({ isusb: !this.state.isusb });
   };
+  HdleUsb = async (e) => {
+    const filters = [{ usbVendorId: 0x1a86, usbProductId: 0x7523 }];
+
+    // Prompt user to select an Arduino Uno device.
+    const port = await navigator.serial.requestPort({ filters });
+    console.log("Ye Mera Port hai", port);
+    if (port.onconnect == null) {
+      window.location.reload();
+    }
+  };
   helpBtn = (e) => {
     this.setState({ isHelp: !this.state.isHelp });
   };
@@ -357,8 +379,9 @@ class Simulate extends Component {
 
     if (data === 1) {
       this.handleUsb();
-    } else {
-      // this.handleUsb();
+    }
+    if (data === 0) {
+      this.handleUsb();
     }
     window.addEventListener("load", this.handleLoad);
     let byte = null;
@@ -2855,9 +2878,9 @@ class Simulate extends Component {
             ) : null}
 
             {this.state.isusb ? (
-              <img src={renderPrgImage("usbON")} />
+              <img src={renderPrgImage("usbON")} onClick={this.HdleUsb} />
             ) : (
-              <img src={renderPrgImage("usbOFF")} />
+              <img src={renderPrgImage("usbOFF")} onClick={this.HdleUsb} />
             )}
           </div>
         </div>
