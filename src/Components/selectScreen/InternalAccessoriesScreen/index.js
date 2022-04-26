@@ -597,7 +597,7 @@ function InternalAccessoriesScreen(props) {
             if (props.indexData.logic.program[key].type == "hardware") {
               props.indexData.logic.program[
                 key
-              ].state.assignTouchOneOutput = true;
+              ].state.assignTouchOneOutput = false;
             }
           } //for sim
 

@@ -19,7 +19,7 @@ class Checkbox extends Component {
   render() {
     const { checked, onChange, label, disabled, activePort } = this.props;
 
-    console.log(this.props.activePort, "MSG-PROPS-CHECKBOX.JS");
+    console.log(checked, this.state.isClickChecked, "gkaay checkbox");
 
     var style = {
       width: "1.5em",
@@ -82,7 +82,7 @@ class Checkbox extends Component {
     } else {
       return (
         <div
-          className={`checkBox-conatiner renderClick${this.state.isClickChecked}`}
+          className={`checkBox-conatiner renderClick${checked}`}
           onClick={this.handleClickChecked}
         >
           {activePort !== undefined ? (
