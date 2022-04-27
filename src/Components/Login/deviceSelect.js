@@ -61,10 +61,17 @@ const DeviceSelect = (props) => {
 
   const scanDevice = async () => {
     console.log("clicked");
-    const port = await navigator.serial.requestPort();
-    console.log("BRAUD RATE", port.readable);
+    const filters = [{ usbVendorId: 0x1a86, usbProductId: 0x7523 }];
+
+    // Prompt user to select an Arduino Uno device.
+    const port = await navigator.serial.requestPort({ filters });
     if (port.readable == null) {
       history.push("/Selection");
+      var user = 1;
+      sessionStorage.setItem("user", JSON.stringify(user));
+    } else {
+      var user = 0;
+      sessionStorage.setItem("user", JSON.stringify(user));
     }
 
     //socket.emit("/scanDevice", (data) => {
@@ -106,8 +113,8 @@ const DeviceSelect = (props) => {
 
       if (portList.length === 1) {
         console.log(portList, "Hardware connected");
-        var user = 1;
-        sessionStorage.setItem("user", JSON.stringify(user));
+        // var user = 1;
+        // sessionStorage.setItem("user", JSON.stringify(user));
         props.webSerialAction({ port: portList[0] }); // dispatching function of redux
 
         setP1({
@@ -116,8 +123,8 @@ const DeviceSelect = (props) => {
         });
       } else {
         console.log("No hardware");
-        var user = 0;
-        sessionStorage.setItem("user", JSON.stringify(user));
+        // var user = 0;
+        // sessionStorage.setItem("user", JSON.stringify(user));
         setP1({ p1 });
       }
     } catch (err) {

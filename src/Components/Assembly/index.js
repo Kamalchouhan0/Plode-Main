@@ -284,13 +284,13 @@ class Assembly extends Component {
       // this.onload();
       var user = 1;
       sessionStorage.setItem("user", JSON.stringify(user));
-      // this.handleUsb();
+      this.handleUsb();
     });
 
     navigator.serial.addEventListener("disconnect", (e) => {
       // if (this.state.isusb == false) {
       //   this.handleUsb();
-      //   console.log("FALSE");
+      console.log("FALSE");
       // }
       var user = 0;
       sessionStorage.setItem("user", JSON.stringify(user));
@@ -1327,7 +1327,7 @@ class Assembly extends Component {
     //       this.OpenReadComPort();
     //     }, 100);
 
-    console.log("KKKAKAKAK", this.state.p1);
+    console.log("KKKAKAKAK", this.state);
     var selectionType = localStorage.getItem("programMode");
 
     if (selectionType == "program") {

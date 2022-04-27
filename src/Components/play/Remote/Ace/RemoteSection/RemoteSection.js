@@ -192,7 +192,7 @@ function RemoteSection(props) {
 
         // [[82, curActive, 1,][82, 100, 0]]
         // socket.emit("/remote", [data[1], [82, 100, 0]], "ELSE");
-        console.log(data[1]);
+        // console.log(data[1]);
       }
     }
   }, [isDisco]);
