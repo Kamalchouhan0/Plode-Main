@@ -45,7 +45,7 @@ function Selection(props) {
     history.push("/visualProgram");
   };
   const buildBtn = () => {
-    window.location.assign("http://metik.bibox.in/");
+    // window.location.assign("http://metik.bibox.in/");
   };
 
   useEffect(() => {

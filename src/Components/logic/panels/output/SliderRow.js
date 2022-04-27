@@ -66,6 +66,8 @@ class SliderRow extends Component {
 
     var { name, assign, port, value, onChange, handlecheckbox, getRangeVal } =
       this.props;
+    if (assign == undefined) assign = false;
+
     // var values = JSON.parse(sessionStorage.getItem("rangeValCheckbox"));
     // var Lb = values.LeftEye.B.value;
     // var Lg = values.LeftEye.G.value;
@@ -337,7 +339,7 @@ class SliderRow extends Component {
         <div className="hardwareInfo-section">
           <div className="portDetails-hw" style={{}}>
             <Checkbox
-              checked={assign || false}
+              checked={assign}
               onChange={() => {
                 handlecheckbox();
               }}

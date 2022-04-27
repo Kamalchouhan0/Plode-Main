@@ -87,7 +87,7 @@ class login extends Component {
     this.props.logicComponent(logic);
 
     setTimeout(() => {
-      //this.props.history.push("/biboxSelection");
+      this.props.history.push("/biboxSelection");
     }, 3500);
   };
 
@@ -125,7 +125,7 @@ class login extends Component {
           ></img>
           {/* </Link> */}
         </div>
-        <div className={animationStyle.Google_Login}>
+        {/* <div className={animationStyle.Google_Login}>
           <GoogleLogin
             clientId="798914613502-eeirsjatcut3f8pljkbknd1hdkampga8.apps.googleusercontent.com"
             buttonText="Login"
@@ -151,7 +151,7 @@ class login extends Component {
             onFailure={loginFail}
             cookiePolicy={"single_host_origin"}
           />
-        </div>
+        </div> */}
       </div>
     );
   }

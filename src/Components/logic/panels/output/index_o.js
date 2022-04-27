@@ -1471,6 +1471,8 @@ class OutputPanel extends Component {
                   // return <input type="range" />;
                 }
               } else if (value == "isTouchZeroOutput") {
+                console.log("plode assign", this.state.isClickTouchZeroOutpu);
+
                 if (internalAccessories[value] == true) {
                   return (
                     <SliderRow
