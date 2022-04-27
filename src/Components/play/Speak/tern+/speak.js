@@ -95,6 +95,13 @@ function Speech(props) {
         // socket.emit("/speak", ["S".charCodeAt(), "0".charCodeAt()]);
         let data = ["S".charCodeAt(), "0".charCodeAt()];
         writePort(data);
+        setTimeout(() => {
+          setMic(false);
+          recognition.stop();
+          recognition.onend = () => {
+            console.log("Stopped listening per click");
+          };
+        }, 1500);
       } else if (
         stopCmd[0] === "White" &&
         stopCmd[1] === "light" &&
@@ -104,6 +111,13 @@ function Speech(props) {
         console.log("white light emit");
         let data = ["S".charCodeAt(), "1".charCodeAt()];
         writePort(data);
+        setTimeout(() => {
+          setMic(false);
+          recognition.stop();
+          recognition.onend = () => {
+            console.log("Stopped listening per click");
+          };
+        }, 1500);
       } else if (
         stopCmd[0] === "Red" &&
         stopCmd[1] === "light" &&
@@ -113,6 +127,13 @@ function Speech(props) {
         console.log("red light emit");
         let data = ["S".charCodeAt(), "2".charCodeAt()];
         writePort(data);
+        setTimeout(() => {
+          setMic(false);
+          recognition.stop();
+          recognition.onend = () => {
+            console.log("Stopped listening per click");
+          };
+        }, 1500);
       } else if (
         stopCmd[0] === "Green" &&
         stopCmd[1] === "light" &&
@@ -122,6 +143,13 @@ function Speech(props) {
         console.log("green light emit");
         let data = ["S".charCodeAt(), "3".charCodeAt()];
         writePort(data);
+        setTimeout(() => {
+          setMic(false);
+          recognition.stop();
+          recognition.onend = () => {
+            console.log("Stopped listening per click");
+          };
+        }, 1500);
       } else if (
         stopCmd[0] === "Blue" &&
         stopCmd[1] === "light" &&
@@ -131,34 +159,79 @@ function Speech(props) {
         // socket.emit("/speak", ["S".charCodeAt(), "4".charCodeAt()]);
         let data = ["S".charCodeAt(), "4".charCodeAt()];
         writePort(data);
+        setTimeout(() => {
+          setMic(false);
+          recognition.stop();
+          recognition.onend = () => {
+            console.log("Stopped listening per click");
+          };
+        }, 1500);
       } else if (stopCmd[0] === "disco" && stopCmd[1] === "on") {
         console.log("disco light emit");
         // socket.emit("/speak", ["S".charCodeAt(), "5".charCodeAt()]);
         let data = ["S".charCodeAt(), "5".charCodeAt()];
         writePort(data);
-      } else if (stopCmd[0] === "Disco" && stopCmd[1] === "on.") {
+        setTimeout(() => {
+          setMic(false);
+          recognition.stop();
+          recognition.onend = () => {
+            console.log("Stopped listening per click");
+          };
+        }, 1500);
+      } else if (stopCmd[0] === "Disco" && stopCmd[1] === "on") {
         console.log("disco light emit");
         // socket.emit("/speak", ["S".charCodeAt(), "5".charCodeAt()]);
         let data = ["S".charCodeAt(), "5".charCodeAt()];
         writePort(data);
+        setTimeout(() => {
+          setMic(false);
+          recognition.stop();
+          recognition.onend = () => {
+            console.log("Stopped listening per click");
+          };
+        }, 1500);
       } else if (stopCmd[0] === "smile" && stopCmd[1] === "on") {
         console.log("smile light emit");
         // socket.emit("/speak", ["S".charCodeAt(), "6".charCodeAt()]);
         let data = ["S".charCodeAt(), "6".charCodeAt()];
         writePort(data);
-      } else if (stopCmd[0] === "Smile" && stopCmd[1] === "on.") {
+        setTimeout(() => {
+          setMic(false);
+          recognition.stop();
+          recognition.onend = () => {
+            console.log("Stopped listening per click");
+          };
+        }, 1500);
+      } else if (stopCmd[0] === "Smile" && stopCmd[1] === "on") {
         console.log("smile light emit");
         // socket.emit("/speak", ["S".charCodeAt(), "6".charCodeAt()]);
         let data = ["S".charCodeAt(), "6".charCodeAt()];
         writePort(data);
+        setTimeout(() => {
+          setMic(false);
+          recognition.stop();
+          recognition.onend = () => {
+            console.log("Stopped listening per click");
+          };
+        }, 1500);
       }
 
       //Small Letters
-      if (stopCmd[0] === "light" && stopCmd[1] === "off") {
+      if (
+        (stopCmd[0] === "light" || stopCmd[0] === "lights") &&
+        stopCmd[1] === "off"
+      ) {
         console.log("forward emit");
         // socket.emit("/speak", ["S".charCodeAt(), "0".charCodeAt()]);
         let data = ["S".charCodeAt(), "0".charCodeAt()];
         writePort(data);
+        setTimeout(() => {
+          setMic(false);
+          recognition.stop();
+          recognition.onend = () => {
+            console.log("Stopped listening per click");
+          };
+        }, 1500);
       } else if (
         stopCmd[0] === "white" &&
         stopCmd[1] === "light" &&
@@ -168,6 +241,13 @@ function Speech(props) {
         console.log("white light emit");
         let data = ["S".charCodeAt(), "1".charCodeAt()];
         writePort(data);
+        setTimeout(() => {
+          setMic(false);
+          recognition.stop();
+          recognition.onend = () => {
+            console.log("Stopped listening per click");
+          };
+        }, 1500);
       } else if (
         stopCmd[0] === "red" &&
         stopCmd[1] === "light" &&
@@ -177,14 +257,28 @@ function Speech(props) {
         console.log("red light emit");
         let data = ["S".charCodeAt(), "2".charCodeAt()];
         writePort(data);
+        setTimeout(() => {
+          setMic(false);
+          recognition.stop();
+          recognition.onend = () => {
+            console.log("Stopped listening per click");
+          };
+        }, 1500);
       } else if (
         stopCmd[0] === "green" &&
         stopCmd[1] === "light" &&
-        stopCmd[2] === "on."
+        stopCmd[2] === "on"
       ) {
         //socket.emit("/speak", ["S".charCodeAt(), "3".charCodeAt()]);
         let data = ["S".charCodeAt(), "3".charCodeAt()];
         writePort(data);
+        setTimeout(() => {
+          setMic(false);
+          recognition.stop();
+          recognition.onend = () => {
+            console.log("Stopped listening per click");
+          };
+        }, 1500);
         console.log("green light emit");
       } else if (
         stopCmd[0] === "blue" &&
@@ -195,6 +289,13 @@ function Speech(props) {
         //socket.emit("/speak", ["S".charCodeAt(), "4".charCodeAt()]);
         let data = ["S".charCodeAt(), "4".charCodeAt()];
         writePort(data);
+        setTimeout(() => {
+          setMic(false);
+          recognition.stop();
+          recognition.onend = () => {
+            console.log("Stopped listening per click");
+          };
+        }, 1500);
       }
 
       if (stopCmd[0] === "stop" && stopCmd[1] === "listening") {
