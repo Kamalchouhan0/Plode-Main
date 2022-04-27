@@ -13,7 +13,7 @@ import $ from "jquery";
 import { webSerialAction } from "../../redux/actions/index";
 import unicodeToChar from "../../utils/unicodeToChar";
 import socketIOClient from "socket.io-client";
-
+import InputSlider from "./InputSliders";
 import {
   assemblebar,
   readPC,
@@ -2660,8 +2660,10 @@ class Simulate extends Component {
           let index = document.querySelector(".animation");
 
           document.getElementById("hex-Board-Grid").style.display = "none";
-          index.style.zIndex = "5000";
-          document.getElementById("HW/SW-Display").style.zIndex = "-1";
+          index.style.zIndex = "0";
+          document.getElementById("HW/SW-Display").style.zIndex = "1";
+          document.getElementById("HW/SW-Display").style.display = "block";
+
           this.setState({
             countClick: 1,
           });
@@ -3043,10 +3045,12 @@ class Simulate extends Component {
               width: "100vw",
               position: "absolute",
               float: "left",
-              opacity: "0",
-              opacity: "0",
+              display: "none",
             }}
-          ></div>
+          >
+            {" "}
+            <InputSlider props={this.props}></InputSlider>
+          </div>
 
           {/* Assembly scrren for the simulation screen */}
           <div

@@ -150,8 +150,18 @@ body {
   cursor: pointer;
   margin-top: 26%;
   margin-left: 53%;
+  animation: ripple 1.5s linear infinite;
+  border-radius: 100%;
 }
+.Mic_imgIA {
+  height: auto;
+  width: 48%;
+  cursor: pointer;
+  margin-top: 26%;
+  margin-left: 53%;
 
+  border-radius: 100%;
+}
 .Speech_Instruc {
   height: auto;
   width: 33%;
@@ -254,13 +264,14 @@ body {
     /* height: auto; */
     width: 60%;
     margin-top: 30%;
+    animation: ripple 1.5s linear infinite;
+    border-radius: 100%;
     /* margin-left: 53%; */
   }
   .Mic_imgIA {
-    /* height: auto; */
-    /* width: 63%; */
-    margin-top: 28%;
-    /* margin-left: 54.5%; */
+    width: 60%;
+    margin-top: 30%;
+    border-radius: 100%;
   }
   .Speech_Instruc {
     /* height: auto; */
@@ -353,10 +364,13 @@ body {
   .Mic_img {
     width: 65%;
     margin-top: 52%;
+    animation: ripple 1.5s linear infinite;
+    border-radius: 100%;
   }
   .Mic_imgIA {
-    width: 76%;
-    margin-top: 48%;
+    width: 65%;
+    margin-top: 52%;
+    border-radius: 100%;
   }
   .Speech_Instruc {
     width: 48%;
@@ -377,5 +391,16 @@ body {
   }
   .Ace_Speech {
     left: 46%;
+  }
+}
+$color: rgb(171, 171, 171);
+@keyframes ripple {
+  0% {
+    box-shadow: 0 0 0 0 rgba($color, 0.3), 0 0 0 1px rgba($color, 0.3),
+      0 0 0 3px rgba($color, 0.3), 0 0 0 5px rgba($color, 0.3);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba($color, 0.3), 0 0 0 40px rgba($color, 0.1),
+      0 0 0 200px rgba($color, 0), 0 0 0 400px rgba($color, 0);
   }
 }

@@ -1,0 +1,373 @@
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slider {
+  position: absolute;
+  top: 20vh;
+  right: 2px;
+  transform: rotate(-90deg);
+}
+.sl_val {
+  position: absolute;
+  top: 15vh;
+  right: 10px;
+}
+/* Solid border */
+hr.solid {
+  border-top: 1px solid rgba(144, 160, 170, 0.226);
+}
+/* Input sliders  */
+
+.main-conatainer {
+  margin-top: -30px;
+  height: 30vh;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.conatainer {
+  height: 50%;
+  width: 50%;
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+.conatainer > div > img {
+  width: 100%;
+  padding: 0;
+  right: 10px;
+}
+
+.boxSim {
+  height: inherit;
+  width: inherit;
+  position: relative;
+  margin: -15px auto;
+  height: 150px;
+}
+.boxSimSm {
+  height: inherit;
+  width: inherit;
+  position: relative;
+  margin: -50px auto;
+  height: 150px;
+}
+.small {
+  top: -25%;
+  bottom: -25%;
+}
+.details {
+  height: 40%;
+  width: 65%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.card1,
+.card2,
+.card3,
+.card4 {
+  display: grid;
+  grid-template-rows: repeat(2, 50%);
+}
+.card6,
+.card5 {
+  display: grid;
+  grid-template-rows: repeat(2, 25%);
+  grid-template-columns: repeat(2, 25%);
+  grid-gap: 25px;
+  left: 60%;
+}
+/* .card6 {
+    display: grid;
+    grid-template-rows: repeat(4, 25%);
+} */
+
+.card7,
+.card8,
+.card9 {
+  display: grid;
+  grid-template-rows: repeat(3, 33%);
+  height: 50%;
+}
+.card10,
+.card9-5 {
+  display: grid;
+  grid-template-rows: repeat(1, 50%);
+  margin-top: 7.5%;
+}
+.details > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.label {
+  height: 90%;
+}
+
+.rng {
+  width: 55%;
+}
+
+.main-conatainer::-webkit-scrollbar {
+  width: 0px;
+}
+input[type="range"] {
+  -webkit-appearance: none;
+  background: none;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  width: 300px;
+  height: 6px;
+  background: rgb(248, 181, 57);
+  border: none;
+  border-radius: 50px;
+}
+
+.card7 > div > input[id="input_green"]::-webkit-slider-runnable-track {
+  background: rgb(8, 212, 93);
+}
+.card7 > div > input[id="input_red"]::-webkit-slider-runnable-track {
+  top: 0px;
+  background: rgb(250, 55, 48);
+}
+.card7 > div > input[id="input_blue"]::-webkit-slider-runnable-track {
+  background: rgb(24, 124, 238);
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border: none;
+  height: 12px;
+  width: 12px;
+  border-radius: 100%;
+  border: 2px solid #25245e;
+  background-color: #25245e;
+  /* background-image: url(./static/thumb-active.png);
+    background-repeat: no-repeat;
+    background-size: 36px 36px;
+    background-position: -4.5px -1.5px; */
+  margin-top: -3px;
+}
+
+input[type="range"]:focus {
+  outline: none;
+}
+input[type="range"]:disabled {
+  opacity: 0.5;
+  filter: grayscale(100%);
+}
+
+.inp_val {
+  font-size: 15px;
+}
+
+.popupCards_7 {
+  height: 100%;
+  width: 65%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  grid-template-rows: repeat(2, 50%);
+}
+
+.c1_image,
+.d1_image {
+  position: absolute;
+  top: 19%;
+  left: 5%;
+  font-size: 25px;
+  color: white;
+}
+
+.c2_image,
+.d2_image {
+  position: absolute;
+  top: 68%;
+  left: 5%;
+  font-size: 25px;
+  color: white;
+}
+
+.b_image,
+.ninth_image {
+  position: absolute;
+  left: 3.9%;
+  font-size: 22px;
+  color: white;
+}
+
+.dlg_image {
+  position: absolute;
+  left: 3.9%;
+  font-size: 22px;
+  color: white;
+}
+
+.imgBox {
+  height: 100%;
+  width: auto;
+  position: relative;
+  margin-top: 2%;
+  cursor: pointer;
+}
+
+.ImgTxt {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: -20%;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* disable - range */
+.rnga1,
+.rngb2,
+.rngc2,
+.rngd2 {
+  position: relative;
+  /* top: 4px; */
+  /* left: 1px; */
+  width: 55%;
+  height: 15%;
+  color: rgb(29, 21, 21);
+}
+
+.image_detail {
+  padding: auto;
+}
+/* toggle switch*/
+
+.toggle-btn {
+  position: relative;
+  width: 40px;
+  height: 20px;
+  margin: 0 auto;
+  border-radius: 40px;
+}
+
+input[type="checkbox"] {
+  width: 40px;
+  height: 20px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  margin: 0px;
+  cursor: pointer;
+  opacity: 0;
+  z-index: 2;
+}
+
+/* Third toggle btn */
+
+.toggle-btn span {
+  display: block;
+  width: 40px;
+  height: 20px;
+  background-color: #0b0069;
+  box-shadow: 8px 3px 20px #a3a3a3;
+  border-radius: 20px;
+  transition: 0.5s ease background-color;
+}
+
+.toggle-btn span:before {
+  content: "";
+
+  margin-top: -3px;
+  position: absolute;
+  top: 0px;
+  left: -3px;
+  width: 25px;
+  height: 25px;
+  background-image: url("../../../Assets/Bisoft_UI/SimulationSliders/ui/a1-inactive.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 50%;
+  /* box-shadow: 2px 6px 25px #663b3b; */
+  transform: translate(0px, 0px);
+  transition: 0.2s linear transform;
+}
+
+.toggle-btn input[type="checkbox"]:checked + span:before {
+  background-image: url("../../../Assets/Bisoft_UI/SimulationSliders/ui/a1.png");
+  /* box-shadow: 7px 6px 25px #e6e6e6; */
+  transform: translate(20px, 0px);
+  transition: 0.2s linear;
+}
+
+.toggle-btn input[type="checkbox"]:checked + span:after {
+  width: 0px;
+  height: 7px;
+  border-radius: 50%;
+  transform: translate(25px, 0px);
+}
+
+.toggle-btn input[type="checkbox"]:checked + span {
+  background-color: rgb(0, 2, 102);
+}
+#a2_digi span:before {
+  background-image: url("../../../Assets/Bisoft_UI/SimulationSliders/ui/a2-inactive.png");
+  transition: 0.2s linear;
+}
+
+#a2_digi input[type="checkbox"]:checked + span:before {
+  background-image: url("../../../Assets/Bisoft_UI/SimulationSliders/ui/a2.png");
+}
+#b1_digi span:before {
+  background-image: url("../../../Assets/Bisoft_UI/SimulationSliders/ui/b1-inactive.png");
+}
+
+#b1_digi input[type="checkbox"]:checked + span:before {
+  background-image: url("../../../Assets/Bisoft_UI/SimulationSliders/ui/b1.png");
+}
+#b2_digi span:before {
+  background-image: url("../../../Assets/Bisoft_UI/SimulationSliders/ui/b2-inactive.png");
+}
+
+#b2_digi input[type="checkbox"]:checked + span:before {
+  background-image: url("../../../Assets/Bisoft_UI/SimulationSliders/ui/b2.png");
+}
+#c1_digi span:before {
+  background-image: url("../../../Assets/Bisoft_UI/SimulationSliders/ui/c1-inactive.png");
+}
+
+#c1_digi input[type="checkbox"]:checked + span:before {
+  background-image: url("../../../Assets/Bisoft_UI/SimulationSliders/ui/c1.png");
+}
+#c2_digi span:before {
+  background-image: url("../../../Assets/Bisoft_UI/SimulationSliders/ui/c2-inactive.png");
+}
+
+#c2_digi input[type="checkbox"]:checked + span:before {
+  background-image: url("../../../Assets/Bisoft_UI/SimulationSliders/ui/c2.png");
+}
+#d1_digi span:before {
+  background-image: url("../../../Assets/Bisoft_UI/SimulationSliders/ui/d1-inactive.png");
+}
+
+#d1_digi input[type="checkbox"]:checked + span:before {
+  background-image: url("../../../Assets/Bisoft_UI/SimulationSliders/ui/d1.png");
+}
+#d2_digi span:before {
+  background-image: url("../../../Assets/Bisoft_UI/SimulationSliders/ui/d2-inactive.png");
+}
+
+#d2_digi input[type="checkbox"]:checked + span:before {
+  background-image: url("../../../Assets/Bisoft_UI/SimulationSliders/ui/d2.png");
+}
+/* Third toggle btn completed */

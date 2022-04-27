@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./speak.css";
+import "./speak.scss";
 import io from "socket.io-client";
 import { useHistory } from "react-router";
 import { connect } from "react-redux";
@@ -602,7 +602,7 @@ function Speech(props) {
         <div>
           {isMic == false ? (
             <img
-              className="Mic_img"
+              className="Mic_imgIA"
               src={renderImage("SpeechIA_Svg")}
               onClick={handleMic}
             ></img>
