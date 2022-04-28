@@ -429,6 +429,19 @@ class Workspace extends Component {
               };
             }
           }
+        } else if (type == "rotatory") {
+          if (component.connectedTo) {
+            PortConnections[component.connectedTo] = {
+              type,
+              index,
+              signalType: SensorObj.signalType,
+            };
+            PortConnections[`${component.connectedTo}1`] = {
+              type,
+              index,
+              signalType: SensorObj.signalType,
+            };
+          }
         } else if (component.connectedTo) {
           if (
             type != "servo_motor" ||
@@ -663,6 +676,19 @@ class Workspace extends Component {
                 signalType: SensorObj.signalType,
               };
             }
+          }
+        } else if (type == "rotatory") {
+          if (component.connectedTo) {
+            PortConnections[component.connectedTo] = {
+              type,
+              index,
+              signalType: SensorObj.signalType,
+            };
+            PortConnections[`${component.connectedTo}1`] = {
+              type,
+              index,
+              signalType: SensorObj.signalType,
+            };
           }
         } else if (component.connectedTo) {
           if (
