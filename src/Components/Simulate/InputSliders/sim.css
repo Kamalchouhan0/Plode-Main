@@ -31,9 +31,10 @@ hr.solid {
 
 .conatainer {
   height: 50%;
-  width: 50%;
+  width: 55%;
   display: grid;
   grid-template-columns: 50% 50%;
+  margin-top: 25px;
 }
 
 .conatainer > div > img {
@@ -46,15 +47,15 @@ hr.solid {
   height: inherit;
   width: inherit;
   position: relative;
-  margin: -15px auto;
-  height: 150px;
+  margin: -20px auto;
+  height: 175px;
 }
 .boxSimSm {
   height: inherit;
   width: inherit;
   position: relative;
-  margin: -50px auto;
-  height: 150px;
+  margin: -52px auto;
+  height: 175px;
 }
 .small {
   top: -25%;
@@ -114,18 +115,20 @@ hr.solid {
 }
 
 .rng {
-  width: 55%;
+  width: 50%;
+  position: fixed;
+  left: 27%;
 }
 
 .main-conatainer::-webkit-scrollbar {
   width: 0px;
 }
-input[type="range"] {
+.details input[type="range"] {
   -webkit-appearance: none;
   background: none;
 }
 
-input[type="range"]::-webkit-slider-runnable-track {
+.details input[type="range"]::-webkit-slider-runnable-track {
   width: 300px;
   height: 6px;
   background: rgb(248, 181, 57);
@@ -144,7 +147,7 @@ input[type="range"]::-webkit-slider-runnable-track {
   background: rgb(24, 124, 238);
 }
 
-input[type="range"]::-webkit-slider-thumb {
+.details input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   border: none;
   height: 12px;
@@ -159,10 +162,10 @@ input[type="range"]::-webkit-slider-thumb {
   margin-top: -3px;
 }
 
-input[type="range"]:focus {
+.details input[type="range"]:focus {
   outline: none;
 }
-input[type="range"]:disabled {
+.details input[type="range"]:disabled {
   opacity: 0.5;
   filter: grayscale(100%);
 }
@@ -238,16 +241,19 @@ input[type="range"]:disabled {
 .rngb2,
 .rngc2,
 .rngd2 {
-  position: relative;
-  /* top: 4px; */
-  /* left: 1px; */
-  width: 55%;
+  width: 50%;
+  position: fixed;
+  left: 27%;
   height: 15%;
   color: rgb(29, 21, 21);
 }
 
 .image_detail {
   padding: auto;
+}
+.image_detail:disabled {
+  opacity: 0.5;
+  filter: grayscale(100%);
 }
 /* toggle switch*/
 

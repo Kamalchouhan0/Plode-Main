@@ -1655,7 +1655,7 @@ const CustomNodeFlow = ({ compo, img, assembly, updateState, indexChange }) => {
     <>
       <ReactFlow
         elements={elements}
-        onElementClick={onElementClick}
+        //onElementClick={onElementClick}
         // onElementsRemove={onElementsRemove}
         onConnect={onConnect}
         onNodeDragStop={onNodeDragStop}

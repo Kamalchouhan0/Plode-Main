@@ -54,10 +54,10 @@ export default memo(({ data }) => {
             marginTop: "-75px",
             marginLeft: "37.5%",
           }}
-          onclick={(event) => {
-            console.log(event, "i/p");
-            //CustomNodeFlow.onElementClick(event, { id: "1", type: "input" });
-          }}
+          // onclick={(event) => {
+          //   console.log(event, "i/p");
+          //   //CustomNodeFlow.onElementClick(event, { id: "1", type: "input" });
+          // }}
         />
         <img
           //left eye

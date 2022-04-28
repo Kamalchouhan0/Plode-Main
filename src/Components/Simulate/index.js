@@ -397,7 +397,7 @@ class Simulate extends Component {
     var PortConnection = this.props.assembly.PortConnections;
     PortConnectionArr = Object.entries(PortConnection);
     var Compo = this.props.assembly.workspace.components;
-    sessionStorage.setItem("simulate", JSON.stringify([]));
+    //sessionStorage.setItem("simulate", JSON.stringify([]));
     console.log("PROPS FROM SIMULATE..", Compo);
     Object.keys(Compo).map((keys) => {
       return Compo[keys].map((ind) => {
@@ -526,7 +526,7 @@ class Simulate extends Component {
         switch (parseInt(bytes[b])) {
           case 1: {
             for (var key in Object.entries(simulation)) {
-              if (simulation[key].port == "A") {
+              if (simulation[key].port == "A1") {
                 var arg1 = simulation[key].value;
                 if (arg1 == undefined) {
                   arg1 = 0;
@@ -540,7 +540,7 @@ class Simulate extends Component {
           }
           case 2: {
             for (var key in Object.entries(simulation)) {
-              if (simulation[key].port == "A") {
+              if (simulation[key].port == "A2") {
                 var arg1 = simulation[key].value;
                 if (arg1 == undefined) {
                   arg1 = 0;
@@ -554,7 +554,7 @@ class Simulate extends Component {
           }
           case 3: {
             for (var key in Object.entries(simulation)) {
-              if (simulation[key].port == "B") {
+              if (simulation[key].port == "B1") {
                 var arg1 = simulation[key].value;
                 if (arg1 == undefined) {
                   arg1 = 0;
@@ -568,7 +568,7 @@ class Simulate extends Component {
           }
           case 4: {
             for (var key in Object.entries(simulation)) {
-              if (simulation[key].port == "B") {
+              if (simulation[key].port == "B2") {
                 var arg1 = simulation[key].value;
                 if (arg1 == undefined) {
                   arg1 = 0;
@@ -582,7 +582,7 @@ class Simulate extends Component {
           }
           case 5: {
             for (var key in Object.entries(simulation)) {
-              if (simulation[key].port == "C") {
+              if (simulation[key].port == "C1") {
                 var arg1 = simulation[key].value;
                 if (arg1 == undefined) {
                   arg1 = 0;
@@ -596,7 +596,7 @@ class Simulate extends Component {
           }
           case 6: {
             for (var key in Object.entries(simulation)) {
-              if (simulation[key].port == "C") {
+              if (simulation[key].port == "C2") {
                 var arg1 = simulation[key].value;
                 if (arg1 == undefined) {
                   arg1 = 0;
@@ -610,7 +610,7 @@ class Simulate extends Component {
           }
           case 7: {
             for (var key in Object.entries(simulation)) {
-              if (simulation[key].port == "D") {
+              if (simulation[key].port == "D1") {
                 var arg1 = simulation[key].value;
                 if (arg1 == undefined) {
                   arg1 = 0;
@@ -624,7 +624,7 @@ class Simulate extends Component {
           }
           case 8: {
             for (var key in Object.entries(simulation)) {
-              if (simulation[key].port == "D") {
+              if (simulation[key].port == "D2") {
                 var arg1 = simulation[key].value;
                 if (arg1 == undefined) {
                   arg1 = 0;
@@ -637,33 +637,122 @@ class Simulate extends Component {
             break;
           }
           case 29: {
-            var arg1 = parseInt(document.getElementById("mic_s").value);
-
+            // var arg1 = parseInt(document.getElementById("mic_s").value);
+            for (var key in Object.entries(simulation)) {
+              if (simulation[key].componentName == "Mic") {
+                var arg1 = simulation[key].value;
+                if (arg1 == undefined) {
+                  arg1 = 0;
+                }
+              }
+            }
             condition = await decison(arg1, arg2, op);
             break;
           }
-          case 23 || 24 || 25 || 26 || 27 || 28: {
-            var arg1 = parseInt(document.getElementById("4in1_s").value);
-
+          case 23: {
+            //var arg1 = parseInt(document.getElementById("4in1_s").value);
+            if (simulation[key].componentName == "Fourin1SensorCRed") {
+              var arg1 = simulation[key].value;
+              if (arg1 == undefined) {
+                arg1 = 0;
+              }
+            }
+            condition = await decison(arg1, arg2, op);
+            break;
+          }
+          case 24: {
+            //var arg1 = parseInt(document.getElementById("4in1_s").value);
+            if (simulation[key].componentName == "Fourin1SensorCGreen") {
+              var arg1 = simulation[key].value;
+              if (arg1 == undefined) {
+                arg1 = 0;
+              }
+            }
+            condition = await decison(arg1, arg2, op);
+            break;
+          }
+          case 25: {
+            //var arg1 = parseInt(document.getElementById("4in1_s").value);
+            if (simulation[key].componentName == "Fourin1SensorCBlue") {
+              var arg1 = simulation[key].value;
+              if (arg1 == undefined) {
+                arg1 = 0;
+              }
+            }
+            condition = await decison(arg1, arg2, op);
+            break;
+          }
+          case 26: {
+            //var arg1 = parseInt(document.getElementById("4in1_s").value);
+            if (simulation[key].componentName == "Fourin1SensorD") {
+              var arg1 = simulation[key].value;
+              if (arg1 == undefined) {
+                arg1 = 0;
+              }
+            }
+            condition = await decison(arg1, arg2, op);
+            break;
+          }
+          case 27: {
+            //var arg1 = parseInt(document.getElementById("4in1_s").value);
+            if (simulation[key].componentName == "Fourin1SensorL") {
+              var arg1 = simulation[key].value;
+              if (arg1 == undefined) {
+                arg1 = 0;
+              }
+            }
+            condition = await decison(arg1, arg2, op);
+            break;
+          }
+          case 28: {
+            //var arg1 = parseInt(document.getElementById("4in1_s").value);
+            if (simulation[key].componentName == "Fourin1SensorG") {
+              var arg1 = simulation[key].value;
+              if (arg1 == undefined) {
+                arg1 = 0;
+              }
+            }
             condition = await decison(arg1, arg2, op);
             break;
           }
           case 30: {
-            var arg1 = parseInt(document.getElementById("t0s").value);
+            // var arg1 = parseInt(document.getElementById("t0s").value);
+            for (var key in Object.entries(simulation)) {
+              if (simulation[key].componentName == "TouchZero") {
+                var arg1 = simulation[key].value;
+                if (arg1 == undefined) {
+                  arg1 = 0;
+                }
+              }
+            }
             console.log(arg1);
             console.log(arg2);
             condition = await decison(arg1, arg2, op);
             break;
           }
           case 31: {
-            var arg1 = parseInt(document.getElementById("t1s").value);
-
+            //var arg1 = parseInt(document.getElementById("t1s").value);
+            for (var key in Object.entries(simulation)) {
+              if (simulation[key].componentName == "TouchOne") {
+                var arg1 = simulation[key].value;
+                if (arg1 == undefined) {
+                  arg1 = 0;
+                }
+              }
+            }
             condition = await decison(arg1, arg2, op);
             break;
           }
           case 32: {
-            var arg1 = parseInt(document.getElementById("t2s").value);
-
+            // var arg1 = parseInt(document.getElementById("t2s").value);
+            for (var key in Object.entries(simulation)) {
+              if (simulation[key].componentName == "TouchTwo") {
+                var arg1 = simulation[key].value;
+                if (arg1 == undefined) {
+                  arg1 = 0;
+                }
+              }
+            }
             condition = await decison(arg1, arg2, op);
             break;
           }
@@ -2735,7 +2824,7 @@ class Simulate extends Component {
       rangeValue_: 0,
       rangeCountNumber_: 0,
     });
-    sessionStorage.setItem("simulate", JSON.stringify(data));
+    //sessionStorage.setItem("simulate", JSON.stringify(data));
     // CHANGING THE FOCUS
     let index = document.querySelector(".animation");
     index.style.zIndex = "1000";
