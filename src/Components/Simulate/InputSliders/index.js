@@ -19,6 +19,7 @@ import t0 from "../../../Assets/Bisoft_UI/SimulationSliders/ui/t0.png";
 import t1 from "../../../Assets/Bisoft_UI/SimulationSliders/ui/t1.png";
 import t2 from "../../../Assets/Bisoft_UI/SimulationSliders/ui/t2.png";
 import mic from "../../../Assets/Bisoft_UI/SimulationSliders/ui/mic.png";
+import temp from "../../../Assets/Bisoft_UI/SimulationSliders/ui/temp.png";
 
 function InputSlider(props) {
   useEffect(() => {
@@ -165,6 +166,7 @@ function InputSlider(props) {
       { componentName: "TouchOne", port: "B", value: t1Value },
       { componentName: "TouchTwo", port: "C", value: t2Value },
       { componentName: "Mic", port: "Mic", value: micValue },
+      { componentName: "Temp", port: "Temp", value: tempValue },
       { componentName: "Fourin1SensorD", port: "D", value: fourin1D },
       { componentName: "Fourin1SensorL", port: "D", value: fourin1L },
       { componentName: "Fourin1SensorG", port: "D", value: fourin1G },
@@ -192,6 +194,7 @@ function InputSlider(props) {
   const [t1Value, sett1Value] = useState(0);
   const [t2Value, sett2Value] = useState(0);
   const [micValue, setmicValue] = useState(0);
+  const [tempValue, settempValue] = useState(0);
 
   let a1State = false,
     a2State = false,
@@ -208,7 +211,8 @@ function InputSlider(props) {
     t0State = false,
     t1State = false,
     t2State = false,
-    micState = false;
+    micState = false,
+    tempState = false;
   console.log("ip slider", b1State);
   const assembly = JSON.parse(sessionStorage.getItem("assembly"));
   const internalAccessories = JSON.parse(
@@ -327,6 +331,7 @@ function InputSlider(props) {
   t1State = internalAccessories["isTouchOne"];
   t2State = internalAccessories["isTouchTwo"];
   micState = internalAccessories["isMic"];
+  tempState = internalAccessories["isTemperature"];
   console.log(a1State, b2State);
   if (true) {
     if (a1range == undefined) {
@@ -736,6 +741,34 @@ function InputSlider(props) {
                   }}
                 />
                 <span className="inp_val">{micValue}</span>
+              </div>
+            </div>
+          </div>
+        ) : null}
+        {/* <!-- popup cards 11 --> Temp */}
+        {tempState ? (
+          <div className="boxSimSm">
+            <img src={PopupCardSm} className="popupcard" />
+            <div className="details card10">
+              <div>
+                <div
+                  className="imgBox"
+                  id="Card5_toggle_A1"
+                  style={{ marginTop: "5%" }}
+                >
+                  <img src={temp} className="label" id="Card5_toggle_A1_Img" />
+                </div>
+                <input
+                  type="range"
+                  className="rng"
+                  min={0}
+                  max={255}
+                  value={tempValue}
+                  onChange={(e) => {
+                    settempValue(e.target.value);
+                  }}
+                />
+                <span className="inp_val">{tempValue}</span>
               </div>
             </div>
           </div>
