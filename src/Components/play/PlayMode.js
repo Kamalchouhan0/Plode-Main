@@ -23,8 +23,35 @@ import { useHistory } from "react-router";
 // import { webSerialAction } from "../../redux/actions/index";
 import ImgSlider from "../ReusableComponents/ImgSlider/ImgSlider";
 import RemoteSection from "./Remote/Ace/RemoteSection/RemoteSection";
+const writePort = async (data) => {
+  try {
+    const filters = [{ usbVendorId: 0x1a86, usbProductId: 0x7523 }];
+    const ports = await navigator.serial.getPorts({ filters });
+    console.log("portsss", ports);
 
+    console.log("portsss", ports[0].writable);
+    // const outputStream = ports[0].writable,
+    const writer = ports[0].writable.getWriter();
+    // writer = outputStream.getWriter();
+    const sata = data;
+    const data1 = new Uint8Array(sata); // hello// 82, 76, 0, 0, 0, 82, 0, 0, 0, 66, 0, 0, 1, 0, 1,
+    console.log("send data:+", data1);
+
+    await writer.write(data1);
+
+    writer.releaseLock();
+  } catch (e) {
+    console.log(e);
+  }
+};
 function Play(props) {
+  const PLAY = [
+    "P".charCodeAt(),
+    "L".charCodeAt(),
+    "A".charCodeAt(),
+    "Y".charCodeAt(),
+  ];
+  writePort(PLAY);
   let history = useHistory();
 
   const gobackUrl = () => {

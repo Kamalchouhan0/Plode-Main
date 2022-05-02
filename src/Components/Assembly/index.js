@@ -252,7 +252,8 @@ class Assembly extends Component {
 
   async writePort(data) {
     try {
-      const ports = await navigator.serial.getPorts();
+      const filters = [{ usbVendorId: 0x1a86, usbProductId: 0x7523 }];
+      const ports = await navigator.serial.getPorts({ filters });
       console.log("portsss", ports);
 
       console.log("portsss", ports[0].writable);

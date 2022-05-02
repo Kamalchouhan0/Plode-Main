@@ -401,7 +401,7 @@ function Music(props) {
 
       console.log("portsss", ports[0].writable);
       // const outputStream = ports[0].writable,
-      const writer = ports.writable.getWriter();
+      const writer = ports[0].writable.getWriter();
       // writer = outputStream.getWriter();
       const sata = data;
       const data1 = new Uint8Array(sata); // hello// 82, 76, 0, 0, 0, 82, 0, 0, 0, 66, 0, 0, 1, 0, 1,

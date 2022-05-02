@@ -421,7 +421,7 @@ function Speech(props) {
 
       console.log("portsss", ports.writable);
       // const outputStream = ports[0].writable,
-      const writer = ports.writable.getWriter();
+      const writer = ports[0].writable.getWriter();
       // writer = outputStream.getWriter();
       if (data != "notWrite") {
         const Wdata = data;
