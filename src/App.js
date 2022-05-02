@@ -153,7 +153,7 @@ class App extends Component {
   }
   render() {
     return (
-      <BrowserRouter history={history}>
+      <HashRouter history={history}>
         {/* {sessionStorage.getItem("pgmode")=="flow-chart" 
           ?
         <Header prev="/"/>
@@ -302,7 +302,7 @@ class App extends Component {
             <HumanoidCamera />
           </Route>
         </Switch>
-      </BrowserRouter>
+      </HashRouter>
     );
   }
 }
