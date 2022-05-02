@@ -459,6 +459,7 @@ function RemoteSection(props) {
   // console.log("Port Values", props.port);
 
   async function writePort(data) {
+    console.log("Wdata", data);
     try {
       const filters = [{ usbVendorId: 0x1a86, usbProductId: 0x7523 }];
       const ports = await navigator.serial.getPorts({ filters });
@@ -562,8 +563,9 @@ function RemoteSection(props) {
   });
 
   const OpenReadComPort = async () => {
-    const p_Port = props.webserialPort;
-    console.log(p_Port, "p_Port");
+    const p_Port = props.webSerial;
+
+    console.log(props, "p_Port");
 
     try {
       console.log("OPENED");
@@ -676,6 +678,7 @@ function RemoteSection(props) {
                   componentName="freq"
                   leftEyeData={leftEyeData}
                   max={100}
+                  min={0}
                   setFreq={setFreq}
                   isFreq={isFreq}
                 />
@@ -687,6 +690,7 @@ function RemoteSection(props) {
                   componentName="freq"
                   leftEyeData={leftEyeData}
                   max={100}
+                  min={0}
                   setFreq={setFreq}
                   isFreq={isFreq}
                 />

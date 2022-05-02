@@ -422,8 +422,8 @@ function Camera(props) {
         {!faceData ? (
           <div id="loaderContainer">
             <div id="loader" class="Camera_loader"></div>
-            <p className="loaderText" style={{ marginLeft: "-15%" }}>
-              Loading Modules
+            <p className="loaderText" style={{ marginLeft: "-17%" }}>
+              Loading AI Engine
             </p>
           </div>
         ) : (

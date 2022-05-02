@@ -63,7 +63,6 @@ function Selection(props) {
   const OpenReadComPort = async () => {
     const p_Port = props.webserialPort; //redux props
     console.log(p_Port, "p_Port");
-
     try {
       console.log("OPENED");
       await p_Port.open({ baudRate: 115200 });
