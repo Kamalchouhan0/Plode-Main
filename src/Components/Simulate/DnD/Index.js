@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable jsx-a11y/alt-text */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { connect } from "react-redux";
 import ReactFlow, { isEdge, addEdge, Handle } from "react-flow-renderer";
 // import {IllusLoginSrc} from '../../../source/source';
@@ -40,12 +40,20 @@ const customStyles = {
 
 const CustomNodeFlow = ({ compo, img, assembly, updateState, indexChange }) => {
   console.log("CustomNodeFlow PROPS", compo, img, assembly);
-  const onDragOver =
-    ((event) => {
-      event.preventDefault();
-      event.dataTransfer.dropEffect = "move";
-    },
-    []);
+  const onDrop = useCallback((event) => {
+    event.preventDefault();
+
+    const type = event.dataTransfer.getData("application/reactflow");
+
+    // check if the dropped element is valid
+    if (typeof type === "undefined" || !type) {
+      return;
+    }
+  }, []);
+  const onDragOver = useCallback((event) => {
+    event.preventDefault();
+    event.dataTransfer.dropEffect = "move";
+  }, []);
   const onElementClick = (event, element) => {
     console.log(event, element, "i/p");
     console.log(event.target.getAttribute("namecomp"));
@@ -1662,11 +1670,14 @@ const CustomNodeFlow = ({ compo, img, assembly, updateState, indexChange }) => {
         //   style={{ background: bgColor }}
         onLoad={onLoad}
         onDragOver={onDragOver}
+        onDrop={onDrop}
         nodeTypes={nodeTypes}
         connectionLineStyle={connectionLineStyle}
-        snapToGrid={true}
+        snapToGrid={false}
         snapGrid={snapGrid}
         defaultZoom={1}
+        zoomOnDoubleClick={false}
+        nodesDraggable={true}
       >
         {/* {takingInput} */}
       </ReactFlow>

@@ -279,8 +279,11 @@ class Logic extends Component {
   };
 
   clearProgram = () => {
-    console.log("clearProgram");
+    console.log("clearProgram", drawing);
+    this.setState({ ...this.state });
     sessionStorage.removeItem("logic");
+    sessionStorage.removeItem("programEnd");
+    sessionStorage.removeItem("SelectedStatus");
 
     window.location.reload();
   };

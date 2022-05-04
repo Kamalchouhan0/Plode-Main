@@ -14,7 +14,7 @@ class End extends Component {
     super(props);
     this.state = {
       name: "Repeat",
-      isrepeat: false,
+      isrepeat: true,
       isend: false,
     };
   }

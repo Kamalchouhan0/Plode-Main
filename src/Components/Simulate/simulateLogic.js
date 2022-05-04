@@ -873,7 +873,7 @@ class SimulateLogic extends Component {
                         hexType={this.state.hexType}
                         drawing={drawing}
                         onClick={this.click}
-                        onDoubleClick={this.toggleBottomPanel}
+                        //onDoubleClick={this.toggleBottomPanel}
                         ref={this.childRef}
                       />
                     </g>
