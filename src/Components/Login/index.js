@@ -19,6 +19,8 @@ import { useHistory } from "react-router-dom";
 import animationStyle from "./loginAnimation.module.css";
 import renderImage from "../../source/importImg";
 import GoogleLogin from "react-google-login";
+import * as atatus from "atatus-spa";
+
 class login extends Component {
   constructor(props) {
     super(props);
@@ -101,6 +103,11 @@ class login extends Component {
     };
     const loginSuccess = (response) => {
       sessionStorage.setItem("userData", JSON.stringify(response.profileObj));
+      atatus.setUser(
+        response.profileObj.googleId,
+        response.profileObj.email,
+        response.profileObj.givenName + "" + response.profileObj.familyName
+      );
       this.props.history.push("/biboxSelection");
     };
     return (
@@ -125,8 +132,8 @@ class login extends Component {
           ></img>
           {/* </Link> */}
         </div>
-        {/* <div className={animationStyle.Google_Login}>
-          <GoogleLogin
+        <div className={animationStyle.Google_Login}>
+          {/* <GoogleLogin
             clientId="798914613502-eeirsjatcut3f8pljkbknd1hdkampga8.apps.googleusercontent.com"
             buttonText="Login"
             render={(renderProps) => (
@@ -150,8 +157,8 @@ class login extends Component {
             onSuccess={loginSuccess}
             onFailure={loginFail}
             cookiePolicy={"single_host_origin"}
-          />
-        </div> */}
+          /> */}
+        </div>
       </div>
     );
   }
