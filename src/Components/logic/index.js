@@ -902,11 +902,18 @@ class Logic extends Component {
   check = () => {
     var program = JSON.parse(sessionStorage.getItem("logic")).program;
     var end = JSON.parse(sessionStorage.getItem("logic")).end;
+    var upldbtn = document.getElementById("uploadLogicscrn");
+    upldbtn.style.pointerEvents = "none";
+    upldbtn.style.cursor = "not-allowed";
 
     this.setState({ uploadOpen: true });
     setTimeout(() => {
+      upldbtn.style.cursor = "pointer";
+
+      upldbtn.style.pointerEvents = "all";
+
       this.setState({ uploadOpen: false });
-    }, 2000);
+    }, 5000);
 
     //var socket = socketIOClient("http://localhost:3008");
     if (localStorage.getItem("programMode") == "learn") {
@@ -1120,6 +1127,9 @@ class Logic extends Component {
         .internalaccessories,
     };
     this.setState({ uploadOpen: true });
+    var upldbtn = document.getElementById("uploadLogicscrn");
+    upldbtn.style.pointerEvents = "none";
+    upldbtn.style.cursor = "none";
     getBytes({ code: params });
     let bytes = sessionStorage.getItem("convert_Bytes");
     var data = bytes.split(",");
@@ -1127,8 +1137,11 @@ class Logic extends Component {
     //this.myRef.current.upload();
     this.writePort(data);
     setTimeout(() => {
+      upldbtn.style.cursor = "pointer";
+
+      upldbtn.style.pointerEvents = "all";
       this.setState({ uploadOpen: false });
-    }, 1000);
+    }, 3000);
 
     // console.log("UPLOAD DATA", this.myRef.current.upload()); //it will call anyFun which is available at simulateLogic.js
   };
@@ -1857,6 +1870,7 @@ class Logic extends Component {
             }
           }}
           className="nextButton" //search for ".nextButton" in project directory to edit style
+          id="uploadLogicscrn"
           src={renderPrgImage("uploadBtn")}
           style={{
             visibility: "visible",

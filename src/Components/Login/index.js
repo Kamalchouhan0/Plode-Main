@@ -106,7 +106,7 @@ class login extends Component {
       atatus.setUser(
         response.profileObj.googleId,
         response.profileObj.email,
-        response.profileObj.givenName + "" + response.profileObj.familyName
+        response.profileObj.givenName + " " + response.profileObj.familyName
       );
       this.props.history.push("/biboxSelection");
     };

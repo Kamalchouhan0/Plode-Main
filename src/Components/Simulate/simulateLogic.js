@@ -61,7 +61,7 @@ const customStylesUpload = {
     right: "auto",
     bottom: "auto",
     marginRight: "-50%",
-    zIndex: 1000000,
+    zIndex: "10000",
     borderRadius: "15px",
     transform: "translate(-50%, -50%)",
     border: "5px solid skyblue",
@@ -662,11 +662,16 @@ class SimulateLogic extends Component {
   upload = () => {
     var program = JSON.parse(sessionStorage.getItem("logic")).program;
     var end = JSON.parse(sessionStorage.getItem("logic")).end;
-
+    var bottomChild = document.getElementById("SelectScreenBottom");
+    console.log(bottomChild);
+    bottomChild.style["pointer-events"] = "none";
+    bottomChild.style.cursor = "not-allowed";
     this.setState({ uploadOpen: true });
     setTimeout(() => {
       this.setState({ uploadOpen: false });
-    }, 2000);
+      bottomChild.style["pointer-events"] = "all";
+      bottomChild.style.cursor = "pointer";
+    }, 3000);
 
     //var socket = socketIOClient("http://localhost:3008");
     if (localStorage.getItem("programMode") == "learn") {

@@ -21,6 +21,7 @@ import * as atatus from "atatus-spa";
 import $ from "jquery";
 // import "bootstrap/dist/js/bootstrap.bundle.min";
 // import "bootstrap/dist/css/bootstrap.css";
+//localStorage.clear();
 atatus.config("bf5a70b588d943b2bcce5a4fc6558d42").install();
 const store = createStore(
   allReducer,

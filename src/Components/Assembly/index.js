@@ -174,12 +174,12 @@ class Assembly extends Component {
       console.log(e);
     }
 
-    this.writePort("notWrite");
+    await this.writePort("notWrite");
     // let valresponceTp0 = "",
     //   valdis = "";
     // // setTimeout(async () => {
     // if (this.state.readbytes) {
-    this.readLoop();
+    await this.readLoop();
     // }
 
     // }, 1000);
@@ -196,8 +196,9 @@ class Assembly extends Component {
         if (this.state.k === true) {
           console.log("MAI CHAL GAYA");
           reader.releaseLock();
+          break;
         }
-        console.log(value);
+        console.log("PABYTES", unicodeToChar(value));
         // value is a string.
         if (value.length == 32) {
           var v = unicodeToChar(value);

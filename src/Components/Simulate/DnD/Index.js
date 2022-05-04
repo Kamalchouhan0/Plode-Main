@@ -34,7 +34,7 @@ const customStyles = {
     transform: "translate(-50%, -50%)",
     backgroundColor: "#9ecee8",
     border: "2px solid #188dcc",
-    zIndex: "1000",
+    zIndex: "100",
   },
 };
 
