@@ -465,7 +465,7 @@ class Content extends Component {
   erasedConceptData = () => {
     // this.setState({ erasedProgram: true });
     this.props.history.push("/selectScreen/InternalAccessories");
-    window.location.reload();
+    // window.location.reload();
   };
   shouldErase = (info) => {
     if (info == "Yes") {

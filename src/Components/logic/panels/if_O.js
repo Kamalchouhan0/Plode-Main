@@ -150,7 +150,7 @@ class IfPanel extends Component {
       isEqualTo: false,
       isInBtween: false,
       isRead: false,
-      flags: false,
+      Bytes: false,
       responceTp0: "",
       responceTp1: "",
       responceTp2: "",
@@ -227,10 +227,7 @@ class IfPanel extends Component {
       // Listen to data coming from the serial device.
       while (true) {
         const { value, done } = await reader.read();
-        if (done) {
-          reader.releaseLock();
-          break;
-        }
+
         console.log(value);
 
         // value is a string.
@@ -277,9 +274,9 @@ class IfPanel extends Component {
           console.log(vae, "ORRRR");
         }
         var vae = v + vi;
-        let i = vae;
-        this.state.flags = i;
-        console.log("ADDED I", i);
+
+        console.log("ADDED I", vae);
+        this.state.Bytes = vae;
       }
     } catch (e) {
       console.log(e);
@@ -307,7 +304,7 @@ class IfPanel extends Component {
     }
   }
 
-  componentDidUpdate() {
+  async componentDidUpdate() {
     let no_port = this.props.webserialPort;
 
     if (typeof no_port !== undefined) {
@@ -318,7 +315,8 @@ class IfPanel extends Component {
       console.log(JSON.parse(sessionStorage.getItem("webSerialPortList")));
       console.log("SERIAL PORT NOT CONNECTED");
     }
-    let BAR = this.state.flags.toString();
+    console.log("BYTES KI VALUE:--", this.state.Bytes);
+    let BAR = this.state.Bytes.toString();
     // let BAR = "153 1 142 2 237 2 122 1 233 1 0 0 100 100 124 20 10 0 0";
     console.log(BAR, "VAlies");
     let valresponceTp0 = "";

@@ -1319,31 +1319,31 @@ class Component1 extends Component {
           />
 
           {/* <p
-             style={{
-               position: "absolute",
-               top,
-               marginTop: "-1%",
-               marginLeft: "3%",
-               left,
-               zIndex: "3",
-               fontSize: "20px",
-             }}
-           >
-             {this.props.touch_pad}
-           </p>
-           <p
-             style={{
-               position: "absolute",
-               top,
-               marginTop: "-0.6%",
-               marginLeft: "5.5%",
-               left,
-               zIndex: "3",
-               fontSize: "20px",
-             }}
-           >
-             {this.props.touch_pad2}
-           </p> */}
+              style={{
+                position: "absolute",
+                top,
+                marginTop: "-1%",
+                marginLeft: "3%",
+                left,
+                zIndex: "3",
+                fontSize: "20px",
+              }}
+            >
+              {this.props.touch_pad}
+            </p>
+            <p
+              style={{
+                position: "absolute",
+                top,
+                marginTop: "-0.6%",
+                marginLeft: "5.5%",
+                left,
+                zIndex: "3",
+                fontSize: "20px",
+              }}
+            >
+              {this.props.touch_pad2}
+            </p> */}
         </div>
       );
     }

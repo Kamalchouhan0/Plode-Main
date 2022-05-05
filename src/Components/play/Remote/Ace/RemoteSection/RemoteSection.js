@@ -126,11 +126,11 @@ function RemoteSection(props) {
   let data;
 
   //talkback
-  let data1 = ["R".charCodeAt(), "t".charCodeAt(), isTalkback ? 1 : 0];
+  let data1 = ["R".charCodeAt(), "t".charCodeAt(), isTalkback ? 49 : 48];
   //gesture
-  let data2 = ["R".charCodeAt(), "g".charCodeAt(), isGesture ? 1 : 0];
+  let data2 = ["R".charCodeAt(), "g".charCodeAt(), isGesture ? 49 : 48];
   //disco
-  let data3 = ["R".charCodeAt(), "d".charCodeAt(), isDisco ? 1 : 0];
+  let data3 = ["R".charCodeAt(), "d".charCodeAt(), isDisco ? 49 : 48];
 
   /**
    * p= 82,116,0
@@ -140,97 +140,97 @@ function RemoteSection(props) {
    */
 
   // TB
-  useEffect(() => {
-    if (initalRenderT) {
-      initalRenderT = false;
-    } else {
-      // console.log("i am useEffect Talkback", isTalkback);
-      // console.log("i am useEffect Talkback", data);
+  // useEffect(() => {
+  //   if (initalRenderT) {
+  //     initalRenderT = false;
+  //   } else {
+  //     // console.log("i am useEffect Talkback", isTalkback);
+  //     // console.log("i am useEffect Talkback", data);
 
-      if (isTalkback) {
-        talkClick();
-      } else {
-        let curActive = cur[1];
-        // socket.emit("/remote", [
-        //   [82, curActive, 1],
-        //   [82, 116, 0],
-        // ]);
-        console.log("TALK BACK CURRENT", curActive);
-        let d1 = [82, curActive, 1];
-        let d2 = [82, 116, 0];
-        console.log(d1, d2, "TalkBACK");
-        let D = d1.concat(d2);
-        writePort(D);
-      }
-    }
-  }, [isTalkback]);
+  //     if (isTalkback) {
+  //       talkClick();
+  //     } else {
+  //       let curActive = cur[1];
+  //       // socket.emit("/remote", [
+  //       //   [82, curActive, 1],
+  //       //   [82, 116, 0],
+  //       // ]);
+  //       console.log("TALK BACK CURRENT", curActive);
+  //       let d1 = [82, curActive, 1];
+  //       let d2 = [82, 116, 0];
+  //       console.log(d1, d2, "TalkBACK");
+  //       let D = d1.concat(d2);
+  //       writePort(D);
+  //     }
+  //   }
+  // }, [isTalkback]);
 
-  useEffect(() => {
-    if (initalRenderD) {
-      initalRenderD = false;
-    } else {
-      if (isDisco) {
-        // alert("USE-effect_DISCO isDIsoc IF", isDisco);
-        discoClick();
-      } else {
-        // alert("USE-effect_DISCO isDIsoc ELSE", isDisco);
-        let curActive = cur[1];
-        // socket.emit(
-        //   "/remote",
-        //   [
-        //     [82, curActive, 1],
-        //     [82, 100, 0],
-        //   ],
-        //   "ELSE"
-        // );
-        console.log("DISCO CURRENT", curActive);
-        let d1 = [82, curActive, 1];
-        let d2 = [82, 100, 0];
-        let D = d1.concat(d2);
+  // useEffect(() => {
+  //   if (initalRenderD) {
+  //     initalRenderD = false;
+  //   } else {
+  //     if (isDisco) {
+  //       // alert("USE-effect_DISCO isDIsoc IF", isDisco);
+  //       discoClick();
+  //     } else {
+  //       // alert("USE-effect_DISCO isDIsoc ELSE", isDisco);
+  //       let curActive = cur[1];
+  //       // socket.emit(
+  //       //   "/remote",
+  //       //   [
+  //       //     [82, curActive, 1],
+  //       //     [82, 100, 0],
+  //       //   ],
+  //       //   "ELSE"
+  //       // );
+  //       console.log("DISCO CURRENT", curActive);
+  //       let d1 = [82, curActive, 1];
+  //       let d2 = [82, 100, 0];
+  //       let D = d1.concat(d2);
 
-        writePort(D);
+  //       writePort(D);
 
-        // [[82, curActive, 1,][82, 100, 0]]
-        // socket.emit("/remote", [data[1], [82, 100, 0]], "ELSE");
-        // console.log(data[1]);
-      }
-    }
-  }, [isDisco]);
+  //       // [[82, curActive, 1,][82, 100, 0]]
+  //       // socket.emit("/remote", [data[1], [82, 100, 0]], "ELSE");
+  //       // console.log(data[1]);
+  //     }
+  //   }
+  // }, [isDisco]);
 
-  // GES
-  useEffect(() => {
-    if (initalRenderG) {
-      initalRenderG = false;
-    } else {
-      if (isGesture) {
-        // alert("USE-EFFECT GESTURE isGesture IF", isGesture);
+  // // GES
+  // useEffect(() => {
+  //   if (initalRenderG) {
+  //     initalRenderG = false;
+  //   } else {
+  //     if (isGesture) {
+  //       // alert("USE-EFFECT GESTURE isGesture IF", isGesture);
 
-        gestureClick();
-      } else {
-        // alert("USE-EFFECT GESTURE isGesture ELSE");
-        // console.log("UE-GES  ELSE DATA", data);
-        // console.log("UE-GES  ELSE CUR", cur);
-        // console.log("UE-GES  ELSE prev", pre);
+  //       gestureClick();
+  //     } else {
+  //       // alert("USE-EFFECT GESTURE isGesture ELSE");
+  //       // console.log("UE-GES  ELSE DATA", data);
+  //       // console.log("UE-GES  ELSE CUR", cur);
+  //       // console.log("UE-GES  ELSE prev", pre);
 
-        // ,82103,0
-        let curActive = cur[1];
-        // socket.emit(
-        //   "/remote",
-        //   [
-        //     [82, curActive, 1],
-        //     [82, 103, 0],
-        //   ],
-        //   "ELSE"
-        // );
-        console.log("GESTURE CURRENT", curActive);
-        let d1 = [82, curActive, 1];
-        let d2 = [82, 103, 0];
-        let D = d1.concat(d2);
-        writePort(D);
-        // console.log(data[1]);
-      }
-    }
-  }, [isGesture]);
+  //       // ,82103,0
+  //       let curActive = cur[1];
+  //       // socket.emit(
+  //       //   "/remote",
+  //       //   [
+  //       //     [82, curActive, 1],
+  //       //     [82, 103, 0],
+  //       //   ],
+  //       //   "ELSE"
+  //       // );
+  //       console.log("GESTURE CURRENT", curActive);
+  //       let d1 = [82, curActive, 1];
+  //       let d2 = [82, 103, 0];
+  //       let D = d1.concat(d2);
+  //       writePort(D);
+  //       // console.log(data[1]);
+  //     }
+  //   }
+  // }, [isGesture]);
 
   useEffect(() => {
     if (initalRender) {
@@ -248,6 +248,7 @@ function RemoteSection(props) {
       setDisco(false);
       setTalkback(true);
     }
+    talkClick();
   };
 
   const handleDisco = (e) => {
@@ -258,6 +259,7 @@ function RemoteSection(props) {
       setGesture(false);
       setDisco(true);
     }
+    discoClick();
   };
 
   const handleGesture = (e) => {
@@ -268,85 +270,87 @@ function RemoteSection(props) {
       setDisco(false);
       setGesture(true);
     }
+    gestureClick();
   };
 
   /*
    */
+  const talkClick = () => {
+    if (isTalkback) {
+      let d = [82, 116, 48];
+      writePort(d);
+    } else if (data3[2] == 49) {
+      let d = [82, 100, 48];
+      writePort(d);
+      setTimeout(() => {
+        let d2 = [82, 116, 49];
+        writePort(d2);
+      }, 1000);
+    } else if (data2[2] == 49) {
+      let d = [82, 103, 48];
+      writePort(d);
 
-  const talkClick = (data, off) => {
-    console.log("talk mode click");
-    if (pre === 0) {
-      // 1 n 1
-      setPre(data1);
-      setCur(data1);
-      // console.log("talkback", pre, cur);
-    } else if (off == "off") {
-      console.log("haha", data);
-      setPre(cur);
-      setCur(data);
+      setTimeout(() => {
+        let d2 = [82, 116, 49];
+        writePort(d2);
+      }, 1000);
     } else {
-      cur[2] = 0;
-
-      setPre(cur);
-      setCur(data1);
-      // console.log(pre, "PREVIOUS DATA");
-      // console.log(cur, "CURRENT DATA");
+      let d = [82, 116, 49];
+      writePort(d);
     }
   };
 
   const gestureClick = () => {
-    // alert("GESTURE gestureClick()");
-    console.log("Gesture mode on");
-    if (pre === 0) {
-      setPre(data2);
-      setCur(data2);
-    } else {
-      cur[2] = 0;
+    if (isGesture) {
+      let d = [82, 103, 48];
+      writePort(d);
+    } else if (data1[2] == 49) {
+      let d = [82, 116, 48];
+      writePort(d);
+      setTimeout(() => {
+        let d2 = [82, 103, 49];
+        writePort(d2);
+      }, 1000);
+    } else if (data3[2] == 49) {
+      let d = [82, 100, 48];
+      writePort(d);
 
-      setPre(cur);
-      setCur(data2);
-      // console.log(pre, "PREVIOUS DATA");
-      // console.log(cur, "CURRENT DATA");
+      setTimeout(() => {
+        let d2 = [82, 103, 49];
+        writePort(d2);
+      }, 1000);
+    } else {
+      let d = [82, 103, 49];
+      writePort(d);
     }
   };
 
   const discoClick = () => {
-    // alert("discoClick discoClick()");
+    if (isDisco) {
+      let d = [82, 100, 48];
+      writePort(d);
+    } else if (data1[2] == 49) {
+      let d = [82, 116, 48];
+      writePort(d);
+      setTimeout(() => {
+        let d2 = [82, 100, 49];
+        writePort(d2);
+      }, 1000);
+    } else if (data2[2] == 49) {
+      let d = [82, 103, 48];
+      writePort(d);
 
-    console.log("Disco mode on");
-    if (pre === 0) {
-      setPre(data3);
-      setCur(data3);
+      setTimeout(() => {
+        let d2 = [82, 100, 49];
+        writePort(d2);
+      }, 1000);
     } else {
-      cur[2] = 0;
-      setPre(cur);
-      setCur(data3);
-
-      // console.log(pre, "PREVIOUS DATA");
-      // console.log(cur, "CURRENT DATA");
+      let d = [82, 100, 49];
+      writePort(d);
     }
   };
 
   // data = [pre, cur];
-
-  let d1 = pre;
-  let d2 = cur;
-  console.log("sent hardware data", data);
-
-  useEffect(() => {
-    // alert("SOCKET EMITs");
-
-    if (pre != 0 && pre[2] != cur[2]) {
-      let D = d1.concat(d2);
-      writePort(D);
-    } else if (pre != 0 && pre[1] == cur[1] && pre[2] == cur[2]) {
-      // socket.emit("/remote", cur, "IF INITIAL");
-      writePort(cur);
-    }
-    // else if (cur == 0 && pre[0] == cur[0]) {
-    //   socket.emit("/remote", cur);
-    // }
-  }, [cur]);
 
   const Sliderhandler = (value, name) => {
     if (name == "Right_green_slider") {
@@ -426,7 +430,7 @@ function RemoteSection(props) {
 
   //*(************************************************************)*//
 
-  const leftEyeData = () => {
+  const leftEyeData = async () => {
     console.log("L_B", isL_Blue);
 
     console.log("left eye data activated");
@@ -453,7 +457,7 @@ function RemoteSection(props) {
     //socket.emit("/remote", data, "firoz");
     let no = props.webSerial.name;
     if (no != "Not Connected") {
-      writePort(data);
+      await writePort(data);
     }
   };
   // console.log("Port Values", props.port);
@@ -548,14 +552,14 @@ function RemoteSection(props) {
 
         await props.webSerialAction({ port: portList[0] }); // dispatching function of redux
 
-        setP1({
-          selected: true,
-          port: portList[0],
-        });
+        // setP1({
+        //   selected: true,
+        //   port: portList[0],
+        // });
       } else {
         console.log("No hardware");
 
-        setP1({ p1 });
+        // setP1({ p1 });
       }
     } catch (err) {
       console.log(err.message);
