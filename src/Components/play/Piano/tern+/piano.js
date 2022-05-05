@@ -420,6 +420,7 @@ function Music(props) {
     // socket.emit("/Pc-keys", data);
     writePort(data);
     console.log("pcpiano on");
+
     // socket.on("/hw-music", (data) => {
     //   // console.log("===========================>data", data.trim());
     //   // console.log("===========================>data", data.trim().length);

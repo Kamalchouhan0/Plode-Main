@@ -83,14 +83,20 @@ const SliderRange = (props) => {
       <div className="SliderRangeMain">
         <input
           type="range"
-          min="0"
+          min={0}
           // max={props.max}
           max={100}
           value={isChangeRangeValue}
           id="sliderRange"
           style={sliderStyle}
           onChange={rangeSlider}
-          // onClick={() => props.leftEyeData()}
+          onMouseUp={() => {
+            console.log("send mouseup");
+            props.leftEyeData();
+            setTimeout(() => {
+              props.leftEyeData();
+            }, 200);
+          }}
         />
         <div id="selectorContainer">
           <div className="selectorButtonImg"></div>

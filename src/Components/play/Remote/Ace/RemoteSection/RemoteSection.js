@@ -85,10 +85,10 @@ function RemoteSection(props) {
 
   const gobackUrl = () => {
     // setTimeout(function () {
-    //   window.location.reload(false);
+    //   window.location.reload();
     // }, 100);
     history.goBack();
-    // window.location.reload(false);
+    // window.location.reload();
     // Portclose();
   };
   const [isBuzzer, setBuzzer] = useState(0);
@@ -407,7 +407,7 @@ function RemoteSection(props) {
     const filters = [{ usbVendorId: 0x1a86, usbProductId: 0x7523 }];
     const port = await navigator.serial.requestPort({ filters });
     if (port.onconnect == null) {
-      // window.location.reload(false);
+      // window.location.reload();
       setUsb(true);
     }
   };
@@ -426,7 +426,7 @@ function RemoteSection(props) {
 
   //*(************************************************************)*//
 
-  const leftEyeData = () => {
+  const leftEyeData = async () => {
     console.log("L_B", isL_Blue);
 
     console.log("left eye data activated");
@@ -453,7 +453,7 @@ function RemoteSection(props) {
     //socket.emit("/remote", data, "firoz");
     let no = props.webSerial.name;
     if (no != "Not Connected") {
-      writePort(data);
+      await writePort(data);
     }
   };
   // console.log("Port Values", props.port);
@@ -548,14 +548,14 @@ function RemoteSection(props) {
 
         await props.webSerialAction({ port: portList[0] }); // dispatching function of redux
 
-        setP1({
-          selected: true,
-          port: portList[0],
-        });
+        // setP1({
+        //   selected: true,
+        //   port: portList[0],
+        // });
       } else {
         console.log("No hardware");
 
-        setP1({ p1 });
+        // setP1({ p1 });
       }
     } catch (err) {
       console.log(err.message);
