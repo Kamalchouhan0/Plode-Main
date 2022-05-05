@@ -1014,7 +1014,7 @@ function InternalAccessoriesScreen(props) {
       sessionStorage.removeItem("Index");
       props.indexData.concept.Index = [];
       props.history.push("/programSelection");
-      // window.location.reload();
+      // window.location.reload(false);
       props.DeselectedComponent({
         Four_in_one_sensor: {
           isDistanceSensors: false,

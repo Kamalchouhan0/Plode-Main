@@ -573,10 +573,10 @@ const InternalAccessories = () => {
       setD2(false);
       setD2Checked(false);
       setD2Digi(false);
-      sessionStorage.setItem("flowchart-elements",null)
-      sessionStorage.setItem("flowchart-elements-id",null)
+      sessionStorage.setItem("flowchart-elements", null);
+      sessionStorage.setItem("flowchart-elements-id", null);
       history.push("/flow");
-      window.location.reload();
+      window.location.reload(false);
     } else {
       setErasedProgram(false);
     }

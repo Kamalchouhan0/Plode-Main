@@ -171,7 +171,7 @@ class Logic extends Component {
         var user = 1;
         sessionStorage.setItem("user", JSON.stringify(user));
         this.handleUsb();
-        window.location.reload();
+        window.location.reload(false);
       });
 
       navigator.serial.addEventListener("disconnect", (e) => {
@@ -279,10 +279,13 @@ class Logic extends Component {
   };
 
   clearProgram = () => {
-    console.log("clearProgram");
+    console.log("clearProgram", drawing);
+    this.setState({ ...this.state });
     sessionStorage.removeItem("logic");
+    sessionStorage.removeItem("programEnd");
+    sessionStorage.removeItem("SelectedStatus");
 
-    window.location.reload();
+    window.location.reload(false);
   };
   componentDidMount = () => {
     // var socket = io.connect("http://localhost:3008");
@@ -902,11 +905,18 @@ class Logic extends Component {
   check = () => {
     var program = JSON.parse(sessionStorage.getItem("logic")).program;
     var end = JSON.parse(sessionStorage.getItem("logic")).end;
+    var upldbtn = document.getElementById("uploadLogicscrn");
+    upldbtn.style.pointerEvents = "none";
+    upldbtn.style.cursor = "not-allowed";
 
     this.setState({ uploadOpen: true });
     setTimeout(() => {
+      upldbtn.style.cursor = "pointer";
+
+      upldbtn.style.pointerEvents = "all";
+
       this.setState({ uploadOpen: false });
-    }, 2000);
+    }, 5000);
 
     //var socket = socketIOClient("http://localhost:3008");
     if (localStorage.getItem("programMode") == "learn") {
@@ -1068,7 +1078,7 @@ class Logic extends Component {
     // }
     if (this.state.readyForSimulation === "repeat") {
       this.props.history.push("/simulate");
-      window.location.reload();
+      window.location.reload(false);
     } else {
       this.setState({ checkEndProgram: true });
     }
@@ -1083,7 +1093,7 @@ class Logic extends Component {
     const port = await navigator.serial.requestPort({ filters });
     console.log("Ye Mera Port hai", port);
     if (port.onconnect == null) {
-      window.location.reload();
+      window.location.reload(false);
     }
   };
 
@@ -1120,6 +1130,9 @@ class Logic extends Component {
         .internalaccessories,
     };
     this.setState({ uploadOpen: true });
+    var upldbtn = document.getElementById("uploadLogicscrn");
+    upldbtn.style.pointerEvents = "none";
+    upldbtn.style.cursor = "none";
     getBytes({ code: params });
     let bytes = sessionStorage.getItem("convert_Bytes");
     var data = bytes.split(",");
@@ -1127,8 +1140,11 @@ class Logic extends Component {
     //this.myRef.current.upload();
     this.writePort(data);
     setTimeout(() => {
+      upldbtn.style.cursor = "pointer";
+
+      upldbtn.style.pointerEvents = "all";
       this.setState({ uploadOpen: false });
-    }, 1000);
+    }, 3000);
 
     // console.log("UPLOAD DATA", this.myRef.current.upload()); //it will call anyFun which is available at simulateLogic.js
   };
@@ -1857,6 +1873,7 @@ class Logic extends Component {
             }
           }}
           className="nextButton" //search for ".nextButton" in project directory to edit style
+          id="uploadLogicscrn"
           src={renderPrgImage("uploadBtn")}
           style={{
             visibility: "visible",

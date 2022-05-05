@@ -174,12 +174,12 @@ class Assembly extends Component {
       console.log(e);
     }
 
-    this.writePort("notWrite");
+    await this.writePort("notWrite");
     // let valresponceTp0 = "",
     //   valdis = "";
     // // setTimeout(async () => {
     // if (this.state.readbytes) {
-    this.readLoop();
+    await this.readLoop();
     // }
 
     // }, 1000);
@@ -189,16 +189,25 @@ class Assembly extends Component {
 
     try {
       const reader = port.readable.getReader();
-
+      var i = 1;
+      var combiBytes = [];
       // Listen to data coming from the serial device.
       while (true) {
         const { value, done } = await reader.read();
-        console.log("VALUE", value);
+        combiBytes = [...combiBytes, ...value];
+        i++;
         if (this.state.k === true) {
           console.log("MAI CHAL GAYA");
           reader.releaseLock();
+          break;
         }
-        console.log(value);
+        if (i == 2) {
+          console.log("PABYTES", unicodeToChar(combiBytes));
+          reader.releaseLock();
+          this.state.flag = unicodeToChar(combiBytes);
+          break;
+        }
+        // console.log("PABYTES", unicodeToChar(value));
         // value is a string.
         if (value.length == 32) {
           var v = unicodeToChar(value);
@@ -243,7 +252,7 @@ class Assembly extends Component {
           console.log(vae, "ORRRR");
         }
         var vae = v + vi;
-        this.state.flag = vae;
+        // this.state.flag = vae;
         console.log("ADDED", vae);
       }
     } catch (e) {
@@ -282,7 +291,7 @@ class Assembly extends Component {
       //   this.handleUsb();
       // }
       // this.OpenReadComPort();
-      window.location.reload();
+      window.location.reload(false);
       // this.onload();
       var user = 1;
       sessionStorage.setItem("user", JSON.stringify(user));
@@ -315,27 +324,49 @@ class Assembly extends Component {
     // let BAR = "153 1 142 2 237 2 122 1 233 1 0 0 100 100 124 20 10 32 5";
     console.log(BAR, "VAlies");
     console.log("componentDidUpdate");
-    let valresponceTp0 = "";
-    let valresponceTp1 = "";
-    let valresponceTp2 = "";
-    let valtouch_pad = "";
-    let valtouch_pad2 = "",
-      valrangeA1 = "",
-      valrangeA2 = "",
-      valtactswitch = "",
-      valtemp = "",
-      valgas = "",
-      valone = "",
-      valtwo = "",
-      valmic = "",
-      valtemprature = "",
-      valred = "",
-      valgreen = "",
-      valblue = "",
-      vallight = "",
-      valges = "",
-      valdis = "";
-
+    if (this.state.readbytes) {
+      var valresponceTp0 = this.state.responceTp0;
+      var valresponceTp1 = this.state.responceTp1;
+      var valresponceTp2 = this.state.responceTp2;
+      var valtouch_pad = this.state.touch_pad;
+      var valtouch_pad2 = this.state.touch_pad2,
+        valrangeA1 = this.state.rangeA1,
+        valrangeA2 = this.state.rangeA2,
+        valtactswitch = this.state.tactswitch,
+        valtemp = this.state.temp,
+        valgas = this.state.gas,
+        valone = this.state.one,
+        valtwo = this.state.two,
+        valmic = this.state.mic,
+        valtemprature = this.state.temprature,
+        valred = this.state.red,
+        valgreen = this.state.green,
+        valblue = this.state.blue,
+        vallight = this.state.light,
+        valges = this.state.gesture,
+        valdis = this.state.distance;
+    } else {
+      var valresponceTp0 = "";
+      var valresponceTp1 = "";
+      var valresponceTp2 = "";
+      var valtouch_pad = "";
+      var valtouch_pad2 = "",
+        valrangeA1 = "",
+        valrangeA2 = "",
+        valtactswitch = "",
+        valtemp = "",
+        valgas = "",
+        valone = "",
+        valtwo = "",
+        valmic = "",
+        valtemprature = "",
+        valred = "",
+        valgreen = "",
+        valblue = "",
+        vallight = "",
+        valges = "",
+        valdis = "";
+    }
     if (this.state.readbytes) {
       // var socket = socketIOClient.connect("http://localhost:3008");
       let bytesData = Array(9).fill("O".charCodeAt());
@@ -629,7 +660,7 @@ class Assembly extends Component {
           var byte_val2 = v[9] & 0xff;
           var valOfSensor = (byte_val2 << 8) + byte_val1;
           console.log("LSB+MSB:-", valOfSensor);
-          valone = valOfSensor;
+          if (valOfSensor == null) valone = valOfSensor;
         }
       }
 
@@ -659,7 +690,7 @@ class Assembly extends Component {
           gesture: valges,
           distance: valdis,
         });
-      }, 1000);
+      }, 100);
     }
     if (!this.state.readbytes) {
       valresponceTp0 = "";
@@ -670,7 +701,7 @@ class Assembly extends Component {
       valtactswitch = "";
       valtemp = " ";
       valone = " ";
-      valrangeA1 = " ";
+      valrangeA1 = "";
       valrangeA2 = "";
       valgas = "";
       valtwo = "";
@@ -940,7 +971,7 @@ class Assembly extends Component {
     workspace.components[item.type].splice(item.index, 1);
     this.props.assemblyComponent(workspace);
     if (item.type == "play_shield") {
-      window.location.reload();
+      window.location.reload(false);
     }
   };
   /**
@@ -1250,7 +1281,7 @@ class Assembly extends Component {
     const port = await navigator.serial.requestPort({ filters });
     console.log("Ye Mera Port hai", port);
     // if (port.onconnect == null) {
-    //   window.location.reload();
+    //   window.location.reload(false);
     //   // this.OpenReadComPort();
     // }
   };
@@ -1286,6 +1317,9 @@ class Assembly extends Component {
     this.setState({ readbytes: !this.state.readbytes }, () => {
       console.log(this.state.responceTp0, "------------------------->>");
     });
+    if (this.state.readbytes) {
+      window.location.reload(false);
+    }
     console.log("kamal", this.state.readbytes);
   };
 

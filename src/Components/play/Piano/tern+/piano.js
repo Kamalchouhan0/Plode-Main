@@ -55,13 +55,13 @@ function Music(props) {
 
   const gobackUrl = () => {
     // setTimeout(function () {
-    //   window.location.reload();
+    //   window.location.reload(false);
     // }, 100);
     history.goBack();
   };
   // const refresh = () => {
 
-  //   // window.location.reload();
+  //   // window.location.reload(false);
   // };
 
   var count = 0;
@@ -114,7 +114,7 @@ function Music(props) {
       setPianoKey(!isPianoKey);
       setPcPiano(!isPcPiano);
     } else {
-      // window.location.reload();
+      // window.location.reload(false);
       setPcPiano(!isPcPiano);
       setPianoKey(!isPianoKey);
     }
@@ -134,7 +134,7 @@ function Music(props) {
     const port = await navigator.serial.requestPort({ filters });
     console.log("PORTS", port);
     if (port.onconnect == null) {
-      // window.location.reload();
+      // window.location.reload(false);
       setUsb(true);
     }
   };
@@ -420,6 +420,7 @@ function Music(props) {
     // socket.emit("/Pc-keys", data);
     writePort(data);
     console.log("pcpiano on");
+
     // socket.on("/hw-music", (data) => {
     //   // console.log("===========================>data", data.trim());
     //   // console.log("===========================>data", data.trim().length);
