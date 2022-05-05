@@ -144,6 +144,7 @@ class IfPanel extends Component {
 
     this.state = {
       state,
+      k: false,
       isGraterThan: false,
       isLessThan: false,
       isNotequalTo: false,
@@ -156,7 +157,7 @@ class IfPanel extends Component {
       responceTp2: "",
       touch_pad: "",
       touch_pad2: "",
-      rangeA1: "252",
+      rangeA1: "",
       rangeA2: "",
       tactswitch: "",
       mic: "",
@@ -211,10 +212,10 @@ class IfPanel extends Component {
     } catch (e) {
       console.log(e);
     }
-    this.writePort("notWrite");
+    await this.writePort("notWrite");
 
     // try {
-    this.readdata();
+    await this.readdata();
     // }, 1000);
   };
 
@@ -223,13 +224,24 @@ class IfPanel extends Component {
 
     try {
       const reader = port.readable.getReader();
-      console.log("DATA OTT 1");
+      var i = 1;
+      var combiBytes = [];
       // Listen to data coming from the serial device.
       while (true) {
         const { value, done } = await reader.read();
-
-        console.log(value);
-
+        combiBytes = [...combiBytes, ...value];
+        i++;
+        if (this.state.k === true) {
+          console.log("MAI CHAL GAYA");
+          reader.releaseLock();
+          break;
+        }
+        if (i == 2) {
+          console.log("PABYTES", unicodeToChar(combiBytes));
+          reader.releaseLock();
+          this.state.Bytes = unicodeToChar(combiBytes);
+          break;
+        }
         // value is a string.
         if (value.length == 32) {
           var v = unicodeToChar(value);
@@ -276,7 +288,7 @@ class IfPanel extends Component {
         var vae = v + vi;
 
         console.log("ADDED I", vae);
-        this.state.Bytes = vae;
+        // this.state.Bytes = vae;
       }
     } catch (e) {
       console.log(e);
@@ -319,26 +331,49 @@ class IfPanel extends Component {
     let BAR = this.state.Bytes.toString();
     // let BAR = "153 1 142 2 237 2 122 1 233 1 0 0 100 100 124 20 10 0 0";
     console.log(BAR, "VAlies");
-    let valresponceTp0 = "";
-    let valresponceTp1 = "";
-    let valresponceTp2 = "";
-    let valtouch_pad = "";
-    let valtouch_pad2 = "",
-      valrangeA1 = "",
-      valrangeA2 = "",
-      valtactswitch = "",
-      valtemp = "",
-      valgas = "",
-      valone = "",
-      valtwo = "",
-      valmic = "",
-      valred = "",
-      valgreen = "",
-      valblue = "",
-      vallight = "",
-      valges = "",
-      valdis = "",
-      valTemprature = "";
+    if (this.state.isRead) {
+      var valresponceTp0 = this.state.responceTp0;
+      var valresponceTp1 = this.state.responceTp1;
+      var valresponceTp2 = this.state.responceTp2;
+      var valtouch_pad = this.state.touch_pad;
+      var valtouch_pad2 = this.state.touch_pad2,
+        valrangeA1 = this.state.rangeA1,
+        valrangeA2 = this.state.rangeA2,
+        valtactswitch = this.state.tactswitch,
+        valtemp = this.state.temp,
+        valgas = this.state.gas,
+        valone = this.state.one,
+        valtwo = this.state.two,
+        valmic = this.state.mic,
+        valtemprature = this.state.temprature,
+        valred = this.state.red,
+        valgreen = this.state.green,
+        valblue = this.state.blue,
+        vallight = this.state.light,
+        valges = this.state.gesture,
+        valdis = this.state.distance;
+    } else {
+      var valresponceTp0 = "";
+      var valresponceTp1 = "";
+      var valresponceTp2 = "";
+      var valtouch_pad = "";
+      var valtouch_pad2 = "",
+        valrangeA1 = "",
+        valrangeA2 = "",
+        valtactswitch = "",
+        valtemp = "",
+        valgas = "",
+        valone = "",
+        valtwo = "",
+        valmic = "",
+        valtemprature = "",
+        valred = "",
+        valgreen = "",
+        valblue = "",
+        vallight = "",
+        valges = "",
+        valdis = "";
+    }
 
     if (this.state.isRead) {
       // var socket = socketIOClient.connect("http://localhost:3008");
@@ -602,12 +637,12 @@ class IfPanel extends Component {
             valblue = 105;
           }
         }
-        if (sessionData.internalaccessories.isTemprature) {
+        if (sessionData.internalaccessories.isTemeprature) {
           var byte_val1 = v[17] & 0xff;
           var byte_val2 = v[18] & 0xff;
           var valOfSensor = (byte_val2 << 8) + byte_val1;
           console.log("LSB+MSB:-", valOfSensor);
-          valTemprature = valOfSensor;
+          valtemprature = valOfSensor;
         }
         if (sessionData.internalaccessories.isTouchZero) {
           var byte_val1 = v[0] & 0xff;
@@ -656,7 +691,7 @@ class IfPanel extends Component {
           light: vallight,
           gesture: valges,
           distance: valdis,
-          temprature: valTemprature,
+          temprature: valtemprature,
         });
       }, 1000);
     }

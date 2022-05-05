@@ -582,29 +582,29 @@ function RemoteSection(props) {
 
     writePort("notWrite");
 
-    try {
-      let portReader = p_Port.readable.getReader();
+    // try {
+    //   let portReader = p_Port.readable.getReader();
 
-      // let portWriter = p_Port.writable.getWriter();
+    //   // let portWriter = p_Port.writable.getWriter();
 
-      while (true) {
-        const { value, done } = await portReader.read();
-        // console.log("value", value);
-        console.log("done", done);
+    //   while (true) {
+    //     const { value, done } = await portReader.read();
+    //     // console.log("value", value);
+    //     console.log("done", done);
 
-        const str = unicodeToChar(value);
+    //     const str = unicodeToChar(value);
 
-        console.log(str, "uniCodeTOCHAR");
+    //     console.log(str, "uniCodeTOCHAR");
 
-        if (done) {
-          console.log("[readLoop] DONE", done);
-          portReader.releaseLock();
-          break;
-        }
-      }
-    } catch (e) {
-      console.log(e);
-    }
+    //     if (done) {
+    //       console.log("[readLoop] DONE", done);
+    //       portReader.releaseLock();
+    //       break;
+    //     }
+    //   }
+    // } catch (e) {
+    //   console.log(e);
+    // }
 
     console.log(p_Port, "p_Port");
   };
