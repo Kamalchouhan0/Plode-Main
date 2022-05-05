@@ -502,7 +502,7 @@ class Assembly extends Component {
       // socket.emit("/assemblyreadBytes", bytesData);
 
       var v = BAR.split(" ");
-      console.log("RAJPUT", v);
+      // console.log("RAJPUT", v);
       if (v[13] > 255 || v[17] === 0) {
         v[14] = v[13].slice(-2, 4);
         v[13] = v[13].slice(0, 2);
