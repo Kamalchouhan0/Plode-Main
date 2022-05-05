@@ -118,6 +118,8 @@ function Music(props) {
       setPcPiano(!isPcPiano);
       setPianoKey(!isPianoKey);
     }
+    var piano = { isPianoKey: isPianoKey, isPcPiano: isPcPiano };
+    sessionStorage.setItem("piano", JSON.stringify(piano));
   };
 
   const handlePcPiano = (e) => {
@@ -128,6 +130,8 @@ function Music(props) {
       setPcPiano(!isPcPiano);
       setPianoKey(!isPianoKey);
     }
+    var piano = { isPianoKey: isPianoKey, isPcPiano: isPcPiano };
+    sessionStorage.setItem("piano", JSON.stringify(piano));
   };
   const HdleUsb = async (e) => {
     const filters = [{ usbVendorId: 0x1a86, usbProductId: 0x7523 }];
@@ -260,7 +264,7 @@ function Music(props) {
     }
 
     writePort("notWrite");
-    readLoop();
+    //readLoop();
     // let portReader = p_Port.readable.getReader();
 
     // let portWriter = p_Port.writable.getWriter();
@@ -306,23 +310,27 @@ function Music(props) {
 
     console.log(p_Port, "p_Port");
   };
+  const timer = (ms) => new Promise((res) => setTimeout(res, ms));
   async function readLoop() {
     const port = props.webSerial;
 
     try {
-      let portReader = port.readable.getReader();
+      const portReader = port.readable.getReader();
 
       // let portWriter = portList.writable.getWriter();
 
       while (true) {
         const { value, done } = await portReader.read();
         // console.log("value", value);
-        console.log("done", done);
-
+        //await timer(500);
+        var piano = JSON.parse(sessionStorage.getItem("piano"));
+        console.log("done", piano.isPcPiano);
+        if (piano.isPcPiano) break;
         const strg = unicodeToChar(value);
         let str = strg.trim();
 
         console.log(str, "uniCodeTOCHAR");
+
         if (str === "K494848") {
           console.log("VALUE IS COMING");
           var audio = new Audio(`${AudioC}`);
@@ -362,6 +370,9 @@ function Music(props) {
         } else if (str === "K484848") {
           let data = ["K".charCodeAt(), "P".charCodeAt()];
           writePort(data);
+        } else {
+          let data = ["K".charCodeAt(), "P".charCodeAt()];
+          writePort(data);
         }
         // else if (str != "K444") {
         //   let data = ["K".charCodeAt(), "P".charCodeAt()];
@@ -373,6 +384,7 @@ function Music(props) {
         //   break;
         // }
       }
+      portReader.releaseLock();
     } catch (e) {
       console.log(e);
     }
@@ -419,6 +431,7 @@ function Music(props) {
     let data = ["K".charCodeAt(), "P".charCodeAt()];
     // socket.emit("/Pc-keys", data);
     writePort(data);
+    readLoop();
     console.log("pcpiano on");
 
     // socket.on("/hw-music", (data) => {

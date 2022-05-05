@@ -121,6 +121,7 @@ div .black,
   /* box-shadow: 0vh 0.39vw 1vw #0000009e; */
   background: linear-gradient(45deg, #222 0%, #555 100%);
   background: #171d1a;
+  pointer-events: none;
 }
 
 .black:active {
