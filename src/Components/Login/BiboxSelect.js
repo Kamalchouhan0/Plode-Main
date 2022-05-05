@@ -34,7 +34,7 @@ function BiboxSelection() {
   const selectDevice = () => {
     sessionStorage.setItem("connectedDevice", "Ace");
     history.push("/deviceSelection");
-    window.location.reload();
+    window.location.reload(false);
   };
 
   return (

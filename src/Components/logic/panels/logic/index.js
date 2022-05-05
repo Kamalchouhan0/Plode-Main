@@ -1038,7 +1038,7 @@ class Logic extends Component {
   checkForSimulation = () => {
     if (this.state.readyForSimulation === "repeat") {
       this.props.history.push("/simulate");
-      window.location.reload();
+      window.location.reload(false);
     } else {
       this.setState({ checkEndProgram: true });
     }

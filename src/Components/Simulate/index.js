@@ -177,7 +177,7 @@ class Simulate extends Component {
     window.addEventListener("load", async (e) => {
       console.log("HEY_CALIIN", this.props.state);
       navigator.serial.addEventListener("connect", (e) => {
-        window.location.reload();
+        window.location.reload(false);
         var user = 1;
         sessionStorage.setItem("user", JSON.stringify(user));
         this.handleUsb();
@@ -328,7 +328,7 @@ class Simulate extends Component {
     const port = await navigator.serial.requestPort({ filters });
     console.log("Ye Mera Port hai", port);
     if (port.onconnect == null) {
-      window.location.reload();
+      window.location.reload(false);
     }
   };
   helpBtn = (e) => {
@@ -1390,7 +1390,7 @@ class Simulate extends Component {
                 src={renderPrgImage("backBtn")}
                 onClick={() => {
                   this.props.history.push("/logic");
-                  window.location.reload();
+                  window.location.reload(false);
                 }}
               />
             )}

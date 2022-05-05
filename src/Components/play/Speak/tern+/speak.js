@@ -52,7 +52,7 @@ function Speech(props) {
 
   const gobackUrl = () => {
     // setTimeout(function () {
-    //   window.location.reload();
+    //   window.location.reload(false);
     // }, 100);
     history.goBack();
   };

@@ -85,10 +85,10 @@ function RemoteSection(props) {
 
   const gobackUrl = () => {
     // setTimeout(function () {
-    //   window.location.reload();
+    //   window.location.reload(false);
     // }, 100);
     history.goBack();
-    // window.location.reload();
+    // window.location.reload(false);
     // Portclose();
   };
   const [isBuzzer, setBuzzer] = useState(0);
@@ -407,7 +407,7 @@ function RemoteSection(props) {
     const filters = [{ usbVendorId: 0x1a86, usbProductId: 0x7523 }];
     const port = await navigator.serial.requestPort({ filters });
     if (port.onconnect == null) {
-      // window.location.reload();
+      // window.location.reload(false);
       setUsb(true);
     }
   };

@@ -171,7 +171,7 @@ class Logic extends Component {
         var user = 1;
         sessionStorage.setItem("user", JSON.stringify(user));
         this.handleUsb();
-        window.location.reload();
+        window.location.reload(false);
       });
 
       navigator.serial.addEventListener("disconnect", (e) => {
@@ -285,7 +285,7 @@ class Logic extends Component {
     sessionStorage.removeItem("programEnd");
     sessionStorage.removeItem("SelectedStatus");
 
-    window.location.reload();
+    window.location.reload(false);
   };
   componentDidMount = () => {
     // var socket = io.connect("http://localhost:3008");
@@ -1078,7 +1078,7 @@ class Logic extends Component {
     // }
     if (this.state.readyForSimulation === "repeat") {
       this.props.history.push("/simulate");
-      window.location.reload();
+      window.location.reload(false);
     } else {
       this.setState({ checkEndProgram: true });
     }
@@ -1093,7 +1093,7 @@ class Logic extends Component {
     const port = await navigator.serial.requestPort({ filters });
     console.log("Ye Mera Port hai", port);
     if (port.onconnect == null) {
-      window.location.reload();
+      window.location.reload(false);
     }
   };
 

@@ -845,7 +845,7 @@ var Logic = React.createClass({
     update(logicState);
   },
   pythonButtonClicked: function () {
-    window.location.reload();
+    window.location.reload(false);
     clicked = 1;
     sessionStorage.setItem("CurrentLogicScreen", "python");
     var currentLogicScreen = this.state.currentLogicScreen;
@@ -862,7 +862,7 @@ var Logic = React.createClass({
     }
   },
   editorButtonClicked: function () {
-    window.location.reload();
+    window.location.reload(false);
     clicked = 1;
     sessionStorage.setItem("CurrentLogicScreen", "text");
     var currentLogicScreen = this.state.currentLogicScreen;

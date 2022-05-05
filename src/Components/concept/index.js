@@ -432,7 +432,7 @@ class Content extends Component {
       //window.location.href = "/Assembly";
 
       if (reloadRetrive) {
-        // window.location.reload();
+        // window.location.reload(false);
         //  const portList = await navigator.serial.getPorts();
         //console.log(">>>>>>>>>>>>>>>>>>>>>>>>", portList);
         // this.props.webSerialAction({ port: portList[0] }); // dispatching function of redux
@@ -465,14 +465,14 @@ class Content extends Component {
   erasedConceptData = () => {
     // this.setState({ erasedProgram: true });
     this.props.history.push("/selectScreen/InternalAccessories");
-    window.location.reload();
+    window.location.reload(false);
   };
   shouldErase = (info) => {
     if (info == "Yes") {
       sessionStorage.removeItem("Index");
       this.props.indexData.concept.Index = [];
       this.props.history.push("/selectScreen/InternalAccessories");
-      window.location.reload();
+      window.location.reload(false);
     } else {
       this.setState({ erasedProgram: false });
     }

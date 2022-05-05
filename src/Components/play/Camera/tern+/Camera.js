@@ -63,7 +63,7 @@ function Camera(props) {
     const filters = [{ usbVendorId: 0x1a86, usbProductId: 0x7523 }];
     const port = await navigator.serial.requestPort({ filters });
     if (port.onconnect == null) {
-      // window.location.reload();
+      // window.location.reload(false);
       setUsb(true);
     }
   };
