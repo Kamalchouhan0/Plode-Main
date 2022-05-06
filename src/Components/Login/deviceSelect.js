@@ -90,7 +90,7 @@ const DeviceSelect = (props) => {
   // async function connect() {
   //   let port = await navigator.serial.requestPort();
   //   // - Wait for the port to open.
-  //   await port.open({ baudRate: 115200 });
+  //   await port.open({ baudRate: 120000 });
   //   console.log("Open");
 
   //   // const decoder = new TextDecoderStream();

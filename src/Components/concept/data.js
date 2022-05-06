@@ -129,7 +129,7 @@ if (componentType == "Ace") {
         "Range Sensor: It is an IR sensor used to measure the distance of the object from it (max range 3-6cm)",
       color: "#ff8c19",
       name: "distance sensor",
-      signalType: "null",
+      signalType: "analog",
     },
 
     {

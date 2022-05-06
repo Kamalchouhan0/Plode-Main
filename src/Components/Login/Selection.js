@@ -65,7 +65,7 @@ function Selection(props) {
     console.log(p_Port, "p_Port");
     try {
       console.log("OPENED");
-      await p_Port.open({ baudRate: 115200 });
+      await p_Port.open({ baudRate: 120000 });
     } catch (e) {
       console.log(e);
     }

@@ -169,7 +169,7 @@ class Assembly extends Component {
     // console.log(port, "pPort");
 
     try {
-      await port.open({ baudRate: 115200 });
+      await port.open({ baudRate: 120000 });
     } catch (e) {
       console.log(e);
     }
@@ -405,9 +405,18 @@ class Assembly extends Component {
               } else if (signalType == "digital") {
                 bytesData[2] = "I".charCodeAt();
                 bytesData[3] = "I".charCodeAt();
-              } else if (signalType == "analog") {
+              } else if (
+                Type == "tact_switch" ||
+                Type == "dual_switch" ||
+                Type == "touch_sensor" ||
+                Type == "rotatory" ||
+                Type == "light_sensor" ||
+                Type == "joystick" ||
+                Type == "distance_sensor"
+              ) {
                 bytesData[2] = "A".charCodeAt();
                 bytesData[3] = "A".charCodeAt();
+                console.log("TOUCH 0000000000");
               }
 
               console.log(signalType, "signlay type");
@@ -417,8 +426,17 @@ class Assembly extends Component {
 
             case "B": {
               let signalType = portdata.PortConnections[port].signalType;
+              let Type = portdata.PortConnections[port].type;
 
-              if (signalType == "analog") {
+              if (
+                Type == "tact_switch" ||
+                Type == "dual_switch" ||
+                Type == "touch_sensor" ||
+                Type == "rotatory" ||
+                Type == "light_sensor" ||
+                Type == "joystick" ||
+                Type == "distance_sensor"
+              ) {
                 bytesData[4] = "A".charCodeAt();
                 bytesData[5] = "A".charCodeAt();
               } else if (signalType == "digital") {
@@ -441,7 +459,15 @@ class Assembly extends Component {
               } else if (signalType == "digital") {
                 bytesData[6] = "I".charCodeAt();
                 bytesData[7] = "I".charCodeAt();
-              } else if (signalType == "analog") {
+              } else if (
+                Type == "tact_switch" ||
+                Type == "dual_switch" ||
+                Type == "touch_sensor" ||
+                Type == "rotatory" ||
+                Type == "light_sensor" ||
+                Type == "joystick" ||
+                Type == "distance_sensor"
+              ) {
                 bytesData[6] = "A".charCodeAt();
                 bytesData[7] = "A".charCodeAt();
               }
@@ -456,20 +482,20 @@ class Assembly extends Component {
       if (sessionData.internalaccessories.isMic) {
         bytesData[9] = "M".charCodeAt();
       }
-      if (sessionData.internalaccessories.isTemprature) {
+      if (sessionData.internalaccessories.isTemperature) {
         bytesData[10] = "T".charCodeAt();
       }
       if (sessionData.internalaccessories.isTouchZero) {
         bytesData[2] = "T".charCodeAt();
-        bytesData[3] = "T".charCodeAt();
+        // bytesData[3] = "T".charCodeAt();
       }
       if (sessionData.internalaccessories.isTouchOne) {
         bytesData[4] = "T".charCodeAt();
-        bytesData[5] = "T".charCodeAt();
+        // bytesData[5] = "T".charCodeAt();
       }
       if (sessionData.internalaccessories.isTouchTwo) {
         bytesData[6] = "T".charCodeAt();
-        bytesData[7] = "T".charCodeAt();
+        // bytesData[7] = "T".charCodeAt();
       }
 
       // if (sessionData.internalaccessories.isTouchZero) {
@@ -572,8 +598,6 @@ class Assembly extends Component {
 
             vallight = data;
             console.log(" 23 DISTANCE SENSOR:--", valdis);
-          } else {
-            vallight = " ";
           }
         }
         if (
@@ -584,8 +608,6 @@ class Assembly extends Component {
 
             valdis = data;
             console.log(" 23 DISTANCE SENSOR:--", valdis);
-          } else {
-            valdis = " ";
           }
         }
         if (
@@ -596,16 +618,14 @@ class Assembly extends Component {
 
             valges = data;
             console.log(" 23 DISTANCE SENSOR:--", valdis);
-          } else {
-            valges = " ";
           }
         }
         if (sessionData.internalaccessories.isMic) {
-          if (v[15] != "0") {
+          if (v[15] != "0" || v[16] != "0") {
             var byte_val1 = v[15] & 0xff;
             var byte_val2 = v[16] & 0xff;
             var valOfSensor = (byte_val2 << 8) + byte_val1;
-            console.log("LSB+MSB:-", valOfSensor);
+            console.log("LSB+MSB MIC:-", valOfSensor);
             valmic = valOfSensor;
           }
         }
@@ -621,25 +641,27 @@ class Assembly extends Component {
 
             valgreen = data;
             console.log(" 23 DISTANCE SENSOR:--", valdis);
-          } else {
-            valgreen = 115;
           }
           if (v[14] != "0" && v[14] < 256) {
             var data = v[14];
 
             valblue = data;
             console.log(" 23 DISTANCE SENSOR:--", valdis);
-          } else {
-            valblue = 105;
           }
         }
         if (sessionData.internalaccessories.isTemperature) {
-          var byte_val1 = v[17] & 0xff;
-          var byte_val2 = v[18] & 0xff;
-          var valOfSensor = (byte_val2 << 8) + byte_val1;
-          console.log("LSB+MSB:-", valOfSensor);
-          valtemprature = valOfSensor;
-          console.log("TEMRATURE SSS VALUE", valtemprature);
+          if (v[17] != 0) {
+            var byte_val1 = v[17] & 0xff;
+            var byte_val2 = v[18] & 0xff;
+            var valOfSensor = (byte_val2 << 8) + byte_val1;
+            console.log("LSB+MSB TEMP:-", valOfSensor);
+            valtemprature = valOfSensor;
+          } else {
+            var byte_val2 = v[18];
+
+            console.log("LSB+MSB TEMP:-", valOfSensor);
+            valtemprature = byte_val2;
+          }
         }
         if (sessionData.internalaccessories.isTouchZero) {
           var byte_val1 = v[0] & 0xff;

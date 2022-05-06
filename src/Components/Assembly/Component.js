@@ -297,8 +297,8 @@ class Component1 extends Component {
 
       var height = 100 * scale;
       var width = 100 * scale;
-      left = left - 20;
-      top = top - 10;
+      left = left - 6;
+      top = top - 7;
 
       return connectDragSource(
         <div>
@@ -324,8 +324,8 @@ class Component1 extends Component {
             style={{
               position: "absolute",
               top,
-              marginTop: "2.1%",
-              marginLeft: "-1.1%",
+              marginTop: "-1.1%",
+              marginLeft: "1.1%",
               left,
               zIndex: "3",
               color: "#707070",
@@ -344,8 +344,8 @@ class Component1 extends Component {
             style={{
               position: "absolute",
               top,
-              marginTop: "2.6%",
-              marginLeft: "10.5%",
+              marginTop: "0.1%",
+              marginLeft: "6.5%",
               left,
               zIndex: "3",
               color: "#707070",
@@ -482,8 +482,8 @@ class Component1 extends Component {
             style={{
               position: "absolute",
               top,
-              marginTop: "1%",
-              marginLeft: "5.5%",
+              marginTop: "-0.5%",
+              marginLeft: "0.5%",
               left,
               zIndex: "3",
               fontSize: "20px",
@@ -503,8 +503,8 @@ class Component1 extends Component {
             style={{
               position: "absolute",
               top,
-              marginTop: "2%",
-              marginLeft: "12.5%",
+              marginTop: "-0.1%",
+              marginLeft: "6%",
               left,
               zIndex: "3",
               fontSize: "20px",
@@ -562,8 +562,8 @@ class Component1 extends Component {
             style={{
               position: "absolute",
               top,
-              marginTop: "1%",
-              marginLeft: "5.5%",
+              marginTop: "-0.5%",
+              marginLeft: "0.5%",
               left,
               zIndex: "3",
               fontSize: "20px",
@@ -583,8 +583,8 @@ class Component1 extends Component {
             style={{
               position: "absolute",
               top,
-              marginTop: "2%",
-              marginLeft: "12.5%",
+              marginTop: "-0.1%",
+              marginLeft: "6%",
               left,
               zIndex: "3",
               fontSize: "20px",
@@ -953,7 +953,7 @@ class Component1 extends Component {
       var height = 100 * scale;
       var width = 100 * scale;
       left = left;
-      top = top - 8;
+      top = top - 4;
 
       return connectDragSource(
         <div>
