@@ -278,6 +278,7 @@ class Logic extends Component {
 
   clearProgram = () => {
     sessionStorage.removeItem("logic");
+    sessionStorage.removeItem("programEnd");
     window.location.reload(false);
     sessionStorage.removeItem("EndSwitch");
   };

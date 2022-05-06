@@ -88,9 +88,9 @@ class login extends Component {
     this.props.assemblyComponent(assembly);
     this.props.logicComponent(logic);
 
-    setTimeout(() => {
-      this.props.history.push("/biboxSelection");
-    }, 3500);
+    // setTimeout(() => {
+    //   this.props.history.push("/biboxSelection");
+    // }, 3500);
   };
 
   render() {
@@ -133,7 +133,7 @@ class login extends Component {
           {/* </Link> */}
         </div>
         <div className={animationStyle.Google_Login}>
-          {/* <GoogleLogin
+          <GoogleLogin
             clientId="798914613502-eeirsjatcut3f8pljkbknd1hdkampga8.apps.googleusercontent.com"
             buttonText="Login"
             render={(renderProps) => (
@@ -157,7 +157,7 @@ class login extends Component {
             onSuccess={loginSuccess}
             onFailure={loginFail}
             cookiePolicy={"single_host_origin"}
-          /> */}
+          />
         </div>
       </div>
     );
