@@ -54,6 +54,9 @@ const CustomNodeFlow = ({ compo, img, assembly, updateState, indexChange }) => {
     event.preventDefault();
     event.dataTransfer.dropEffect = "move";
   }, []);
+  const onNodeDrag = useCallback((event) => {
+    event.preventDefault();
+  }, []);
   const onElementClick = (event, element) => {
     console.log(event, element, "i/p");
     console.log(event.target.getAttribute("namecomp"));
@@ -1668,6 +1671,7 @@ const CustomNodeFlow = ({ compo, img, assembly, updateState, indexChange }) => {
         onConnect={onConnect}
         onNodeDragStop={onNodeDragStop}
         //   style={{ background: bgColor }}
+        onNodeDrag={onNodeDrag}
         onLoad={onLoad}
         onDragOver={onDragOver}
         onDrop={onDrop}
