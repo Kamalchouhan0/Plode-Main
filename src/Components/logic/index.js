@@ -16,7 +16,6 @@ import BottomPanel from "./BottomPanel";
 import SizesHelper from "../../helpers/Sizes";
 import Sizes from "./Sizes";
 import ProgramToDrawing from "./ProgramToDrawing";
-
 import "../../css/logic.css";
 import Modal from "react-modal";
 import socketIOClient from "socket.io-client";
@@ -42,7 +41,6 @@ import { object } from "prop-types";
 import renderPrgImage from "../../source/programImg";
 import LogicPrgm from "../ReusableComponents/PrgmSlider/LogicPrgm/LogicPrgm";
 var _ = require("lodash");
-
 var countLogic;
 var oldDeltaX, oldDeltaY, panning;
 var idss = [];
@@ -279,13 +277,9 @@ class Logic extends Component {
   };
 
   clearProgram = () => {
-    console.log("clearProgram", drawing);
-    this.setState({ ...this.state });
     sessionStorage.removeItem("logic");
-    sessionStorage.removeItem("programEnd");
-    sessionStorage.removeItem("SelectedStatus");
-
     window.location.reload(false);
+    sessionStorage.removeItem("EndSwitch");
   };
   componentDidMount = () => {
     // var socket = io.connect("http://localhost:3008");
