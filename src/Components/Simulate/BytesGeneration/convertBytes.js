@@ -37,16 +37,16 @@ function generating_code_simulation(Program, callback) {
 
     console.log("program 88", Program);
 
-    genCodeString["genCode"](Program);
+    // genCodeString["genCode"](Program);
 
     var stringToByteCode = genCodeString["genCode"](Program);
 
     console.log("code 55", stringToByteCode);
 
-    genCodeString["stringToByte"](stringToByteCode);
+    //genCodeString["stringToByte"](stringToByteCode);
     let result = genCodeString["stringToByte"](stringToByteCode);
-    var stringToByteCodeConverted =
-      genCodeString["stringToByte"](stringToByteCode);
+    // var stringToByteCodeConverted =
+    //   genCodeString["stringToByte"](stringToByteCode);
 
     //console.log("string to byte",result);
     //console.log("type", typeof(result));
@@ -56,6 +56,10 @@ function generating_code_simulation(Program, callback) {
     var buff = new Buffer(stringData);
     console.log("STRING DATA====>>>>>>>", stringData);
     let data = buff.toString();
+    console.log("string from back", data.indexOf("82,83,84"));
+    if (data.indexOf("82,83,84") == -1) {
+      data = data + ",82,83,84";
+    }
     // console.log(typeof data);
     sessionStorage.setItem("convert_Bytes", data);
     // fs.open(FOLDER2 + "/binary_" + uuid_gen + ".txt", "w+", function (err, fd) {
