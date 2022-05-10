@@ -208,7 +208,7 @@ class IfPanel extends Component {
     console.log("PORTLIST", port);
     // console.log(port, "pPort");
     try {
-      await port.open({ baudRate: 115200 });
+      await port.open({ baudRate: 120000 });
     } catch (e) {
       console.log(e);
     }
@@ -410,7 +410,15 @@ class IfPanel extends Component {
               } else if (signalType == "digital") {
                 bytesData[2] = "I".charCodeAt();
                 bytesData[3] = "I".charCodeAt();
-              } else if (signalType == "analog") {
+              } else if (
+                Type == "tact_switch" ||
+                Type == "dual_switch" ||
+                Type == "touch_sensor" ||
+                Type == "rotatory" ||
+                Type == "light_sensor" ||
+                Type == "joystick" ||
+                Type == "distance_sensor"
+              ) {
                 bytesData[2] = "A".charCodeAt();
                 bytesData[3] = "A".charCodeAt();
               }
@@ -420,10 +428,20 @@ class IfPanel extends Component {
               break;
             }
 
-            case "B2": {
+            case "B1": {
               let signalType = portdata.PortConnections[port].signalType;
 
-              if (signalType == "analog") {
+              let Type = portdata.PortConnections[port].type;
+
+              if (
+                Type == "tact_switch" ||
+                Type == "dual_switch" ||
+                Type == "touch_sensor" ||
+                Type == "rotatory" ||
+                Type == "light_sensor" ||
+                Type == "joystick" ||
+                Type == "distance_sensor"
+              ) {
                 bytesData[4] = "A".charCodeAt();
                 bytesData[5] = "A".charCodeAt();
               } else if (signalType == "digital") {
@@ -435,7 +453,7 @@ class IfPanel extends Component {
               break;
             }
 
-            case "C2": {
+            case "C1": {
               let signalType = portdata.PortConnections[port].signalType;
 
               let Type = portdata.PortConnections[port].type;
@@ -446,7 +464,15 @@ class IfPanel extends Component {
               } else if (signalType == "digital") {
                 bytesData[6] = "I".charCodeAt();
                 bytesData[7] = "I".charCodeAt();
-              } else if (signalType == "analog") {
+              } else if (
+                Type == "tact_switch" ||
+                Type == "dual_switch" ||
+                Type == "touch_sensor" ||
+                Type == "rotatory" ||
+                Type == "light_sensor" ||
+                Type == "joystick" ||
+                Type == "distance_sensor"
+              ) {
                 bytesData[6] = "A".charCodeAt();
                 bytesData[7] = "A".charCodeAt();
               }
@@ -461,20 +487,20 @@ class IfPanel extends Component {
       if (sessionData.internalaccessories.isMic) {
         bytesData[9] = "M".charCodeAt();
       }
-      if (sessionData.internalaccessories.isTemprature) {
+      if (sessionData.internalaccessories.isTemperature) {
         bytesData[10] = "T".charCodeAt();
       }
       if (sessionData.internalaccessories.isTouchZero) {
         bytesData[2] = "T".charCodeAt();
-        bytesData[3] = "T".charCodeAt();
+        // bytesData[3] = "T".charCodeAt();
       }
       if (sessionData.internalaccessories.isTouchOne) {
         bytesData[4] = "T".charCodeAt();
-        bytesData[5] = "T".charCodeAt();
+        // bytesData[5] = "T".charCodeAt();
       }
       if (sessionData.internalaccessories.isTouchTwo) {
         bytesData[6] = "T".charCodeAt();
-        bytesData[7] = "T".charCodeAt();
+        // bytesData[7] = "T".charCodeAt();
       }
 
       // if (sessionData.internalaccessories.isTouchZero) {
@@ -605,7 +631,7 @@ class IfPanel extends Component {
           }
         }
         if (sessionData.internalaccessories.isMic) {
-          if (v[15] != "0") {
+          if (v[15] != "0" || v[16] != "0") {
             var byte_val1 = v[15] & 0xff;
             var byte_val2 = v[16] & 0xff;
             var valOfSensor = (byte_val2 << 8) + byte_val1;
@@ -637,12 +663,19 @@ class IfPanel extends Component {
             valblue = 105;
           }
         }
-        if (sessionData.internalaccessories.isTemeprature) {
-          var byte_val1 = v[17] & 0xff;
-          var byte_val2 = v[18] & 0xff;
-          var valOfSensor = (byte_val2 << 8) + byte_val1;
-          console.log("LSB+MSB:-", valOfSensor);
-          valtemprature = valOfSensor;
+        if (sessionData.internalaccessories.isTemperature) {
+          if (v[17] != 0) {
+            var byte_val1 = v[17] & 0xff;
+            var byte_val2 = v[18] & 0xff;
+            var valOfSensor = (byte_val2 << 8) + byte_val1;
+            console.log("LSB+MSB TEMP:-", valOfSensor);
+            valtemprature = valOfSensor;
+          } else {
+            var byte_val2 = v[18];
+
+            console.log("LSB+MSB TEMP:-", valOfSensor);
+            valtemprature = byte_val2;
+          }
         }
         if (sessionData.internalaccessories.isTouchZero) {
           var byte_val1 = v[0] & 0xff;
@@ -1688,7 +1721,7 @@ class IfPanel extends Component {
                   <p style={{ marginTop: "20%" }}>{this.state.one}</p>
                 ) : this.state.readToggel == "MICROPHONE" ? (
                   <p style={{ marginTop: "20%" }}>{this.state.mic}</p>
-                ) : this.state.readToggel == "TEMPRATURE" ? (
+                ) : this.state.readToggel == "TEMPERATURE" ? (
                   <p style={{ marginTop: "20%" }}>{this.state.temprature}</p>
                 ) : this.state.readToggel == "4-IN-1 SENSOR  →  BLUE" ? (
                   <p style={{ marginTop: "20%" }}>{this.state.blue}</p>

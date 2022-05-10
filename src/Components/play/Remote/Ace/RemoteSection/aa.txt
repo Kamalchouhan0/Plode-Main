@@ -9,7 +9,7 @@ async function connect() {
 
     console.log(port, "PORT");
     // - Wait for the port to open.
-    await port.open({ baudRate: 115200 });
+    await port.open({ baudRate: 120000 });
     console.log("Open");
 
     const writer = port.writable.getWriter();
@@ -3887,7 +3887,7 @@ body {
     // console.log(portData, "__postData");
 
     // - Wait for the port to open.
-    await port.open({ baudRate: 115200 });
+    await port.open({ baudRate: 120000 });
 
     const decoder = new TextDecoderStream();
     const inputDone = port.readable.pipeTo(decoder.writable);

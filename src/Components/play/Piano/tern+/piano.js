@@ -150,7 +150,7 @@ function Music(props) {
   //   portData = Object.assign(port);
   //   console.log(portData, "__postData");
   //   // - Wait for the port to open.
-  //   await port.open({ baudRate: 115200 });
+  //   await port.open({ baudRate: 120000 });
   //   const decoder = new TextDecoderStream();
   //   const inputDone = port.readable.pipeTo(decoder.writable);
   //   const inputStream = decoder.readable;
@@ -256,11 +256,11 @@ function Music(props) {
 
     try {
       console.log("OPENED");
-      await p_Port.open({ baudRate: 115200 });
+      await p_Port.open({ baudRate: 120000 });
     } catch (e) {
       console.log(e);
       // p_Port.close();
-      // await p_Port.open({ baudRate: 115200 });
+      // await p_Port.open({ baudRate: 120000 });
     }
 
     writePort("notWrite");
