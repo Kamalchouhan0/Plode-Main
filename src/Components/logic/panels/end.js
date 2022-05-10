@@ -60,16 +60,17 @@ class End extends Component {
   };
 
   componentDidMount = () => {
-    if (this.props.value == "repeat") {
+    if (this.props.value == "repeat" && this.state.isend == false) {
       this.setState({
         isrepeat: true,
       });
 
       console.log("TRUUE");
     }
-    if (this.props.value == "end") {
+    if (this.props.value == "end" && this.state.isrepeat == true) {
       this.setState({
         isend: true,
+        isrepeat: false,
       });
       console.log("FALLLSE");
     }

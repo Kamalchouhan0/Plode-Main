@@ -1547,8 +1547,20 @@ function genCodeString(logicComponents) {
   }
 
   console.log("completeLogicProgram", completeLogicProgram);
+  // var a = completeLogicProgram;
+  console.log(
+    "completeLogicProgram KI Length",
+    completeLogicProgram.replace(/ENDRST/g, "END")
+  );
 
-  Uploadprogram += completeLogicProgram;
+  if (
+    completeLogicProgram.slice(completeLogicProgram.length - 6) === "ENDRST"
+  ) {
+    Uploadprogram += completeLogicProgram.replace(/ENDRST/g, "END");
+  } else {
+    Uploadprogram += completeLogicProgram;
+  }
+  // Uploadprogram += completeLogicProgram;
   uploadProgram = Uploadprogram;
 
   console.log(uploadProgram, "uploadProgram");
