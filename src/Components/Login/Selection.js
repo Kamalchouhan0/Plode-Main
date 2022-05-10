@@ -51,8 +51,9 @@ function Selection(props) {
   useEffect(() => {
     console.log(JSON.parse(sessionStorage.getItem("user")), "KAMAL");
     let no_port = props.webserialPort.name;
-    console.log("PORT Data", no_port);
-    if (no_port == "Not Connected") {
+    let gg = sessionStorage.getItem("Hardware");
+    console.log("PORT Data", gg);
+    if (no_port == "Not Connected" && gg != "No Hardware") {
       history.push("/deviceSelection");
     }
     if (no_port == "Not Connected") {

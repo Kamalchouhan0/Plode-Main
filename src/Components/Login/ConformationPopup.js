@@ -34,6 +34,11 @@ function ConformationPopup() {
   const gobackUrl = () => {
     history.goBack();
   };
+  const Yes = () => {
+    history.push("/Selection");
+    sessionStorage.setItem("Hardware", "No Hardware");
+  };
+
   return (
     <div className={ConformationPopupStyle.Main_Div}>
       <div className={ConformationPopupStyle.Div_Panel}>
@@ -60,14 +65,17 @@ function ConformationPopup() {
               onClick={gobackUrl}
             ></img>
 
-            <Link to="/Selection">
-              <img
-                className={ConformationPopupStyle.Reconnect_Button}
-                src={renderImage("reconnect")}
-              ></img>
+            {/* <Link to="/Selection"> */}
+            <img
+              className={ConformationPopupStyle.Reconnect_Button}
+              src={renderImage("reconnect")}
+              onClick={Yes}
+            ></img>
 
-              <h4 className={ConformationPopupStyle.Reconnect_txt}>Yes</h4>
-            </Link>
+            <h4 className={ConformationPopupStyle.Reconnect_txt} onClick={Yes}>
+              Yes
+            </h4>
+            {/* </Link> */}
           </div>
         </div>
         <div></div>
