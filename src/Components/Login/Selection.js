@@ -53,6 +53,9 @@ function Selection(props) {
     let no_port = props.webserialPort.name;
     console.log("PORT Data", no_port);
     if (no_port == "Not Connected") {
+      history.push("/deviceSelection");
+    }
+    if (no_port == "Not Connected") {
       console.log(JSON.parse(sessionStorage.getItem("webSerialPortList")));
       console.log("SERIAL PORT NOT CONNECTED");
     } else {
@@ -62,6 +65,9 @@ function Selection(props) {
 
   const OpenReadComPort = async () => {
     const p_Port = props.webserialPort; //redux props
+    if (p_Port == null) {
+      history.push("/deviceSelection");
+    }
     console.log(p_Port, "p_Port");
     try {
       console.log("OPENED");

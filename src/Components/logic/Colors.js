@@ -15,7 +15,7 @@ export default Colors = {
   bordergrey: "#AAA",
   black: "#3E3F3D",
   flash_yellow: "#FCD928",
-  insert: "#8DBF4E",
+  insert: "#3FD0C1",
   // 'delete': '#E24D46',
 
   grey: "#adb9cc",

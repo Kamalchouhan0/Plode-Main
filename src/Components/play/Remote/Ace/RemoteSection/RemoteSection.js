@@ -533,13 +533,13 @@ function RemoteSection(props) {
 
   useEffect(async () => {
     navigator.serial.addEventListener("connect", (e) => {
-      // setUsb(true);
+      setUsb(true);
       var user = 1;
       sessionStorage.setItem("user", JSON.stringify(user));
     });
 
     navigator.serial.addEventListener("disconnect", (e) => {
-      // setUsb(false);
+      setUsb(false);
       var user = 0;
       sessionStorage.setItem("user", JSON.stringify(user));
     });
@@ -573,7 +573,7 @@ function RemoteSection(props) {
 
     try {
       console.log("OPENED");
-      await p_Port.open({ baudRate: 120000 });
+      await p_Port.open({ baudRate: 115200 });
     } catch (e) {
       console.log(e);
       // p_Port.close();

@@ -63,7 +63,7 @@ const DeviceSelect = (props) => {
     console.log("clicked");
     const filters = [{ usbVendorId: 0x1a86, usbProductId: 0x7523 }];
 
-    // Prompt user to select an Arduino Uno device.
+    // Prompt user to select an PlayComputer device.
     const port = await navigator.serial.requestPort({ filters });
     if (port.readable == null) {
       history.push("/Selection");

@@ -272,7 +272,7 @@ class App extends Component {
           {/* Give path to tern+ and humanoid */}
 
           {/* Tern + */}
-          <Route path="/remote" component={Remote}></Route>
+          {/* <Route path="/remote" component={Remote}></Route> */}
           <Route path="/speak" component={Speak}></Route>
           <Route path="/music" component={Piano}></Route>
           <Route path="/camera" component={Camera}></Route>
