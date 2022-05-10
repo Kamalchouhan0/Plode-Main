@@ -1310,14 +1310,14 @@ class Logic extends Component {
     //console.log("curdraw", row);
     for (var row in drawing.board) {
       for (var i in drawing.board[row]) {
-        console.log("curdraw", drawing.board[row][i]);
+        //console.log("curdraw", drawing.board[row][i]);
         var block = drawing.board[row][i].type;
         if (block == "active_hand") {
           i++;
           block = drawing.board[row][i].type;
           console.log("active end", block);
           if (block.startsWith("end")) {
-            console.log("active final", drawing.board[row][i]);
+            // console.log("active final", drawing.board[row][i]);
             //drawing.board[row][i] = { type: "blank" };
           }
         }
