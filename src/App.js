@@ -41,7 +41,6 @@ import SavedProgram from "../src/Components/SavePage/savedProgram";
 import Project from "../src/Components/SavePage/project";
 
 import PlaymodeScreen from "../src/Components/play/PlayMode";
-import Remote from "../src/Components/play/Remote/Tern+/remote";
 import Speak from "../src/Components/play/Speak/tern+/speak";
 import Piano from "../src/Components/play/Piano/tern+/piano";
 import Camera from "../src/Components/play/Camera/tern+/Camera.js";

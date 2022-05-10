@@ -56,8 +56,8 @@ function generating_code_simulation(Program, callback) {
     var buff = new Buffer(stringData);
     console.log("STRING DATA====>>>>>>>", stringData);
     let data = buff.toString();
-    console.log("string from back", data.indexOf("82,83,84"));
-    if (data.indexOf("82,83,84") == -1) {
+    console.log("string from back", data.indexOf("69,78,68"));
+    if (data.indexOf("82,83,84") == -1 && data.indexOf("69,78,68") == -1) {
       data = data + ",82,83,84";
     }
     // console.log(typeof data);
