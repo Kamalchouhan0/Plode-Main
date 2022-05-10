@@ -131,18 +131,19 @@ function InternalAccessoriesScreen(props) {
   // const [isColorSensor, setColorSensor] = useState(false);
 
   const styleInput = {
-    width: "50%",
-    height: "100%",
+    width: "31vw",
+    height: "32vw",
     position: "relative",
     backgroundImage: `url(${renderPrgImage("popupcardType")})`,
     backgroundRepeat: "no-repeat",
     backgroundSize: "100% 90%",
+
     // backgroundSize: "contain",
   };
 
   const styleoutput = {
-    width: "50%",
-    height: "100%",
+    width: "31vw",
+    height: "32vw",
     position: "relative",
     backgroundImage: `url(${renderPrgImage("popupcardType")})`,
     backgroundRepeat: "no-repeat",
@@ -153,8 +154,8 @@ function InternalAccessoriesScreen(props) {
   const styleTile = {};
 
   const styleDevicePC = {
-    width: "78%",
-    height: "70%",
+    width: "25vw",
+    height: "22vw",
 
     backgroundImage: `url(${
       process.env.PUBLIC_URL + "/Bisoft_UI/Main/PNG/PC_image@3x.png"
@@ -165,6 +166,7 @@ function InternalAccessoriesScreen(props) {
     zIndex: 110,
     top: "7%",
     position: "relative",
+    aspectRatio: "1 / 1",
   };
   useLayoutEffect(() => {
     setTouchZero(props.indexData.concept.internalaccessories.isTouchZero);

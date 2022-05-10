@@ -1262,7 +1262,7 @@ class Logic extends Component {
     }
     // As according to app approx 11.5 hexagons in a row in the display
 
-    defaultScale = SizesHelper.width / (11.5 * Sizes.xdiff);
+    defaultScale = SizesHelper.width / (18.5 * Sizes.xdiff);
     var { bottomPanel } = this.props.logic;
 
     const { height, width } = this.props.assembly;
@@ -1307,6 +1307,23 @@ class Logic extends Component {
       if (active[0] !== -1) current = drawing.board[active[0]][active[1]].type;
     }
 
+    //console.log("curdraw", row);
+    for (var row in drawing.board) {
+      for (var i in drawing.board[row]) {
+        console.log("curdraw", drawing.board[row][i]);
+        var block = drawing.board[row][i].type;
+        if (block == "active_hand") {
+          i++;
+          block = drawing.board[row][i].type;
+          console.log("active end", block);
+          if (block.startsWith("end")) {
+            console.log("active final", drawing.board[row][i]);
+            //drawing.board[row][i] = { type: "blank" };
+          }
+        }
+      }
+    }
+    // console.log("curdraw", drawing, active);
     if (
       current === "blank" ||
       current === "active_hand" ||
@@ -1677,7 +1694,12 @@ class Logic extends Component {
                     >
                       <g
                         transform={
-                          "translate(" + offset.left + "," + offset.top + ")"
+                          "translate(" +
+                          offset.left +
+                          100 +
+                          "," +
+                          offset.top +
+                          ")"
                         }
                         id="logicOffsetTransformer"
                       >

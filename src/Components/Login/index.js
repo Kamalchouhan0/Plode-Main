@@ -96,9 +96,9 @@ class login extends Component {
   render() {
     sessionStorage.clear();
     const loginFail = (response) => {
-      // window.alert(
-      //   "Sign in with Google failed try again with a different Google account"
-      // );
+      window.alert(
+        "Sign in with Google failed try again with a different Google account"
+      );
       console.log(response);
     };
     const loginSuccess = (response) => {
