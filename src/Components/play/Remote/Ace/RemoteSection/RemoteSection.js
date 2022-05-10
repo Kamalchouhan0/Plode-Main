@@ -64,8 +64,8 @@ let initalRenderD = true;
 
 let value = false;
 const RstyleDevicePC = {
-  width: "69%",
-  height: "67%",
+  width: "20vw",
+  height: "16.5vw",
 
   backgroundImage: `url(${
     process.env.PUBLIC_URL + "/Bisoft_UI/Main/PNG/PC_image@2x.png"

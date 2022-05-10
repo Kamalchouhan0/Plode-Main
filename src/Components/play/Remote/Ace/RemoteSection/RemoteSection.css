@@ -307,44 +307,49 @@ body {
   transform: translate(-50%, -50%);
 }
 .Ace_Teeth1 {
-  width: 7px;
-  height: 10.5px;
+  width: 2%;
+  height: auto;
   position: absolute;
   top: 58.6%;
   left: 42.95%;
   transform: translate(-50%, -50%);
 }
 .Ace_Teeth2 {
-  width: 7px;
-  height: 10.5px;
+  width: 2%;
+  height: auto;
   position: absolute;
   top: 59.8%;
   left: 45.5%;
   transform: translate(-50%, -50%);
 }
 .Ace_Teeth3 {
-  width: 7px;
-  height: 10.5px;
+  width: 2%;
+  height: auto;
   position: absolute;
   top: 59.8%;
   left: 55.31%;
   transform: translate(-50%, -50%);
 }
 .Ace_Teeth4 {
-  width: 7px;
-  height: 10.5px;
+  width: 2%;
+  height: auto;
   position: absolute;
   top: 58.6%;
   left: 58%;
   transform: translate(-50%, -50%);
 }
 .Ace_4Teeth {
-  width: 19px;
-  height: 12px;
+  width: 6%;
+  height: auto;
   position: absolute;
   top: 60.5%;
   left: 50.5%;
   transform: translate(-50%, -50%);
+}
+@media screen and (max-width: 1124px) and (min-width: 600px) {
+  .Ace_Teeth {
+    margin-top: 80px;
+  }
 }
 .Teeth_Bg {
   height: auto;
