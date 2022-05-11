@@ -36,7 +36,7 @@ class login extends Component {
       PortConnections: PortConnections,
       workspace: {
         // bibox: { top: 100, left: 250 },
-        bibox: { top: 162, left: 328 },
+        bibox: { top: 208, left: 328 },
         components: {
           // Other components come here
           // eg. "led": [{top: 20, left: 80, connectedTo: 'A1'}, ...], ...

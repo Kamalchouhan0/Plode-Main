@@ -13,7 +13,7 @@ if (sessionStorage.getItem("assembly")) {
     PortConnections: PortConnections,
     workspace: {
       // bibox: { top: 135, left: 317 },//Before change for Ace
-      bibox: { top: 162, left: 328 },
+      bibox: { top: 208, left: 328 },
       components: {
         // Other components come here
         // eg. "led": [{top: 20, left: 80, connectedTo: 'A1'}, ...], ...
