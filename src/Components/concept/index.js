@@ -114,6 +114,7 @@ import { backBtn, nextBtn } from "../../source/index";
 
 import socketIOClient from "socket.io-client";
 import renderPrgImage from "../../source/programImg";
+import renderCompImg from "../../source/Comp_Img";
 
 //var socket = socketIOClient("http://localhost:3008");
 var data;
@@ -230,10 +231,7 @@ class Content extends Component {
         //   component.type +
         //   ".png";
 
-        component.url =
-          "/Bisoft_UI/Accessories/newComponents/component_" +
-          component.type +
-          ".png"; //setting the image path
+        component.url = renderCompImg(component.type); //setting the image path
 
         componentProps[component.type] = component; //set all these propaties to empty object(Imported from componentProps) type:"..."
         // component.url = require('../' + component.url);
@@ -251,10 +249,7 @@ class Content extends Component {
         //   component.type +
         //   ".png";
 
-        component.url =
-          "/Bisoft_UI/Accessories/newComponents/component_" +
-          component.type +
-          ".png"; //setting the image path
+        component.url = renderCompImg(component.type); //setting the image path
 
         componentProps[component.type] = component; //set all these propaties to empty object(Imported from componentProps) type:"..."
         // component.url = require('../' + component.url);

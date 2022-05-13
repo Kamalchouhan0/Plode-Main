@@ -3,66 +3,16 @@ import { useHistory } from "react-router";
 import { connect } from "react-redux";
 import unicodeToChar from "../../../../utils/unicodeToChar";
 import { webSerialAction } from "../../../../redux/actions/index";
-
-// import {
-//   TextEncoderStream,
-//   TextDecoderStream,
-// } from "@stardazed/streams-text-encoding";
-import io from "socket.io-client";
-import {
-  backBtn,
-  AudioDb,
-  helpBtnInActive,
-  helpBtnActive,
-  bluetooth,
-  Pianobig,
-  Disconnect,
-  Disconnected,
-  Pc,
-  Pianotogglebg,
-  Pcpiano,
-  Pianokeys,
-  PianokeysIA,
-  PcpianoIA,
-  PcpianoAc,
-  PianokeysAc,
-  Pianosmall,
-  Pianobig_Svg,
-  // Pianosmall_Svg,
-  // Disconnected_Svg,
-  Pianotogglebg_Svg,
-  AudioC,
-  AudioE,
-  AudioD,
-  AudioF,
-  AudioG,
-  AudioA,
-  AudioB,
-  UsbOn,
-  UsbOff,
-  clos,
-  Disconnected_Svg,
-  Pianosmall_Svg,
-} from "../../../../source/index";
-
 import renderImage from "../../../../source/importImg";
 import MuscSlider from "../../../ReusableComponents/MuscSlider/MuscSlider";
 import "./pianoo.css";
-//const socket = io("http://localhost:3008");
 
 function Music(props) {
   let history = useHistory();
 
   const gobackUrl = () => {
-    // setTimeout(function () {
-    //   window.location.reload(false);
-    // }, 100);
     history.goBack();
   };
-  // const refresh = () => {
-
-  //   // window.location.reload(false);
-  // };
 
   var count = 0;
 
@@ -70,42 +20,34 @@ function Music(props) {
   const [isPcPiano, setPcPiano] = useState(false);
 
   const M1 = () => {
-    //socket.emit("/music-keys", ["M".charCodeAt(), "0".charCodeAt()]);
     let data = ["M".charCodeAt(), "0".charCodeAt()];
     writePort(data);
   };
   const M2 = () => {
-    // socket.emit("/music-keys", ["M".charCodeAt(), "1".charCodeAt()]);
     let data = ["M".charCodeAt(), "1".charCodeAt()];
     writePort(data);
   };
   const M3 = () => {
-    //socket.emit("/music-keys", ["M".charCodeAt(), "2".charCodeAt()]);
     let data = ["M".charCodeAt(), "2".charCodeAt()];
     writePort(data);
   };
   const M4 = () => {
-    //socket.emit("/music-keys", ["M".charCodeAt(), "3".charCodeAt()]);
     let data = ["M".charCodeAt(), "3".charCodeAt()];
     writePort(data);
   };
   const M5 = () => {
-    //socket.emit("/music-keys", ["M".charCodeAt(), "4".charCodeAt()]);
     let data = ["M".charCodeAt(), "4".charCodeAt()];
     writePort(data);
   };
   const M6 = () => {
-    //socket.emit("/music-keys", ["M".charCodeAt(), "5".charCodeAt()]);
     let data = ["M".charCodeAt(), "5".charCodeAt()];
     writePort(data);
   };
   const M7 = () => {
-    //socket.emit("/music-keys", ["M".charCodeAt(), "6".charCodeAt()]);
     let data = ["M".charCodeAt(), "6".charCodeAt()];
     writePort(data);
   };
   const M8 = () => {
-    //socket.emit("/music-keys", ["M".charCodeAt(), "7".charCodeAt()]);
     let data = ["M".charCodeAt(), "7".charCodeAt()];
     writePort(data);
   };
@@ -114,7 +56,6 @@ function Music(props) {
       setPianoKey(!isPianoKey);
       setPcPiano(!isPcPiano);
     } else {
-      // window.location.reload(false);
       setPcPiano(!isPcPiano);
       setPianoKey(!isPianoKey);
     }
@@ -138,74 +79,9 @@ function Music(props) {
     const port = await navigator.serial.requestPort({ filters });
     console.log("PORTS", port);
     if (port.onconnect == null) {
-      // window.location.reload(false);
       setUsb(true);
     }
   };
-
-  // var portData = {};
-  // async function connect() {
-  //   const port = await navigator.serial.requestPort();
-
-  //   portData = Object.assign(port);
-  //   console.log(portData, "__postData");
-  //   // - Wait for the port to open.
-  //   await port.open({ baudRate: 120000 });
-  //   const decoder = new TextDecoderStream();
-  //   const inputDone = port.readable.pipeTo(decoder.writable);
-  //   const inputStream = decoder.readable;
-
-  //   const reader = inputStream.getReader();
-  //   readLoop();
-  //   // const encoder = new TextEncoderStream();
-  //   // const outputDone = encoder.readable.pipeTo(port.writable);
-  //   // const outputStream = encoder.writable;
-  //   writePort();
-  //   async function readLoop() {
-  //     console.log("Readloop");
-  //     while (true) {
-  //       const { value, done } = await reader.read();
-  //       console.log("value", value);
-  //       let str = value.trim();
-  //       // console.log("DATA IN STRING", str);
-  //       if (str === "K494848") {
-  //         console.log("VALUE IS COMING");
-  //         var audio = new Audio(`${AudioC}`);
-  //         audio.play();
-  //       } else if (str === "K484948") {
-  //         var audio = new Audio(`${AudioD}`);
-  //         audio.play();
-  //       } else if (str === "K484849") {
-  //         var audio = new Audio(`${AudioE}`);
-  //         audio.play();
-  //       } else if (str === "K494948") {
-  //         var audio = new Audio(`${AudioF}`);
-  //         audio.play();
-  //       } else if (str === "K484949") {
-  //         var audio = new Audio(`${AudioG}`);
-  //         audio.play();
-  //       } else if (str === "K494849") {
-  //         var audio = new Audio(`${AudioA}`);
-  //         audio.play();
-  //       } else if (str === "K494949") {
-  //         var audio = new Audio(`${AudioB}`);
-  //         audio.play();
-  //       }
-  //       console.log("done", done);
-
-  //       // let comingData = value;
-
-  //       if (done) {
-  //         console.log("[readLoop] DONE", done);
-  //         reader.releaseLock();
-  //         break;
-  //       }
-  //     }
-  //   }
-  //   // if (gobackUrl) {
-  //   //   await port.close();
-  //   // }
-  // }
 
   useEffect(() => {
     let no_port = props.webSerial.name;
@@ -259,54 +135,9 @@ function Music(props) {
       await p_Port.open({ baudRate: 120000 });
     } catch (e) {
       console.log(e);
-      // p_Port.close();
-      // await p_Port.open({ baudRate: 120000 });
     }
 
     writePort("notWrite");
-    //readLoop();
-    // let portReader = p_Port.readable.getReader();
-
-    // let portWriter = p_Port.writable.getWriter();
-
-    // while (true) {
-    //   const { value, done } = await portReader.read();
-    //   // console.log("value", value);
-    //   console.log("done", done);
-
-    //   const strg = unicodeToChar(value);
-    //   let str = strg.trim();
-
-    //   console.log(str, "uniCodeTOCHAR");
-    //   if (str === "K494848") {
-    //     console.log("VALUE IS COMING");
-    //     var audio = new Audio(`${AudioC}`);
-    //     audio.play();
-    //   } else if (str === "K484948") {
-    //     var audio = new Audio(`${AudioD}`);
-    //     audio.play();
-    //   } else if (str === "K484849") {
-    //     var audio = new Audio(`${AudioE}`);
-    //     audio.play();
-    //   } else if (str === "K494948") {
-    //     var audio = new Audio(`${AudioF}`);
-    //     audio.play();
-    //   } else if (str === "K484949") {
-    //     var audio = new Audio(`${AudioG}`);
-    //     audio.play();
-    //   } else if (str === "K494849") {
-    //     var audio = new Audio(`${AudioA}`);
-    //     audio.play();
-    //   } else if (str === "K494949") {
-    //     var audio = new Audio(`${AudioB}`);
-    //     audio.play();
-    //   }
-    //   if (done) {
-    //     console.log("[readLoop] DONE", done);
-    //     portReader.releaseLock();
-    //     break;
-    //   }
-    // }
 
     console.log(p_Port, "p_Port");
   };
@@ -317,12 +148,9 @@ function Music(props) {
     try {
       const portReader = port.readable.getReader();
 
-      // let portWriter = portList.writable.getWriter();
-
       while (true) {
         const { value, done } = await portReader.read();
-        // console.log("value", value);
-        //await timer(500);
+
         var piano = JSON.parse(sessionStorage.getItem("piano"));
         console.log("done", piano.isPcPiano);
         if (piano.isPcPiano) break;
@@ -333,37 +161,37 @@ function Music(props) {
 
         if (str === "K494848") {
           console.log("VALUE IS COMING");
-          var audio = new Audio(`${AudioC}`);
+          var audio = new Audio(`${renderImage("AudioC")}`);
           audio.play();
           let data = ["K".charCodeAt(), "P".charCodeAt()];
           writePort(data);
         } else if (str === "K484948") {
-          var audio = new Audio(`${AudioD}`);
+          var audio = new Audio(`${renderImage("AudioD")}`);
           audio.play();
           let data = ["K".charCodeAt(), "P".charCodeAt()];
           writePort(data);
         } else if (str === "K484849") {
-          var audio = new Audio(`${AudioE}`);
+          var audio = new Audio(`${renderImage("AudioE")}`);
           audio.play();
           let data = ["K".charCodeAt(), "P".charCodeAt()];
           writePort(data);
         } else if (str === "K494948") {
-          var audio = new Audio(`${AudioF}`);
+          var audio = new Audio(`${renderImage("AudioF")}`);
           audio.play();
           let data = ["K".charCodeAt(), "P".charCodeAt()];
           writePort(data);
         } else if (str === "K484949") {
-          var audio = new Audio(`${AudioG}`);
+          var audio = new Audio(`${renderImage("AudioG")}`);
           audio.play();
           let data = ["K".charCodeAt(), "P".charCodeAt()];
           writePort(data);
         } else if (str === "K494849") {
-          var audio = new Audio(`${AudioA}`);
+          var audio = new Audio(`${renderImage("AudioA")}`);
           audio.play();
           let data = ["K".charCodeAt(), "P".charCodeAt()];
           writePort(data);
         } else if (str === "K494949") {
-          var audio = new Audio(`${AudioB}`);
+          var audio = new Audio(`${renderImage("AudioB")}`);
           audio.play();
           let data = ["K".charCodeAt(), "P".charCodeAt()];
           writePort(data);
@@ -374,15 +202,6 @@ function Music(props) {
           let data = ["K".charCodeAt(), "P".charCodeAt()];
           writePort(data);
         }
-        // else if (str != "K444") {
-        //   let data = ["K".charCodeAt(), "P".charCodeAt()];
-        //   writePort(data);
-        // }
-        // if (done) {
-        //   console.log("[readLoop] DONE", done);
-        //   portReader.releaseLock();
-        //   break;
-        // }
       }
       portReader.releaseLock();
     } catch (e) {
@@ -391,30 +210,15 @@ function Music(props) {
   }
 
   async function writePort(data) {
-    // const ports = await navigator.serial.getPorts();
-    // console.log("portsss", ports);
-
-    // console.log("portsss", ports[0].writable);
-    // // const outputStream = ports[0].writable,
-    // const writer = ports[0].writable.getWriter();
-    // // writer = outputStream.getWriter();
-    // const sata = data;
-    // const data1 = new Uint8Array(sata); // hello// 82, 76, 0, 0, 0, 82, 0, 0, 0, 66, 0, 0, 1, 0, 1,
-    // console.log("send data:+", data1);
-
-    // await writer.write(data1);
-
-    // writer.releaseLock();
-
     try {
       const filters = [{ usbVendorId: 0x1a86, usbProductId: 0x7523 }];
       const ports = await navigator.serial.getPorts({ filters });
       console.log("portsss", ports);
 
       console.log("portsss", ports[0].writable);
-      // const outputStream = ports[0].writable,
+
       const writer = ports[0].writable.getWriter();
-      // writer = outputStream.getWriter();
+
       const sata = data;
       const data1 = new Uint8Array(sata); // hello// 82, 76, 0, 0, 0, 82, 0, 0, 0, 66, 0, 0, 1, 0, 1,
       console.log("send data:+", data1);
@@ -429,91 +233,10 @@ function Music(props) {
 
   if (isPcPiano) {
     let data = ["K".charCodeAt(), "P".charCodeAt()];
-    // socket.emit("/Pc-keys", data);
+
     writePort(data);
     readLoop();
     console.log("pcpiano on");
-
-    // socket.on("/hw-music", (data) => {
-    //   // console.log("===========================>data", data.trim());
-    //   // console.log("===========================>data", data.trim().length);
-    //   let comingData = data.trim();
-    //   // let data1 = ["K".charCodeAt(), "P".charCodeAt()];
-    //   // socket.emit("/Pc-keys", data1);
-    //   if (comingData === "494848") {
-    //     var audio = new Audio(`${AudioC}`);
-    //     audio.play();
-    //     setTimeout(() => {
-    //       let data = ["K".charCodeAt(), "P".charCodeAt()];
-    //       socket.emit("/Pc-keys", data);
-    //     }, 500);
-    //   } else if (comingData === "484948") {
-    //     var audio = new Audio(`${AudioD}`);
-    //     audio.play();
-    //     setTimeout(() => {
-    //       let data = ["K".charCodeAt(), "P".charCodeAt()];
-    //       socket.emit("/Pc-keys", data);
-    //     }, 500);
-    //   } else if (comingData === "484849") {
-    //     var audio = new Audio(`${AudioE}`);
-    //     audio.play();
-    //     setTimeout(() => {
-    //       let data = ["K".charCodeAt(), "P".charCodeAt()];
-    //       socket.emit("/Pc-keys", data);
-    //     }, 500);
-    //   } else if (comingData === "484848") {
-    //     // count = count + 1;
-    //     // console.log("Count", count);
-    //     setTimeout(() => {
-    //       // if (count <= 5) {
-    //       let data = ["K".charCodeAt(), "P".charCodeAt()];
-    //       socket.emit("/Pc-keys", data);
-    //       // }
-    //     }, 500);
-    //   } else if (comingData === "494948") {
-    //     var audio = new Audio(`${AudioF}`);
-    //     audio.play();
-    //     setTimeout(() => {
-    //       let data = ["K".charCodeAt(), "P".charCodeAt()];
-    //       socket.emit("/Pc-keys", data);
-    //     }, 500);
-    //   } else if (comingData === "484949") {
-    //     var audio = new Audio(`${AudioG}`);
-    //     audio.play();
-    //     setTimeout(() => {
-    //       let data = ["K".charCodeAt(), "P".charCodeAt()];
-    //       socket.emit("/Pc-keys", data);
-    //     }, 500);
-    //   } else if (comingData === "494849") {
-    //     var audio = new Audio(`${AudioA}`);
-    //     audio.play();
-    //     setTimeout(() => {
-    //       let data = ["K".charCodeAt(), "P".charCodeAt()];
-    //       socket.emit("/Pc-keys", data);
-    //     }, 500);
-    //   } else if (comingData === "494949") {
-    //     var audio = new Audio(`${AudioB}`);
-    //     audio.play();
-    //     setTimeout(() => {
-    //       let data = ["K".charCodeAt(), "P".charCodeAt()];
-    //       socket.emit("/Pc-keys", data);
-    //     }, 500);
-    //   } else if (comingData.includes("48")) {
-    //     // var audio = new Audio(`${AudioB}`);
-    //     // audio.play();
-    //     setTimeout(() => {
-    //       let data = ["K".charCodeAt(), "P".charCodeAt()];
-    //       socket.emit("/Pc-keys", data);
-    //     }, 500);
-    //   } else if (comingData.includes("49")) {
-    //     // var audio = new Audio(`${AudioB}`);
-    //     // audio.play();
-    //     setTimeout(() => {
-    //       let data = ["K".charCodeAt(), "P".charCodeAt()];
-    //       socket.emit("/Pc-keys", data);
-    //     }, 500);
-    //   }
-    // });
   }
 
   const [isHelp, setHelp] = useState(false);
@@ -523,22 +246,12 @@ function Music(props) {
       setHelp(false);
     } else {
       setHelp(true);
+      var audio = new Audio(`${renderImage("AudioB")}`);
+      audio.play();
     }
   };
 
   useEffect(() => {
-    //socket.emit("_usbDetection", "Hi i am firoz");
-    //socket.on("/usbDetection1", (data) => {
-    // console.log("...............6", data);
-    // // let kill = Array.from(data);
-    // // console.log("...............5", kill);
-    // if (data == 1) {
-    //   // setUsb(true);
-    //   console.log("LLLLLLLLLLLLLLL", data);
-    // } else {
-    //   // setUsb(false);
-    // }
-    //});
     let data = JSON.parse(sessionStorage.getItem("user"));
 
     if (data === 1) {
@@ -603,19 +316,10 @@ function Music(props) {
         </div>
       </div>
       <div className="Music_Body">
-        <div
-          className="Piano"
-          // style={{ border: "1px solid red" }}
-        >
+        <div className="Piano">
           {isPianoKey == false ? null : (
-            // <img className="Music_Ac" src={renderImage Pc}></img>
-            // <img className="Piano_Big" src={renderImage Pianobig_Svg}></img>
             <div className="Piano_p">
-              <div
-                // style={{ border: "5px solid blue" }}
-                className=" a white a li"
-                onClick={M1}
-              ></div>
+              <div className=" a white a li" onClick={M1}></div>
               <div className="black as li"></div>
               <div className="white b li" onClick={M2}></div>
               <div className="black bs li"></div>
@@ -706,13 +410,10 @@ function Music(props) {
             Tap the touch pads on Play Computer to play music
           </h3>
         )}
-
-        {/* <p className="test">Millisecond</p> */}
       </div>
     </div>
   );
 }
-// export default Music;
 
 const mapStateToProps = (state) => {
   console.log("mapStateToProps", state);

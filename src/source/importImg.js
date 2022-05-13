@@ -157,6 +157,14 @@ import Remt4 from "../Assets/Bisoft_UI/Help screen/Play/Group 3184@2x.png";
 import Remt5 from "../Assets/Bisoft_UI/Help screen/Play/Group 3185@2x.png";
 import Remt6 from "../Assets/Bisoft_UI/Help screen/Play/Group 3186@2x.png";
 import PCimg from "../Assets/Bisoft_UI/Main/PNG/PC_image@2x.png";
+import AudioDb from "../Assets/audio/Db.mp3";
+import AudioC from "../Assets/audio/C.mp3";
+import AudioE from "../Assets/audio/E.mp3";
+import AudioA from "../Assets/audio/A.mp3";
+import AudioB from "../Assets/audio/B.mp3";
+import AudioD from "../Assets/audio/D.mp3";
+import AudioF from "../Assets/audio/F.mp3";
+import AudioG from "../Assets/audio/G.mp3";
 
 function renderImage(imageName) {
   switch (imageName) {
@@ -390,6 +398,23 @@ function renderImage(imageName) {
 
     case "PCimg":
       return PCimg;
+
+    case "AudioDb":
+      return AudioDb;
+    case "AudioA":
+      return AudioA;
+    case "AudioC":
+      return AudioC;
+    case "AudioE":
+      return AudioE;
+    case "AudioB":
+      return AudioB;
+    case "AudioD":
+      return AudioD;
+    case "AudioF":
+      return AudioF;
+    case "AudioG":
+      return AudioG;
   }
 }
 

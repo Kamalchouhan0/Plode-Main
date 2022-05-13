@@ -9,6 +9,7 @@ import ItemTypes from "./ItemTypes";
 import ImageSizes from "./ImageSizes";
 import DraggingInfo from "./DraggingInfo";
 import { getEmptyImage } from "react-dnd-html5-backend";
+import renderCompImg from "../../source/Comp_Img";
 
 var clickStartTimestamp = undefined; // Posible as only one component can be clicked at a particular time
 
@@ -309,7 +310,7 @@ class Component1 extends Component {
               left,
               top,
               // backgroundImage: "url(images/oldImages/component_" + type + ".png)",
-              backgroundImage: `url(Bisoft_UI/Accessories/newComponents/component_${type}.png)`,
+              backgroundImage: `url(${renderCompImg(type)})`,
 
               height,
               width,
@@ -388,7 +389,7 @@ class Component1 extends Component {
               left,
               top,
               // backgroundImage: "url(images/oldImages/component_" + type + ".png)",
-              backgroundImage: `url(Bisoft_UI/Accessories/newComponents/component_${type}.png)`,
+              backgroundImage: `url(${renderCompImg(type)})`,
 
               height,
               width,
@@ -464,7 +465,7 @@ class Component1 extends Component {
               left,
               top,
               // backgroundImage: "url(images/oldImages/component_" + type + ".png)",
-              backgroundImage: `url(Bisoft_UI/Accessories/newComponents/component_${type}.png)`,
+              backgroundImage: `url(${renderCompImg(type)})`,
 
               height,
               width,
@@ -544,7 +545,7 @@ class Component1 extends Component {
               left,
               top,
               // backgroundImage: "url(images/oldImages/component_" + type + ".png)",
-              backgroundImage: `url(Bisoft_UI/Accessories/newComponents/component_${type}.png)`,
+              backgroundImage: `url(${renderCompImg(type)})`,
 
               height,
               width,
@@ -622,7 +623,7 @@ class Component1 extends Component {
             left,
             top,
             // backgroundImage: "url(images/oldImages/component_" + type + ".png)",
-            backgroundImage: `url(Bisoft_UI/Accessories/newComponents/component_${type}.png)`,
+            backgroundImage: `url(${renderCompImg(type)})`,
 
             height,
             width,
@@ -654,7 +655,7 @@ class Component1 extends Component {
             left,
             top,
             // backgroundImage: "url(images/oldImages/component_" + type + ".png)",
-            backgroundImage: `url(Bisoft_UI/Accessories/newComponents/component_${type}.png)`,
+            backgroundImage: `url(${renderCompImg(type)})`,
 
             height,
             width,
@@ -687,7 +688,7 @@ class Component1 extends Component {
               left,
               top,
               // backgroundImage: "url(images/oldImages/component_" + type + ".png)",
-              backgroundImage: `url(Bisoft_UI/Accessories/newComponents/component_${type}.png)`,
+              backgroundImage: `url(${renderCompImg(type)})`,
 
               height,
               width,
@@ -763,7 +764,7 @@ class Component1 extends Component {
               left,
               top,
               // backgroundImage: "url(images/oldImages/component_" + type + ".png)",
-              backgroundImage: `url(Bisoft_UI/Accessories/newComponents/component_${type}.png)`,
+              backgroundImage: `url(${renderCompImg(type)})`,
 
               height,
               width,
@@ -816,7 +817,7 @@ class Component1 extends Component {
               left,
               top,
               // backgroundImage: "url(images/oldImages/component_" + type + ".png)",
-              backgroundImage: `url(Bisoft_UI/Accessories/newComponents/component_${type}.png)`,
+              backgroundImage: `url(${renderCompImg(type)})`,
 
               height,
               width,
@@ -890,7 +891,7 @@ class Component1 extends Component {
               left,
               top,
               // backgroundImage: "url(images/oldImages/component_" + type + ".png)",
-              backgroundImage: `url(Bisoft_UI/Accessories/newComponents/component_${type}.png)`,
+              backgroundImage: `url(${renderCompImg(type)})`,
 
               height,
               width,
@@ -964,7 +965,7 @@ class Component1 extends Component {
               left,
               top,
               // backgroundImage: "url(images/oldImages/component_" + type + ".png)",
-              backgroundImage: `url(Bisoft_UI/Accessories/newComponents/component_${type}.png)`,
+              backgroundImage: `url(${renderCompImg(type)})`,
 
               height,
               width,
@@ -1077,7 +1078,7 @@ class Component1 extends Component {
               left,
               top,
               // backgroundImage: "url(images/oldImages/component_" + type + ".png)",
-              backgroundImage: `url(Bisoft_UI/Accessories/newComponents/component_${type}.png)`,
+              backgroundImage: `url(${renderCompImg(type)})`,
 
               height,
               width,
@@ -1158,7 +1159,7 @@ class Component1 extends Component {
               left,
               top,
               // backgroundImage: "url(images/oldImages/component_" + type + ".png)",
-              backgroundImage: `url(Bisoft_UI/Accessories/newComponents/component_${type}.png)`,
+              backgroundImage: `url(${renderCompImg(type)})`,
 
               height,
               width,
@@ -1231,7 +1232,7 @@ class Component1 extends Component {
             left,
             top,
             // backgroundImage: "url(images/oldImages/component_" + type + ".png)",
-            backgroundImage: `url(Bisoft_UI/Accessories/newComponents/component_${type}.png)`,
+            backgroundImage: `url(${renderCompImg(type)})`,
 
             height,
             width,
@@ -1269,7 +1270,7 @@ class Component1 extends Component {
       //       top,
       //       display: "none",
       //       // backgroundImage: "url(images/oldImages/component_" + type + ".png)",
-      //       backgroundImage: `url(Bisoft_UI/Accessories/newComponents/component_${type}.png)`,
+      //       backgroundImage: `url(${renderCompImg(type)})`,
       //       zIndex,
       //       height,
       //       width,
@@ -1306,7 +1307,7 @@ class Component1 extends Component {
               left,
               top,
               // backgroundImage: "url(images/oldImages/component_" + type + ".png)",
-              backgroundImage: `url(Bisoft_UI/Accessories/newComponents/component_${type}.png)`,
+              backgroundImage: `url(${renderCompImg(type)})`,
               height,
               width,
               // border: "1px solid red",

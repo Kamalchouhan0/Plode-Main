@@ -4,6 +4,7 @@ import { DragSource } from "react-dnd";
 import ItemTypes from "./ItemTypes";
 import DraggingInfo from "./DraggingInfo";
 import { getEmptyImage } from "react-dnd-html5-backend";
+import renderCompImg from "../../source/Comp_Img";
 
 const cardSource = {
   beginDrag(props) {
@@ -75,7 +76,7 @@ class Card extends Component {
           // marginTop: "20px",
         }}
         // src={`images/oldImages/component_` + type + ".png"}
-        src={`Bisoft_UI/Accessories/newComponents/component_` + type + ".png"}
+        src={renderCompImg(type)}
       />
 
       // <img

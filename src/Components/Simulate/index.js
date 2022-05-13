@@ -40,6 +40,7 @@ import {
 } from "../../source/index";
 import renderPrgImage from "../../source/programImg";
 import SimulatePrgm from "../ReusableComponents/PrgmSlider/SimulatePrgm/SimulatePrgm";
+import renderCompImg from "../../source/Comp_Img";
 
 let j = 0;
 
@@ -413,8 +414,7 @@ class Simulate extends Component {
         // myImage.src = `images/Simulate/${keys}.png`;
         myImage.src =
           // process.env.PUBLIC_URL + `/images/oldImages/component_${keys}.png`;
-          process.env.PUBLIC_URL +
-          `/Bisoft_UI/Accessories/newComponents/component_${keys}.png`;
+          renderCompImg(keys);
         myImage.setAttribute("id", `img_${ind.connectedTo}`);
         // document.getElementById(ind.connectedTo).style.visibility="visible"
         // myImage.style.filter="drop-shadow(0 0 10px blue)";

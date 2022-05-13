@@ -10,6 +10,7 @@ import Connections from "./Connections";
 import IsOverPort from "./IsOverPort";
 import { PlayComputerImg } from "../../source/index";
 import renderPrgImage from "../../source/programImg";
+import renderCompImg from "../../source/Comp_Img";
 var Camera; // This means that the collect function relies on the old Camera object before drag begins
 // but this works as scale or offset cannot be changed when a drag is in progress
 
@@ -145,8 +146,7 @@ class CustomDragLayer extends Component {
     } else if (type === ItemTypes.BIBOX && Device == "Tern") {
       url = "images/Learn/tern.png";
     } else if (item.type == "dual_splitter") {
-      url =
-        "Bisoft_UI/Accessories/newComponents/component_" + item.type + ".png";
+      url = renderCompImg(item.type);
       return (
         <img
           src={url}
@@ -155,8 +155,7 @@ class CustomDragLayer extends Component {
         />
       );
     } else if (item.type == "play_shield") {
-      url =
-        "Bisoft_UI/Accessories/newComponents/component_" + item.type + ".png";
+      url = renderCompImg(item.type);
       return (
         <img
           src={url}
@@ -165,8 +164,7 @@ class CustomDragLayer extends Component {
         />
       );
     } else if (item.type == "ultrasonic_sensor") {
-      url =
-        "Bisoft_UI/Accessories/newComponents/component_" + item.type + ".png";
+      url = renderCompImg(item.type);
       return (
         <img
           src={url}
@@ -178,8 +176,7 @@ class CustomDragLayer extends Component {
     } else {
       // url = "images/oldImages/component_" + item.type + ".png";
 
-      url =
-        "Bisoft_UI/Accessories/newComponents/component_" + item.type + ".png";
+      url = renderCompImg(item.type);
     }
 
     return (
