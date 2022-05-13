@@ -527,10 +527,38 @@ function genCodeString(logicComponents) {
       // A1 type LED = 0-100  {P}
 
       if (comp) {
-        PortBytesToComponentcode[PortsAndPortbytes[portname][j]] =
-          CorrespondingPortCode[comp];
+        if (comp == "mp3") {
+          PortBytesToComponentcode["Mp3"] = "M";
+          console.log(
+            PortBytesToComponentcode,
+            PortsAndPortbytes[portname][j],
+            portname,
+            j,
+            "PortBytesToComponentcode42"
+          );
+          PortBytesToComponentcode["Mp3"] = "M";
+          PortBytesToComponentcode[PortsAndPortbytes[portname][j]] = "O";
+        } else if (comp == "OLED") {
+          PortBytesToComponentcode["OLED"] = "D";
+          PortBytesToComponentcode[PortsAndPortbytes[portname][j]] = "O";
+        } else {
+          PortBytesToComponentcode[PortsAndPortbytes[portname][j]] =
+            CorrespondingPortCode[comp];
+        }
       } else {
-        PortBytesToComponentcode[PortsAndPortbytes[portname][j]] = "O";
+        if (
+          (PortBytesToComponentcode[PortsAndPortbytes[portname][j]] == "M" &&
+            PortsAndPortbytes[portname][j] == "Mp3") ||
+          (PortBytesToComponentcode[PortsAndPortbytes[portname][j]] == "D" &&
+            PortsAndPortbytes[portname][j] == "OLED")
+        ) {
+          console.log(
+            PortsAndPortbytes[portname][j],
+            "PortBytesToComponentcode43"
+          );
+        } else {
+          PortBytesToComponentcode[PortsAndPortbytes[portname][j]] = "O";
+        }
       }
     }
   }
@@ -570,10 +598,11 @@ function genCodeString(logicComponents) {
   var FinalCode = "";
 
   var codeTemplate =
-    "A1A2B1B2C1C2D1D2E1E2F1F2G1G2H1H2I1I2SmileOneSmileTwoSmileThreeSmileFourbuzzerEyeFour_in_one_sensorMicTouchZeroTouchOneTouchTwoTemperature";
+    "A1A2B1B2C1C2D1D2E1E2F1F2G1G2H1H2I1I2SmileOneSmileTwoSmileThreeSmileFourbuzzerEyeFour_in_one_sensorMicTouchZeroTouchOneTouchTwoTemperatureIOT1IOT2IOT3IOT4Mp3OLED";
   //copy from hornbill or snipe
 
   for (var portBytes in PortBytesToComponentcode) {
+    //console.log("pwoli", portBytes, PortBytesToComponentcode);
     codeTemplate = codeTemplate.replace(
       portBytes,
       PortBytesToComponentcode[portBytes]
@@ -589,7 +618,7 @@ function genCodeString(logicComponents) {
   console.log(codeTemplate, "codeTemplate");
 
   for (var i = codeLen; i <= 58; i++) {
-    Uploadprogram += "0";
+    Uploadprogram += "O";
   }
   Uploadprogram += ";";
 
@@ -955,7 +984,7 @@ function genCodeString(logicComponents) {
               compName = connectionsList[CurrentPort];
             }
 
-            console.log(compName);
+            console.log(compName, CurrentPort);
 
             var currentPortBytes;
 
@@ -989,6 +1018,7 @@ function genCodeString(logicComponents) {
                     }
                   } else if (compName == "mp3") {
                     portValue = nodeDetails["valueF"];
+                    console.log("mp3", portValue);
                     portValue =
                       CodeGenerationRangeValues[CurrentPort][compName](
                         portValue
@@ -1207,6 +1237,10 @@ function genCodeString(logicComponents) {
 
               // else {
               // }
+              if (compName == "mp3") {
+                CurrentPort = "Mp3";
+                currentPortBytes = PortsAndPortbytes[CurrentPort];
+              }
 
               if (
                 CurrentPort == "TouchZeroOutput" ||
@@ -1301,6 +1335,10 @@ function genCodeString(logicComponents) {
                     portValue =
                       nodeDetails["value" + `${portByteSelected}Output`];
                   }
+
+                  if (portByteSelected == "Mp3") {
+                    portValue = nodeDetails["valueB1"];
+                  }
                   console.log(portValue, "portValue");
 
                   //console.log("nodeDetai", nodeDetails["value" + portByteSelected], portByteSelected, portValue)
@@ -1338,6 +1376,7 @@ function genCodeString(logicComponents) {
                     portByteSelected == "TouchZero" ||
                     portByteSelected == "TouchOne" ||
                     portByteSelected == "TouchTwo" ||
+                    portByteSelected == "Mp3" ||
                     // humanoid
                     portByteSelected == "Attention" ||
                     portByteSelected == "Forward" ||
@@ -1387,6 +1426,20 @@ function genCodeString(logicComponents) {
                       "decimalValue 1 ----------------------------->",
                       decimalValue
                     );
+                  } else if (
+                    portByteSelected == "OLEDOne" ||
+                    portByteSelected == "OLEDTwo" ||
+                    portByteSelected == "OLEDThree"
+                  ) {
+                    var charCodeArr = [];
+                    for (let i = 0; i < portValue.length; i++) {
+                      let code = portValue.charCodeAt(i);
+                      charCodeArr.push(code);
+                    }
+                    for (let i = charCodeArr.length; i < 16; i++) {
+                      charCodeArr.push(32);
+                    }
+                    decimalValue = charCodeArr.toString().replaceAll(",", ":");
                   } else {
                     var compName = connectionsList[portByteSelected];
 

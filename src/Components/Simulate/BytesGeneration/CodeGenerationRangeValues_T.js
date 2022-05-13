@@ -1859,7 +1859,9 @@ module.exports = {
     stepper_motor: function (value) {
       return value;
     },
-
+    mp3: function (value) {
+      return value;
+    },
     servo_motor: function (value) {
       return value;
     },
@@ -1947,6 +1949,9 @@ module.exports = {
   },
   B: {
     servo_extender: function (value) {
+      return value;
+    },
+    mp3: function (value) {
       return value;
     },
     servo_motor: function (value) {

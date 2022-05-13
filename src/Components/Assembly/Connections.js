@@ -900,6 +900,29 @@ class Curve extends Component {
               </>
             );
           }
+        } else if (this.props.componentName == "RGB") {
+          return (
+            <path
+              d={
+                "M " +
+                (left - 15 + ImageSizes[ItemTypes.COMPONENT][0] / 2) +
+                "," +
+                (top + 80) +
+                " C " +
+                (left - 120 + ImageSizes[ItemTypes.COMPONENT][0] / 2) +
+                "," +
+                (top + 2 * ImageSizes[ItemTypes.COMPONENT][1]) +
+                " " +
+                cx2 +
+                "," +
+                cy2 +
+                " " +
+                (Left + Ports[connectedTo][0]) +
+                "," +
+                (Top + Ports[connectedTo][1])
+              }
+            />
+          );
         } else {
           return (
             <path

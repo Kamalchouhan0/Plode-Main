@@ -14,7 +14,7 @@ import PortValuesRangeMapping from "../../PortValuesRangeMapping";
 import { rangeStoreVal } from "../../../Assembly/CheckboxData";
 import { Controls } from "react-flow-renderer";
 import RadioBtn from "../../../ReusableComponents/RadioBtn/RadioBtn";
-
+import renderImage from "../../../../source/importImg";
 import { HumanoidAction, HumanoidActiveBtn } from "../../HumanoidActionData";
 import LogicSwitchComp from "../helpers/SwitchComp/LogicSwitchComp";
 
@@ -54,6 +54,10 @@ class OutputPanel extends Component {
       isClickBuzzer: false,
       isClickBuzzerFrequency: false,
       isClickBuzzerTone: false,
+
+      isClickOLED1: false,
+      isClickOLED2: false,
+      isClickOLED3: false,
 
       isClickBif1: false,
       isClickBif2: false,
@@ -130,6 +134,10 @@ class OutputPanel extends Component {
       curValRightEyeG: 0,
       curValRightEyeB: 0,
 
+      curValOLED1: " ",
+      curValOLED2: " ",
+      curValOLED3: " ",
+
       HumanoidactionName: null,
       HumanoidactionValue: null,
     };
@@ -197,6 +205,10 @@ class OutputPanel extends Component {
       curValRightEyeG: props.state.valueRightEyeG,
       curValRightEyeB: props.state.valueRightEyeB,
 
+      curValOLED1: props.state.valueOLEDOne,
+      curValOLED2: props.state.valueOLEDTwo,
+      curValOLED3: props.state.valueOLEDThree,
+
       // New UI Data isCLick
       isClickTouchZeroOutput: props.state.assignTouchZeroOutput,
       isClickTouchOneOutput: props.state.assignTouchOneOutput,
@@ -221,6 +233,10 @@ class OutputPanel extends Component {
       isClickRightEyeR: props.state.assignRightEyeR,
       isClickRightEyeB: props.state.assignRightEyeB,
       isClickRightEyeG: props.state.assignRightEyeG,
+
+      isClickOLED1: props.state.assignOLEDOne,
+      isClickOLED2: props.state.assignOLEDTwo,
+      isClickOLED3: props.state.assignOLEDThree,
 
       // DRIVER MOTOR
       isClickSTMP: props.state.assignSTMP,
@@ -456,6 +472,66 @@ class OutputPanel extends Component {
 
   // NEW UI
   // SMILE ONE , TWO, Three, Four
+  onOLED1Handle = () => {
+    const { state, onChange } = this.props;
+
+    if (this.state.isClickOLED1) {
+      this.setState({
+        isClickOLED1: false,
+      });
+      state[`assignOLEDOne`] = false;
+
+      // rangeStoreVal["SmileOne"].isChecked = false;
+    } else {
+      this.setState({
+        isClickOLED1: true,
+      });
+      state[`assignOLEDOne`] = true;
+      // rangeStoreVal["SmileOne"].isChecked = true;
+    }
+
+    onChange(state, "hardware");
+  };
+  onOLED2Handle = () => {
+    const { state, onChange } = this.props;
+
+    if (this.state.isClickOLED2) {
+      this.setState({
+        isClickOLED2: false,
+      });
+      state[`assignOLEDTwo`] = false;
+
+      rangeStoreVal["OLEDTwo"].isChecked = false;
+    } else {
+      this.setState({
+        isClickOLED2: true,
+      });
+      state[`assignOLEDTwo`] = true;
+      rangeStoreVal["OLEDTwo"].isChecked = true;
+    }
+
+    onChange(state, "hardware");
+  };
+  onOLED3Handle = () => {
+    const { state, onChange } = this.props;
+
+    if (this.state.isClickOLED3) {
+      this.setState({
+        isClickOLED3: false,
+      });
+      state[`assignOLEDThree`] = false;
+
+      // rangeStoreVal["SmileOne"].isChecked = false;
+    } else {
+      this.setState({
+        isClickOLED3: true,
+      });
+      state[`assignOLEDThree`] = true;
+      // rangeStoreVal["SmileOne"].isChecked = true;
+    }
+
+    onChange(state, "hardware");
+  };
   onSmileOneHandle = () => {
     const { state, onChange } = this.props;
 
@@ -1039,7 +1115,25 @@ class OutputPanel extends Component {
     onChange(state, "hardware"); //Important for Type change for hardware
   };
   // onChangeSliderValue =
-
+  onOLED1HandleText = (e) => {
+    console.log("OLED1", e);
+    this.setState({ curValOLED1: e.target.value });
+    const { state, onChange } = this.props;
+    state["valueOLEDOne"] = e.target.value;
+    onChange(state, "hardware");
+  };
+  onOLED2HandleText = (e) => {
+    this.setState({ curValOLED1: e.target.value });
+    const { state, onChange } = this.props;
+    state["valueOLEDTwo"] = e.target.value;
+    onChange(state, "hardware");
+  };
+  onOLED3HandleText = (e) => {
+    this.setState({ curValOLED1: e.target.value });
+    const { state, onChange } = this.props;
+    state["valueOLEDThree"] = e.target.value;
+    onChange(state, "hardware");
+  };
   hexTypeCheck = () => {
     const { state, onChange } = this.props;
 
@@ -1123,9 +1217,9 @@ class OutputPanel extends Component {
   };
 
   render() {
-    console.log("LeftEye R", this.state.curValLeftEyeR);
-    console.log("LeftEye B", this.state.curValLeftEyeB);
-    console.log("LeftEye G", this.state.curValLeftEyeG);
+    // console.log("LeftEye R", this.state.curValLeftEyeR);
+    // console.log("LeftEye B", this.state.curValLeftEyeB);
+    // console.log("LeftEye G", this.state.curValLeftEyeG);
     // for (const key in rangeStoreVal) {
     //   // console.log(rangeStoreVal[key]);
 
@@ -1818,19 +1912,101 @@ class OutputPanel extends Component {
                   port,
                   compName
                 );
-
-                var range = PortValuesRangeMapping[port][compName](port);
-                console.log("RANGE 003", range);
-                min = range.min;
-                max = range.max;
+                if (type != "OLED") {
+                  var range = PortValuesRangeMapping[port][compName](port);
+                  console.log("RANGE 003", range);
+                  min = range.min;
+                  max = range.max;
+                }
               }
               if (IOComponents[type].output) {
-                // if (port === 'B' || port === 'BC' || port === "B12" || port === "C12") {
-                //   if (type == "dot_matrix") {
-                //     return (
-                //       <TextRow name={componentProps[type].name} port={port} state={state}
-                //         key={port} assign={state['assign' + port]} onChange={this.onChange} />);
-                //   } else {
+                if (port === "D") {
+                  if (type == "OLED") {
+                    return (
+                      <>
+                        <TextRow
+                          name={componentProps[type].name}
+                          port={port}
+                          assign={this.state.isClickOLED1}
+                          key={port}
+                          handlecheckbox={this.onOLED1Handle}
+                          // assign={state["assign" + port]}
+                          textValue={this.state.curValOLED1}
+                          onChange={this.onChange}
+                          label={"OLED Line 1"}
+                          handleTextChange={this.onOLED1HandleText}
+                        />
+                        <TextRow
+                          name={componentProps[type].name}
+                          port={port}
+                          assign={this.state.isClickOLED2}
+                          key={port}
+                          handlecheckbox={this.onOLED2Handle}
+                          // assign={state["assign" + port]}
+                          textValue={this.state.curValOLED2}
+                          onChange={this.onChange}
+                          label={"OLED Line 2"}
+                          handleTextChange={this.onOLED2HandleText}
+                        />
+                        <TextRow
+                          name={componentProps[type].name}
+                          port={port}
+                          assign={this.state.isClickOLED3}
+                          key={port}
+                          handlecheckbox={this.onOLED3Handle}
+                          // assign={state["assign" + port]}
+                          textValue={this.state.curValOLED3}
+                          onChange={this.onChange}
+                          label={"OLED Line 3"}
+                          handleTextChange={this.onOLED3HandleText}
+                        />
+                      </>
+                    );
+                  }
+                }
+                if (port == "B") {
+                  if (type == "RGB") {
+                    return (
+                      <>
+                        <SliderRow
+                          name="LeftEye"
+                          port={this.state.setportName}
+                          value={
+                            //state[`valueLeftEye${this.state.setportName}`]
+                            this.state[`curValLeftEye${this.state.portName}`]
+                            //state[`valueLeftEye${this.state.setportName}`]
+                          }
+                          valR={this.state.curValLeftEyeR}
+                          valB={this.state.curValLeftEyeB}
+                          valG={this.state.curValLeftEyeG}
+                          key="LeftEye"
+                          title="RGB"
+                          assign={this.state.isClickLeftEye}
+                          handlecheckbox={this.onLeftEeyHandle}
+                          min={0}
+                          max={100}
+                          onSetSliderPort={this.onSetSliderPort}
+                          getRangeVal={this.onRangeValue_Buzzer_smile_Eyes}
+                        />
+
+                        <div
+                          style={{
+                            backgroundImage: `url(${renderImage("add3x")}`,
+                            backgroundPosition: "center",
+                            backgroundSize: "cover",
+                            backgroundRepeat: "no-repeat",
+                            height: 40,
+                            width: 40,
+                            position: "relative",
+                            margin: "auto",
+                            marginLeft: "65%",
+                          }}
+                        ></div>
+                      </>
+                    );
+                  }
+                }
+                //else {
                 //     return (
                 //       <SwitchesRow name={componentProps[type].name} port={port} state={state}
                 //         key={port} assign={state['assign' + port]} onChange={this.onChange} />);
@@ -1856,7 +2032,9 @@ class OutputPanel extends Component {
                   type !== "dual_splitter" &&
                   type !== "servo_extender" &&
                   type !== "pc_motor_driver" &&
-                  type !== "stepper_motor"
+                  type !== "stepper_motor" &&
+                  type !== "OLED" &&
+                  type !== "RGB"
                 ) {
                   // if (
                   //   port == "STPM" ||

@@ -47,7 +47,11 @@ class Card extends Component {
     var leftPro;
 
     if (type == "dual_splitter" || type == "ultrasonic_sensor") {
-      widthSize = "90%";
+      widthSize = "80%";
+
+      leftPro = "7%";
+    } else if (type == "RGB" || type == "mp3" || type == "OLED") {
+      widthSize = "80%";
 
       leftPro = "7%";
     } else {
@@ -64,7 +68,7 @@ class Card extends Component {
         style={{
           zIndex: "50",
           opacity: "1",
-          height: "110px",
+
           width: widthSize,
           position: "absolute",
           top: "12%",

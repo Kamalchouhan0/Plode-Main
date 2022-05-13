@@ -442,6 +442,50 @@ class Workspace extends Component {
               signalType: SensorObj.signalType,
             };
           }
+        } else if (type == "RGB") {
+          if (component.connectedTo) {
+            PortConnections[component.connectedTo] = {
+              type,
+              index,
+              signalType: SensorObj.signalType,
+            };
+            PortConnections[`${component.connectedTo}1`] = {
+              type,
+              index,
+              signalType: SensorObj.signalType,
+            };
+          }
+        } else if (type == "mp3") {
+          if (component.connectedTo) {
+            PortConnections[component.connectedTo] = {
+              type,
+              index,
+              signalType: SensorObj.signalType,
+            };
+            PortConnections[`${component.connectedTo}1`] = {
+              type,
+              index,
+              signalType: SensorObj.signalType,
+            };
+          }
+        } else if (type == "OLED") {
+          if (component.connectedTo) {
+            PortConnections["OLEDOne"] = {
+              type,
+              index,
+              signalType: SensorObj.signalType,
+            };
+            PortConnections["OLEDTwo"] = {
+              type,
+              index,
+              signalType: SensorObj.signalType,
+            };
+            PortConnections["OLEDThree"] = {
+              type,
+              index,
+              signalType: SensorObj.signalType,
+            };
+          }
         } else if (component.connectedTo) {
           if (
             type != "servo_motor" ||
@@ -685,6 +729,50 @@ class Workspace extends Component {
               signalType: SensorObj.signalType,
             };
             PortConnections[`${component.connectedTo}1`] = {
+              type,
+              index,
+              signalType: SensorObj.signalType,
+            };
+          }
+        } else if (type == "RGB") {
+          if (component.connectedTo) {
+            PortConnections[component.connectedTo] = {
+              type,
+              index,
+              signalType: SensorObj.signalType,
+            };
+            PortConnections[`${component.connectedTo}1`] = {
+              type,
+              index,
+              signalType: SensorObj.signalType,
+            };
+          }
+        } else if (type == "mp3") {
+          if (component.connectedTo) {
+            PortConnections[component.connectedTo] = {
+              type,
+              index,
+              signalType: SensorObj.signalType,
+            };
+            PortConnections[`${component.connectedTo}1`] = {
+              type,
+              index,
+              signalType: SensorObj.signalType,
+            };
+          }
+        } else if (type == "OLED") {
+          if (component.connectedTo) {
+            PortConnections["OLEDOne"] = {
+              type,
+              index,
+              signalType: SensorObj.signalType,
+            };
+            PortConnections["OLEDTwo"] = {
+              type,
+              index,
+              signalType: SensorObj.signalType,
+            };
+            PortConnections["OLEDThree"] = {
               type,
               index,
               signalType: SensorObj.signalType,
