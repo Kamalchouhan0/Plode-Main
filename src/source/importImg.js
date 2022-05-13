@@ -156,7 +156,7 @@ import Remt3 from "../Assets/Bisoft_UI/Help screen/Play/Group 3183@2x.png";
 import Remt4 from "../Assets/Bisoft_UI/Help screen/Play/Group 3184@2x.png";
 import Remt5 from "../Assets/Bisoft_UI/Help screen/Play/Group 3185@2x.png";
 import Remt6 from "../Assets/Bisoft_UI/Help screen/Play/Group 3186@2x.png";
-// import popup from "../Assets/Bisoft_UI/Buttons/Updated icons for program select screen/popup card@2x.png";
+import PCimg from "../Assets/Bisoft_UI/Main/PNG/PC_image@2x.png";
 
 function renderImage(imageName) {
   switch (imageName) {
@@ -387,6 +387,9 @@ function renderImage(imageName) {
       return Remt5;
     case "Remt6":
       return Remt6;
+
+    case "PCimg":
+      return PCimg;
   }
 }
 

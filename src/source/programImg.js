@@ -245,6 +245,8 @@ import repeatActive from "../Assets/Bisoft_UI/Buttons/Active without shadow/repe
 
 import stopInactive from "../Assets/Bisoft_UI/Buttons/Inactive - without shadow/stop button@2x.png";
 import stopActive from "../Assets/Bisoft_UI/Buttons/Active without shadow/stop button@2x.png";
+
+import PCimg from "../Assets/Bisoft_UI/Main/PNG/PC_image@3x.png";
 // ACE EXTERNAL Accessories ex- led,lease
 // import LEDComponent from "../Assets/Bisoft_UI/PC Accessories/Mask Group 27@3x.png";
 
@@ -569,6 +571,9 @@ function renderPrgImage(imageName) {
 
     case "stopActive":
       return stopActive;
+
+    case "PCimg":
+      return PCimg;
   }
 }
 

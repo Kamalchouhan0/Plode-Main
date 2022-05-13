@@ -66,6 +66,7 @@
   position: absolute;
   top: 5%;
   right: 0%;
+  cursor: pointer;
   /* transform: translate(2%, -6%); */
 }
 .Reconnect_Button {

@@ -35,6 +35,7 @@ body {
   height: auto;
   width: 4%;
   position: absolute;
+  cursor: pointer;
   top: 4%;
   right: 6%;
 }
@@ -42,6 +43,7 @@ body {
   height: auto;
   width: 6%;
   position: absolute;
+  cursor: pointer;
   top: 4%;
   right: 0.1%;
 }
@@ -206,6 +208,7 @@ body {
   height: 80px;
   width: 80px;
   position: absolute;
+  cursor: pointer;
   top: 38%;
   left: 73%;
   transform: translate(-50%, -50%);
@@ -214,6 +217,7 @@ body {
   height: 80px;
   width: 80px;
   position: absolute;
+  cursor: pointer;
   top: 38%;
   left: 79.5%;
   transform: translate(-50%, -50%);
@@ -222,6 +226,7 @@ body {
   height: 80px;
   width: 80px;
   position: absolute;
+  cursor: pointer;
   top: 38%;
   left: 86%;
   transform: translate(-50%, -50%);
@@ -356,14 +361,17 @@ body {
   height: 48px;
   width: 48px;
   position: absolute;
+  cursor: pointer;
   top: 74%;
   left: 43.5%;
+
   transform: translate(-50%, -50%);
 }
 .Teeth_Smile2 {
   height: 48px;
   width: 48px;
   position: absolute;
+  cursor: pointer;
   top: 74%;
   left: 47.7%;
   transform: translate(-50%, -50%);
@@ -372,6 +380,7 @@ body {
   height: 48px;
   width: 48px;
   position: absolute;
+  cursor: pointer;
   top: 74%;
   left: 52%;
   transform: translate(-50%, -50%);
@@ -380,6 +389,7 @@ body {
   height: 48px;
   width: 48px;
   position: absolute;
+  cursor: pointer;
   top: 74%;
   left: 56%;
   transform: translate(-50%, -50%);

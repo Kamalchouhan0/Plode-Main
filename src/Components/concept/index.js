@@ -720,6 +720,8 @@ class Content extends Component {
                       verticalAlign: "middle",
                     }}
                   >
+                    <div className="coverflow_1"></div>
+                    <div className="coverflow_2"></div>
                     <Coverflow
                       components={this.state.redata}
                       select={this.select}

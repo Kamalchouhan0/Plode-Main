@@ -1587,6 +1587,7 @@ class Assembly extends Component {
               // className="iconBtnSize1"
               style={{
                 position: "absolute",
+                cursor: "pointer",
                 top: "50%",
                 right: "2%",
                 transform: "translateY(-50%)",
@@ -1602,6 +1603,7 @@ class Assembly extends Component {
               // className="iconBtnSize1"
               style={{
                 position: "absolute",
+                cursor: "pointer",
                 top: "50%",
                 right: "2%",
                 transform: "translateY(-50%)",
@@ -1618,6 +1620,7 @@ class Assembly extends Component {
                 src={renderPrgImage("readPCInActive")}
                 style={{
                   position: "absolute",
+                  cursor: "pointer",
                   top: "50%",
                   right: "2%",
                   transform: "translateY(-50%)",
@@ -1781,6 +1784,7 @@ class Assembly extends Component {
                       position: "absolute",
                       top: "50%",
                       right: "2%",
+                      cursor: "pointer",
                       transform: "translateY(-50%)",
                       height: "60px",
                       width: "60px",
@@ -1839,6 +1843,7 @@ class Assembly extends Component {
                       src={renderPrgImage("readPCActive")}
                       style={{
                         position: "absolute",
+                        cursor: "pointer",
                         top: "50%",
                         right: "2%",
                         transform: "translateY(-50%)",
@@ -1858,6 +1863,7 @@ class Assembly extends Component {
                   src={renderPrgImage("readPCInActive")}
                   style={{
                     position: "absolute",
+                    cursor: "pointer",
                     top: "50%",
                     right: "2%",
                     transform: "translateY(-50%)",

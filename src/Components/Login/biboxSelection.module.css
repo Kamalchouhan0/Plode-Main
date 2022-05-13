@@ -22,6 +22,7 @@
   height: 60px;
   width: 60px;
   position: absolute;
+  cursor: pointer;
   top: 30px;
   right: 31px;
 }
@@ -39,6 +40,7 @@
   width: 220px;
   height: 240px;
   position: absolute;
+  cursor: pointer;
   top: 44%;
   left: 49.5%;
   transform: translate(-50%, -50%);

@@ -67,9 +67,7 @@ const RstyleDevicePC = {
   width: "20vw",
   height: "16.5vw",
 
-  backgroundImage: `url(${
-    process.env.PUBLIC_URL + "/Bisoft_UI/Main/PNG/PC_image@2x.png"
-  })`,
+  backgroundImage: `url(${renderImage("PCimg")})`,
   backgroundRepeat: "no-repeat",
   backgroundSize: "76% 96%",
   backgroundPosition: "50% 50%",
