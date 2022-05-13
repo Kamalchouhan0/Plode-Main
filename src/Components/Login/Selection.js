@@ -19,6 +19,7 @@ import play from "../../Assets/play button.png";
 import program from "../../Assets/program button.png";
 import build from "../../Assets/build button.png";
 import SMSlider from "../ReusableComponents/SelectModeSlider/SMSlider";
+import renderImage from "../../source/importImg";
 
 function Selection(props) {
   let history = useHistory();
@@ -86,7 +87,7 @@ function Selection(props) {
         <div>
           <img
             className={SelectionStyle.Back_Btn}
-            src={backBtn}
+            src={renderImage("backBtn")}
             onClick={gobackUrl}
           ></img>
         </div>
@@ -98,7 +99,7 @@ function Selection(props) {
           {isHelp == false ? (
             <img
               className={SelectionStyle.Help_Bttn}
-              src={helpBtnInActive}
+              src={renderImage("helpBtnInActive")}
               onClick={handleHelpBtn}
             ></img>
           ) : (
@@ -109,7 +110,7 @@ function Selection(props) {
           {isHelp ? (
             <img
               className={SelectionStyle.helpClose}
-              src={clos}
+              src={renderImage("clos")}
               onClick={handleHelpBtn}
             ></img>
           ) : null}

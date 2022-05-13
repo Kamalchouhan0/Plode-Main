@@ -86,11 +86,13 @@ import FourteethIA_Svg from "../Assets/Bisoft_UI/Play/SVG/4 in 1 - inactive.svg"
 
 import Redslider_Svg from "../Assets/Bisoft_UI/Play/SVG/red_slider.svg";
 
+import Freq_Svg from "../Assets/Bisoft_UI/Play/SVG/frequency_slider.svg";
+
 import Greenslider_Svg from "../Assets/Bisoft_UI/Play/SVG/green_slider.svg";
 
 import Blueslider_Svg from "../Assets/Bisoft_UI/Play/SVG/blue_slider.svg";
 
-import sliderIA from "../Assets/Bisoft_UI/Play/PNG/inactive slider.png";
+import sliderIA from "../Assets/Bisoft_UI/Play/SVG/inactiveslider.svg";
 
 import smile1_Active from "../Assets/Bisoft_UI/Buttons/Active with shadow/smile 1.png";
 
@@ -292,17 +294,23 @@ function renderImage(imageName) {
     case "FourteethIA_Svg":
       return FourteethIA_Svg;
 
-    case "Redslider_Svg":
-      return Redslider_Svg;
+    case "red_slider":
+      var type = Redslider_Svg;
+      return type;
 
-    case "Greenslider_Svg":
-      return Greenslider_Svg;
+    case "green_slider":
+      var type = Greenslider_Svg;
+      return type;
 
-    case "Blueslider_Svg":
-      return Blueslider_Svg;
+    case "blue_slider":
+      var type = Blueslider_Svg;
+      return type;
 
-    case "sliderIA":
+    case "inactiveslider":
       return sliderIA;
+
+    case "frequency_slider":
+      return Freq_Svg;
     case "smile1_Active":
       return smile1_Active;
 

@@ -38,7 +38,7 @@ export default memo(({ data }) => {
         id="PC_sim"
         style={{
           ...style,
-          backgroundImage: `url("Bisoft_UI/Main/PNG/PC_image@3x.png")`,
+          backgroundImage: `url(${renderPrgImage("PCimg")})`,
           overflow: "visible",
 
           // background: "red",

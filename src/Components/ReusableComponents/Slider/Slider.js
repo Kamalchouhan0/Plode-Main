@@ -1,5 +1,6 @@
 import e from "cors";
 import React, { useState, useEffect } from "react";
+import renderImage from "../../../source/importImg";
 
 import { Slider1 } from "../Slider/SliderStyles";
 import "./Slider.css";
@@ -16,11 +17,7 @@ const SliderRange = (props) => {
   // };
 
   const sliderStyle = {
-    backgroundImage:
-      "url(" +
-      process.env.PUBLIC_URL +
-      `/Bisoft_UI/Play/SVG/${props.rangImgName}.svg` +
-      ")",
+    backgroundImage: `url(${renderImage(props.rangImgName)})`,
     backgroundRepeat: "no-repeat",
     backgroundSize: "100% 100%",
 

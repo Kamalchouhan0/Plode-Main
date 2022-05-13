@@ -469,7 +469,7 @@ class Component1 extends Component {
               left,
               top,
               // backgroundImage: "url(images/oldImages/component_" + type + ".png)",
-              backgroundImage: `url(Bisoft_UI/Accessories/newComponents/component_${type}.png)`,
+              backgroundImage: `url(${renderCompImg(type)})`,
 
               height,
               width,

@@ -19,6 +19,10 @@ import led_1c from "../Assets/Bisoft_UI/Accessories/newComponents/component_led_
 import tactswitch_2c from "../Assets/Bisoft_UI/Accessories/newComponents/component_tact_switch_2c.png";
 import ultrasonicsensor from "../Assets/Bisoft_UI/Accessories/newComponents/component_ultrasonic_sensor.png";
 
+import RGB from "../Assets/Bisoft_UI/Accessories/newComponents/component_RGB.png";
+import OLED from "../Assets/Bisoft_UI/Accessories/newComponents/component_OLED.png";
+import mp3 from "../Assets/Bisoft_UI/Accessories/newComponents/component_mp3.png";
+
 var type;
 
 function renderCompImg(name) {
@@ -85,6 +89,18 @@ function renderCompImg(name) {
 
     case "tact_switch_2c":
       var type = tactswitch_2c;
+      return type;
+
+    case "RGB":
+      var type = RGB;
+      return type;
+
+    case "OLED":
+      var type = OLED;
+      return type;
+
+    case "mp3":
+      var type = mp3;
       return type;
   }
 }
