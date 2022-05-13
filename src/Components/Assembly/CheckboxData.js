@@ -194,6 +194,18 @@ export var rangeStoreVal = {
     value: 0,
     isChecked: false,
   },
+  OLEDOne: {
+    value: 0,
+    isChecked: false,
+  },
+  OLEDTwo: {
+    value: 0,
+    isChecked: false,
+  },
+  OLEDThree: {
+    value: 0,
+    isChecked: false,
+  },
   Buzzer: {
     value: 0,
     isChecked: false,

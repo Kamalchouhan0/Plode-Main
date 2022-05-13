@@ -57,6 +57,8 @@ const IOComponents = {
   solar_panel: { output: false, input: true },
   battery: { output: false, input: false },
   compass: { output: false, input: true },
+  OLED: { output: true, input: false },
+  RGB: { output: true, input: false },
 };
 
 module.exports = IOComponents;

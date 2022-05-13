@@ -28,6 +28,7 @@ import bisoft_logo1 from "../Assets/Bisoft_UI/Plode/Plode Icon.png";
 import leading_page from "../Assets/Bisoft_UI/Main/PNG/leading page graphics.png";
 
 import add from "../Assets/Bisoft_UI/Buttons/Active with shadow/add.png";
+import add3x from "../Assets/Bisoft_UI/Buttons/Active with shadow/add@3x.png";
 import PC from "../Assets/Bisoft_UI/Main/PNG/PC_image@2x.png";
 
 import Pc from "../Assets/Bisoft_UI/Main/PNG/PC_image.png";
@@ -176,7 +177,8 @@ function renderImage(imageName) {
 
     case "add":
       return add;
-
+    case "add3x":
+      return add3x;
     case "PC":
       return PC;
 

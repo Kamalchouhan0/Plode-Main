@@ -51,7 +51,9 @@ if (Device == "Ace") {
     temp_dew: ["A", "B", "C", "A1", "A2", "B1", "B2", "C2", "C1"],
     temp_gas: ["A", "B", "C", "A1", "A2", "B1", "B2", "C2", "C1"],
     joystick: ["A", "B", "C", "A1", "A2", "B1", "B2", "C2", "C1"],
-    RGB: ["C", "C1", "C2"],
+    RGB: ["B", "B1", "B2"],
+    mp3: ["B", "B1", "B2"],
+    OLED: ["D", "D1", "D2"],
     // OLD ONEs
     temperature_sensor: ["A", "B", "C", "A1", "A2", "B1", "B2", "C2", "C1"],
     sound_sensor: ["A", "B", "C", "A1", "A2", "B1", "B2", "C2", "C1"],

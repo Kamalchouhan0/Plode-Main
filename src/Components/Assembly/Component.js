@@ -443,6 +443,86 @@ class Component1 extends Component {
           </p>
         </div>
       );
+    } else if (this.props.type == "RGB") {
+      let connectedToPort = this.props.connectedTo;
+      console.log(this.props.connectedTo, "<<<<:<:<:<:<:");
+
+      console.log(this.props.rangeA1, "<<<<:<:<:<:<:");
+
+      var { type, left, top, scale, connectDragSource, isDragging, children } =
+        this.props;
+      if (isDragging) {
+        return null;
+      }
+
+      var height = 100 * scale;
+      var width = 100 * scale;
+      left = left + 22;
+      top = top + 35;
+
+      return connectDragSource(
+        <div>
+          <div
+            id={this.props.type + this.props.index}
+            style={{
+              ...style,
+              left,
+              top,
+              // backgroundImage: "url(images/oldImages/component_" + type + ".png)",
+              backgroundImage: `url(Bisoft_UI/Accessories/newComponents/component_${type}.png)`,
+
+              height,
+              width,
+            }}
+            onMouseDown={() => {
+              clickStartTimestamp = Date.now();
+            }}
+            onMouseUp={this.checkForLongPress}
+            onDoubleClick={() => this.typeCheck(this)}
+          />
+
+          <p
+            style={{
+              position: "absolute",
+              top,
+              marginTop: "3%",
+              marginLeft: "-2%",
+              left,
+              zIndex: "3000000",
+              fontSize: "20px",
+              color: "#707070",
+            }}
+          >
+            {this.props.connectedTo == "A"
+              ? this.props.rangeA1
+              : this.props.connectedTo == "B"
+              ? this.props.temp
+              : this.props.connectedTo == "C"
+              ? this.props.one
+              : null}
+          </p>
+          <p
+            style={{
+              position: "absolute",
+              top,
+              marginTop: "3%",
+              marginLeft: "7%",
+              left,
+              zIndex: "3",
+              fontSize: "20px",
+              color: "#707070",
+            }}
+          >
+            {this.props.connectedTo == "A"
+              ? this.props.rangeA2
+              : this.props.connectedTo == "B"
+              ? this.props.gas
+              : this.props.connectedTo == "C"
+              ? this.props.two
+              : null}
+          </p>
+        </div>
+      );
     } else if (this.props.type == "tact_switch") {
       var { type, left, top, scale, connectDragSource, isDragging, children } =
         this.props;

@@ -858,6 +858,13 @@ class Assembly extends Component {
               }
             }
           }
+          if (type == "OLED") {
+            for (var key in obj) {
+              if (key.includes("OLED")) {
+                delete node[nodeKey].state[key];
+              }
+            }
+          }
         } else {
           if (obj["assign" + port]) {
             delete node[nodeKey].state["assign" + port];

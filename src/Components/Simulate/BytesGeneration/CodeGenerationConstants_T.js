@@ -74,6 +74,11 @@ let PortsAndPortbytes = {
   RightEyeB: ["RightEyeB"],
 
   Temperature: ["Temperature"],
+  Mp3: ["Mp3"],
+  OLED: ["OLED"],
+  OLEDOne: ["OLEDOne"],
+  OLEDTwo: ["OLEDTwo"],
+  OLEDThree: ["OLEDThree"],
   TouchZero: ["TouchZero"],
   TouchOne: ["TouchOne"],
   TouchTwo: ["TouchTwo"],
@@ -269,8 +274,10 @@ let PortByteNumericalValuesIf = {
   D: "73",
   M: "74",
   L: "72",
-  _G: "48",
-  _B: "49",
+  Mp3: "47",
+  OLEDOne: "48",
+  OLEDTwo: "49",
+  OLEDThree: "50",
   rfid: "50",
   timeElapsed: "51",
   battery: "52",
@@ -326,7 +333,10 @@ let PortByteNumericalValuesOutput = {
   MOTOR2: "20",
   MOTOR3: "21",
   MOTOR4: "22",
-
+  Mp3: "47",
+  OLEDOne: "48",
+  OLEDTwo: "49",
+  OLEDThree: "50",
   R: "69",
   G: "46",
   B: "71",
@@ -413,6 +423,10 @@ let BiDataValuesOutput = {
   D: "73",
   M: "74",
   L: "72",
+  Mp3: "47",
+  OLEDOne: "48",
+  OLEDTwo: "49",
+  OLEDThree: "50",
 };
 
 let nodeDefaultCodes = {

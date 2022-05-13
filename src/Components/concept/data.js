@@ -26,6 +26,26 @@ if (componentType == "Ace") {
       name: "laser",
       signalType: "null",
     },
+    {
+      type: "RGB",
+      description:
+        "RGB: It is a serially connectable RGB LED with individual LED controls",
+      color: "#15909d",
+      name: "RBG",
+      signalType: "null",
+    },
+    {
+      type: "mp3",
+      description: "MP3: Play Mp3 songs",
+      color: "#15909d",
+      name: "mp3",
+    },
+    {
+      type: "OLED",
+      description: "OLED: Dispay 3 lines of text on a display",
+      color: "#15909d",
+      name: "OLED Display",
+    },
     // {
     //   type: "mini_geared_motor",
     //   description:
@@ -225,15 +245,6 @@ if (componentType == "Ace") {
     //   description: "A triple axis Accelerometer + Gyro sensor",
     //   color: "#15909d",
     //   name: "9 Axis",
-    // },
-
-    // {
-    //   type: "RGB",
-    //   description:
-    //     "It is a serially connectable RGB LED with individual LED controls",
-    //   color: "#15909d",
-    //   name: "RBG",
-    //   signalType: "null",
     // },
 
     // {
