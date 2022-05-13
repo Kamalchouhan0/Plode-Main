@@ -18,6 +18,7 @@
   height: 60px;
   width: 60px;
   position: absolute;
+  cursor: pointer;
   top: 30px;
   left: 31px;
 }
@@ -35,6 +36,7 @@
   height: 60px;
   width: 60px;
   position: absolute;
+  cursor: pointer;
   top: 30px;
   right: 31px;
 }

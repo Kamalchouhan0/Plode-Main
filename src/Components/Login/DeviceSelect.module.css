@@ -44,6 +44,7 @@
 .helpBtn {
   height: auto;
   position: absolute;
+  cursor: pointer;
   top: 4%;
   width: 4%;
   right: 3%;

@@ -35,6 +35,7 @@ body {
   height: auto;
   width: 4%;
   position: absolute;
+  cursor: pointer;
   top: 4%;
   right: 6%;
 }
@@ -42,6 +43,7 @@ body {
   height: auto;
   width: 6%;
   position: absolute;
+  cursor: pointer;
   top: 4%;
   right: 0.1%;
 }
@@ -206,6 +208,7 @@ body {
   height: 80px;
   width: 80px;
   position: absolute;
+  cursor: pointer;
   top: 38%;
   left: 73%;
   transform: translate(-50%, -50%);
@@ -214,6 +217,7 @@ body {
   height: 80px;
   width: 80px;
   position: absolute;
+  cursor: pointer;
   top: 38%;
   left: 79.5%;
   transform: translate(-50%, -50%);
@@ -222,6 +226,7 @@ body {
   height: 80px;
   width: 80px;
   position: absolute;
+  cursor: pointer;
   top: 38%;
   left: 86%;
   transform: translate(-50%, -50%);
@@ -343,11 +348,7 @@ body {
   left: 50.5%;
   transform: translate(-50%, -50%);
 }
-@media screen and (max-width: 1124px) and (min-width: 600px) {
-  .Ace_Teeth {
-    margin-top: 80px;
-  }
-}
+
 .Teeth_Bg {
   height: auto;
   width: 20%;
@@ -360,14 +361,17 @@ body {
   height: 48px;
   width: 48px;
   position: absolute;
+  cursor: pointer;
   top: 74%;
   left: 43.5%;
+
   transform: translate(-50%, -50%);
 }
 .Teeth_Smile2 {
   height: 48px;
   width: 48px;
   position: absolute;
+  cursor: pointer;
   top: 74%;
   left: 47.7%;
   transform: translate(-50%, -50%);
@@ -376,6 +380,7 @@ body {
   height: 48px;
   width: 48px;
   position: absolute;
+  cursor: pointer;
   top: 74%;
   left: 52%;
   transform: translate(-50%, -50%);
@@ -384,6 +389,7 @@ body {
   height: 48px;
   width: 48px;
   position: absolute;
+  cursor: pointer;
   top: 74%;
   left: 56%;
   transform: translate(-50%, -50%);
@@ -404,4 +410,326 @@ body {
   height: 10%;
   width: 5%;
   z-index: 100000;
+}
+@media screen and (max-width: 1300px) and (min-width: 1124px) {
+  .Ace_Teeth {
+    margin-top: 10%;
+  }
+}
+@media screen and (max-width: 1124px) and (min-width: 600px) {
+  .Ace_Teeth {
+    margin-top: 80px;
+  }
+  .Play_Remote {
+    /* height: auto; */
+    /* width: 10%; */
+    font-size: 23px;
+    /* position: absolute; */
+    top: 4.5%;
+    /* font-family: "Halcyon_SemiBold" !important; */
+  }
+  .Talkback_IA {
+    height: 65px;
+    width: 65px;
+  }
+  .Disco_IA {
+    height: 65px;
+    width: 65px;
+  }
+  .Disco_txt {
+    left: 81.5%;
+    font-size: 15px;
+    top: 47.5%;
+  }
+  .Talkback_txt {
+    font-size: 15px;
+    top: 47.5%;
+  }
+
+  .Gesture_txt {
+    font-size: 15px;
+    top: 47.5%;
+  }
+  .Gesture_IA {
+    height: 65px;
+    width: 65px;
+  }
+  .Teeth_Smile1 {
+    height: 38px;
+    width: 38px;
+  }
+  .Teeth_Smile2 {
+    height: 38px;
+    width: 38px;
+  }
+  .Teeth_Smile3 {
+    height: 38px;
+    width: 38px;
+  }
+  .Teeth_Smile4 {
+    height: 38px;
+    width: 38px;
+  }
+
+  .Right_Eye_txt,
+  .Left_Eye_txt {
+    font-size: 19px;
+  }
+  .Buzzer_txt {
+    font-size: 16px;
+    top: 36%;
+    left: 12%;
+  }
+  .Slider_Div2 {
+    height: 18%;
+    width: 18%;
+  }
+  .Slider_Div1 {
+    height: 18%;
+    width: 18%;
+
+    left: 11%;
+  }
+  .Slider_Div3 {
+    width: 15%;
+    left: 15%;
+  }
+}
+
+@media screen and (max-width: 1000px) and (min-width: 850px) {
+  .Slider_Div2 {
+    height: 16%;
+
+    top: 57.5%;
+  }
+  .Slider_Div1 {
+    height: 16%;
+
+    top: 57.5%;
+  }
+  .Slider_Div3 {
+    top: 33%;
+  }
+  .Play_Remote {
+    font-size: 21px;
+
+    top: 4.1%;
+  }
+  .Disco_txt {
+    left: 82%;
+    font-size: 14px;
+  }
+  .Talkback_txt {
+    font-size: 14px;
+  }
+
+  .Gesture_txt {
+    left: 88%;
+    font-size: 14px;
+  }
+}
+@media screen and (max-width: 851px) and (min-width: 750px) {
+  .Slider_Div2 {
+    height: 13%;
+
+    top: 58.5%;
+  }
+  .Slider_Div1 {
+    height: 13%;
+
+    top: 58.5%;
+  }
+  .Slider_Div3 {
+    top: 33%;
+  }
+  .Play_Remote {
+    font-size: 20px;
+
+    top: 4%;
+  }
+  .Disco_txt {
+    left: 82%;
+    font-size: 14px;
+  }
+  .Talkback_txt {
+    font-size: 14px;
+  }
+
+  .Gesture_txt {
+    left: 88%;
+    font-size: 14px;
+  }
+  .Teeth_Bg {
+    top: 69%;
+  }
+
+  .Teeth_Smile1,
+  .Teeth_Smile2,
+  .Teeth_Smile3,
+  .Teeth_Smile4 {
+    height: 33px;
+    width: 33px;
+    top: 69.5%;
+  }
+}
+@media screen and (max-width: 750px) and (min-width: 600px) {
+  .Slider_Div2 {
+    height: 13%;
+
+    top: 58.5%;
+  }
+  .Slider_Div1 {
+    height: 13%;
+    left: 12%;
+    top: 58.5%;
+  }
+  .Slider_Div3 {
+    top: 33%;
+  }
+  .Play_Remote {
+    font-size: 19px;
+
+    top: 4%;
+  }
+  .Right_Eye_txt,
+  .Left_Eye_txt {
+    font-size: 16px;
+    top: 66%;
+  }
+  .Left_Eye_txt {
+    left: 11%;
+  }
+  .Talkback_IA,
+  .Disco_IA,
+  .Gesture_IA {
+    height: 58px;
+    width: 58px;
+  }
+  .Gesture_IA {
+    left: 88%;
+  }
+  .Disco_IA {
+    left: 80.5%;
+  }
+  .Disco_txt {
+    left: 83.8%;
+    font-size: 13px;
+  }
+  .Buzzer_txt {
+    font-size: 13px;
+    top: 36.5%;
+    left: 13%;
+  }
+  .Talkback_txt {
+    font-size: 13px;
+  }
+
+  .Gesture_txt {
+    left: 90.5%;
+    font-size: 13px;
+  }
+  .Teeth_Bg {
+    top: 69%;
+  }
+
+  .Teeth_Smile1,
+  .Teeth_Smile2,
+  .Teeth_Smile3,
+  .Teeth_Smile4 {
+    height: 28px;
+    width: 28px;
+    top: 69.3%;
+  }
+}
+
+@media screen and (max-width: 600px) and (min-width: 500px) {
+  .Ace_Teeth {
+    margin-top: 80px;
+  }
+  .Slider_Div2 {
+    height: 9%;
+    width: 18%;
+    top: 57%;
+    right: 7%;
+  }
+  .Slider_Div1 {
+    height: 9%;
+    width: 18%;
+    left: 13%;
+    top: 57%;
+  }
+  .Slider_Div3 {
+    top: 35.5%;
+    width: 14%;
+
+    left: 16%;
+  }
+  .Play_Remote {
+    font-size: 17px;
+    top: 4.2%;
+  }
+  .Right_Eye_txt,
+  .Left_Eye_txt {
+    font-size: 16px;
+  }
+  .Left_Eye_txt {
+    left: 12%;
+  }
+  .Talkback_IA,
+  .Disco_IA,
+  .Gesture_IA {
+    height: 42px;
+    width: 42px;
+  }
+  .Gesture_IA {
+    left: 88%;
+  }
+  .Disco_IA {
+    left: 80.5%;
+  }
+  .Disco_txt {
+    left: 85%;
+    font-size: 11px;
+    top: 46.5%;
+  }
+  .Buzzer_Bg {
+    top: 38%;
+  }
+  .Buzzer_txt {
+    font-size: 12px;
+    top: 38.5%;
+    left: 14%;
+  }
+  .Talkback_txt {
+    font-size: 11px;
+    top: 46.5%;
+    left: 74.5%;
+  }
+
+  .Gesture_txt {
+    left: 92%;
+    top: 46.5%;
+    font-size: 11px;
+  }
+  .Teeth_Bg {
+    top: 65%;
+  }
+
+  .Teeth_Smile1,
+  .Teeth_Smile2,
+  .Teeth_Smile3,
+  .Teeth_Smile4 {
+    height: 24px;
+    width: 24px;
+    top: 65.5%;
+  }
+  .Right_Eye_Backdround,
+  .Left_Eye_Backdround,
+  .Left_Eye_txt,
+  .Right_Eye_txt {
+    top: 63%;
+  }
+  .Right_Eye_txt {
+    left: 73%;
+  }
 }

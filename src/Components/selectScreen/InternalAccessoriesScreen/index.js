@@ -157,9 +157,7 @@ function InternalAccessoriesScreen(props) {
     width: "25vw",
     height: "22vw",
 
-    backgroundImage: `url(${
-      process.env.PUBLIC_URL + "/Bisoft_UI/Main/PNG/PC_image@3x.png"
-    })`,
+    backgroundImage: `url(${renderPrgImage("PCimg")})`,
     backgroundRepeat: "no-repeat",
     backgroundSize: "76% 96%",
     backgroundPosition: "50% 50%",
