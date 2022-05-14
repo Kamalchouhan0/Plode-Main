@@ -541,6 +541,9 @@ function genCodeString(logicComponents) {
         } else if (comp == "OLED") {
           PortBytesToComponentcode["OLED"] = "D";
           PortBytesToComponentcode[PortsAndPortbytes[portname][j]] = "O";
+        } else if (comp == "RGB") {
+          PortBytesToComponentcode["RGB"] = "R";
+          PortBytesToComponentcode[PortsAndPortbytes[portname][j]] = "O";
         } else {
           PortBytesToComponentcode[PortsAndPortbytes[portname][j]] =
             CorrespondingPortCode[comp];
@@ -598,7 +601,7 @@ function genCodeString(logicComponents) {
   var FinalCode = "";
 
   var codeTemplate =
-    "A1A2B1B2C1C2D1D2E1E2F1F2G1G2H1H2I1I2SmileOneSmileTwoSmileThreeSmileFourbuzzerEyeFour_in_one_sensorMicTouchZeroTouchOneTouchTwoTemperatureIOT1IOT2IOT3IOT4Mp3OLED";
+    "A1A2B1B2C1C2D1D2E1E2F1F2G1G2H1H2I1I2SmileOneSmileTwoSmileThreeSmileFourbuzzerEyeFour_in_one_sensorMicTouchZeroTouchOneTouchTwoTemperatureIOT1IOT2IOT3IOT4Mp3OLEDRGB";
   //copy from hornbill or snipe
 
   for (var portBytes in PortBytesToComponentcode) {
@@ -1340,7 +1343,12 @@ function genCodeString(logicComponents) {
                     portValue = nodeDetails["valueB1"];
                   }
                   console.log(portValue, "portValue");
-
+                  if (portByteSelected.includes("RGBComp")) {
+                    portValue = [];
+                    portValue.push(nodeDetails[`value${portByteSelected}R`]);
+                    portValue.push(nodeDetails[`value${portByteSelected}G`]);
+                    portValue.push(nodeDetails[`value${portByteSelected}B`]);
+                  }
                   //console.log("nodeDetai", nodeDetails["value" + portByteSelected], portByteSelected, portValue)
                   // }
                   if (portValue == true) {
@@ -1439,6 +1447,14 @@ function genCodeString(logicComponents) {
                     for (let i = charCodeArr.length; i < 16; i++) {
                       charCodeArr.push(32);
                     }
+                    decimalValue = charCodeArr.toString().replaceAll(",", ":");
+                  } else if (portByteSelected.includes("RGBComp")) {
+                    var charCodeArr = [];
+                    for (let i = 0; i < portValue.length; i++) {
+                      let code = portValue[i];
+                      charCodeArr.push(code);
+                    }
+
                     decimalValue = charCodeArr.toString().replaceAll(",", ":");
                   } else {
                     var compName = connectionsList[portByteSelected];

@@ -29,6 +29,9 @@ import leading_page from "../Assets/Bisoft_UI/Main/PNG/leading page graphics.png
 
 import add from "../Assets/Bisoft_UI/Buttons/Active with shadow/add.png";
 import add3x from "../Assets/Bisoft_UI/Buttons/Active with shadow/add@3x.png";
+import remove3x from "../Assets/Bisoft_UI/Buttons/Active with shadow/remove@3x.png";
+import add3xIA from "../Assets/Bisoft_UI/Buttons/Inactive with shadow/add@3x.png";
+import remove3xIA from "../Assets/Bisoft_UI/Buttons/Inactive with shadow/remove@3x.png";
 import PC from "../Assets/Bisoft_UI/Main/PNG/PC_image@2x.png";
 
 import Pc from "../Assets/Bisoft_UI/Main/PNG/PC_image.png";
@@ -171,6 +174,12 @@ function renderImage(imageName) {
       return add;
     case "add3x":
       return add3x;
+    case "remove3x":
+      return remove3x;
+    case "add3xIA":
+      return add3xIA;
+    case "remove3xIA":
+      return remove3xIA;
     case "PC":
       return PC;
 

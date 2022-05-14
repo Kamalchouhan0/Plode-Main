@@ -529,7 +529,109 @@ class SliderRow extends Component {
         </div>
       );
     }
-
+    if (name == "RGBComp") {
+      console.log("gkaay", this.props, this.state);
+      // if (this.props.port == "R") {
+      //   value = this.props.valR;
+      // }
+      // if (this.props.port == "B") {
+      //   value = this.props.valB;
+      // }
+      // if (this.props.port == "G") {
+      //   value = this.props.valG;
+      // }
+      return (
+        <div className="hardwareInfo-section">
+          <div className="portDetails-hw" style={{}}>
+            <Checkbox
+              checked={assign}
+              onChange={() => {
+                handlecheckbox(this.props.count);
+              }}
+              label={this.props.title}
+              // activePort={port}
+            />
+          </div>
+          <div
+            className={`portSlider-hw  isActivehardwareInfo${assign}`}
+            style={{
+              position: "relative",
+              height: "250px",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-around",
+            }}
+          >
+            <div
+              style={{ position: "relative", height: "auto", width: "100%" }}
+            >
+              <Slider
+                title=""
+                disabled={!assign}
+                value={this.props.valR || 0}
+                min={min}
+                max={max}
+                onChange={(value) => {
+                  getRangeVal(this.props.count, value, "R");
+                }}
+                renderIn="hardwarePropertyPanel"
+                sliderName="R"
+              />
+              <p style={{ position: "absolute", left: "27%", bottom: "-17%" }}>
+                {min}
+              </p>
+              <p style={{ position: "absolute", right: "12%", bottom: "-17%" }}>
+                {max}
+              </p>
+            </div>
+            <div
+              style={{ position: "relative", height: "auto", width: "100%" }}
+            >
+              <Slider
+                title=""
+                disabled={!assign}
+                value={this.props.valG || 0}
+                min={min}
+                max={max}
+                onChange={(value) => {
+                  getRangeVal(this.props.count, value, "G");
+                }}
+                renderIn="hardwarePropertyPanel"
+                sliderName="G"
+              />
+              <p style={{ position: "absolute", left: "27%", bottom: "-17%" }}>
+                {min}
+              </p>
+              <p style={{ position: "absolute", right: "12%", bottom: "-17%" }}>
+                {max}
+              </p>
+            </div>{" "}
+            <div
+              style={{ position: "relative", height: "auto", width: "100%" }}
+            >
+              <Slider
+                title=""
+                disabled={!assign}
+                value={this.props.valB || 0}
+                min={min}
+                max={max}
+                onChange={(value) => {
+                  getRangeVal(this.props.count, value, "B");
+                }}
+                renderIn="hardwarePropertyPanel"
+                sliderName="B"
+              />
+              <p style={{ position: "absolute", left: "27%", bottom: "-17%" }}>
+                {min}
+              </p>
+              <p style={{ position: "absolute", right: "12%", bottom: "-17%" }}>
+                {max}
+              </p>
+            </div>
+          </div>
+        </div>
+      );
+    }
     if (name == "Buzzer") {
       console.log("Buzzer DATA SLIDER>>>", assign);
 

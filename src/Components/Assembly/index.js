@@ -865,6 +865,13 @@ class Assembly extends Component {
               }
             }
           }
+          if (type == "RGB") {
+            for (var key in obj) {
+              if (key.includes("RGBComp")) {
+                delete node[nodeKey].state[key];
+              }
+            }
+          }
         } else {
           if (obj["assign" + port]) {
             delete node[nodeKey].state["assign" + port];

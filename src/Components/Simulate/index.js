@@ -1543,7 +1543,7 @@ class Simulate extends Component {
             }}
           >
             {" "}
-            <InputSlider props={this.props}></InputSlider>
+            {/* <InputSlider props={this.props}></InputSlider> */}
           </div>
 
           {/* Assembly scrren for the simulation screen */}

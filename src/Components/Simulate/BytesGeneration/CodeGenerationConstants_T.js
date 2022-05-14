@@ -83,9 +83,16 @@ let PortsAndPortbytes = {
   TouchOne: ["TouchOne"],
   TouchTwo: ["TouchTwo"],
 
-  RGBLEDR: ["RGBLEDR"],
-  RGBLEDG: ["RGBLEDG"],
-  RGBLEDB: ["RGBLEDB"],
+  RGBComp1: ["RGBComp1"],
+  RGBComp2: ["RGBComp2"],
+  RGBComp3: ["RGBComp3"],
+  RGBComp4: ["RGBComp4"],
+  RGBComp5: ["RGBComp5"],
+  RGBComp6: ["RGBComp6"],
+  RGBComp7: ["RGBComp7"],
+  RGBComp8: ["RGBComp8"],
+  RGBComp9: ["RGBComp9"],
+  RGBComp10: ["RGBComp10"],
 
   // humanoid Actions
   Attention: ["Attention"],
@@ -346,9 +353,16 @@ let PortByteNumericalValuesOutput = {
 
   // portNumber of buzzer
   Buzzer: "21",
-  RGBLEDR: "22",
-  RGBLEDG: "23",
-  RGBLEDB: "24",
+  RGBComp1: 75,
+  RGBComp2: 76,
+  RGBComp3: 77,
+  RGBComp4: 78,
+  RGBComp5: 79,
+  RGBComp6: 80,
+  RGBComp7: 81,
+  RGBComp8: 82,
+  RGBComp9: 83,
+  RGBComp10: 84,
 
   // PortNumber
   LeftEyeR: "24",

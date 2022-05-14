@@ -95,6 +95,32 @@ class OutputPanel extends Component {
       isClickSTMP_SWITCH_C2: false,
       isClickSTMP_SWITCH_D1: false,
       isClickSTMP_SWITCH_D2: false,
+      isClickRGBComp: {
+        isClickRGBComp1: false,
+        isClickRGBComp2: false,
+        isClickRGBComp3: false,
+        isClickRGBComp4: false,
+        isClickRGBComp5: false,
+        isClickRGBComp6: false,
+        isClickRGBComp7: false,
+        isClickRGBComp8: false,
+        isClickRGBComp9: false,
+        isClickRGBComp10: false,
+      },
+
+      curValRGBComp: {
+        RGBComp1: { R: 0, G: 0, B: 0 },
+        RGBComp2: { R: 0, G: 0, B: 0 },
+        RGBComp3: { R: 0, G: 0, B: 0 },
+        RGBComp4: { R: 0, G: 0, B: 0 },
+        RGBComp5: { R: 0, G: 0, B: 0 },
+        RGBComp6: { R: 0, G: 0, B: 0 },
+        RGBComp7: { R: 0, G: 0, B: 0 },
+        RGBComp8: { R: 0, G: 0, B: 0 },
+        RGBComp9: { R: 0, G: 0, B: 0 },
+        RGBComp10: { R: 0, G: 0, B: 0 },
+      },
+      countRGBComp: 1,
 
       isClickRadio: "false",
       name: "asd",
@@ -143,10 +169,6 @@ class OutputPanel extends Component {
     };
   }
 
-  componentDidMount() {
-    console.log("componentDidMount CALLING5.0");
-  }
-
   static getDerivedStateFromProps(props, state) {
     console.log("getDerivedStateFromProps CALLING5.0");
     console.log("getDerivedStateFromProps");
@@ -157,20 +179,21 @@ class OutputPanel extends Component {
 
     console.log(props.state, "HHAHAHAHA");
 
-    let myObject = props.state;
+    // let myObject = props.state;
 
-    let radioChecked = "false";
-    for (const property in myObject) {
-      if (myObject[property] === true) {
-        console.log(`${property}: ${myObject[property]}`);
+    // let radioChecked = "false";
+    // for (const property in myObject) {
+    //   if (myObject[property] === true) {
+    //     console.log(`${property}: ${myObject[property]}`);
 
-        console.log(property.slice(6, property.length), "gogooo");
+    //     console.log(property.slice(6, property.length), "gogooo");
 
-        radioChecked = property.slice(6, property.length).toString();
-      }
-    }
+    //     radioChecked = property.slice(6, property.length).toString();
+    //   }
+    // }
 
-    console.log(radioChecked, "radioChecked");
+    // console.log(radioChecked, "radioChecked");
+
     return {
       // New Ui Data for VALUE
       curValTouchZeroOutput: props.state.valueTouchZeroOutput,
@@ -238,11 +261,78 @@ class OutputPanel extends Component {
       isClickOLED2: props.state.assignOLEDTwo,
       isClickOLED3: props.state.assignOLEDThree,
 
+      isClickRGBComp: {
+        isClickRGBComp1: props.state.assignRGBComp1 || false,
+        isClickRGBComp2: props.state.assignRGBComp2 || false,
+        isClickRGBComp3: props.state.assignRGBComp3 || false,
+        isClickRGBComp4: props.state.assignRGBComp4 || false,
+        isClickRGBComp5: props.state.assignRGBComp5 || false,
+        isClickRGBComp6: props.state.assignRGBComp6 || false,
+        isClickRGBComp7: props.state.assignRGBComp7 || false,
+        isClickRGBComp8: props.state.assignRGBComp8 || false,
+        isClickRGBComp9: props.state.assignRGBComp9 || false,
+        isClickRGBComp10: props.state.assignRGBComp10 || false,
+      },
+
+      curValRGBComp: {
+        RGBComp1: {
+          R: props.state.valueRGBComp1R,
+          G: props.state.valueRGBComp1G,
+          B: props.state.valueRGBComp1B,
+        },
+        RGBComp2: {
+          R: props.state.valueRGBComp2R,
+          G: props.state.valueRGBComp2G,
+          B: props.state.valueRGBComp2B,
+        },
+        RGBComp3: {
+          R: props.state.valueRGBComp3R,
+          G: props.state.valueRGBComp3G,
+          B: props.state.valueRGBComp3B,
+        },
+        RGBComp4: {
+          R: props.state.valueRGBComp4R,
+          G: props.state.valueRGBComp4G,
+          B: props.state.valueRGBComp4B,
+        },
+        RGBComp5: {
+          R: props.state.valueRGBComp5R,
+          G: props.state.valueRGBComp5G,
+          B: props.state.valueRGBComp5B,
+        },
+        RGBComp6: {
+          R: props.state.valueRGBComp6R,
+          G: props.state.valueRGBComp6G,
+          B: props.state.valueRGBComp6B,
+        },
+        RGBComp7: {
+          R: props.state.valueRGBComp7R,
+          G: props.state.valueRGBComp7G,
+          B: props.state.valueRGBComp7B,
+        },
+        RGBComp8: {
+          R: props.state.valueRGBComp8R,
+          G: props.state.valueRGBComp8G,
+          B: props.state.valueRGBComp8B,
+        },
+        RGBComp9: {
+          R: props.state.valueRGBComp9R,
+          G: props.state.valueRGBComp9G,
+          B: props.state.valueRGBComp9B,
+        },
+        RGBComp10: {
+          R: props.state.valueRGBComp10R,
+          G: props.state.valueRGBComp10G,
+          B: props.state.valueRGBComp10B,
+        },
+      },
+      countRGBComp: props.state.countRGBComp || 1,
+
       // DRIVER MOTOR
       isClickSTMP: props.state.assignSTMP,
 
       // HUMANOID
-      isClickRadio: `${radioChecked}#true`,
+      // isClickRadio: `${radioChecked}#true`,
     };
   }
 
@@ -530,6 +620,63 @@ class OutputPanel extends Component {
       // rangeStoreVal["SmileOne"].isChecked = true;
     }
 
+    onChange(state, "hardware");
+  };
+
+  onRGBCompIncrease = () => {
+    const { state, onChange } = this.props;
+    if (this.state.countRGBComp < 10) {
+      this.setState({
+        countRGBComp: this.state.countRGBComp + 1,
+      });
+      state[`countRGBComp`] = this.state.countRGBComp + 1;
+      onChange(state, "hardware");
+    }
+  };
+  onRGBCompDecrease = () => {
+    const { state, onChange } = this.props;
+    var isClickRGBComp = this.state.isClickRGBComp;
+
+    if (this.state.countRGBComp > 1) {
+      isClickRGBComp[this.state.countRGBComp] = false;
+      this.setState({
+        countRGBComp: this.state.countRGBComp - 1,
+        isClickRGBComp: isClickRGBComp,
+      });
+      state[`countRGBComp`] = this.state.countRGBComp - 1;
+      state[`valueRGBComp${this.state.countRGBComp - 1}R`] = 0;
+      state[`valueRGBComp${this.state.countRGBComp - 1}G`] = 0;
+      state[`valueRGBComp${this.state.countRGBComp - 1}B`] = 0;
+      state[`assignRGBComp${this.state.countRGBComp - 1}`] = false;
+      onChange(state, "hardware");
+    }
+  };
+  onRGBCompHandle = (i) => {
+    const { state, onChange } = this.props;
+    var isClickRGBComp = this.state.isClickRGBComp;
+    if (this.state.isClickRGBComp[i]) {
+      isClickRGBComp[i] = false;
+      this.setState({
+        isClickRGBComp: isClickRGBComp,
+      });
+
+      state[`assignRGBComp${i}`] = false;
+
+      // rangeStoreVal["SmileOne"].isChecked = false;
+    } else {
+      isClickRGBComp[i] = true;
+      this.setState({
+        isClickRGBComp: isClickRGBComp,
+      });
+      state[`assignRGBComp${i}`] = true;
+      // rangeStoreVal["SmileOne"].isChecked = true;
+    }
+
+    onChange(state, "hardware");
+  };
+  onRangeValueRGBComp = (i, value, color) => {
+    const { state, onChange } = this.props;
+    state[`valueRGBComp${i}${color}`] = value;
     onChange(state, "hardware");
   };
   onSmileOneHandle = () => {
@@ -1114,6 +1261,7 @@ class OutputPanel extends Component {
 
     onChange(state, "hardware"); //Important for Type change for hardware
   };
+
   // onChangeSliderValue =
   onOLED1HandleText = (e) => {
     console.log("OLED1", e);
@@ -1966,42 +2114,85 @@ class OutputPanel extends Component {
                 }
                 if (port == "B") {
                   if (type == "RGB") {
+                    var totalSliders = [];
+                    for (var i = 1; i <= this.state.countRGBComp; i++) {
+                      console.log("loopRGB", this.state.countRGBComp);
+                      var slidr = (
+                        <>
+                          <SliderRow
+                            name="RGBComp"
+                            valR={this.state.curValRGBComp[`RGBComp${i}`].R}
+                            valG={this.state.curValRGBComp[`RGBComp${i}`].G}
+                            valB={this.state.curValRGBComp[`RGBComp${i}`].B}
+                            key="LeftEye"
+                            title={`RGB ${i}`}
+                            assign={
+                              this.state.isClickRGBComp[`isClickRGBComp${i}`]
+                            }
+                            handlecheckbox={this.onRGBCompHandle}
+                            count={i}
+                            min={0}
+                            max={100}
+                            getRangeVal={this.onRangeValueRGBComp}
+                          />
+                        </>
+                      );
+                      totalSliders = [...totalSliders, slidr];
+                    }
+                    var styleAdd = {
+                      backgroundImage: `url(${renderImage("add3x")}`,
+                      backgroundPosition: "center",
+                      backgroundSize: "cover",
+                      backgroundRepeat: "no-repeat",
+                      height: 40,
+                      width: 40,
+                      position: "relative",
+                      margin: "auto",
+                      marginLeft: "60%",
+                    };
+                    var styleRemove = {
+                      backgroundImage: `url(${renderImage("remove3x")}`,
+                      backgroundPosition: "center",
+                      backgroundSize: "cover",
+                      backgroundRepeat: "no-repeat",
+                      height: 40,
+                      width: 40,
+                      position: "relative",
+                      margin: "auto",
+                      marginLeft: "70%",
+                    };
+                    if (this.state.countRGBComp == 10) {
+                      styleAdd = {
+                        ...styleAdd,
+                        backgroundImage: `url(${renderImage("add3xIA")}`,
+                      };
+                    }
+                    if (this.state.countRGBComp == 1) {
+                      styleRemove = {
+                        ...styleRemove,
+                        backgroundImage: `url(${renderImage("remove3xIA")}`,
+                      };
+                    }
                     return (
                       <>
-                        <SliderRow
-                          name="LeftEye"
-                          port={this.state.setportName}
-                          value={
-                            //state[`valueLeftEye${this.state.setportName}`]
-                            this.state[`curValLeftEye${this.state.portName}`]
-                            //state[`valueLeftEye${this.state.setportName}`]
-                          }
-                          valR={this.state.curValLeftEyeR}
-                          valB={this.state.curValLeftEyeB}
-                          valG={this.state.curValLeftEyeG}
-                          key="LeftEye"
-                          title="RGB"
-                          assign={this.state.isClickLeftEye}
-                          handlecheckbox={this.onLeftEeyHandle}
-                          min={0}
-                          max={100}
-                          onSetSliderPort={this.onSetSliderPort}
-                          getRangeVal={this.onRangeValue_Buzzer_smile_Eyes}
-                        />
-
+                        {totalSliders}
                         <div
                           style={{
-                            backgroundImage: `url(${renderImage("add3x")}`,
-                            backgroundPosition: "center",
-                            backgroundSize: "cover",
-                            backgroundRepeat: "no-repeat",
-                            height: 40,
-                            width: 40,
-                            position: "relative",
-                            margin: "auto",
-                            marginLeft: "65%",
+                            display: "grid",
+                            gridTemplateColumns: " repeat(2, 75px)",
+                            marginLeft: "50%",
+                            marginBottom: "5%",
                           }}
-                        ></div>
+                        >
+                          <div
+                            style={styleAdd}
+                            onClick={this.onRGBCompIncrease}
+                          ></div>
+                          <div
+                            style={styleRemove}
+                            onClick={this.onRGBCompDecrease}
+                          ></div>
+                        </div>
                       </>
                     );
                   }
