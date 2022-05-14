@@ -229,7 +229,10 @@ function InputSlider(props) {
       if (
         assembly.PortConnections[key].type == "led" ||
         assembly.PortConnections[key].type == "laser" ||
-        assembly.PortConnections[key].type == "led_1c"
+        assembly.PortConnections[key].type == "led_1c" ||
+        assembly.PortConnections[key].type == "OLED" ||
+        assembly.PortConnections[key].type == "Mp3" ||
+        assembly.PortConnections[key].type == "RGB"
       ) {
         a1State = false;
       } else {
