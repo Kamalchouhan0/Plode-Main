@@ -89,11 +89,13 @@ import FourteethIA_Svg from "../Assets/Bisoft_UI/Play/SVG/4 in 1 - inactive.svg"
 
 import Redslider_Svg from "../Assets/Bisoft_UI/Play/SVG/red_slider.svg";
 
+import Freq_Svg from "../Assets/Bisoft_UI/Play/SVG/frequency_slider.svg";
+
 import Greenslider_Svg from "../Assets/Bisoft_UI/Play/SVG/green_slider.svg";
 
 import Blueslider_Svg from "../Assets/Bisoft_UI/Play/SVG/blue_slider.svg";
 
-import sliderIA from "../Assets/Bisoft_UI/Play/PNG/inactive slider.png";
+import sliderIA from "../Assets/Bisoft_UI/Play/SVG/inactiveslider.svg";
 
 import smile1_Active from "../Assets/Bisoft_UI/Buttons/Active with shadow/smile 1.png";
 
@@ -161,6 +163,14 @@ import Remt4 from "../Assets/Bisoft_UI/Help screen/Play/Group 3184@2x.png";
 import Remt5 from "../Assets/Bisoft_UI/Help screen/Play/Group 3185@2x.png";
 import Remt6 from "../Assets/Bisoft_UI/Help screen/Play/Group 3186@2x.png";
 import PCimg from "../Assets/Bisoft_UI/Main/PNG/PC_image@2x.png";
+import AudioDb from "../Assets/audio/Db.mp3";
+import AudioC from "../Assets/audio/C.mp3";
+import AudioE from "../Assets/audio/E.mp3";
+import AudioA from "../Assets/audio/A.mp3";
+import AudioB from "../Assets/audio/B.mp3";
+import AudioD from "../Assets/audio/D.mp3";
+import AudioF from "../Assets/audio/F.mp3";
+import AudioG from "../Assets/audio/G.mp3";
 
 function renderImage(imageName) {
   switch (imageName) {
@@ -293,17 +303,23 @@ function renderImage(imageName) {
     case "FourteethIA_Svg":
       return FourteethIA_Svg;
 
-    case "Redslider_Svg":
-      return Redslider_Svg;
+    case "red_slider":
+      var type = Redslider_Svg;
+      return type;
 
-    case "Greenslider_Svg":
-      return Greenslider_Svg;
+    case "green_slider":
+      var type = Greenslider_Svg;
+      return type;
 
-    case "Blueslider_Svg":
-      return Blueslider_Svg;
+    case "blue_slider":
+      var type = Blueslider_Svg;
+      return type;
 
-    case "sliderIA":
+    case "inactiveslider":
       return sliderIA;
+
+    case "frequency_slider":
+      return Freq_Svg;
     case "smile1_Active":
       return smile1_Active;
 
@@ -401,6 +417,23 @@ function renderImage(imageName) {
 
     case "PCimg":
       return PCimg;
+
+    case "AudioDb":
+      return AudioDb;
+    case "AudioA":
+      return AudioA;
+    case "AudioC":
+      return AudioC;
+    case "AudioE":
+      return AudioE;
+    case "AudioB":
+      return AudioB;
+    case "AudioD":
+      return AudioD;
+    case "AudioF":
+      return AudioF;
+    case "AudioG":
+      return AudioG;
   }
 }
 

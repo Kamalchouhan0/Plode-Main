@@ -9,6 +9,7 @@ import ColorSelectorNode from "./ColorSelectorNode";
 import "./dnd.scss";
 import PortValuesRangeMapping from "../../logic/PortValuesRangeMapping";
 import Modal from "react-modal";
+import renderCompImg from "../../../source/Comp_Img";
 
 const onLoad = (reactFlowInstance) =>
   console.log("flow loaded:", reactFlowInstance);
@@ -917,7 +918,7 @@ const CustomNodeFlow = ({ compo, img, assembly, updateState, indexChange }) => {
         <div id={arr[n]}>
           <img
             // src={`/images/oldImages/component_${connections[port].type}.png`}
-            src={`/Bisoft_UI/Accessories/newComponents/component_${connections[port].type}.png`}
+            src={renderCompImg(connections[port].type)}
             nameComp={connections[port].type}
             width="70"
             alt=""
@@ -933,7 +934,7 @@ const CustomNodeFlow = ({ compo, img, assembly, updateState, indexChange }) => {
           <div id={arr[n]}>
             <img
               // src={`/images/oldImages/component_${newArr[n]}.png`}
-              src={`/Bisoft_UI/Accessories/newComponents/component_${newArr[n]}.png`}
+              src={renderCompImg(newArr[n])}
               width="70"
               alt=""
               nameComp={newArr[n]}
@@ -982,7 +983,7 @@ const CustomNodeFlow = ({ compo, img, assembly, updateState, indexChange }) => {
           <div id={arr[n]}>
             <img
               // src={`/images/oldImages/component_${newArr[n]}.png`}
-              src={`/Bisoft_UI/Accessories/newComponents/component_${newArr[n]}.png`}
+              src={renderCompImg(newArr[n])}
               width="70"
               alt=""
               nameComp={newArr[n]}
@@ -999,7 +1000,7 @@ const CustomNodeFlow = ({ compo, img, assembly, updateState, indexChange }) => {
         >
           <img
             // src={`/images/oldImages/component_${newArr[n]}.png`}
-            src={`/Bisoft_UI/Accessories/newComponents/component_${newArr[n]}.png`}
+            src={renderCompImg(newArr[n])}
             width="70"
             alt=""
             nameComp={newArr[n]}

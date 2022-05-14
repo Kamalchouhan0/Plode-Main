@@ -344,25 +344,52 @@ button {
 }
 .coverflow_1 {
   position: fixed;
-  top: 13%;
+  top: 7%;
 
-  height: 85%;
-  width: 41%;
+  height: 88%;
+  width: 42%;
 
   z-index: 1;
-  background-image: linear-gradient(to left, #faf9f6, #faf9f6);
+  background-image: linear-gradient(to left, #fcfcfc, #fcfcfc);
   opacity: 0.7;
 }
 .coverflow_2 {
-  position: fixed;
-  top: 13%;
+  position: absolute;
+  top: 7%;
   right: 0%;
-  height: 85%;
-  width: 41%;
+  height: 88%;
+  width: 42%;
 
   z-index: 1;
-  background-image: linear-gradient(to right, #faf9f6, #faf9f6);
+  background-image: linear-gradient(to right, #fcfcfc, #fcfcfc);
   opacity: 0.7;
+}
+
+@media only screen and (max-width: 2700px) and (min-height: 2200px) {
+  .coverflow_1 {
+    width: 45%;
+  }
+  .coverflow_2 {
+    width: 45%;
+  }
+}
+
+@media only screen and (max-width: 2200px) and (min-height: 2000px) {
+  .coverflow_1 {
+    width: 44%;
+  }
+  .coverflow_2 {
+    width: 44%;
+  }
+}
+
+@media only screen and (max-width: 2000px) and (min-height: 1700px) {
+  .coverflow_1 {
+    width: 43.3%;
+  }
+  .coverflow_2 {
+    width: 43.3%;
+  }
 }
 
 @media only screen and (max-width: 1440px) and (min-height: 1366px) {
@@ -380,6 +407,7 @@ button {
     margin-top: 1%;
   }
 }
+
 @media only screen and (max-width: 1250px) and (min-width: 768px) {
   .coverflow_1 {
     width: 39%;
