@@ -155,7 +155,7 @@ function Selection(props) {
           <div>
             <img className={SelectionStyle.Program_Button} src={program}></img>
             <h1 className={SelectionStyle.Program_txt} onClick={programBtn}>
-              Program
+              Code
             </h1>
           </div>
         </div>
@@ -173,7 +173,7 @@ function Selection(props) {
           ></div>
           <img className={SelectionStyle.Build_Button} src={build}></img>
           <h1 className={SelectionStyle.Build_txt} onClick={buildBtn}>
-            Build
+            Learn
           </h1>
         </div>
         <div></div>

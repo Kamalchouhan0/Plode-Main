@@ -42,25 +42,6 @@ import renderPrgImage from "../../source/programImg";
 import SimulatePrgm from "../ReusableComponents/PrgmSlider/SimulatePrgm/SimulatePrgm";
 import renderCompImg from "../../source/Comp_Img";
 
-let j = 0;
-
-let jj = 0;
-let jjj = 0;
-let jjjj = 0;
-let jjjjj = 0;
-let j6 = 0;
-
-let myImage;
-let loopCount = [];
-
-let myImage1,
-  myImage2,
-  myImage3,
-  myImage4,
-  myImage5,
-  myImage6,
-  myImage7 = null;
-let mm = 0;
 var loopProgram = "",
   loopcount = 0,
   loop = 0,
@@ -1094,6 +1075,42 @@ class Simulate extends Component {
                   renderPrgImage("PcinternalTouchpadsInActive");
               }
               i = i + 2;
+              break;
+            }
+            case 47: {
+              //mp3
+              if (parseInt(bytes[i + 2]) > 0) {
+                //console.log(" MP3 ON");
+                document.getElementById(`img_B1`).style.filter =
+                  "drop-shadow(0 0 10px #07b03f)";
+
+                setTimeout(() => {
+                  //console.log(" MP3 OFF");
+                  document.getElementById(`img_B1`).style.filter =
+                    "drop-shadow(0 0 0)";
+                }, 10000);
+              }
+              i = i + 2;
+              break;
+            }
+            case 75: {
+              //rgbcomp
+              if (
+                parseInt(bytes[i + 1]) > 0 ||
+                parseInt(bytes[i + 2]) > 0 ||
+                parseInt(bytes[i + 3]) > 0
+              ) {
+                //console.log(" rgbcomp ON");
+                document.getElementById(`img_B1`).style.filter =
+                  "drop-shadow(0 0 10px #07b03f)";
+
+                setTimeout(() => {
+                  //console.log(" rgbcomp OFF");
+                  document.getElementById(`img_B1`).style.filter =
+                    "drop-shadow(0 0 0)";
+                }, 10000);
+              }
+              i = i + 3;
               break;
             }
           }
