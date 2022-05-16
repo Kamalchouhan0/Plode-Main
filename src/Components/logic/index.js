@@ -1694,12 +1694,7 @@ class Logic extends Component {
                     >
                       <g
                         transform={
-                          "translate(" +
-                          offset.left +
-                          100 +
-                          "," +
-                          offset.top +
-                          ")"
+                          "translate(" + offset.left + "," + offset.top + ")"
                         }
                         id="logicOffsetTransformer"
                       >
