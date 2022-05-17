@@ -18,6 +18,7 @@ import {
 import play from "../../Assets/play button.png";
 import program from "../../Assets/program button.png";
 import build from "../../Assets/build button.png";
+import learn from "../../Assets/Learn button.png";
 import SMSlider from "../ReusableComponents/SelectModeSlider/SMSlider";
 import renderImage from "../../source/importImg";
 
@@ -45,8 +46,8 @@ function Selection(props) {
 
     history.push("/visualProgram");
   };
-  const buildBtn = () => {
-    // window.location.assign("http://metik.bibox.in/");
+  const learnBtn = () => {
+    window.location.assign("https://tinkerbunker.com/courses/play-computer/");
   };
 
   useEffect(() => {
@@ -169,10 +170,10 @@ function Selection(props) {
               marginLeft: "2%",
               cursor: "pointer",
             }}
-            onClick={buildBtn}
+            onClick={learnBtn}
           ></div>
-          <img className={SelectionStyle.Build_Button} src={build}></img>
-          <h1 className={SelectionStyle.Build_txt} onClick={buildBtn}>
+          <img className={SelectionStyle.Learn_Button} src={learn}></img>
+          <h1 className={SelectionStyle.Learn_txt} onClick={learnBtn}>
             Learn
           </h1>
         </div>
