@@ -31,6 +31,7 @@ class TextRow extends Component {
           <input
             type="text"
             id={this.props.label}
+            autocomplete="off"
             style={{
               height: "100%",
               width: "100%",

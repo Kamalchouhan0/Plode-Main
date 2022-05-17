@@ -993,6 +993,74 @@ const CustomNodeFlow = ({ compo, img, assembly, updateState, indexChange }) => {
           </div>
         );
       }
+      if (newArr[n] === "OLED") {
+        return (
+          <div id={arr[n]}>
+            <div
+              style={{
+                position: "absolute",
+                color: "yellow",
+                zIndex: 3,
+                fontSize: 7,
+                fontWeight: "bold",
+                top: "-16px",
+                left: "20px",
+                fontFamily: "ui-sans-serif ",
+                font: "ui-sans-serif ",
+              }}
+            >
+              PLAYCOMPUTER
+            </div>
+            <div
+              style={{
+                position: "relative",
+                height: "6vh",
+                width: "4vw",
+                color: "cyan",
+                zIndex: "3",
+                top: "-6.5px",
+                left: "20px",
+                textAlign: "left",
+                fontSize: "7.5px",
+                fontWeight: "bold",
+                fontFamily: "ui-sans-serif ",
+                font: "ui-sans-serif ",
+              }}
+            >
+              <div
+                className="OLEDLINE1"
+                style={{
+                  height: "28%",
+                  width: "100%",
+                }}
+              ></div>
+              <div
+                className="OLEDLINE2"
+                style={{
+                  height: "28%",
+                  width: "100%",
+                }}
+              ></div>
+              <div
+                className="OLEDLINE3"
+                style={{
+                  height: "28%",
+                  width: "100%",
+                }}
+              ></div>
+            </div>
+            <img
+              // src={`/images/oldImages/component_${newArr[n]}.png`}
+              src={renderCompImg(newArr[n])}
+              width="100"
+              alt=""
+              nameComp={newArr[n]}
+              id={`img_${port}`}
+              style={{ position: "absolute", top: "-40px", left: "-1px" }}
+            />
+          </div>
+        );
+      }
       return (
         <div
           id={arr[n]}

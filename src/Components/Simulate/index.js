@@ -1093,6 +1093,64 @@ class Simulate extends Component {
               i = i + 2;
               break;
             }
+            case 48: {
+              //touchpad 1 output
+              var text = "";
+              for (var x = i + 1; x < i + 16; x++) {
+                text = text + String.fromCharCode(parseInt(bytes[x]));
+              }
+              console.log("oled", text, i);
+              for (
+                var x = 0;
+                x < document.getElementsByClassName("OLEDLINE1").length;
+                x++
+              ) {
+                var line1 = document.getElementsByClassName("OLEDLINE1")[x];
+                line1.innerHTML = text;
+              }
+
+              i = i + 16;
+              break;
+            }
+            case 49: {
+              //touchpad 1 output
+              var text = "";
+              for (var x = i + 1; x < i + 16; x++) {
+                console.log("oledb", bytes[x]);
+                text = text + String.fromCharCode(parseInt(bytes[x]));
+              }
+              console.log("oled", text, i);
+              for (
+                var x = 0;
+                x < document.getElementsByClassName("OLEDLINE2").length;
+                x++
+              ) {
+                var line1 = document.getElementsByClassName("OLEDLINE2")[x];
+                line1.innerHTML = text;
+              }
+
+              i = i + 16;
+              break;
+            }
+            case 50: {
+              //touchpad 1 output
+              var text = "";
+              for (var x = i + 1; x < i + 16; x++) {
+                text = text + String.fromCharCode(parseInt(bytes[x]));
+              }
+              console.log("oled", text, i);
+              for (
+                var x = 0;
+                x < document.getElementsByClassName("OLEDLINE3").length;
+                x++
+              ) {
+                var line1 = document.getElementsByClassName("OLEDLINE3")[x];
+                line1.innerHTML = text;
+              }
+
+              i = i + 16;
+              break;
+            }
             case 75: {
               //rgbcomp
               if (
@@ -1103,12 +1161,10 @@ class Simulate extends Component {
                 //console.log(" rgbcomp ON");
                 document.getElementById(`img_B1`).style.filter =
                   "drop-shadow(0 0 10px #07b03f)";
-
-                setTimeout(() => {
-                  //console.log(" rgbcomp OFF");
-                  document.getElementById(`img_B1`).style.filter =
-                    "drop-shadow(0 0 0)";
-                }, 10000);
+              } else {
+                //console.log(" rgbcomp OFF");
+                document.getElementById(`img_B1`).style.filter =
+                  "drop-shadow(0 0 0)";
               }
               i = i + 3;
               break;
