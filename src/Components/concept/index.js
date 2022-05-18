@@ -111,7 +111,7 @@ import { connect } from "react-redux";
 import Modal from "react-modal";
 import { webSerialAction } from "../../redux/actions/index";
 import { backBtn, nextBtn } from "../../source/index";
-
+import $ from "jquery";
 import socketIOClient from "socket.io-client";
 import renderPrgImage from "../../source/programImg";
 import renderCompImg from "../../source/Comp_Img";
@@ -316,7 +316,41 @@ class Content extends Component {
       // return true;
     };
   }
+  scrollgreyed = (e) => {
+    sessionStorage.setItem("pageReloadConcept", false);
 
+    if (e.deltaY < 0) {
+      if (this.state.coverflowActive <= 0) {
+        this.setState({
+          coverflowActive:
+            this.state.components.length -
+            this.state.sidebarContents.length -
+            1,
+          workspace: this.state.workspace,
+        });
+      } else {
+        this.setState({
+          coverflowActive: this.state.coverflowActive - 1,
+          workspace: this.state.workspace,
+        });
+      }
+    } else {
+      if (
+        this.state.coverflowActive <
+        this.state.components.length - this.state.sidebarContents.length - 1
+      ) {
+        this.setState({
+          coverflowActive: this.state.coverflowActive + 1,
+          workspace: this.state.workspace,
+        });
+      } else {
+        this.setState({
+          coverflowActive: 0,
+          workspace: this.state.workspace,
+        });
+      }
+    }
+  };
   select = (index, coverflowActive) => {
     var sidebarContents = this.state.sidebarContents;
     sidebarContents.push(index);
@@ -715,9 +749,20 @@ class Content extends Component {
                       verticalAlign: "middle",
                     }}
                   >
-                    <div className="coverflow_1"></div>
-                    <div className="coverflow_2"></div>
+                    <div
+                      id="cfscroll1"
+                      className="coverflow_1"
+                      style={{ overflow: "scroll" }}
+                      onWheel={this.scrollgreyed}
+                    ></div>
+                    <div
+                      id="cfscroll2"
+                      className="coverflow_2"
+                      style={{ overflow: "scroll" }}
+                      onWheel={this.scrollgreyed}
+                    ></div>
                     <Coverflow
+                      id="coverflowcomp"
                       components={this.state.redata}
                       select={this.select}
                       active={
