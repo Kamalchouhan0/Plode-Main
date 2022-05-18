@@ -172,6 +172,8 @@ import AudioD from "../Assets/audio/D.mp3";
 import AudioF from "../Assets/audio/F.mp3";
 import AudioG from "../Assets/audio/G.mp3";
 
+import Popup from "../Assets/Bisoft_UI/Play/SVG/popup.svg";
+
 function renderImage(imageName) {
   switch (imageName) {
     case "bisoft_logo":
@@ -434,6 +436,9 @@ function renderImage(imageName) {
       return AudioF;
     case "AudioG":
       return AudioG;
+
+    case "Popup":
+      return Popup;
   }
 }
 
