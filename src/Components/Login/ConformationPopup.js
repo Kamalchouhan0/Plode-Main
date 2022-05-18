@@ -15,9 +15,7 @@ const PopupCD = {
   width: "90%",
   height: "90%",
 
-  backgroundImage: `url(${
-    process.env.PUBLIC_URL + "/Bisoft_UI/Play/SVG/popup.svg"
-  })`,
+  backgroundImage: `url(${renderImage("Popup")})`,
   backgroundRepeat: "no-repeat",
   backgroundSize: "110% 109%",
   backgroundPosition: "50% 50%",

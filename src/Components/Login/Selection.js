@@ -146,9 +146,28 @@ function Selection(props) {
           <div
             style={{
               height: "65%",
+              width: "83%",
+              marginTop: "15%",
+              marginLeft: "5%",
+
+              cursor: "pointer",
+            }}
+            onClick={learnBtn}
+          ></div>
+          <img className={SelectionStyle.Learn_Button} src={learn}></img>
+          <h1 className={SelectionStyle.Learn_txt} onClick={learnBtn}>
+            Learn
+          </h1>
+        </div>
+        <div></div>
+        <div>
+          <div
+            style={{
+              height: "65%",
               width: "75%",
               marginTop: "15%",
-              marginLeft: "10%",
+              marginLeft: "5%",
+
               cursor: "pointer",
             }}
             onClick={programBtn}
@@ -160,23 +179,7 @@ function Selection(props) {
             </h1>
           </div>
         </div>
-        <div></div>
-        <div>
-          <div
-            style={{
-              height: "65%",
-              width: "83%",
-              marginTop: "15%",
-              marginLeft: "2%",
-              cursor: "pointer",
-            }}
-            onClick={learnBtn}
-          ></div>
-          <img className={SelectionStyle.Learn_Button} src={learn}></img>
-          <h1 className={SelectionStyle.Learn_txt} onClick={learnBtn}>
-            Learn
-          </h1>
-        </div>
+
         <div></div>
       </div>
       <div></div>
