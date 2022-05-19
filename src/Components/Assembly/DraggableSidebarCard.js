@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import data from "../concept/data";
 import { DragSource } from "react-dnd";
 import ItemTypes from "./ItemTypes";
 import DraggingInfo from "./DraggingInfo";

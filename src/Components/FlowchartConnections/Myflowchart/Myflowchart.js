@@ -1,29 +1,19 @@
-import React, { useState, DragEvent } from "react";
-import Popup from "./Popup";
-import "./myflowchart.css";
-import Panel1 from "../logic/pannel/";
-import { Button, Modal } from "react-bootstrap";
-import { v4 } from "uuid";
-
-import CancelOutlinedIcon from "@material-ui/icons/CancelOutlined";
-
+import React, { useState } from "react";
+import { Modal } from "react-bootstrap";
 import ReactFlow, {
-  ReactFlowProvider,
   addEdge,
-  removeElements,
   Controls,
-  OnLoadParams,
-  Elements,
-  Connection,
-  Edge,
-  ElementId,
-  Node,
   Handle,
+  ReactFlowProvider,
+  removeElements,
 } from "react-flow-renderer";
-
+import { v4 } from "uuid";
+import Panel1 from "../logic/pannel/";
+import "./dnd.css";
+import "./myflowchart.css";
+import Popup from "./Popup";
 import Sidebar from "./Sidebar";
 
-import "./dnd.css";
 const Sizes = {
   Button: 30,
   Border: 5,

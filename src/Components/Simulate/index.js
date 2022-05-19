@@ -1,46 +1,19 @@
 /* eslint-disable no-fallthrough */
 /* eslint-disable no-loop-func */
 /* eslint-disable no-use-before-define */
+import $ from "jquery";
 import React, { Component } from "react";
-import { connect } from "react-redux";
-import io from "socket.io-client";
-import CustomNodeFlow from "./DnD/Index";
 import Modal from "react-modal";
+import { connect } from "react-redux";
 import "../../css/simulate.css";
+import { webSerialAction } from "../../redux/actions/index";
+import renderCompImg from "../../source/Comp_Img";
+import renderPrgImage from "../../source/programImg";
+import unicodeToChar from "../../utils/unicodeToChar";
+import SimulatePrgm from "../ReusableComponents/PrgmSlider/SimulatePrgm/SimulatePrgm";
+import CustomNodeFlow from "./DnD/Index";
 import CustomNodeFlowHumanoid from "./DnDHumanoid/Index";
 import SimulateLogic from "./simulateLogic";
-import $ from "jquery";
-import { webSerialAction } from "../../redux/actions/index";
-import unicodeToChar from "../../utils/unicodeToChar";
-import socketIOClient from "socket.io-client";
-import InputSlider from "./InputSliders";
-import {
-  assemblebar,
-  readPC,
-  saveBtnInActive,
-  saveBtnActive,
-  helpBtnActive,
-  helpBtnInActive,
-  bluetoothBtnInActive,
-  bluetoothBtnActive,
-  readPCInActive,
-  backBtn,
-  uploadBtn,
-  nextBtn,
-  OneXspeed,
-  HW_SW_btn,
-  SWbtn,
-  HWbtn,
-  oneXspeedInActive,
-  playrunBtn,
-  pauseBtn,
-  usbOFF,
-  usbON,
-  PcinternalBuzzerActive,
-} from "../../source/index";
-import renderPrgImage from "../../source/programImg";
-import SimulatePrgm from "../ReusableComponents/PrgmSlider/SimulatePrgm/SimulatePrgm";
-import renderCompImg from "../../source/Comp_Img";
 
 var loopProgram = "",
   loopcount = 0,

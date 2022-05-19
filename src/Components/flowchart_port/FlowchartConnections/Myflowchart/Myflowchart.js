@@ -1,58 +1,42 @@
-import React, {
-  useState,
-  DragEvent,
-  useLayoutEffect,
-  useEffect,
-  useCallback,
-} from "react";
-import { useHistory } from "react-router-dom";
-import Popup from "./Popup";
-import "./myflowchart.css";
-import Panel1 from "../logic/pannel/";
-import { Button, Modal } from "react-bootstrap";
-import { v4 } from "uuid";
-import CustomDragLayer from "../logic/connection/CustomDragLayer";
-import CancelOutlinedIcon from "@material-ui/icons/CancelOutlined";
-import closeImg from "../../../../Assets/img/close.png";
-import io from "socket.io-client";
-import _ from "lodash";
-import ReactFlow, {
-  ReactFlowProvider,
-  addEdge,
-  removeElements,
-  Controls,
-  OnLoadParams,
-  Elements,
-  Connection,
-  Edge,
-  ElementId,
-  Node,
-  Handle,
-  getConnectedEdges,
-  getOutgoers,
-  getIncomers,
-  isValidConnection,
-} from "react-flow-renderer";
-
-import start from "../../../../Assets/flowchart/start.png";
-import fxvariable from "../../../../Assets/flowchart/action.png";
-import wait from "../../../../Assets/flowchart/wait.png";
-import condition2 from "../../../../Assets/flowchart/decision.png";
-import loop from "../../../../Assets/flowchart/repeat.png";
-import repeat from "../../../../Assets/flowchart/loop.png";
-import end from "../../../../Assets/flowchart/stopButton.png";
-import Sidebar from "./Sidebar";
-import { useLocalStorage } from "../../../LocalStorage/LocalStorage";
-import "./dnd.css";
-import "../../style.css";
 import dagre from "dagre";
-import { element, elementType } from "prop-types";
-import { param } from "jquery";
-import renderPrgImage from "../../../../source/programImg";
-import flowchartImg from "../../../../Assets/img/simulate bar@2x.png";
-import secondaryImg from "../../../../Assets/img/save - secondary.png";
+import _ from "lodash";
+import React, {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useState,
+} from "react";
+import { Modal } from "react-bootstrap";
+import ReactFlow, {
+  addEdge,
+  getOutgoers,
+  Handle,
+  ReactFlowProvider,
+  removeElements,
+} from "react-flow-renderer";
+import { useHistory } from "react-router-dom";
+import { v4 } from "uuid";
+import fxvariable from "../../../../Assets/flowchart/action.png";
+import condition2 from "../../../../Assets/flowchart/decision.png";
+import repeat from "../../../../Assets/flowchart/loop.png";
+import loop from "../../../../Assets/flowchart/repeat.png";
+import start from "../../../../Assets/flowchart/start.png";
+import end from "../../../../Assets/flowchart/stopButton.png";
+import wait from "../../../../Assets/flowchart/wait.png";
 import strokeImg from "../../../../Assets/img/button 52x52 - stroke.png";
+import closeImg from "../../../../Assets/img/close.png";
+import secondaryImg from "../../../../Assets/img/save - secondary.png";
+import flowchartImg from "../../../../Assets/img/simulate bar@2x.png";
 import connectionImg from "../../../../Assets/usb - off@2x.png";
+import renderPrgImage from "../../../../source/programImg";
+import { useLocalStorage } from "../../../LocalStorage/LocalStorage";
+import "../../style.css";
+import Panel1 from "../logic/pannel/";
+import "./dnd.css";
+import "./myflowchart.css";
+import Popup from "./Popup";
+import Sidebar from "./Sidebar";
+
 const Sizes = {
   Button: 30,
   Border: 5,

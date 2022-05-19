@@ -1,54 +1,23 @@
+import { createBrowserHistory } from "history";
+import html2canvas from "html2canvas";
+import $ from "jquery";
 import React, { Component } from "react";
-import Sidebar from "./sidebar";
-import { Link, useLocation, withRouter } from "react-router-dom";
-import { HTML5Backend } from "react-dnd-html5-backend";
 import { DragDropContext } from "react-dnd";
-import WorkSpace from "./workspace";
+import { HTML5Backend } from "react-dnd-html5-backend";
+import Modal from "react-modal";
 import { connect } from "react-redux";
-import Sizes, { width } from "../../helpers/Sizes";
-import Hammer from "react-hammerjs";
-import CustomDragLayer from "./CustomDragLayer";
+import { withRouter } from "react-router-dom";
 import "../../css/assembly.css";
 import "../../css/pure-grids.min.css";
-import socketIOClient from "socket.io-client";
-import { createBrowserHistory } from "history";
-import Modal from "react-modal";
-import PortConnections from "./PortConnections";
-import CheckboxAssembly from "./CheckboxAssembly";
-import { activeCheckBox } from "./CheckboxData";
-import $, { type } from "jquery";
-import html2canvas from "html2canvas";
+import Sizes from "../../helpers/Sizes";
+import { webSerialAction } from "../../redux/actions/index";
 import renderPrgImage from "../../source/programImg";
 import unicodeToChar from "../../utils/unicodeToChar";
-import PortConnect from "../../utils/portConnect";
-import { webSerialAction } from "../../redux/actions/index";
-
-import {
-  bluetoothBtnActive,
-  helpBtnInActive,
-  saveBtnActive,
-  saveBtnInActive,
-  assemblebar,
-  readPC,
-  readPCActive,
-  readPCInActive,
-  backBtn,
-  nextBtn,
-  pcInternalSensorsInActive,
-  closeBtnShadow,
-  propertypanel,
-  distancesensorsActive,
-  distancesensorsInActive,
-  gesturesensorActive,
-  gesturesensorInActive,
-  // lightsensorActive,
-  lightsensorInActive,
-  colorsensorActive,
-  colorsensorInActive,
-  usbOFF,
-  usbON,
-} from "../../source/index";
 import AssemblyPrgm from "../ReusableComponents/PrgmSlider/AssemblyPrgm/AssemblyPrgm";
+import { activeCheckBox } from "./CheckboxData";
+import CustomDragLayer from "./CustomDragLayer";
+import Sidebar from "./sidebar";
+import WorkSpace from "./workspace";
 
 var zooming;
 var oldDeltaX, oldDeltaY, panning;
@@ -166,7 +135,6 @@ class Assembly extends Component {
   OpenReadComPort = async () => {
     const port = this.props.webSerial;
     console.log("PORTLIST", port);
-    // console.log(port, "pPort");
 
     try {
       await port.open({ baudRate: 120000 });
@@ -175,14 +143,8 @@ class Assembly extends Component {
     }
 
     await this.writePort("notWrite");
-    // let valresponceTp0 = "",
-    //   valdis = "";
-    // // setTimeout(async () => {
-    // if (this.state.readbytes) {
-    await this.readLoop();
-    // }
 
-    // }, 1000);
+    await this.readLoop();
   };
   async readLoop() {
     const port = this.props.webSerial;
@@ -211,48 +173,35 @@ class Assembly extends Component {
         // value is a string.
         if (value.length == 32) {
           var v = unicodeToChar(value);
-          // var v = value;
           console.log(v);
         }
-        // if (value.length == 23) {
-        //   var v = unicodeToChar(value);
-        //   // var v = value;
-        //   console.log(v);
-        // }
+
         if (value.length == 7) {
           var vi = unicodeToChar(value);
-          // var vi = value;
           console.log(vi);
         }
         if (value.length == 9) {
           var vi = unicodeToChar(value);
-          // var vi = value;
           console.log(vi);
         }
         if (value.length == 14) {
           var vi = unicodeToChar(value);
-          // var vi = value;
           console.log(vi);
         }
         if (value.length == 17) {
           var vi = unicodeToChar(value);
-          // var vi = value;
           console.log(vi);
         }
         if (value.length == 12) {
           var vi = unicodeToChar(value);
-          // var vi = value;
           console.log(vi);
         }
-        // if (value.lenght != 1) {
-        //   var vae = v + vi;
-        // }
+
         if ((value.lenght == 32 && value.lenght == 12) || value.lenght == 11) {
           var vae = v + " " + vi;
           console.log(vae, "ORRRR");
         }
         var vae = v + vi;
-        // this.state.flag = vae;
         console.log("ADDED", vae);
       }
     } catch (e) {
@@ -267,9 +216,9 @@ class Assembly extends Component {
       console.log("portsss", ports);
 
       console.log("portsss", ports[0].writable);
-      // const outputStream = ports[0].writable,
+
       const writer = ports[0].writable.getWriter();
-      // writer = outputStream.getWriter();
+
       const sata = data;
       const data1 = new Uint8Array(sata); // hello// 82, 76, 0, 0, 0, 82, 0, 0, 0, 66, 0, 0, 1, 0, 1,
       console.log("send data:+", data1);
@@ -283,45 +232,31 @@ class Assembly extends Component {
   }
 
   async componentDidUpdate() {
-    // await PortConnect();
     navigator.serial.addEventListener("connect", (e) => {
-      // if (this.state.isusb) {
-      // console.log("TRUE");
-      // } else {
-      //   this.handleUsb();
-      // }
-      // this.OpenReadComPort();
       window.location.reload(false);
-      // this.onload();
       var user = 1;
       sessionStorage.setItem("user", JSON.stringify(user));
       this.handleUsb();
     });
 
     navigator.serial.addEventListener("disconnect", (e) => {
-      // if (this.state.isusb == false) {
-      //   this.handleUsb();
-      console.log("FALSE");
-      // }
       var user = 0;
       sessionStorage.setItem("user", JSON.stringify(user));
       this.handleUsb();
     });
 
     console.log(this.props.webSerial, "MMMMLLLL");
-    // console.log(this.props.webserialPort, "852+963852");
+
     console.log(this.state.p1, "KKK");
     let no_port = this.props.webserialPort;
     if (typeof no_port !== undefined) {
       console.log("WORKING>>>>>>>>");
       this.OpenReadComPort();
     } else {
-      // this.OpenReadComPort();
       console.log(JSON.parse(sessionStorage.getItem("webSerialPortList")));
       console.log("SERIAL PORT NOT CONNECTED");
     }
     let BAR = this.state.flag.toString();
-    // let BAR = "153 1 142 2 237 2 122 1 233 1 0 0 100 100 124 20 10 32 5";
     console.log(BAR, "VAlies");
     console.log("componentDidUpdate");
     if (this.state.readbytes) {
@@ -368,7 +303,6 @@ class Assembly extends Component {
         valdis = "";
     }
     if (this.state.readbytes) {
-      // var socket = socketIOClient.connect("http://localhost:3008");
       let bytesData = Array(9).fill("O".charCodeAt());
 
       bytesData.unshift("A".charCodeAt());
@@ -387,9 +321,6 @@ class Assembly extends Component {
         "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<DATA>>>>>>>>>>>>>>>>>"
       );
       console.log(portdata.PortConnections, ">>???>>>>????<<<<");
-
-      // console.log("TOUCH PAD DATA", sessionData.internalaccessories);
-      // Obect.keys and Object.values n
 
       Object.keys(portdata.PortConnections).map((port) => {
         if (portdata.PortConnections[port] != null) {
@@ -487,26 +418,14 @@ class Assembly extends Component {
       }
       if (sessionData.internalaccessories.isTouchZero) {
         bytesData[2] = "T".charCodeAt();
-        // bytesData[3] = "T".charCodeAt();
       }
       if (sessionData.internalaccessories.isTouchOne) {
         bytesData[4] = "T".charCodeAt();
-        // bytesData[5] = "T".charCodeAt();
       }
       if (sessionData.internalaccessories.isTouchTwo) {
         bytesData[6] = "T".charCodeAt();
-        // bytesData[7] = "T".charCodeAt();
       }
 
-      // if (sessionData.internalaccessories.isTouchZero) {
-      //   bytesData[8] = "T".charCodeAt();
-      // }
-      // if (sessionData.internalaccessories.isTouchOne) {
-      //   bytesData[9] = "T".charCodeAt();
-      // }
-      // if (sessionData.internalaccessories.isTouchTwo) {
-      //   bytesData[10] = "T".charCodeAt();
-      // }
       if (
         sessionData.internalaccessories.Four_in_one_sensor.isDistanceSensors
       ) {
@@ -519,16 +438,14 @@ class Assembly extends Component {
         bytesData[8] = "C".charCodeAt();
       }
       if (sessionData.internalaccessories.Four_in_one_sensor.isLightSensor) {
-        // bytesData[8] = "L".charCodeAt();
         bytesData[8] = "L".charCodeAt();
       }
 
       console.log(bytesData);
       this.writePort(bytesData);
-      // socket.emit("/assemblyreadBytes", bytesData);
 
       var v = BAR.split(" ");
-      // console.log("RAJPUT", v);
+
       if (v[13] > 255 || v[17] === 0) {
         v[14] = v[13].slice(-2, 4);
         v[13] = v[13].slice(0, 2);
@@ -742,7 +659,6 @@ class Assembly extends Component {
         isusb: true,
       });
     }
-    // this.setState({ isusb: !this.state.isusb });
   };
   helpBtn = (e) => {
     this.setState({ isHelp: !this.state.isHelp });
@@ -760,19 +676,6 @@ class Assembly extends Component {
     }
     sessionStorage.setItem("shield", "false");
 
-    // var socket = socketIOClient.connect("http://localhost:3008");
-    // socket.emit("_usbDetection", "Hi");
-    // socket.on("/usbDetection1", (data) => {
-    //   // console.log("...............1", data);
-    //   // // let kill = Array.from(data);
-    //   // // console.log("...............5", kill);
-    //   // if (data == 1) {
-    //   //   this.handleUsb(true);
-    //   //   console.log("LLLLLLLLLLLLLLL", data);
-    //   // } else {
-    //   //   this.handleUsb(false);
-    //   // }
-    // });
     let data = JSON.parse(sessionStorage.getItem("user"));
 
     if (data === 1) {
@@ -796,18 +699,6 @@ class Assembly extends Component {
     // Reset panning and pinching variables
     this.panEnd();
     this.pinchEnd();
-
-    // let no_port = this.props.webserialPort.name;
-    // if (no_port == "Not Connected") {
-    //   console.log(JSON.parse(sessionStorage.getItem("webSerialPortList")));
-    //   console.log("SERIAL PORT NOT CONNECTED");
-
-    // } else {
-
-    // await PortConnect();
-    console.log(this.props.webserialPort, "852+963852");
-    // this.OpenReadComPort();
-    // }
   }
 
   /**
@@ -1119,20 +1010,6 @@ class Assembly extends Component {
       var PortConnections = JSON.parse(
         sessionStorage.getItem("assembly")
       ).PortConnections;
-      // var socket = socketIOClient("http://localhost:3008");
-      // socket.emit("/checkAssembly", PortConnections);
-      // socket.on("/assemblyResult", (data) => {
-      //   if (!data) {
-      //     this.setState({ modalIsOpen: true });
-      //     return true;
-      //   } else {
-      //     this.props.history.push("/logic");
-      //     // history.push('/logic');
-      //     // window.location.href = "/logic"
-      //     return false;
-      //     // this.props.history.push("/Learn")
-      //   }
-      // });
     } else {
       this.props.history.push("/logic");
     }
@@ -1390,16 +1267,6 @@ class Assembly extends Component {
   };
 
   render() {
-    //     setTimeout(async () => {
-    //       const portList = await navigator.serial.getPorts();
-    // console.log(">>>>>>>>>>>>>>>>>>>>>>>>",portList);
-    //       this.props.webSerialAction({ port: portList[0] }); // dispatching function of redux
-
-    //       console.log(this.props.webserialPort, "852+963852");
-    //       this.OpenReadComPort();
-    //     }, 100);
-
-    console.log("KKKAKAKAK", this.state);
     var selectionType = localStorage.getItem("programMode");
 
     if (selectionType == "program") {

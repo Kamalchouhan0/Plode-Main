@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-import { sliderIA } from "../../../source/index";
 import renderPrgImage from "../../../source/programImg";
 
 export const Slider1 = styled.input`

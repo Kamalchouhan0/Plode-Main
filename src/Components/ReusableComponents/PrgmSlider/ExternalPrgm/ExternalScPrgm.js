@@ -102,18 +102,10 @@ export class ExternalScPrgm extends Component {
       <div>
         <div className={ExternalStyle.container}></div>
         <Slider {...settings}>
-          {/* <div className="wdt>
-            <img
-              style={{ height: "40px" }}
-              src={}
-              className="img"
-            />
-          </div> */}
           <div className={ExternalStyle.wdt}>
             <img
               className={ExternalStyle.img}
               src={renderPrgImage("ExternalPrgf2")}
-              className={ExternalStyle.img}
             />
             <div className={ExternalStyle.con}>
               <p className={ExternalStyle.con_P}>
@@ -127,7 +119,6 @@ export class ExternalScPrgm extends Component {
             <img
               className={ExternalStyle.img}
               src={renderPrgImage("ExternalPrgf3")}
-              className={ExternalStyle.img}
             />
             <div className={ExternalStyle.Mus}>
               <p className={ExternalStyle.Mus_P}>
@@ -136,10 +127,6 @@ export class ExternalScPrgm extends Component {
               </p>
             </div>
           </div>
-
-          {/* <div className="wdt">
-            <img className="img" src={"assets/w2.png"} className="img" />
-          </div> */}
         </Slider>
       </div>
     );

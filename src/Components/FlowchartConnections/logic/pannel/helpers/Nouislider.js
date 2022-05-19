@@ -133,7 +133,6 @@
 // export default Nouislider;
 
 import React, { Component } from "react";
-import Slider, { Range } from "rc-slider";
 import "rc-slider/assets/index.css";
 import "rc-tooltip/assets/bootstrap.css";
 import "../../../../../index.css";

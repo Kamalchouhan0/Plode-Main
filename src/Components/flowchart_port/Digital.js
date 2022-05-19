@@ -1,43 +1,28 @@
-import React, { useState } from "react";
-import Bottom from "./Bottom";
-import Digitalbutton from "./Digitalbutton";
-import { Nav, ButtonGroup, ToggleButton } from "react-bootstrap";
-import SwitchButton from "./SwitchButton/SwitchButtonDigital";
-import useLocalStorage from "../LocalStorage/LocalStorage";
-import pcImg from "../../Assets/internalAccessories/PC_image@3x.png";
-import { Link, useHistory } from "react-router-dom";
-import renderPrgImage from "../../source/programImg";
-
+import React from "react";
+import { useHistory } from "react-router-dom";
+import strokeImg from "../../Assets/img/button 52x52 - stroke.png";
 import digitalImg from "../../Assets/img/code bar@2x.png";
 import secondaryImg from "../../Assets/img/save - secondary.png";
-import strokeImg from "../../Assets/img/button 52x52 - stroke.png";
-import connectionImg from "../../Assets/usb - off@2x.png";
-
-import eyeInactiveImg from "../../Assets/internalAccessories/eye - inactive.484d85f3.svg";
-import teethImg from "../../Assets/internalAccessories/teeth - inactive.ff84b1d3.svg";
-import inImg from "../../Assets/internalAccessories/4 in 1 - inactive.ea3e994f.svg";
-import internalmicImg from "../../Assets/internalAccessories/internal mic - inactive.d43d2f36.svg";
-import buzzerImg from "../../Assets/internalAccessories/buzzer - inactive.872b79d8.svg";
-import touchpadsImg from "../../Assets/internalAccessories/touch pads - inactive.748c6933.svg";
-
-import PcinternalEYEActive from "../../Assets/internalAccessories/eye - active.svg";
-import PcinternalEYEInActive from "../../Assets/internalAccessories/eye - inactive.svg";
-import PcinternalTeethInActive from "../../Assets/internalAccessories/teeth - inactive.svg";
-import PcinternalTeethActive from "../../Assets/internalAccessories/teeth - active.svg";
-
 import Pcinternal4in1Active from "../../Assets/internalAccessories/4 in 1 - active.svg";
 import Pcinternal4in1InActive from "../../Assets/internalAccessories/4 in 1 - inactive.svg";
-import PcinternalMicActive from "../../Assets/internalAccessories/internal mic - inactive.svg";
-import PcinternalMicInActive from "../../Assets/internalAccessories/internal mic - active.svg";
-import PcinternalBuzzerInActive from "../../Assets/internalAccessories/buzzer - inactive.svg";
 import PcinternalBuzzerActive from "../../Assets/internalAccessories/buzzer - active.svg";
-import PcinternalTouchpadsInActive from "../../Assets/internalAccessories/touch pads - inactive.svg";
+import PcinternalBuzzerInActive from "../../Assets/internalAccessories/buzzer - inactive.svg";
+import PcinternalEYEActive from "../../Assets/internalAccessories/eye - active.svg";
+import PcinternalEYEInActive from "../../Assets/internalAccessories/eye - inactive.svg";
+import PcinternalMicInActive from "../../Assets/internalAccessories/internal mic - active.svg";
+import PcinternalMicActive from "../../Assets/internalAccessories/internal mic - inactive.svg";
+import pcImg from "../../Assets/internalAccessories/PC_image@3x.png";
+import PcinternalTeethActive from "../../Assets/internalAccessories/teeth - active.svg";
+import PcinternalTeethInActive from "../../Assets/internalAccessories/teeth - inactive.svg";
 import PcinternalTouchpadsActive from "../../Assets/internalAccessories/touch pads - active.svg";
-
-import "./pcimage.css";
-import "./Navbar.css";
-import "./style.css";
+import PcinternalTouchpadsInActive from "../../Assets/internalAccessories/touch pads - inactive.svg";
+import connectionImg from "../../Assets/usb - off@2x.png";
+import renderPrgImage from "../../source/programImg";
+import useLocalStorage from "../LocalStorage/LocalStorage";
 import "./buttonDig.scss";
+import "./Navbar.css";
+import "./pcimage.css";
+import "./style.css";
 
 function Digital() {
   const history = useHistory();
@@ -116,12 +101,12 @@ function Digital() {
   const [pwmA1, setPwmA1] = useLocalStorage(
     "PWMA1",
     JSON.parse(sessionStorage.getItem("a1-I/O")) &&
-    JSON.parse(sessionStorage.getItem("A1"))
+      JSON.parse(sessionStorage.getItem("A1"))
   );
   const [pwmD1, setPwmD1] = useLocalStorage(
     "PWMD1",
     JSON.parse(sessionStorage.getItem("d1-I/O")) &&
-    JSON.parse(sessionStorage.getItem("D1"))
+      JSON.parse(sessionStorage.getItem("D1"))
   );
 
   const toggleA1 = (value) => {
@@ -136,7 +121,8 @@ function Digital() {
       document.getElementById("ina1").style.cssText = "color: #717171; ";
       document.getElementById("ins1").style.cssText = "color: #717171; ";
       document.getElementById("s1").style.cssText = "color: #717171;";
-      document.getElementById("digital-slider-A1").style.cssText = "transform: translateX(0px);";
+      document.getElementById("digital-slider-A1").style.cssText =
+        "transform: translateX(0px);";
     }
     if (value === "analog") {
       setA1Digi(true);
@@ -144,14 +130,16 @@ function Digital() {
       document.getElementById("ind1").style.cssText = "  color: #717171;";
       document.getElementById("ins1").style.cssText = "color: #717171; ";
       document.getElementById("s1").style.cssText = "  color: #717171;";
-      document.getElementById("digital-slider-A1").style.cssText = "transform: translateX(75px);";
+      document.getElementById("digital-slider-A1").style.cssText =
+        "transform: translateX(75px);";
     }
     if (value === "servo") {
       document.getElementById("ins1").style.cssText = "color: #fcfcfc; ";
       document.getElementById("ina1").style.cssText = "color: #717171; ";
       document.getElementById("ind1").style.cssText = "  color: #717171;";
       document.getElementById("s1").style.cssText = "  color: #717171;";
-      document.getElementById("digital-slider-A1").style.cssText = "transform: translateX(150px);";
+      document.getElementById("digital-slider-A1").style.cssText =
+        "transform: translateX(150px);";
     }
   };
   const toggleA2 = (value) => {
@@ -163,7 +151,8 @@ function Digital() {
       document.getElementById("ina2").style.cssText = "color: #717171; ";
       document.getElementById("ins2").style.cssText = "color: #717171; ";
       document.getElementById("s2").style.cssText = "color: #717171;";
-      document.getElementById("digital-slider-A2").style.cssText = "transform: translateX(0px);";
+      document.getElementById("digital-slider-A2").style.cssText =
+        "transform: translateX(0px);";
     }
     if (value === "analog") {
       setA2Digi(true);
@@ -171,14 +160,16 @@ function Digital() {
       document.getElementById("ind2").style.cssText = "  color: #717171;";
       document.getElementById("ins2").style.cssText = "color: #717171; ";
       document.getElementById("s2").style.cssText = "  color: #717171;";
-      document.getElementById("digital-slider-A2").style.cssText = "transform: translateX(75px);";
+      document.getElementById("digital-slider-A2").style.cssText =
+        "transform: translateX(75px);";
     }
     if (value === "servo") {
       document.getElementById("ins2").style.cssText = "color: #fcfcfc; ";
       document.getElementById("ina2").style.cssText = "color: #717171; ";
       document.getElementById("ind2").style.cssText = "  color: #717171;";
       document.getElementById("s2").style.cssText = "  color: #717171;";
-      document.getElementById("digital-slider-A2").style.cssText = "transform: translateX(150px);";
+      document.getElementById("digital-slider-A2").style.cssText =
+        "transform: translateX(150px);";
     }
   };
   const toggleB1 = (value) => {
@@ -189,7 +180,8 @@ function Digital() {
       document.getElementById("ina3").style.cssText = "color: #717171; ";
       document.getElementById("ins3").style.cssText = "color: #717171; ";
       document.getElementById("s3").style.cssText = "color: #717171;";
-      document.getElementById("digital-slider-B1").style.cssText = "transform: translateX(0px);";
+      document.getElementById("digital-slider-B1").style.cssText =
+        "transform: translateX(0px);";
     }
     if (value === "analog") {
       setB1Digi(true);
@@ -197,14 +189,16 @@ function Digital() {
       document.getElementById("ind3").style.cssText = "  color: #717171;";
       document.getElementById("ins3").style.cssText = "color: #717171; ";
       document.getElementById("s3").style.cssText = "  color: #717171;";
-      document.getElementById("digital-slider-B1").style.cssText = "transform: translateX(75px);";
+      document.getElementById("digital-slider-B1").style.cssText =
+        "transform: translateX(75px);";
     }
     if (value === "servo") {
       document.getElementById("ins3").style.cssText = "color: #fcfcfc; ";
       document.getElementById("ina3").style.cssText = "color: #717171; ";
       document.getElementById("ind3").style.cssText = "  color: #717171;";
       document.getElementById("s3").style.cssText = "  color: #717171;";
-      document.getElementById("digital-slider-B1").style.cssText = "transform: translateX(150px);";
+      document.getElementById("digital-slider-B1").style.cssText =
+        "transform: translateX(150px);";
     }
   };
   const toggleB2 = (value) => {
@@ -215,7 +209,8 @@ function Digital() {
       document.getElementById("ina4").style.cssText = "color: #717171; ";
       document.getElementById("ins4").style.cssText = "color: #717171; ";
       document.getElementById("s4").style.cssText = "color: #717171;";
-      document.getElementById("digital-slider-B2").style.cssText = "transform: translateX(0px);";
+      document.getElementById("digital-slider-B2").style.cssText =
+        "transform: translateX(0px);";
     }
     if (value === "analog") {
       setB2Digi(true);
@@ -223,14 +218,16 @@ function Digital() {
       document.getElementById("ind4").style.cssText = "  color: #717171;";
       document.getElementById("ins4").style.cssText = "color: #717171; ";
       document.getElementById("s4").style.cssText = "  color: #717171;";
-      document.getElementById("digital-slider-B2").style.cssText = "transform: translateX(75px);";
+      document.getElementById("digital-slider-B2").style.cssText =
+        "transform: translateX(75px);";
     }
     if (value === "servo") {
       document.getElementById("ins4").style.cssText = "color: #fcfcfc; ";
       document.getElementById("ina4").style.cssText = "color: #717171; ";
       document.getElementById("ind4").style.cssText = "  color: #717171;";
       document.getElementById("s4").style.cssText = "  color: #717171;";
-      document.getElementById("digital-slider-B2").style.cssText = "transform: translateX(150px);";
+      document.getElementById("digital-slider-B2").style.cssText =
+        "transform: translateX(150px);";
     }
   };
   const toggleC1 = (value) => {
@@ -241,7 +238,8 @@ function Digital() {
       document.getElementById("ina5").style.cssText = "color: #717171; ";
       document.getElementById("ins5").style.cssText = "color: #717171; ";
       document.getElementById("s5").style.cssText = "color: #717171;";
-      document.getElementById("digital-slider-C1").style.cssText = "transform: translateX(0px);";
+      document.getElementById("digital-slider-C1").style.cssText =
+        "transform: translateX(0px);";
     }
     if (value === "analog") {
       setC1Digi(true);
@@ -249,14 +247,16 @@ function Digital() {
       document.getElementById("ind5").style.cssText = "  color: #717171;";
       document.getElementById("ins5").style.cssText = "color: #717171; ";
       document.getElementById("s5").style.cssText = "  color: #717171;";
-      document.getElementById("digital-slider-C1").style.cssText = "transform: translateX(75px);";
+      document.getElementById("digital-slider-C1").style.cssText =
+        "transform: translateX(75px);";
     }
     if (value === "servo") {
       document.getElementById("ins5").style.cssText = "color: #fcfcfc; ";
       document.getElementById("ina5").style.cssText = "color: #717171; ";
       document.getElementById("ind5").style.cssText = "  color: #717171;";
       document.getElementById("s5").style.cssText = "  color: #717171;";
-      document.getElementById("digital-slider-C1").style.cssText = "transform: translateX(150px);";
+      document.getElementById("digital-slider-C1").style.cssText =
+        "transform: translateX(150px);";
     }
   };
   const toggleC2 = (value) => {
@@ -267,7 +267,8 @@ function Digital() {
       document.getElementById("ina6").style.cssText = "color: #717171; ";
       document.getElementById("ins6").style.cssText = "color: #717171; ";
       document.getElementById("s6").style.cssText = "color: #717171;";
-      document.getElementById("digital-slider-C2").style.cssText = "transform: translateX(0px);";
+      document.getElementById("digital-slider-C2").style.cssText =
+        "transform: translateX(0px);";
     }
     if (value === "analog") {
       setC2Digi(true);
@@ -275,14 +276,16 @@ function Digital() {
       document.getElementById("ind6").style.cssText = "  color: #717171;";
       document.getElementById("ins6").style.cssText = "color: #717171; ";
       document.getElementById("s6").style.cssText = "  color: #717171;";
-      document.getElementById("digital-slider-C2").style.cssText = "transform: translateX(75px);";
+      document.getElementById("digital-slider-C2").style.cssText =
+        "transform: translateX(75px);";
     }
     if (value === "servo") {
       document.getElementById("ins6").style.cssText = "color: #fcfcfc; ";
       document.getElementById("ina6").style.cssText = "color: #717171; ";
       document.getElementById("ind6").style.cssText = "  color: #717171;";
       document.getElementById("s6").style.cssText = "  color: #717171;";
-      document.getElementById("digital-slider-C2").style.cssText = "transform: translateX(150px);";
+      document.getElementById("digital-slider-C2").style.cssText =
+        "transform: translateX(150px);";
     }
   };
 
@@ -297,7 +300,8 @@ function Digital() {
       document.getElementById("ina7").style.cssText = "color: #717171; ";
       document.getElementById("ins7").style.cssText = "color: #717171; ";
       document.getElementById("s7").style.cssText = "color: #717171;";
-      document.getElementById("digital-slider-D1").style.cssText = "transform: translateX(0px);";
+      document.getElementById("digital-slider-D1").style.cssText =
+        "transform: translateX(0px);";
     }
     if (value === "analog") {
       setD1Digi(true);
@@ -305,14 +309,16 @@ function Digital() {
       document.getElementById("ind7").style.cssText = "  color: #717171;";
       document.getElementById("ins7").style.cssText = "color: #717171; ";
       document.getElementById("s7").style.cssText = "  color: #717171;";
-      document.getElementById("digital-slider-D1").style.cssText = "transform: translateX(75px);";
+      document.getElementById("digital-slider-D1").style.cssText =
+        "transform: translateX(75px);";
     }
     if (value === "servo") {
       document.getElementById("ins7").style.cssText = "color: #fcfcfc; ";
       document.getElementById("ina7").style.cssText = "color: #717171; ";
       document.getElementById("ind7").style.cssText = "  color: #717171;";
       document.getElementById("s7").style.cssText = "  color: #717171;";
-      document.getElementById("digital-slider-D1").style.cssText = "transform: translateX(150px);";
+      document.getElementById("digital-slider-D1").style.cssText =
+        "transform: translateX(150px);";
     }
   };
   const toggleD2 = (value) => {
@@ -323,7 +329,8 @@ function Digital() {
       document.getElementById("ina8").style.cssText = "color: #717171; ";
       document.getElementById("ins8").style.cssText = "color: #717171; ";
       document.getElementById("s8").style.cssText = "color: #717171;";
-      document.getElementById("digital-slider-D2").style.cssText = "transform: translateX(0px);";
+      document.getElementById("digital-slider-D2").style.cssText =
+        "transform: translateX(0px);";
     }
     if (value === "analog") {
       setD2Digi(true);
@@ -331,14 +338,16 @@ function Digital() {
       document.getElementById("ind8").style.cssText = "  color: #717171;";
       document.getElementById("ins8").style.cssText = "color: #717171; ";
       document.getElementById("s8").style.cssText = "  color: #717171;";
-      document.getElementById("digital-slider-D2").style.cssText = "transform: translateX(75px);";
+      document.getElementById("digital-slider-D2").style.cssText =
+        "transform: translateX(75px);";
     }
     if (value === "servo") {
       document.getElementById("ins8").style.cssText = "color: #fcfcfc; ";
       document.getElementById("ina8").style.cssText = "color: #717171; ";
       document.getElementById("ind8").style.cssText = "  color: #717171;";
       document.getElementById("s8").style.cssText = "  color: #717171;";
-      document.getElementById("digital-slider-D2").style.cssText = "transform: translateX(150px);";
+      document.getElementById("digital-slider-D2").style.cssText =
+        "transform: translateX(150px);";
     }
   };
 
@@ -543,9 +552,9 @@ function Digital() {
             )}
 
             {isDistanceSensors ||
-              isColorSensor ||
-              isGestureSensor ||
-              isLightSensor ? (
+            isColorSensor ||
+            isGestureSensor ||
+            isLightSensor ? (
               <img src={Pcinternal4in1Active} className="imgStyle4in1" />
             ) : (
               <img src={Pcinternal4in1InActive} className="imgStyle4in1" />
@@ -606,9 +615,9 @@ function Digital() {
                   <input
                     className="Digital-properties-DigitalCheckBox"
                     type="checkbox"
-                  // checked={a1}
-                  // onClick={() => myFunction1()}
-                  // onChange={() => onA1ValueChange()}
+                    // checked={a1}
+                    // onClick={() => myFunction1()}
+                    // onChange={() => onA1ValueChange()}
                   />
                   <span disabled="disabled" className="A1">
                     A1
@@ -618,9 +627,9 @@ function Digital() {
                   <input
                     className="Inputs-properties-InputCheckBox"
                     type="checkbox"
-                  // checked={a2}
-                  // onClick={() => myFunction2()}
-                  // onChange={() => onA2ValueChange()}
+                    // checked={a2}
+                    // onClick={() => myFunction2()}
+                    // onChange={() => onA2ValueChange()}
                   />
                   <span disabled="disabled" className="A1">
                     A2
@@ -630,9 +639,9 @@ function Digital() {
                   <input
                     className="Inputs-properties-InputCheckBox"
                     type="checkbox"
-                  // checked={a2}
-                  // onClick={() => myFunction2()}
-                  // onChange={() => onA2ValueChange()}
+                    // checked={a2}
+                    // onClick={() => myFunction2()}
+                    // onChange={() => onA2ValueChange()}
                   />
                   <span disabled="disabled" className="A1">
                     A2
@@ -645,9 +654,21 @@ function Digital() {
             <div className="digital-flow-left-upper">
               <div className="digital-flow-left-upper-grp">
                 <label className={"input upper-label-input"}>
-                  <span className={(A1DIGI || false) + "-span textsp digital-textsp"}>A1</span>
-                  <div class={"flowchart-switch-button-" + (A1DIGI || false)} id="s1">
-                    <div id="digital-slider-A1" className={"slide-A1-" + a1Digi}></div>
+                  <span
+                    className={
+                      (A1DIGI || false) + "-span textsp digital-textsp"
+                    }
+                  >
+                    A1
+                  </span>
+                  <div
+                    class={"flowchart-switch-button-" + (A1DIGI || false)}
+                    id="s1"
+                  >
+                    <div
+                      id="digital-slider-A1"
+                      className={"slide-A1-" + a1Digi}
+                    ></div>
                     <input
                       disabled={!A1DIGI || false}
                       class="flowchart-switch-button-checkbox"
@@ -657,8 +678,14 @@ function Digital() {
                       id="A1-Digital"
                       name="A1"
                     ></input>
-                    <label class="flowchart-switch-button-label" for="A1-Digital">
-                      <span class="flowchart-switch-button-label-span" id="ind1">
+                    <label
+                      class="flowchart-switch-button-label"
+                      for="A1-Digital"
+                    >
+                      <span
+                        class="flowchart-switch-button-label-span"
+                        id="ind1"
+                      >
                         Digital
                       </span>
                     </label>
@@ -671,8 +698,14 @@ function Digital() {
                       id="A1-Analog"
                       name="A1"
                     ></input>
-                    <label class="flowchart-switch-button-label" for="A1-Analog">
-                      <span class="flowchart-switch-button-label-span" id="ina1">
+                    <label
+                      class="flowchart-switch-button-label"
+                      for="A1-Analog"
+                    >
+                      <span
+                        class="flowchart-switch-button-label-span"
+                        id="ina1"
+                      >
                         Analog
                       </span>
                     </label>
@@ -686,7 +719,10 @@ function Digital() {
                       name="A1"
                     ></input>
                     <label class="flowchart-switch-button-label" for="A1-Servo">
-                      <span class="flowchart-switch-button-label-span" id="ins1">
+                      <span
+                        class="flowchart-switch-button-label-span"
+                        id="ins1"
+                      >
                         Servo
                       </span>
                     </label>
@@ -694,9 +730,21 @@ function Digital() {
                 </label>
                 <br />
                 <label className={"input upper-label-input"}>
-                  <span className={(A2DIGI || false) + "-span textsp digital-textsp"}>A2</span>
-                  <div class={"flowchart-switch-button-" + (A2DIGI || false)} id="s2">
-                    <div id="digital-slider-A2" className={"slide-A2-" + a2Digi}></div>
+                  <span
+                    className={
+                      (A2DIGI || false) + "-span textsp digital-textsp"
+                    }
+                  >
+                    A2
+                  </span>
+                  <div
+                    class={"flowchart-switch-button-" + (A2DIGI || false)}
+                    id="s2"
+                  >
+                    <div
+                      id="digital-slider-A2"
+                      className={"slide-A2-" + a2Digi}
+                    ></div>
                     <input
                       disabled={!A2DIGI || false}
                       class="flowchart-switch-button-checkbox"
@@ -706,8 +754,14 @@ function Digital() {
                       id="A2-Digital"
                       name="A2"
                     ></input>
-                    <label class="flowchart-switch-button-label" for="A2-Digital">
-                      <span class="flowchart-switch-button-label-span" id="ind2">
+                    <label
+                      class="flowchart-switch-button-label"
+                      for="A2-Digital"
+                    >
+                      <span
+                        class="flowchart-switch-button-label-span"
+                        id="ind2"
+                      >
                         Digital
                       </span>
                     </label>
@@ -720,8 +774,14 @@ function Digital() {
                       id="A2-Analog"
                       name="A2"
                     ></input>
-                    <label class="flowchart-switch-button-label" for="A2-Analog">
-                      <span class="flowchart-switch-button-label-span" id="ina2">
+                    <label
+                      class="flowchart-switch-button-label"
+                      for="A2-Analog"
+                    >
+                      <span
+                        class="flowchart-switch-button-label-span"
+                        id="ina2"
+                      >
                         Analog
                       </span>
                     </label>
@@ -735,7 +795,10 @@ function Digital() {
                       name="A2"
                     ></input>
                     <label class="flowchart-switch-button-label" for="A2-Servo">
-                      <span class="flowchart-switch-button-label-span" id="ins2">
+                      <span
+                        class="flowchart-switch-button-label-span"
+                        id="ins2"
+                      >
                         Servo
                       </span>
                     </label>
@@ -746,9 +809,21 @@ function Digital() {
             <div className="digital-flow-left-upper">
               <div className="digital-flow-left-upper-grp">
                 <label className={"input upper-label-input"}>
-                  <span className={(B1DIGI || false) + "-span textsp digital-textsp"}>B1</span>
-                  <div class={"flowchart-switch-button-" + (B1DIGI || false)} id="s3">
-                    <div id="digital-slider-B1" className={"slide-B1-" + b1Digi}></div>
+                  <span
+                    className={
+                      (B1DIGI || false) + "-span textsp digital-textsp"
+                    }
+                  >
+                    B1
+                  </span>
+                  <div
+                    class={"flowchart-switch-button-" + (B1DIGI || false)}
+                    id="s3"
+                  >
+                    <div
+                      id="digital-slider-B1"
+                      className={"slide-B1-" + b1Digi}
+                    ></div>
                     <input
                       disabled={!B1DIGI || false}
                       class="flowchart-switch-button-checkbox"
@@ -758,8 +833,14 @@ function Digital() {
                       id="B1-Digital"
                       name="B1"
                     ></input>
-                    <label class="flowchart-switch-button-label" for="B1-Digital">
-                      <span class="flowchart-switch-button-label-span" id="ind3">
+                    <label
+                      class="flowchart-switch-button-label"
+                      for="B1-Digital"
+                    >
+                      <span
+                        class="flowchart-switch-button-label-span"
+                        id="ind3"
+                      >
                         Digital
                       </span>
                     </label>
@@ -772,8 +853,14 @@ function Digital() {
                       id="B1-Analog"
                       name="B1"
                     ></input>
-                    <label class="flowchart-switch-button-label" for="B1-Analog">
-                      <span class="flowchart-switch-button-label-span" id="ina3">
+                    <label
+                      class="flowchart-switch-button-label"
+                      for="B1-Analog"
+                    >
+                      <span
+                        class="flowchart-switch-button-label-span"
+                        id="ina3"
+                      >
                         Analog
                       </span>
                     </label>
@@ -787,7 +874,10 @@ function Digital() {
                       name="B1"
                     ></input>
                     <label class="flowchart-switch-button-label" for="B1-Servo">
-                      <span class="flowchart-switch-button-label-span" id="ins3">
+                      <span
+                        class="flowchart-switch-button-label-span"
+                        id="ins3"
+                      >
                         Servo
                       </span>
                     </label>
@@ -795,9 +885,21 @@ function Digital() {
                 </label>
                 <br />
                 <label className={"input upper-label-input"}>
-                  <span className={(B2DIGI || false) + "-span textsp digital-textsp"}>B2</span>
-                  <div class={"flowchart-switch-button-" + (B2DIGI || false)} id="s4">
-                    <div id="digital-slider-B2" className={"slide-B2-" + b2Digi}></div>
+                  <span
+                    className={
+                      (B2DIGI || false) + "-span textsp digital-textsp"
+                    }
+                  >
+                    B2
+                  </span>
+                  <div
+                    class={"flowchart-switch-button-" + (B2DIGI || false)}
+                    id="s4"
+                  >
+                    <div
+                      id="digital-slider-B2"
+                      className={"slide-B2-" + b2Digi}
+                    ></div>
                     <input
                       disabled={!B2DIGI || false}
                       class="flowchart-switch-button-checkbox"
@@ -807,8 +909,14 @@ function Digital() {
                       id="B2-Digital"
                       name="B2"
                     ></input>
-                    <label class="flowchart-switch-button-label" for="B2-Digital">
-                      <span class="flowchart-switch-button-label-span" id="ind4">
+                    <label
+                      class="flowchart-switch-button-label"
+                      for="B2-Digital"
+                    >
+                      <span
+                        class="flowchart-switch-button-label-span"
+                        id="ind4"
+                      >
                         Digital
                       </span>
                     </label>
@@ -821,8 +929,14 @@ function Digital() {
                       id="B2-Analog"
                       name="B2"
                     ></input>
-                    <label class="flowchart-switch-button-label" for="B2-Analog">
-                      <span class="flowchart-switch-button-label-span" id="ina4">
+                    <label
+                      class="flowchart-switch-button-label"
+                      for="B2-Analog"
+                    >
+                      <span
+                        class="flowchart-switch-button-label-span"
+                        id="ina4"
+                      >
                         Analog
                       </span>
                     </label>
@@ -836,7 +950,10 @@ function Digital() {
                       name="B2"
                     ></input>
                     <label class="flowchart-switch-button-label" for="B2-Servo">
-                      <span class="flowchart-switch-button-label-span" id="ins4">
+                      <span
+                        class="flowchart-switch-button-label-span"
+                        id="ins4"
+                      >
                         Servo
                       </span>
                     </label>
@@ -929,14 +1046,25 @@ function Digital() {
               </div>
             </div>
           </div>
-
           <div className="digital-ButtonRightDivInput">
             <div className="digital-flow-left-upper">
               <div className="digital-flow-left-upper-grp">
                 <label className={"input upper-label-input"}>
-                  <span className={(C1DIGI || false) + "-span textsp digital-textsp"}>C1</span>
-                  <div class={"flowchart-switch-button-" + (C1DIGI || false)} id="s5">
-                    <div id="digital-slider-C1" className={"slide-C1-" + c1Digi}></div>
+                  <span
+                    className={
+                      (C1DIGI || false) + "-span textsp digital-textsp"
+                    }
+                  >
+                    C1
+                  </span>
+                  <div
+                    class={"flowchart-switch-button-" + (C1DIGI || false)}
+                    id="s5"
+                  >
+                    <div
+                      id="digital-slider-C1"
+                      className={"slide-C1-" + c1Digi}
+                    ></div>
                     <input
                       disabled={!C1DIGI || false}
                       class="flowchart-switch-button-checkbox"
@@ -946,8 +1074,14 @@ function Digital() {
                       id="C1-Digital"
                       name="C1"
                     ></input>
-                    <label class="flowchart-switch-button-label" for="C1-Digital">
-                      <span class="flowchart-switch-button-label-span" id="ind5">
+                    <label
+                      class="flowchart-switch-button-label"
+                      for="C1-Digital"
+                    >
+                      <span
+                        class="flowchart-switch-button-label-span"
+                        id="ind5"
+                      >
                         Digital
                       </span>
                     </label>
@@ -960,8 +1094,14 @@ function Digital() {
                       id="C1-Analog"
                       name="C1"
                     ></input>
-                    <label class="flowchart-switch-button-label" for="C1-Analog">
-                      <span class="flowchart-switch-button-label-span" id="ina5">
+                    <label
+                      class="flowchart-switch-button-label"
+                      for="C1-Analog"
+                    >
+                      <span
+                        class="flowchart-switch-button-label-span"
+                        id="ina5"
+                      >
                         Analog
                       </span>
                     </label>
@@ -975,7 +1115,10 @@ function Digital() {
                       name="C1"
                     ></input>
                     <label class="flowchart-switch-button-label" for="C1-Servo">
-                      <span class="flowchart-switch-button-label-span" id="ins5">
+                      <span
+                        class="flowchart-switch-button-label-span"
+                        id="ins5"
+                      >
                         Servo
                       </span>
                     </label>
@@ -983,9 +1126,21 @@ function Digital() {
                 </label>
                 <br />
                 <label className={"input upper-label-input"}>
-                  <span className={(C2DIGI || false) + "-span textsp digital-textsp"}>C2</span>
-                  <div class={"flowchart-switch-button-" + (C2DIGI || false)} id="s6">
-                    <div id="digital-slider-C2" className={"slide-C2-" + c2Digi}></div>
+                  <span
+                    className={
+                      (C2DIGI || false) + "-span textsp digital-textsp"
+                    }
+                  >
+                    C2
+                  </span>
+                  <div
+                    class={"flowchart-switch-button-" + (C2DIGI || false)}
+                    id="s6"
+                  >
+                    <div
+                      id="digital-slider-C2"
+                      className={"slide-C2-" + c2Digi}
+                    ></div>
                     <input
                       disabled={!C2DIGI || false}
                       class="flowchart-switch-button-checkbox"
@@ -995,8 +1150,14 @@ function Digital() {
                       id="C2-Digital"
                       name="C2"
                     ></input>
-                    <label class="flowchart-switch-button-label" for="C2-Digital">
-                      <span class="flowchart-switch-button-label-span" id="ind6">
+                    <label
+                      class="flowchart-switch-button-label"
+                      for="C2-Digital"
+                    >
+                      <span
+                        class="flowchart-switch-button-label-span"
+                        id="ind6"
+                      >
                         Digital
                       </span>
                     </label>
@@ -1009,8 +1170,14 @@ function Digital() {
                       id="C2-Analog"
                       name="C2"
                     ></input>
-                    <label class="flowchart-switch-button-label" for="C2-Analog">
-                      <span class="flowchart-switch-button-label-span" id="ina6">
+                    <label
+                      class="flowchart-switch-button-label"
+                      for="C2-Analog"
+                    >
+                      <span
+                        class="flowchart-switch-button-label-span"
+                        id="ina6"
+                      >
                         Analog
                       </span>
                     </label>
@@ -1024,7 +1191,10 @@ function Digital() {
                       name="C2"
                     ></input>
                     <label class="flowchart-switch-button-label" for="C2-Servo">
-                      <span class="flowchart-switch-button-label-span" id="ins6">
+                      <span
+                        class="flowchart-switch-button-label-span"
+                        id="ins6"
+                      >
                         Servo
                       </span>
                     </label>
@@ -1035,9 +1205,21 @@ function Digital() {
             <div className="digital-flow-left-upper">
               <div className="digital-flow-left-upper-grp">
                 <label className={"input upper-label-input"}>
-                  <span className={(D1DIGI || false) + "-span textsp digital-textsp"}>D1</span>
-                  <div class={"flowchart-switch-button-" + (D1DIGI || false)} id="s7">
-                    <div id="digital-slider-D1" className={"slide-D1-" + d1Digi}></div>
+                  <span
+                    className={
+                      (D1DIGI || false) + "-span textsp digital-textsp"
+                    }
+                  >
+                    D1
+                  </span>
+                  <div
+                    class={"flowchart-switch-button-" + (D1DIGI || false)}
+                    id="s7"
+                  >
+                    <div
+                      id="digital-slider-D1"
+                      className={"slide-D1-" + d1Digi}
+                    ></div>
                     <input
                       disabled={!D1DIGI || false}
                       class="flowchart-switch-button-checkbox"
@@ -1047,8 +1229,14 @@ function Digital() {
                       id="D1-Digital"
                       name="D1"
                     ></input>
-                    <label class="flowchart-switch-button-label" for="D1-Digital">
-                      <span class="flowchart-switch-button-label-span" id="ind7">
+                    <label
+                      class="flowchart-switch-button-label"
+                      for="D1-Digital"
+                    >
+                      <span
+                        class="flowchart-switch-button-label-span"
+                        id="ind7"
+                      >
                         Digital
                       </span>
                     </label>
@@ -1061,8 +1249,14 @@ function Digital() {
                       id="D1-Analog"
                       name="D1"
                     ></input>
-                    <label class="flowchart-switch-button-label" for="D1-Analog">
-                      <span class="flowchart-switch-button-label-span" id="ina7">
+                    <label
+                      class="flowchart-switch-button-label"
+                      for="D1-Analog"
+                    >
+                      <span
+                        class="flowchart-switch-button-label-span"
+                        id="ina7"
+                      >
                         Analog
                       </span>
                     </label>
@@ -1076,15 +1270,30 @@ function Digital() {
                       name="D1"
                     ></input>
                     <label class="flowchart-switch-button-label" for="D1-Servo">
-                      <span class="flowchart-switch-button-label-span" id="ins7">
+                      <span
+                        class="flowchart-switch-button-label-span"
+                        id="ins7"
+                      >
                         Servo
                       </span>
                     </label>
                   </div>
                   <br />
-                  <span className={(D2DIGI || false) + "-span textsp digital-textsp"}>D2</span>
-                  <div class={"flowchart-switch-button-" + (D2DIGI || false)} id="s8">
-                    <div id="digital-slider-D2" className={"slide-D2-" + d2Digi}></div>
+                  <span
+                    className={
+                      (D2DIGI || false) + "-span textsp digital-textsp"
+                    }
+                  >
+                    D2
+                  </span>
+                  <div
+                    class={"flowchart-switch-button-" + (D2DIGI || false)}
+                    id="s8"
+                  >
+                    <div
+                      id="digital-slider-D2"
+                      className={"slide-D2-" + d2Digi}
+                    ></div>
                     <input
                       disabled={!D2DIGI || false}
                       class="flowchart-switch-button-checkbox"
@@ -1094,8 +1303,14 @@ function Digital() {
                       id="D2-Digital"
                       name="D2"
                     ></input>
-                    <label class="flowchart-switch-button-label" for="D2-Digital">
-                      <span class="flowchart-switch-button-label-span" id="ind8">
+                    <label
+                      class="flowchart-switch-button-label"
+                      for="D2-Digital"
+                    >
+                      <span
+                        class="flowchart-switch-button-label-span"
+                        id="ind8"
+                      >
                         Digital
                       </span>
                     </label>
@@ -1108,8 +1323,14 @@ function Digital() {
                       id="D2-Analog"
                       name="D2"
                     ></input>
-                    <label class="flowchart-switch-button-label" for="D2-Analog">
-                      <span class="flowchart-switch-button-label-span" id="ina8">
+                    <label
+                      class="flowchart-switch-button-label"
+                      for="D2-Analog"
+                    >
+                      <span
+                        class="flowchart-switch-button-label-span"
+                        id="ina8"
+                      >
                         Analog
                       </span>
                     </label>
@@ -1123,7 +1344,10 @@ function Digital() {
                       name="D2"
                     ></input>
                     <label class="flowchart-switch-button-label" for="D2-Servo">
-                      <span class="flowchart-switch-button-label-span" id="ins8">
+                      <span
+                        class="flowchart-switch-button-label-span"
+                        id="ins8"
+                      >
                         Servo
                       </span>
                     </label>
@@ -1216,10 +1440,7 @@ function Digital() {
                 </label>
               </div>
             </div>
-
           </div>
-
-
           1
         </div>
       </div>

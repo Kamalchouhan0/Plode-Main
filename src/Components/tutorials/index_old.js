@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import socketIOClient from "socket.io-client";
 import Modal from "react-modal";
 import { Link } from "react-router-dom";
 var styleT = {

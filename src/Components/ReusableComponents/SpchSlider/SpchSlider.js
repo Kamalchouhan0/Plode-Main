@@ -84,7 +84,7 @@ function SamplePrevArrow(props) {
     </div>
   );
 }
-// import { Remt, Peech, Msic, Camr } from "../../../Source/index";
+
 export class SpchSlider extends Component {
   render() {
     var settings = {
@@ -102,11 +102,7 @@ export class SpchSlider extends Component {
         <div class="container"></div>
         <Slider {...settings}>
           <div className={SpchStyle.wdt}>
-            <img
-              className={SpchStyle.img}
-              src={renderImage("Spch1")}
-              className={SpchStyle.img}
-            />
+            <img className={SpchStyle.img} src={renderImage("Spch1")} />
             <div className={SpchStyle.Hdg}>
               <p className={SpchStyle.Hdg_P}>
                 {" "}
@@ -128,19 +124,9 @@ export class SpchSlider extends Component {
               </p>
             </div>
           </div>
-          {/* <div className="SpchStyle.wdt>
-            <img
-              style={{ height: "40px" }}
-              src={"assets/w3.jpg"}
-              className="SpchStyle.img"
-            />
-          </div> */}
+
           <div className={SpchStyle.wdt}>
-            <img
-              className={SpchStyle.img}
-              src={renderImage("Spch2")}
-              className={SpchStyle.img}
-            />
+            <img className={SpchStyle.img} src={renderImage("Spch2")} />
             <div className={SpchStyle.con}>
               <p
                 className={SpchStyle.con_P}
@@ -169,11 +155,7 @@ export class SpchSlider extends Component {
           </div>
 
           <div className={SpchStyle.wdt}>
-            <img
-              className={SpchStyle.img}
-              src={renderImage("Spch2")}
-              className={SpchStyle.img}
-            />
+            <img className={SpchStyle.img} src={renderImage("Spch2")} />
             <div className={SpchStyle.Mus}>
               <p
                 className={SpchStyle.Mus_P}
@@ -207,11 +189,7 @@ export class SpchSlider extends Component {
             </div>
           </div>
           <div className={SpchStyle.wdt}>
-            <img
-              className={SpchStyle.img}
-              src={renderImage("Spch2")}
-              className={SpchStyle.img}
-            />
+            <img className={SpchStyle.img} src={renderImage("Spch2")} />
             <div className={SpchStyle.Cam}>
               <p className={SpchStyle.Cam_P}>
                 Predefined phrases:
@@ -228,11 +206,7 @@ export class SpchSlider extends Component {
           </div>
 
           <div className={SpchStyle.wdt}>
-            <img
-              className={SpchStyle.img}
-              src={renderImage("Spch2")}
-              className={SpchStyle.img}
-            />
+            <img className={SpchStyle.img} src={renderImage("Spch2")} />
             <div className={SpchStyle.Cam1}>
               <p className={SpchStyle.Cam1_P}>
                 Predefined phrases:
@@ -245,11 +219,7 @@ export class SpchSlider extends Component {
             </div>
           </div>
           <div className={SpchStyle.wdt}>
-            <img
-              className={SpchStyle.img}
-              src={renderImage("Spch2")}
-              className={SpchStyle.img}
-            />
+            <img className={SpchStyle.img} src={renderImage("Spch2")} />
             <div className={SpchStyle.Cam2}>
               <p className={SpchStyle.Cam2_P}>
                 Predefined phrases:
@@ -266,10 +236,6 @@ export class SpchSlider extends Component {
               </p>
             </div>
           </div>
-
-          {/* <div className="SpchStyle.wdt">
-            <img className="img" src={"assets/w2.png"} className="img" />
-          </div> */}
         </Slider>
       </div>
     );

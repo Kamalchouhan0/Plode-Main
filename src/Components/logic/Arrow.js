@@ -1,10 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 
 var createReactClass = require("create-react-class");
 
 var PureRenderMixin = require("react-addons-pure-render-mixin");
-
-const Sizes = require("./Sizes");
 
 var Arrow = createReactClass({
   mixins: [PureRenderMixin],

@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import Slider from "../helpers/Slider";
-import { Link } from "react-router-dom";
 import { timericon } from "../../../../../../source/index";
 import "./wait.css";
-import { useLocalStorage } from "../../../../../LocalStorage/LocalStorage";
 var h = [];
 var m = [];
 var s = [];

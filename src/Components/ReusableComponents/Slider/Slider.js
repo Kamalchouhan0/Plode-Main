@@ -1,8 +1,5 @@
-import e from "cors";
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import renderImage from "../../../source/importImg";
-
-import { Slider1 } from "../Slider/SliderStyles";
 import "./Slider.css";
 
 var initialRendered = true;

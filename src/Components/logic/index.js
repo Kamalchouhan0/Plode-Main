@@ -1,45 +1,21 @@
 import React, { Component } from "react";
-import { Link, withRouter } from "react-router-dom";
-import io from "socket.io-client";
-import Hammer from "react-hammerjs";
-import { HTML5Backend } from "react-dnd-html5-backend";
 import { DragDropContext } from "react-dnd";
-import { webSerialAction } from "../../redux/actions/index";
-import unicodeToChar from "../../utils/unicodeToChar";
-// import DragDropContext from 'react-dnd';
-// import TouchBackend from 'react-dnd-touch-backend';
-import getBytes from "../Simulate/BytesGeneration/convertBytes";
-import { connect } from "react-redux";
-import HexBoard from "./HexBoard";
-import BottomPanel from "./BottomPanel";
-// import RightPanel from './RightPanel'
-import SizesHelper from "../../helpers/Sizes";
-import Sizes from "./Sizes";
-import ProgramToDrawing from "./ProgramToDrawing";
-import "../../css/logic.css";
+import { HTML5Backend } from "react-dnd-html5-backend";
+import Hammer from "react-hammerjs";
 import Modal from "react-modal";
-import socketIOClient from "socket.io-client";
-
-import {
-  assemblebar,
-  readPC,
-  saveBtnInActive,
-  saveBtnActive,
-  helpBtnActive,
-  helpBtnInActive,
-  bluetoothBtnInActive,
-  bluetoothBtnActive,
-  readPCInActive,
-  backBtn,
-  nextBtn,
-  usbOFF,
-  usbON,
-  UsbOff,
-} from "../../source/index";
-import Colors from "./Colors";
-import { object } from "prop-types";
+import { connect } from "react-redux";
+import { Link, withRouter } from "react-router-dom";
+import "../../css/logic.css";
+import SizesHelper from "../../helpers/Sizes";
+import { webSerialAction } from "../../redux/actions/index";
 import renderPrgImage from "../../source/programImg";
 import LogicPrgm from "../ReusableComponents/PrgmSlider/LogicPrgm/LogicPrgm";
+import getBytes from "../Simulate/BytesGeneration/convertBytes";
+import BottomPanel from "./BottomPanel";
+import HexBoard from "./HexBoard";
+import ProgramToDrawing from "./ProgramToDrawing";
+import Sizes from "./Sizes";
+
 var _ = require("lodash");
 var countLogic;
 var oldDeltaX, oldDeltaY, panning;

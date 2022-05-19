@@ -101,11 +101,7 @@ export class MuscSlider extends Component {
         <div className={MuscStyle.container}></div>
         <Slider {...settings}>
           <div className={MuscStyle.wdt}>
-            <img
-              className={MuscStyle.img}
-              src={"../../Bisoft_UI/Help screen/Play/Group 3189@2x.png"}
-              className={MuscStyle.img}
-            />
+            <img className={MuscStyle.img} src={renderImage("Musc1")} />
             <div className={MuscStyle.Hel}>
               <p className={MuscStyle.Hel_P}>
                 {" "}
@@ -131,11 +127,7 @@ export class MuscSlider extends Component {
             />
           </div> */}
           <div className={MuscStyle.wdt}>
-            <img
-              className={MuscStyle.img}
-              src={"../../Bisoft_UI/Help screen/Play/Group 3190@2x.png"}
-              className={MuscStyle.img}
-            />
+            <img className={MuscStyle.img} src={renderImage("Musc2")} />
             <div className={MuscStyle.con}>
               <p className={MuscStyle.con_P}>
                 In Playcomputer tone mode, user needs to press the keys on the
@@ -144,11 +136,7 @@ export class MuscSlider extends Component {
             </div>
           </div>
           <div className={MuscStyle.wdt}>
-            <img
-              className={MuscStyle.img}
-              src={"../../Bisoft_UI/Help screen/Play/Group 3191@2x.png"}
-              className={MuscStyle.img}
-            />
+            <img className={MuscStyle.img} src={renderImage("Musc3")} />
             <div className={MuscStyle.Mus}>
               <p className={MuscStyle.Mus_P}>
                 Toggle switch to switch between Playcomputer playing tones or
@@ -157,11 +145,7 @@ export class MuscSlider extends Component {
             </div>
           </div>
           <div className={MuscStyle.wdt}>
-            <img
-              className={MuscStyle.img}
-              src={"../../Bisoft_UI/Help screen/Play/Group 3192@2x.png"}
-              className={MuscStyle.img}
-            />
+            <img className={MuscStyle.img} src={renderImage("Musc4")} />
             <div className={MuscStyle.Cam}>
               <p className={MuscStyle.Cam_P}>
                 • In app tone mode, the user touches the playcomputer’s touch

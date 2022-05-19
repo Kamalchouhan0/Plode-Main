@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 
-import Colors from "../../Colors";
-
 class InputText extends Component {
   constructor(props) {
     super(props);

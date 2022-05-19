@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import sessionStorage from "../../LocalStorage/LocalStorage";
 import { Inputs } from "./Slider.styles";
 import "./SliderRange.css";
 

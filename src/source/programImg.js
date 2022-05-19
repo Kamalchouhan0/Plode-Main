@@ -11,10 +11,6 @@ import helpBtnActive from "../Assets/Bisoft_UI/Buttons/Active with shadow/help@2
 
 import helpBtnInActive from "../Assets/Bisoft_UI/Buttons/Inactive with shadow/help@2x.png";
 
-// import bluetoothBtnActive from "../Assets/Bisoft_UI/Buttons/Active with shadow/bluetooth - on@2x.png";
-
-// import bluetoothBtnInActive from "../Assets/Bisoft_UI/Buttons/Inactive with shadow/bluetooth - on@2x.png";
-
 import uploadBtn from "../Assets/Bisoft_UI/Buttons/Active with shadow/upload@2x.png";
 
 import playrunBtn from "../Assets/Bisoft_UI/Buttons/Active with shadow/play-run@2x.png";
@@ -329,8 +325,6 @@ function renderPrgImage(imageName) {
       return tempInActive;
     case "touch0Active":
       return touch0Active;
-    case "touch0InActive":
-      return touch0InActive;
     case "touch0InActive":
       return touch0InActive;
     case "touch1Active":

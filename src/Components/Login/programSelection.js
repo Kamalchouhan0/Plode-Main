@@ -1,21 +1,9 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import openSocket from "socket.io-client";
 import { connect } from "react-redux";
-import components from "../concept/data"; //component details
-import PortConnections from "../Assembly/PortConnections";
-import {
-  buttonNewProjectSrc,
-  buttonSaveProjectSrc,
-  Web1920Src,
-  backBtn,
-  programmenucard,
-  flowchartbasedgroupbutton,
-  yourprojectsgroupbutton,
-  newfilegroupbutton,
-} from "../../source/index";
-import BgComp1 from "../humanoidFlowChart/BGComponents/BG1/BgComp1";
+import { Link } from "react-router-dom";
 import renderPrgImage from "../../source/programImg";
+import PortConnections from "../Assembly/PortConnections";
+import components from "../concept/data"; //component details
 import PrgmSelection from "../ReusableComponents/PrgmSlider/PrgmSelection/PrgmSelection";
 //const socket = openSocket("http://localhost:3008");
 

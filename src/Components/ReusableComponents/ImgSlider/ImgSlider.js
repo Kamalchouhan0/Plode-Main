@@ -3,7 +3,6 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import "./ImgSlider.css";
-import { Remt, Peech, Msic, Camr } from "../../../source/index";
 import renderImage from "../../../source/importImg";
 function SampleNextArrow(props) {
   const { className, onClick } = props;
@@ -102,7 +101,7 @@ export class ImgSlider extends Component {
         <div class="container"></div>
         <Slider {...settings}>
           <div className="wdt">
-            <img className="img" src={renderImage("Remt")} className="img" />
+            <img className="img" src={renderImage("Remt")} />
             <div className="Hel">
               <p className="Hel-P">
                 {" "}
@@ -118,15 +117,9 @@ export class ImgSlider extends Component {
               </p>
             </div>
           </div>
-          {/* <div className="wdt>
-            <img
-              style={{ height: "40px" }}
-              src={"assets/w3.jpg"}
-              className="img"
-            />
-          </div> */}
+
           <div className="wdt">
-            <img className="img" src={renderImage("Peech")} className="img" />
+            <img className="img" src={renderImage("Peech")} />
             <div className="con">
               <p className="con_P">
                 In this screen you can control the playcomputer for certain
@@ -136,7 +129,7 @@ export class ImgSlider extends Component {
             </div>
           </div>
           <div className="wdt">
-            <img className="img" src={renderImage("Msic")} className="img" />
+            <img className="img" src={renderImage("Msic")} />
             <div className="Mus">
               <p className="Mus_P">
                 At this screen, you can have a dual functionality of making
@@ -145,7 +138,7 @@ export class ImgSlider extends Component {
             </div>
           </div>
           <div className="wdt">
-            <img className="img" src={renderImage("Camr")} className="img" />
+            <img className="img" src={renderImage("Camr")} />
             <div className="Cam">
               <p className="Cam_P">
                 At this screen, you can control the playcomputer with the
@@ -154,9 +147,6 @@ export class ImgSlider extends Component {
               </p>
             </div>
           </div>
-          {/* <div className="wdt">
-            <img className="img" src={"assets/w2.png"} className="img" />
-          </div> */}
         </Slider>
       </div>
     );

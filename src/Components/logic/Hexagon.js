@@ -1,13 +1,9 @@
 /* eslint-disable no-fallthrough */
 import React, { Component } from "react";
-// import ReactDOM from 'react-dom'
-// import PropTypes = React.PropTypes;
-
 import Colors from "./Colors";
 import Sizes from "./Sizes";
 import HexTypes from "./HexTypes";
 import { connect } from "react-redux";
-import { newArr } from "../Simulate/Logic/Index";
 var arr = [],
   arr2 = [],
   subarr = [],

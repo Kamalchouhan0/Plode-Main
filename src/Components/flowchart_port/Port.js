@@ -1,39 +1,28 @@
 import React from "react";
-import Bottom from "./Bottom";
-import { Nav } from "react-bootstrap";
-import { useLocalStorage } from "../LocalStorage/LocalStorage";
-import pcImg from "../../Assets/internalAccessories/PC_image@3x.png";
-import selectImg from "../../Assets/img/select bar@2x.png";
-import secondaryImg from "../../Assets/img/save - secondary.png";
+import { useHistory } from "react-router-dom";
 import strokeImg from "../../Assets/img/button 52x52 - stroke.png";
-import connectionImg from "../../Assets/usb - off@2x.png";
-import { Link, useHistory } from "react-router-dom";
-
-import eyeInactiveImg from "../../Assets/internalAccessories/eye - inactive.484d85f3.svg";
-import teethImg from "../../Assets/internalAccessories/teeth - inactive.ff84b1d3.svg";
-import inImg from "../../Assets/internalAccessories/4 in 1 - inactive.ea3e994f.svg";
-import internalmicImg from "../../Assets/internalAccessories/internal mic - inactive.d43d2f36.svg";
-import buzzerImg from "../../Assets/internalAccessories/buzzer - inactive.872b79d8.svg";
-import touchpadsImg from "../../Assets/internalAccessories/touch pads - inactive.748c6933.svg";
-
-import PcinternalEYEActive from "../../Assets/internalAccessories/eye - active.svg";
-import PcinternalEYEInActive from "../../Assets/internalAccessories/eye - inactive.svg";
-import PcinternalTeethInActive from "../../Assets/internalAccessories/teeth - inactive.svg";
-import PcinternalTeethActive from "../../Assets/internalAccessories/teeth - active.svg";
-
+import secondaryImg from "../../Assets/img/save - secondary.png";
+import selectImg from "../../Assets/img/select bar@2x.png";
 import Pcinternal4in1Active from "../../Assets/internalAccessories/4 in 1 - active.svg";
 import Pcinternal4in1InActive from "../../Assets/internalAccessories/4 in 1 - inactive.svg";
-import PcinternalMicActive from "../../Assets/internalAccessories/internal mic - inactive.svg";
-import PcinternalMicInActive from "../../Assets/internalAccessories/internal mic - active.svg";
-import PcinternalBuzzerInActive from "../../Assets/internalAccessories/buzzer - inactive.svg";
 import PcinternalBuzzerActive from "../../Assets/internalAccessories/buzzer - active.svg";
-import PcinternalTouchpadsInActive from "../../Assets/internalAccessories/touch pads - inactive.svg";
+import PcinternalBuzzerInActive from "../../Assets/internalAccessories/buzzer - inactive.svg";
+import PcinternalEYEActive from "../../Assets/internalAccessories/eye - active.svg";
+import PcinternalEYEInActive from "../../Assets/internalAccessories/eye - inactive.svg";
+import PcinternalMicInActive from "../../Assets/internalAccessories/internal mic - active.svg";
+import PcinternalMicActive from "../../Assets/internalAccessories/internal mic - inactive.svg";
+import pcImg from "../../Assets/internalAccessories/PC_image@3x.png";
+import PcinternalTeethActive from "../../Assets/internalAccessories/teeth - active.svg";
+import PcinternalTeethInActive from "../../Assets/internalAccessories/teeth - inactive.svg";
 import PcinternalTouchpadsActive from "../../Assets/internalAccessories/touch pads - active.svg";
-
-import "./pcimage.css";
-import "./Navbar.css";
-import "./style.css";
+import PcinternalTouchpadsInActive from "../../Assets/internalAccessories/touch pads - inactive.svg";
+import connectionImg from "../../Assets/usb - off@2x.png";
 import renderPrgImage from "../../source/programImg";
+import { useLocalStorage } from "../LocalStorage/LocalStorage";
+import "./Navbar.css";
+import "./pcimage.css";
+import "./style.css";
+
 let i = [];
 for (let j = 0; j < 8; j++) i[j] = 1;
 
@@ -518,282 +507,280 @@ const Port = () => {
           </div>
         </div>
         <div className="ports-Container">
-            <div className="properties-Container">
-              <div className="properties-b">
-                  <div className="properties-bIn">
-                    <span className="properties-InputLabel">
-                      <input
-                        className="properties-InputCheckBox"
-                        type="checkbox"
-                        checked={a1}
-                        onClick={() => myFunction1()}
-                        onChange={() => onA1ValueChange()}
-                      />
-                      <span disabled="disabled" className="A1" >
-                        A1
-                      </span>
-                    </span>
-                    <span className="properties-InputLabel">
-                      <input
-                        className="properties-InputCheckBox"
-                        type="checkbox"
-                        // checked={a2}
-                        // onClick={() => myFunction2()}
-                        // onChange={() => onA2ValueChange()}
-                      />
-                      <span disabled="disabled" className="A1">
-                        A2
-                      </span>
-                    </span>
-                    <span className="properties-InputLabel">
-                      <input
-                        className="properties-InputCheckBox"
-                        type="checkbox"
-                        // checked={a2}
-                        // onClick={() => myFunction2()}
-                        // onChange={() => onA2ValueChange()}
-                      />
-                      <span disabled="disabled" className="A1" >
-                        A2
-                      </span>
-                    </span>
-                  </div>
+          <div className="properties-Container">
+            <div className="properties-b">
+              <div className="properties-bIn">
+                <span className="properties-InputLabel">
+                  <input
+                    className="properties-InputCheckBox"
+                    type="checkbox"
+                    checked={a1}
+                    onClick={() => myFunction1()}
+                    onChange={() => onA1ValueChange()}
+                  />
+                  <span disabled="disabled" className="A1">
+                    A1
+                  </span>
+                </span>
+                <span className="properties-InputLabel">
+                  <input
+                    className="properties-InputCheckBox"
+                    type="checkbox"
+                    // checked={a2}
+                    // onClick={() => myFunction2()}
+                    // onChange={() => onA2ValueChange()}
+                  />
+                  <span disabled="disabled" className="A1">
+                    A2
+                  </span>
+                </span>
+                <span className="properties-InputLabel">
+                  <input
+                    className="properties-InputCheckBox"
+                    type="checkbox"
+                    // checked={a2}
+                    // onClick={() => myFunction2()}
+                    // onChange={() => onA2ValueChange()}
+                  />
+                  <span disabled="disabled" className="A1">
+                    A2
+                  </span>
+                </span>
               </div>
             </div>
-            <div className="ButtonDiv">
-              {/* A PORT */}
-              <div className="tlb">
-                <div className="tlbIn ">
-                  <span className="InputLabel">
-                    <input
-                      className="InputCheckBox"
-                      type="checkbox"
-                      checked={a1}
-                      onClick={() => myFunction1()}
-                      onChange={() => onA1ValueChange()}
-                    />
-                    <span disabled="disabled" className="A1" id="foo1">
-                      A1
-                    </span>
-                  </span>
-                  <span className="InputLabel">
-                    <input
-                      className="InputCheckBox"
-                      type="checkbox"
-                      checked={a2}
-                      onClick={() => myFunction2()}
-                      onChange={() => onA2ValueChange()}
-                    />
-                    <span disabled="disabled" className="A1" id="foo2">
-                      A2
-                    </span>
-                  </span>
-                </div>
-              </div>
-              {/* B PORT */}
-              <div className="tlb">
-                <div className="tlbIn ">
-                  <span className="InputLabel">
-                    <input
-                      className="InputCheckBox"
-                      type="checkbox"
-                      checked={b1}
-                      onClick={() => myFunction3()}
-                      onChange={() => onB1ValueChange()}
-                    />
-                    <span disabled="disabled" className="A1" id="foo3">
-                      B1
-                    </span>
-                  </span>
-                  <span className="InputLabel">
-                    <input
-                      className="InputCheckBox"
-                      type="checkbox"
-                      checked={b2}
-                      onClick={() => myFunction4()}
-                      onChange={() => onB2ValueChange()}
-                    />
-                    <span disabled="disabled" className="A1" id="foo4">
-                      B2
-                    </span>
-                  </span>
-                </div>
-              </div>
-              <div className="tlb">
-                <div className="tlbIn ">
-                  <span className="InputLabel">
-                    <input
-                      className="InputCheckBox"
-                      type="checkbox"
-                      checked={e1}
-                      onClick={() => myFunction9()}
-                      onChange={() => onE1ValueChange()}
-                    />
-                    <span disabled="disabled" className="A1" id="foo9">
-                      E1
-                    </span>
-                  </span>
-                  <span className="InputLabel">
-                    <input
-                      className="InputCheckBox"
-                      type="checkbox"
-                      checked={e2}
-                      onClick={() => myFunction10()}
-                      onChange={() => onE2ValueChange()}
-                    />
-                    <span disabled="disabled" className="A1" id="foo10">
-                      E2
-                    </span>
-                  </span>
-                </div>
-              </div>
-              <div className="tlb">
-                <div className="tlbIn ">
-                  <span className="InputLabel">
-                    <input
-                      className="InputCheckBox"
-                      type="checkbox"
-                      checked={f1}
-                      onClick={() => myFunction11()}
-                      onChange={() => onF1ValueChange()}
-                    />
-                    <span disabled="disabled" className="A1" id="foo11">
-                      F1
-                    </span>
-                  </span>
-                  <span className="InputLabel">
-                    <input
-                      className="InputCheckBox"
-                      type="checkbox"
-                      checked={f2}
-                      onClick={() => myFunction12()}
-                      onChange={() => onF2ValueChange()}
-                    />
-                    <span disabled="disabled" className="A1" id="foo12">
-                      F2
-                    </span>
-                  </span>
-                </div>
-              </div>
-             
-            </div>
-            
-      
-            <div className="ButtonRightDiv">
+          </div>
+          <div className="ButtonDiv">
+            {/* A PORT */}
             <div className="tlb">
-                <div className="tlbIn ">
-                  <span className="InputLabel">
-                    <input
-                      className="InputCheckBox"
-                      type="checkbox"
-                      checked={c1}
-                      onClick={() => myFunction5()}
-                      onChange={() => onC1ValueChange()}
-                    />
-                    <span disabled="disabled" className="A1" id="foo5">
-                      C1
-                    </span>
+              <div className="tlbIn ">
+                <span className="InputLabel">
+                  <input
+                    className="InputCheckBox"
+                    type="checkbox"
+                    checked={a1}
+                    onClick={() => myFunction1()}
+                    onChange={() => onA1ValueChange()}
+                  />
+                  <span disabled="disabled" className="A1" id="foo1">
+                    A1
                   </span>
-                  <span className="InputLabel">
-                    <input
-                      className="InputCheckBox"
-                      type="checkbox"
-                      checked={c2}
-                      onClick={() => myFunction6()}
-                      onChange={() => onC2ValueChange()}
-                    />
-                    <span disabled="disabled" className="A1" id="foo6">
-                      C2
-                    </span>
+                </span>
+                <span className="InputLabel">
+                  <input
+                    className="InputCheckBox"
+                    type="checkbox"
+                    checked={a2}
+                    onClick={() => myFunction2()}
+                    onChange={() => onA2ValueChange()}
+                  />
+                  <span disabled="disabled" className="A1" id="foo2">
+                    A2
                   </span>
-                </div>
-              </div>
-              <div className="tlb">
-                <div className="tlbIn ">
-                  <span className="InputLabel">
-                    <input
-                      className="InputCheckBox"
-                      type="checkbox"
-                      checked={d1}
-                      onClick={() => myFunction7()}
-                      onChange={() => onD1ValueChange()}
-                    />
-                    <span disabled="disabled" className="A1" id="foo7">
-                      D1
-                    </span>
-                  </span>
-                  <span className="InputLabel">
-                    <input
-                      className="InputCheckBox"
-                      type="checkbox"
-                      checked={d2}
-                      onClick={() => myFunction8()}
-                      onChange={() => onD2ValueChange()}
-                    />
-                    <span disabled="disabled" className="A1" id="foo8">
-                      D2
-                    </span>
-                  </span>
-                </div>
-              </div>
-              <div className="tlb">
-                <div className="tlbIn ">
-                  <span className="InputLabel">
-                    <input
-                      className="InputCheckBox"
-                      type="checkbox"
-                      checked={m1}
-                      onClick={() => myFunction13()}
-                      onChange={() => onM1ValueChange()}
-                    />
-                    <span disabled="disabled" className="A1" id="foo13">
-                      M1
-                    </span>
-                  </span>
-                  <span className="InputLabel">
-                    <input
-                      className="InputCheckBox"
-                      type="checkbox"
-                      checked={m2}
-                      onClick={() => myFunction14()}
-                      onChange={() => onM2ValueChange()}
-                    />
-                    <span disabled="disabled" className="A1" id="foo14">
-                      M2
-                    </span>
-                  </span>
-                </div>
-              </div>
-              <div className="tlb">
-                <div className="tlbIn ">
-                  <span className="InputLabel">
-                    <input
-                      className="InputCheckBox"
-                      type="checkbox"
-                      checked={m3}
-                      onClick={() => myFunction15()}
-                      onChange={() => onM3ValueChange()}
-                    />
-                    <span disabled="disabled" className="A1" id="foo15">
-                      M3
-                    </span>
-                  </span>
-                  <span className="InputLabel">
-                    <input
-                      className="InputCheckBox"
-                      type="checkbox"
-                      checked={m4}
-                      onClick={() => myFunction16()}
-                      onChange={() => onM4ValueChange()}
-                    />
-                    <span disabled="disabled" className="A1" id="foo16">
-                      M4
-                    </span>
-                  </span>
-                </div>
+                </span>
               </div>
             </div>
-         </div>
+            {/* B PORT */}
+            <div className="tlb">
+              <div className="tlbIn ">
+                <span className="InputLabel">
+                  <input
+                    className="InputCheckBox"
+                    type="checkbox"
+                    checked={b1}
+                    onClick={() => myFunction3()}
+                    onChange={() => onB1ValueChange()}
+                  />
+                  <span disabled="disabled" className="A1" id="foo3">
+                    B1
+                  </span>
+                </span>
+                <span className="InputLabel">
+                  <input
+                    className="InputCheckBox"
+                    type="checkbox"
+                    checked={b2}
+                    onClick={() => myFunction4()}
+                    onChange={() => onB2ValueChange()}
+                  />
+                  <span disabled="disabled" className="A1" id="foo4">
+                    B2
+                  </span>
+                </span>
+              </div>
+            </div>
+            <div className="tlb">
+              <div className="tlbIn ">
+                <span className="InputLabel">
+                  <input
+                    className="InputCheckBox"
+                    type="checkbox"
+                    checked={e1}
+                    onClick={() => myFunction9()}
+                    onChange={() => onE1ValueChange()}
+                  />
+                  <span disabled="disabled" className="A1" id="foo9">
+                    E1
+                  </span>
+                </span>
+                <span className="InputLabel">
+                  <input
+                    className="InputCheckBox"
+                    type="checkbox"
+                    checked={e2}
+                    onClick={() => myFunction10()}
+                    onChange={() => onE2ValueChange()}
+                  />
+                  <span disabled="disabled" className="A1" id="foo10">
+                    E2
+                  </span>
+                </span>
+              </div>
+            </div>
+            <div className="tlb">
+              <div className="tlbIn ">
+                <span className="InputLabel">
+                  <input
+                    className="InputCheckBox"
+                    type="checkbox"
+                    checked={f1}
+                    onClick={() => myFunction11()}
+                    onChange={() => onF1ValueChange()}
+                  />
+                  <span disabled="disabled" className="A1" id="foo11">
+                    F1
+                  </span>
+                </span>
+                <span className="InputLabel">
+                  <input
+                    className="InputCheckBox"
+                    type="checkbox"
+                    checked={f2}
+                    onClick={() => myFunction12()}
+                    onChange={() => onF2ValueChange()}
+                  />
+                  <span disabled="disabled" className="A1" id="foo12">
+                    F2
+                  </span>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div className="ButtonRightDiv">
+            <div className="tlb">
+              <div className="tlbIn ">
+                <span className="InputLabel">
+                  <input
+                    className="InputCheckBox"
+                    type="checkbox"
+                    checked={c1}
+                    onClick={() => myFunction5()}
+                    onChange={() => onC1ValueChange()}
+                  />
+                  <span disabled="disabled" className="A1" id="foo5">
+                    C1
+                  </span>
+                </span>
+                <span className="InputLabel">
+                  <input
+                    className="InputCheckBox"
+                    type="checkbox"
+                    checked={c2}
+                    onClick={() => myFunction6()}
+                    onChange={() => onC2ValueChange()}
+                  />
+                  <span disabled="disabled" className="A1" id="foo6">
+                    C2
+                  </span>
+                </span>
+              </div>
+            </div>
+            <div className="tlb">
+              <div className="tlbIn ">
+                <span className="InputLabel">
+                  <input
+                    className="InputCheckBox"
+                    type="checkbox"
+                    checked={d1}
+                    onClick={() => myFunction7()}
+                    onChange={() => onD1ValueChange()}
+                  />
+                  <span disabled="disabled" className="A1" id="foo7">
+                    D1
+                  </span>
+                </span>
+                <span className="InputLabel">
+                  <input
+                    className="InputCheckBox"
+                    type="checkbox"
+                    checked={d2}
+                    onClick={() => myFunction8()}
+                    onChange={() => onD2ValueChange()}
+                  />
+                  <span disabled="disabled" className="A1" id="foo8">
+                    D2
+                  </span>
+                </span>
+              </div>
+            </div>
+            <div className="tlb">
+              <div className="tlbIn ">
+                <span className="InputLabel">
+                  <input
+                    className="InputCheckBox"
+                    type="checkbox"
+                    checked={m1}
+                    onClick={() => myFunction13()}
+                    onChange={() => onM1ValueChange()}
+                  />
+                  <span disabled="disabled" className="A1" id="foo13">
+                    M1
+                  </span>
+                </span>
+                <span className="InputLabel">
+                  <input
+                    className="InputCheckBox"
+                    type="checkbox"
+                    checked={m2}
+                    onClick={() => myFunction14()}
+                    onChange={() => onM2ValueChange()}
+                  />
+                  <span disabled="disabled" className="A1" id="foo14">
+                    M2
+                  </span>
+                </span>
+              </div>
+            </div>
+            <div className="tlb">
+              <div className="tlbIn ">
+                <span className="InputLabel">
+                  <input
+                    className="InputCheckBox"
+                    type="checkbox"
+                    checked={m3}
+                    onClick={() => myFunction15()}
+                    onChange={() => onM3ValueChange()}
+                  />
+                  <span disabled="disabled" className="A1" id="foo15">
+                    M3
+                  </span>
+                </span>
+                <span className="InputLabel">
+                  <input
+                    className="InputCheckBox"
+                    type="checkbox"
+                    checked={m4}
+                    onClick={() => myFunction16()}
+                    onChange={() => onM4ValueChange()}
+                  />
+                  <span disabled="disabled" className="A1" id="foo16">
+                    M4
+                  </span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div className="SelectScreenBottom">

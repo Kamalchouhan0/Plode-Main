@@ -102,11 +102,7 @@ export class SMSlider extends Component {
         <div className={SelectStyle.container}></div>
         <Slider {...settings}>
           <div className={SelectStyle.wdt}>
-            <img
-              className={SelectStyle.img}
-              src={renderImage("Ply")}
-              className={SelectStyle.img}
-            />
+            <img className={SelectStyle.img} src={renderImage("Ply")} />
             <div className={SelectStyle.Hel}>
               <p className={SelectStyle.Hel_P}>
                 {" "}
@@ -130,11 +126,7 @@ export class SMSlider extends Component {
             />
           </div> */}
           <div className={SelectStyle.wdt}>
-            <img
-              className={SelectStyle.img}
-              src={renderImage("Prog")}
-              className={SelectStyle.img}
-            />
+            <img className={SelectStyle.img} src={renderImage("Prog")} />
             <div className={SelectStyle.con}>
               <p className={SelectStyle.con_P}>
                 This mode is a sandbox mode for the user to explore the complete
@@ -145,11 +137,7 @@ export class SMSlider extends Component {
             </div>
           </div>
           <div className={SelectStyle.wdt}>
-            <img
-              className={SelectStyle.img}
-              src={renderImage("Bild")}
-              className={SelectStyle.img}
-            />
+            <img className={SelectStyle.img} src={renderImage("Bild")} />
             <div className={SelectStyle.Mus}>
               <p className={SelectStyle.Mus_P}>
                 In this mode, you can see step-by-step process of building

@@ -7,24 +7,7 @@ import ExternalAccessoriesScreen from "./ExternalAccessoriesScreen/index";
 import { createBrowserHistory } from "history";
 
 /*ICONS IMPORTS */
-import {
-  saveBtnActive,
-  usbOFF,
-  usbON,
-  saveBtnInActive,
-  helpBtnActive,
-  helpBtnInActive,
-  bluetoothBtnActive,
-  bluetoothBtnInActive,
-  backBtn,
-  nextBtn,
-  toggle,
-  externalAccessoriesBtnAtive,
-  externalAccessoriesBtnInAtive,
-  pcInternalSensorsActive,
-  pcInternalSensorsInActive,
-  selectbar,
-} from "../../source/index";
+
 import renderPrgImage from "../../source/programImg";
 
 const history = createBrowserHistory();

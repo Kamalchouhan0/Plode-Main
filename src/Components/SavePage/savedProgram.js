@@ -1,7 +1,6 @@
+import axios from "axios";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
-import ReactLoading from "react-loading";
 import renderPrgImage from "../../source/programImg";
 
 // class SavedProgram extends Component {

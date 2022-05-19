@@ -4,7 +4,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { connect } from "react-redux";
 import ReactFlow, { isEdge, addEdge, Handle } from "react-flow-renderer";
-// import {IllusLoginSrc} from '../../../source/source';
 import ColorSelectorNode from "./ColorSelectorNode";
 import "./dnd.scss";
 import PortValuesRangeMapping from "../../logic/PortValuesRangeMapping";

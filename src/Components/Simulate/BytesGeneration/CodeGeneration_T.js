@@ -1,5 +1,3 @@
-// var enclose = require('enclose');
-// var fs = require("fs");
 import fs from "fs";
 import CodeGenerationRangeValues from "./CodeGenerationRangeValues_T.js";
 import {
@@ -12,12 +10,9 @@ import {
   nodeDefaultCodes,
 } from "./CodeGenerationConstants_T.js";
 import process from "process";
-// var CodeGenerationRangeValues = require("./CodeGenerationRangeValues_T.js");
-// var CodeGenerationConstants = require("./CodeGenerationConstants_T.js");
 var MAX_OUTPUT_PORT_CODE = 0;
 var uuid_gen;
 
-// var process = require("process");
 var pathToSave;
 var pathToBisoft;
 

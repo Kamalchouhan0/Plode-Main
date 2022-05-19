@@ -109,11 +109,7 @@ export class SavePrgm extends Component {
             />
           </div> */}
           <div className={SaveStyle.wdt}>
-            <img
-              className={SaveStyle.img}
-              src={renderPrgImage("SavePrgf1")}
-              className={SaveStyle.img}
-            />
+            <img className={SaveStyle.img} src={renderPrgImage("SavePrgf1")} />
             <div className={SaveStyle.con}>
               <p className={SaveStyle.con_P}>
                 For saving the program created, enter the required fields of the
@@ -125,11 +121,7 @@ export class SavePrgm extends Component {
             </div>
           </div>
           <div className={SaveStyle.wdt}>
-            <img
-              className={SaveStyle.img}
-              src={renderPrgImage("SavePrgf2")}
-              className={SaveStyle.img}
-            />
+            <img className={SaveStyle.img} src={renderPrgImage("SavePrgf2")} />
             <div className={SaveStyle.Cam}>
               <p className={SaveStyle.Cam_P}>
                 Use this button, when you want to upload the program to the
@@ -140,11 +132,7 @@ export class SavePrgm extends Component {
           </div>
 
           <div className={SaveStyle.wdt}>
-            <img
-              className={SaveStyle.img}
-              src={renderPrgImage("SavePrgf3")}
-              className={SaveStyle.img}
-            />
+            <img className={SaveStyle.img} src={renderPrgImage("SavePrgf3")} />
             <div className={SaveStyle.Mus}>
               <p className={SaveStyle.Mus_P}>
                 Use this button to save your project after entering the details.

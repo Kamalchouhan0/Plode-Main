@@ -1,10 +1,8 @@
-import React, { Component } from "react";
 import axios from "axios";
+import React, { Component } from "react";
 import { connect } from "react-redux";
-
 import "./save.css";
 
-import socketIOClient from "socket.io-client";
 //var socket = socketIOClient("http://localhost:3008");
 
 // class Project extends Component {

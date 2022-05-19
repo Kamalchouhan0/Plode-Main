@@ -105,7 +105,6 @@ export class InternalScPrgm extends Component {
             <img
               className={InternalStyle.img}
               src={renderPrgImage("InternalPrgf1")}
-              className={InternalStyle.img}
             />
             <div className={InternalStyle.Hel}>
               <p className={InternalStyle.Hel_P}>
@@ -130,18 +129,11 @@ export class InternalScPrgm extends Component {
               </p>
             </div>
           </div>
-          {/* <div className="wdt>
-            <img
-              style={{ height: "40px" }}
-              src={}
-              className="img"
-            />
-          </div> */}
+
           <div className={InternalStyle.wdt}>
             <img
               className={InternalStyle.img}
               src={renderPrgImage("InternalPrgf2")}
-              className={InternalStyle.img}
             />
             <div className={InternalStyle.con}>
               <p className={InternalStyle.con_P}>
@@ -154,7 +146,6 @@ export class InternalScPrgm extends Component {
             <img
               className={InternalStyle.img}
               src={renderPrgImage("InternalPrgf3")}
-              className={InternalStyle.img}
             />
             <div className={InternalStyle.Mus}>
               <p className={InternalStyle.Mus_P}>
@@ -168,7 +159,6 @@ export class InternalScPrgm extends Component {
             <img
               className={InternalStyle.img}
               src={renderPrgImage("InternalPrgf4")}
-              className={InternalStyle.img}
             />
             <div className={InternalStyle.Cam}>
               <p className={InternalStyle.Cam_P}>
@@ -177,9 +167,6 @@ export class InternalScPrgm extends Component {
               </p>
             </div>
           </div>
-          {/* <div className="wdt">
-            <img className="img" src={"assets/w2.png"} className="img" />
-          </div> */}
         </Slider>
       </div>
     );

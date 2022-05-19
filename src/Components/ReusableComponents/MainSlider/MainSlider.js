@@ -3,7 +3,6 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import MainStyle from "./MainSlider.module.css";
-import { AddInfo, PlyComp } from "../../../source/index";
 import renderImage from "../../../source/importImg";
 function SampleNextArrow(props) {
   const { className, onClick } = props;
@@ -117,13 +116,7 @@ export class MainSlider extends Component {
               </p>
             </div>
           </div>
-          {/* <div className="wdt>
-            <img
-              style={{ height: "40px" }}
-              src={}
-              className="img"
-            />
-          </div> */}
+
           <div className={MainStyle.wdt}>
             <img className={MainStyle.img} src={renderImage("PlyComp")} />
             <div className={MainStyle.con}>

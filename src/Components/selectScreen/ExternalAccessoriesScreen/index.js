@@ -1,37 +1,15 @@
 import { React, useEffect } from "react";
-// import "./ExternalAccessories.css";
+
 import "./ExternalAccessories.css";
-import { createBrowserHistory } from "history";
+
 import { connect } from "react-redux";
-import io from "socket.io-client";
 
 import CenterMode from "../../concept/index";
 
-import {
-  saveBtnActive,
-  usbOFF,
-  usbON,
-  saveBtnInActive,
-  helpBtnActive,
-  helpBtnInActive,
-  bluetoothBtnActive,
-  bluetoothBtnInActive,
-  backBtn,
-  nextBtn,
-  toggle,
-  externalAccessoriesBtnAtive,
-  externalAccessoriesBtnInAtive,
-  pcInternalSensorsActive,
-  pcInternalSensorsInActive,
-  selectbar,
-} from "../../../source/index";
 import { useState } from "react";
 import renderPrgImage from "../../../source/programImg";
 import EXternalScPrgm from "../../ReusableComponents/PrgmSlider/ExternalPrgm/ExternalScPrgm";
 
-//const socket = io.connect("http://localhost:3008");
-
-// const history = createBrowserHistory();
 function ExternalAccessoriesScreen(props) {
   console.log("props history", props);
   const [isusb, setUsb] = useState(false);
@@ -47,18 +25,6 @@ function ExternalAccessoriesScreen(props) {
   };
 
   useEffect(() => {
-    // socket.emit("_usbDetection", "Hi i am firoz");
-    // socket.on("/usbDetection1", (data) => {
-    //   console.log("...............1", data);
-    //   // let kill = Array.from(data);
-    //   // console.log("...............5", kill);
-    //   if (data == 1) {
-    //     setUsb(true);
-    //     console.log("LLLLLLLLLLLLLLL", data);
-    //   } else {
-    //     setUsb(false);
-    //   }
-    // });
     let data = JSON.parse(sessionStorage.getItem("user"));
 
     if (data === 1) {

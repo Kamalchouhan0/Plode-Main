@@ -1,28 +1,19 @@
-// import Blockly from './blockly';
-
 import React, { Component } from "react";
-import { Link, withRouter } from "react-router-dom";
-import io from "socket.io-client";
-import Hammer from "react-hammerjs";
-import HTML5Backend from "react-dnd-html5-backend";
 import { DragDropContext } from "react-dnd";
-// import DragDropContext from 'react-dnd';
-// import TouchBackend from 'react-dnd-touch-backend';
+import HTML5Backend from "react-dnd-html5-backend";
+import Hammer from "react-hammerjs";
+import Modal from "react-modal";
 
 import { connect } from "react-redux";
-import HexBoard from "./HexBoard";
-import BottomPanel from "./BottomPanel";
-// import RightPanel from './RightPanel'
-import SizesHelper from "../../helpers/Sizes";
-import Sizes from "./Sizes";
-import ProgramToDrawing from "./ProgramToDrawing";
-
+import { Link, withRouter } from "react-router-dom";
 import "../../css/logic.css";
-import Modal from "react-modal";
-import socketIOClient from "socket.io-client";
 
-import Colors from "./Colors";
-import { object } from "prop-types";
+import SizesHelper from "../../helpers/Sizes";
+import BottomPanel from "./BottomPanel";
+import HexBoard from "./HexBoard";
+import ProgramToDrawing from "./ProgramToDrawing";
+import Sizes from "./Sizes";
+
 var _ = require("lodash");
 
 var countLogic;

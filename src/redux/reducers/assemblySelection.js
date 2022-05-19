@@ -1,6 +1,5 @@
 import components from "./data.js"; //component details
 import PortConnections from "../../Components/Assembly/PortConnections";
-// var PortConnections = require('../../components/Assembly/PortConnections')
 
 if (sessionStorage.getItem("assembly")) {
   console.log("Iffffffffffffff");

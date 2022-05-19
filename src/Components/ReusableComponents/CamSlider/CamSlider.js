@@ -4,7 +4,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import CamStyle from "./CamSlider.module.css";
 import renderImage from "../../../source/importImg";
-// import { Remt, Peech, Msic, Camr } from "../../../Source/index";
+
 function SampleNextArrow(props) {
   const { className, onClick } = props;
   var style = {
@@ -102,11 +102,7 @@ export class CamSlider extends Component {
         <div class="container"></div>
         <Slider {...settings}>
           <div className={CamStyle.wdt}>
-            <img
-              className={CamStyle.img}
-              src={renderImage("Cam1")}
-              className={CamStyle.img}
-            />
+            <img className={CamStyle.img} src={renderImage("Cam1")} />
             <div className={CamStyle.Hdg}>
               <p className={CamStyle.Hdg_P}>
                 {" "}
@@ -123,19 +119,9 @@ export class CamSlider extends Component {
               </p>
             </div>
           </div>
-          {/* <div className="CamStyle.wdt>
-            <img
-              style={{ height: "40px" }}
-              src={"assets/w3.jpg"}
-              className="CamStyle.img"
-            />
-          </div> */}
+
           <div className={CamStyle.wdt}>
-            <img
-              className={CamStyle.img}
-              src={renderImage("Cam2")}
-              className={CamStyle.img}
-            />
+            <img className={CamStyle.img} src={renderImage("Cam2")} />
             <div className={CamStyle.con}>
               <p className={CamStyle.con_P}>
                 {" "}
@@ -150,11 +136,7 @@ export class CamSlider extends Component {
           </div>
 
           <div className={CamStyle.wdt}>
-            <img
-              className={CamStyle.img}
-              src={renderImage("Cam2")}
-              className={CamStyle.img}
-            />
+            <img className={CamStyle.img} src={renderImage("Cam2")} />
             <div className={CamStyle.Mus}>
               <p className={CamStyle.Mus_P}>
                 Requirements & permissions:
@@ -165,9 +147,6 @@ export class CamSlider extends Component {
               </p>
             </div>
           </div>
-          {/* <div className="CamStyle.wdt">
-            <img className="img" src={"assets/w2.png"} className="img" />
-          </div> */}
         </Slider>
       </div>
     );

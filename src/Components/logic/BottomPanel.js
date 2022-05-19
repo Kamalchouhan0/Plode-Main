@@ -1,10 +1,6 @@
 import React, { Component } from "react";
 import Panel1 from "./panels/";
-import { Link } from "react-router-dom";
-
 import Modal from "react-modal";
-import { propertypanel, closeBtnShadow } from "../../source/index";
-
 import HexTypes from "./HexTypes";
 import Colors from "./Colors";
 import renderPrgImage from "../../source/programImg";

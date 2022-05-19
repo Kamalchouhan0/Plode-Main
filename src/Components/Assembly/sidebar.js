@@ -1,25 +1,12 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
-import ReactDOM from "react-dom";
-import { Link } from "react-router-dom";
-
-import data from "../concept/data";
 import { DropTarget } from "react-dnd";
-import Card from "./DraggableSidebarCard";
-import ItemTypes from "./ItemTypes";
-import renderPrgImage from "../../source/programImg";
+import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-
 import Sizes from "../../helpers/Sizes";
-// var DropTarget from 'react-dnd').DropTarget;
+import renderPrgImage from "../../source/programImg";
+import Card from "./DraggableSidebarCard";
 import DraggingInfo from "./DraggingInfo";
-import {
-  smallleftComponentBar,
-  leftComponentBar,
-  CloseleftComponentBar,
-  OpenleftComponentBar,
-  backBtn,
-} from "../../source/index";
+import ItemTypes from "./ItemTypes";
 
 const sidebarTarget = {
   drop(props, monitor) {
@@ -70,24 +57,6 @@ class Sidebar extends Component {
       cb
     );
   }
-  /**
-   * Updates the state scrollTop without triggering a state update
-   */
-  // onScroll() {
-  //    if (scrolling) {
-  //       window.clearTimeout(scrollingTimeoutId);
-  //    } else scrolling = true;
-  //    scrollingTimeoutId = window.setTimeout(() => {
-  //       shouldNotUpdate = true;
-  //       this.setState({
-  //          // scrollTop: ReactDOM.findDOMNode(this).scrollTop
-  //       }, () => {
-  //          shouldNotUpdate = false;
-  //          scrolling = false;
-  //          scrollingTimeoutId = null;
-  //       });
-  //    }, 100);
-  // }
 
   handleExpand = (action) => {
     switch (action) {
@@ -277,6 +246,4 @@ const mapStateToProps = (state) => {
 };
 
 Sidebar = withRouter(connect(mapStateToProps)(Sidebar));
-// Sidebar = DragSource('items', itemSource, collect)(Sidebar)
 export default Sidebar;
-// export default DragSource('items', itemSource, collect)(connect(mapStateToProps)(Sidebar));

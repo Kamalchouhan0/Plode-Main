@@ -1,10 +1,8 @@
-import React, { Component } from "react";
 import html2canvas from "html2canvas";
-import "./save.css";
-import { saveBtn, backBtn, helpBtnInActive } from "../../source/index";
+import React, { Component } from "react";
 import renderPrgImage from "../../source/programImg";
-import SimulatePrgm from "../ReusableComponents/PrgmSlider/SimulatePrgm/SimulatePrgm";
 import SavePrgm from "../ReusableComponents/PrgmSlider/SavePrgm/SavePrgm";
+import "./save.css";
 
 const axios = require("axios");
 

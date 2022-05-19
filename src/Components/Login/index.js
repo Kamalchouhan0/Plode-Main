@@ -1,25 +1,14 @@
-import React, { Component } from "react";
-import "./login.css";
-import "./googleloginbtn.scss";
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  Switch,
-  withRouter,
-} from "react-router-dom";
-import { connect } from "react-redux";
-import components from "../concept/data"; //component details
-import PortConnections from "../Assembly/PortConnections";
-import { LoginBckSrc } from "../../source/index";
-
-import { bisoft_logo, bisoft_logo1 } from "../../source/index";
-import { leading_page } from "../../source/index";
-import { useHistory } from "react-router-dom";
-import animationStyle from "./loginAnimation.module.css";
-import renderImage from "../../source/importImg";
-import GoogleLogin from "react-google-login";
 import * as atatus from "atatus-spa";
+import React, { Component } from "react";
+import GoogleLogin from "react-google-login";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import renderImage from "../../source/importImg";
+import PortConnections from "../Assembly/PortConnections";
+import components from "../concept/data"; //component details
+import "./googleloginbtn.scss";
+import "./login.css";
+import animationStyle from "./loginAnimation.module.css";
 
 class login extends Component {
   constructor(props) {

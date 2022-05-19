@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import Panel1 from "./panels/";
-import { Link } from "react-router-dom";
-
 import HexTypes from "./HexTypes";
 import Colors from "./Colors";
 
