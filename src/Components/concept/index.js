@@ -546,7 +546,7 @@ class Content extends Component {
         <img
           onClick={this.closeUsb}
           className="closeconceptModal"
-          src="images/login/button_exit@2x.png"
+          src={renderPrgImage("close")}
         ></img>
         <div className="connectconceptMsg">
           <p>Device not connected..</p>
@@ -571,7 +571,7 @@ class Content extends Component {
         <img
           onClick={this.close}
           className="closeconceptModal"
-          src="images/login/button_exit@2x.png"
+          src={renderPrgImage("close")}
         ></img>
         <div className="connectconceptMsg">
           <p>Device not connected</p>

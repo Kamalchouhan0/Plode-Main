@@ -1766,7 +1766,7 @@ class Logic extends Component {
                   <img
                     onClick={this.close}
                     className="closeconceptModal"
-                    src="images/login/button_exit@2x.png"
+                    src={renderPrgImage("closeBtn")}
                   ></img>
                   <div className="connectconceptMsg">
                     <p>
@@ -1826,7 +1826,7 @@ class Logic extends Component {
                     alt="fgfs"
                     onClick={this.closecheckEndProgram}
                     className="closeconceptModal"
-                    src="images/login/button_exit@2x.png"
+                    src={renderPrgImage("closeBtn")}
                   ></img>
                   <div className="connectconceptMsg">
                     <p>Please end the program with End or Repeat.</p>

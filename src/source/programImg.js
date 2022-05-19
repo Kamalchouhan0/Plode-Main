@@ -155,6 +155,7 @@ import newfilegroupbutton from "../Assets/Bisoft_UI/Program/PNG/newfilegroupbutt
 import timericon from "../Assets/Bisoft_UI/Program/PNG/timericon@2x.png";
 
 import closeBtn from "../Assets/Bisoft_UI/Program/PNG/close@2x.png";
+import close from "../Assets/Bisoft_UI/Program/PNG/close.png";
 import closBtn from "../Assets/Bisoft_UI/Program/PNG/close@2x.png";
 import closeBtnShadow from "../Assets/Bisoft_UI/Buttons/Active with shadow/close@2x.png";
 
@@ -424,6 +425,9 @@ function renderPrgImage(imageName) {
       return timericon;
     case "closeBtn":
       return closeBtn;
+
+    case "close":
+      return close;
     case "closeBtnShadow":
       return closeBtnShadow;
     case "assemblebar":

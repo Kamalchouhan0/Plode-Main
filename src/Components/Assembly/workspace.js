@@ -39,6 +39,7 @@ import React, { Component } from "react";
 import { DropTarget } from "react-dnd";
 import Modal from "react-modal";
 import { Link } from "react-router-dom";
+import renderPrgImage from "../../source/programImg";
 import Bibox from "./Bibox";
 import Component1 from "./Component";
 import DraggingInfo from "./DraggingInfo";
@@ -947,7 +948,7 @@ class Workspace extends Component {
         <img
           onClick={this.closeUsb}
           className="closeconceptModal"
-          src="images/login/button_exit@2x.png"
+          src={renderPrgImage("close")}
         ></img>
         <div className="connectconceptMsg">
           <p>Device not connected..</p>
