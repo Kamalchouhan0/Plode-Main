@@ -147,7 +147,7 @@ function drawHands(
 
     currentProgramGuide--;
   }
-
+  console.log(board, row, CompName);
   // here hex block are recreated like when we click activeHand  it will open 4hex repeat,loop,action,conditions
   // these 4hex are created here
   if (active[0] === row && active[1] === board[row].length - 1) {

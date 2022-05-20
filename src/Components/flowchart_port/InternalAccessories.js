@@ -221,6 +221,102 @@ const InternalAccessories = () => {
     "D2DIGI",
     JSON.parse(sessionStorage.getItem("D2DIGI"))
   );
+  const [e1, setE1] = useLocalStorage(
+    "E1",
+    JSON.parse(sessionStorage.getItem("E1"))
+  );
+  const [e1Checked, setE1Checked] = useLocalStorage(
+    "e1-I/O",
+    JSON.parse(sessionStorage.getItem("e1-I/O"))
+  );
+  const [e1Digi, setE1Digi] = useLocalStorage(
+    "E1DIGI",
+    JSON.parse(sessionStorage.getItem("E1DIGI"))
+  );
+  const [e2, setE2] = useLocalStorage(
+    "E2",
+    JSON.parse(sessionStorage.getItem("E2"))
+  );
+  const [e2Checked, setE2Checked] = useLocalStorage(
+    "e2-I/O",
+    JSON.parse(sessionStorage.getItem("e2-I/O"))
+  );
+  const [e2Digi, setE2Digi] = useLocalStorage(
+    "E2DIGI",
+    JSON.parse(sessionStorage.getItem("E2DIGI"))
+  );
+  const [f1, setF1] = useLocalStorage(
+    "F1",
+    JSON.parse(sessionStorage.getItem("F1"))
+  );
+  const [f1Checked, setF1Checked] = useLocalStorage(
+    "f1-I/O",
+    JSON.parse(sessionStorage.getItem("f1-I/O"))
+  );
+  const [f1Digi, setF1Digi] = useLocalStorage(
+    "F1DIGI",
+    JSON.parse(sessionStorage.getItem("F1DIGI"))
+  );
+  const [f2, setF2] = useLocalStorage(
+    "F2",
+    JSON.parse(sessionStorage.getItem("F2"))
+  );
+  const [f2Checked, setF2Checked] = useLocalStorage(
+    "f2-I/O",
+    JSON.parse(sessionStorage.getItem("f2-I/O"))
+  );
+  const [f2Digi, setF2Digi] = useLocalStorage(
+    "F2DIGI",
+    JSON.parse(sessionStorage.getItem("F2DIGI"))
+  );
+  const [m1, setM1] = useLocalStorage(
+    "M1",
+    JSON.parse(sessionStorage.getItem("M1"))
+  );
+  const [m1Checked, setM1Checked] = useLocalStorage(
+    "m1-I/O",
+    JSON.parse(sessionStorage.getItem("m1-I/O"))
+  );
+  const [m1Digi, setM1Digi] = useLocalStorage(
+    "M1DIGI",
+    JSON.parse(sessionStorage.getItem("M1DIGI"))
+  );
+  const [m2, setM2] = useLocalStorage(
+    "M2",
+    JSON.parse(sessionStorage.getItem("M2"))
+  );
+  const [m2Checked, setM2Checked] = useLocalStorage(
+    "m2-I/O",
+    JSON.parse(sessionStorage.getItem("m2-I/O"))
+  );
+  const [m2Digi, setM2Digi] = useLocalStorage(
+    "M2DIGI",
+    JSON.parse(sessionStorage.getItem("M2DIGI"))
+  );
+  const [m3, setM3] = useLocalStorage(
+    "M3",
+    JSON.parse(sessionStorage.getItem("M3"))
+  );
+  const [m3Checked, setM3Checked] = useLocalStorage(
+    "m3-I/O",
+    JSON.parse(sessionStorage.getItem("m3-I/O"))
+  );
+  const [m3Digi, setM3Digi] = useLocalStorage(
+    "M3DIGI",
+    JSON.parse(sessionStorage.getItem("M3DIGI"))
+  );
+  const [m4, setM4] = useLocalStorage(
+    "M4",
+    JSON.parse(sessionStorage.getItem("M4"))
+  );
+  const [m4Checked, setM4Checked] = useLocalStorage(
+    "m4-I/O",
+    JSON.parse(sessionStorage.getItem("m4-I/O"))
+  );
+  const [m4Digi, setM4Digi] = useLocalStorage(
+    "M4DIGI",
+    JSON.parse(sessionStorage.getItem("M4DIGI"))
+  );
   const handleEventsClick = (e) => {
     switch (e.target.alt) {
       case "mic": {
@@ -251,6 +347,8 @@ const InternalAccessories = () => {
       }
 
       case "touch0": {
+        if(JSON.parse(sessionStorage.getItem("A1")))
+        return
         var x = document.getElementById("snackbar3");
         x.className = "show";
         setTimeout(function () {
@@ -266,6 +364,8 @@ const InternalAccessories = () => {
       }
 
       case "touch1": {
+        if(JSON.parse(sessionStorage.getItem("B1")))
+          return
         var x = document.getElementById("snackbar4");
         x.className = "show";
         setTimeout(function () {
@@ -280,6 +380,8 @@ const InternalAccessories = () => {
         break;
       }
       case "touch2": {
+        if(JSON.parse(sessionStorage.getItem("C1")))
+          return
         var x = document.getElementById("snackbar5");
         x.className = "show";
         setTimeout(function () {
@@ -295,6 +397,8 @@ const InternalAccessories = () => {
       }
 
       case "touch0Output": {
+        if(JSON.parse(sessionStorage.getItem("A1")))
+          return
         var x = document.getElementById("snackbar6");
         x.className = "show";
         setTimeout(function () {
@@ -309,6 +413,8 @@ const InternalAccessories = () => {
         break;
       }
       case "touch1Output": {
+        if(JSON.parse(sessionStorage.getItem("B1")))
+          return
         var x = document.getElementById("snackbar7");
         x.className = "show";
         setTimeout(function () {
@@ -324,6 +430,8 @@ const InternalAccessories = () => {
       }
 
       case "touch2Output": {
+        if(JSON.parse(sessionStorage.getItem("C1")))
+          return
         var x = document.getElementById("snackbar8");
         x.className = "show";
         setTimeout(function () {
@@ -381,6 +489,8 @@ const InternalAccessories = () => {
       }
 
       case "smile1": {
+        if(JSON.parse(sessionStorage.getItem("M1")))
+          return
         var x = document.getElementById("snackbar12");
         x.className = "show";
         setTimeout(function () {
@@ -395,6 +505,9 @@ const InternalAccessories = () => {
       }
 
       case "smile2": {
+        if(JSON.parse(sessionStorage.getItem("M2")))
+          return
+        
         var x = document.getElementById("snackbar13");
         x.className = "show";
         setTimeout(function () {
@@ -409,6 +522,9 @@ const InternalAccessories = () => {
       }
 
       case "smile3": {
+        if(JSON.parse(sessionStorage.getItem("M3")))
+        return
+      
         var x = document.getElementById("snackbar14");
         x.className = "show";
         setTimeout(function () {
@@ -424,6 +540,9 @@ const InternalAccessories = () => {
       }
 
       case "smile4": {
+        if(JSON.parse(sessionStorage.getItem("M4")))
+        return
+      
         var x = document.getElementById("snackbar15");
         x.className = "show";
         setTimeout(function () {
@@ -440,6 +559,8 @@ const InternalAccessories = () => {
   const handleFounInOneSensor = (e) => {
     switch (e.target.alt) {
       case "distancesensors": {
+        if(JSON.parse(sessionStorage.getItem("D1")))
+        return
         var x = document.getElementById("snackbar16");
         x.className = "show";
         setTimeout(function () {
@@ -457,6 +578,8 @@ const InternalAccessories = () => {
         break;
       }
       case "gesturesensor": {
+        if(JSON.parse(sessionStorage.getItem("D1")))
+        return
         var x = document.getElementById("snackbar17");
         x.className = "show";
         setTimeout(function () {
@@ -473,6 +596,8 @@ const InternalAccessories = () => {
         break;
       }
       case "lightsensor": {
+        if(JSON.parse(sessionStorage.getItem("D1")))
+        return
         var x = document.getElementById("snackbar18");
         x.className = "show";
         setTimeout(function () {
@@ -489,6 +614,8 @@ const InternalAccessories = () => {
         break;
       }
       case "colorsensor": {
+        if(JSON.parse(sessionStorage.getItem("D1")))
+        return
         var x = document.getElementById("snackbar19");
         x.className = "show";
         setTimeout(function () {
@@ -573,10 +700,34 @@ const InternalAccessories = () => {
       setD2(false);
       setD2Checked(false);
       setD2Digi(false);
-      sessionStorage.setItem("flowchart-elements", null);
-      sessionStorage.setItem("flowchart-elements-id", null);
+      setE1(false);
+      setE1Checked(false);
+      setE1Digi(false);
+      setE2(false);
+      setE2Checked(false);
+      setE2Digi(false);
+      setF1(false);
+      setF1Checked(false);
+      setF1Digi(false);
+      setF2(false);
+      setF2Checked(false);
+      setF2Digi(false);
+      setM1(false);
+      setM1Checked(false);
+      setM1Digi(false);
+      setM2(false);
+      setM2Checked(false);
+      setM2Digi(false);
+      setM3(false);
+      setM3Checked(false);
+      setM3Digi(false);
+      setM4(false);
+      setM4Checked(false);
+      setM4Digi(false);
+      sessionStorage.setItem("flowchart-elements",null)
+      sessionStorage.setItem("flowchart-elements-id",null)
       history.push("/flow");
-      window.location.reload(false);
+      window.location.reload();
     } else {
       setErasedProgram(false);
     }

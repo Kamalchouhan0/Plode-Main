@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import io from "socket.io-client";
 import Hammer from "react-hammerjs";
-import { HTML5Backend } from "react-dnd-html5-backend";
-import { DragDropContext } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend-old";
+import { DragDropContext } from "react-dnd-old";
 import { webSerialAction } from "../../redux/actions/index";
 import unicodeToChar from "../../utils/unicodeToChar";
-// import DragDropContext from 'react-dnd';
-// import TouchBackend from 'react-dnd-touch-backend';
+// import DragDropContext from 'react-dnd-old';
+// import TouchBackend from 'react-dnd-old-touch-backend';
 import getBytes from "../Simulate/BytesGeneration/convertBytes";
 import { connect } from "react-redux";
 import HexBoard from "./HexBoard";
@@ -645,15 +645,28 @@ class Logic extends Component {
         // HERE I AM STOPING TO ADD THE ACTION on HEXBOARD
 
         var toPush = { type: type, state: {}, id: IDIS };
-
+        if (
+          type === "end_variable" ||
+          type === "end_sensor" ||
+          type === "end_condition" ||
+          type === "end_if" ||
+          type === "end_loop"
+          // ||
+          // type === "repeat"
+        ) {
+          // logic.currentProgramGuide--;
+        }
         if (
           type === "variable" ||
           type === "condition" ||
           type === "sensor" ||
           type === "loop"
-        )
+        ) {
+          // logic.currentProgramGuide++;
           toPush.subprogram = [];
+        }
         drawing.activeParentRef[drawing.activeIndex] = toPush;
+
         for (
           let i = drawing.activeIndex + 1;
           i < drawing.activeParentRef.length;

@@ -4,14 +4,14 @@ import ReactDOM from "react-dom";
 import { Link } from "react-router-dom";
 
 import data from "../concept/data";
-import { DropTarget } from "react-dnd";
+import { DropTarget } from "react-dnd-old";
 import Card from "./DraggableSidebarCard";
 import ItemTypes from "./ItemTypes";
 import renderPrgImage from "../../source/programImg";
 import { withRouter } from "react-router-dom";
 
 import Sizes from "../../helpers/Sizes";
-// var DropTarget from 'react-dnd').DropTarget;
+// var DropTarget from 'react-dnd-old').DropTarget;
 import DraggingInfo from "./DraggingInfo";
 import {
   smallleftComponentBar,

@@ -9,6 +9,8 @@ import connectionImg from "../../Assets/usb - off@2x.png";
 import "./Navbar.css";
 import "./style.css";
 import renderPrgImage from "../../source/programImg";
+import { DndProvider } from "react-dnd-latest";
+import { HTML5Backend } from "react-dnd-html5-backend-latest";
 class FlowchartPage extends Component {
   next = () => {
     // this.props.history.push("/flow/input-output");
@@ -20,7 +22,9 @@ class FlowchartPage extends Component {
     return (
       <div>
         <div>
-          <Myflowchart />
+          <DndProvider backend={HTML5Backend}>
+            <Myflowchart />
+          </DndProvider>
         </div>
       </div>
     );

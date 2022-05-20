@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import io from "socket.io-client";
 import Hammer from "react-hammerjs";
-import { HTML5Backend } from "react-dnd-html5-backend";
-import { DragDropContext } from "react-dnd";
-// import DragDropContext from 'react-dnd';
-// import TouchBackend from 'react-dnd-touch-backend';
+import { HTML5Backend } from "react-dnd-html5-backend-old";
+import { DragDropContext } from "react-dnd-old";
+// import DragDropContext from 'react-dnd-old';
+// import TouchBackend from 'react-dnd-old-touch-backend';
 
 import { connect } from "react-redux";
 import HexBoard from "./HexBoard";

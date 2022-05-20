@@ -43,7 +43,7 @@ import ItemTypes from "./ItemTypes";
 import ImageSizes from "./ImageSizes";
 import BiboxSize from "./ImageSizes";
 
-import { DropTarget } from "react-dnd";
+import { DropTarget } from "react-dnd-old";
 import DraggingInfo from "./DraggingInfo";
 import socketIOClient from "socket.io-client";
 

@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import Sidebar from "./sidebar";
 import { Link, useLocation, withRouter } from "react-router-dom";
-import { HTML5Backend } from "react-dnd-html5-backend";
-import { DragDropContext } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend-old";
+import { DragDropContext } from "react-dnd-old";
 import WorkSpace from "./workspace";
 import { connect } from "react-redux";
 import Sizes, { width } from "../../helpers/Sizes";

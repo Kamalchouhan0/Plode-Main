@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useLayoutEffect } from "react";
 import Bottom from "./Bottom";
 import Digitalbutton from "./Digitalbutton";
 import { Nav, ButtonGroup, ToggleButton } from "react-bootstrap";
@@ -38,13 +38,53 @@ import "./pcimage.css";
 import "./Navbar.css";
 import "./style.css";
 import "./buttonDig.scss";
-
+let bttnColor = [];
+let bttnColor2 = [];
+let bttType = [
+  "A1DIGI",
+  "A2DIGI",
+  "B1DIGI",
+  "B2DIGI",
+  "C1DIGI",
+  "C2DIGI",
+  "D1DIGI",
+  "D2DIGI",
+  "F1DIGI",
+  "F2DIGI",
+  "E1DIGI",
+  "E2DIGI",
+  "M1DIGI",
+  "M2DIGI",
+  "M3DIGI",
+  "M4DIGI",
+];
+for (let i = 0; i < 16; i++) {
+  bttnColor[i] = "#717171";
+  bttnColor2[i] = "#fcfcfc";
+  if (JSON.parse(sessionStorage.getItem(bttType[i]))) {
+    bttnColor[i] = "#fcfcfc";
+    bttnColor2[i] = "#717171";
+  }
+}
 function Digital() {
   const history = useHistory();
 
   const next = () => {
     history.push("/flow/flowchart");
   };
+  useLayoutEffect(() => {
+    return () => {
+      for (let i = 0; i < 16; i++) {
+        if (JSON.parse(sessionStorage.getItem(bttType[i]))) {
+          bttnColor[i] = "#fcfcfc";
+          bttnColor2[i] = "#717171";
+        } else {
+          bttnColor[i] = "#717171";
+          bttnColor2[i] = "#fcfcfc";
+        }
+      }
+    };
+  });
   const backBtnAction = () => {
     history.push("/flow/input-output");
   };
@@ -113,238 +153,135 @@ function Digital() {
   const [m3Digi, setM3Digi] = useLocalStorage("M3DIGI", false);
   const [m4Digi, setM4Digi] = useLocalStorage("M4DIGI", false);
 
+  const [a1Servo, setA1Servo] = useLocalStorage("A1Servo", false);
+  const [a2Servo, setA2Servo] = useLocalStorage("A2Servo", false);
+
+  const [b1Servo, setB1Servo] = useLocalStorage("B1Servo", false);
+  const [b2Servo, setB2Servo] = useLocalStorage("B2Servo", false);
+  const [c1Servo, setC1Servo] = useLocalStorage("C1Servo", false);
+  const [c2Servo, setC2Servo] = useLocalStorage("C2Servo", false);
+
+  const [d1Servo, setD1Servo] = useLocalStorage("D1Servo", false);
+  const [d2Servo, setD2Servo] = useLocalStorage("D2Servo", false);
+
   const [pwmA1, setPwmA1] = useLocalStorage(
     "PWMA1",
     JSON.parse(sessionStorage.getItem("a1-I/O")) &&
-    JSON.parse(sessionStorage.getItem("A1"))
+      JSON.parse(sessionStorage.getItem("A1"))
   );
   const [pwmD1, setPwmD1] = useLocalStorage(
     "PWMD1",
     JSON.parse(sessionStorage.getItem("d1-I/O")) &&
-    JSON.parse(sessionStorage.getItem("D1"))
+      JSON.parse(sessionStorage.getItem("D1"))
   );
-
-  const toggleA1 = (value) => {
+  const toggleA1 = async () => {
     if (JSON.parse(sessionStorage.getItem("a1-I/O")) === true) {
       setPwmA1(!pwmA1);
     }
-    setA1Digi(value);
+    setA1Digi(!a1Digi);
+    await JSON.parse(sessionStorage.getItem("A1DIGI"));
 
-    if (value === "digital") {
-      setA1Digi(false);
-      document.getElementById("ind1").style.cssText = "  color: #fcfcfc;";
-      document.getElementById("ina1").style.cssText = "color: #717171; ";
-      document.getElementById("ins1").style.cssText = "color: #717171; ";
+    if (!(await JSON.parse(sessionStorage.getItem("A1DIGI")))) {
+      document.getElementById("in1").style.cssText = "  color: #fcfcfc;";
       document.getElementById("s1").style.cssText = "color: #717171;";
-      document.getElementById("digital-slider-A1").style.cssText = "transform: translateX(0px);";
-    }
-    if (value === "analog") {
-      setA1Digi(true);
-      document.getElementById("ina1").style.cssText = "color: #fcfcfc; ";
-      document.getElementById("ind1").style.cssText = "  color: #717171;";
-      document.getElementById("ins1").style.cssText = "color: #717171; ";
-      document.getElementById("s1").style.cssText = "  color: #717171;";
-      document.getElementById("digital-slider-A1").style.cssText = "transform: translateX(75px);";
-    }
-    if (value === "servo") {
-      document.getElementById("ins1").style.cssText = "color: #fcfcfc; ";
-      document.getElementById("ina1").style.cssText = "color: #717171; ";
-      document.getElementById("ind1").style.cssText = "  color: #717171;";
-      document.getElementById("s1").style.cssText = "  color: #717171;";
-      document.getElementById("digital-slider-A1").style.cssText = "transform: translateX(150px);";
+    } else {
+      document.getElementById("in1").style.cssText = "color: #717171; ";
+      document.getElementById("s1").style.cssText = "  color: #fcfcfc;";
     }
   };
-  const toggleA2 = (value) => {
-    setA2Digi(value);
+  const toggleA2 = async () => {
+    setA2Digi(!a2Digi);
+    await JSON.parse(sessionStorage.getItem("A2DIGI"));
 
-    if (value === "digital") {
-      setA2Digi(false);
-      document.getElementById("ind2").style.cssText = "  color: #fcfcfc;";
-      document.getElementById("ina2").style.cssText = "color: #717171; ";
-      document.getElementById("ins2").style.cssText = "color: #717171; ";
+    if (!(await JSON.parse(sessionStorage.getItem("A2DIGI")))) {
+      document.getElementById("in2").style.cssText = "  color: #fcfcfc;";
       document.getElementById("s2").style.cssText = "color: #717171;";
-      document.getElementById("digital-slider-A2").style.cssText = "transform: translateX(0px);";
-    }
-    if (value === "analog") {
-      setA2Digi(true);
-      document.getElementById("ina2").style.cssText = "color: #fcfcfc; ";
-      document.getElementById("ind2").style.cssText = "  color: #717171;";
-      document.getElementById("ins2").style.cssText = "color: #717171; ";
-      document.getElementById("s2").style.cssText = "  color: #717171;";
-      document.getElementById("digital-slider-A2").style.cssText = "transform: translateX(75px);";
-    }
-    if (value === "servo") {
-      document.getElementById("ins2").style.cssText = "color: #fcfcfc; ";
-      document.getElementById("ina2").style.cssText = "color: #717171; ";
-      document.getElementById("ind2").style.cssText = "  color: #717171;";
-      document.getElementById("s2").style.cssText = "  color: #717171;";
-      document.getElementById("digital-slider-A2").style.cssText = "transform: translateX(150px);";
+    } else {
+      document.getElementById("in2").style.cssText = "color: #717171; ";
+      document.getElementById("s2").style.cssText = "  color: #fcfcfc;";
     }
   };
-  const toggleB1 = (value) => {
-    setB1Digi(value);
-    if (value === "digital") {
-      setB1Digi(false);
-      document.getElementById("ind3").style.cssText = "  color: #fcfcfc;";
-      document.getElementById("ina3").style.cssText = "color: #717171; ";
-      document.getElementById("ins3").style.cssText = "color: #717171; ";
+  const toggleB1 = async () => {
+    setB1Digi(!b1Digi);
+    await JSON.parse(sessionStorage.getItem("B1DIGI"));
+
+    if (!(await JSON.parse(sessionStorage.getItem("B1DIGI")))) {
+      document.getElementById("in3").style.cssText = "  color: #fcfcfc;";
       document.getElementById("s3").style.cssText = "color: #717171;";
-      document.getElementById("digital-slider-B1").style.cssText = "transform: translateX(0px);";
-    }
-    if (value === "analog") {
-      setB1Digi(true);
-      document.getElementById("ina3").style.cssText = "color: #fcfcfc; ";
-      document.getElementById("ind3").style.cssText = "  color: #717171;";
-      document.getElementById("ins3").style.cssText = "color: #717171; ";
-      document.getElementById("s3").style.cssText = "  color: #717171;";
-      document.getElementById("digital-slider-B1").style.cssText = "transform: translateX(75px);";
-    }
-    if (value === "servo") {
-      document.getElementById("ins3").style.cssText = "color: #fcfcfc; ";
-      document.getElementById("ina3").style.cssText = "color: #717171; ";
-      document.getElementById("ind3").style.cssText = "  color: #717171;";
-      document.getElementById("s3").style.cssText = "  color: #717171;";
-      document.getElementById("digital-slider-B1").style.cssText = "transform: translateX(150px);";
+    } else {
+      document.getElementById("in3").style.cssText = "color: #717171; ";
+      document.getElementById("s3").style.cssText = "  color: #fcfcfc;";
     }
   };
-  const toggleB2 = (value) => {
-    setB2Digi(value);
-    if (value === "digital") {
-      setB2Digi(false);
-      document.getElementById("ind4").style.cssText = "  color: #fcfcfc;";
-      document.getElementById("ina4").style.cssText = "color: #717171; ";
-      document.getElementById("ins4").style.cssText = "color: #717171; ";
+  const toggleB2 = async () => {
+    setB2Digi(!b2Digi);
+    await JSON.parse(sessionStorage.getItem("B2DIGI"));
+
+    if (!(await JSON.parse(sessionStorage.getItem("B2DIGI")))) {
+      document.getElementById("in4").style.cssText = "  color: #fcfcfc;";
       document.getElementById("s4").style.cssText = "color: #717171;";
-      document.getElementById("digital-slider-B2").style.cssText = "transform: translateX(0px);";
-    }
-    if (value === "analog") {
-      setB2Digi(true);
-      document.getElementById("ina4").style.cssText = "color: #fcfcfc; ";
-      document.getElementById("ind4").style.cssText = "  color: #717171;";
-      document.getElementById("ins4").style.cssText = "color: #717171; ";
-      document.getElementById("s4").style.cssText = "  color: #717171;";
-      document.getElementById("digital-slider-B2").style.cssText = "transform: translateX(75px);";
-    }
-    if (value === "servo") {
-      document.getElementById("ins4").style.cssText = "color: #fcfcfc; ";
-      document.getElementById("ina4").style.cssText = "color: #717171; ";
-      document.getElementById("ind4").style.cssText = "  color: #717171;";
-      document.getElementById("s4").style.cssText = "  color: #717171;";
-      document.getElementById("digital-slider-B2").style.cssText = "transform: translateX(150px);";
+    } else {
+      document.getElementById("in4").style.cssText = "color: #717171; ";
+      document.getElementById("s4").style.cssText = "  color: #fcfcfc;";
     }
   };
-  const toggleC1 = (value) => {
-    setC1Digi(value);
-    if (value === "digital") {
-      setC1Digi(false);
-      document.getElementById("ind5").style.cssText = "  color: #fcfcfc;";
-      document.getElementById("ina5").style.cssText = "color: #717171; ";
-      document.getElementById("ins5").style.cssText = "color: #717171; ";
+  const toggleC1 = async () => {
+    setC1Digi(!c1Digi);
+    await JSON.parse(sessionStorage.getItem("C1DIGI"));
+
+    if (!(await JSON.parse(sessionStorage.getItem("C1DIGI")))) {
+      document.getElementById("in5").style.cssText = "  color: #fcfcfc;";
       document.getElementById("s5").style.cssText = "color: #717171;";
-      document.getElementById("digital-slider-C1").style.cssText = "transform: translateX(0px);";
-    }
-    if (value === "analog") {
-      setC1Digi(true);
-      document.getElementById("ina5").style.cssText = "color: #fcfcfc; ";
-      document.getElementById("ind5").style.cssText = "  color: #717171;";
-      document.getElementById("ins5").style.cssText = "color: #717171; ";
-      document.getElementById("s5").style.cssText = "  color: #717171;";
-      document.getElementById("digital-slider-C1").style.cssText = "transform: translateX(75px);";
-    }
-    if (value === "servo") {
-      document.getElementById("ins5").style.cssText = "color: #fcfcfc; ";
-      document.getElementById("ina5").style.cssText = "color: #717171; ";
-      document.getElementById("ind5").style.cssText = "  color: #717171;";
-      document.getElementById("s5").style.cssText = "  color: #717171;";
-      document.getElementById("digital-slider-C1").style.cssText = "transform: translateX(150px);";
+    } else {
+      document.getElementById("in5").style.cssText = "color: #717171; ";
+      document.getElementById("s5").style.cssText = "  color: #fcfcfc;";
     }
   };
-  const toggleC2 = (value) => {
-    setC2Digi(value);
-    if (value === "digital") {
-      setC2Digi(false);
-      document.getElementById("ind6").style.cssText = "  color: #fcfcfc;";
-      document.getElementById("ina6").style.cssText = "color: #717171; ";
-      document.getElementById("ins6").style.cssText = "color: #717171; ";
+  const toggleC2 = async () => {
+    setC2Digi(!c2Digi);
+    await JSON.parse(sessionStorage.getItem("C2DIGI"));
+
+    if (!(await JSON.parse(sessionStorage.getItem("C2DIGI")))) {
+      document.getElementById("in6").style.cssText = "  color: #fcfcfc;";
       document.getElementById("s6").style.cssText = "color: #717171;";
-      document.getElementById("digital-slider-C2").style.cssText = "transform: translateX(0px);";
-    }
-    if (value === "analog") {
-      setC2Digi(true);
-      document.getElementById("ina6").style.cssText = "color: #fcfcfc; ";
-      document.getElementById("ind6").style.cssText = "  color: #717171;";
-      document.getElementById("ins6").style.cssText = "color: #717171; ";
-      document.getElementById("s6").style.cssText = "  color: #717171;";
-      document.getElementById("digital-slider-C2").style.cssText = "transform: translateX(75px);";
-    }
-    if (value === "servo") {
-      document.getElementById("ins6").style.cssText = "color: #fcfcfc; ";
-      document.getElementById("ina6").style.cssText = "color: #717171; ";
-      document.getElementById("ind6").style.cssText = "  color: #717171;";
-      document.getElementById("s6").style.cssText = "  color: #717171;";
-      document.getElementById("digital-slider-C2").style.cssText = "transform: translateX(150px);";
+    } else {
+      document.getElementById("in6").style.cssText = "color: #717171; ";
+      document.getElementById("s6").style.cssText = "  color: #fcfcfc;";
     }
   };
 
-  const toggleD1 = (value) => {
+  const toggleD1 = async () => {
     if (JSON.parse(sessionStorage.getItem("d1-I/O")) === true) {
       setPwmD1(!pwmD1);
     }
-    setD1Digi(value);
-    if (value === "digital") {
-      setD1Digi(false);
-      document.getElementById("ind7").style.cssText = "  color: #fcfcfc;";
-      document.getElementById("ina7").style.cssText = "color: #717171; ";
-      document.getElementById("ins7").style.cssText = "color: #717171; ";
-      document.getElementById("s7").style.cssText = "color: #717171;";
-      document.getElementById("digital-slider-D1").style.cssText = "transform: translateX(0px);";
-    }
-    if (value === "analog") {
-      setD1Digi(true);
-      document.getElementById("ina7").style.cssText = "color: #fcfcfc; ";
-      document.getElementById("ind7").style.cssText = "  color: #717171;";
-      document.getElementById("ins7").style.cssText = "color: #717171; ";
-      document.getElementById("s7").style.cssText = "  color: #717171;";
-      document.getElementById("digital-slider-D1").style.cssText = "transform: translateX(75px);";
-    }
-    if (value === "servo") {
-      document.getElementById("ins7").style.cssText = "color: #fcfcfc; ";
-      document.getElementById("ina7").style.cssText = "color: #717171; ";
-      document.getElementById("ind7").style.cssText = "  color: #717171;";
-      document.getElementById("s7").style.cssText = "  color: #717171;";
-      document.getElementById("digital-slider-D1").style.cssText = "transform: translateX(150px);";
-    }
-  };
-  const toggleD2 = (value) => {
-    setD2Digi(value);
-    if (value === "digital") {
-      setD2Digi(false);
-      document.getElementById("ind8").style.cssText = "  color: #fcfcfc;";
-      document.getElementById("ina8").style.cssText = "color: #717171; ";
-      document.getElementById("ins8").style.cssText = "color: #717171; ";
-      document.getElementById("s8").style.cssText = "color: #717171;";
-      document.getElementById("digital-slider-D2").style.cssText = "transform: translateX(0px);";
-    }
-    if (value === "analog") {
-      setD2Digi(true);
-      document.getElementById("ina8").style.cssText = "color: #fcfcfc; ";
-      document.getElementById("ind8").style.cssText = "  color: #717171;";
-      document.getElementById("ins8").style.cssText = "color: #717171; ";
-      document.getElementById("s8").style.cssText = "  color: #717171;";
-      document.getElementById("digital-slider-D2").style.cssText = "transform: translateX(75px);";
-    }
-    if (value === "servo") {
-      document.getElementById("ins8").style.cssText = "color: #fcfcfc; ";
-      document.getElementById("ina8").style.cssText = "color: #717171; ";
-      document.getElementById("ind8").style.cssText = "  color: #717171;";
-      document.getElementById("s8").style.cssText = "  color: #717171;";
-      document.getElementById("digital-slider-D2").style.cssText = "transform: translateX(150px);";
-    }
-  };
+    setD1Digi(!d1Digi);
+    await JSON.parse(sessionStorage.getItem("D1DIGI"));
 
-  const toggleF1 = () => {
+    if (!(await JSON.parse(sessionStorage.getItem("D1DIGI")))) {
+      document.getElementById("in7").style.cssText = "  color: #fcfcfc;";
+      document.getElementById("s7").style.cssText = "color: #717171;";
+    } else {
+      document.getElementById("in7").style.cssText = "color: #717171; ";
+      document.getElementById("s7").style.cssText = "  color: #fcfcfc;";
+    }
+  };
+  const toggleD2 = async () => {
+    setD2Digi(!d2Digi);
+    await JSON.parse(sessionStorage.getItem("D2DIGI"));
+
+    if (!(await JSON.parse(sessionStorage.getItem("D2DIGI")))) {
+      document.getElementById("in8").style.cssText = "  color: #fcfcfc;";
+      document.getElementById("s8").style.cssText = "color: #717171;";
+    } else {
+      document.getElementById("in8").style.cssText = "color: #717171; ";
+      document.getElementById("s8").style.cssText = "  color: #fcfcfc;";
+    }
+  };
+  const toggleF1 = async () => {
     setF1Digi(!f1Digi);
-    if (f1Digi) {
+    await JSON.parse(sessionStorage.getItem("F1DIGI"));
+
+    if (!(await JSON.parse(sessionStorage.getItem("F1DIGI")))) {
       document.getElementById("in9").style.cssText = "  color: #fcfcfc;";
       document.getElementById("s9").style.cssText = "color: #717171;";
     } else {
@@ -352,9 +289,11 @@ function Digital() {
       document.getElementById("s9").style.cssText = "  color: #fcfcfc;";
     }
   };
-  const toggleF2 = () => {
+  const toggleF2 = async () => {
     setF2Digi(!f2Digi);
-    if (f2Digi) {
+    await JSON.parse(sessionStorage.getItem("F2DIGI"));
+
+    if (!(await JSON.parse(sessionStorage.getItem("F2DIGI")))) {
       document.getElementById("in10").style.cssText = "  color: #fcfcfc;";
       document.getElementById("s10").style.cssText = "color: #717171;";
     } else {
@@ -362,9 +301,11 @@ function Digital() {
       document.getElementById("s10").style.cssText = "  color: #fcfcfc;";
     }
   };
-  const toggleE1 = () => {
+  const toggleE1 = async () => {
     setE1Digi(!e1Digi);
-    if (e1Digi) {
+    await JSON.parse(sessionStorage.getItem("E1DIGI"));
+
+    if (!(await JSON.parse(sessionStorage.getItem("E1DIGI")))) {
       document.getElementById("in11").style.cssText = "  color: #fcfcfc;";
       document.getElementById("s11").style.cssText = "color: #717171;";
     } else {
@@ -372,9 +313,11 @@ function Digital() {
       document.getElementById("s11").style.cssText = "  color: #fcfcfc;";
     }
   };
-  const toggleE2 = () => {
+  const toggleE2 = async () => {
     setE2Digi(!e2Digi);
-    if (e2Digi) {
+    await JSON.parse(sessionStorage.getItem("E2DIGI"));
+
+    if (!(await JSON.parse(sessionStorage.getItem("E2DIGI")))) {
       document.getElementById("in12").style.cssText = "  color: #fcfcfc;";
       document.getElementById("s12").style.cssText = "color: #717171;";
     } else {
@@ -382,9 +325,11 @@ function Digital() {
       document.getElementById("s12").style.cssText = "  color: #fcfcfc;";
     }
   };
-  const toggleM1 = () => {
+  const toggleM1 = async () => {
     setM1Digi(!m1Digi);
-    if (m1Digi) {
+    await JSON.parse(sessionStorage.getItem("M1DIGI"));
+
+    if (!(await JSON.parse(sessionStorage.getItem("M1DIGI")))) {
       document.getElementById("in13").style.cssText = "  color: #fcfcfc;";
       document.getElementById("s13").style.cssText = "color: #717171;";
     } else {
@@ -392,9 +337,11 @@ function Digital() {
       document.getElementById("s13").style.cssText = "  color: #fcfcfc;";
     }
   };
-  const toggleM2 = () => {
+  const toggleM2 = async () => {
     setM2Digi(!m2Digi);
-    if (m2Digi) {
+    await JSON.parse(sessionStorage.getItem("M2DIGI"));
+
+    if (!(await JSON.parse(sessionStorage.getItem("M2DIGI")))) {
       document.getElementById("in14").style.cssText = "  color: #fcfcfc;";
       document.getElementById("s14").style.cssText = "color: #717171;";
     } else {
@@ -402,9 +349,12 @@ function Digital() {
       document.getElementById("s14").style.cssText = "  color: #fcfcfc;";
     }
   };
-  const toggleM3 = () => {
+
+  const toggleM3 = async () => {
     setM3Digi(!m3Digi);
-    if (m3Digi) {
+    await JSON.parse(sessionStorage.getItem("M3DIGI"));
+
+    if (!(await JSON.parse(sessionStorage.getItem("M3DIGI")))) {
       document.getElementById("in15").style.cssText = "  color: #fcfcfc;";
       document.getElementById("s15").style.cssText = "color: #717171;";
     } else {
@@ -412,9 +362,11 @@ function Digital() {
       document.getElementById("s15").style.cssText = "  color: #fcfcfc;";
     }
   };
-  const toggleM4 = () => {
+  const toggleM4 = async () => {
     setM4Digi(!m4Digi);
-    if (m4Digi) {
+    await JSON.parse(sessionStorage.getItem("M4DIGI"));
+
+    if (!(await JSON.parse(sessionStorage.getItem("M4DIGI")))) {
       document.getElementById("in16").style.cssText = "  color: #fcfcfc;";
       document.getElementById("s16").style.cssText = "color: #717171;";
     } else {
@@ -422,12 +374,36 @@ function Digital() {
       document.getElementById("s16").style.cssText = "  color: #fcfcfc;";
     }
   };
+
   const togglePWMA1 = () => {
     if (a1Digi === true) {
       setPwmA1(!pwmA1);
     }
   };
-
+  const ServoA1 = () => {
+    setA1Servo(!a1Servo);
+  };
+  const ServoA2 = () => {
+    setA2Servo(!a2Servo);
+  };
+  const ServoB1 = () => {
+    setB1Servo(!b1Servo);
+  };
+  const ServoB2 = () => {
+    setB2Servo(!b2Servo);
+  };
+  const ServoC1 = () => {
+    setC1Servo(!c1Servo);
+  };
+  const ServoC2 = () => {
+    setC2Servo(!c2Servo);
+  };
+  const ServoD1 = () => {
+    setD1Servo(!d1Servo);
+  };
+  const ServoD2 = () => {
+    setD2Servo(!d2Servo);
+  };
   return (
     <div className="Digital">
       <div className="HeaderContainer">
@@ -543,9 +519,9 @@ function Digital() {
             )}
 
             {isDistanceSensors ||
-              isColorSensor ||
-              isGestureSensor ||
-              isLightSensor ? (
+            isColorSensor ||
+            isGestureSensor ||
+            isLightSensor ? (
               <img src={Pcinternal4in1Active} className="imgStyle4in1" />
             ) : (
               <img src={Pcinternal4in1InActive} className="imgStyle4in1" />
@@ -599,146 +575,137 @@ function Digital() {
           </div>
         </div>
         <div className="Digital-ports-Container">
-          <div className="Digital-properties-Container">
-            <div className="Digital-properties-b">
-              <div className="Digital-properties-bDi">
-                <span className="Digital-properties-DigitalLabel">
-                  <input
-                    className="Digital-properties-DigitalCheckBox"
-                    type="checkbox"
-                  // checked={a1}
-                  // onClick={() => myFunction1()}
-                  // onChange={() => onA1ValueChange()}
-                  />
-                  <span disabled="disabled" className="A1">
-                    A1
-                  </span>
-                </span>
-                <span className="Digital-properties-DigitalLabel">
-                  <input
-                    className="Inputs-properties-InputCheckBox"
-                    type="checkbox"
-                  // checked={a2}
-                  // onClick={() => myFunction2()}
-                  // onChange={() => onA2ValueChange()}
-                  />
-                  <span disabled="disabled" className="A1">
-                    A2
-                  </span>
-                </span>
-                <span className="Digital-properties-DigitalLabel">
-                  <input
-                    className="Inputs-properties-InputCheckBox"
-                    type="checkbox"
-                  // checked={a2}
-                  // onClick={() => myFunction2()}
-                  // onChange={() => onA2ValueChange()}
-                  />
-                  <span disabled="disabled" className="A1">
-                    A2
-                  </span>
-                </span>
-              </div>
-            </div>
-          </div>
+          {/* <div className="Digital-properties-Container">
+            
+          </div> */}
           <div className="digital-ButtonDivInput">
             <div className="digital-flow-left-upper">
               <div className="digital-flow-left-upper-grp">
                 <label className={"input upper-label-input"}>
-                  <span className={(A1DIGI || false) + "-span textsp digital-textsp"}>A1</span>
-                  <div class={"flowchart-switch-button-" + (A1DIGI || false)} id="s1">
-                    <div id="digital-slider-A1" className={"slide-A1-" + a1Digi}></div>
+                  <span className="textsp">A1</span>
+                  <div
+                    class={
+                      "switch-button-" +
+                      ((A1DIGI &&
+                        !a1Servo &&
+                        !JSON.parse(sessionStorage.getItem("AUltra"))) ||
+                        false)
+                    }
+                    id={"s1"}
+                    style={{ color: bttnColor[0] }}
+                  >
                     <input
-                      disabled={!A1DIGI || false}
-                      class="flowchart-switch-button-checkbox"
-                      type="radio"
-                      onChange={() => toggleA1("digital")}
-                      checked={a1Digi === "digital"}
-                      id="A1-Digital"
-                      name="A1"
+                      active={a1Digi}
+                      disabled={
+                        !A1DIGI ||
+                        a1Servo ||
+                        JSON.parse(sessionStorage.getItem("AUltra")) ||
+                        false
+                      }
+                      class="switch-button-checkbox"
+                      type="checkbox"
+                      onChange={toggleA1}
+                      checked={a1Digi}
                     ></input>
-                    <label class="flowchart-switch-button-label" for="A1-Digital">
-                      <span class="flowchart-switch-button-label-span" id="ind1">
+                    <label class="switch-button-label" for="">
+                      <span
+                        class="switch-button-label-span"
+                        id="in1"
+                        style={{ color: bttnColor2[0] }}
+                      >
                         Digital
-                      </span>
-                    </label>
-                    <input
-                      disabled={!A1DIGI || false}
-                      class="flowchart-switch-button-checkbox"
-                      type="radio"
-                      onChange={() => toggleA1("analog")}
-                      checked={a1Digi === "analog"}
-                      id="A1-Analog"
-                      name="A1"
-                    ></input>
-                    <label class="flowchart-switch-button-label" for="A1-Analog">
-                      <span class="flowchart-switch-button-label-span" id="ina1">
-                        Analog
-                      </span>
-                    </label>
-                    <input
-                      disabled={!A1DIGI || false}
-                      class="flowchart-switch-button-checkbox"
-                      type="radio"
-                      onChange={() => toggleA1("servo")}
-                      checked={a1Digi === "servo"}
-                      id="A1-Servo"
-                      name="A1"
-                    ></input>
-                    <label class="flowchart-switch-button-label" for="A1-Servo">
-                      <span class="flowchart-switch-button-label-span" id="ins1">
-                        Servo
                       </span>
                     </label>
                   </div>
                 </label>
                 <br />
-                <label className={"input upper-label-input"}>
-                  <span className={(A2DIGI || false) + "-span textsp digital-textsp"}>A2</span>
-                  <div class={"flowchart-switch-button-" + (A2DIGI || false)} id="s2">
-                    <div id="digital-slider-A2" className={"slide-A2-" + a2Digi}></div>
+                <label
+                  className={"input upper-label-input upper-label-input-servo"}
+                >
+                  <div
+                    className={
+                      "switch-button-servo-" +
+                      ((a1Servo &&
+                        !JSON.parse(sessionStorage.getItem("AUltra"))) ||
+                        false)
+                    }
+                    id="s2"
+                  >
                     <input
-                      disabled={!A2DIGI || false}
-                      class="flowchart-switch-button-checkbox"
-                      type="radio"
-                      onChange={() => toggleA2("digital")}
-                      checked={a2Digi === "digital"}
-                      id="A2-Digital"
-                      name="A2"
+                      className="switch-button-checkbox-servo"
+                      type="checkbox"
+                      disabled={
+                        !JSON.parse(sessionStorage.getItem("A1")) ||
+                        !JSON.parse(sessionStorage.getItem("a1-I/O")) ||
+                        JSON.parse(sessionStorage.getItem("AUltra"))
+                      }
+                      checked={a1Servo}
+                      onChange={ServoA1}
                     ></input>
-                    <label class="flowchart-switch-button-label" for="A2-Digital">
-                      <span class="flowchart-switch-button-label-span" id="ind2">
+                  </div>
+                </label>
+                <br />
+                <label className={"input upper-label-input"}>
+                  <span className="textsp">A2</span>
+                  <div
+                    class={
+                      "switch-button-" +
+                      ((A2DIGI &&
+                        !a2Servo &&
+                        !JSON.parse(sessionStorage.getItem("AUltra"))) ||
+                        false)
+                    }
+                    id={"s2"}
+                    style={{ color: bttnColor[1] }}
+                  >
+                    <input
+                      active={a2Digi}
+                      disabled={
+                        !A2DIGI ||
+                        a2Servo ||
+                        JSON.parse(sessionStorage.getItem("AUltra")) ||
+                        false
+                      }
+                      class="switch-button-checkbox"
+                      type="checkbox"
+                      onChange={toggleA2}
+                      checked={a2Digi}
+                    ></input>
+                    <label class="switch-button-label" for="">
+                      <span
+                        class="switch-button-label-span"
+                        id="in2"
+                        style={{ color: bttnColor2[1] }}
+                      >
                         Digital
                       </span>
                     </label>
+                  </div>
+                </label>
+                <br />
+                <label
+                  className={"input upper-label-input upper-label-input-servo"}
+                >
+                  <div
+                    class={
+                      "switch-button-servo-" +
+                      ((a2Servo &&
+                        !JSON.parse(sessionStorage.getItem("AUltra"))) ||
+                        false)
+                    }
+                    id="s2"
+                  >
                     <input
-                      disabled={!A2DIGI || false}
-                      class="flowchart-switch-button-checkbox"
-                      type="radio"
-                      onChange={() => toggleA2("analog")}
-                      checked={a2Digi === "analog"}
-                      id="A2-Analog"
-                      name="A2"
+                      class="switch-button-checkbox-servo"
+                      type="checkbox"
+                      disabled={
+                        !JSON.parse(sessionStorage.getItem("A2")) ||
+                        !JSON.parse(sessionStorage.getItem("a2-I/O")) ||
+                        JSON.parse(sessionStorage.getItem("AUltra"))
+                      }
+                      checked={a2Servo}
+                      onChange={ServoA2}
                     ></input>
-                    <label class="flowchart-switch-button-label" for="A2-Analog">
-                      <span class="flowchart-switch-button-label-span" id="ina2">
-                        Analog
-                      </span>
-                    </label>
-                    <input
-                      disabled={!A2DIGI || false}
-                      class="flowchart-switch-button-checkbox"
-                      type="radio"
-                      onChange={() => toggleA2("servo")}
-                      checked={a2Digi === "servo"}
-                      id="A2-Servo"
-                      name="A2"
-                    ></input>
-                    <label class="flowchart-switch-button-label" for="A2-Servo">
-                      <span class="flowchart-switch-button-label-span" id="ins2">
-                        Servo
-                      </span>
-                    </label>
                   </div>
                 </label>
               </div>
@@ -746,151 +713,110 @@ function Digital() {
             <div className="digital-flow-left-upper">
               <div className="digital-flow-left-upper-grp">
                 <label className={"input upper-label-input"}>
-                  <span className={(B1DIGI || false) + "-span textsp digital-textsp"}>B1</span>
-                  <div class={"flowchart-switch-button-" + (B1DIGI || false)} id="s3">
-                    <div id="digital-slider-B1" className={"slide-B1-" + b1Digi}></div>
+                  <span className="textsp">B1</span>
+                  <div
+                    class={"switch-button-" + ((B1DIGI && !b1Servo) || false)}
+                    id={"s3"}
+                    style={{ color: bttnColor[2] }}
+                  >
                     <input
-                      disabled={!B1DIGI || false}
-                      class="flowchart-switch-button-checkbox"
-                      type="radio"
-                      onChange={() => toggleB1("digital")}
-                      checked={b1Digi === "digital"}
-                      id="B1-Digital"
-                      name="B1"
+                      active={b1Digi}
+                      disabled={!B1DIGI || b1Servo || false}
+                      class="switch-button-checkbox"
+                      type="checkbox"
+                      onChange={toggleB1}
+                      checked={b1Digi}
                     ></input>
-                    <label class="flowchart-switch-button-label" for="B1-Digital">
-                      <span class="flowchart-switch-button-label-span" id="ind3">
+                    <label class="switch-button-label" for="">
+                      <span
+                        class="switch-button-label-span"
+                        id="in3"
+                        style={{ color: bttnColor2[2] }}
+                      >
                         Digital
-                      </span>
-                    </label>
-                    <input
-                      disabled={!B1DIGI || false}
-                      class="flowchart-switch-button-checkbox"
-                      type="radio"
-                      onChange={() => toggleB1("analog")}
-                      checked={b1Digi === "analog"}
-                      id="B1-Analog"
-                      name="B1"
-                    ></input>
-                    <label class="flowchart-switch-button-label" for="B1-Analog">
-                      <span class="flowchart-switch-button-label-span" id="ina3">
-                        Analog
-                      </span>
-                    </label>
-                    <input
-                      disabled={!B1DIGI || false}
-                      class="flowchart-switch-button-checkbox"
-                      type="radio"
-                      onChange={() => toggleB1("servo")}
-                      checked={b1Digi === "servo"}
-                      id="B1-Servo"
-                      name="B1"
-                    ></input>
-                    <label class="flowchart-switch-button-label" for="B1-Servo">
-                      <span class="flowchart-switch-button-label-span" id="ins3">
-                        Servo
                       </span>
                     </label>
                   </div>
                 </label>
                 <br />
-                <label className={"input upper-label-input"}>
-                  <span className={(B2DIGI || false) + "-span textsp digital-textsp"}>B2</span>
-                  <div class={"flowchart-switch-button-" + (B2DIGI || false)} id="s4">
-                    <div id="digital-slider-B2" className={"slide-B2-" + b2Digi}></div>
+                <label
+                  className={"input upper-label-input upper-label-input-servo"}
+                >
+                  <div
+                    className={"switch-button-servo-" + (b1Servo || false)}
+                    id="s2"
+                  >
                     <input
-                      disabled={!B2DIGI || false}
-                      class="flowchart-switch-button-checkbox"
-                      type="radio"
-                      onChange={() => toggleB2("digital")}
-                      checked={b2Digi === "digital"}
-                      id="B2-Digital"
-                      name="B2"
+                      className="switch-button-checkbox-servo"
+                      type="checkbox"
+                      disabled={
+                        !JSON.parse(sessionStorage.getItem("B1")) ||
+                        !JSON.parse(sessionStorage.getItem("b1-I/O"))
+                      }
+                      checked={b1Servo}
+                      onChange={ServoB1}
                     ></input>
-                    <label class="flowchart-switch-button-label" for="B2-Digital">
-                      <span class="flowchart-switch-button-label-span" id="ind4">
+                  </div>
+                </label>
+                <br />
+                <label className={"input upper-label-input"}>
+                  <span className="textsp">B2</span>
+                  <div
+                    class={"switch-button-" + ((B2DIGI && !b2Servo) || false)}
+                    id={"s4"}
+                    style={{ color: bttnColor[3] }}
+                  >
+                    <input
+                      active={b2Digi}
+                      disabled={!B2DIGI || b2Servo || false}
+                      class="switch-button-checkbox"
+                      type="checkbox"
+                      onChange={toggleB2}
+                      checked={b2Digi}
+                    ></input>
+                    <label class="switch-button-label" for="">
+                      <span
+                        class="switch-button-label-span"
+                        id="in4"
+                        style={{ color: bttnColor2[3] }}
+                      >
                         Digital
                       </span>
                     </label>
+                  </div>
+                </label>
+                <br />
+                <label
+                  className={"input upper-label-input upper-label-input-servo"}
+                >
+                  <div
+                    className={"switch-button-servo-" + (b2Servo || false)}
+                    id="s2"
+                  >
                     <input
-                      disabled={!B2DIGI || false}
-                      class="flowchart-switch-button-checkbox"
-                      type="radio"
-                      onChange={() => toggleB2("analog")}
-                      checked={b2Digi === "analog"}
-                      id="B2-Analog"
-                      name="B2"
+                      className="switch-button-checkbox-servo"
+                      type="checkbox"
+                      disabled={
+                        !JSON.parse(sessionStorage.getItem("B2")) ||
+                        !JSON.parse(sessionStorage.getItem("b2-I/O"))
+                      }
+                      checked={b2Servo}
+                      onChange={ServoB2}
                     ></input>
-                    <label class="flowchart-switch-button-label" for="B2-Analog">
-                      <span class="flowchart-switch-button-label-span" id="ina4">
-                        Analog
-                      </span>
-                    </label>
-                    <input
-                      disabled={!B2DIGI || false}
-                      class="flowchart-switch-button-checkbox"
-                      type="radio"
-                      onChange={() => toggleB2("servo")}
-                      checked={b2Digi === "servo"}
-                      id="B2-Servo"
-                      name="B2"
-                    ></input>
-                    <label class="flowchart-switch-button-label" for="B2-Servo">
-                      <span class="flowchart-switch-button-label-span" id="ins4">
-                        Servo
-                      </span>
-                    </label>
                   </div>
                 </label>
               </div>
             </div>
-            <div className="Digital-flow-left-upper">
-              <div className="Digital-flow-left-upper-grp">
-                <label className={"input upper-label-input"}>
-                  <span className={(F1DIGI || false) + "-span textsp"}>F1</span>
-                  <div class={"switch-button-" + (F1DIGI || false)} id="s9">
-                    <input
-                      active={f1Digi}
-                      disabled={!F1DIGI || false}
-                      class="switch-button-checkbox"
-                      type="checkbox"
-                      onChange={toggleF1}
-                      checked={f1Digi}
-                    ></input>
-                    <label class=" switch-button-label" for="">
-                      <span class="switch-button-label-span" id="in9">
-                        Digital
-                      </span>
-                    </label>
-                  </div>
-                </label>
-              </div>
-              <div className="Digital-flow-left-upper-grp">
-                <label className={"input upper-label-input"}>
-                  <span className={(F2DIGI || false) + "-span textsp"}>F2</span>
-                  <div class={"switch-button-" + (F2DIGI || false)} id="s10">
-                    <input
-                      active={f2Digi}
-                      disabled={!F2DIGI || false}
-                      class="switch-button-checkbox"
-                      type="checkbox"
-                      onChange={toggleF2}
-                      checked={f2Digi}
-                    ></input>
-                    <label class=" switch-button-label" for="">
-                      <span class="switch-button-label-span" id="in10">
-                        Digital
-                      </span>
-                    </label>
-                  </div>
-                </label>
-              </div>
-            </div>
+
             <div className="Digital-flow-left-upper">
               <div className="Digital-flow-left-upper-grp">
                 <label className={"input upper-label-input"}>
                   <span className={(E1DIGI || false) + "-span textsp"}>E1</span>
-                  <div class={"switch-button-" + (E1DIGI || false)} id="s11">
+                  <div
+                    class={"switch-button-" + (E1DIGI || false)}
+                    id="s11"
+                    style={{ color: "#717171" }}
+                  >
                     <input
                       active={e1Digi}
                       disabled={!E1DIGI || false}
@@ -900,7 +826,11 @@ function Digital() {
                       checked={e1Digi}
                     ></input>
                     <label class=" switch-button-label" for="">
-                      <span class="switch-button-label-span" id="in11">
+                      <span
+                        class="switch-button-label-span"
+                        id="in11"
+                        style={{ color: "#fcfcfc" }}
+                      >
                         Digital
                       </span>
                     </label>
@@ -910,7 +840,11 @@ function Digital() {
               <div className="Digital-flow-left-upper-grp">
                 <label className={"input upper-label-input"}>
                   <span className={(E2DIGI || false) + "-span textsp"}>E2</span>
-                  <div class={"switch-button-" + (E2DIGI || false)} id="s12">
+                  <div
+                    class={"switch-button-" + (E2DIGI || false)}
+                    id="s12"
+                    style={{ color: "#717171" }}
+                  >
                     <input
                       active={e2Digi}
                       disabled={!E2DIGI || false}
@@ -920,7 +854,69 @@ function Digital() {
                       checked={e2Digi}
                     ></input>
                     <label class=" switch-button-label" for="">
-                      <span class="switch-button-label-span" id="in12">
+                      <span
+                        class="switch-button-label-span"
+                        id="in12"
+                        style={{ color: "#fcfcfc" }}
+                      >
+                        Digital
+                      </span>
+                    </label>
+                  </div>
+                </label>
+              </div>
+            </div>
+            <div className="Digital-flow-left-upper">
+              <div className="Digital-flow-left-upper-grp">
+                <label className={"input upper-label-input"}>
+                  <span className={(M1DIGI || false) + "-span textsp"}>M1</span>
+                  <div
+                    class={"switch-button-" + (M1DIGI || false)}
+                    id="s13"
+                    style={{ color: bttnColor[12] }}
+                  >
+                    <input
+                      active={m1Digi}
+                      disabled={true}
+                      checked={false}
+                      class="switch-button-checkbox"
+                      type="checkbox"
+                      onChange={toggleM1}
+                    ></input>
+                    <label class=" switch-button-label" for="">
+                      <span
+                        class="switch-button-label-span"
+                        id="in13"
+                        style={{ color: bttnColor2[12] }}
+                      >
+                        Digital
+                      </span>
+                    </label>
+                  </div>
+                </label>
+              </div>
+              <div className="Digital-flow-left-upper-grp">
+                <label className={"input upper-label-input"}>
+                  <span className={(M2DIGI || false) + "-span textsp"}>M2</span>
+                  <div
+                    class={"switch-button-" + (M2DIGI || false)}
+                    id="s14"
+                    style={{ color: bttnColor[13] }}
+                  >
+                    <input
+                      active={m2Digi}
+                      class="switch-button-checkbox"
+                      type="checkbox"
+                      onChange={toggleM2}
+                      disabled={true}
+                      checked={false}
+                    ></input>
+                    <label class=" switch-button-label" for="">
+                      <span
+                        class="switch-button-label-span"
+                        id="in14"
+                        style={{ color: bttnColor2[13] }}
+                      >
                         Digital
                       </span>
                     </label>
@@ -934,100 +930,130 @@ function Digital() {
             <div className="digital-flow-left-upper">
               <div className="digital-flow-left-upper-grp">
                 <label className={"input upper-label-input"}>
-                  <span className={(C1DIGI || false) + "-span textsp digital-textsp"}>C1</span>
-                  <div class={"flowchart-switch-button-" + (C1DIGI || false)} id="s5">
-                    <div id="digital-slider-C1" className={"slide-C1-" + c1Digi}></div>
+                  <span className="textsp">C1</span>
+                  <div
+                    class={
+                      "switch-button-" +
+                      ((C1DIGI &&
+                        !c1Servo &&
+                        !JSON.parse(sessionStorage.getItem("CUltra"))) ||
+                        false)
+                    }
+                    id={"s5"}
+                    style={{ color: bttnColor[4] }}
+                  >
                     <input
-                      disabled={!C1DIGI || false}
-                      class="flowchart-switch-button-checkbox"
-                      type="radio"
-                      onChange={() => toggleC1("digital")}
-                      checked={c1Digi === "digital"}
-                      id="C1-Digital"
-                      name="C1"
+                      active={c1Digi}
+                      disabled={
+                        !C1DIGI ||
+                        c1Servo ||
+                        JSON.parse(sessionStorage.getItem("CUltra")) ||
+                        false
+                      }
+                      class="switch-button-checkbox"
+                      type="checkbox"
+                      onChange={toggleC1}
+                      checked={c1Digi}
                     ></input>
-                    <label class="flowchart-switch-button-label" for="C1-Digital">
-                      <span class="flowchart-switch-button-label-span" id="ind5">
+                    <label class="switch-button-label" for="">
+                      <span
+                        class="switch-button-label-span"
+                        id="in5"
+                        style={{ color: bttnColor2[4] }}
+                      >
                         Digital
-                      </span>
-                    </label>
-                    <input
-                      disabled={!C1DIGI || false}
-                      class="flowchart-switch-button-checkbox"
-                      type="radio"
-                      onChange={() => toggleC1("analog")}
-                      checked={c1Digi === "analog"}
-                      id="C1-Analog"
-                      name="C1"
-                    ></input>
-                    <label class="flowchart-switch-button-label" for="C1-Analog">
-                      <span class="flowchart-switch-button-label-span" id="ina5">
-                        Analog
-                      </span>
-                    </label>
-                    <input
-                      disabled={!C1DIGI || false}
-                      class="flowchart-switch-button-checkbox"
-                      type="radio"
-                      onChange={() => toggleC1("servo")}
-                      checked={c1Digi === "servo"}
-                      id="C1-Servo"
-                      name="C1"
-                    ></input>
-                    <label class="flowchart-switch-button-label" for="C1-Servo">
-                      <span class="flowchart-switch-button-label-span" id="ins5">
-                        Servo
                       </span>
                     </label>
                   </div>
                 </label>
                 <br />
-                <label className={"input upper-label-input"}>
-                  <span className={(C2DIGI || false) + "-span textsp digital-textsp"}>C2</span>
-                  <div class={"flowchart-switch-button-" + (C2DIGI || false)} id="s6">
-                    <div id="digital-slider-C2" className={"slide-C2-" + c2Digi}></div>
+                <label
+                  className={"input upper-label-input upper-label-input-servo"}
+                >
+                  <div
+                    className={
+                      "switch-button-servo-" +
+                      ((c1Servo &&
+                        !JSON.parse(sessionStorage.getItem("CUltra"))) ||
+                        false)
+                    }
+                    id="s2"
+                  >
                     <input
-                      disabled={!C2DIGI || false}
-                      class="flowchart-switch-button-checkbox"
-                      type="radio"
-                      onChange={() => toggleC2("digital")}
-                      checked={c2Digi === "digital"}
-                      id="C2-Digital"
-                      name="C2"
+                      className="switch-button-checkbox-servo"
+                      type="checkbox"
+                      disabled={
+                        !JSON.parse(sessionStorage.getItem("C1")) ||
+                        !JSON.parse(sessionStorage.getItem("c1-I/O")) ||
+                        JSON.parse(sessionStorage.getItem("CUltra"))
+                      }
+                      checked={c1Servo}
+                      onChange={ServoC1}
                     ></input>
-                    <label class="flowchart-switch-button-label" for="C2-Digital">
-                      <span class="flowchart-switch-button-label-span" id="ind6">
+                  </div>
+                </label>
+                <br />
+                <label className={"input upper-label-input"}>
+                  <span className="textsp">C2</span>
+                  <div
+                    class={
+                      "switch-button-" +
+                      ((C2DIGI &&
+                        !c2Servo &&
+                        !JSON.parse(sessionStorage.getItem("CUltra"))) ||
+                        false)
+                    }
+                    id={"s6"}
+                    style={{ color: bttnColor[5] }}
+                  >
+                    <input
+                      active={c2Digi}
+                      disabled={
+                        !C2DIGI ||
+                        c2Servo ||
+                        JSON.parse(sessionStorage.getItem("CUltra")) ||
+                        false
+                      }
+                      class="switch-button-checkbox"
+                      type="checkbox"
+                      onChange={toggleC2}
+                      checked={c2Digi}
+                    ></input>
+                    <label class="switch-button-label" for="">
+                      <span
+                        class="switch-button-label-span"
+                        id="in6"
+                        style={{ color: bttnColor2[5] }}
+                      >
                         Digital
                       </span>
                     </label>
+                  </div>
+                </label>
+                <br />
+                <label
+                  className={"input upper-label-input upper-label-input-servo"}
+                >
+                  <div
+                    className={
+                      "switch-button-servo-" +
+                      ((c2Servo &&
+                        !JSON.parse(sessionStorage.getItem("CUltra"))) ||
+                        false)
+                    }
+                    id="s2"
+                  >
                     <input
-                      disabled={!C2DIGI || false}
-                      class="flowchart-switch-button-checkbox"
-                      type="radio"
-                      onChange={() => toggleC2("analog")}
-                      checked={c2Digi === "analog"}
-                      id="C2-Analog"
-                      name="C2"
+                      className="switch-button-checkbox-servo"
+                      type="checkbox"
+                      disabled={
+                        !JSON.parse(sessionStorage.getItem("C2")) ||
+                        !JSON.parse(sessionStorage.getItem("c2-I/O")) ||
+                        JSON.parse(sessionStorage.getItem("CUltra"))
+                      }
+                      checked={c2Servo}
+                      onChange={ServoC2}
                     ></input>
-                    <label class="flowchart-switch-button-label" for="C2-Analog">
-                      <span class="flowchart-switch-button-label-span" id="ina6">
-                        Analog
-                      </span>
-                    </label>
-                    <input
-                      disabled={!C2DIGI || false}
-                      class="flowchart-switch-button-checkbox"
-                      type="radio"
-                      onChange={() => toggleC2("servo")}
-                      checked={c2Digi === "servo"}
-                      id="C2-Servo"
-                      name="C2"
-                    ></input>
-                    <label class="flowchart-switch-button-label" for="C2-Servo">
-                      <span class="flowchart-switch-button-label-span" id="ins6">
-                        Servo
-                      </span>
-                    </label>
                   </div>
                 </label>
               </div>
@@ -1035,96 +1061,159 @@ function Digital() {
             <div className="digital-flow-left-upper">
               <div className="digital-flow-left-upper-grp">
                 <label className={"input upper-label-input"}>
-                  <span className={(D1DIGI || false) + "-span textsp digital-textsp"}>D1</span>
-                  <div class={"flowchart-switch-button-" + (D1DIGI || false)} id="s7">
-                    <div id="digital-slider-D1" className={"slide-D1-" + d1Digi}></div>
+                  <label className={"input upper-label-input"}>
+                    <span className="textsp">D1</span>
+                    <div
+                      class={"switch-button-" + ((D1DIGI && !d1Servo) || false)}
+                      id="s7"
+                      style={{ color: bttnColor[6] }}
+                    >
+                      <input
+                        onClick={toggleD1}
+                        active={d1Digi}
+                        disabled={
+                          !JSON.parse(sessionStorage.getItem("D1")) ||
+                          !JSON.parse(sessionStorage.getItem("d1-I/O"))
+                        }
+                        class="switch-button-checkbox"
+                        type="checkbox"
+                        checked={d1Digi}
+                      ></input>
+                      <label class="switch-button-label" for="">
+                        <span
+                          class="switch-button-label-span"
+                          id="in7"
+                          style={{ color: bttnColor2[6] }}
+                        >
+                          Digital
+                        </span>
+                      </label>
+                    </div>
+                  </label>
+                  <br />
+                  <label
+                    className={
+                      "input upper-label-input upper-label-input-servo"
+                    }
+                  >
+                    <div
+                      className={"switch-button-servo-" + (d1Servo || false)}
+                      id="s2"
+                    >
+                      <input
+                        className="switch-button-checkbox-servo"
+                        type="checkbox"
+                        disabled={!JSON.parse(sessionStorage.getItem("D1"))}
+                        checked={d1Servo}
+                        onChange={ServoD1}
+                      ></input>
+                    </div>
+                  </label>
+                  <br />
+
+                  <label className={"input upper-label-input"}>
+                    <span className="textsp">D2</span>
+                    <div
+                      class={"switch-button-" + ((D2DIGI && !d2Servo) || false)}
+                      id="s8"
+                      style={{ color: bttnColor[7] }}
+                    >
+                      <input
+                        onClick={toggleD2}
+                        active={d2Digi}
+                        disabled={
+                          !JSON.parse(sessionStorage.getItem("D2")) ||
+                          !JSON.parse(sessionStorage.getItem("d2-I/O"))
+                        }
+                        class="switch-button-checkbox"
+                        type="checkbox"
+                        checked={d2Digi}
+                      ></input>
+                      <label class="switch-button-label" for="">
+                        <span
+                          class="switch-button-label-span"
+                          id="in8"
+                          style={{ color: bttnColor2[7] }}
+                        >
+                          Digital
+                        </span>
+                      </label>
+                    </div>
+                  </label>
+                  <br />
+                  <label
+                    className={
+                      "input upper-label-input upper-label-input-servo"
+                    }
+                  >
+                    <div
+                      className={"switch-button-servo-" + (d2Servo || false)}
+                      id="s2"
+                    >
+                      <input
+                        className="switch-button-checkbox-servo"
+                        type="checkbox"
+                        disabled={!JSON.parse(sessionStorage.getItem("D2"))}
+                        checked={d2Servo}
+                        onChange={ServoD2}
+                      ></input>
+                    </div>
+                  </label>
+                </label>
+              </div>
+            </div>
+            <div className="Digital-flow-left-upper">
+              <div className="Digital-flow-left-upper-grp">
+                <label className={"input upper-label-input"}>
+                  <span className={(F1DIGI || false) + "-span textsp"}>F1</span>
+                  <div
+                    class={"switch-button-" + (F1DIGI || false)}
+                    id="s9"
+                    style={{ color: bttnColor[8] }}
+                  >
                     <input
-                      disabled={!D1DIGI || false}
-                      class="flowchart-switch-button-checkbox"
-                      type="radio"
-                      onChange={() => toggleD1("digital")}
-                      checked={d1Digi === "digital"}
-                      id="D1-Digital"
-                      name="D1"
+                      active={f1Digi}
+                      disabled={!F1DIGI || false}
+                      class="switch-button-checkbox"
+                      type="checkbox"
+                      onChange={toggleF1}
+                      checked={f1Digi}
                     ></input>
-                    <label class="flowchart-switch-button-label" for="D1-Digital">
-                      <span class="flowchart-switch-button-label-span" id="ind7">
+                    <label class=" switch-button-label" for="">
+                      <span
+                        class="switch-button-label-span"
+                        id="in9"
+                        style={{ color: bttnColor2[8] }}
+                      >
                         Digital
-                      </span>
-                    </label>
-                    <input
-                      disabled={!D1DIGI || false}
-                      class="flowchart-switch-button-checkbox"
-                      type="radio"
-                      onChange={() => toggleD1("analog")}
-                      checked={d1Digi === "analog"}
-                      id="D1-Analog"
-                      name="D1"
-                    ></input>
-                    <label class="flowchart-switch-button-label" for="D1-Analog">
-                      <span class="flowchart-switch-button-label-span" id="ina7">
-                        Analog
-                      </span>
-                    </label>
-                    <input
-                      disabled={!D1DIGI || false}
-                      class="flowchart-switch-button-checkbox"
-                      type="radio"
-                      onChange={() => toggleD1("servo")}
-                      checked={d1Digi === "servo"}
-                      id="D1-Servo"
-                      name="D1"
-                    ></input>
-                    <label class="flowchart-switch-button-label" for="D1-Servo">
-                      <span class="flowchart-switch-button-label-span" id="ins7">
-                        Servo
                       </span>
                     </label>
                   </div>
-                  <br />
-                  <span className={(D2DIGI || false) + "-span textsp digital-textsp"}>D2</span>
-                  <div class={"flowchart-switch-button-" + (D2DIGI || false)} id="s8">
-                    <div id="digital-slider-D2" className={"slide-D2-" + d2Digi}></div>
+                </label>
+              </div>
+              <div className="Digital-flow-left-upper-grp">
+                <label className={"input upper-label-input"}>
+                  <span className={(F2DIGI || false) + "-span textsp"}>F2</span>
+                  <div
+                    class={"switch-button-" + (F2DIGI || false)}
+                    id="s10"
+                    style={{ color: bttnColor[9] }}
+                  >
                     <input
-                      disabled={!D2DIGI || false}
-                      class="flowchart-switch-button-checkbox"
-                      type="radio"
-                      onChange={() => toggleD2("digital")}
-                      checked={d2Digi === "digital"}
-                      id="D2-Digital"
-                      name="D2"
+                      active={f2Digi}
+                      disabled={!F2DIGI || false}
+                      class="switch-button-checkbox"
+                      type="checkbox"
+                      onChange={toggleF2}
+                      checked={f2Digi}
                     ></input>
-                    <label class="flowchart-switch-button-label" for="D2-Digital">
-                      <span class="flowchart-switch-button-label-span" id="ind8">
+                    <label class=" switch-button-label" for="">
+                      <span
+                        class="switch-button-label-span"
+                        id="in10"
+                        style={{ color: bttnColor2[9] }}
+                      >
                         Digital
-                      </span>
-                    </label>
-                    <input
-                      disabled={!D2DIGI || false}
-                      class="flowchart-switch-button-checkbox"
-                      type="radio"
-                      onChange={() => toggleD2("analog")}
-                      checked={d2Digi === "analog"}
-                      id="D2-Analog"
-                      name="D2"
-                    ></input>
-                    <label class="flowchart-switch-button-label" for="D2-Analog">
-                      <span class="flowchart-switch-button-label-span" id="ina8">
-                        Analog
-                      </span>
-                    </label>
-                    <input
-                      disabled={!D2DIGI || false}
-                      class="flowchart-switch-button-checkbox"
-                      type="radio"
-                      onChange={() => toggleD2("servo")}
-                      checked={d2Digi === "servo"}
-                      id="D2-Servo"
-                      name="D2"
-                    ></input>
-                    <label class="flowchart-switch-button-label" for="D2-Servo">
-                      <span class="flowchart-switch-button-label-span" id="ins8">
-                        Servo
                       </span>
                     </label>
                   </div>
@@ -1135,60 +1224,26 @@ function Digital() {
             <div className="Digital-flow-left-upper">
               <div className="Digital-flow-left-upper-grp">
                 <label className={"input upper-label-input"}>
-                  <span className={(M1DIGI || false) + "-span textsp"}>M1</span>
-                  <div class={"switch-button-" + (M1DIGI || false)} id="s13">
-                    <input
-                      active={m1Digi}
-                      disabled={!M1DIGI || false}
-                      class="switch-button-checkbox"
-                      type="checkbox"
-                      onChange={toggleM1}
-                      checked={m1Digi}
-                    ></input>
-                    <label class=" switch-button-label" for="">
-                      <span class="switch-button-label-span" id="in13">
-                        Digital
-                      </span>
-                    </label>
-                  </div>
-                </label>
-              </div>
-              <div className="Digital-flow-left-upper-grp">
-                <label className={"input upper-label-input"}>
-                  <span className={(M2DIGI || false) + "-span textsp"}>M2</span>
-                  <div class={"switch-button-" + (M2DIGI || false)} id="s14">
-                    <input
-                      active={m2Digi}
-                      disabled={!M2DIGI || false}
-                      class="switch-button-checkbox"
-                      type="checkbox"
-                      onChange={toggleM2}
-                      checked={m2Digi}
-                    ></input>
-                    <label class=" switch-button-label" for="">
-                      <span class="switch-button-label-span" id="in14">
-                        Digital
-                      </span>
-                    </label>
-                  </div>
-                </label>
-              </div>
-            </div>
-            <div className="Digital-flow-left-upper">
-              <div className="Digital-flow-left-upper-grp">
-                <label className={"input upper-label-input"}>
                   <span className={(M3DIGI || false) + "-span textsp"}>M3</span>
-                  <div class={"switch-button-" + (M3DIGI || false)} id="s15">
+                  <div
+                    class={"switch-button-" + (M3DIGI || false)}
+                    id="s15"
+                    style={{ color: bttnColor[14] }}
+                  >
                     <input
                       active={m3Digi}
-                      disabled={!M3DIGI || false}
                       class="switch-button-checkbox"
                       type="checkbox"
                       onChange={toggleM3}
-                      checked={m3Digi}
+                      disabled={true}
+                      checked={false}
                     ></input>
                     <label class=" switch-button-label" for="">
-                      <span class="switch-button-label-span" id="in15">
+                      <span
+                        class="switch-button-label-span"
+                        id="in15"
+                        style={{ color: bttnColor2[14] }}
+                      >
                         Digital
                       </span>
                     </label>
@@ -1198,17 +1253,25 @@ function Digital() {
               <div className="Digital-flow-left-upper-grp">
                 <label className={"input upper-label-input"}>
                   <span className={(M4DIGI || false) + "-span textsp"}>M4</span>
-                  <div class={"switch-button-" + (M4DIGI || false)} id="s16">
+                  <div
+                    class={"switch-button-" + (M4DIGI || false)}
+                    id="s16"
+                    style={{ color: bttnColor[15] }}
+                  >
                     <input
                       active={m4Digi}
-                      disabled={!M4DIGI || false}
                       class="switch-button-checkbox"
                       type="checkbox"
                       onChange={toggleM4}
-                      checked={m4Digi}
+                      disabled={true}
+                      checked={false}
                     ></input>
                     <label class=" switch-button-label" for="">
-                      <span class="switch-button-label-span" id="in16">
+                      <span
+                        class="switch-button-label-span"
+                        id="in16"
+                        style={{ color: bttnColor2[15] }}
+                      >
                         Digital
                       </span>
                     </label>
@@ -1216,11 +1279,7 @@ function Digital() {
                 </label>
               </div>
             </div>
-
           </div>
-
-
-          1
         </div>
       </div>
       <div className="SelectScreenBottom">
