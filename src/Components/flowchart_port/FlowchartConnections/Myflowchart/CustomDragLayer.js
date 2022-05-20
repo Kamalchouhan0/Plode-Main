@@ -42,7 +42,7 @@ function getItemStyles(initialOffset, currentOffset, xOffset, yOffset, type) {
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
     backgroundSize: "contain",
-
+  
     transform,
     WebkitTransform: transform,
   };
@@ -74,10 +74,11 @@ export const CustomDragLayer = (props) => {
       case "if":
         return (
           <div
+           
             style={getItemStyles(initialOffset, currentOffset, 158, 35, "if")}
             id="if_dot"
           ></div>
-        );
+        ); 
       case "loop":
         return (
           <div

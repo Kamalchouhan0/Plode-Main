@@ -3,6 +3,7 @@ import Slider from "../helpers/Slider";
 import { Link } from "react-router-dom";
 import renderPrgImage from "../../../../../../source/programImg";
 import "./wait.css";
+import { useLocalStorage } from "../../../../../LocalStorage/LocalStorage";
 var h = [];
 var m = [];
 var s = [];

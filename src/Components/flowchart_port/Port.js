@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from "react";
+import React,{useLayoutEffect,} from "react";
 import Bottom from "./Bottom";
 import { Nav } from "react-bootstrap";
 import { useLocalStorage } from "../LocalStorage/LocalStorage";
@@ -6,67 +6,58 @@ import pcImg from "../../Assets/internalAccessories/PC_image@3x.png";
 import selectImg from "../../Assets/img/select bar@2x.png";
 import secondaryImg from "../../Assets/img/save - secondary.png";
 import strokeImg from "../../Assets/img/button 52x52 - stroke.png";
-import Pcinternal4in1Active from "../../Assets/internalAccessories/4 in 1 - active.svg";
-import Pcinternal4in1InActive from "../../Assets/internalAccessories/4 in 1 - inactive.svg";
-import PcinternalBuzzerActive from "../../Assets/internalAccessories/buzzer - active.svg";
-import PcinternalBuzzerInActive from "../../Assets/internalAccessories/buzzer - inactive.svg";
+import connectionImg from "../../Assets/usb - off@2x.png";
+import { Link, useHistory } from "react-router-dom";
+
+import eyeInactiveImg from "../../Assets/internalAccessories/eye - inactive.484d85f3.svg";
+import teethImg from "../../Assets/internalAccessories/teeth - inactive.ff84b1d3.svg";
+import inImg from "../../Assets/internalAccessories/4 in 1 - inactive.ea3e994f.svg";
+import internalmicImg from "../../Assets/internalAccessories/internal mic - inactive.d43d2f36.svg";
+import buzzerImg from "../../Assets/internalAccessories/buzzer - inactive.872b79d8.svg";
+import touchpadsImg from "../../Assets/internalAccessories/touch pads - inactive.748c6933.svg";
+
 import PcinternalEYEActive from "../../Assets/internalAccessories/eye - active.svg";
 import PcinternalEYEInActive from "../../Assets/internalAccessories/eye - inactive.svg";
-import PcinternalMicInActive from "../../Assets/internalAccessories/internal mic - active.svg";
-import PcinternalMicActive from "../../Assets/internalAccessories/internal mic - inactive.svg";
-import PcinternalTeethActive from "../../Assets/internalAccessories/teeth - active.svg";
 import PcinternalTeethInActive from "../../Assets/internalAccessories/teeth - inactive.svg";
-import PcinternalTouchpadsActive from "../../Assets/internalAccessories/touch pads - active.svg";
-import PcinternalTouchpadsInActive from "../../Assets/internalAccessories/touch pads - inactive.svg";
-import connectionImg from "../../Assets/usb - off@2x.png";
-import renderPrgImage from "../../source/programImg";
-import { useHistory } from "react-router";
-import "./Navbar.css";
-import "./pcimage.css";
-import "./style.css";
+import PcinternalTeethActive from "../../Assets/internalAccessories/teeth - active.svg";
 
+import Pcinternal4in1Active from "../../Assets/internalAccessories/4 in 1 - active.svg";
+import Pcinternal4in1InActive from "../../Assets/internalAccessories/4 in 1 - inactive.svg";
+import PcinternalMicActive from "../../Assets/internalAccessories/internal mic - inactive.svg";
+import PcinternalMicInActive from "../../Assets/internalAccessories/internal mic - active.svg";
+import PcinternalBuzzerInActive from "../../Assets/internalAccessories/buzzer - inactive.svg";
+import PcinternalBuzzerActive from "../../Assets/internalAccessories/buzzer - active.svg";
+import PcinternalTouchpadsInActive from "../../Assets/internalAccessories/touch pads - inactive.svg";
+import PcinternalTouchpadsActive from "../../Assets/internalAccessories/touch pads - active.svg";
+
+import "./pcimage.css";
+import "./Navbar.css";
+import "./style.css";
+import renderPrgImage from "../../source/programImg";
 let i = [];
-let a1color = "black",
-  a2color = "black";
-let bttnColor = [];
-let bttType = [
-  "A1",
-  "A2",
-  "B1",
-  "B2",
-  "C1",
-  "C2",
-  "D1",
-  "D2",
-  "E1",
-  "E2",
-  "F1",
-  "F2",
-  "M1",
-  "M2",
-  "M3",
-  "M4",
-];
-for (let i = 0; i < 16; i++) {
-  bttnColor[i] = "black";
-  if (JSON.parse(sessionStorage.getItem(bttType[i]))) bttnColor[i] = "white";
+let a1color="black",a2color="black";
+let bttnColor=[]
+let bttType=["A1","A2","B1","B2","C1","C2","D1","D2","E1","E2","F1","F2","M1","M2","M3","M4"]
+for(let i =0;i<16;i++){
+  bttnColor[i]="black"
+  if(JSON.parse(sessionStorage.getItem(bttType[i])))
+  bttnColor[i]="white"
 }
 
-if (JSON.parse(sessionStorage.getItem("A1"))) a1color = "white";
-if (JSON.parse(sessionStorage.getItem("A2"))) a2color = "white";
+if(JSON.parse(sessionStorage.getItem("A1")))
+        a1color="white"
+if(JSON.parse(sessionStorage.getItem("A2")))
+        a2color="white"
 
 for (let j = 0; j < 8; j++) i[j] = 1;
-let pa1 = false;
+let pa1=false;
 const Port = () => {
   const history = useHistory();
 
   useLayoutEffect(() => {
     return () => {
-      console.log(
-        "GSK",
-        JSON.parse(sessionStorage.getItem("A1")),
-        typeof JSON.parse(sessionStorage.getItem("A1"))
-      );
+    
+      console.log("GSK",JSON.parse(sessionStorage.getItem("A1")),typeof JSON.parse(sessionStorage.getItem("A1")) )
       // if(JSON.parse(sessionStorage.getItem("A1")))
       //   a1color="white"
       // else
@@ -75,12 +66,14 @@ const Port = () => {
       //   a2color="white"
       // else
       //   a2color="black"
-      for (let i = 0; i < 16; i++) {
-        if (JSON.parse(sessionStorage.getItem(bttType[i])))
-          bttnColor[i] = "white";
-        else bttnColor[i] = "black";
-      }
-
+      for(let i =0;i<16;i++){
+         
+          if(JSON.parse(sessionStorage.getItem(bttType[i])))
+          bttnColor[i]="white"
+          else
+          bttnColor[i]="black"
+        }
+         
       //  myFunction1();
     };
   });
@@ -114,47 +107,17 @@ const Port = () => {
   const [m3, setM3] = useLocalStorage("M3", false);
   const [m4, setM4] = useLocalStorage("M4", false);
   const [n, setN] = useLocalStorage("N", false);
-  const [aUltra, setAUltra] = useLocalStorage(
-    "AUltra",
-    JSON.parse(sessionStorage.getItem("AUltra"))
-  );
-  const [cUltra, setCUltra] = useLocalStorage(
-    "CUltra",
-    JSON.parse(sessionStorage.getItem("CUltra"))
-  );
-  const [a1Servo, setA1Servo] = useLocalStorage(
-    "A1Servo",
-    JSON.parse(sessionStorage.getItem("A1Servo"))
-  );
-  const [a2Servo, setA2Servo] = useLocalStorage(
-    "A2Servo",
-    JSON.parse(sessionStorage.getItem("A2Servo"))
-  );
-  const [b1Servo, setB1Servo] = useLocalStorage(
-    "B1Servo",
-    JSON.parse(sessionStorage.getItem("B1Servo"))
-  );
-  const [b2Servo, setB2Servo] = useLocalStorage(
-    "B2Servo",
-    JSON.parse(sessionStorage.getItem("B2Servo"))
-  );
-  const [c1Servo, setC1Servo] = useLocalStorage(
-    "C1Servo",
-    JSON.parse(sessionStorage.getItem("C1Servo"))
-  );
-  const [c2Servo, setC2Servo] = useLocalStorage(
-    "C2Servo",
-    JSON.parse(sessionStorage.getItem("C2Servo"))
-  );
-  const [d1Servo, setD1Servo] = useLocalStorage(
-    "D1Servo",
-    JSON.parse(sessionStorage.getItem("D1Servo"))
-  );
-  const [d2Servo, setD2Servo] = useLocalStorage(
-    "D2Servo",
-    JSON.parse(sessionStorage.getItem("D2Servo"))
-  );
-
+  const [aUltra, setAUltra] = useLocalStorage("AUltra", JSON.parse(sessionStorage.getItem("AUltra")));
+  const [cUltra, setCUltra] = useLocalStorage("CUltra", JSON.parse(sessionStorage.getItem("CUltra")));
+  const [a1Servo, setA1Servo] = useLocalStorage("A1Servo", JSON.parse(sessionStorage.getItem("A1Servo")));
+  const [a2Servo, setA2Servo] = useLocalStorage("A2Servo", JSON.parse(sessionStorage.getItem("A2Servo")));
+  const [b1Servo, setB1Servo] = useLocalStorage("B1Servo", JSON.parse(sessionStorage.getItem("B1Servo")));
+  const [b2Servo, setB2Servo] = useLocalStorage("B2Servo", JSON.parse(sessionStorage.getItem("B2Servo")));
+  const [c1Servo, setC1Servo] = useLocalStorage("C1Servo", JSON.parse(sessionStorage.getItem("C1Servo")));
+  const [c2Servo, setC2Servo] = useLocalStorage("C2Servo", JSON.parse(sessionStorage.getItem("C2Servo")));
+  const [d1Servo, setD1Servo] = useLocalStorage("D1Servo", JSON.parse(sessionStorage.getItem("D1Servo")));
+  const [d2Servo, setD2Servo] = useLocalStorage("D2Servo", JSON.parse(sessionStorage.getItem("D2Servo")));
+  
   const isDistanceSensors = JSON.parse(
     sessionStorage.getItem("isDistanceSensors")
   );
@@ -320,146 +283,146 @@ const Port = () => {
     }
   };
 
-  const myFunction1 = async () => {
-    await JSON.parse(sessionStorage.getItem("A1"));
-    if (await JSON.parse(sessionStorage.getItem("A1"))) {
-      document.getElementById("foo1").style.cssText = "color: white; ";
-
-      //  a1color="white"
+  const myFunction1 = async() => {
+    await JSON.parse(sessionStorage.getItem("A1"))
+    if (await JSON.parse(sessionStorage.getItem("A1"))){
+     document.getElementById("foo1").style.cssText = "color: white; ";
+     
+    //  a1color="white"
     } else {
-      document.getElementById("foo1").style.cssText = "color: black; ";
-      //  a1color="black"
-      setAUltra(false);
-      setA1Servo(false);
+     document.getElementById("foo1").style.cssText = "color: black; ";
+    //  a1color="black"
+    setAUltra(false)
+    setA1Servo(false)
     }
   };
-  const myFunction2 = async () => {
-    console.log("A!!!GSK", await JSON.parse(sessionStorage.getItem("A1")));
-
+  const myFunction2 = async() => {
+    console.log("A!!!GSK",await JSON.parse(sessionStorage.getItem("A1")))
+   
     if (await JSON.parse(sessionStorage.getItem("A2"))) {
       document.getElementById("foo2").style.cssText = "color: white; ";
     } else {
       document.getElementById("foo2").style.cssText = "color: black; ";
-      setAUltra(false);
-      setA2Servo(false);
+      setAUltra(false)
+      setA2Servo(false)
     }
   };
-  const myFunction3 = async () => {
-    await JSON.parse(sessionStorage.getItem("B1"));
-    if (await JSON.parse(sessionStorage.getItem("B1"))) {
+  const myFunction3 = async() => {
+    await JSON.parse(sessionStorage.getItem("B1"))
+    if (await JSON.parse(sessionStorage.getItem("B1"))){
       document.getElementById("foo3").style.cssText = "color: white; ";
     } else {
       document.getElementById("foo3").style.cssText = "color: black; ";
-      setAUltra(false);
-      setB1Servo(false);
+      setAUltra(false)
+      setB1Servo(false)
     }
-  };
-  const myFunction4 = async () => {
-    await JSON.parse(sessionStorage.getItem("B2"));
-    if (await JSON.parse(sessionStorage.getItem("B2"))) {
+  }; 
+  const myFunction4 = async() => {
+    await JSON.parse(sessionStorage.getItem("B2"))
+    if (await JSON.parse(sessionStorage.getItem("B2"))){
       document.getElementById("foo4").style.cssText = "color: white; ";
     } else {
       document.getElementById("foo4").style.cssText = "color: black; ";
-      setB2Servo(false);
+      setB2Servo(false)
     }
   };
-  const myFunction5 = async () => {
-    await JSON.parse(sessionStorage.getItem("C1"));
-    if (await JSON.parse(sessionStorage.getItem("C1"))) {
+  const myFunction5 = async() => {
+    await JSON.parse(sessionStorage.getItem("C1"))
+    if (await JSON.parse(sessionStorage.getItem("C1"))){
       document.getElementById("foo5").style.cssText = "color: white; ";
     } else {
       document.getElementById("foo5").style.cssText = "color: black; ";
-      setCUltra(false);
-      setC1Servo(false);
+      setCUltra(false)
+      setC1Servo(false)
     }
   };
-  const myFunction6 = async () => {
-    await JSON.parse(sessionStorage.getItem("C2"));
-    if (await JSON.parse(sessionStorage.getItem("C2"))) {
+  const myFunction6 = async() => {
+    await JSON.parse(sessionStorage.getItem("C2"))
+    if (await JSON.parse(sessionStorage.getItem("C2"))){
       document.getElementById("foo6").style.cssText = "color: white; ";
     } else {
       document.getElementById("foo6").style.cssText = "color: black; ";
-      setCUltra(false);
-      setC2Servo(false);
+      setCUltra(false)
+      setC2Servo(false)
     }
   };
-  const myFunction7 = async () => {
-    await JSON.parse(sessionStorage.getItem("D1"));
-    if (await JSON.parse(sessionStorage.getItem("D1"))) {
+  const myFunction7 = async() => {
+    await JSON.parse(sessionStorage.getItem("D1"))
+    if (await JSON.parse(sessionStorage.getItem("D1"))){
       document.getElementById("foo7").style.cssText = "color: white; ";
     } else {
       document.getElementById("foo7").style.cssText = "color: black; ";
-      setD1Servo(false);
+      setD1Servo(false)
     }
   };
-  const myFunction8 = async () => {
-    await JSON.parse(sessionStorage.getItem("D2"));
-    if (await JSON.parse(sessionStorage.getItem("D2"))) {
+  const myFunction8 = async() => {
+    await JSON.parse(sessionStorage.getItem("D2"))
+    if (await JSON.parse(sessionStorage.getItem("D2"))){
       document.getElementById("foo8").style.cssText = "color: white; ";
     } else {
       document.getElementById("foo8").style.cssText = "color: black; ";
-      setD2Servo(false);
+      setD2Servo(false)
     }
   };
-  const myFunction9 = async () => {
-    await JSON.parse(sessionStorage.getItem("E1"));
-    if (await JSON.parse(sessionStorage.getItem("E1"))) {
+  const myFunction9 = async() => {
+    await JSON.parse(sessionStorage.getItem("E1"))
+    if (await JSON.parse(sessionStorage.getItem("E1"))){
       document.getElementById("foo9").style.cssText = "color: white; ";
     } else {
       document.getElementById("foo9").style.cssText = "color: black; ";
     }
   };
-  const myFunction10 = async () => {
-    await JSON.parse(sessionStorage.getItem("E2"));
-    if (await JSON.parse(sessionStorage.getItem("E2"))) {
+  const myFunction10 = async() => {
+    await JSON.parse(sessionStorage.getItem("E2"))
+    if (await JSON.parse(sessionStorage.getItem("E2"))){
       document.getElementById("foo10").style.cssText = "color: white; ";
     } else {
       document.getElementById("foo10").style.cssText = "color: black; ";
     }
   };
-  const myFunction11 = async () => {
-    await JSON.parse(sessionStorage.getItem("F1"));
-    if (await JSON.parse(sessionStorage.getItem("F1"))) {
+  const myFunction11 = async() => {
+    await JSON.parse(sessionStorage.getItem("F1"))
+    if (await JSON.parse(sessionStorage.getItem("F1"))){
       document.getElementById("foo11").style.cssText = "color: white; ";
     } else {
       document.getElementById("foo11").style.cssText = "color: black; ";
     }
   };
-  const myFunction12 = async () => {
-    await JSON.parse(sessionStorage.getItem("F2"));
-    if (await JSON.parse(sessionStorage.getItem("F2"))) {
+  const myFunction12 = async() => {
+    await JSON.parse(sessionStorage.getItem("F2"))
+    if (await JSON.parse(sessionStorage.getItem("F2"))){
       document.getElementById("foo12").style.cssText = "color: white; ";
     } else {
       document.getElementById("foo12").style.cssText = "color: black; ";
     }
   };
-  const myFunction13 = async () => {
-    await JSON.parse(sessionStorage.getItem("M1"));
-    if (await JSON.parse(sessionStorage.getItem("M1"))) {
+  const myFunction13 = async() => {
+    await JSON.parse(sessionStorage.getItem("M1"))
+    if (await JSON.parse(sessionStorage.getItem("M1"))){
       document.getElementById("foo13").style.cssText = "color: white; ";
     } else {
       document.getElementById("foo13").style.cssText = "color: black; ";
     }
   };
-  const myFunction14 = async () => {
-    await JSON.parse(sessionStorage.getItem("M2"));
-    if (await JSON.parse(sessionStorage.getItem("M2"))) {
+  const myFunction14 = async() => {
+    await JSON.parse(sessionStorage.getItem("M2"))
+    if (await JSON.parse(sessionStorage.getItem("M2"))){
       document.getElementById("foo14").style.cssText = "color: white; ";
     } else {
       document.getElementById("foo14").style.cssText = "color: black; ";
     }
   };
-  const myFunction15 = async () => {
-    await JSON.parse(sessionStorage.getItem("M3"));
-    if (await JSON.parse(sessionStorage.getItem("M3"))) {
+  const myFunction15 = async() => {
+    await JSON.parse(sessionStorage.getItem("M3"))
+    if (await JSON.parse(sessionStorage.getItem("M3"))){
       document.getElementById("foo15").style.cssText = "color: white; ";
     } else {
       document.getElementById("foo15").style.cssText = "color: black; ";
     }
   };
-  const myFunction16 = async () => {
-    await JSON.parse(sessionStorage.getItem("M4"));
-    if (await JSON.parse(sessionStorage.getItem("M4"))) {
+  const myFunction16 = async() => {
+    await JSON.parse(sessionStorage.getItem("M4"))
+    if (await JSON.parse(sessionStorage.getItem("M4"))){
       document.getElementById("foo16").style.cssText = "color: white; ";
     } else {
       document.getElementById("foo16").style.cssText = "color: black; ";
@@ -633,280 +596,309 @@ const Port = () => {
           </div>
         </div>
         <div className="ports-Container">
-          <div className="properties-Container">
-            <div className="properties-b">
-              <div className="properties-bIn">
-                <span className="properties-InputLabel">
-                  <input
-                    className="properties-InputCheckBox"
-                    type="checkbox"
-                    checked={a1}
-                    onClick={() => myFunction1()}
-                    onChange={() => onA1ValueChange()}
-                  />
-                  <span disabled="disabled" className="A1">
-                    A1
+            {/* <div className="properties-Container">
+              <div className="properties-b">
+                  <div className="properties-bIn">
+                    <span className="properties-InputLabel">
+                      <input
+                        className="properties-InputCheckBox"
+                        type="checkbox"
+                        checked={a1}
+                        onClick={() => myFunction1()}
+                        onChange={() => onA1ValueChange()}
+                      />
+                      <span disabled="disabled" className="A1" >
+                        A1
+                      </span>
+                    </span>
+                    <span className="properties-InputLabel">
+                      <input
+                        className="properties-InputCheckBox"
+                        type="checkbox"
+                        // checked={a2}
+                        // onClick={() => myFunction2()}
+                        // onChange={() => onA2ValueChange()}
+                      />
+                      <span disabled="disabled" className="A1">
+                        A2
+                      </span>
+                    </span>
+                    <span className="properties-InputLabel">
+                      <input
+                        className="properties-InputCheckBox"
+                        type="checkbox"
+                        // checked={a2}
+                        // onClick={() => myFunction2()}
+                        // onChange={() => onA2ValueChange()}
+                      />
+                      <span disabled="disabled" className="A1" >
+                        A2
+                      </span>
+                    </span>
+                  </div>
+              </div>
+            </div> */}
+            <div className="ButtonDiv">
+              {/* A PORT */}
+              <div className="tlb">
+                <div className="tlbIn ">
+                  <span className={"InputLabel " + "InputLabel-"+(JSON.parse(sessionStorage.getItem("isTouchZero"))||JSON.parse(sessionStorage.getItem("isTouchZeroOutput"))) }>
+                    <input
+                      className="InputCheckBox"
+                      type="checkbox"
+                      checked={a1}
+                      onClick={() => myFunction1()}
+                      onChange={() => onA1ValueChange()}
+                      disabled={JSON.parse(sessionStorage.getItem("isTouchZero"))||JSON.parse(sessionStorage.getItem("isTouchZeroOutput"))}
+                    />
+                    <span disabled="disabled" className="A1" id="foo1" style={{color: bttnColor[0]}}>
+                      A1
+                    </span>
                   </span>
-                </span>
-                <span className="properties-InputLabel">
-                  <input
-                    className="properties-InputCheckBox"
-                    type="checkbox"
-                    // checked={a2}
-                    // onClick={() => myFunction2()}
-                    // onChange={() => onA2ValueChange()}
-                  />
-                  <span disabled="disabled" className="A1">
-                    A2
+                  <span className="InputLabel">
+                    <input
+                      className="InputCheckBox"
+                      type="checkbox"
+                      checked={a2}
+                      onClick={() => myFunction2()}
+                      onChange={() => onA2ValueChange()}
+                      
+                    />
+                    <span disabled="disabled" className="A1" id="foo2" style={{color: bttnColor[1]}}>
+                      A2
+                    </span>
                   </span>
-                </span>
-                <span className="properties-InputLabel">
-                  <input
-                    className="properties-InputCheckBox"
-                    type="checkbox"
-                    // checked={a2}
-                    // onClick={() => myFunction2()}
-                    // onChange={() => onA2ValueChange()}
-                  />
-                  <span disabled="disabled" className="A1">
-                    A2
+                </div>
+              </div>
+              {/* B PORT */}
+              <div className="tlb">
+                <div className="tlbIn ">
+                  <span className={"InputLabel " + " InputLabel-" + (JSON.parse(sessionStorage.getItem("isTouchOne"))||JSON.parse(sessionStorage.getItem("isTouchOneOutput")))}>
+                    <input
+                      className="InputCheckBox"
+                      type="checkbox"
+                      checked={b1}
+                      onClick={() => myFunction3()}
+                      onChange={() => onB1ValueChange()}
+                      disabled={JSON.parse(sessionStorage.getItem("isTouchOne"))||JSON.parse(sessionStorage.getItem("isTouchOneOutput"))}
+                 
+                    />
+                    <span disabled="disabled" className="A1" id="foo3" style={{color: bttnColor[2]}}>
+                      B1
+                    </span>
                   </span>
-                </span>
+                  <span className="InputLabel">
+                    <input
+                      className="InputCheckBox"
+                      type="checkbox"
+                      checked={b2}
+                      onClick={() => myFunction4()}
+                      onChange={() => onB2ValueChange()}
+                      
+                    />
+                    <span disabled="disabled" className="A1" id="foo4" style={{color: bttnColor[3]}}>
+                      B2
+                    </span>
+                  </span>
+                </div>
+              </div>
+              {/* E PORT */}
+              <div className="tlb">
+                <div className="tlbIn ">
+                  <span className="InputLabel-true">
+                    <input
+                      className="InputCheckBox"
+                      type="checkbox"
+                      checked={e1}
+                      onClick={() => myFunction9()}
+                      onChange={() => onE1ValueChange()}
+                      disabled={true}
+                    />
+                    <span disabled="disabled" className="A1" id="foo9" style={{color: bttnColor[8]}}>
+                      E1
+                    </span>
+                  </span>
+                  <span className="InputLabel-true">
+                    <input
+                      className="InputCheckBox"
+                      type="checkbox"
+                      checked={e2}
+                      onClick={() => myFunction10()}
+                      onChange={() => onE2ValueChange()}
+                      disabled={true}
+                    />
+                    <span disabled="disabled" className="A1" id="foo10" style={{color: bttnColor[9]}}>
+                      E2
+                    </span>
+                  </span>
+                </div>
+              </div>
+              {/* M1 PORT */}
+              <div className="tlb">
+                <div className="tlbIn ">
+                  <span className={"InputLabel" + " InputLabel-" + JSON.parse(sessionStorage.getItem("isSmileOne"))}>
+                    <input
+                      className="InputCheckBox"
+                      type="checkbox"
+                      checked={m1}
+                      onClick={() => myFunction13()}
+                      onChange={() => onM1ValueChange()}
+                      disabled={JSON.parse(sessionStorage.getItem("isSmileOne"))}
+                 
+                    />
+                    <span  
+                 className="A1" id="foo13" style={{color: bttnColor[12]}}>
+                      M1
+                    </span>
+                  </span>
+                  <span className={"InputLabel" + " InputLabel-" +JSON.parse(sessionStorage.getItem("isSmileTwo"))}>
+                    <input
+                      className="InputCheckBox"
+                      type="checkbox"
+                      checked={m2}
+                      onClick={() => myFunction14()}
+                      onChange={() => onM2ValueChange()}
+                      disabled={JSON.parse(sessionStorage.getItem("isSmileTwo"))}
+                 
+                    />
+                    <span disabled="disabled" className="A1" id="foo14" style={{color: bttnColor[13]}}>
+                      M2
+                    </span>
+                  </span>
+                </div>
+              </div>
+            
+             
+            </div>
+            
+      
+            <div className="ButtonRightDiv">
+              {/* C PORT */}
+              <div className="tlb">
+                <div className="tlbIn ">
+                  <span className={"InputLabel " + " InputLabel-" + (JSON.parse(sessionStorage.getItem("isTouchTwo"))||JSON.parse(sessionStorage.getItem("isTouchTwoOutput")))}>
+                    <input
+                      className="InputCheckBox"
+                      type="checkbox"
+                      checked={c1}
+                      onClick={() => myFunction5()}
+                      onChange={() => onC1ValueChange()}
+                      disabled={JSON.parse(sessionStorage.getItem("isTouchTwo"))||JSON.parse(sessionStorage.getItem("isTouchTwoOutput"))}
+                 
+                    />
+                    <span disabled="disabled" className="A1" id="foo5" style={{color: bttnColor[4]}}>
+                      C1
+                    </span>
+                  </span>
+                  <span className="InputLabel">
+                    <input
+                      className="InputCheckBox"
+                      type="checkbox"
+                      checked={c2}
+                      onClick={() => myFunction6()}
+                      onChange={() => onC2ValueChange()}
+                    />
+                    <span disabled="disabled" className="A1" id="foo6" style={{color: bttnColor[5]}}>
+                      C2
+                    </span>
+                  </span>
+                </div>
+              </div>
+              {/* D PORT */}
+              <div className="tlb">
+                <div className="tlbIn ">
+                  <span className={"InputLabel" + " InputLabel-" + (JSON.parse(sessionStorage.getItem("isDistanceSensors"))||JSON.parse(sessionStorage.getItem("isGestureSensor"))||JSON.parse(sessionStorage.getItem("isLightSensor"))||JSON.parse(sessionStorage.getItem("isColorSensor")))}>
+                    <input
+                      className="InputCheckBox"
+                      type="checkbox"
+                      checked={d1}
+                      onClick={() => myFunction7()}
+                      onChange={() => onD1ValueChange()}
+                      disabled={JSON.parse(sessionStorage.getItem("isDistanceSensors"))||JSON.parse(sessionStorage.getItem("isGestureSensor"))||JSON.parse(sessionStorage.getItem("isLightSensor"))||JSON.parse(sessionStorage.getItem("isColorSensor"))}
+                 
+                    />
+                    <span disabled="disabled" className="A1" id="foo7" style={{color: bttnColor[6]}}>
+                      D1
+                    </span>
+                  </span>
+                  <span className="InputLabel">
+                    <input
+                      className="InputCheckBox"
+                      type="checkbox"
+                      checked={d2}
+                      onClick={() => myFunction8()}
+                      onChange={() => onD2ValueChange()}
+                    />
+                    <span disabled="disabled" className="A1" id="foo8" style={{color: bttnColor[7]}}>
+                      D2
+                    </span>
+                  </span>
+                </div>
+              </div>
+              {/* F PORT */}
+              <div className="tlb">
+                <div className="tlbIn ">
+                  <span className="InputLabel">
+                    <input
+                      className="InputCheckBox"
+                      type="checkbox"
+                      checked={f1}
+                      onClick={() => myFunction11()}
+                      onChange={() => onF1ValueChange()}
+                    />
+                    <span disabled="disabled" className="A1" id="foo11" style={{color: bttnColor[10]}}>
+                      F1
+                    </span>
+                  </span>
+                  <span className="InputLabel">
+                    <input
+                      className="InputCheckBox"
+                      type="checkbox"
+                      checked={f2}
+                      onClick={() => myFunction12()}
+                      onChange={() => onF2ValueChange()}
+                    />
+                    <span disabled="disabled" className="A1" id="foo12" style={{color: bttnColor[11]}}>
+                      F2
+                    </span>
+                  </span>
+                </div>
+              </div>
+              {/* M2 PORT */}
+              <div className="tlb">
+                <div className="tlbIn ">
+                  <span className={"InputLabel " + " InputLabel-" + JSON.parse(sessionStorage.getItem("isSmileThree"))}>
+                    <input
+                      className="InputCheckBox"
+                      type="checkbox"
+                      checked={m3}
+                      onClick={() => myFunction15()}
+                      onChange={() => onM3ValueChange()}
+                      disabled={JSON.parse(sessionStorage.getItem("isSmileThree"))}
+                 
+                    />
+                    <span disabled="disabled" className="A1" id="foo15" style={{color: bttnColor[14]}}>
+                      M3
+                    </span>
+                  </span>
+                  <span className={"InputLabel " + " InputLabel-" + JSON.parse(sessionStorage.getItem("isSmileFour"))}>
+                    <input
+                      className="InputCheckBox"
+                      type="checkbox"
+                      checked={m4}
+                      onClick={() => myFunction16()}
+                      onChange={() => onM4ValueChange()}
+                      disabled={JSON.parse(sessionStorage.getItem("isSmileFour"))}
+                 
+                    />
+                    <span disabled="disabled" className="A1" id="foo16" style={{color: bttnColor[15]}}>
+                      M4
+                    </span>
+                  </span>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="ButtonDiv">
-            {/* A PORT */}
-            <div className="tlb">
-              <div className="tlbIn ">
-                <span className="InputLabel">
-                  <input
-                    className="InputCheckBox"
-                    type="checkbox"
-                    checked={a1}
-                    onClick={() => myFunction1()}
-                    onChange={() => onA1ValueChange()}
-                  />
-                  <span disabled="disabled" className="A1" id="foo1">
-                    A1
-                  </span>
-                </span>
-                <span className="InputLabel">
-                  <input
-                    className="InputCheckBox"
-                    type="checkbox"
-                    checked={a2}
-                    onClick={() => myFunction2()}
-                    onChange={() => onA2ValueChange()}
-                  />
-                  <span disabled="disabled" className="A1" id="foo2">
-                    A2
-                  </span>
-                </span>
-              </div>
-            </div>
-            {/* B PORT */}
-            <div className="tlb">
-              <div className="tlbIn ">
-                <span className="InputLabel">
-                  <input
-                    className="InputCheckBox"
-                    type="checkbox"
-                    checked={b1}
-                    onClick={() => myFunction3()}
-                    onChange={() => onB1ValueChange()}
-                  />
-                  <span disabled="disabled" className="A1" id="foo3">
-                    B1
-                  </span>
-                </span>
-                <span className="InputLabel">
-                  <input
-                    className="InputCheckBox"
-                    type="checkbox"
-                    checked={b2}
-                    onClick={() => myFunction4()}
-                    onChange={() => onB2ValueChange()}
-                  />
-                  <span disabled="disabled" className="A1" id="foo4">
-                    B2
-                  </span>
-                </span>
-              </div>
-            </div>
-            <div className="tlb">
-              <div className="tlbIn ">
-                <span className="InputLabel">
-                  <input
-                    className="InputCheckBox"
-                    type="checkbox"
-                    checked={e1}
-                    onClick={() => myFunction9()}
-                    onChange={() => onE1ValueChange()}
-                  />
-                  <span disabled="disabled" className="A1" id="foo9">
-                    E1
-                  </span>
-                </span>
-                <span className="InputLabel">
-                  <input
-                    className="InputCheckBox"
-                    type="checkbox"
-                    checked={e2}
-                    onClick={() => myFunction10()}
-                    onChange={() => onE2ValueChange()}
-                  />
-                  <span disabled="disabled" className="A1" id="foo10">
-                    E2
-                  </span>
-                </span>
-              </div>
-            </div>
-            <div className="tlb">
-              <div className="tlbIn ">
-                <span className="InputLabel">
-                  <input
-                    className="InputCheckBox"
-                    type="checkbox"
-                    checked={f1}
-                    onClick={() => myFunction11()}
-                    onChange={() => onF1ValueChange()}
-                  />
-                  <span disabled="disabled" className="A1" id="foo11">
-                    F1
-                  </span>
-                </span>
-                <span className="InputLabel">
-                  <input
-                    className="InputCheckBox"
-                    type="checkbox"
-                    checked={f2}
-                    onClick={() => myFunction12()}
-                    onChange={() => onF2ValueChange()}
-                  />
-                  <span disabled="disabled" className="A1" id="foo12">
-                    F2
-                  </span>
-                </span>
-              </div>
-            </div>
-          </div>
-
-          <div className="ButtonRightDiv">
-            <div className="tlb">
-              <div className="tlbIn ">
-                <span className="InputLabel">
-                  <input
-                    className="InputCheckBox"
-                    type="checkbox"
-                    checked={c1}
-                    onClick={() => myFunction5()}
-                    onChange={() => onC1ValueChange()}
-                  />
-                  <span disabled="disabled" className="A1" id="foo5">
-                    C1
-                  </span>
-                </span>
-                <span className="InputLabel">
-                  <input
-                    className="InputCheckBox"
-                    type="checkbox"
-                    checked={c2}
-                    onClick={() => myFunction6()}
-                    onChange={() => onC2ValueChange()}
-                  />
-                  <span disabled="disabled" className="A1" id="foo6">
-                    C2
-                  </span>
-                </span>
-              </div>
-            </div>
-            <div className="tlb">
-              <div className="tlbIn ">
-                <span className="InputLabel">
-                  <input
-                    className="InputCheckBox"
-                    type="checkbox"
-                    checked={d1}
-                    onClick={() => myFunction7()}
-                    onChange={() => onD1ValueChange()}
-                  />
-                  <span disabled="disabled" className="A1" id="foo7">
-                    D1
-                  </span>
-                </span>
-                <span className="InputLabel">
-                  <input
-                    className="InputCheckBox"
-                    type="checkbox"
-                    checked={d2}
-                    onClick={() => myFunction8()}
-                    onChange={() => onD2ValueChange()}
-                  />
-                  <span disabled="disabled" className="A1" id="foo8">
-                    D2
-                  </span>
-                </span>
-              </div>
-            </div>
-            <div className="tlb">
-              <div className="tlbIn ">
-                <span className="InputLabel">
-                  <input
-                    className="InputCheckBox"
-                    type="checkbox"
-                    checked={m1}
-                    onClick={() => myFunction13()}
-                    onChange={() => onM1ValueChange()}
-                  />
-                  <span disabled="disabled" className="A1" id="foo13">
-                    M1
-                  </span>
-                </span>
-                <span className="InputLabel">
-                  <input
-                    className="InputCheckBox"
-                    type="checkbox"
-                    checked={m2}
-                    onClick={() => myFunction14()}
-                    onChange={() => onM2ValueChange()}
-                  />
-                  <span disabled="disabled" className="A1" id="foo14">
-                    M2
-                  </span>
-                </span>
-              </div>
-            </div>
-            <div className="tlb">
-              <div className="tlbIn ">
-                <span className="InputLabel">
-                  <input
-                    className="InputCheckBox"
-                    type="checkbox"
-                    checked={m3}
-                    onClick={() => myFunction15()}
-                    onChange={() => onM3ValueChange()}
-                  />
-                  <span disabled="disabled" className="A1" id="foo15">
-                    M3
-                  </span>
-                </span>
-                <span className="InputLabel">
-                  <input
-                    className="InputCheckBox"
-                    type="checkbox"
-                    checked={m4}
-                    onClick={() => myFunction16()}
-                    onChange={() => onM4ValueChange()}
-                  />
-                  <span disabled="disabled" className="A1" id="foo16">
-                    M4
-                  </span>
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
+         </div>
       </div>
 
       <div className="SelectScreenBottom">
@@ -932,7 +924,7 @@ const Port = () => {
           />
         </div>
       </div>
-    </>
+    </> 
   );
 };
 

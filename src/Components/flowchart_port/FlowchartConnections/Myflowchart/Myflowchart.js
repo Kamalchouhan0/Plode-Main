@@ -1,4 +1,10 @@
-import React, { useState, useLayoutEffect, useEffect } from "react";
+import React, {
+  useState,
+
+  useLayoutEffect,
+  useEffect,
+
+} from "react";
 import { Modal } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import Popup from "./Popup";
@@ -8,6 +14,7 @@ import Panel1 from "../logic/pannel/";
 import { v4 } from "uuid";
 import { CustomDragLayer } from "./CustomDragLayer.js";
 
+
 import closeImg from "../../../../Assets/img/close.png";
 
 import _ from "lodash";
@@ -15,8 +22,11 @@ import ReactFlow, {
   ReactFlowProvider,
   addEdge,
   removeElements,
+
   Handle,
+
   getOutgoers,
+
 } from "react-flow-renderer";
 
 import start from "../../../../Assets/flowchart/start.png";
@@ -31,6 +41,7 @@ import { useLocalStorage } from "../../../LocalStorage/LocalStorage";
 import "./dnd.css";
 import "../../style.css";
 
+
 import renderPrgImage from "../../../../source/programImg";
 import flowchartImg from "../../../../Assets/img/simulate bar@2x.png";
 import secondaryImg from "../../../../Assets/img/save - secondary.png";
@@ -40,6 +51,11 @@ import { webSerialAction } from "../../../../redux/actions/index";
 import { useDrop, useDrag } from "react-dnd-latest";
 import clearImage from "../../../../Assets/flowchart/clearProgram _inA.png";
 import alignImage from "../../../../Assets/flowchart/button 52x52 - stroke.png";
+
+
+
+
+
 
 let modal;
 const onDragOver = (event) => {
@@ -363,7 +379,10 @@ const DnDFlow = (props) => {
   const [showPopup, setShowPopUp] = useState(false);
   const [data, setData] = useLocalStorage("element_data");
   const [elements, setElements] = useState(prevElement);
-  const [endIf_loop, setendIf_loop] = useState(false);
+  const [endIf_loop,setendIf_loop] = useState(false)
+
+
+
 
   function click(x, y) {
     var ev = new MouseEvent("click", {
@@ -381,30 +400,33 @@ const DnDFlow = (props) => {
 
   useLayoutEffect(() => {
     return () => {
+
       prevElement = elements;
+
+  
     };
   });
   useEffect(() => {
-    if (endIf_loop == true) {
-      console.log("gsk end repeat enter@@", elements);
+    if(endIf_loop==true){
+      console.log("gsk end repeat enter@@",elements)
       setElements((els) =>
-        els.map((el) => {
-          if (el.id === `${elements[Object.keys(elements).length - 2].id}`) {
-            console.log("gsk end repeat enter@@@@@@@@@@@@@@@@");
-            // it's important that you create a new object here
-            // in order to notify react flow about the change
-            console.log("@@done");
-            el.data.specificElType = "end1";
+      els.map((el) => {
+        if (el.id === `${elements[Object.keys(elements).length-2].id}`) {
+          console.log("gsk end repeat enter@@@@@@@@@@@@@@@@")
+          // it's important that you create a new object here
+          // in order to notify react flow about the change
+          console.log("@@done");
+          el.data.specificElType = "end1";
 
-            el.data.label = text(`end`, params.target);
-          }
+          el.data.label = text(`end`, params.target);
+        }
 
-          return el;
-        })
-      );
-      setendIf_loop(false);
+        return el;
+      })
+    );
+      setendIf_loop(false)
     }
-
+    
     console.log("rerendering!!!!!");
     let storeElements = _.cloneDeep(elements);
     for (let i = 0; i < storeElements.length; i++) {
@@ -459,22 +481,16 @@ const DnDFlow = (props) => {
         params.sourceHandle == "r"
       )
         rev = "false";
-
-      if (
-        rev == "false" &&
-        revValue == undefined &&
-        down.data.specificElType == "end/repeat"
-      ) {
-        setendIf_loop(true);
-
-        setTimeout(() => {
-          console.log("gsk end repeat enter", rev, down, elements);
-        }, 1000);
-      } else if (
-        rev == "false" &&
-        revValue.data.specificElType == "end/repeat"
-      ) {
-        await setElements((els) =>
+ 
+      if(rev=="false"&&revValue==undefined&&down.data.specificElType == "end/repeat"){
+        setendIf_loop(true)
+       
+        setTimeout(()=>{
+          console.log("gsk end repeat enter",rev,down,elements)
+        },1000);
+      }
+      else if (rev == "false" && (revValue.data.specificElType == "end/repeat")){
+          await setElements((els) =>
           els.map((el) => {
             if (el.id === `${params.target}`) {
               el.data.specificElType = "end1";
@@ -513,6 +529,7 @@ const DnDFlow = (props) => {
     }
     return y;
   };
+
 
   const onElementsRemove = (elementsToRemove) =>
     setElements((els) => removeElements(elementsToRemove, els));
@@ -585,87 +602,91 @@ const DnDFlow = (props) => {
         })
       );
     }
+
+
   };
 
+  
   // shashank onDrop
   const onDrop = async (event) => {
     // console.log("event", event);
-    try {
-      event.preventDefault();
+    try{
+    event.preventDefault();
 
-      if (reactFlowInstance) {
-        const type = event.dataTransfer.getData("application/reactflow");
-        console.log("Type@@@@@@@@@@@@@@@@@@@@@@@@@@@", typeof type);
-        if (type == null || type == "") return;
-        const position = reactFlowInstance.project({
-          x: event.clientX - 230,
-          y: event.clientY - 110,
-        });
+    
+    if (reactFlowInstance) {
+      const type = event.dataTransfer.getData("application/reactflow");
+      console.log("Type@@@@@@@@@@@@@@@@@@@@@@@@@@@", typeof type);
+      if (type == null || type == "") return;
+      const position = reactFlowInstance.project({
+        x: event.clientX - 230,
+        y: event.clientY - 110,
+      });
 
-        var nodeType;
-        if (type == "start") nodeType = "input";
-        else if (type == "end/repeat") nodeType = "output";
-        else nodeType = "output";
+      var nodeType;
+      if (type == "start") nodeType = "input";
+      else if (type == "end/repeat") nodeType = "output";
+      else nodeType = "output";
+     
+      let newNode;
+      if (type == "if" || type == "loop") {
+        newNode = await {
+          id: `${getId()}`,
 
-        let newNode;
-        if (type == "if" || type == "loop") {
-          newNode = await {
-            id: `${getId()}`,
+          subprogram: [],
+          position,
+          type: `${nodeType}`,
+          data: {
+            label: text(`${type}`, id),
+            elType: "node",
+            specificElType: `${type}`,
+            data_id: [id - 1],
+          },
+        };
+      } else {
+        newNode =  await {
+          id: `${getId()}`,
 
-            subprogram: [],
-            position,
-            type: `${nodeType}`,
-            data: {
-              label: text(`${type}`, id),
-              elType: "node",
-              specificElType: `${type}`,
-              data_id: [id - 1],
-            },
-          };
-        } else {
-          newNode = await {
-            id: `${getId()}`,
-
-            position,
-            type: `${nodeType}`,
-            data: {
-              label: text(`${type}`, id),
-              elType: "node",
-              specificElType: `${type}`,
-              data_id: [id - 1],
-            },
-          };
-        }
-
-        await setElements([...elements, newNode]);
-
-        const connect_line = JSON.parse(
-          sessionStorage.getItem("application/reactflow/connect")
-        );
-        if (connect_line.index != -1) {
-          let connect = {
-            source: elements[parseInt(connect_line.index)].id,
-            sourceHandle: connect_line.sourceHandle,
-            target: `${newNode.id}`,
-            targetHandle: null,
-          };
-          console.log("planegsk", connect_line, newNode.id, connect);
-          await onConnect(
-            connect,
-            elements[parseInt(connect_line.index)],
-            newNode
-          );
-        }
-        console.log("node:===>postion===>", newNode.position);
+          position,
+          type: `${nodeType}`,
+          data: {
+            label: text(`${type}`, id),
+            elType: "node",
+            specificElType: `${type}`,
+            data_id: [id - 1],
+          },
+        };
       }
-    } catch (e) {}
+
+      await setElements( [...elements, newNode]);
+     
+      
+
+      const connect_line = JSON.parse(
+        sessionStorage.getItem("application/reactflow/connect")
+      );
+      if (connect_line.index != -1) {
+        let connect = {
+          source: elements[parseInt(connect_line.index)].id,
+          sourceHandle: connect_line.sourceHandle,
+          target: `${newNode.id}`,
+          targetHandle: null,
+        };
+        console.log("planegsk", connect_line, newNode.id, connect);
+        await onConnect(connect, elements[parseInt(connect_line.index)], newNode);     
+      }
+      console.log("node:===>postion===>", newNode.position);
+    }
+  }catch(e){}
   };
 
+
+  
   //shashank onDrag
   const onNodeDrag = async (event, node) => {
     event.preventDefault();
 
-    if (event.clientX <= 103) {
+    if (event.clientX <= 30) {
       var index = await elements.findIndex(
         (e) => e.id === node.id && e.id !== "0"
       );
@@ -685,6 +706,7 @@ const DnDFlow = (props) => {
       }
     }
 
+   
     let sourceHandle = "d";
 
     for (let i = 0; i < Object.keys(elements).length; i++) {
@@ -786,12 +808,14 @@ const DnDFlow = (props) => {
   var toDeleteEdge = null;
   var selectedNode = null;
 
+
   let modalType;
 
   const onElementClick = async (event, element) => {
+
     if (element.id.search("react") != -1) {
       toDeleteEdge = element.id;
-
+   
       console.log("to delete edge", toDeleteEdge);
       return;
     }
@@ -799,7 +823,9 @@ const DnDFlow = (props) => {
     modal = element.id;
     console.log("element clicked", element);
     if (element.data) {
+    
       selectedNode = element.id;
+   
     }
     //if edge
     else {
@@ -891,6 +917,8 @@ const DnDFlow = (props) => {
       ];
       await setElements(prevElement);
     }
+
+   
   };
   const onNodeMouseLeave = async (event, node) => {
     if (parseInt(node.id) > 5) {
@@ -1006,13 +1034,17 @@ const DnDFlow = (props) => {
       (e) => e.targetHandle === undefined || e.sourceHandle === "d"
     );
 
+    
+
     a.push(n[0]);
 
     n = await getOutgoers(n[0], element);
 
+
+
     await nodeGet(n, a);
   };
-
+ 
   const nodeGetReverse = async (n, m) => {
     console.log("nodedebug   else  ", n[0], n, m, elements);
     if (Object.keys(n).length === 0) {
@@ -1345,11 +1377,13 @@ const DnDFlow = (props) => {
           },
           subprogram: send,
         });
+ 
       }
     }
   };
   const subprogramRecursive = async (aNode) => {
     for (let i in aNode) {
+
       if (
         aNode[i].data.specificElType == "if" ||
         aNode[i].data.specificElType == "loop" ||
@@ -1383,8 +1417,10 @@ const DnDFlow = (props) => {
           await subprogramRecursive(aNode[i].subprogram);
         }
       }
+
     }
   };
+
 
   const [uploadOpen, setuploadOpen] = useState(false);
   const sendBytes = async () => {
@@ -1398,8 +1434,12 @@ const DnDFlow = (props) => {
 
     await nodeGet(y, aNode);
     await nodeAddIfNo(aNode);
+ 
 
     await subprogramRecursive(aNode);
+
+  
+
 
     testSingleD = aNode;
 
@@ -1433,8 +1473,11 @@ const DnDFlow = (props) => {
       if (testSingleD[testSingleD.length - 1].data.specificElType === "end") {
         params.logic.end.state = "end";
       }
+   
+
 
       Object.assign(params.logic, { program: programSend });
+     
 
       Object.assign(params.logic, {
         insertState: false,
@@ -1447,42 +1490,49 @@ const DnDFlow = (props) => {
         active: [-1, -1],
         bottomPanel: "border",
       });
-
+      
       getBytes({ code: params });
       let bytes = sessionStorage.getItem("convert_Bytes");
       var data = bytes.split(",");
-
+    
       await writePort(data);
       setuploadOpen(true);
       setTimeout(() => {
         setuploadOpen(false);
       }, 3500);
       //socket.emit("/getSimulateBytes", { code: params });
-    } catch (e) {}
+    } catch (e) {
+    
+    }
   };
   const writePort = async (data) => {
     try {
       const ports = await navigator.serial.getPorts();
-
+   
       const writer = ports[0].writable.getWriter();
-
+  
       const sata = data;
       const data1 = new Uint8Array(sata); // hello// 82, 76, 0, 0, 0, 82, 0, 0, 0, 66, 0, 0, 1, 0, 1,
+  
 
       await writer.write(data1);
 
       writer.releaseLock();
-    } catch (e) {}
+    } catch (e) {
+    
+    }
   };
   const handleClose = () => {
     setShow(false);
     setTimeout(() => {
+  
       click(260, 200);
     }, 0);
   };
   let nodeX = 100;
   let nodeY = 100;
   const handleShow = () => setShow(true);
+
 
   const align = async () => {
     sessionStorage.setItem("planeOffset", null);
@@ -1554,6 +1604,7 @@ const DnDFlow = (props) => {
     }
   };
 
+
   const posAlignOld = async (a, nodeX, nodeY) => {
     let n;
     for (let i in a) {
@@ -1619,10 +1670,11 @@ const DnDFlow = (props) => {
     return { nodeY };
   };
 
-  const clear = async () => {
-    sessionStorage.setItem("flowchart-elements", null);
-    sessionStorage.setItem("flowchart-elements-id", null);
 
+  const clear = async () => {
+  sessionStorage.setItem("flowchart-elements", null);
+    sessionStorage.setItem("flowchart-elements-id", null);
+    
     setElements([
       {
         id: "0",
@@ -1637,10 +1689,11 @@ const DnDFlow = (props) => {
     ]);
   };
 
+
   const backBtnAction = () => {
     history.push("/flow/digital-analog");
   };
-
+ 
   const [p1, setP1] = useState({
     selected: false,
     port: {},
@@ -1650,6 +1703,7 @@ const DnDFlow = (props) => {
     const filters = [{ usbVendorId: 0x1a86, usbProductId: 0x7523 }];
     const port = await navigator.serial.requestPort({ filters });
     if (port.onconnect == null) {
+   
       setUsb(true);
     }
   };
@@ -1686,14 +1740,17 @@ const DnDFlow = (props) => {
     } catch (err) {
       console.log(err.message);
     }
+
   });
   //End
 
   const onMove = async (event, viewport) => {
+ 
     sessionStorage.setItem("planeOffset", JSON.stringify(event));
+   
   };
 
-  const [{}, drop] = useDrop(
+  const [{  }, drop] = useDrop(
     () => ({
       accept: "yellow",
       drop(_item, monitor) {
@@ -1789,6 +1846,7 @@ const DnDFlow = (props) => {
         </div>
       </div>
       <div className="dndflow">
+       
         <ReactFlowProvider>
           <Sidebar />
           <CustomDragLayer />
@@ -1799,6 +1857,7 @@ const DnDFlow = (props) => {
               onElementsRemove={onElementsRemove}
               onLoad={onLoad}
               onDrop={onDrop}
+             
               onDoubleClick={onDoubleClick}
               onElementClick={onElementClick}
               onDragOver={onDragOver}
@@ -1807,13 +1866,15 @@ const DnDFlow = (props) => {
               onNodeDragStop={onNodeDragStop}
               onNodeMouseLeave={onNodeMouseLeave}
               onNodeMouseEnter={onNodeMouseEnter}
+           
+
               onMove={onMove}
               className="react-flow-screen"
               style={{ height: "88.3vh", width: "inherit" }}
               id="reactFlow"
               ref={drop}
             >
-              <canvas
+                    <canvas
                 id="myCanvas"
                 width="1775"
                 height="884"
@@ -1823,7 +1884,7 @@ const DnDFlow = (props) => {
             {showPopup ? <Popup /> : null}
           </div>
         </ReactFlowProvider>
-
+    
         <Modal show={show} onHide={handleClose}>
           <img
             className="panelcloseImg"
@@ -1886,6 +1947,7 @@ const DnDFlow = (props) => {
       </div>
       <div className="SelectScreenBottom">
         <div className="bottom-child">
+         
           <img
             className="iconBtnSize imgBackBtn"
             src={renderPrgImage("backBtn")}

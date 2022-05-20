@@ -8,22 +8,35 @@ import pcImg from "../../Assets/internalAccessories/PC_image@3x.png";
 import { Link, useHistory } from "react-router-dom";
 import renderPrgImage from "../../source/programImg";
 
-import strokeImg from "../../Assets/img/button 52x52 - stroke.png";
 import digitalImg from "../../Assets/img/code bar@2x.png";
 import secondaryImg from "../../Assets/img/save - secondary.png";
-import Pcinternal4in1Active from "../../Assets/internalAccessories/4 in 1 - active.svg";
-import Pcinternal4in1InActive from "../../Assets/internalAccessories/4 in 1 - inactive.svg";
-import PcinternalBuzzerActive from "../../Assets/internalAccessories/buzzer - active.svg";
-import PcinternalBuzzerInActive from "../../Assets/internalAccessories/buzzer - inactive.svg";
+import strokeImg from "../../Assets/img/button 52x52 - stroke.png";
+import connectionImg from "../../Assets/usb - off@2x.png";
+
+import eyeInactiveImg from "../../Assets/internalAccessories/eye - inactive.484d85f3.svg";
+import teethImg from "../../Assets/internalAccessories/teeth - inactive.ff84b1d3.svg";
+import inImg from "../../Assets/internalAccessories/4 in 1 - inactive.ea3e994f.svg";
+import internalmicImg from "../../Assets/internalAccessories/internal mic - inactive.d43d2f36.svg";
+import buzzerImg from "../../Assets/internalAccessories/buzzer - inactive.872b79d8.svg";
+import touchpadsImg from "../../Assets/internalAccessories/touch pads - inactive.748c6933.svg";
+
 import PcinternalEYEActive from "../../Assets/internalAccessories/eye - active.svg";
 import PcinternalEYEInActive from "../../Assets/internalAccessories/eye - inactive.svg";
-import PcinternalMicInActive from "../../Assets/internalAccessories/internal mic - active.svg";
-import PcinternalMicActive from "../../Assets/internalAccessories/internal mic - inactive.svg";
-import PcinternalTeethActive from "../../Assets/internalAccessories/teeth - active.svg";
 import PcinternalTeethInActive from "../../Assets/internalAccessories/teeth - inactive.svg";
-import PcinternalTouchpadsActive from "../../Assets/internalAccessories/touch pads - active.svg";
+import PcinternalTeethActive from "../../Assets/internalAccessories/teeth - active.svg";
+
+import Pcinternal4in1Active from "../../Assets/internalAccessories/4 in 1 - active.svg";
+import Pcinternal4in1InActive from "../../Assets/internalAccessories/4 in 1 - inactive.svg";
+import PcinternalMicActive from "../../Assets/internalAccessories/internal mic - inactive.svg";
+import PcinternalMicInActive from "../../Assets/internalAccessories/internal mic - active.svg";
+import PcinternalBuzzerInActive from "../../Assets/internalAccessories/buzzer - inactive.svg";
+import PcinternalBuzzerActive from "../../Assets/internalAccessories/buzzer - active.svg";
 import PcinternalTouchpadsInActive from "../../Assets/internalAccessories/touch pads - inactive.svg";
-import connectionImg from "../../Assets/usb - off@2x.png";
+import PcinternalTouchpadsActive from "../../Assets/internalAccessories/touch pads - active.svg";
+
+import "./pcimage.css";
+import "./Navbar.css";
+import "./style.css";
 import "./buttonDig.scss";
 let bttnColor = [];
 let bttnColor2 = [];
@@ -912,6 +925,7 @@ function Digital() {
               </div>
             </div>
           </div>
+
           <div className="digital-ButtonRightDivInput">
             <div className="digital-flow-left-upper">
               <div className="digital-flow-left-upper-grp">

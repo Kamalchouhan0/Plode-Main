@@ -1,18 +1,20 @@
-import React, { useState, memo, useEffect } from "react";
+import React, {
+  useState,
+  memo,
+  useEffect,
+} from "react";
 import { useDrag } from "react-dnd-latest";
 import { getEmptyImage } from "react-dnd-html5-backend-latest";
 import { useHistory } from "react-router-dom";
 import "./dnd.css";
 
-let flagI = -1,
-  offset,
-  elements;
+let flagI = -1,offset, elements;
 let sourceHandle;
 const Sidebar = memo(function Sidebar(props) {
   const history = useHistory();
   let title, left, top;
   const [id, setId] = useState("nan");
-
+ 
   const [{ isDragging }, drag, preview] = useDrag(
     () => ({
       type: "yellow",
@@ -25,8 +27,10 @@ const Sidebar = memo(function Sidebar(props) {
     [id, left, top, title]
   );
 
-  var index1, index2, index3, index4;
+  var index1,index2,index3,index4;
   const onDragStart = async (event, nodeType) => {
+  
+ 
     let zoomVal = document.querySelector(".react-flow__nodes");
     let edgeZoom = document.querySelector(".react-flow__edges");
     console.log("zoom", edgeZoom.children[1]);
@@ -140,19 +144,22 @@ const Sidebar = memo(function Sidebar(props) {
               );
               console.log("gsk handle", sourceHandle, flagI);
             }
-            index1 = -(await elements.findIndex(
-              (e) => e.source === elements[flagI].id && e.sourceHandle === "d"
-            ));
-            index2 = -(await elements.findIndex(
-              (e) =>
-                e.source === elements[flagI].id && e.sourceHandle === "rYes"
-            ));
-            index3 = -(await elements.findIndex(
-              (e) => e.source === elements[flagI].id && e.sourceHandle === "rNo"
-            ));
-            index4 = -(await elements.findIndex(
-              (e) => e.source === elements[flagI].id && e.sourceHandle === "r"
-            ));
+              index1 =-await elements.findIndex(
+                (e) =>
+                  e.source === elements[flagI].id && e.sourceHandle === "d"
+              );
+              index2 =-await elements.findIndex(
+                (e) =>
+                  e.source === elements[flagI].id && e.sourceHandle === "rYes"
+              );
+              index3 =-await elements.findIndex(
+                (e) =>
+                  e.source === elements[flagI].id && e.sourceHandle === "rNo"
+              );
+              index4 =-await elements.findIndex(
+                (e) =>
+                  e.source === elements[flagI].id && e.sourceHandle === "r"
+              );
             break;
           }
         }
@@ -161,35 +168,33 @@ const Sidebar = memo(function Sidebar(props) {
     try {
       var c = document.getElementById("myCanvas");
       var ctx = c.getContext("2d");
-      console.log("gsk index", index1, index2, index3);
+      console.log("gsk index",index1,index2,index3)
       // var index2 = await elements.findIndex(
       //   (e) =>
       //     e.target === params.target && e.targetHandle === params.targetHandle
       // );
-      if (flagI != -1) {
+      if (flagI != -1 ) {
         let mx = 0,
           my = 0;
-        if (flagI == 0 && index1 >= 0) {
+        if (flagI == 0&&index1>=0) {
           mx = 60;
           my = 0;
-        } else if (sourceHandle == "d" && index1 >= 0) {
+        } else if (sourceHandle == "d"&&index1>=0) {
           mx = 60;
           my = 40;
-        } else if (sourceHandle == "rYes" && index2 >= 0) {
+        } else if (sourceHandle == "rYes"&&index2>=0) {
           mx = 115;
           my = 10;
-        } else if (sourceHandle == "rNo" && index3 >= 0) {
+        } else if (sourceHandle == "rNo"&&index3>=0) {
           mx = 115;
           my = 30;
-        } else if (sourceHandle == "r" && index4 >= 0) {
+        }else if(sourceHandle == "r"&&index4>=0) {
+          
           mx = 115;
           my = 20;
-        } else {
-          ctx.clearRect(0, 0, 1775, 884);
-          return;
-        }
+        }else {ctx.clearRect(0, 0, 1775, 884);return;}
         console.log("gskconnect", mx, my, sourceHandle);
-
+       
         ctx.beginPath();
         ctx.moveTo(
           elements[flagI].position.x + xOffset + mx,
@@ -221,12 +226,7 @@ const Sidebar = memo(function Sidebar(props) {
         if (event.clientY - 105 < elements[flagI].position.y + yOffset)
           cy = cy + event.clientY - 105;
         else cy = cy + elements[flagI].position.y + yOffset;
-        ctx.quadraticCurveTo(
-          cx,
-          cy,
-          event.clientX - 144,
-          event.clientY - 118 + 13
-        );
+        ctx.quadraticCurveTo(cx, cy, event.clientX - 144, event.clientY - 118+13);
         ctx.lineWidth = 2.725;
         ctx.strokeStyle = "green";
         ctx.clearRect(0, 0, 1775, 884);
@@ -250,15 +250,13 @@ const Sidebar = memo(function Sidebar(props) {
       "application/reactflow/connect",
       JSON.stringify(send)
     );
-    if (sessionStorage.getItem("planeOffset") != null)
-      if (sessionStorage.getItem("planeOffset").zoom != 1) {
-        console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@gsk");
-        setTimeout(() => {
-          history.push("/flow/digital-analog");
-          history.push("/flow/flowchart");
-        }, 0);
-        sessionStorage.setItem("planeOffset", null);
-      }
+    if(sessionStorage.getItem("planeOffset")!=null)
+    if(sessionStorage.getItem("planeOffset").zoom!=1){
+      console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@gsk")
+      setTimeout(()=>{history.push("/flow/digital-analog");
+      history.push("/flow/flowchart");},0)
+      sessionStorage.setItem("planeOffset",null)
+    }
   };
   useEffect(() => {
     preview(getEmptyImage(), { captureDraggingState: true });

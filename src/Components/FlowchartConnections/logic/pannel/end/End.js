@@ -1,5 +1,12 @@
 import React, { Component } from "react";
+import Logic from "..";
+
 import LogicSwitchComp from "../helpers/SwitchComp/LogicSwitchComp";
+
+import SwitchComp from "../../../../humanoidFlowChart/ReusableComp/SwitchComp/SwitchComp";
+import SwitchCompThree from "../../../../humanoidFlowChart/ReusableComp/SwitchCompThree/SwitchCompThree";
+import SwitchCompTwo from "../../../../humanoidFlowChart/ReusableComp/SwitchCompTwo/SwitchCompTwo";
+import Colors from "../../Colors";
 
 class End extends Component {
   constructor(props) {

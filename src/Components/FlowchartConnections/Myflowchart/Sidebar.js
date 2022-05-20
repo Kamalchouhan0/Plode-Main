@@ -1,6 +1,6 @@
-import React from "react";
-import Panel1 from "../../logic/panels/";
+import React, { DragEvent } from "react";
 import "./dnd.css";
+import Panel1 from "../../logic/panels/";
 let flag = 0;
 const onDragStart = (event, nodeType) => {
   console.log(nodeType, flag);

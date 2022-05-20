@@ -5,7 +5,7 @@
 
 import React, { Component } from "react";
 
-import { DragSource } from "react-dnd-old";
+import { DragSource } from "react-dnd";
 
 import ItemTypes from "./ItemTypes";
 import ImageSizes from "./ImageSizes";
@@ -13,6 +13,7 @@ import ImageSizes from "./ImageSizes";
 import DraggingInfo from "./DraggingInfo";
 
 import {
+  devicePc,
   PlayComputerImg,
   PcinternalMicActive,
   PcinternalMicInActive,

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { DragLayer } from "react-dnd-old";
+import { DragLayer } from "react-dnd";
 import DraggingInfo from "./DraggingInfo";
 import ItemTypes from "./ItemTypes";
 import ImageSizes from "./ImageSizes";
