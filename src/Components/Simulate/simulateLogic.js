@@ -14,6 +14,7 @@ import HexBoard from "../logic/HexBoard";
 import ProgramToDrawing from "../logic/ProgramToDrawing";
 import Sizes from "../logic/Sizes";
 import getBytes from "./BytesGeneration/convertBytes";
+import Modal from "react-modal";
 
 var oldDeltaX, oldDeltaY, panning;
 

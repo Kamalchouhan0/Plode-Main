@@ -39,6 +39,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 import ItemTypes from "./ItemTypes";
+import Modal from "react-modal";
 
 import { DropTarget } from "react-dnd-old";
 import DraggingInfo from "./DraggingInfo";
@@ -47,6 +48,7 @@ import DraggingInfo from "./DraggingInfo";
 
 import Bibox from "./Bibox";
 import Component1 from "./Component";
+import renderPrgImage from "../../source/programImg";
 
 var tutorialDesc = "";
 //Custom Styles

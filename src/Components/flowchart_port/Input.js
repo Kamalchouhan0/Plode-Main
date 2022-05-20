@@ -20,6 +20,7 @@ import PcinternalTouchpadsActive from "../../Assets/internalAccessories/touch pa
 import PcinternalTouchpadsInActive from "../../Assets/internalAccessories/touch pads - inactive.svg";
 import connectionImg from "../../Assets/usb - off@2x.png";
 import renderPrgImage from "../../source/programImg";
+import { useHistory } from "react-router";
 import "./button.scss";
 import "./Navbar.css";
 import "./pcimage.css";
