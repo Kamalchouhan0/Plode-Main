@@ -1,26 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { useHistory } from "react-router";
-import DeviceSelectStyle from "./DeviceSelect.module.css";
-import { webSerialAction } from "../../redux/actions/index";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-
-import socketIOClient from "socket.io-client";
-import io from "socket.io-client";
-import {
-  backBtn,
-  helpBtnActive,
-  helpBtnInActive,
-  devices,
-  Computer,
-  Pc,
-  reconnect,
-  skip,
-  clos,
-  Connect,
-} from "../../source/index";
-import { data } from "@tensorflow/tfjs";
+import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
+import { webSerialAction } from "../../redux/actions/index";
 import renderImage from "../../source/importImg";
+import DeviceSelectStyle from "./DeviceSelect.module.css";
 
 const ENDPOINT = "localhost:3008";
 //let socket = socketIOClient("http://localhost:3008");

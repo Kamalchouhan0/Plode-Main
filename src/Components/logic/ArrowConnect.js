@@ -1,6 +1,6 @@
 import Arrow from "./Arrow";
 
-import React, { Component } from "react";
+import React from "react";
 var createReactClass = require("create-react-class");
 
 var PureRenderMixin = require("react-addons-pure-render-mixin");

@@ -8,7 +8,6 @@ import Sizes from "../../helpers/Sizes";
 
 import Connections from "./Connections";
 import IsOverPort from "./IsOverPort";
-import { PlayComputerImg } from "../../source/index";
 import renderPrgImage from "../../source/programImg";
 import renderCompImg from "../../source/Comp_Img";
 var Camera; // This means that the collect function relies on the old Camera object before drag begins

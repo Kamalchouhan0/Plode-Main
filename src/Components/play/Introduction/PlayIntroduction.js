@@ -1,19 +1,16 @@
-import React, { Component } from "react";
-
-import "./intro.css";
+import { faCoffee, faTimesCircle } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  CarouselProvider,
-  Slider,
-  Slide,
-  ButtonBack,
   ButtonNext,
+  CarouselProvider,
   Dot,
-  DotGroup,
+  Slide,
+  Slider,
 } from "pure-react-carousel";
 import "pure-react-carousel/dist/react-carousel.es.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCoffee, faTimesCircle } from "@fortawesome/free-solid-svg-icons";
+import React, { Component } from "react";
 import { BackgroundSrc } from "../../../source/source";
+import "./intro.css";
 
 const element = <FontAwesomeIcon icon={faCoffee} />;
 //const socket = io("http://localhost:3008");

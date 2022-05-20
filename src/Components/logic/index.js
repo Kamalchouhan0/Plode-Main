@@ -18,28 +18,10 @@ import Sizes from "./Sizes";
 import ProgramToDrawing from "./ProgramToDrawing";
 import "../../css/logic.css";
 import Modal from "react-modal";
-import socketIOClient from "socket.io-client";
-
-import {
-  assemblebar,
-  readPC,
-  saveBtnInActive,
-  saveBtnActive,
-  helpBtnActive,
-  helpBtnInActive,
-  bluetoothBtnInActive,
-  bluetoothBtnActive,
-  readPCInActive,
-  backBtn,
-  nextBtn,
-  usbOFF,
-  usbON,
-  UsbOff,
-} from "../../source/index";
-import Colors from "./Colors";
-import { object } from "prop-types";
+import "../../css/logic.css";
 import renderPrgImage from "../../source/programImg";
 import LogicPrgm from "../ReusableComponents/PrgmSlider/LogicPrgm/LogicPrgm";
+
 var _ = require("lodash");
 var countLogic;
 var oldDeltaX, oldDeltaY, panning;
@@ -1803,7 +1785,7 @@ class Logic extends Component {
                   <img
                     onClick={this.close}
                     className="closeconceptModal"
-                    src="images/login/button_exit@2x.png"
+                    src={renderPrgImage("closeBtn")}
                   ></img>
                   <div className="connectconceptMsg">
                     <p>
@@ -1863,7 +1845,7 @@ class Logic extends Component {
                     alt="fgfs"
                     onClick={this.closecheckEndProgram}
                     className="closeconceptModal"
-                    src="images/login/button_exit@2x.png"
+                    src={renderPrgImage("closeBtn")}
                   ></img>
                   <div className="connectconceptMsg">
                     <p>Please end the program with End or Repeat.</p>

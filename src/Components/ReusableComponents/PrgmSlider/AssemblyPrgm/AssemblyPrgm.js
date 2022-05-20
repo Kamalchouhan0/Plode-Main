@@ -105,7 +105,6 @@ export class AssemblyPrgm extends Component {
             <img
               className={AssemblyStyle.img}
               src={renderPrgImage("AssemblyPrgf1")}
-              className={AssemblyStyle.img}
             />
             <div className={AssemblyStyle.Hel}>
               <p className={AssemblyStyle.Hel_P}>
@@ -133,18 +132,11 @@ export class AssemblyPrgm extends Component {
               </p>
             </div>
           </div>
-          {/* <div className="wdt>
-            <img
-              style={{ height: "40px" }}
-              src={}
-              className="img"
-            />
-          </div> */}
+
           <div className={AssemblyStyle.wdt}>
             <img
               className={AssemblyStyle.img}
               src={renderPrgImage("AssemblyPrgf2")}
-              className={AssemblyStyle.img}
             />
             <div className={AssemblyStyle.con}>
               <p className={AssemblyStyle.con_P}>
@@ -158,7 +150,6 @@ export class AssemblyPrgm extends Component {
             <img
               className={AssemblyStyle.img}
               src={renderPrgImage("AssemblyPrgf3")}
-              className={AssemblyStyle.img}
             />
             <div className={AssemblyStyle.Mus}>
               <p className={AssemblyStyle.Mus_P}>
@@ -175,7 +166,6 @@ export class AssemblyPrgm extends Component {
             <img
               className={AssemblyStyle.img}
               src={renderPrgImage("AssemblyPrgf4")}
-              className={AssemblyStyle.img}
             />
             <div className={AssemblyStyle.Cam}>
               <p className={AssemblyStyle.Cam_P}>
@@ -193,9 +183,6 @@ export class AssemblyPrgm extends Component {
               <p className={AssemblyStyle.Camr_P}>To go to the code screen</p>
             </div>
           </div>
-          {/* <div className="wdt">
-            <img className="img" src={"assets/w2.png"} className="img" />
-          </div> */}
         </Slider>
       </div>
     );

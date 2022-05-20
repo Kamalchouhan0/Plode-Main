@@ -1,59 +1,23 @@
-import React, { useState, useEffect } from "react";
-import "./speak.scss";
-import io from "socket.io-client";
-import { useHistory } from "react-router";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import unicodeToChar from "../../../../utils/unicodeToChar";
+import { useHistory } from "react-router";
 import { webSerialAction } from "../../../../redux/actions/index";
-
-// import {
-//   backBtn,
-//   helpBtnInActive,
-//   helpBtnActive,
-//   bluetooth,
-//   languageIA,
-//   PC,
-//   SpeechIA,
-//   Soundwaves,
-//   SpeechAc,
-//   languageAc,
-//   helpAc,
-//   languagebar,
-//   languageSVG,
-//   Soundwaves_Svg,
-//   languagebar_Svg,
-//   SpeechIA_Svg,
-//   SpeechAc_Svg,
-//   UsbOn,
-//   UsbOff,
-//   clos,
-// } from "../../../../source/index";
-
 import renderImage from "../../../../source/importImg";
-
-import Ace from "../../../../Assets/PC_image@2x.png";
-import SpeechA from "../../../../Assets/speech active.svg";
-
-import SpeechIAC from "../../../../Assets/speech inactive.svg";
-import usboof from "../../../../Assets/usb - off@2x.png";
-import backx from "../../../../Assets/back@2x.png";
-
+import unicodeToChar from "../../../../utils/unicodeToChar";
 import SpchSlider from "../../../ReusableComponents/SpchSlider/SpchSlider";
+import "./speak.scss";
+
 try {
   var SpeechRecognition =
     window.SpeechRecognition || window.webkitSpeechRecognition;
   var recognition = new SpeechRecognition();
 } catch (e) {}
-//const socket = io("http://localhost:3008");
 // recognition.start();
 
 function Speech(props) {
   let history = useHistory();
 
   const gobackUrl = () => {
-    // setTimeout(function () {
-    //   window.location.reload(false);
-    // }, 100);
     history.goBack();
   };
 

@@ -11,10 +11,6 @@ import helpBtnActive from "../Assets/Bisoft_UI/Buttons/Active with shadow/help@2
 
 import helpBtnInActive from "../Assets/Bisoft_UI/Buttons/Inactive with shadow/help@2x.png";
 
-// import bluetoothBtnActive from "../Assets/Bisoft_UI/Buttons/Active with shadow/bluetooth - on@2x.png";
-
-// import bluetoothBtnInActive from "../Assets/Bisoft_UI/Buttons/Inactive with shadow/bluetooth - on@2x.png";
-
 import uploadBtn from "../Assets/Bisoft_UI/Buttons/Active with shadow/upload@2x.png";
 
 import playrunBtn from "../Assets/Bisoft_UI/Buttons/Active with shadow/play-run@2x.png";
@@ -159,6 +155,7 @@ import newfilegroupbutton from "../Assets/Bisoft_UI/Program/PNG/newfilegroupbutt
 import timericon from "../Assets/Bisoft_UI/Program/PNG/timericon@2x.png";
 
 import closeBtn from "../Assets/Bisoft_UI/Program/PNG/close@2x.png";
+import close from "../Assets/Bisoft_UI/Program/PNG/close.png";
 import closBtn from "../Assets/Bisoft_UI/Program/PNG/close@2x.png";
 import closeBtnShadow from "../Assets/Bisoft_UI/Buttons/Active with shadow/close@2x.png";
 
@@ -331,8 +328,6 @@ function renderPrgImage(imageName) {
       return touch0Active;
     case "touch0InActive":
       return touch0InActive;
-    case "touch0InActive":
-      return touch0InActive;
     case "touch1Active":
       return touch1Active;
     case "touch1InActive":
@@ -430,6 +425,9 @@ function renderPrgImage(imageName) {
       return timericon;
     case "closeBtn":
       return closeBtn;
+
+    case "close":
+      return close;
     case "closeBtnShadow":
       return closeBtnShadow;
     case "assemblebar":

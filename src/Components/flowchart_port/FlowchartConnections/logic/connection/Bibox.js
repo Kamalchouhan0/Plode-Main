@@ -13,7 +13,6 @@ import ImageSizes from "./ImageSizes";
 import DraggingInfo from "./DraggingInfo";
 
 import {
-  devicePc,
   PlayComputerImg,
   PcinternalMicActive,
   PcinternalMicInActive,

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Logic from "..";
 import "./end.css";
 
 import LogicSwitchComp from "../helpers/SwitchComp/LogicSwitchComp";

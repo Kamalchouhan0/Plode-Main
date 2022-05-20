@@ -6,32 +6,14 @@ import "./camera.css";
 import { useHistory } from "react-router";
 import { webSerialAction } from "../../../../redux/actions/index";
 
-// import {
-//   backBtn,
-//   helpBtnInActive,
-//   helpBtnActive,
-//   bluetooth,
-//   popup,
-//   Pc,
-//   Disconnected,
-//   popup_Svg,
-//   Disconnected_Svg,
-//   UsbOn,
-//   UsbOff,
-//   clos,
-// } from "../../../../source/index";
-
 import renderImage from "../../../../source/importImg";
 
-import * as tf from "@tensorflow/tfjs";
 import * as facemesh from "@tensorflow-models/face-landmarks-detection";
 
 import Webcam from "react-webcam";
 import { useRef } from "react";
 import CamSlider from "../../../ReusableComponents/CamSlider/CamSlider";
 import { drawMesh } from "./utilities";
-
-import io from "socket.io-client";
 
 function Camera(props) {
   const connectedACE = {

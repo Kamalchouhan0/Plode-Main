@@ -106,7 +106,6 @@ export class LogicPrgm extends Component {
             <img
               className={LogicStyle.img}
               src={renderPrgImage("LogicPrgf1")}
-              className={LogicStyle.img}
             />
             <div className={LogicStyle.Hel}>
               <p className={LogicStyle.Hel_P}>
@@ -139,7 +138,6 @@ export class LogicPrgm extends Component {
             <img
               className={LogicStyle.img}
               src={renderPrgImage("LogicPrgf2")}
-              className={LogicStyle.img}
             />
             <div className={LogicStyle.con}>
               <p className={LogicStyle.con_P}>
@@ -156,7 +154,6 @@ export class LogicPrgm extends Component {
             <img
               className={LogicStyle.img}
               src={renderPrgImage("LogicPrgf3")}
-              className={LogicStyle.img}
             />
             <div className={LogicStyle.Mus}>
               <p className={LogicStyle.Mus_P}>
@@ -174,7 +171,6 @@ export class LogicPrgm extends Component {
             <img
               className={LogicStyle.img}
               src={renderPrgImage("LogicPrgf4")}
-              className={LogicStyle.img}
             />
             <div className={LogicStyle.Cam}>
               <p className={LogicStyle.Cam_P}>
@@ -191,7 +187,6 @@ export class LogicPrgm extends Component {
             <img
               className={LogicStyle.img}
               src={renderPrgImage("LogicPrgf5")}
-              className={LogicStyle.img}
             />
             <div className={LogicStyle.Ca}>
               <p className={LogicStyle.Ca_P}>

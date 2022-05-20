@@ -8,20 +8,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { browserName, browserVersion } from "react-device-detect";
-// import Learn from './components/learn';
-// import MidProgramming from './components/learn/mid_program_homePage';
-// import Level from './components/level';
-// import CenterMode from './components/concept';
-// import SlideChangeHooks from './components/concept/slideTrial.js'
-// import CenterMode from './components/concept/slideTrial'
-// import Slide from './components/concept/slide'
-// import Assembly from './components/Assembly/index';
+
 import { BrowserRouter, HashRouter } from "react-router-dom";
 import * as atatus from "atatus-spa";
 import $ from "jquery";
-// import "bootstrap/dist/js/bootstrap.bundle.min";
-// import "bootstrap/dist/css/bootstrap.css";
-//localStorage.clear();
+
 atatus.config("bf5a70b588d943b2bcce5a4fc6558d42").install();
 const store = createStore(
   allReducer,

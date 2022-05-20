@@ -1,28 +1,11 @@
-import React, { useEffect } from "react";
-import { connect } from "react-redux";
-import "./PlayMode.css";
-import {
-  backBtn,
-  PlayCard,
-  helpBtnInActive,
-  helpBtnActive,
-  PlayCard_Svg,
-  RemoteCard_Svg,
-  SpeechCard_Svg,
-  MusicCard_Svg,
-  Camera_Svg,
-  clos,
-} from "../../source/index";
-
-import renderImage from "../../source/importImg";
-
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router";
-
+import { Link } from "react-router-dom";
+import renderImage from "../../source/importImg";
 // import { webSerialAction } from "../../redux/actions/index";
 import ImgSlider from "../ReusableComponents/ImgSlider/ImgSlider";
-import RemoteSection from "./Remote/Ace/RemoteSection/RemoteSection";
+import "./PlayMode.css";
+
 const writePort = async (data) => {
   try {
     const filters = [{ usbVendorId: 0x1a86, usbProductId: 0x7523 }];

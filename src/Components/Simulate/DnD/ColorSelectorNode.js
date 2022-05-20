@@ -1,8 +1,7 @@
 import React, { memo } from "react";
 import renderPrgImage from "../../../source/programImg";
 import { Handle } from "react-flow-renderer";
-import CustomNodeFlow from "./Index";
-// import {IllusLoginSrc} from '../../../source/source';
+
 var assembly = JSON.parse(sessionStorage.getItem("assembly"));
 export default memo(({ data }) => {
   var style = {

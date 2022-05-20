@@ -5,7 +5,6 @@ import Hexagon from "./Hexagon";
 import HexTypes from "./HexTypes";
 
 import ArrowConnect from "./ArrowConnect";
-import Colors from "./Colors";
 let newArr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 let newArr3 = [];
 let newArr5 = [];

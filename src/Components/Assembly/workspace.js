@@ -36,25 +36,17 @@
  */
 
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
 import { Link } from "react-router-dom";
 
 import ItemTypes from "./ItemTypes";
-import ImageSizes from "./ImageSizes";
-import BiboxSize from "./ImageSizes";
 
 import { DropTarget } from "react-dnd-old";
 import DraggingInfo from "./DraggingInfo";
-import socketIOClient from "socket.io-client";
 
 // var cumulativeOffset  from './src/helpers/cumulativeOffset');
 
 import Bibox from "./Bibox";
 import Component1 from "./Component";
-import IfPanel from "../logic/panels/if_O";
-
-import Data from "../concept/data";
-import Modal from "react-modal";
 
 var tutorialDesc = "";
 //Custom Styles
@@ -70,7 +62,6 @@ const customStyles = {
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
     backgroundColor: "#9ecee8",
-    // border: "2px solid #188dcc",
     zIndex: 1,
   },
 };
@@ -106,14 +97,6 @@ const workspaceTarget = {
         component.moveBibox(currentOffset.x, currentOffset.y);
       else component.updateOldComponent(currentOffset.x, currentOffset.y);
     }
-    // console.log(
-    //   "type currentOffset",
-    //   type,
-    //   currentOffset,
-    //   document.body.clientHeight,
-    //   width,
-    //   height
-    // );
     if (item.type == "play_shield") {
       window.location.reload(false); ///cheat to force react to re render
     }
@@ -206,14 +189,10 @@ class Workspace extends Component {
     }
 
     var { PortConnections } = this.props.appState.assembly;
-    //console.log("WorkspaceComponents after delete", components);
     Object.keys(PortConnections).map((port) => (PortConnections[port] = null));
-
-    // console.log("componentscomponentscomponentscomponents", components);
 
     Object.keys(components).map((type) => {
       let SensorObj = componentsDataSensor.find((o) => o.type === type);
-      //console.log("SOUMITYA++++++++++++++++>", SensorObj);
 
       components[type].map((component, index) => {
         if (component.connectedTo) {
@@ -252,31 +231,6 @@ class Workspace extends Component {
       });
     });
     this.props.updatePort(PortConnections);
-
-    // var socket = socketIOClient.connect("http://localhost:3008");
-    // socket.emit("_usbDetection", "Hi");
-    // socket.on("/usbDetection", (data) => {
-    //   if (data.detected) {
-    //     var c = document.getElementById("assemblyConnections");
-    //     var d = document.getElementById("biboxClass");
-    //     var e = document.getElementById("connectPort");
-
-    //     // c.style.zIndex = 2;
-    //     // d.style.zIndex = 2;
-    //     // e.style.zIndex = 2;
-    //     this.setState({ detected: data.detected, usbOpen: !data.detected });
-    //   } else {
-    //     // var c = document.getElementById("assemblyConnections");
-    //     // var d = document.getElementById("biboxClass");
-    //     // var e = document.getElementById("connectPort");
-
-    //     // to remove  Device not connected..  also set the zindex2
-    //     // c.style.zIndex = 4;
-    //     // d.style.zIndex = 4;
-    //     // e.style.zIndex = 4;
-    //     this.setState({ detected: data.detected, usbOpen: !data.detected });
-    //   }
-    // });
   };
 
   /**
@@ -296,7 +250,6 @@ class Workspace extends Component {
    * @param  {number} top  The new top
    */
   updateOldComponent(left, top) {
-    // alert("dataa");
     let componentsDataSensor = JSON.parse(
       sessionStorage.getItem("concept")
     ).counter;
@@ -824,14 +777,11 @@ class Workspace extends Component {
     Object.keys(PortConnections).map((port) => (PortConnections[port] = null));
     Object.keys(components).map((type) => {
       let SensorObj = componentsDataSensor.find((o) => o.type === type);
-      // console.log("SOUMITYA++++++++++++++++>", SensorObj);
 
       components[type].map((component, index) => {
         if (type == "pc_motor_driver") {
           if (component.connectedTo) {
             if (component.connectedTo == "A" || component.connectedTo == "C") {
-              // PortConnections[component.connectedTo] = { type, index, signalType:SensorObj.signalType  };
-
               PortConnections["A"] = {
                 type,
                 index,
@@ -931,7 +881,6 @@ class Workspace extends Component {
             }
           }
         } else if (component.connectedTo) {
-          // type == "led")
           if (
             type != "ultrasonic_sensor" &&
             type != "servo_motor" &&
@@ -1002,7 +951,7 @@ class Workspace extends Component {
         <img
           onClick={this.closeUsb}
           className="closeconceptModal"
-          src="images/login/button_exit@2x.png"
+          src={renderPrgImage("close")}
         ></img>
         <div className="connectconceptMsg">
           <p>Device not connected..</p>
@@ -1030,7 +979,6 @@ class Workspace extends Component {
           left: 0,
           width: "100%",
           height: "100%",
-          // border: "1px solid green",
         }}
       >
         {/* SHOWS DEVICE IMG ACE, HUMANOID, TEARN */}

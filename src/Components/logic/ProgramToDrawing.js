@@ -1,5 +1,3 @@
-import { IFFT } from "@tensorflow/tfjs-core";
-
 var board,
   connections,
   maxCols,

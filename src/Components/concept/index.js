@@ -98,25 +98,20 @@
 
 // module.exports = Content;
 
-import { activeCheckBox } from "../Assembly/CheckboxData";
 import React, { Component } from "react";
+import Modal from "react-modal";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import "../../css/learn.css";
-import Coverflow from "./Coverflow.js";
-import Sidebar from "./Sidebar.js";
-// var Tutorials = require('../../tutorials/tutorials');
-import components from "./data.js"; //component details
-import componentProps from "./componentProps"; //Empty object
-import { connect } from "react-redux";
-import Modal from "react-modal";
 import { webSerialAction } from "../../redux/actions/index";
-import { backBtn, nextBtn } from "../../source/index";
-import $ from "jquery";
-import socketIOClient from "socket.io-client";
-import renderPrgImage from "../../source/programImg";
 import renderCompImg from "../../source/Comp_Img";
+import renderPrgImage from "../../source/programImg";
+import { activeCheckBox } from "../Assembly/CheckboxData";
+import componentProps from "./componentProps"; //Empty object
+import Coverflow from "./Coverflow.js";
+import components from "./data.js"; //component details
+import Sidebar from "./Sidebar.js";
 
-//var socket = socketIOClient("http://localhost:3008");
 var data;
 var nextButtonVisibilty = "visible";
 
@@ -551,7 +546,7 @@ class Content extends Component {
         <img
           onClick={this.closeUsb}
           className="closeconceptModal"
-          src="images/login/button_exit@2x.png"
+          src={renderPrgImage("close")}
         ></img>
         <div className="connectconceptMsg">
           <p>Device not connected..</p>
@@ -576,7 +571,7 @@ class Content extends Component {
         <img
           onClick={this.close}
           className="closeconceptModal"
-          src="images/login/button_exit@2x.png"
+          src={renderPrgImage("close")}
         ></img>
         <div className="connectconceptMsg">
           <p>Device not connected</p>

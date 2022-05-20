@@ -1,5 +1,3 @@
-// import Blockly from './blockly';
-
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import io from "socket.io-client";
@@ -8,21 +6,22 @@ import HTML5Backend from "react-dnd-html5-backend-old";
 import { DragDropContext } from "react-dnd-old";
 // import DragDropContext from 'react-dnd-old';
 // import TouchBackend from 'react-dnd-old-touch-backend';
+import { DragDropContext } from "react-dnd";
+import HTML5Backend from "react-dnd-html5-backend";
+import Hammer from "react-hammerjs";
+import Modal from "react-modal";
 
 import { connect } from "react-redux";
-import HexBoard from "./HexBoard";
-import BottomPanel from "./BottomPanel";
-// import RightPanel from './RightPanel'
-import SizesHelper from "../../helpers/Sizes";
-import Sizes from "./Sizes";
-import ProgramToDrawing from "./ProgramToDrawing";
-
+import { Link, withRouter } from "react-router-dom";
 import "../../css/logic.css";
-import Modal from "react-modal";
-import socketIOClient from "socket.io-client";
 
-import Colors from "./Colors";
-import { object } from "prop-types";
+import SizesHelper from "../../helpers/Sizes";
+import renderPrgImage from "../../source/programImg";
+import BottomPanel from "./BottomPanel";
+import HexBoard from "./HexBoard";
+import ProgramToDrawing from "./ProgramToDrawing";
+import Sizes from "./Sizes";
+
 var _ = require("lodash");
 
 var countLogic;
@@ -1431,7 +1430,7 @@ class Logic extends Component {
                 <img
                   onClick={this.close}
                   className="closeconceptModal"
-                  src="images/login/button_exit@2x.png"
+                  src={renderPrgImage("close")}
                 ></img>
                 <div className="connectconceptMsg">
                   <p>
@@ -1463,7 +1462,7 @@ class Logic extends Component {
                 <img
                   onClick={this.closeUsb}
                   className="closeconceptModal"
-                  src="images/login/button_exit@2x.png"
+                  src={renderPrgImage("close")}
                 ></img>
                 <div className="connectconceptMsg">
                   <p>Device not connected..</p>

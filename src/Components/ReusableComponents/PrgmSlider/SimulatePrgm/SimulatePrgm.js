@@ -113,7 +113,6 @@ export class SimulatePrgm extends Component {
             <img
               className={SimulateStyle.img}
               src={renderPrgImage("SimulatePrgf1")}
-              className={SimulateStyle.img}
             />
             <div className={SimulateStyle.con}>
               <p className={SimulateStyle.con_P}>
@@ -141,7 +140,6 @@ export class SimulatePrgm extends Component {
             <img
               className={SimulateStyle.img}
               src={renderPrgImage("SimulatePrgf2")}
-              className={SimulateStyle.img}
             />
             <div className={SimulateStyle.Mus}>
               <p className={SimulateStyle.Mus_P}>

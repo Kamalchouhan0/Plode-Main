@@ -1550,7 +1550,7 @@ class Logic extends Component {
                 <img
                   onClick={this.close}
                   className="closeconceptModal"
-                  src="images/login/button_exit@2x.png"
+                  src={renderPrgImage("closeBtn")}
                 ></img>
                 <div className="connectconceptMsg">
                   <p>
@@ -1582,7 +1582,7 @@ class Logic extends Component {
                 <img
                   onClick={this.closeUsb}
                   className="closeconceptModal"
-                  src="images/login/button_exit@2x.png"
+                  src={renderPrgImage("closeBtn")}
                 ></img>
                 <div className="connectconceptMsg">
                   <p>Device not connected..</p>

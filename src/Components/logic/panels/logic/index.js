@@ -1604,7 +1604,7 @@ class Logic extends Component {
                 contentLabel="Example Modal"
                 // id="conceptModal"
               >
-                {/* <img onClick={this.closeUpload} className="closeconceptModal" src="images/login/button_exit@2x.png"></img> */}
+                {/* <img onClick={this.closeUpload} className="closeconceptModal" src={renderPrgImage("closeBtn")}></img> */}
                 <div className="UploadingMsg">
                   <p
                     style={{
@@ -1633,7 +1633,7 @@ class Logic extends Component {
                 <img
                   onClick={this.close}
                   className="closeconceptModal"
-                  src="images/login/button_exit@2x.png"
+                  src={renderPrgImage("closeBtn")}
                 ></img>
                 <div className="connectconceptMsg">
                   <p>
@@ -1665,7 +1665,7 @@ class Logic extends Component {
                 <img
                   onClick={this.closeUsb}
                   className="closeconceptModal"
-                  src="images/login/button_exit@2x.png"
+                  src={renderPrgImage("closeBtn")}
                 ></img>
                 <div className="connectconceptMsg">
                   <p>Device not connected..</p>
@@ -1692,7 +1692,7 @@ class Logic extends Component {
                 <img
                   onClick={this.closecheckEndProgram}
                   className="closeconceptModal"
-                  src="images/login/button_exit@2x.png"
+                  src={renderPrgImage("closeBtn")}
                 ></img>
                 <div className="connectconceptMsg">
                   <p>Please end the program with End or Repeat.</p>

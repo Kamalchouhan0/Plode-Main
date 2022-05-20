@@ -1,21 +1,15 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { withRouter, useHistory } from "react-router-dom";
-
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
-
+import React, { useState } from "react";
+import { useHistory, withRouter } from "react-router-dom";
+import ListComponent from "../ListComponent/ListComponent";
+import "./Header.scss";
 import {
   HeaderContainer,
-  HeaderOptions,
   HeaderLinksContainer,
+  HeaderOptions,
   HeaderWifiImage,
-  HeaderBackButton,
-  // HeaderHelp,
 } from "./Header.style";
-import ListComponent from "../ListComponent/ListComponent";
-
-import "./Header.scss";
 
 const useStyles = makeStyles({
   root: {

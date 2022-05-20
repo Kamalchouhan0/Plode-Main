@@ -1,26 +1,12 @@
-import React from "react";
-import SelectionStyle from "./Selection.module.css";
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { useHistory } from "react-router";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import unicodeToChar from "../../utils/unicodeToChar";
-import {
-  backBtn,
-  helpBtnInActive,
-  helpBtnActive,
-  Pc,
-  PlayCard,
-  PlayCard2,
-  PlayCard_Svg,
-  clos,
-} from "../../source/index";
+import { useHistory } from "react-router";
+import learn from "../../Assets/Learn button.png";
 import play from "../../Assets/play button.png";
 import program from "../../Assets/program button.png";
-import build from "../../Assets/build button.png";
-import learn from "../../Assets/Learn button.png";
-import SMSlider from "../ReusableComponents/SelectModeSlider/SMSlider";
 import renderImage from "../../source/importImg";
+import SMSlider from "../ReusableComponents/SelectModeSlider/SMSlider";
+import SelectionStyle from "./Selection.module.css";
 
 function Selection(props) {
   let history = useHistory();

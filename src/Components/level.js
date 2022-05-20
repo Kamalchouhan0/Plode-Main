@@ -1,12 +1,6 @@
 import React, { Component } from "react";
-// import '../../src/css/learn.css';
-import { Link } from "react-router-dom";
-import openSocket from "socket.io-client";
 import { connect } from "react-redux";
-import components from "./concept/data"; //component details
-
-import PortConnections from "./Assembly/PortConnections";
-//const socket = openSocket("http://localhost:3008");
+import { Link } from "react-router-dom";
 
 class Level extends Component {
   constructor(props) {

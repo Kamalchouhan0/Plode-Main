@@ -1,66 +1,13 @@
-import React, { useState, useEffect } from "react";
-import "./RemoteSection.css";
-
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import unicodeToChar from "../../../../../utils/unicodeToChar";
-import io from "socket.io-client";
-import Slider from "../../../../ReusableComponents/Slider/Slider";
-import { webSerialAction } from "../../../../../redux/actions/index";
-import { Link } from "react-router-dom";
-// import usbDetect from "usb-detection";
-
 import { useHistory } from "react-router";
-// import {
-//   backBtn,
-//   smile1_Active,
-//   smile2_Active,
-//   smile3_Active,
-//   smile4_Active,
-//   helpBtnInActive,
-//   smile1,
-//   smile2,
-//   smile3,
-//   smile4,
-//   talk_IA,
-//   disco_IA,
-//   gesture_IA,
-//   talk_Ac,
-//   disco_Ac,
-//   gesture_Ac,
-//   eyeAc_Svg,
-//   eyeIA_Svg,
-//   buzzerAc_Svg,
-//   buzzerIA_Svg,
-//   eye_bg_Svg,
-//   teeth_bg_Svg,
-//   buzzer_bg_Svg,
-//   teethIA_Svg,
-//   teethAc_Svg,
-//   FourteethIA_Svg,
-//   UsbOn,
-//   UsbOff,
-//   clos,
-// } from "../../../../../source/index";
+import { webSerialAction } from "../../../../../redux/actions/index";
 import renderImage from "../../../../../source/importImg";
 import RemSlider from "../../../../ReusableComponents/RemSlider/RemSlider";
-
-// const cacheAvailable = "caches" in window.self;
-
-// console.log("CACHE:-", cacheAvailable);
-// var mydata = sessionStorage.getItem("assembly");
-// var myVar = mydata.PortConnections || "defaultValue";
-// console.log("CACHE VALUE:-", myVar);
-
-//const socket = io.connect("http://localhost:3008");
+import Slider from "../../../../ReusableComponents/Slider/Slider";
+import "./RemoteSection.css";
 
 let initalRender = true;
-
-let initalRenderG = true;
-let initalRenderT = true;
-let initalRenderD = true;
-
-// var usbDetect = require("usb-detection");
-// usbDetect.startMonitoring();
 
 let value = false;
 const RstyleDevicePC = {

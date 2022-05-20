@@ -1,15 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { useHistory } from "react-router";
-import ConformationPopupStyle from "./ConformationPopup.module.css";
-import {
-  backBtn,
-  popup,
-  close,
-  reconnect,
-  popup_Svg,
-} from "../../source/index";
 import renderImage from "../../source/importImg";
+import ConformationPopupStyle from "./ConformationPopup.module.css";
 
 const PopupCD = {
   width: "90%",

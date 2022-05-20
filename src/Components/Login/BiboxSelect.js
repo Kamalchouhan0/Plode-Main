@@ -1,18 +1,8 @@
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
-
-import biboxSelectStyle from "./biboxSelection.module.css";
-import {
-  backBtn,
-  PC,
-  add,
-  helpBtnActive,
-  helpBtnInActive,
-  close,
-  clos,
-} from "../../source/index";
-import MainSlider from "../ReusableComponents/MainSlider/MainSlider";
+import { useHistory } from "react-router-dom";
 import renderImage from "../../source/importImg";
+import MainSlider from "../ReusableComponents/MainSlider/MainSlider";
+import biboxSelectStyle from "./biboxSelection.module.css";
 
 function BiboxSelection() {
   let history = useHistory();

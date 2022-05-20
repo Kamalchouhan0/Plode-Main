@@ -1,22 +1,15 @@
-import React, { Component, useEffect } from "react";
-import {
-  Route,
-  BrowserRouter,
-  useHistory,
-  Switch,
-  HashRouter,
-} from "react-router-dom";
+import React, { Component } from "react";
+import { Route, BrowserRouter, Switch } from "react-router-dom";
 import Assembly from "../src/Components/Assembly";
-import Concept from "../src/Components/concept";
+
 import "./App.css";
 
 // import Login from './Components/Login';
 import MidProgramming from "./Components/learn/mid_program_homePage";
 import Learn from "./Components/learn/";
 import saveTutorials from "../src/Components/tutorials";
-import socketIOClient from "socket.io-client";
+
 //flowchart
-import Myflowchart from "../src/Components/FlowchartConnections/Myflowchart/Myflowchart";
 import Flow from "../src/Components/flowchart_port/";
 // concept/ select Screen
 import SelectScreen from "./Components/selectScreen/SelectScreen";
@@ -32,7 +25,7 @@ import deviceSelection from "../src/Components/Login/deviceSelect.js";
 import Selection from "../src/Components/Login/Selection.js";
 import ProgramSelection from "../src/Components/Login/programSelection.js";
 import { createBrowserHistory } from "history";
-import { Socket } from "socket.io-client";
+
 import ConceptHelp from "../src/Components/help/concept_help";
 import Simulate from "./Components/Simulate";
 
@@ -46,7 +39,6 @@ import Piano from "../src/Components/play/Piano/tern+/piano";
 import Camera from "../src/Components/play/Camera/tern+/Camera.js";
 import Traceme from "../src/Components/play/TraceMe/Traceme";
 import Model3D from "../src/Components/play/3dModel/3dModel";
-import AceRemote from "../src/Components/play/Remote/Ace/remote";
 
 // Humanoid
 import HumanoidRemote from "../src/Components/play/Remote/humanoid/remote";
@@ -62,17 +54,13 @@ import Digital from "./Pages/Digital/Digital";
 import FlowchartPage from "./Pages/FlowChartPage/FlowchartPage";
 import Header from "./Components/Header/Header";
 
-import BgComp1 from "./Components/humanoidFlowChart/BGComponents/BG1/BgComp1";
-import Home from "./Components/humanoidFlowChart/Home/Home";
-import LevelConatiner from "./Components/humanoidFlowChart/ReusableComp/LevelContainer/LevelContainer";
 import Mid from "./Components/humanoidFlowChart/Mid_level/Mid";
 import FlowChart from "./Components/humanoidFlowChart/FlowChart/FlowChart";
 import EnableServos from "./Components/humanoidFlowChart/EnableServos/EnableServos";
-import Humanoid from "./Components/humanoidFlowChart/EnableServos/Humanoid";
+
 import AdjustTilt from "./Components/humanoidFlowChart/AdjustTilt/AdjustTilt";
 import SelectPort from "./Components/humanoidFlowChart/SelectPort/SelectPort";
 import InputOutput from "./Components/humanoidFlowChart/InputOutput/InputOutput";
-import SwitchComp from "./Components/humanoidFlowChart/ReusableComp/SwitchComp/SwitchComp";
 import Digital_Analog from "./Components/humanoidFlowChart/Digital_Analog/Digital_Analog";
 import MainFlowChart from "./Components/humanoidFlowChart/MainFlowChart/MainFlowChart";
 import ScratchProgramming from "./Components/humanoidFlowChart/ScratchLogicFlow/ScratchProgramming";

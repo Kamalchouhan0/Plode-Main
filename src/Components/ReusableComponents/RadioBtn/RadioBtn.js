@@ -1,7 +1,6 @@
 import React from "react";
 import "./RadioBtn.css";
 
-import { HumanoidActiveBtn } from "../../logic/HumanoidActionData";
 function RadioBtn(props) {
   // console.log(sessionStorage.getItem("HumanoidActiveBtn"));
   // console.log(HumanoidActiveBtn, "HumanoidActiveBtn 5");

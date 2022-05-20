@@ -1,9 +1,6 @@
 import React, { Component } from "react";
-
 import "./remote.css";
 import { Link } from "react-router-dom";
-
-import io from "socket.io-client";
 import Modal from "react-modal";
 import {
   buttonAce1Src,

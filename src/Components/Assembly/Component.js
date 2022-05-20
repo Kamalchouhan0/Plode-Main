@@ -6,7 +6,6 @@
 import React, { Component } from "react";
 import { DragSource } from "react-dnd-old";
 import ItemTypes from "./ItemTypes";
-import ImageSizes from "./ImageSizes";
 import DraggingInfo from "./DraggingInfo";
 import { getEmptyImage } from "react-dnd-html5-backend-old";
 import renderCompImg from "../../source/Comp_Img";

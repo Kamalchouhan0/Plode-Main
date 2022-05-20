@@ -23,8 +23,6 @@ import RGB from "../Assets/Bisoft_UI/Accessories/newComponents/component_RGB.png
 import OLED from "../Assets/Bisoft_UI/Accessories/newComponents/component_OLED.png";
 import mp3 from "../Assets/Bisoft_UI/Accessories/newComponents/component_mp3.png";
 
-var type;
-
 function renderCompImg(name) {
   switch (name) {
     case "rotatory":

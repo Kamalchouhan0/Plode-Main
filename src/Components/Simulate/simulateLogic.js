@@ -1,8 +1,6 @@
 // import Blockly from './blockly';
 
 import React, { Component } from "react";
-// import { Link, withRouter } from 'react-router-dom'
-import io from "socket.io-client";
 import Hammer from "react-hammerjs";
 // import HTML5Backend from 'react-dnd-html5-backend-old'
 // import { DragDropContext } from 'react-dnd-old'
@@ -10,19 +8,11 @@ import Hammer from "react-hammerjs";
 // import TouchBackend from 'react-dnd-old-touch-backend';
 
 import { connect } from "react-redux";
-
-// import RightPanel from './RightPanel'
-import Modal from "react-modal";
-import socketIOClient from "socket.io-client";
-
-import HexBoard from "../logic/HexBoard";
-import SizesHelper from "../../helpers/Sizes";
-import Sizes from "../logic/Sizes";
-import ProgramToDrawing from "../logic/ProgramToDrawing";
 import "../../css/logic.css";
-import { internalaccessoriesObj } from "../selectScreen/InternalAccessoriesScreen/InternalAccessoriesStorage";
-
-import { rangeStoreVal } from "../Assembly/CheckboxData";
+import SizesHelper from "../../helpers/Sizes";
+import HexBoard from "../logic/HexBoard";
+import ProgramToDrawing from "../logic/ProgramToDrawing";
+import Sizes from "../logic/Sizes";
 import getBytes from "./BytesGeneration/convertBytes";
 
 var oldDeltaX, oldDeltaY, panning;

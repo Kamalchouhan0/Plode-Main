@@ -1,40 +1,28 @@
 import React, { useState, useLayoutEffect } from "react";
-import Bottom from "./Bottom";
-import { Nav } from "react-bootstrap";
+
 import "./button.scss";
-import SwitchButton from "./SwitchButton/SwitchButton";
 import useLocalStorage from "../LocalStorage/LocalStorage";
-import pcImg from "../../Assets/internalAccessories/PC_image@3x.png";
 import inputImg from "../../Assets/img/assemble bar@2x.png";
-import secondaryImg from "../../Assets/img/save - secondary.png";
 import strokeImg from "../../Assets/img/button 52x52 - stroke.png";
-import connectionImg from "../../Assets/usb - off@2x.png";
-import { Link, useHistory } from "react-router-dom";
-import renderPrgImage from "../../source/programImg";
-
-import eyeInactiveImg from "../../Assets/internalAccessories/eye - inactive.484d85f3.svg";
-import teethImg from "../../Assets/internalAccessories/teeth - inactive.ff84b1d3.svg";
-import inImg from "../../Assets/internalAccessories/4 in 1 - inactive.ea3e994f.svg";
-import internalmicImg from "../../Assets/internalAccessories/internal mic - inactive.d43d2f36.svg";
-import buzzerImg from "../../Assets/internalAccessories/buzzer - inactive.872b79d8.svg";
-import touchpadsImg from "../../Assets/internalAccessories/touch pads - inactive.748c6933.svg";
-
-import PcinternalEYEActive from "../../Assets/internalAccessories/eye - active.svg";
-import PcinternalEYEInActive from "../../Assets/internalAccessories/eye - inactive.svg";
-import PcinternalTeethInActive from "../../Assets/internalAccessories/teeth - inactive.svg";
-import PcinternalTeethActive from "../../Assets/internalAccessories/teeth - active.svg";
-
+import secondaryImg from "../../Assets/img/save - secondary.png";
 import Pcinternal4in1Active from "../../Assets/internalAccessories/4 in 1 - active.svg";
 import Pcinternal4in1InActive from "../../Assets/internalAccessories/4 in 1 - inactive.svg";
-import PcinternalMicActive from "../../Assets/internalAccessories/internal mic - inactive.svg";
-import PcinternalMicInActive from "../../Assets/internalAccessories/internal mic - active.svg";
-import PcinternalBuzzerInActive from "../../Assets/internalAccessories/buzzer - inactive.svg";
 import PcinternalBuzzerActive from "../../Assets/internalAccessories/buzzer - active.svg";
-import PcinternalTouchpadsInActive from "../../Assets/internalAccessories/touch pads - inactive.svg";
+import PcinternalBuzzerInActive from "../../Assets/internalAccessories/buzzer - inactive.svg";
+import PcinternalEYEActive from "../../Assets/internalAccessories/eye - active.svg";
+import PcinternalEYEInActive from "../../Assets/internalAccessories/eye - inactive.svg";
+import PcinternalMicInActive from "../../Assets/internalAccessories/internal mic - active.svg";
+import PcinternalMicActive from "../../Assets/internalAccessories/internal mic - inactive.svg";
+import pcImg from "../../Assets/internalAccessories/PC_image@3x.png";
+import PcinternalTeethActive from "../../Assets/internalAccessories/teeth - active.svg";
+import PcinternalTeethInActive from "../../Assets/internalAccessories/teeth - inactive.svg";
 import PcinternalTouchpadsActive from "../../Assets/internalAccessories/touch pads - active.svg";
-
-import "./pcimage.css";
+import PcinternalTouchpadsInActive from "../../Assets/internalAccessories/touch pads - inactive.svg";
+import connectionImg from "../../Assets/usb - off@2x.png";
+import renderPrgImage from "../../source/programImg";
+import "./button.scss";
 import "./Navbar.css";
+import "./pcimage.css";
 import "./style.css";
 let bttnColor = [];
 let bttnColor2 = [];
@@ -603,9 +591,9 @@ function InputOutput() {
                   <input
                     className="Inputs-properties-InputCheckBox"
                     type="checkbox"
-                  // checked={a1}
-                  // onClick={() => myFunction1()}
-                  // onChange={() => onA1ValueChange()}
+                    // checked={a1}
+                    // onClick={() => myFunction1()}
+                    // onChange={() => onA1ValueChange()}
                   />
                   <span disabled="disabled" className="A1" id="foo1">
                     A1
@@ -615,9 +603,9 @@ function InputOutput() {
                   <input
                     className="Inputs-properties-InputCheckBox"
                     type="checkbox"
-                  // checked={a2}
-                  // onClick={() => myFunction2()}
-                  // onChange={() => onA2ValueChange()}
+                    // checked={a2}
+                    // onClick={() => myFunction2()}
+                    // onChange={() => onA2ValueChange()}
                   />
                   <span disabled="disabled" className="A1" id="foo2">
                     A2
@@ -627,9 +615,9 @@ function InputOutput() {
                   <input
                     className="Inputs-properties-InputCheckBox"
                     type="checkbox"
-                  // checked={a2}
-                  // onClick={() => myFunction2()}
-                  // onChange={() => onA2ValueChange()}
+                    // checked={a2}
+                    // onClick={() => myFunction2()}
+                    // onChange={() => onA2ValueChange()}
                   />
                   <span disabled="disabled" className="A1" id="foo2">
                     A2

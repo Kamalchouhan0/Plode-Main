@@ -1,6 +1,4 @@
 var React = require("react");
-// import ReactDOM from 'react-dom';
-import { Router, Route, Link, hashHistory, browserHistory } from "react-router";
 import "../../../blockly2/blockly_compressed";
 var Data = require("../../data");
 

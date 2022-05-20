@@ -13,22 +13,7 @@ import ImageSizes from "./ImageSizes";
 import DraggingInfo from "./DraggingInfo";
 
 import renderPrgImage from "../../source/programImg";
-import {
-  devicePc,
-  PlayComputerImg,
-  PcinternalMicActive,
-  PcinternalMicInActive,
-  PcinternalTouchpadsInActive,
-  PcinternalTouchpadsActive,
-  PcinternalEYEInActive,
-  PcinternalEYEActive,
-  PcinternalTeethActive,
-  PcinternalTeethInActive,
-  Pcinternal4in1Active,
-  Pcinternal4in1InActive,
-} from "../../source/index";
 
-var biboxImg;
 var style = {
   position: "relative",
   cursor: "move",
@@ -57,8 +42,6 @@ const biboxSource = {
     DraggingInfo.isDragging = false;
   },
 };
-
-// var Bibox = React.createClass({
 
 class Bibox extends Component {
   componentDidMount() {}

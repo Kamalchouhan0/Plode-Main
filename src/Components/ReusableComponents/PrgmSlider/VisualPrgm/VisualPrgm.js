@@ -106,7 +106,6 @@ export class VisualPrgm extends Component {
             <img
               className={VisualStyle.img}
               src={renderPrgImage("VirtualPrgf1")}
-              className={VisualStyle.img}
             />
             <div className={VisualStyle.Hel}>
               <p className={VisualStyle.Hel_P}>
@@ -127,7 +126,6 @@ export class VisualPrgm extends Component {
             <img
               className={VisualStyle.img}
               src={renderPrgImage("VirtualPrgf2")}
-              className={VisualStyle.img}
             />
             <div className={VisualStyle.con}>
               <p className={VisualStyle.con_P}>
@@ -142,7 +140,6 @@ export class VisualPrgm extends Component {
             <img
               className={VisualStyle.img}
               src={renderPrgImage("VirtualPrgf3")}
-              className={VisualStyle.img}
             />
             <div className={VisualStyle.Mus}>
               <p className={VisualStyle.Mus_P}>
@@ -157,7 +154,6 @@ export class VisualPrgm extends Component {
             <img
               className={VisualStyle.img}
               src={renderPrgImage("VirtualPrgf4")}
-              className={VisualStyle.img}
             />
             <div className={VisualStyle.Cam}>
               <p className={VisualStyle.Cam_P}>
@@ -173,7 +169,6 @@ export class VisualPrgm extends Component {
             <img
               className={VisualStyle.img}
               src={renderPrgImage("VirtualPrgf5")}
-              className={VisualStyle.img}
             />
             <div className={VisualStyle.Ca}>
               <p className={VisualStyle.Ca_P}>
@@ -189,7 +184,6 @@ export class VisualPrgm extends Component {
             <img
               className={VisualStyle.img}
               src={renderPrgImage("VirtualPrgf6")}
-              className={VisualStyle.img}
             />
             <div className={VisualStyle.Camr}>
               <p className={VisualStyle.Camr_P}>
