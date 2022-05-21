@@ -9,8 +9,10 @@ import MidProgramming from "./Components/learn/mid_program_homePage";
 import Learn from "./Components/learn/";
 import saveTutorials from "../src/Components/tutorials";
 
-//flowchart
+//flowchart dont change the order of import of unused myflowchart (css conflict)
+import Myflowchart from "../src/Components/FlowchartConnections/Myflowchart/Myflowchart";
 import Flow from "../src/Components/flowchart_port/";
+
 // concept/ select Screen
 import SelectScreen from "./Components/selectScreen/SelectScreen";
 import CenterMode from "./Components/concept";

@@ -9,7 +9,6 @@ import Sizes from "../../../../../helpers/Sizes";
 import Connections from "./Connections";
 import IsOverPort from "./IsOverPort";
 import { PlayComputerImg } from "../../../../../source/index";
-import renderCompImg from "../../../../../source/Comp_Img";
 var Camera; // This means that the collect function relies on the old Camera object before drag begins
 // but this works as scale or offset cannot be changed when a drag is in progress
 
@@ -118,7 +117,8 @@ class CustomDragLayer extends Component {
     } else {
       // url = "images/oldImages/component_" + item.type + ".png";
 
-      url = renderCompImg(item.type);
+      url =
+        "Bisoft_UI/Accessories/newComponents/component_" + item.type + ".png";
     }
 
     return (

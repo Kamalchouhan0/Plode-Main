@@ -2,12 +2,11 @@
 
 import React, { Component } from "react";
 import Hammer from "react-hammerjs";
-// import RightPanel from './RightPanel'
-import Modal from "react-modal";
-// import HTML5Backend from 'react-dnd-html5-backend'
-// import { DragDropContext } from 'react-dnd'
-// import DragDropContext from 'react-dnd';
-// import TouchBackend from 'react-dnd-touch-backend';
+// import HTML5Backend from 'react-dnd-html5-backend-old'
+// import { DragDropContext } from 'react-dnd-old'
+// import DragDropContext from 'react-dnd-old';
+// import TouchBackend from 'react-dnd-old-touch-backend';
+
 import { connect } from "react-redux";
 import "../../css/logic.css";
 import SizesHelper from "../../helpers/Sizes";
@@ -15,6 +14,7 @@ import HexBoard from "../logic/HexBoard";
 import ProgramToDrawing from "../logic/ProgramToDrawing";
 import Sizes from "../logic/Sizes";
 import getBytes from "./BytesGeneration/convertBytes";
+import Modal from "react-modal";
 
 var oldDeltaX, oldDeltaY, panning;
 

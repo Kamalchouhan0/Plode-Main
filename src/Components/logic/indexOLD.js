@@ -16,8 +16,8 @@ const ProgramToDrawing = require("./ProgramToDrawing");
 const PortConnections = require(__base +
   "src/components/assembly/PortConnections");
 
-const DragDropContext = require("react-dnd").DragDropContext;
-const TouchBackend = require("react-dnd-touch-backend").default;
+const DragDropContext = require("react-dnd-old").DragDropContext;
+const TouchBackend = require("react-dnd-old-touch-backend").default;
 
 const CustomDragLayerNew = require("../logic-new/CustomDragLayer");
 const SidebarNew = require("../logic-new/Sidebar");

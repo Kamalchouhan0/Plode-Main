@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import Slider from "../helpers/Slider";
-import { timericon } from "../../../../../../source/index";
+import { Link } from "react-router-dom";
+import renderPrgImage from "../../../../../../source/programImg";
 import "./wait.css";
+import { useLocalStorage } from "../../../../../LocalStorage/LocalStorage";
 var h = [];
 var m = [];
 var s = [];
@@ -93,7 +95,10 @@ class WaitPanel extends Component {
       <div className="outertabDiv-wait">
         <div className="wait-container">
           <div className="slider-section">
-            <div className="slider-item1" style={{ position: "relative" }}>
+            <div
+              className="slider-item1-flowchart-flowchart"
+              style={{ position: "relative" }}
+            >
               <Slider
                 title="Milliseconds"
                 name="milliseconds"
@@ -127,7 +132,10 @@ class WaitPanel extends Component {
                 950
               </p>
             </div>
-            <div className="slider-item1" style={{ position: "relative" }}>
+            <div
+              className="slider-item1-flowchart-flowchart"
+              style={{ position: "relative" }}
+            >
               <Slider
                 title="Seconds"
                 name="seconds"
@@ -163,7 +171,10 @@ class WaitPanel extends Component {
               </p>
             </div>
 
-            <div className="slider-item1" style={{ position: "relative" }}>
+            <div
+              className="slider-item1-flowchart-flowchart"
+              style={{ position: "relative" }}
+            >
               <Slider
                 title="Minutes"
                 name="minutes"
@@ -199,7 +210,10 @@ class WaitPanel extends Component {
               </p>
             </div>
 
-            <div className="slider-item1" style={{ position: "relative" }}>
+            <div
+              className="slider-item1-flowchart-flowchart"
+              style={{ position: "relative" }}
+            >
               <Slider
                 title="Hours"
                 name="hours"
@@ -237,7 +251,10 @@ class WaitPanel extends Component {
           </div>
 
           <div className="timer-section">
-            <img src={timericon} style={{ height: "40%", width: "90%" }} />
+            <img
+              src={renderPrgImage("timericon")}
+              style={{ height: "40%", width: "90%" }}
+            />
             <div
               style={{
                 height: "10%",

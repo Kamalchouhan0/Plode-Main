@@ -1,11 +1,16 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import {
+  Switch,
+  Route,
+  // Redirect
+} from "react-router-dom";
+import Port from "./Port";
+import InputOutput from "./Input";
 import Digital from "./Digital";
 import FlowchartPage from "./FlowchartPage";
-import InputOutput from "./Input";
 import InternalAccessories from "./InternalAccessories";
-import Port from "./Port";
 import ProgramSelection from "./programSelection";
+import Header from "./Header";
 
 function Flow(props) {
   return (

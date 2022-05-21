@@ -1,20 +1,26 @@
 import React, { Component } from "react";
-import { DragDropContext } from "react-dnd";
-import { HTML5Backend } from "react-dnd-html5-backend";
-import Hammer from "react-hammerjs";
-import Modal from "react-modal";
-import { connect } from "react-redux";
 import { Link, withRouter } from "react-router-dom";
-import "../../css/logic.css";
-import SizesHelper from "../../helpers/Sizes";
+import io from "socket.io-client";
+import Hammer from "react-hammerjs";
+import { HTML5Backend } from "react-dnd-html5-backend-old";
+import { DragDropContext } from "react-dnd-old";
 import { webSerialAction } from "../../redux/actions/index";
+import unicodeToChar from "../../utils/unicodeToChar";
+// import DragDropContext from 'react-dnd-old';
+// import TouchBackend from 'react-dnd-old-touch-backend';
+import getBytes from "../Simulate/BytesGeneration/convertBytes";
+import { connect } from "react-redux";
+import HexBoard from "./HexBoard";
+import BottomPanel from "./BottomPanel";
+// import RightPanel from './RightPanel'
+import SizesHelper from "../../helpers/Sizes";
+import Sizes from "./Sizes";
+import ProgramToDrawing from "./ProgramToDrawing";
+import "../../css/logic.css";
+import Modal from "react-modal";
+import "../../css/logic.css";
 import renderPrgImage from "../../source/programImg";
 import LogicPrgm from "../ReusableComponents/PrgmSlider/LogicPrgm/LogicPrgm";
-import getBytes from "../Simulate/BytesGeneration/convertBytes";
-import BottomPanel from "./BottomPanel";
-import HexBoard from "./HexBoard";
-import ProgramToDrawing from "./ProgramToDrawing";
-import Sizes from "./Sizes";
 
 var _ = require("lodash");
 var countLogic;
@@ -536,7 +542,7 @@ class Logic extends Component {
   };
   add = (type) => {
     // alert("ADD()");
-
+    console.log("checking add", type);
     if (type == "repeat") {
       this.setState({ readyForSimulation: type });
       sessionStorage.setItem("programEnd", type);
@@ -602,11 +608,10 @@ class Logic extends Component {
     // for(let n = 0; n<drawing.activeParentRef.slice(drawing.activeIndex, drawing.activeParentRef.length).length; n++){
     //   drawing.activeParentRef[n].id= JSON.stringify(Number(drawing.activeParentRef[n].id) + 1)
     // }
-
     num++;
 
     var { logic } = this.props;
-
+    console.log("checkingvalues", type);
     // if (!logic.insertState) {
     //   logic.insertState = true;
     // } //removed by gautam to change to single click
@@ -621,15 +626,29 @@ class Logic extends Component {
         // HERE I AM STOPING TO ADD THE ACTION on HEXBOARD
 
         var toPush = { type: type, state: {}, id: IDIS };
-
+        // if (
+        //   type === "end_variable" ||
+        //   type === "end_sensor" ||
+        //   type === "end_condition" ||
+        //   type === "end_if" ||
+        //   type === "end_loop"
+        //   // ||
+        //   // type === "repeat"
+        // ) {
+        //   logic.currentProgramGuide--;
+        // }
         if (
           type === "variable" ||
           type === "condition" ||
           type === "sensor" ||
-          type === "loop"
-        )
+          type === "loop" ||
+          type === "if"
+        ) {
+          logic.currentProgramGuide++;
           toPush.subprogram = [];
+        }
         drawing.activeParentRef[drawing.activeIndex] = toPush;
+
         for (
           let i = drawing.activeIndex + 1;
           i < drawing.activeParentRef.length;

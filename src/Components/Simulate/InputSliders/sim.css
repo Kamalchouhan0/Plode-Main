@@ -265,7 +265,7 @@ hr.solid {
   border-radius: 40px;
 }
 
-input[type="checkbox"] {
+/* input[type="checkbox"] {
   width: 40px;
   height: 20px;
   position: absolute;
@@ -277,7 +277,7 @@ input[type="checkbox"] {
   cursor: pointer;
   opacity: 0;
   z-index: 2;
-}
+} */
 
 /* Third toggle btn */
 

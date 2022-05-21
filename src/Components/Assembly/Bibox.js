@@ -5,7 +5,7 @@
 
 import React, { Component } from "react";
 
-import { DragSource } from "react-dnd";
+import { DragSource } from "react-dnd-old";
 
 import ItemTypes from "./ItemTypes";
 import ImageSizes from "./ImageSizes";

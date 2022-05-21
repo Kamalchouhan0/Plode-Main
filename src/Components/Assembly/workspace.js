@@ -36,14 +36,19 @@
  */
 
 import React, { Component } from "react";
-import { DropTarget } from "react-dnd";
-import Modal from "react-modal";
 import { Link } from "react-router-dom";
-import renderPrgImage from "../../source/programImg";
+
+import ItemTypes from "./ItemTypes";
+import Modal from "react-modal";
+
+import { DropTarget } from "react-dnd-old";
+import DraggingInfo from "./DraggingInfo";
+
+// var cumulativeOffset  from './src/helpers/cumulativeOffset');
+
 import Bibox from "./Bibox";
 import Component1 from "./Component";
-import DraggingInfo from "./DraggingInfo";
-import ItemTypes from "./ItemTypes";
+import renderPrgImage from "../../source/programImg";
 
 var tutorialDesc = "";
 //Custom Styles

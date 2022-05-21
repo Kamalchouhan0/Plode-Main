@@ -1,16 +1,6 @@
 import React, { Component } from "react";
-import {
-  greaterthanInActive,
-  greaterthanActive,
-  lessthanActive,
-  lessthanInActive,
-  inbetweenActive,
-  inbetweenInActive,
-  equaltoActive,
-  equaltoInActive,
-  notequaltoActive,
-  notequaltoInActive,
-} from "../../../../../../source/index";
+
+import renderPrgImage  from "../../../../../../source/programImg";
 import Select from "../helpers/Select";
 import Slider from "../helpers/Slider";
 
@@ -333,7 +323,7 @@ class Condition extends Component {
           {this.state.isGraterThan ? (
             <div className="item">
               <img
-                src={greaterthanActive}
+                src={renderPrgImage("greaterthanActive")}
                 onClick={() => this.handleOperators("greaterThan")}
               />
               <p className="sensor-txt">Greater Than</p>
@@ -341,7 +331,7 @@ class Condition extends Component {
           ) : (
             <div className="item">
               <img
-                src={greaterthanInActive}
+                src={renderPrgImage("greaterthanInActive")}
                 onClick={() => this.handleOperators("greaterThan")}
               />
               <p className="sensor-txt">Greater Than</p>
@@ -351,7 +341,7 @@ class Condition extends Component {
           {this.state.isLessThan ? (
             <div className="item">
               <img
-                src={lessthanActive}
+                src={renderPrgImage("lessthanActive")}
                 onClick={() => this.handleOperators("lessThan")}
               />
               <p className="sensor-txt">Less Than</p>
@@ -359,7 +349,7 @@ class Condition extends Component {
           ) : (
             <div className="item">
               <img
-                src={lessthanInActive}
+                src={renderPrgImage("lessthanInActive")}
                 onClick={() => this.handleOperators("lessThan")}
               />
               <p className="sensor-txt">Less Than</p>
@@ -369,7 +359,7 @@ class Condition extends Component {
           {this.state.isInBtween ? (
             <div className="item">
               <img
-                src={inbetweenActive}
+                src={renderPrgImage("inbetweenActive")}
                 onClick={() => this.handleOperators("inBetween")}
               />
               <p className="sensor-txt">In Between</p>
@@ -377,7 +367,7 @@ class Condition extends Component {
           ) : (
             <div className="item">
               <img
-                src={inbetweenInActive}
+                src={renderPrgImage("inbetweenInActive")}
                 onClick={() => this.handleOperators("inBetween")}
               />
               <p className="sensor-txt">In Between</p>
@@ -387,7 +377,7 @@ class Condition extends Component {
           {this.state.isEqualTo ? (
             <div className="item">
               <img
-                src={equaltoActive}
+                src={renderPrgImage("equaltoActive")}
                 onClick={() => this.handleOperators("equalTo")}
               />
               <p className="sensor-txt">Equals To</p>
@@ -395,7 +385,7 @@ class Condition extends Component {
           ) : (
             <div className="item">
               <img
-                src={equaltoInActive}
+                src={renderPrgImage("equaltoInActive")}
                 onClick={() => this.handleOperators("equalTo")}
               />
               <p className="sensor-txt">Equals To</p>
@@ -405,7 +395,7 @@ class Condition extends Component {
           {this.state.isNotequalTo ? (
             <div className="item">
               <img
-                src={notequaltoActive}
+                src={renderPrgImage("notequaltoActive")}
                 onClick={() => this.handleOperators("notEqualTo")}
               />
               <p className="sensor-txt">Not Equals To</p>
@@ -413,7 +403,7 @@ class Condition extends Component {
           ) : (
             <div className="item">
               <img
-                src={notequaltoInActive}
+                src={renderPrgImage("notequaltoInActive")}
                 onClick={() => this.handleOperators("notEqualTo")}
               />
               <p className="sensor-txt">Not Equals To</p>

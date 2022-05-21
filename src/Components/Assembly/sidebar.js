@@ -1,12 +1,13 @@
 import React, { Component } from "react";
-import { DropTarget } from "react-dnd";
 import { connect } from "react-redux";
+
+import { DropTarget } from "react-dnd-old";
+import Card from "./DraggableSidebarCard";
+import ItemTypes from "./ItemTypes";
+import renderPrgImage from "../../source/programImg";
 import { withRouter } from "react-router-dom";
 import Sizes from "../../helpers/Sizes";
-import renderPrgImage from "../../source/programImg";
-import Card from "./DraggableSidebarCard";
 import DraggingInfo from "./DraggingInfo";
-import ItemTypes from "./ItemTypes";
 
 const sidebarTarget = {
   drop(props, monitor) {

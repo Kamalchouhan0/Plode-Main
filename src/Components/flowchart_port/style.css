@@ -296,7 +296,7 @@
   position: relative;
   background-color: #eee;
   width: 100%;
-  left: 20%;
+  left: 15%;
   height: 100%;
 }
 .properties-Container{
@@ -375,63 +375,17 @@
 } */
 
 .ButtonDiv {
-  flex: 40%;
-  position: relative;
-  top: 5vh;
-  right: 12vw;
-  @media (max-width: 810px) {
-    right: 45px;
-  }
-  @media (max-width: 715px) {
-    right: 20px;
-  }
-  @media (max-width: 500px) {
-    right: 20px;
-  }
+  position: absolute;
+  z-index: 99;
+  left: 17%;
 }
 
 .ButtonRightDiv {
-  flex: 40%;
-  position: relative;
-  top: 5vh;
-  right: 21vw;
-  @media (max-width: 810px) {
-    right: 45px;
-  }
-  @media (max-width: 715px) {
-    right: 20px;
-  }
-  @media (max-width: 500px) {
-    right: 20px;
-  }
+  position: absolute;
+  z-index: 99;
+  left: 46%;
 }
 
-.ButtonDivInput {
-  position: relative;
-  right: 28%;
-  @media (max-width: 810px) {
-    right: 45px;
-  }
-  @media (max-width: 715px) {
-    right: 20px;
-  }
-  @media (max-width: 500px) {
-    right: 20px;
-  }
-}
-.ButtonRightDivInput {
-  position: relative;
-  right: 30%;
-  @media (max-width: 810px) {
-    right: 45px;
-  }
-  @media (max-width: 715px) {
-    right: 20px;
-  }
-  @media (max-width: 500px) {
-    right: 20px;
-  }
-}
 .CenterImg {
   display: flex;
   width: 25%;
@@ -444,32 +398,33 @@
 .InputLabel {
   color: white;
 }
+.InputLabel-true{
+  opacity: 0.3;
+}
 
 .InputCheckBox {
   appearance: none;
-  width: 70px;
-  height: 70px;
+  width: 60px;
+  height: 60px;
   background-repeat: no-repeat;
-  background-image: url("../../Assets/img/a1.png");
+  background-image: url("../../Assets/img/a1@3x.png");
   position: relative;
-  background-size: 70px 70px;
+  background-size: 60px 60px;
 }
 .InputCheckBox:checked {
-  width: 70px;
-  height: 70px;
-  background-image:url("../../Assets/img/a-1.png");
+  width: 60px;
+  height: 60px;
+  background-image:url("../../Assets/img/a-1@3x.png");
   background-repeat: no-repeat;
   color: white;
   position: relative;
-  background-size: 70px 70px;
+  background-size: 60px 60px;
 }
 
 .A1 {
-  color: black;
   position: relative;
   top: -1.5em;
-  left: -16%;
-  font-size: 1.1em;
+  right: 25%;
   pointer-events: none;
 }
 .BottomContainer {
@@ -489,27 +444,28 @@
   top: 8px;
 }
 .tlb {
+  background-image: url("../../Assets/img/popup card@2x.png");
+  opacity: 1;
   position: relative;
-  top: 0vh;
-  right: -7vw;
-  width: 210pt;
-  background-size: 210pt 150pt;
-  height: 115pt;
+  margin-top: 7%;
+  width: 200pt;
+  background-size: 200pt 130pt;
+  height: 100pt;
   background-repeat: no-repeat;
   background-position-y: center;
-  background-image: url("../../Assets/img/popup card.png");
   opacity: 1;
 }
 .tlbIn {
   position: relative;
-  left: 22%;
+  left: 25%;
   top: 28%;
+  display: inline-block;
 }
 
 .textsp {
   position: relative;
   top: -1vh;
-  left: -2vw;
+  left: -1vw;
 }
 .upper-label-input {
   position: relative;
@@ -557,16 +513,37 @@ label {
 
 /* INPUT  */
 
+
+.ButtonDivInput {
+  position: relative;
+  left:15%;
+}
+.ButtonRightDivInput {
+  position: relative;
+  left:20%;
+}
+
 .Inputs-flow-left-upper {
-  width: 270pt;
-  height: 120pt;
   background-image: url("../../Assets/img/popup card@2x.png");
+  width: 270pt;
+  margin-top: 5%;
+  background-repeat: no-repeat;
+  background-size: 280pt 186pt;
+  background-position: center;
+  height: 110pt;
+}
+.Inputs-flow-left-upper-ultrasonic{
+  width: 260pt;
+  height: 130pt;
+  margin-top: 5%;
+  background-image: url("../../Assets/popup\ card-5.png");
   background-repeat: no-repeat;
   background-position: center;
+  background-size: 100% 140%;
 }
 .Inputs-flow-left-upper-grp {
   position: relative;
-  top: 22%;
+  top: 20%;
   left: 30%;
 }
 
@@ -575,12 +552,11 @@ label {
   position: relative;
   background-color: #eee;
   width: 100%;
-  left: 20%;
+  left: 15%;
   height: 100%;
 }
 .Inputs-properties-Container{
   position: relative;
-  flex:20%;
   top: 15%;
   right: 8%;
 }
@@ -630,6 +606,86 @@ label {
   position: relative;
 }
 
+.switch-button-ultrasonic-false{
+  display: inline-block;
+  background: #e6e6e6;
+  border-radius: 30px;
+  overflow: hidden;
+  width: 151px;
+  height: 35px;
+  text-align: center;
+  color: #717171;
+  position: relative;
+  padding-right: 120px;
+  position: relative;
+  margin: 10px 0px 0px 0px;
+  cursor: pointer;
+}
+.switch-button-ultrasonic-false::before {
+  content: "Ultrasonic";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0px;
+  left: 12%;
+  width: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+}
+.switch-button-ultrasonic-true::before {
+  content: "Ultrasonic";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  border-radius: 30px;
+  overflow: hidden;
+  width: 150px;
+  color: #ffffff;
+  text-align: center;
+  cursor: pointer;
+}
+.switch-button-ultrasonic-true{
+  display: inline-block;
+  border-radius: 30px;
+  overflow: hidden;
+  width: 150px;
+  height: 35px;
+  text-align: center;
+  background-color: #30a8ce;
+  color: #000000;
+  position: relative;
+  padding-right: 120px;
+  cursor: pointer;
+  position: relative;
+  margin: 10px 0px 0px 0px;
+}
+.switch-button-checkbox-ultrasonic{
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 2;
+}
+.upper-label-input-ultrasonic{
+  left : 2vh !important ;
+}
+.Inputs-flow-left-upper-grp-ultrasonic {
+  position: relative;
+  top: 10%;
+  left: 30%;
+}
+
+.ultrasonic-disabled-true{
+  background-color: #e6e6e6 !important;
+  opacity: 0.3; 
+}
 /* ---------------------------------------------------------------- */
 
 /* Digital  */
@@ -639,29 +695,11 @@ label {
 }
 .digital-ButtonDivInput {
   position: relative;
-  right: 25%;
-  @media (max-width: 810px) {
-    right: 45px;
-  }
-  @media (max-width: 715px) {
-    right: 20px;
-  }
-  @media (max-width: 500px) {
-    right: 20px;
-  }
+  left: 15%;
 }
 .digital-ButtonRightDivInput {
   position: relative;
-  right: 25%;
-  @media (max-width: 810px) {
-    right: 45px;
-  }
-  @media (max-width: 715px) {
-    right: 20px;
-  }
-  @media (max-width: 500px) {
-    right: 20px;
-  }
+  left: 20%;
 }
 
 
@@ -672,12 +710,12 @@ label {
 
 .digital-flow-left-upper {
   position: relative;
-  height: 106pt;
-  background-size: 500px 230px;
+  height: 155pt;
+  background-size: 260pt 200pt;
   background-repeat: no-repeat;
-  background-image: url("../../Assets/img/popup card@2x.png");
+  background-image: url("../../Assets/popup\ card-5.png");
   background-position: center;
-  background-position-y: -33px;
+  /* background-position-y: -33px; */
 }
 .digital-flow-left-upper-grp {
 position: relative;
@@ -686,7 +724,8 @@ top : 10%;
 }
 .Digital-flow-left-upper {
   width: 280pt;
-  height: 125pt;
+  height: 110pt;
+  background-size: 270pt 190pt;
   background-image: url("../../Assets/img/popup card@2x.png");
   background-repeat: no-repeat;
   background-position: center;
@@ -726,12 +765,11 @@ top : 10%;
   position: relative;
   background-color: #eee;
   width: 100%;
-  left: 20%;
+  left: 15%;
   height: 100%;
 }
 .Digital-properties-Container{
   position: relative;
-  flex:20%;
   top: 15%;
   right: 8%;
 }
@@ -780,4 +818,92 @@ top : 10%;
   background-repeat: no-repeat;
   color: white;
   position: relative;
+}
+
+.switch-button-servo-true{
+  opacity: 1;
+  display: inline-block;
+  border-radius: 30px;
+  overflow: hidden;
+  width: 100px;
+  height: 35px;
+  text-align: center;
+  justify-content: center;
+  color: #ffffff;
+  background-color: #30a8ce;
+  position: relative;
+  padding-top: 5px;
+  content: "Servo";
+
+}
+.switch-button-servo-true::before{
+  content: "Servo";
+  color: #ffffff;
+  position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 105px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+    pointer-events: none;
+    cursor: pointer;
+}
+.switch-button-servo-false::before{
+  content: "Servo";
+  color: #000000;
+  position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 105px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+    cursor: pointer;
+}
+.switch-button-servo-false{
+  opacity: 0.6;
+  display: inline-block;
+  background: #e6e6e6;
+  border-radius: 30px;
+  overflow: hidden;
+  width: 100px;
+  height: 35px;
+  text-align: center;
+  justify-content: center;
+  color: #717171;
+  position: relative;
+  padding-top: 5px;
+}
+.switch-button-checkbox-servo{
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 2;
+}
+.upper-label-input-servo{
+  left: 2vw !important;
+}
+.upper-label-input-servo-false{
+  opacity: 0.3;
+  pointer-events: none;
+}
+.A1{
+  color: black;
+}
+.A2{
+  position: relative;
+  top: -1.5em;
+  right: 25%;
+  pointer-events: none;
+  color: white;
+}
+.InputCheckBox:disabled{
+  opacity: .5;
+}
+.A1:disabled{
+  opacity: .5;
 }

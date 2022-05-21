@@ -205,7 +205,34 @@ class Select extends Component {
           ) : (
             <></>
           )}
-
+          {!m1Checked && M1 ? (
+            <>
+              <option value="port M1">PORT M1</option>
+            </>
+          ) : (
+            <></>
+          )}
+          {!m2Checked && M2 ? (
+            <>
+              <option value="port M2">PORT M2</option>
+            </>
+          ) : (
+            <></>
+          )}
+          {!m3Checked && M3 ? (
+            <>
+              <option value="port M3">PORT M3</option>
+            </>
+          ) : (
+            <></>
+          )}
+          {!m4Checked && M4 ? (
+            <>
+              <option value="port M4">PORT M4</option>
+            </>
+          ) : (
+            <></>
+          )}
           {isMic ? (
             <>
               <option value="microphone">Microphone</option>

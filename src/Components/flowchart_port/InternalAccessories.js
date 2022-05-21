@@ -1,62 +1,67 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Modal from "react-modal";
-import { useHistory } from "react-router-dom";
-import strokeImg from "../../Assets/img/button 52x52 - stroke.png";
-import secondaryImg from "../../Assets/img/save - secondary.png";
-import selectImg from "../../Assets/img/select bar@2x.png";
-import Pcinternal4in1Active from "../../Assets/internalAccessories/4 in 1 - active.svg";
-import Pcinternal4in1InActive from "../../Assets/internalAccessories/4 in 1 - inactive.svg";
-import PcinternalBuzzerActive from "../../Assets/internalAccessories/buzzer - active.svg";
-import PcinternalBuzzerInActive from "../../Assets/internalAccessories/buzzer - inactive.svg";
-import PcinternalEYEActive from "../../Assets/internalAccessories/eye - active.svg";
-import PcinternalEYEInActive from "../../Assets/internalAccessories/eye - inactive.svg";
-import buzzerEnabled from "../../Assets/internalAccessories/inputsandoutputs/buzzer-enabled.png";
-import buzzer from "../../Assets/internalAccessories/inputsandoutputs/buzzer.png";
-import colorsensorEnabled from "../../Assets/internalAccessories/inputsandoutputs/colorsensor-enabled.png";
-import colorsensor from "../../Assets/internalAccessories/inputsandoutputs/colorsensor.png";
-import distancesensorEnabled from "../../Assets/internalAccessories/inputsandoutputs/distancesensor-enabled.png";
-import distancesensor from "../../Assets/internalAccessories/inputsandoutputs/distancesensor.png";
-import gesturesensorEnabled from "../../Assets/internalAccessories/inputsandoutputs/gesture-enabled.png";
-import gesturesensor from "../../Assets/internalAccessories/inputsandoutputs/gesture.png";
-import lefteyeEnabled from "../../Assets/internalAccessories/inputsandoutputs/lefteye-enabled.png";
-import lefteye from "../../Assets/internalAccessories/inputsandoutputs/lefteye.png";
-import lightsensorEnabled from "../../Assets/internalAccessories/inputsandoutputs/lightsensor-enabled.png";
-import lightsensor from "../../Assets/internalAccessories/inputsandoutputs/lightsensor.png";
-import micEnabled from "../../Assets/internalAccessories/inputsandoutputs/mic-enabled.png";
-import mic from "../../Assets/internalAccessories/inputsandoutputs/mic.png";
-import righteyeEnabled from "../../Assets/internalAccessories/inputsandoutputs/righteye-enabled.png";
-import righteye from "../../Assets/internalAccessories/inputsandoutputs/righteye.png";
-import smileoneEnabled from "../../Assets/internalAccessories/inputsandoutputs/smile1-enabled.png";
-import smileone from "../../Assets/internalAccessories/inputsandoutputs/smile1.png";
-import smiletwoEnabled from "../../Assets/internalAccessories/inputsandoutputs/smile2-enabled.png";
-import smiletwo from "../../Assets/internalAccessories/inputsandoutputs/smile2.png";
-import smilethreeEnabled from "../../Assets/internalAccessories/inputsandoutputs/smile3-enabled.png";
-import smilethree from "../../Assets/internalAccessories/inputsandoutputs/smile3.png";
-import smilefourEnabled from "../../Assets/internalAccessories/inputsandoutputs/smile4-enabled.png";
-import smilefour from "../../Assets/internalAccessories/inputsandoutputs/smile4.png";
-import temperatureEnabled from "../../Assets/internalAccessories/inputsandoutputs/temperature-enabled.png";
-import temperature from "../../Assets/internalAccessories/inputsandoutputs/temperature.png";
-import touchzeroEnabled from "../../Assets/internalAccessories/inputsandoutputs/touchpad0-enabled.png";
-import touchzero from "../../Assets/internalAccessories/inputsandoutputs/touchpad0.png";
-import touchoneEnabled from "../../Assets/internalAccessories/inputsandoutputs/touchpad1-enabled.png";
-import touchone from "../../Assets/internalAccessories/inputsandoutputs/touchpad1.png";
-import touchtwoEnabled from "../../Assets/internalAccessories/inputsandoutputs/touchpad2-enabled.png";
-import touchtwo from "../../Assets/internalAccessories/inputsandoutputs/touchpad2.png";
-import PcinternalMicInActive from "../../Assets/internalAccessories/internal mic - active.svg";
-import PcinternalMicActive from "../../Assets/internalAccessories/internal mic - inactive.svg";
-import pcImg from "../../Assets/internalAccessories/PC_image@3x.png";
-import popupcardImg from "../../Assets/internalAccessories/popupcard@2x.png";
-import PcinternalTeethActive from "../../Assets/internalAccessories/teeth - active.svg";
-import PcinternalTeethInActive from "../../Assets/internalAccessories/teeth - inactive.svg";
-import PcinternalTouchpadsActive from "../../Assets/internalAccessories/touch pads - active.svg";
-import PcinternalTouchpadsInActive from "../../Assets/internalAccessories/touch pads - inactive.svg";
-import connectionImg from "../../Assets/usb - off@2x.png";
-import renderPrgImage from "../../source/programImg";
-import { useLocalStorage } from "../LocalStorage/LocalStorage";
 import Panel1 from "./FlowchartConnections/logic/pannel";
+
+import Bottom from "./Bottom";
+import selectImg from "../../Assets/img/select bar@2x.png";
+import secondaryImg from "../../Assets/img/save - secondary.png";
+import strokeImg from "../../Assets/img/button 52x52 - stroke.png";
+import connectionImg from "../../Assets/usb - off@2x.png";
 import "./InternalAccessories.css";
 import "./style.css";
 
+import popupcardImg from "../../Assets/internalAccessories/popupcard@2x.png";
+import pcImg from "../../Assets/internalAccessories/PC_image@3x.png";
+
+import PcinternalEYEActive from "../../Assets/internalAccessories/eye - active.svg";
+import PcinternalEYEInActive from "../../Assets/internalAccessories/eye - inactive.svg";
+import PcinternalTeethInActive from "../../Assets/internalAccessories/teeth - inactive.svg";
+import PcinternalTeethActive from "../../Assets/internalAccessories/teeth - active.svg";
+
+import Pcinternal4in1Active from "../../Assets/internalAccessories/4 in 1 - active.svg";
+import Pcinternal4in1InActive from "../../Assets/internalAccessories/4 in 1 - inactive.svg";
+import PcinternalMicActive from "../../Assets/internalAccessories/internal mic - inactive.svg";
+import PcinternalMicInActive from "../../Assets/internalAccessories/internal mic - active.svg";
+import PcinternalBuzzerInActive from "../../Assets/internalAccessories/buzzer - inactive.svg";
+import PcinternalBuzzerActive from "../../Assets/internalAccessories/buzzer - active.svg";
+import PcinternalTouchpadsInActive from "../../Assets/internalAccessories/touch pads - inactive.svg";
+import PcinternalTouchpadsActive from "../../Assets/internalAccessories/touch pads - active.svg";
+
+import mic from "../../Assets/internalAccessories/inputsandoutputs/mic.png";
+import micEnabled from "../../Assets/internalAccessories/inputsandoutputs/mic-enabled.png";
+import temperature from "../../Assets/internalAccessories/inputsandoutputs/temperature.png";
+import temperatureEnabled from "../../Assets/internalAccessories/inputsandoutputs/temperature-enabled.png";
+import touchzero from "../../Assets/internalAccessories/inputsandoutputs/touchpad0.png";
+import touchzeroEnabled from "../../Assets/internalAccessories/inputsandoutputs/touchpad0-enabled.png";
+import touchone from "../../Assets/internalAccessories/inputsandoutputs/touchpad1.png";
+import touchoneEnabled from "../../Assets/internalAccessories/inputsandoutputs/touchpad1-enabled.png";
+import touchtwo from "../../Assets/internalAccessories/inputsandoutputs/touchpad2.png";
+import touchtwoEnabled from "../../Assets/internalAccessories/inputsandoutputs/touchpad2-enabled.png";
+import distancesensor from "../../Assets/internalAccessories/inputsandoutputs/distancesensor.png";
+import distancesensorEnabled from "../../Assets/internalAccessories/inputsandoutputs/distancesensor-enabled.png";
+import gesturesensor from "../../Assets/internalAccessories/inputsandoutputs/gesture.png";
+import gesturesensorEnabled from "../../Assets/internalAccessories/inputsandoutputs/gesture-enabled.png";
+import lightsensor from "../../Assets/internalAccessories/inputsandoutputs/lightsensor.png";
+import lightsensorEnabled from "../../Assets/internalAccessories/inputsandoutputs/lightsensor-enabled.png";
+import colorsensor from "../../Assets/internalAccessories/inputsandoutputs/colorsensor.png";
+import colorsensorEnabled from "../../Assets/internalAccessories/inputsandoutputs/colorsensor-enabled.png";
+import lefteye from "../../Assets/internalAccessories/inputsandoutputs/lefteye.png";
+import lefteyeEnabled from "../../Assets/internalAccessories/inputsandoutputs/lefteye-enabled.png";
+import righteye from "../../Assets/internalAccessories/inputsandoutputs/righteye.png";
+import righteyeEnabled from "../../Assets/internalAccessories/inputsandoutputs/righteye-enabled.png";
+import buzzer from "../../Assets/internalAccessories/inputsandoutputs/buzzer.png";
+import buzzerEnabled from "../../Assets/internalAccessories/inputsandoutputs/buzzer-enabled.png";
+import smileone from "../../Assets/internalAccessories/inputsandoutputs/smile1.png";
+import smileoneEnabled from "../../Assets/internalAccessories/inputsandoutputs/smile1-enabled.png";
+import smiletwo from "../../Assets/internalAccessories/inputsandoutputs/smile2.png";
+import smiletwoEnabled from "../../Assets/internalAccessories/inputsandoutputs/smile2-enabled.png";
+import smilethree from "../../Assets/internalAccessories/inputsandoutputs/smile3.png";
+import smilethreeEnabled from "../../Assets/internalAccessories/inputsandoutputs/smile3-enabled.png";
+import smilefour from "../../Assets/internalAccessories/inputsandoutputs/smile4.png";
+import smilefourEnabled from "../../Assets/internalAccessories/inputsandoutputs/smile4-enabled.png";
+import { Link, useHistory } from "react-router-dom";
+import { useLocalStorage } from "../LocalStorage/LocalStorage";
+import renderPrgImage from "../../source/programImg";
 var Panel = Panel1("");
 const InternalAccessories = () => {
   const history = useHistory();
@@ -216,6 +221,102 @@ const InternalAccessories = () => {
     "D2DIGI",
     JSON.parse(sessionStorage.getItem("D2DIGI"))
   );
+  const [e1, setE1] = useLocalStorage(
+    "E1",
+    JSON.parse(sessionStorage.getItem("E1"))
+  );
+  const [e1Checked, setE1Checked] = useLocalStorage(
+    "e1-I/O",
+    JSON.parse(sessionStorage.getItem("e1-I/O"))
+  );
+  const [e1Digi, setE1Digi] = useLocalStorage(
+    "E1DIGI",
+    JSON.parse(sessionStorage.getItem("E1DIGI"))
+  );
+  const [e2, setE2] = useLocalStorage(
+    "E2",
+    JSON.parse(sessionStorage.getItem("E2"))
+  );
+  const [e2Checked, setE2Checked] = useLocalStorage(
+    "e2-I/O",
+    JSON.parse(sessionStorage.getItem("e2-I/O"))
+  );
+  const [e2Digi, setE2Digi] = useLocalStorage(
+    "E2DIGI",
+    JSON.parse(sessionStorage.getItem("E2DIGI"))
+  );
+  const [f1, setF1] = useLocalStorage(
+    "F1",
+    JSON.parse(sessionStorage.getItem("F1"))
+  );
+  const [f1Checked, setF1Checked] = useLocalStorage(
+    "f1-I/O",
+    JSON.parse(sessionStorage.getItem("f1-I/O"))
+  );
+  const [f1Digi, setF1Digi] = useLocalStorage(
+    "F1DIGI",
+    JSON.parse(sessionStorage.getItem("F1DIGI"))
+  );
+  const [f2, setF2] = useLocalStorage(
+    "F2",
+    JSON.parse(sessionStorage.getItem("F2"))
+  );
+  const [f2Checked, setF2Checked] = useLocalStorage(
+    "f2-I/O",
+    JSON.parse(sessionStorage.getItem("f2-I/O"))
+  );
+  const [f2Digi, setF2Digi] = useLocalStorage(
+    "F2DIGI",
+    JSON.parse(sessionStorage.getItem("F2DIGI"))
+  );
+  const [m1, setM1] = useLocalStorage(
+    "M1",
+    JSON.parse(sessionStorage.getItem("M1"))
+  );
+  const [m1Checked, setM1Checked] = useLocalStorage(
+    "m1-I/O",
+    JSON.parse(sessionStorage.getItem("m1-I/O"))
+  );
+  const [m1Digi, setM1Digi] = useLocalStorage(
+    "M1DIGI",
+    JSON.parse(sessionStorage.getItem("M1DIGI"))
+  );
+  const [m2, setM2] = useLocalStorage(
+    "M2",
+    JSON.parse(sessionStorage.getItem("M2"))
+  );
+  const [m2Checked, setM2Checked] = useLocalStorage(
+    "m2-I/O",
+    JSON.parse(sessionStorage.getItem("m2-I/O"))
+  );
+  const [m2Digi, setM2Digi] = useLocalStorage(
+    "M2DIGI",
+    JSON.parse(sessionStorage.getItem("M2DIGI"))
+  );
+  const [m3, setM3] = useLocalStorage(
+    "M3",
+    JSON.parse(sessionStorage.getItem("M3"))
+  );
+  const [m3Checked, setM3Checked] = useLocalStorage(
+    "m3-I/O",
+    JSON.parse(sessionStorage.getItem("m3-I/O"))
+  );
+  const [m3Digi, setM3Digi] = useLocalStorage(
+    "M3DIGI",
+    JSON.parse(sessionStorage.getItem("M3DIGI"))
+  );
+  const [m4, setM4] = useLocalStorage(
+    "M4",
+    JSON.parse(sessionStorage.getItem("M4"))
+  );
+  const [m4Checked, setM4Checked] = useLocalStorage(
+    "m4-I/O",
+    JSON.parse(sessionStorage.getItem("m4-I/O"))
+  );
+  const [m4Digi, setM4Digi] = useLocalStorage(
+    "M4DIGI",
+    JSON.parse(sessionStorage.getItem("M4DIGI"))
+  );
   const handleEventsClick = (e) => {
     switch (e.target.alt) {
       case "mic": {
@@ -246,6 +347,8 @@ const InternalAccessories = () => {
       }
 
       case "touch0": {
+        if(JSON.parse(sessionStorage.getItem("A1")))
+        return
         var x = document.getElementById("snackbar3");
         x.className = "show";
         setTimeout(function () {
@@ -261,6 +364,8 @@ const InternalAccessories = () => {
       }
 
       case "touch1": {
+        if(JSON.parse(sessionStorage.getItem("B1")))
+          return
         var x = document.getElementById("snackbar4");
         x.className = "show";
         setTimeout(function () {
@@ -275,6 +380,8 @@ const InternalAccessories = () => {
         break;
       }
       case "touch2": {
+        if(JSON.parse(sessionStorage.getItem("C1")))
+          return
         var x = document.getElementById("snackbar5");
         x.className = "show";
         setTimeout(function () {
@@ -290,6 +397,8 @@ const InternalAccessories = () => {
       }
 
       case "touch0Output": {
+        if(JSON.parse(sessionStorage.getItem("A1")))
+          return
         var x = document.getElementById("snackbar6");
         x.className = "show";
         setTimeout(function () {
@@ -304,6 +413,8 @@ const InternalAccessories = () => {
         break;
       }
       case "touch1Output": {
+        if(JSON.parse(sessionStorage.getItem("B1")))
+          return
         var x = document.getElementById("snackbar7");
         x.className = "show";
         setTimeout(function () {
@@ -319,6 +430,8 @@ const InternalAccessories = () => {
       }
 
       case "touch2Output": {
+        if(JSON.parse(sessionStorage.getItem("C1")))
+          return
         var x = document.getElementById("snackbar8");
         x.className = "show";
         setTimeout(function () {
@@ -376,6 +489,8 @@ const InternalAccessories = () => {
       }
 
       case "smile1": {
+        if(JSON.parse(sessionStorage.getItem("M1")))
+          return
         var x = document.getElementById("snackbar12");
         x.className = "show";
         setTimeout(function () {
@@ -390,6 +505,9 @@ const InternalAccessories = () => {
       }
 
       case "smile2": {
+        if(JSON.parse(sessionStorage.getItem("M2")))
+          return
+        
         var x = document.getElementById("snackbar13");
         x.className = "show";
         setTimeout(function () {
@@ -404,6 +522,9 @@ const InternalAccessories = () => {
       }
 
       case "smile3": {
+        if(JSON.parse(sessionStorage.getItem("M3")))
+        return
+      
         var x = document.getElementById("snackbar14");
         x.className = "show";
         setTimeout(function () {
@@ -419,6 +540,9 @@ const InternalAccessories = () => {
       }
 
       case "smile4": {
+        if(JSON.parse(sessionStorage.getItem("M4")))
+        return
+      
         var x = document.getElementById("snackbar15");
         x.className = "show";
         setTimeout(function () {
@@ -435,6 +559,8 @@ const InternalAccessories = () => {
   const handleFounInOneSensor = (e) => {
     switch (e.target.alt) {
       case "distancesensors": {
+        if(JSON.parse(sessionStorage.getItem("D1")))
+        return
         var x = document.getElementById("snackbar16");
         x.className = "show";
         setTimeout(function () {
@@ -452,6 +578,8 @@ const InternalAccessories = () => {
         break;
       }
       case "gesturesensor": {
+        if(JSON.parse(sessionStorage.getItem("D1")))
+        return
         var x = document.getElementById("snackbar17");
         x.className = "show";
         setTimeout(function () {
@@ -468,6 +596,8 @@ const InternalAccessories = () => {
         break;
       }
       case "lightsensor": {
+        if(JSON.parse(sessionStorage.getItem("D1")))
+        return
         var x = document.getElementById("snackbar18");
         x.className = "show";
         setTimeout(function () {
@@ -484,6 +614,8 @@ const InternalAccessories = () => {
         break;
       }
       case "colorsensor": {
+        if(JSON.parse(sessionStorage.getItem("D1")))
+        return
         var x = document.getElementById("snackbar19");
         x.className = "show";
         setTimeout(function () {
@@ -568,10 +700,34 @@ const InternalAccessories = () => {
       setD2(false);
       setD2Checked(false);
       setD2Digi(false);
-      sessionStorage.setItem("flowchart-elements", null);
-      sessionStorage.setItem("flowchart-elements-id", null);
+      setE1(false);
+      setE1Checked(false);
+      setE1Digi(false);
+      setE2(false);
+      setE2Checked(false);
+      setE2Digi(false);
+      setF1(false);
+      setF1Checked(false);
+      setF1Digi(false);
+      setF2(false);
+      setF2Checked(false);
+      setF2Digi(false);
+      setM1(false);
+      setM1Checked(false);
+      setM1Digi(false);
+      setM2(false);
+      setM2Checked(false);
+      setM2Digi(false);
+      setM3(false);
+      setM3Checked(false);
+      setM3Digi(false);
+      setM4(false);
+      setM4Checked(false);
+      setM4Digi(false);
+      sessionStorage.setItem("flowchart-elements",null)
+      sessionStorage.setItem("flowchart-elements-id",null)
       history.push("/flow");
-      window.location.reload(false);
+      window.location.reload();
     } else {
       setErasedProgram(false);
     }

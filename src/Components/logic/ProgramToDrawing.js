@@ -145,7 +145,7 @@ function drawHands(
 
     currentProgramGuide--;
   }
-
+  console.log(board, row, CompName);
   // here hex block are recreated like when we click activeHand  it will open 4hex repeat,loop,action,conditions
   // these 4hex are created here
   if (active[0] === row && active[1] === board[row].length - 1) {
@@ -182,7 +182,7 @@ function drawHands(
       };
     else {
       const type = "end_" + board[row - 2][board[row - 2].length - 2].type;
-
+      console.log("checking else", type);
       board[row][col + 1] = { type: type, onClick: () => add(type) };
     }
   }
@@ -271,7 +271,7 @@ export default function (
       if (board[active[0]][active[1]].type == "highlighted_hand") {
         board[active[0] - 1][active[1] + 1] = {
           type: "condition",
-          onClick: () => add("condition"),
+          onClick: () => insertNode("condition"),
         };
 
         board[active[0] + 1][active[1] + 1] = {

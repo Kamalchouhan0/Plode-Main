@@ -4,7 +4,7 @@ import End from "./end/End";
 import LoopPanel from "./loop/loop";
 import OutputPanel from "./output/Output";
 export default function (panel) {
-  var data;
+
   console.log("Condition===>");
   switch (panel) {
     case "condition":

@@ -1,29 +1,69 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useState, useLayoutEffect } from "react";
+import Bottom from "./Bottom";
+import { Nav } from "react-bootstrap";
+import "./button.scss";
+import SwitchButton from "./SwitchButton/SwitchButton";
+import useLocalStorage from "../LocalStorage/LocalStorage";
+import pcImg from "../../Assets/internalAccessories/PC_image@3x.png";
 import inputImg from "../../Assets/img/assemble bar@2x.png";
-import strokeImg from "../../Assets/img/button 52x52 - stroke.png";
 import secondaryImg from "../../Assets/img/save - secondary.png";
-import Pcinternal4in1Active from "../../Assets/internalAccessories/4 in 1 - active.svg";
-import Pcinternal4in1InActive from "../../Assets/internalAccessories/4 in 1 - inactive.svg";
-import PcinternalBuzzerActive from "../../Assets/internalAccessories/buzzer - active.svg";
-import PcinternalBuzzerInActive from "../../Assets/internalAccessories/buzzer - inactive.svg";
+import strokeImg from "../../Assets/img/button 52x52 - stroke.png";
+import connectionImg from "../../Assets/usb - off@2x.png";
+import { Link, useHistory } from "react-router-dom";
+import renderPrgImage from "../../source/programImg";
+
+import eyeInactiveImg from "../../Assets/internalAccessories/eye - inactive.484d85f3.svg";
+import teethImg from "../../Assets/internalAccessories/teeth - inactive.ff84b1d3.svg";
+import inImg from "../../Assets/internalAccessories/4 in 1 - inactive.ea3e994f.svg";
+import internalmicImg from "../../Assets/internalAccessories/internal mic - inactive.d43d2f36.svg";
+import buzzerImg from "../../Assets/internalAccessories/buzzer - inactive.872b79d8.svg";
+import touchpadsImg from "../../Assets/internalAccessories/touch pads - inactive.748c6933.svg";
+
 import PcinternalEYEActive from "../../Assets/internalAccessories/eye - active.svg";
 import PcinternalEYEInActive from "../../Assets/internalAccessories/eye - inactive.svg";
-import PcinternalMicInActive from "../../Assets/internalAccessories/internal mic - active.svg";
-import PcinternalMicActive from "../../Assets/internalAccessories/internal mic - inactive.svg";
-import pcImg from "../../Assets/internalAccessories/PC_image@3x.png";
-import PcinternalTeethActive from "../../Assets/internalAccessories/teeth - active.svg";
 import PcinternalTeethInActive from "../../Assets/internalAccessories/teeth - inactive.svg";
-import PcinternalTouchpadsActive from "../../Assets/internalAccessories/touch pads - active.svg";
-import PcinternalTouchpadsInActive from "../../Assets/internalAccessories/touch pads - inactive.svg";
-import connectionImg from "../../Assets/usb - off@2x.png";
-import renderPrgImage from "../../source/programImg";
-import useLocalStorage from "../LocalStorage/LocalStorage";
-import "./button.scss";
-import "./Navbar.css";
-import "./pcimage.css";
-import "./style.css";
+import PcinternalTeethActive from "../../Assets/internalAccessories/teeth - active.svg";
 
+import Pcinternal4in1Active from "../../Assets/internalAccessories/4 in 1 - active.svg";
+import Pcinternal4in1InActive from "../../Assets/internalAccessories/4 in 1 - inactive.svg";
+import PcinternalMicActive from "../../Assets/internalAccessories/internal mic - inactive.svg";
+import PcinternalMicInActive from "../../Assets/internalAccessories/internal mic - active.svg";
+import PcinternalBuzzerInActive from "../../Assets/internalAccessories/buzzer - inactive.svg";
+import PcinternalBuzzerActive from "../../Assets/internalAccessories/buzzer - active.svg";
+import PcinternalTouchpadsInActive from "../../Assets/internalAccessories/touch pads - inactive.svg";
+import PcinternalTouchpadsActive from "../../Assets/internalAccessories/touch pads - active.svg";
+
+import "./pcimage.css";
+import "./Navbar.css";
+import "./style.css";
+let bttnColor = [];
+let bttnColor2 = [];
+let bttType = [
+  "a1-I/O",
+  "a2-I/O",
+  "b1-I/O",
+  "b2-I/O",
+  "c1-I/O",
+  "c2-I/O",
+  "d1-I/O",
+  "d2-I/O",
+  "e1-I/O",
+  "e2-I/O",
+  "f1-I/O",
+  "f2-I/O",
+  "m1-I/O",
+  "m2-I/O",
+  "m3-I/O",
+  "m4-I/O",
+];
+for (let i = 0; i < 16; i++) {
+  bttnColor[i] = "#717171";
+  bttnColor2[i] = "#fcfcfc";
+  if (JSON.parse(sessionStorage.getItem(bttType[i]))) {
+    bttnColor[i] = "#fcfcfc";
+    bttnColor2[i] = "#717171";
+  }
+}
 function InputOutput() {
   const history = useHistory();
   const backBtnAction = () => {
@@ -32,6 +72,21 @@ function InputOutput() {
   const next = () => {
     history.push("/flow/digital-analog");
   };
+
+  useLayoutEffect(() => {
+    return () => {
+      for (let i = 0; i < 16; i++) {
+        if (JSON.parse(sessionStorage.getItem(bttType[i]))) {
+          bttnColor[i] = "#fcfcfc";
+          bttnColor2[i] = "#717171";
+        } else {
+          bttnColor[i] = "#717171";
+          bttnColor2[i] = "#fcfcfc";
+        }
+      }
+    };
+  });
+
   const A1 = JSON.parse(sessionStorage.getItem("A1"));
   const A2 = JSON.parse(sessionStorage.getItem("A2"));
   const B1 = JSON.parse(sessionStorage.getItem("B1"));
@@ -93,6 +148,9 @@ function InputOutput() {
   const [m2Checked, setM2Checked] = useLocalStorage("m2-I/O", false);
   const [m3Checked, setM3Checked] = useLocalStorage("m3-I/O", false);
   const [m4Checked, setM4Checked] = useLocalStorage("m4-I/O", false);
+
+  const [aUltra, setAUltra] = useLocalStorage("AUltra", false);
+  const [cUltra, setCUltra] = useLocalStorage("CUltra", false);
 
   const [uart, setUart] = useLocalStorage("uart", false);
   const [spi, setSpi] = useLocalStorage("spi", false);
@@ -165,9 +223,11 @@ function InputOutput() {
     setShowPopupI2c(false);
   };
 
-  const a1CheckedState = () => {
+  const a1CheckedState = async () => {
     setA1Checked(!a1Checked);
-    if (a1Checked) {
+    await JSON.parse(sessionStorage.getItem("a1-I/O"));
+
+    if (!(await JSON.parse(sessionStorage.getItem("a1-I/O")))) {
       document.getElementById("in1").style.cssText = "  color: #fcfcfc;";
       document.getElementById("s1").style.cssText = "color: #717171;";
     } else {
@@ -175,9 +235,11 @@ function InputOutput() {
       document.getElementById("s1").style.cssText = "  color: #fcfcfc;";
     }
   };
-  const a2CheckedState = () => {
+  const a2CheckedState = async () => {
     setA2Checked(!a2Checked);
-    if (a2Checked) {
+    await JSON.parse(sessionStorage.getItem("a2-I/O"));
+
+    if (!(await JSON.parse(sessionStorage.getItem("a2-I/O")))) {
       document.getElementById("in2").style.cssText = "  color: #fcfcfc;";
       document.getElementById("s2").style.cssText = "color: #717171;";
     } else {
@@ -186,9 +248,11 @@ function InputOutput() {
     }
   };
 
-  const b1CheckedState = () => {
+  const b1CheckedState = async () => {
     setB1Checked(!b1Checked);
-    if (b1Checked) {
+    await JSON.parse(sessionStorage.getItem("b1-I/O"));
+
+    if (!(await JSON.parse(sessionStorage.getItem("b1-I/O")))) {
       document.getElementById("in3").style.cssText = "  color: #fcfcfc;";
       document.getElementById("s3").style.cssText = "color: #717171;";
     } else {
@@ -197,9 +261,11 @@ function InputOutput() {
     }
   };
 
-  const b2CheckedState = () => {
+  const b2CheckedState = async () => {
     setB2Checked(!b2Checked);
-    if (b2Checked) {
+    await JSON.parse(sessionStorage.getItem("b2-I/O"));
+
+    if (!(await JSON.parse(sessionStorage.getItem("b2-I/O")))) {
       document.getElementById("in4").style.cssText = "  color: #fcfcfc;";
       document.getElementById("s4").style.cssText = "color: #717171;";
     } else {
@@ -207,9 +273,11 @@ function InputOutput() {
       document.getElementById("s4").style.cssText = "  color: #fcfcfc;";
     }
   };
-  const c1CheckedState = () => {
+  const c1CheckedState = async () => {
     setC1Checked(!c1Checked);
-    if (c1Checked) {
+    await JSON.parse(sessionStorage.getItem("c1-I/O"));
+
+    if (!(await JSON.parse(sessionStorage.getItem("c1-I/O")))) {
       document.getElementById("in5").style.cssText = "  color: #fcfcfc;";
       document.getElementById("s5").style.cssText = "color: #717171;";
     } else {
@@ -217,9 +285,11 @@ function InputOutput() {
       document.getElementById("s5").style.cssText = "  color: #fcfcfc;";
     }
   };
-  const c2CheckedState = () => {
+  const c2CheckedState = async () => {
     setC2Checked(!c2Checked);
-    if (c2Checked) {
+    await JSON.parse(sessionStorage.getItem("c2-I/O"));
+
+    if (!(await JSON.parse(sessionStorage.getItem("c2-I/O")))) {
       document.getElementById("in6").style.cssText = "  color: #fcfcfc;";
       document.getElementById("s6").style.cssText = "color: #717171;";
     } else {
@@ -235,30 +305,11 @@ function InputOutput() {
     setD2Checked(!d2Checked);
   };
 
-  const f1CheckedState = () => {
+  const f1CheckedState = async () => {
     setF1Checked(!f1Checked);
-    if (f1Checked) {
-      document.getElementById("in9").style.cssText = "  color: #fcfcfc;";
-      document.getElementById("s9").style.cssText = "color: #717171;";
-    } else {
-      document.getElementById("in9").style.cssText = "color: #717171; ";
-      document.getElementById("s9").style.cssText = "  color: #fcfcfc;";
-    }
-  };
-  const f2CheckedState = () => {
-    setF2Checked(!f2Checked);
-    if (f2Checked) {
-      document.getElementById("in10").style.cssText = "  color: #fcfcfc;";
-      document.getElementById("s10").style.cssText = "color: #717171;";
-    } else {
-      document.getElementById("in10").style.cssText = "color: #717171; ";
-      document.getElementById("s10").style.cssText = "  color: #fcfcfc;";
-    }
-  };
+    await JSON.parse(sessionStorage.getItem("f1-I/O"));
 
-  const e1CheckedState = () => {
-    setE1Checked(!e1Checked);
-    if (e1Checked) {
+    if (!(await JSON.parse(sessionStorage.getItem("f1-I/O")))) {
       document.getElementById("in11").style.cssText = "  color: #fcfcfc;";
       document.getElementById("s11").style.cssText = "color: #717171;";
     } else {
@@ -266,10 +317,11 @@ function InputOutput() {
       document.getElementById("s11").style.cssText = "  color: #fcfcfc;";
     }
   };
+  const f2CheckedState = async () => {
+    setF2Checked(!f2Checked);
+    await JSON.parse(sessionStorage.getItem("f2-I/O"));
 
-  const e2CheckedState = () => {
-    setE2Checked(!e2Checked);
-    if (e2Checked) {
+    if (!(await JSON.parse(sessionStorage.getItem("f2-I/O")))) {
       document.getElementById("in12").style.cssText = "  color: #fcfcfc;";
       document.getElementById("s12").style.cssText = "color: #717171;";
     } else {
@@ -277,9 +329,37 @@ function InputOutput() {
       document.getElementById("s12").style.cssText = "  color: #fcfcfc;";
     }
   };
-  const m1CheckedState = () => {
+
+  const e1CheckedState = async () => {
+    setE1Checked(!e1Checked);
+    await JSON.parse(sessionStorage.getItem("e1-I/O"));
+
+    if (!(await JSON.parse(sessionStorage.getItem("e1-I/O")))) {
+      document.getElementById("in9").style.cssText = "  color: #fcfcfc;";
+      document.getElementById("s9").style.cssText = "color: #717171;";
+    } else {
+      document.getElementById("in9").style.cssText = "color: #717171; ";
+      document.getElementById("s9").style.cssText = "  color: #fcfcfc;";
+    }
+  };
+
+  const e2CheckedState = async () => {
+    setE2Checked(!e2Checked);
+    await JSON.parse(sessionStorage.getItem("e2-I/O"));
+
+    if (!(await JSON.parse(sessionStorage.getItem("e2-I/O")))) {
+      document.getElementById("in10").style.cssText = "  color: #fcfcfc;";
+      document.getElementById("s10").style.cssText = "color: #717171;";
+    } else {
+      document.getElementById("in10").style.cssText = "color: #717171; ";
+      document.getElementById("s10").style.cssText = "  color: #fcfcfc;";
+    }
+  };
+  const m1CheckedState = async () => {
     setM1Checked(!m1Checked);
-    if (m1Checked) {
+    await JSON.parse(sessionStorage.getItem("m1-I/O"));
+
+    if (!(await JSON.parse(sessionStorage.getItem("m1-I/O")))) {
       document.getElementById("in13").style.cssText = "  color: #fcfcfc;";
       document.getElementById("s13").style.cssText = "color: #717171;";
     } else {
@@ -287,9 +367,11 @@ function InputOutput() {
       document.getElementById("s13").style.cssText = "  color: #fcfcfc;";
     }
   };
-  const m2CheckedState = () => {
+  const m2CheckedState = async () => {
     setM2Checked(!m2Checked);
-    if (m2Checked) {
+    await JSON.parse(sessionStorage.getItem("m2-I/O"));
+
+    if (!(await JSON.parse(sessionStorage.getItem("m2-I/O")))) {
       document.getElementById("in14").style.cssText = "  color: #fcfcfc;";
       document.getElementById("s14").style.cssText = "color: #717171;";
     } else {
@@ -297,11 +379,11 @@ function InputOutput() {
       document.getElementById("s14").style.cssText = "  color: #fcfcfc;";
     }
   };
-  const m3CheckedState = () => {
+  const m3CheckedState = async () => {
     setM3Checked(!m3Checked);
   };
 
-  const m4CheckedState = () => {
+  const m4CheckedState = async () => {
     setM4Checked(!m4Checked);
   };
 
@@ -322,7 +404,20 @@ function InputOutput() {
       setShowPopupI2c(!showPopupI2c);
     }
   };
+  const UltraA = () => {
+    console.log("GSK ONLINE__________________", aUltra);
 
+    setAUltra(!aUltra);
+    setA1Checked(true);
+    setA2Checked(false);
+  };
+  const UltraC = () => {
+    console.log("GSK ONLINE__________________", aUltra);
+
+    setCUltra(!cUltra);
+    setC1Checked(true);
+    setC2Checked(false);
+  };
   let buttonModal;
   let buttonModalSp1;
   let buttonModalI2c;
@@ -501,16 +596,16 @@ function InputOutput() {
           </div>
         </div>
         <div className="Inputs-ports-Container">
-          <div className="Inputs-properties-Container">
+          {/* <div className="Inputs-properties-Container">
             <div className="Inputs-properties-b">
               <div className="Inputs-properties-bIn">
                 <span className="Inputs-properties-InputLabel">
                   <input
                     className="Inputs-properties-InputCheckBox"
                     type="checkbox"
-                    // checked={a1}
-                    // onClick={() => myFunction1()}
-                    // onChange={() => onA1ValueChange()}
+                  // checked={a1}
+                  // onClick={() => myFunction1()}
+                  // onChange={() => onA1ValueChange()}
                   />
                   <span disabled="disabled" className="A1" id="foo1">
                     A1
@@ -520,9 +615,9 @@ function InputOutput() {
                   <input
                     className="Inputs-properties-InputCheckBox"
                     type="checkbox"
-                    // checked={a2}
-                    // onClick={() => myFunction2()}
-                    // onChange={() => onA2ValueChange()}
+                  // checked={a2}
+                  // onClick={() => myFunction2()}
+                  // onChange={() => onA2ValueChange()}
                   />
                   <span disabled="disabled" className="A1" id="foo2">
                     A2
@@ -532,9 +627,9 @@ function InputOutput() {
                   <input
                     className="Inputs-properties-InputCheckBox"
                     type="checkbox"
-                    // checked={a2}
-                    // onClick={() => myFunction2()}
-                    // onChange={() => onA2ValueChange()}
+                  // checked={a2}
+                  // onClick={() => myFunction2()}
+                  // onChange={() => onA2ValueChange()}
                   />
                   <span disabled="disabled" className="A1" id="foo2">
                     A2
@@ -542,41 +637,89 @@ function InputOutput() {
                 </span>
               </div>
             </div>
-          </div>
+          </div> */}
           <div className="ButtonDivInput">
-            <div className="Inputs-flow-left-upper">
-              <div className="Inputs-flow-left-upper-grp">
-                <label className={A1 + "input upper-label-input"}>
-                  <span className={(A1 || false) + "-span textsp"}>A1</span>
-                  <div class={"switch-button-" + (A1 || false)} id="s1">
+            <div className="Inputs-flow-left-upper-ultrasonic">
+              <div className="Inputs-flow-left-upper-grp-ultrasonic">
+                <label className={A1 && !aUltra + "input upper-label-input"}>
+                  <span className={((A1 && !aUltra) || false) + "-span textsp"}>
+                    A1
+                  </span>
+                  <div
+                    class={"switch-button-" + ((A1 && !aUltra) || false)}
+                    id="s1"
+                    style={{ color: bttnColor[0] }}
+                  >
                     <input
-                      disabled={!A1}
+                      disabled={!A1 || aUltra}
                       checked={a1Checked}
                       onChange={a1CheckedState}
                       class="switch-button-checkbox"
                       type="checkbox"
                     ></input>
                     <label class="switch-button-label" for="">
-                      <span class="switch-button-label-span" id="in1">
+                      <span
+                        class="switch-button-label-span"
+                        id="in1"
+                        style={{ color: bttnColor2[0] }}
+                      >
                         Input
                       </span>
                     </label>
                   </div>
                 </label>
                 <br />
-                <label className={A2 + "input upper-label-input"}>
-                  <span className={(A2 || false) + "-span textsp"}>A2</span>
-                  <div class={"switch-button-" + (A2 || false)} id="s2">
+                <label className={A2 && !aUltra + "input upper-label-input"}>
+                  <span className={((A2 && !aUltra) || false) + "-span textsp"}>
+                    A2
+                  </span>
+                  <div
+                    class={"switch-button-" + ((A2 && !aUltra) || false)}
+                    id="s2"
+                    style={{ color: bttnColor[1] }}
+                  >
                     <input
-                      disabled={!A2}
+                      disabled={!A2 || aUltra}
                       checked={a2Checked}
                       onChange={a2CheckedState}
                       class="switch-button-checkbox"
                       type="checkbox"
                     ></input>
                     <label class="switch-button-label" for="">
-                      <span class="switch-button-label-span" id="in2">
+                      <span
+                        class="switch-button-label-span"
+                        id="in2"
+                        style={{ color: bttnColor2[1] }}
+                      >
                         Input
+                      </span>
+                    </label>
+                  </div>
+                </label>
+                <br />
+                <label
+                  className={
+                    aUltra +
+                    "input upper-label-input upper-label-input-ultrasonic upper-label-input-ultrasonic-" +
+                    aUltra +
+                    " ultrasonic-disabled-" +
+                    (!A1 || !A2)
+                  }
+                >
+                  <div
+                    class={"switch-button-ultrasonic-" + (aUltra || false)}
+                    id="s2"
+                  >
+                    <input
+                      class="switch-button-checkbox-ultrasonic"
+                      type="checkbox"
+                      disabled={!A1 || !A2}
+                      checked={aUltra}
+                      onChange={UltraA}
+                    ></input>
+                    <label class="switch-button-label" for="">
+                      <span class="switch-button-label-span" id="in2">
+                        Ultra Sonic
                       </span>
                     </label>
                   </div>
@@ -588,7 +731,11 @@ function InputOutput() {
                 <label className={B1 + "input upper-label-input"}>
                   <span className={(B1 || false) + "-span textsp"}>B1</span>
 
-                  <div class={"switch-button-" + (B1 || false)} id="s3">
+                  <div
+                    class={"switch-button-" + (B1 || false)}
+                    id="s3"
+                    style={{ color: bttnColor[2] }}
+                  >
                     <input
                       disabled={!B1}
                       checked={b1Checked}
@@ -597,7 +744,11 @@ function InputOutput() {
                       type="checkbox"
                     ></input>
                     <label class="switch-button-label" for="">
-                      <span class="switch-button-label-span " id="in3">
+                      <span
+                        class="switch-button-label-span "
+                        id="in3"
+                        style={{ color: bttnColor2[2] }}
+                      >
                         Input
                       </span>
                     </label>
@@ -607,7 +758,11 @@ function InputOutput() {
                 <label className={B2 + "input upper-label-input"}>
                   <span className={(B2 || false) + "-span textsp"}>B2</span>
 
-                  <div class={"switch-button-" + (B2 || false)} id="s4">
+                  <div
+                    class={"switch-button-" + (B2 || false)}
+                    id="s4"
+                    style={{ color: bttnColor[3] }}
+                  >
                     <input
                       disabled={!B2}
                       checked={b2Checked}
@@ -616,7 +771,11 @@ function InputOutput() {
                       type="checkbox"
                     ></input>
                     <label class="switch-button-label" for="">
-                      <span class="switch-button-label-span" id="in4">
+                      <span
+                        class="switch-button-label-span"
+                        id="in4"
+                        style={{ color: bttnColor2[3] }}
+                      >
                         Input
                       </span>
                     </label>
@@ -628,7 +787,11 @@ function InputOutput() {
               <div className="Inputs-flow-left-upper-grp">
                 <label className={E1 + "input upper-label-input"}>
                   <span className={(E1 || false) + "-span textsp"}>E1</span>
-                  <div class={"switch-button-" + (E1 || false)} id="s9">
+                  <div
+                    class={"switch-button-" + (E1 || false)}
+                    id="s9"
+                    style={{ color: bttnColor[8] }}
+                  >
                     <input
                       disabled={!E1}
                       checked={e1Checked}
@@ -637,7 +800,11 @@ function InputOutput() {
                       type="checkbox"
                     ></input>
                     <label class="switch-button-label" for="">
-                      <span class="switch-button-label-span" id="in9">
+                      <span
+                        class="switch-button-label-span"
+                        id="in9"
+                        style={{ color: bttnColor2[8] }}
+                      >
                         Input
                       </span>
                     </label>
@@ -646,7 +813,11 @@ function InputOutput() {
                 <br />
                 <label className={E2 + "input upper-label-input"}>
                   <span className={(E2 || false) + "-span textsp"}>E2</span>
-                  <div class={"switch-button-" + (E2 || false)} id="s10">
+                  <div
+                    class={"switch-button-" + (E2 || false)}
+                    id="s10"
+                    style={{ color: bttnColor[9] }}
+                  >
                     <input
                       disabled={!E2}
                       checked={e2Checked}
@@ -655,7 +826,11 @@ function InputOutput() {
                       type="checkbox"
                     ></input>
                     <label class="switch-button-label" for="">
-                      <span class="switch-button-label-span" id="in10">
+                      <span
+                        class="switch-button-label-span"
+                        id="in10"
+                        style={{ color: bttnColor2[9] }}
+                      >
                         Input
                       </span>
                     </label>
@@ -665,38 +840,54 @@ function InputOutput() {
             </div>
             <div className="Inputs-flow-left-upper">
               <div className="Inputs-flow-left-upper-grp">
-                <label className={F1 + "input upper-label-input"}>
-                  <span className={(F1 || false) + "-span textsp"}>F1</span>
+                <label className={M1 + "input upper-label-input"}>
+                  <span className={(M1 || false) + "-span textsp"}>M1</span>
 
-                  <div class={"switch-button-" + (F1 || false)} id="s11">
+                  <div
+                    class={"switch-button-" + (M1 || false)}
+                    id="s13"
+                    style={{ color: bttnColor2[12] }}
+                  >
                     <input
-                      disabled={!F1}
-                      checked={f1Checked}
-                      onChange={f1CheckedState}
+                      disabled={true}
+                      checked={true}
+                      onChange={m1CheckedState}
                       class="switch-button-checkbox"
                       type="checkbox"
                     ></input>
                     <label class="switch-button-label" for="">
-                      <span class="switch-button-label-span " id="in11">
+                      <span
+                        class="switch-button-label-span"
+                        id="in13"
+                        style={{ color: bttnColor[12] }}
+                      >
                         Input
                       </span>
                     </label>
                   </div>
                 </label>
                 <br />
-                <label className={F2 + "input upper-label-input"}>
-                  <span className={(F2 || false) + "-span textsp"}>F2</span>
+                <label className={M2 + "input upper-label-input"}>
+                  <span className={(M2 || false) + "-span textsp"}>M2</span>
 
-                  <div class={"switch-button-" + (F2 || false)} id="s12">
+                  <div
+                    class={"switch-button-" + (M2 || false)}
+                    id="s14"
+                    style={{ color: bttnColor2[13] }}
+                  >
                     <input
-                      disabled={!F2}
-                      checked={f2Checked}
-                      onChange={f2CheckedState}
+                      disabled={true}
+                      checked={true}
+                      onChange={m2CheckedState}
                       class="switch-button-checkbox"
                       type="checkbox"
                     ></input>
                     <label class="switch-button-label" for="">
-                      <span class="switch-button-label-span" id="in12">
+                      <span
+                        class="switch-button-label-span"
+                        id="in14"
+                        style={{ color: bttnColor[13] }}
+                      >
                         Input
                       </span>
                     </label>
@@ -707,41 +898,89 @@ function InputOutput() {
           </div>
 
           <div className="ButtonRightDivInput">
-            <div className="Inputs-flow-left-upper">
-              <div className="Inputs-flow-left-upper-grp">
-                <label className={C1 + "input upper-label-input"}>
-                  <span className={(C1 || false) + "-span textsp"}>C1</span>
+            <div className="Inputs-flow-left-upper-ultrasonic">
+              <div className="Inputs-flow-left-upper-grp-ultrasonic">
+                <label className={C1 && !cUltra + "input upper-label-input"}>
+                  <span className={((C1 && !cUltra) || false) + "-span textsp"}>
+                    C1
+                  </span>
 
-                  <div class={"switch-button-" + (C1 || false)} id="s5">
+                  <div
+                    class={"switch-button-" + ((C1 && !cUltra) || false)}
+                    id="s5"
+                    style={{ color: bttnColor[4] }}
+                  >
                     <input
-                      disabled={!C1}
+                      disabled={!C1 || cUltra}
                       checked={c1Checked}
                       onChange={c1CheckedState}
                       class="switch-button-checkbox"
                       type="checkbox"
                     ></input>
                     <label class="switch-button-label" for="">
-                      <span class="switch-button-label-span" id="in5">
+                      <span
+                        class="switch-button-label-span"
+                        id="in5"
+                        style={{ color: bttnColor2[4] }}
+                      >
                         Input
                       </span>
                     </label>
                   </div>
                 </label>
                 <br />
-                <label className={C2 + "input upper-label-input"}>
-                  <span className={(C2 || false) + "-span textsp"}>C2</span>
+                <label className={C2 && !cUltra + "input upper-label-input"}>
+                  <span className={((C2 && !cUltra) || false) + "-span textsp"}>
+                    C2
+                  </span>
 
-                  <div class={"switch-button-" + (C2 || false)} id="s6">
+                  <div
+                    class={"switch-button-" + ((C2 && !cUltra) || false)}
+                    id="s6"
+                    style={{ color: bttnColor[5] }}
+                  >
                     <input
-                      disabled={!C2}
+                      disabled={!C2 || cUltra}
                       checked={c2Checked}
                       onChange={c2CheckedState}
                       class="switch-button-checkbox"
                       type="checkbox"
                     ></input>
                     <label class="switch-button-label" for="">
-                      <span class="switch-button-label-span" id="in6">
+                      <span
+                        class="switch-button-label-span"
+                        id="in6"
+                        style={{ color: bttnColor2[5] }}
+                      >
                         Input
+                      </span>
+                    </label>
+                  </div>
+                </label>
+                <br />
+                <label
+                  className={
+                    cUltra +
+                    "input upper-label-input upper-label-input-ultrasonic upper-label-input-ultrasonic-" +
+                    cUltra +
+                    " ultrasonic-disabled-" +
+                    (!C1 || !C2)
+                  }
+                >
+                  <div
+                    class={"switch-button-ultrasonic-" + (cUltra || false)}
+                    id="s7"
+                  >
+                    <input
+                      class="switch-button-checkbox-ultrasonic"
+                      type="checkbox"
+                      disabled={!C1 || !C2}
+                      checked={cUltra}
+                      onChange={UltraC}
+                    ></input>
+                    <label class="switch-button-label" for="">
+                      <span class="switch-button-label-span" id="in7">
+                        Ultrasonic
                       </span>
                     </label>
                   </div>
@@ -750,8 +989,8 @@ function InputOutput() {
             </div>
             <div className="Inputs-flow-left-upper">
               <div className="Inputs-flow-left-upper-grp">
-                <label className={D1 + "input upper-label-input"}>
-                  <span className={(D1 || false) + "-span textsp"}>D1</span>
+                <label className={false + "input upper-label-input"}>
+                  <span className={false + "-span textsp"}>D1</span>
                   <div
                     class={"switch-button-" + false}
                     style={{ color: "#fcfcfc" }}
@@ -774,8 +1013,8 @@ function InputOutput() {
                   </div>
                 </label>
                 <br />
-                <label className={D2 + "input upper-label-input"}>
-                  <span className={(D2 || false) + "-span textsp"}>D2</span>
+                <label className={false + "input upper-label-input"}>
+                  <span className={false + "-span textsp"}>D2</span>
 
                   <div
                     class={"switch-button-" + false}
@@ -803,38 +1042,54 @@ function InputOutput() {
 
             <div className="Inputs-flow-left-upper">
               <div className="Inputs-flow-left-upper-grp">
-                <label className={M1 + "input upper-label-input"}>
-                  <span className={(M1 || false) + "-span textsp"}>M1</span>
+                <label className={F1 + "input upper-label-input"}>
+                  <span className={(F1 || false) + "-span textsp"}>F1</span>
 
-                  <div class={"switch-button-" + (M1 || false)} id="s13">
+                  <div
+                    class={"switch-button-" + (F1 || false)}
+                    id="s11"
+                    style={{ color: bttnColor[10] }}
+                  >
                     <input
-                      disabled={!M1}
-                      checked={m1Checked}
-                      onChange={m1CheckedState}
+                      disabled={!F1}
+                      checked={f1Checked}
+                      onChange={f1CheckedState}
                       class="switch-button-checkbox"
                       type="checkbox"
                     ></input>
                     <label class="switch-button-label" for="">
-                      <span class="switch-button-label-span" id="in13">
+                      <span
+                        class="switch-button-label-span "
+                        id="in11"
+                        style={{ color: bttnColor2[10] }}
+                      >
                         Input
                       </span>
                     </label>
                   </div>
                 </label>
                 <br />
-                <label className={M2 + "input upper-label-input"}>
-                  <span className={(M2 || false) + "-span textsp"}>M2</span>
+                <label className={F2 + "input upper-label-input"}>
+                  <span className={(F2 || false) + "-span textsp"}>F2</span>
 
-                  <div class={"switch-button-" + (M2 || false)} id="s14">
+                  <div
+                    class={"switch-button-" + (F2 || false)}
+                    id="s12"
+                    style={{ color: bttnColor[11] }}
+                  >
                     <input
-                      disabled={!M2}
-                      checked={m2Checked}
-                      onChange={m2CheckedState}
+                      disabled={!F2}
+                      checked={f2Checked}
+                      onChange={f2CheckedState}
                       class="switch-button-checkbox"
                       type="checkbox"
                     ></input>
                     <label class="switch-button-label" for="">
-                      <span class="switch-button-label-span" id="in14">
+                      <span
+                        class="switch-button-label-span"
+                        id="in12"
+                        style={{ color: bttnColor2[11] }}
+                      >
                         Input
                       </span>
                     </label>
@@ -851,8 +1106,8 @@ function InputOutput() {
                     style={{ color: "#fcfcfc" }}
                   >
                     <input
-                      disabled={!M3}
-                      checked={m3Checked}
+                      disabled={true}
+                      checked={true}
                       onChange={m3CheckedState}
                       class="switch-button-checkbox"
                       type="checkbox"
@@ -876,8 +1131,8 @@ function InputOutput() {
                     style={{ color: "#fcfcfc" }}
                   >
                     <input
-                      disabled={!M4}
-                      checked={m4Checked}
+                      disabled={true}
+                      checked={true}
                       onChange={m4CheckedState}
                       class="switch-button-checkbox"
                       type="checkbox"

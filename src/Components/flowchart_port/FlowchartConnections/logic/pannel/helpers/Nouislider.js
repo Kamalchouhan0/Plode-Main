@@ -133,6 +133,7 @@
 // export default Nouislider;
 
 import React, { Component } from "react";
+import Slider, { Range } from "rc-slider";
 import "rc-slider/assets/index.css";
 import "rc-tooltip/assets/bootstrap.css";
 import "../../../../../../index.css";
@@ -143,7 +144,7 @@ import {
   propertypanelBlueSlider,
   propertypanelInactiveSlider,
 } from "../../../../../../source/index";
-
+import renderPrgImage from "../../../../../../source/programImg";
 class Nouislider extends Component {
   constructor(props) {
     super(props);
@@ -160,14 +161,14 @@ class Nouislider extends Component {
     const sliderStyle = {
       backgroundImage: `url("${
         this.props.sliderName == undefined
-          ? propertypanelSlider
+          ? renderPrgImage("propertypanelSlider")
           : this.props.sliderName == "R" && this.props.value > 0
-          ? propertypanelRedSlider
+          ? renderPrgImage("propertypanelRedSlider")
           : this.props.sliderName == "B" && this.props.value > 0
-          ? propertypanelBlueSlider
+          ? renderPrgImage("propertypanelBlueSlider")
           : this.props.sliderName == "G" && this.props.value > 0
-          ? propertypanelGreenSlider
-          : propertypanelInactiveSlider
+          ? renderPrgImage("propertypanelGreenSlider")
+          : renderPrgImage("propertypanelInactiveSlider")
       }")`,
       backgroundRepeat: "no-repeat",
       backgroundSize: "cover",

@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import { DragSource } from "react-dnd";
+import data from "../concept/data";
+import { DragSource } from "react-dnd-old";
 import ItemTypes from "./ItemTypes";
 import DraggingInfo from "./DraggingInfo";
-import { getEmptyImage } from "react-dnd-html5-backend";
+import { getEmptyImage } from "react-dnd-html5-backend-old";
 import renderCompImg from "../../source/Comp_Img";
 
 const cardSource = {
