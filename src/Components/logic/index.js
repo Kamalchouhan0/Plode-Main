@@ -542,7 +542,7 @@ class Logic extends Component {
   };
   add = (type) => {
     // alert("ADD()");
-
+    console.log("checking add", type);
     if (type == "repeat") {
       this.setState({ readyForSimulation: type });
       sessionStorage.setItem("programEnd", type);
@@ -608,11 +608,10 @@ class Logic extends Component {
     // for(let n = 0; n<drawing.activeParentRef.slice(drawing.activeIndex, drawing.activeParentRef.length).length; n++){
     //   drawing.activeParentRef[n].id= JSON.stringify(Number(drawing.activeParentRef[n].id) + 1)
     // }
-
     num++;
 
     var { logic } = this.props;
-
+    console.log("checkingvalues", type);
     // if (!logic.insertState) {
     //   logic.insertState = true;
     // } //removed by gautam to change to single click
@@ -627,24 +626,25 @@ class Logic extends Component {
         // HERE I AM STOPING TO ADD THE ACTION on HEXBOARD
 
         var toPush = { type: type, state: {}, id: IDIS };
-        if (
-          type === "end_variable" ||
-          type === "end_sensor" ||
-          type === "end_condition" ||
-          type === "end_if" ||
-          type === "end_loop"
-          // ||
-          // type === "repeat"
-        ) {
-          // logic.currentProgramGuide--;
-        }
+        // if (
+        //   type === "end_variable" ||
+        //   type === "end_sensor" ||
+        //   type === "end_condition" ||
+        //   type === "end_if" ||
+        //   type === "end_loop"
+        //   // ||
+        //   // type === "repeat"
+        // ) {
+        //   logic.currentProgramGuide--;
+        // }
         if (
           type === "variable" ||
           type === "condition" ||
           type === "sensor" ||
-          type === "loop"
+          type === "loop" ||
+          type === "if"
         ) {
-          // logic.currentProgramGuide++;
+          logic.currentProgramGuide++;
           toPush.subprogram = [];
         }
         drawing.activeParentRef[drawing.activeIndex] = toPush;
