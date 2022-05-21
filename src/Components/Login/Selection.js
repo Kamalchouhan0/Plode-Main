@@ -7,6 +7,7 @@ import program from "../../Assets/program button.png";
 import renderImage from "../../source/importImg";
 import SMSlider from "../ReusableComponents/SelectModeSlider/SMSlider";
 import SelectionStyle from "./Selection.module.css";
+import ReactLoading from "react-loading";
 
 function Selection(props) {
   let history = useHistory();
@@ -33,7 +34,9 @@ function Selection(props) {
     history.push("/visualProgram");
   };
   const learnBtn = () => {
-    window.location.assign("https://tinkerbunker.com/courses/play-computer/");
+    // document.getElementById("Loadgni").style.opacity = 0.8;
+    // window.location.assign("https://tinkerbunker.com/courses/play-computer/");
+    history.push("/Loading");
   };
 
   useEffect(() => {
@@ -140,6 +143,7 @@ function Selection(props) {
             }}
             onClick={learnBtn}
           ></div>
+
           <img className={SelectionStyle.Learn_Button} src={learn}></img>
           <h1 className={SelectionStyle.Learn_txt} onClick={learnBtn}>
             Learn

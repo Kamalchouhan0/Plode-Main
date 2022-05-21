@@ -204,6 +204,7 @@ class Content extends Component {
       detected: false,
       usbOpen: false,
       erasedProgram: false,
+      abc: false,
     };
     data.forEach(function (component) {
       componentProps[component.type] = component; //set all these propaties to empty object(Imported from componentProps) type:"..."
@@ -530,7 +531,12 @@ class Content extends Component {
 
   render() {
     sessionStorage.setItem("assemblyCheckbox", JSON.stringify(activeCheckBox));
-
+    let inlow = this.state.sidebarContents;
+    if (inlow.includes(this.state.coverflowActive)) {
+      this.state.abc = true;
+    } else {
+      this.state.abc = false;
+    }
     // var App=this.props.app;
     if (localStorage.getItem("programMode") == "learn") {
       if (this.state.sidebarContents.length === this.state.components.length) {
@@ -662,10 +668,23 @@ class Content extends Component {
               </p>
             ) : this.state.components[this.state.coverflowActive] ? (
               <p style={{ color: "#707070" }}>
-                {this.state.components[this.state.coverflowActive].description}
+                {this.state.abc
+                  ? this.state.coverflowActive == 0
+                    ? this.state.components[this.state.coverflowActive + 14]
+                        .description
+                    : this.state.components[this.state.coverflowActive - 1]
+                        .description
+                  : this.state.components[this.state.coverflowActive]
+                      .description}
               </p>
             ) : (
               ""
+            )}
+            {console.log(
+              "LOG",
+              this.state.coverflowActive,
+              this.state.sidebarContents,
+              this.state.abc
             )}
           </div>
           <div
