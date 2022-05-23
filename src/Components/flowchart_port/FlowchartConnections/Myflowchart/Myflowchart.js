@@ -1707,41 +1707,41 @@ const DnDFlow = (props) => {
       setUsb(true);
     }
   };
-  useEffect(async () => {
-    navigator.serial.addEventListener("connect", (e) => {
-      setUsb(true);
-      var user = 1;
-      sessionStorage.setItem("user", JSON.stringify(user));
-    });
+  // useEffect(async () => {
+  //   navigator.serial.addEventListener("connect", (e) => {
+  //     setUsb(true);
+  //     var user = 1;
+  //     sessionStorage.setItem("user", JSON.stringify(user));
+  //   });
 
-    navigator.serial.addEventListener("disconnect", (e) => {
-      setUsb(false);
-      var user = 0;
-      sessionStorage.setItem("user", JSON.stringify(user));
-    });
+  //   navigator.serial.addEventListener("disconnect", (e) => {
+  //     setUsb(false);
+  //     var user = 0;
+  //     sessionStorage.setItem("user", JSON.stringify(user));
+  //   });
 
-    try {
-      const portList = await navigator.serial.getPorts();
+  //   try {
+  //     const portList = await navigator.serial.getPorts();
 
-      if (portList.length === 1) {
-        console.log(portList, "Hardware connected");
+  //     if (portList.length === 1) {
+  //       console.log(portList, "Hardware connected");
 
-        await props.webSerialAction({ port: portList[0] }); // dispatching function of redux
+  //       await props.webSerialAction({ port: portList[0] }); // dispatching function of redux
 
-        setP1({
-          selected: true,
-          port: portList[0],
-        });
-      } else {
-        console.log("No hardware");
+  //       setP1({
+  //         selected: true,
+  //         port: portList[0],
+  //       });
+  //     } else {
+  //       console.log("No hardware");
 
-        setP1({ p1 });
-      }
-    } catch (err) {
-      console.log(err.message);
-    }
+  //       setP1({ p1 });
+  //     }
+  //   } catch (err) {
+  //     console.log(err.message);
+  //   }
 
-  });
+  // });
   //End
 
   const onMove = async (event, viewport) => {
@@ -1766,6 +1766,9 @@ const DnDFlow = (props) => {
     }),
     [onDrop]
   );
+  const onMouseMove=(e)=>{
+    console.log(e.clientX, e.clientY)
+  }
   return (
     <>
       <div className="HeaderContainer">
@@ -1866,7 +1869,7 @@ const DnDFlow = (props) => {
               onNodeDragStop={onNodeDragStop}
               onNodeMouseLeave={onNodeMouseLeave}
               onNodeMouseEnter={onNodeMouseEnter}
-           
+              onMouseMove={onMouseMove}
 
               onMove={onMove}
               className="react-flow-screen"

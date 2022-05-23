@@ -60,8 +60,13 @@ const Sidebar = memo(function Sidebar(props) {
     }
   };
   const onDrag = async (event, nodeType) => {
-    console.log(event, "sidebar===>");
-
+    console.log(window.devicePixelRatio,window.screen.width,window.screen.height, "sidebar===>");
+    let screenOffsetX=0,screenOffsetY=0
+    if(window.screen.width!=1920&&window.screen.height!=1080){
+      screenOffsetX=0;screenOffsetY=-27;
+    }else{
+      screenOffsetX=0;screenOffsetY=0
+    }
     let xOffset = 0,
       yOffset = 0;
 
@@ -95,8 +100,8 @@ const Sidebar = memo(function Sidebar(props) {
           if (
             event.clientX - (elements[i].position.x + xOffset) >= 200 &&
             event.clientX - (elements[i].position.x + xOffset) <= 270 &&
-            event.clientY - (elements[i].position.y + yOffset) >= 115 &&
-            event.clientY - (elements[i].position.y + yOffset) <= 165
+            event.clientY - (elements[i].position.y + yOffset) >= 115+screenOffsetY &&
+            event.clientY - (elements[i].position.y + yOffset) <= 165+screenOffsetY
           ) {
             if (elements[i].data.specificElType == "if") {
               if (
@@ -107,15 +112,15 @@ const Sidebar = memo(function Sidebar(props) {
               if (
                 event.clientX - (elements[i].position.x + xOffset) <= 261 + 5 &&
                 event.clientX - (elements[i].position.x + xOffset) >= 261 - 5 &&
-                event.clientY - (elements[i].position.y + yOffset) <= 125 + 5 &&
-                event.clientY - (elements[i].position.y + yOffset) >= 125 - 5
+                event.clientY - (elements[i].position.y + yOffset) <= 125 + 5+screenOffsetY &&
+                event.clientY - (elements[i].position.y + yOffset) >= 125 - 5+screenOffsetY
               ) {
                 sourceHandle = "rYes";
               } else if (
                 event.clientX - (elements[i].position.x + xOffset) <= 261 + 5 &&
                 event.clientX - (elements[i].position.x + xOffset) >= 261 - 5 &&
-                event.clientY - (elements[i].position.y + yOffset) <= 146 + 5 &&
-                event.clientY - (elements[i].position.y + yOffset) >= 146 - 5
+                event.clientY - (elements[i].position.y + yOffset) <= 146 + 5+screenOffsetY &&
+                event.clientY - (elements[i].position.y + yOffset) >= 146 - 5+screenOffsetY
               ) {
                 sourceHandle = "rNo";
               }
@@ -218,15 +223,15 @@ const Sidebar = memo(function Sidebar(props) {
           ) / 2;
         let cy =
           Math.abs(
-            event.clientY + -105 - (elements[flagI].position.y + yOffset)
+            event.clientY + -105 -screenOffsetY- (elements[flagI].position.y + yOffset)
           ) / 2;
         if (event.clientX - 144 < elements[flagI].position.x + xOffset + 60)
           cx = cx + event.clientX - 144;
         else cx = cx + elements[flagI].position.x + xOffset;
-        if (event.clientY - 105 < elements[flagI].position.y + yOffset)
-          cy = cy + event.clientY - 105;
+        if (event.clientY - 105 -screenOffsetY< elements[flagI].position.y + yOffset)
+          cy = cy + event.clientY - 105-screenOffsetY;
         else cy = cy + elements[flagI].position.y + yOffset;
-        ctx.quadraticCurveTo(cx, cy, event.clientX - 144, event.clientY - 118+13);
+        ctx.quadraticCurveTo(cx, cy, event.clientX - 144, event.clientY - 118+13-screenOffsetY);
         ctx.lineWidth = 2.725;
         ctx.strokeStyle = "green";
         ctx.clearRect(0, 0, 1775, 884);
