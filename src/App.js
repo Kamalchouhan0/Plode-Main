@@ -73,6 +73,7 @@ import VisualProgram from "./Components/ProgramContainer/VisualProgram/VisualPro
 import ExternalAccessoriesScreen from "./Components/selectScreen/ExternalAccessoriesScreen";
 import InternalAccessoriesScreen from "./Components/selectScreen/InternalAccessoriesScreen";
 import ConformationPopup from "./Components/Login/ConformationPopup";
+import Load from "../src/Components/Login/loading";
 
 // import musick from "./Assets/music group button.svg";
 
@@ -231,6 +232,7 @@ class App extends Component {
 
           {/* <Route path="/Concept" component={CenterMode} /> */}
           <Route path="/logic" component={Logic} />
+          <Route path="/Loading" component={Load}></Route>
           <Route path="/Learn" component={Learn} />
           <Route path="/Program" component={Learn} />
           <Route path="/concepthelp" component={ConceptHelp} />
