@@ -119,6 +119,7 @@ class Logic extends Component {
       this.add,
       logic.insertState,
       this.insertNode,
+      this.insertBtwnNode,
       this.deleteNode
     );
     var curLogicScreen;
@@ -195,6 +196,7 @@ class Logic extends Component {
       this.add,
       insertState,
       this.insertNode,
+      this.insertBtwnNode,
       this.deleteNode
     );
   };
@@ -212,6 +214,7 @@ class Logic extends Component {
       this.add,
       insertState,
       this.insertNode,
+      this.insertBtwnNode,
       this.deleteNode
     );
   }
@@ -490,6 +493,7 @@ class Logic extends Component {
         this.add,
         logic.insertState,
         this.insertNode,
+        this.insertBtwnNode,
         this.deleteNode,
         this.click
       );
@@ -516,6 +520,7 @@ class Logic extends Component {
         this.add,
         logic.insertState,
         this.insertNode,
+        this.insertBtwnNode,
         this.deleteNode
       );
       var logicState = {};
@@ -626,17 +631,17 @@ class Logic extends Component {
         // HERE I AM STOPING TO ADD THE ACTION on HEXBOARD
 
         var toPush = { type: type, state: {}, id: IDIS };
-        // if (
-        //   type === "end_variable" ||
-        //   type === "end_sensor" ||
-        //   type === "end_condition" ||
-        //   type === "end_if" ||
-        //   type === "end_loop"
-        //   // ||
-        //   // type === "repeat"
-        // ) {
-        //   logic.currentProgramGuide--;
-        // }
+        if (
+          type === "end_variable" ||
+          type === "end_sensor" ||
+          type === "end_condition" ||
+          type === "end_if" ||
+          type === "end_loop"
+          // ||
+          // type === "repeat"
+        ) {
+          logic.currentProgramGuide--;
+        }
         if (
           type === "variable" ||
           type === "condition" ||
@@ -676,6 +681,78 @@ class Logic extends Component {
       this.add,
       logic.insertState,
       this.insertNode,
+      this.insertBtwnNode,
+      this.deleteNode
+    );
+    var logicState = {};
+    logicState["type"] = this.state.currentLogicScreen;
+    logicState["state"] = logic;
+
+    this.props.update(logic);
+  };
+  insertBtwnNode = (type) => {
+    // for(let n = 0; n<drawing.activeParentRef.slice(drawing.activeIndex, drawing.activeParentRef.length).length; n++){
+    //   drawing.activeParentRef[n].id= JSON.stringify(Number(drawing.activeParentRef[n].id) + 1)
+    // }
+    num++;
+
+    var { logic } = this.props;
+    console.log("checkingvalues", type);
+    // if (!logic.insertState) {
+    //   logic.insertState = true;
+    // } //removed by gautam to change to single click
+    if (type == null) {
+      logic.insertState = true;
+    } else {
+      // this condition is for the  render the bolck wait click it action and then wait hadrware panke will open
+      if (type != "action") {
+        logic.insertState = false;
+        var temp = drawing.activeParentRef[drawing.activeIndex];
+
+        // HERE I AM STOPING TO ADD THE ACTION on HEXBOARD
+
+        var toPush = { type: type, state: {}, id: IDIS };
+
+        if (
+          type === "variable" ||
+          type === "condition" ||
+          type === "sensor" ||
+          type === "loop" ||
+          type === "if"
+        ) {
+          // logic.currentProgramGuide++;
+          toPush.subprogram = [];
+        }
+        drawing.activeParentRef[drawing.activeIndex] = toPush;
+
+        for (
+          let i = drawing.activeIndex + 1;
+          i < drawing.activeParentRef.length;
+          i++
+        ) {
+          var temp2 = drawing.activeParentRef[i];
+          drawing.activeParentRef[i] = temp;
+          temp = temp2;
+        }
+        if (temp) drawing.activeParentRef.push(temp);
+        logic.active = [-1, -1];
+
+        logic.program.map((i, id) => {
+          i.id = `${1}${id}`;
+        });
+      }
+    }
+
+    drawing = ProgramToDrawing(
+      type,
+      logic.program,
+      logic.end,
+      logic.currentProgramGuide,
+      logic.active,
+      this.add,
+      logic.insertState,
+      this.insertNode,
+      this.insertBtwnNode,
       this.deleteNode
     );
     var logicState = {};
@@ -723,6 +800,7 @@ class Logic extends Component {
       this.add,
       logic.insertState,
       this.insertNode,
+      this.insertBtwnNode,
       this.deleteNode
     );
     var logicState = {};
