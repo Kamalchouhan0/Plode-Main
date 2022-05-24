@@ -1744,6 +1744,9 @@ const DnDFlow = (props) => {
     }),
     [onDrop]
   );
+  const onMouseMove = (e) => {
+    console.log(e.clientX, e.clientY);
+  };
   return (
     <>
       <div className="HeaderContainer">
@@ -1842,6 +1845,7 @@ const DnDFlow = (props) => {
               onNodeDragStop={onNodeDragStop}
               onNodeMouseLeave={onNodeMouseLeave}
               onNodeMouseEnter={onNodeMouseEnter}
+              onMouseMove={onMouseMove}
               onMove={onMove}
               className="react-flow-screen"
               style={{ height: "88.3vh", width: "inherit" }}
