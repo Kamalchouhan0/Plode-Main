@@ -120,14 +120,14 @@ const Port = (props) => {
 
         await props.webSerialAction({ port: portList[0] }); // dispatching function of redux
 
-        setP1({
-          selected: true,
-          port: portList[0],
-        });
+        // setP1({
+        //   selected: true,
+        //   port: portList[0],
+        // });
       } else {
         console.log("No hardware");
 
-        setP1({ p1 });
+        // setP1({ p1 });
       }
     } catch (err) {
       console.log(err.message);
