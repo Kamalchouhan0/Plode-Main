@@ -1341,7 +1341,7 @@ class Assembly extends Component {
 
     console.log("GAYA", isTempratureSensor);
     return (
-      <>
+      <div div style={{ overflow: "hidden" }}>
         {/* NAV BAR */}
         <div
           style={{
@@ -1349,6 +1349,7 @@ class Assembly extends Component {
             width: "100%",
             // border: "1px solid red",
             // background: "red",
+
             position: "absolute",
             userSelect: "none",
           }}
@@ -1856,7 +1857,7 @@ class Assembly extends Component {
             />
           </div>
         </div>
-      </>
+      </div>
     );
   }
 }
