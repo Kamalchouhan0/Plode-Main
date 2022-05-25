@@ -11,11 +11,11 @@ if (Device == "Ace") {
     A1: { color: "red", ports: ["A1"] },
     B1: { color: "red", ports: ["B1"] },
     C1: { color: "red", ports: ["C1"] },
-    D1: { color: "green", ports: ["D1"] },
+    D1: { color: "red", ports: ["D1"] },
     A2: { color: "red", ports: ["A2"] },
     B2: { color: "red", ports: ["B2"] },
     C2: { color: "red", ports: ["C2"] },
-    D2: { color: "green", ports: ["D2"] },
+    D2: { color: "red", ports: ["D2"] },
     //STPM: { color: "yellow", ports: ["STPM"] },
   };
 } else if (Device == "Humanoid") {

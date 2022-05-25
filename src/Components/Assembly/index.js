@@ -784,6 +784,18 @@ class Assembly extends Component {
               }
             }
           }
+          if (
+            type == "dc_motor" ||
+            type == "mini_geared_motor" ||
+            type == "geared_motor"
+          ) {
+            try {
+              delete node[nodeKey].state["assign" + port + "1"];
+              delete node[nodeKey].state["assign" + port + "2"];
+              delete node[nodeKey].state["value" + port + "1"];
+              delete node[nodeKey].state["value" + port + "2"];
+            } catch (e) {}
+          }
         }
       }
       if (node[nodeKey].subprogram) {
@@ -826,26 +838,26 @@ class Assembly extends Component {
       //     var dataConnectTo = JSON.parse(sessionStorage.getItem("assembly"))
       //       .workspace.components["pc_motor_driver"][0].connectedTo;
       //     if (dataConnectTo == "A" || dataConnectTo == "C") {
-      //       prev_data.PortConnections["C"] = null;
-      //       prev_data.PortConnections["A"] = null;
+      //       prev_data.assembly.PortConnections["C"] = null;
+      //       prev_data.assembly.PortConnections["A"] = null;
       //     }
 
       //     if (dataConnectTo == "B" || dataConnectTo == "D") {
-      //       prev_data.PortConnections["B"] = null;
-      //       prev_data.PortConnections["D"] = null;
+      //       prev_data.assembly.PortConnections["B"] = null;
+      //       prev_data.assembly.PortConnections["D"] = null;
       //     }
       //   }
       // }
 
       if (item.type == "pc_motor_driver") {
         if (item.connectedTo == "A" || item.connectedTo == "C") {
-          prev_data.PortConnections["C"] = null;
-          prev_data.PortConnections["A"] = null;
+          prev_data.assembly.PortConnections["C"] = null;
+          prev_data.assembly.PortConnections["A"] = null;
         }
 
         if (item.connectedTo == "B" || item.connectedTo == "D") {
-          prev_data.PortConnections["B"] = null;
-          prev_data.PortConnections["D"] = null;
+          prev_data.assembly.PortConnections["B"] = null;
+          prev_data.assembly.PortConnections["D"] = null;
         }
       } else if (item.type == "stepper_motor") {
         if (
@@ -857,11 +869,11 @@ class Assembly extends Component {
               .type == "pc_motor_driver"
           ) {
             if (item.connectedTo == "STPM") {
-              prev_data.PortConnections["B1"] = null;
-              prev_data.PortConnections["B2"] = null;
+              prev_data.assembly.PortConnections["B1"] = null;
+              prev_data.assembly.PortConnections["B2"] = null;
 
-              prev_data.PortConnections["D1"] = null;
-              prev_data.PortConnections["D2"] = null;
+              prev_data.assembly.PortConnections["D1"] = null;
+              prev_data.assembly.PortConnections["D2"] = null;
             }
           }
         } else if (
@@ -873,23 +885,51 @@ class Assembly extends Component {
               .type == "pc_motor_driver"
           ) {
             if (item.connectedTo == "STPM") {
-              prev_data.PortConnections["A1"] = null;
-              prev_data.PortConnections["A2"] = null;
+              prev_data.assembly.PortConnections["A1"] = null;
+              prev_data.assembly.PortConnections["A2"] = null;
 
-              prev_data.PortConnections["C1"] = null;
-              prev_data.PortConnections["C2"] = null;
+              prev_data.assembly.PortConnections["C1"] = null;
+              prev_data.assembly.PortConnections["C2"] = null;
             }
           }
         }
+      } else if (item.type == "dual_splitter") {
+        if (item.connectedTo == "A") {
+          prev_data.assembly.PortConnections["A"] = null;
+          prev_data.assembly.PortConnections["A1"] = null;
+          prev_data.assembly.PortConnections["A2"] = null;
+        }
+        if (item.connectedTo == "B") {
+          prev_data.assembly.PortConnections["B"] = null;
+          prev_data.assembly.PortConnections["B1"] = null;
+          prev_data.assembly.PortConnections["B2"] = null;
+        }
+        if (item.connectedTo == "C") {
+          prev_data.assembly.PortConnections["C"] = null;
+          prev_data.assembly.PortConnections["C1"] = null;
+          prev_data.assembly.PortConnections["C2"] = null;
+        }
+        if (item.connectedTo == "D") {
+          prev_data.assembly.PortConnections["D"] = null;
+          prev_data.assembly.PortConnections["D1"] = null;
+          prev_data.assembly.PortConnections["D2"] = null;
+        }
+      } else if (
+        item.type == "dc_motor" ||
+        item.type == "mini_geared_motor" ||
+        item.type == "geared_motor"
+      ) {
+        prev_data.assembly.PortConnections[item.port[0] + "1"] = null;
+        prev_data.assembly.PortConnections[item.port[0] + "2"] = null;
       } else {
-        prev_data.PortConnections[item.port] = null;
+        prev_data.assembly.PortConnections[item.port] = null;
       }
     } else {
-      prev_data.PortConnections[item.port] = null;
+      prev_data.assembly.PortConnections[item.port] = null;
     }
 
     // sessionStorage.setItem("AppDetails-new", JSON.stringify(prev_data));
-    // AppState.PortConnections = prev_data.PortConnections;
+    // AppState.PortConnections = prev_data.assembly.PortConnections;
     // AppState.logic = prev_data.logic;
     // AppState.logicNew = prev_data.logicNew;
     var { logic } = prev_data;

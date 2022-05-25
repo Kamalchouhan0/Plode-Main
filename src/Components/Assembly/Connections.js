@@ -33,165 +33,6 @@ class Curve extends Component {
     var LeftS, TopS;
     var LeftSS, TopSS;
     if (Device == "Ace") {
-      let isPc_motor_driverConnected_BD_AC = () => {
-        if (
-          JSON.parse(sessionStorage.getItem("assembly")).PortConnections.B !=
-          null
-        ) {
-          if (
-            JSON.parse(sessionStorage.getItem("assembly")).PortConnections.B
-              .type == "pc_motor_driver"
-          ) {
-            return "B";
-          }
-        }
-        if (
-          JSON.parse(sessionStorage.getItem("assembly")).PortConnections.D !=
-          null
-        ) {
-          if (
-            JSON.parse(sessionStorage.getItem("assembly")).PortConnections.D
-              .type == "pc_motor_driver"
-          ) {
-            return "D";
-          }
-        }
-        if (
-          JSON.parse(sessionStorage.getItem("assembly")).PortConnections.A !=
-          null
-        ) {
-          if (
-            JSON.parse(sessionStorage.getItem("assembly")).PortConnections.A
-              .type == "pc_motor_driver"
-          ) {
-            return "A";
-          }
-        }
-        if (
-          JSON.parse(sessionStorage.getItem("assembly")).PortConnections.C !=
-          null
-        ) {
-          if (
-            JSON.parse(sessionStorage.getItem("assembly")).PortConnections.C
-              .type == "pc_motor_driver"
-          ) {
-            return "C";
-          }
-        }
-      };
-
-      // DUAL WIRE
-      let dualWireDriveMotor = (connectPort) => {
-        if (connectPort == "A" || connectPort == "C") {
-          return (
-            <>
-              <path
-                d={
-                  "M " +
-                  (left - 100 + ImageSizes[ItemTypes.COMPONENT][0] / 2) +
-                  "," +
-                  (top + 5) +
-                  " C " +
-                  (left + ImageSizes[ItemTypes.COMPONENT][0] / 2) +
-                  "," +
-                  (top - 2 * ImageSizes[ItemTypes.COMPONENT][1]) +
-                  " " +
-                  cx2 +
-                  "," +
-                  cy2 +
-                  " " +
-                  (Left + Ports["A"][0]) +
-                  "," +
-                  (Top + Ports["A"][1])
-                }
-              />
-              <path
-                d={
-                  "M " +
-                  (left + 100 + ImageSizes[ItemTypes.COMPONENT][0] / 2) +
-                  "," +
-                  (top + 5) +
-                  " C " +
-                  (left + ImageSizes[ItemTypes.COMPONENT][0] / 2) +
-                  "," +
-                  (top - 2 * ImageSizes[ItemTypes.COMPONENT][1]) +
-                  " " +
-                  cx2 +
-                  "," +
-                  cy2 +
-                  " " +
-                  (Left + Ports["C"][0]) +
-                  "," +
-                  (Top + Ports["C"][1])
-                }
-              />
-            </>
-          );
-        }
-
-        if (connectPort == "B" || connectPort == "D") {
-          return (
-            <>
-              <path
-                d={
-                  "M " +
-                  (left - 100 + ImageSizes[ItemTypes.COMPONENT][0] / 2) +
-                  "," +
-                  (top + 5) +
-                  " C " +
-                  (left + ImageSizes[ItemTypes.COMPONENT][0] / 2) +
-                  "," +
-                  (top - 2 * ImageSizes[ItemTypes.COMPONENT][1]) +
-                  " " +
-                  cx2 +
-                  "," +
-                  cy2 +
-                  " " +
-                  (Left + Ports["B"][0]) +
-                  "," +
-                  (Top + Ports["B"][1])
-                }
-              />
-              <path
-                d={
-                  "M " +
-                  (left + 100 + ImageSizes[ItemTypes.COMPONENT][0] / 2) +
-                  "," +
-                  (top + 5) +
-                  " C " +
-                  (left + ImageSizes[ItemTypes.COMPONENT][0] / 2) +
-                  "," +
-                  (top - 2 * ImageSizes[ItemTypes.COMPONENT][1]) +
-                  " " +
-                  cx2 +
-                  "," +
-                  cy2 +
-                  " " +
-                  (Left + Ports["D"][0]) +
-                  "," +
-                  (Top + Ports["D"][1])
-                }
-              />
-            </>
-          );
-        }
-      };
-
-      var addsa = this.props.component;
-
-      // // DUAL WIRE-----------------------------------------
-      // these is okay for the pc_motor_driver led is not commming
-      if (this.props.component.type == "pc_motor_driver") {
-        Top = bibox.top;
-        Left = bibox.left;
-        cx2 = Left + Ports[connectedTo][0];
-        cy2 = Top + Ports[connectedTo][1];
-        cx2 += Ports[connectedTo][0] - ImageSizes[ItemTypes.BIBOX][0] / 2;
-        cy2 += Ports[connectedTo][1] - ImageSizes[ItemTypes.BIBOX][1] / 2;
-
-        return dualWireDriveMotor(connectedTo);
-      }
-
       // GearedMotor A1 C1  && B1 D1
       let A1connectedGeared_motor =
         JSON.parse(sessionStorage.getItem("assembly")).PortConnections.A1 !==
@@ -329,12 +170,16 @@ class Curve extends Component {
               if (
                 this.props.componentName != "geared_motor" &&
                 this.props.componentName != "mini_geared_motor" &&
-                this.props.componentName != "dc_motor" &&
-                this.props.componentName != "servo_motor"
+                this.props.componentName != "dc_motor"
               ) {
-                if (component.connectedTo == "A1") {
+                if (component.connectedTo == "A") {
                   LeftF = component.left;
                   TopF = component.top;
+                }
+              } else {
+                if (component.connectedTo == "A") {
+                  LeftF = component.left + 28;
+                  TopF = component.top + 6;
                 }
               }
             });
@@ -426,12 +271,16 @@ class Curve extends Component {
               if (
                 this.props.componentName != "geared_motor" &&
                 this.props.componentName != "mini_geared_motor" &&
-                this.props.componentName != "dc_motor" &&
-                this.props.componentName != "servo_motor"
+                this.props.componentName != "dc_motor"
               ) {
                 if (component.connectedTo == "D") {
                   LeftF = component.left;
                   TopF = component.top;
+                }
+              } else {
+                if (component.connectedTo == "D") {
+                  LeftF = component.left + 28;
+                  TopF = component.top + 6;
                 }
               }
             });
@@ -502,8 +351,7 @@ class Curve extends Component {
             }
           />
         );
-      }
-      if (connectedTo == "STPM") {
+      } else if (connectedTo == "STPM") {
         Object.keys(components).map((dual_splitter) => {
           if (dual_splitter == "pc_motor_driver") {
             components[dual_splitter].map((component, index) => {
@@ -553,36 +401,40 @@ class Curve extends Component {
               if (
                 this.props.componentName != "geared_motor" &&
                 this.props.componentName != "mini_geared_motor" &&
-                this.props.componentName != "dc_motor" &&
-                this.props.componentName != "servo_motor"
+                this.props.componentName != "dc_motor"
               ) {
                 if (component.connectedTo == "C") {
                   LeftF = component.left;
                   TopF = component.top;
                 }
-              }
-            });
-          }
-          if (dual_splitter == "dual_splitter") {
-            components[dual_splitter].map((component, index) => {
-              console.log("abcdefgh", this.props.componentName);
-              if (
-                this.props.componentName == "mini_geared_motor" ||
-                this.props.componentName == "dc_motor"
-              ) {
+              } else {
                 if (component.connectedTo == "C") {
-                  LeftF = component.left + 25;
-                  TopF = component.top + 5;
-                }
-              }
-              if (this.props.componentName == "servo_motor") {
-                if (component.connectedTo == "C") {
-                  LeftF = component.left - 25;
-                  TopF = component.top + 5;
+                  LeftF = component.left + 28;
+                  TopF = component.top + 6;
                 }
               }
             });
           }
+          // if (dual_splitter == "dual_splitter") {
+          //   components[dual_splitter].map((component, index) => {
+          //     console.log("abcdefgh", this.props.componentName);
+          //     if (
+          //       this.props.componentName == "mini_geared_motor" ||
+          //       this.props.componentName == "dc_motor"
+          //     ) {
+          //       if (component.connectedTo == "C") {
+          //         LeftF = component.left + 25;
+          //         TopF = component.top + 5;
+          //       }
+          //     }
+          //     if (this.props.componentName == "servo_motor") {
+          //       if (component.connectedTo == "C") {
+          //         LeftF = component.left - 25;
+          //         TopF = component.top + 5;
+          //       }
+          //     }
+          //   });
+          // }
 
           if (dual_splitter == "pc_motor_driver") {
             components[dual_splitter].map((component, index) => {
@@ -657,12 +509,16 @@ class Curve extends Component {
               if (
                 this.props.componentName != "geared_motor" &&
                 this.props.componentName != "mini_geared_motor" &&
-                this.props.componentName != "dc_motor" &&
-                this.props.componentName != "servo_motor"
+                this.props.componentName != "dc_motor"
               ) {
                 if (component.connectedTo == "B") {
                   LeftF = component.left;
                   TopF = component.top;
+                }
+              } else {
+                if (component.connectedTo == "B") {
+                  LeftF = component.left + 28;
+                  TopF = component.top + 6;
                 }
               }
             });
@@ -1740,6 +1596,7 @@ class PortCircle extends Component {
         (this.props.highlighted ? 1.4 : 0) ==
       "Infinity"
     ) {
+      console.log("infintiy");
       return <circle cx={this.props.left} cy={this.props.top} r={0} />;
     } else {
       return (
@@ -2107,12 +1964,17 @@ class Connections extends Component {
                           if (
                             extraComponent.type != "geared_motor" &&
                             extraComponent.type != "mini_geared_motor" &&
-                            extraComponent.type != "dc_motor" &&
-                            extraComponent.type != "servo_motor"
+                            extraComponent.type != "dc_motor"
                           ) {
                             if (component.connectedTo == "D") {
                               Left = component.left;
                               Top = component.top;
+                              highlighted = true;
+                            }
+                          } else {
+                            if (component.connectedTo == "D") {
+                              Left = component.left + 28;
+                              Top = component.top + 5;
                               highlighted = true;
                             }
                           }
@@ -2253,28 +2115,17 @@ class Connections extends Component {
                           if (
                             extraComponent.type != "geared_motor" &&
                             extraComponent.type != "mini_geared_motor" &&
-                            extraComponent.type != "dc_motor" &&
-                            extraComponent.type != "servo_motor"
+                            extraComponent.type != "dc_motor"
                           ) {
                             if (component.connectedTo == "C") {
                               Left = component.left;
                               Top = component.top;
                               highlighted = true;
                             }
-                          }
-                        });
-                      }
-                      if (dual_splitter == "dual_splitter") {
-                        components[dual_splitter].map((component, index) => {
-                          if (
-                            extraComponent.type == "geared_motor" ||
-                            extraComponent.type == "mini_geared_motor" ||
-                            extraComponent.type == "dc_motor" ||
-                            extraComponent.type == "servo_motor"
-                          ) {
+                          } else {
                             if (component.connectedTo == "C") {
-                              Left = component.left;
-                              Top = component.top;
+                              Left = component.left + 28;
+                              Top = component.top + 5;
                               highlighted = true;
                             }
                           }
@@ -2419,12 +2270,17 @@ class Connections extends Component {
                           if (
                             extraComponent.type != "geared_motor" &&
                             extraComponent.type != "mini_geared_motor" &&
-                            extraComponent.type != "dc_motor" &&
-                            extraComponent.type != "servo_motor"
+                            extraComponent.type != "dc_motor"
                           ) {
                             if (component.connectedTo == "B") {
                               Left = component.left;
                               Top = component.top;
+                              highlighted = true;
+                            }
+                          } else {
+                            if (component.connectedTo == "B") {
+                              Left = component.left + 28;
+                              Top = component.top + 5;
                               highlighted = true;
                             }
                           }
@@ -2568,12 +2424,17 @@ class Connections extends Component {
                           if (
                             extraComponent.type != "geared_motor" &&
                             extraComponent.type != "mini_geared_motor" &&
-                            extraComponent.type != "dc_motor" &&
-                            extraComponent.type != "servo_motor"
+                            extraComponent.type != "dc_motor"
                           ) {
                             if (component.connectedTo == "A") {
                               Left = component.left;
                               Top = component.top;
+                              highlighted = true;
+                            }
+                          } else {
+                            if (component.connectedTo == "A") {
+                              Left = component.left + 28;
+                              Top = component.top + 5;
                               highlighted = true;
                             }
                           }

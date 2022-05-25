@@ -46,42 +46,49 @@ if (componentType == "Ace") {
       color: "#15909d",
       name: "OLED Display",
     },
-    // {
-    //   type: "mini_geared_motor",
-    //   description:
-    //     "Mini Geared Motor: It is similar to Geared motor, smaller in size and efficient but with metal gears",
-    //   color: "#15909d",
-    //   name: "mini geared motor",
-    // },
-    // {
-    //   type: "dc_motor",
-    //   description:
-    //     "DC Motor: It rotates when you power it up, speed and direction of rotation can be varied",
-    //   color: "#15909d",
-    //   name: "dc motor",
-    // },
-    // {
-    //   type: "servo_motor",
-    //   description:
-    //     "Servo Motor 180: It is a motor with angular control, you can control its rotation from 0 to 180 degree.",
-    //   color: "#15909d",
-    //   name: "servo motor",
-    // },
+    {
+      type: "geared_motor",
+      description:
+        "It is similar to DC motor, but with gears So it has more power to pull loads but lacks speed",
+      color: "#15909d",
+      name: "geared motor",
+    },
+    {
+      type: "mini_geared_motor",
+      description:
+        "Mini Geared Motor: It is similar to Geared motor, smaller in size and efficient but with metal gears",
+      color: "#15909d",
+      name: "mini geared motor",
+    },
+    {
+      type: "dc_motor",
+      description:
+        "DC Motor: It rotates when you power it up, speed and direction of rotation can be varied",
+      color: "#15909d",
+      name: "dc motor",
+    },
+    {
+      type: "servo_motor",
+      description:
+        "Servo Motor 180: It is a motor with angular control, you can control its rotation from 0 to 180 degree.",
+      color: "#15909d",
+      name: "servo motor",
+    },
 
-    // {
-    //   type: "servo_motor_360",
-    //   description:
-    //     "Servo Motor 360: It is a continous rotation motor, You can control its rotation in both direction.",
-    //   color: "#15909d",
-    //   name: "servo motor 360",
-    // },
-    // {
-    //   type: "dual_splitter",
-    //   description:
-    //     "Dual Splitter: Splits a single two channel port into two single channel port",
-    //   color: "#15909d",
-    //   name: "dual splitter",
-    // },
+    {
+      type: "servo_motor_360",
+      description:
+        "Servo Motor 360: It is a continous rotation motor, You can control its rotation in both direction.",
+      color: "#15909d",
+      name: "servo motor 360",
+    },
+    {
+      type: "dual_splitter",
+      description:
+        "Dual Splitter: Splits a single two channel port into two single channel port",
+      color: "#15909d",
+      name: "dual splitter",
+    },
     // {
     //   type: "pc_motor_driver",
     //   description:
@@ -269,14 +276,6 @@ if (componentType == "Ace") {
     // },
 
     //
-
-    // {
-    //   type: "geared_motor",
-    //   description:
-    //     "It is similar to DC motor, but with gears So it has more power to pull loads but lacks speed",
-    //   color: "#15909d",
-    //   name: "geared motor",
-    // },
 
     // {
     //   type: "dc_motor",

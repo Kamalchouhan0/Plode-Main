@@ -244,6 +244,7 @@ class Component1 extends Component {
         }
       }
     } else {
+      console.log("removecomponent", port, prev_data.assembly.PortConnections);
       prev_data.assembly.PortConnections[port] = null;
     }
 
@@ -253,6 +254,7 @@ class Component1 extends Component {
     // this.props.appState.logicNew = prev_data.logicNew;
 
     // }
+    console.log("removecomponent", port, prev_data.assembly.PortConnections);
     this.props.removeFromWorkspace({ type, index, port });
 
     this.props.appState.PortConnections(prev_data.assembly.PortConnections);

@@ -40,7 +40,7 @@ if (Device == "Ace" && shield == "true") {
   };
 } else if (Device == "Ace") {
   module.exports = {
-    A1: [5, 7],
+    A1: [22, 7],
     A2: [75, 12],
     B1: [22, 7],
     B2: [75, 12],
