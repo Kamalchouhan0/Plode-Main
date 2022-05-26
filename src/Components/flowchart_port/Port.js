@@ -108,6 +108,10 @@ const Port = () => {
   const [m4, setM4] = useLocalStorage("M4", false);
   const [n, setN] = useLocalStorage("N", false);
   const [aUltra, setAUltra] = useLocalStorage("AUltra", JSON.parse(sessionStorage.getItem("AUltra")));
+  const [bRGB, setBRGB] = useLocalStorage("BRGB", JSON.parse(sessionStorage.getItem("BRGB")));
+  const [bMP3, setBMP3] = useLocalStorage("BMP3", JSON.parse(sessionStorage.getItem("BMP3")));
+  const [dOLED, setDOLED] = useLocalStorage("DOLED", JSON.parse(sessionStorage.getItem("DOLED")));
+  
   const [cUltra, setCUltra] = useLocalStorage("CUltra", JSON.parse(sessionStorage.getItem("CUltra")));
   const [a1Servo, setA1Servo] = useLocalStorage("A1Servo", JSON.parse(sessionStorage.getItem("A1Servo")));
   const [a2Servo, setA2Servo] = useLocalStorage("A2Servo", JSON.parse(sessionStorage.getItem("A2Servo")));
@@ -313,7 +317,9 @@ const Port = () => {
       document.getElementById("foo3").style.cssText = "color: white; ";
     } else {
       document.getElementById("foo3").style.cssText = "color: black; ";
-      setAUltra(false)
+     // setAUltra(false)
+      setBRGB(false)
+      setBMP3(false)
       setB1Servo(false)
     }
   }; 
@@ -323,6 +329,7 @@ const Port = () => {
       document.getElementById("foo4").style.cssText = "color: white; ";
     } else {
       document.getElementById("foo4").style.cssText = "color: black; ";
+      setBRGB(false)
       setB2Servo(false)
     }
   };
@@ -353,6 +360,7 @@ const Port = () => {
     } else {
       document.getElementById("foo7").style.cssText = "color: black; ";
       setD1Servo(false)
+      setDOLED(false)
     }
   };
   const myFunction8 = async() => {
@@ -362,6 +370,7 @@ const Port = () => {
     } else {
       document.getElementById("foo8").style.cssText = "color: black; ";
       setD2Servo(false)
+      setDOLED(false)
     }
   };
   const myFunction9 = async() => {

@@ -541,12 +541,38 @@ label {
   background-position: center;
   background-size: 100% 140%;
 }
+.Inputs-flow-left-upper-rgb{
+  width: 260pt;
+  height: 130pt;
+  margin-top: 5%;
+  background-image: url("../../Assets/popup\ card-5.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 140%;
+}
+.Inputs-flow-left-upper-mp3{
+  width: 260pt;
+  height: 130pt;
+  margin-top: 5%;
+  background-image: url("../../Assets/popup\ card-5.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 140%;
+}
 .Inputs-flow-left-upper-grp {
   position: relative;
   top: 20%;
   left: 30%;
 }
-
+.Inputs-flow-left-upper-oled {
+  width: 260pt;
+  height: 130pt;
+  margin-top: 5%;
+  background-image: url("../../Assets/popup\ card-5.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 140%;
+}
 .Inputs-ports-Container{
   display: flex;
   position: relative;
@@ -681,12 +707,257 @@ label {
   top: 10%;
   left: 30%;
 }
-
 .ultrasonic-disabled-true{
   background-color: #e6e6e6 !important;
   opacity: 0.3; 
 }
+
+.switch-button-rgb-false{
+  display: inline-block;
+  background: #e6e6e6;
+  border-radius: 30px;
+  overflow: hidden;
+  width: 0px;
+  height: 35px;
+  text-align: center;
+  color: #717171;
+  position: relative;
+  padding-right: 90px;
+  position: relative;
+  margin: 10px 0px 0px 10px;
+  cursor: pointer;
+}
+.switch-button-rgb-false::before {
+  content: "RGB";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0px;
+  left: 50%;
+  width: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+}
+.switch-button-rgb-true::before {
+  content: "RGB";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  /* right: 0px; */
+  left: 33%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  border-radius: 30px;
+  overflow: hidden;
+  width: 31px;
+  color: #ffffff;
+  text-align: center;
+  cursor: pointer;
+}
+.switch-button-rgb-true{
+  display: inline-block;
+
+  border-radius: 30px;
+  overflow: hidden;
+  width: 0px;
+  height: 35px;
+  text-align: center;
+  background-color: #30a8ce;
+  color: #000000;
+  position: relative;
+  padding-right: 90px;
+  position: relative;
+  margin: 10px 0px 0px 10px;
+  cursor: pointer;
+}
+.switch-button-checkbox-rgb{
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 2;
+}
+.upper-label-input-rgb{
+  left : -3vh !important ;
+}
+.Inputs-flow-left-upper-grp-rgb {
+  position: relative;
+  top: 10%;
+  left: 30%;
+}
+.rgb-disabled-true{
+  background-color: #e6e6e6 !important;
+  opacity: 0.3; 
+}
+
+.switch-button-mp3-false{
+  display: inline-block;
+  background: #e6e6e6;
+  border-radius: 30px;
+  overflow: hidden;
+  width: 0px;
+  height: 35px;
+  text-align: center;
+  color: #717171;
+  position: relative;
+  padding-right: 90px;
+  position: relative;
+  margin: 10px 0px 0px 10px;
+  cursor: pointer;
+}
+.switch-button-mp3-false::before {
+  content: "MP3";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0px;
+  left: 50%;
+  width: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+}
+.switch-button-mp3-true::before {
+  content: "MP3";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  /* right: 0px; */
+  left: 33%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  border-radius: 30px;
+  overflow: hidden;
+  width: 31px;
+  color: #ffffff;
+  text-align: center;
+  cursor: pointer;
+}
+.switch-button-mp3-true{
+  display: inline-block;
+
+  border-radius: 30px;
+  overflow: hidden;
+  width: 0px;
+  height: 35px;
+  text-align: center;
+  background-color: #30a8ce;
+  color: #000000;
+  position: relative;
+  padding-right: 90px;
+  position: relative;
+  margin: 10px 0px 0px 10px;
+  cursor: pointer;
+}
+.switch-button-checkbox-mp3{
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 2;
+}
+.upper-label-input-mp3{
+  left : -3vh !important ;
+}
+.Inputs-flow-left-upper-grp-mp3 {
+  position: relative;
+  top: 10%;
+  left: 30%;
+}
+.mp3-disabled-true{
+  background-color: #e6e6e6 !important;
+  opacity: 0.3; 
+}
+
+.switch-button-oled-false{
+  display: inline-block;
+  background: #e6e6e6;
+  border-radius: 30px;
+  overflow: hidden;
+  width: 151px;
+  height: 35px;
+  text-align: center;
+  color: #717171;
+  position: relative;
+  padding-right: 120px;
+  position: relative;
+  margin: 10px 0px 0px 0px;
+  cursor: pointer;
+}
+.switch-button-oled-false::before {
+  content: "OLED";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0px;
+  left: 12%;
+  width: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+}
+.switch-button-oled-true::before {
+  content: "OLED";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  border-radius: 30px;
+  overflow: hidden;
+  width: 150px;
+  color: #ffffff;
+  text-align: center;
+  cursor: pointer;
+}
+.switch-button-oled-true{
+  display: inline-block;
+  border-radius: 30px;
+  overflow: hidden;
+  width: 150px;
+  height: 35px;
+  text-align: center;
+  background-color: #30a8ce;
+  color: #000000;
+  position: relative;
+  padding-right: 120px;
+  cursor: pointer;
+  position: relative;
+  margin: 10px 0px 0px 0px;
+}
+.switch-button-checkbox-oled{
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 2;
+}
+.upper-label-input-oled{
+  left : 2vh !important ;
+}
+.Inputs-flow-left-upper-grp-oled {
+  position: relative;
+  top: 10%;
+  left: 30%;
+}
+.oled-disabled-true{
+  background-color: #e6e6e6 !important;
+  opacity: 0.3; 
+}
+
 /* ---------------------------------------------------------------- */
+
 
 /* Digital  */
 .Digital{
