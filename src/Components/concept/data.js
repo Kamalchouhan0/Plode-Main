@@ -85,7 +85,8 @@ if (componentType == "Ace") {
     {
       type: "dual_splitter",
       description:
-        "Dual Splitter: Splits a single two channel port into two single channel port",
+        "Motor Driver: Splits a single two channel port into two single channel port and allows connections to different types of motors.",
+
       color: "#15909d",
       name: "dual splitter",
     },

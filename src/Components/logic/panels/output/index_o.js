@@ -644,10 +644,10 @@ class OutputPanel extends Component {
         isClickRGBComp: isClickRGBComp,
       });
       state[`countRGBComp`] = this.state.countRGBComp - 1;
-      state[`valueRGBComp${this.state.countRGBComp - 1}R`] = 0;
-      state[`valueRGBComp${this.state.countRGBComp - 1}G`] = 0;
-      state[`valueRGBComp${this.state.countRGBComp - 1}B`] = 0;
-      state[`assignRGBComp${this.state.countRGBComp - 1}`] = false;
+      state[`valueRGBComp${this.state.countRGBComp}R`] = 0;
+      state[`valueRGBComp${this.state.countRGBComp}G`] = 0;
+      state[`valueRGBComp${this.state.countRGBComp}B`] = 0;
+      state[`assignRGBComp${this.state.countRGBComp}`] = false;
       onChange(state, "hardware");
     }
   };

@@ -241,7 +241,6 @@ class CustomDragLayer extends Component {
     var zIndex;
     if (itemType === ItemTypes.BIBOX) zIndex = 1;
     else zIndex = 3;
-
     // connectedTo = IsOverPort(extraCompo nent, bibox, components) || DraggingInfo.newComponentPort;
     return (
       <div>

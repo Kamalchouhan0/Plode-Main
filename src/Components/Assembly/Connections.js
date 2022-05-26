@@ -162,7 +162,6 @@ class Curve extends Component {
       //*************************************************** */
 
       // S1  .
-
       if (connectedTo == "A1" || connectedTo == "A2") {
         Object.keys(components).map((dual_splitter) => {
           if (dual_splitter == "dual_splitter") {
@@ -661,7 +660,6 @@ class Curve extends Component {
         cy2 = Top + Ports[connectedTo][1];
         cx2 += Ports[connectedTo][0] - ImageSizes[ItemTypes.BIBOX][0] / 2;
         cy2 += Ports[connectedTo][1] - ImageSizes[ItemTypes.BIBOX][1] / 2;
-
         if (this.props.componentName == "pc_motor_driver") {
           if (connectedTo == "A" || connectedTo == "C") {
             return (
@@ -1655,7 +1653,7 @@ class Connections extends Component {
       var AllowedPortTypesTutor = AllowedPortTypes;
       // var AllowedPortTypesTutor = {}
       console.log("dishoom123", AllowedPortTypesTutor);
-      console.log("dishoom1234", PortConnections);
+      console.log("dishoom1234", components);
 
       Object.entries(PortConnections).map(
         ([key, value]) => (AllowedPortTypesTutor[value] = [key])
@@ -1818,9 +1816,10 @@ class Connections extends Component {
       components[key].map((component, index) => {
         const { connectedTo } = component;
         var sdarafs = component;
-
         // WHEN we connect the components to port commectedTO will be the port
         if (connectedTo) {
+          console.log("dishoom12345", connectedTo);
+
           // if (
           //   connectedTo == "A" &&
           //   internalAccessoriesData.isTouchZero == false
@@ -1857,6 +1856,8 @@ class Connections extends Component {
     });
 
     if (extraComponent) {
+      // console.log("dishoom12345", extraComponent);
+
       if (extraComponent.connectedTo) {
         connections.push(
           <Curve
@@ -2433,6 +2434,7 @@ class Connections extends Component {
                             }
                           } else {
                             if (component.connectedTo == "A") {
+                              console.log("highlited true");
                               Left = component.left + 28;
                               Top = component.top + 5;
                               highlighted = true;

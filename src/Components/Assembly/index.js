@@ -919,8 +919,10 @@ class Assembly extends Component {
         item.type == "mini_geared_motor" ||
         item.type == "geared_motor"
       ) {
-        prev_data.assembly.PortConnections[item.port[0] + "1"] = null;
-        prev_data.assembly.PortConnections[item.port[0] + "2"] = null;
+        try {
+          prev_data.assembly.PortConnections[item.port[0] + "1"] = null;
+          prev_data.assembly.PortConnections[item.port[0] + "2"] = null;
+        } catch (e) {}
       } else {
         prev_data.assembly.PortConnections[item.port] = null;
       }
