@@ -55,6 +55,10 @@ class Card extends Component {
       widthSize = "80%";
 
       leftPro = "7%";
+    } else if (type == "dip_switch") {
+      widthSize = "53%";
+
+      leftPro = "23%";
     } else {
       widthSize = "60%";
 

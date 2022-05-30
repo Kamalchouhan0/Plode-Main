@@ -156,7 +156,7 @@ if (componentType == "Ace") {
         "Pot: It is a Pot sensor used for sensing amount of rotation",
       color: "#15909d",
       name: "Pot",
-      signalType: "analog",
+      signalType: "digital",
     },
 
     {

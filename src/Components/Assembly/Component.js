@@ -244,7 +244,6 @@ class Component1 extends Component {
         }
       }
     } else {
-      console.log("removecomponent", port, prev_data.assembly.PortConnections);
       prev_data.assembly.PortConnections[port] = null;
     }
 
@@ -254,7 +253,6 @@ class Component1 extends Component {
     // this.props.appState.logicNew = prev_data.logicNew;
 
     // }
-    console.log("removecomponent", port, prev_data.assembly.PortConnections);
     this.props.removeFromWorkspace({ type, index, port });
 
     this.props.appState.PortConnections(prev_data.assembly.PortConnections);
@@ -1168,8 +1166,8 @@ class Component1 extends Component {
             style={{
               position: "absolute",
               top,
-              marginTop: "-0.5%",
-              marginLeft: "0.5%",
+              marginTop: "-1.2%",
+              marginLeft: "3%",
               left,
               zIndex: "3",
               fontSize: "20px",
@@ -1189,8 +1187,8 @@ class Component1 extends Component {
             style={{
               position: "absolute",
               top,
-              marginTop: "-0.1%",
-              marginLeft: "6%",
+              marginTop: "-0.7%",
+              marginLeft: "6.5%",
               left,
               zIndex: "3",
               fontSize: "20px",
@@ -1712,10 +1710,10 @@ class Component1 extends Component {
         return null;
       }
 
-      var height = 100 * scale;
-      var width = 100 * scale;
-      left = left;
-      top = top - 4;
+      var height = 120 * scale;
+      var width = 120 * scale;
+      left = left - 8;
+      top = top - 15;
 
       return connectDragSource(
         <div>
@@ -1741,8 +1739,8 @@ class Component1 extends Component {
             style={{
               position: "absolute",
               top,
-              marginTop: "-1%",
-              marginLeft: "0%",
+              marginTop: "3.5%",
+              marginLeft: "1%",
               left,
               zIndex: "3",
               fontSize: "20px",
@@ -1761,8 +1759,8 @@ class Component1 extends Component {
             style={{
               position: "absolute",
               top,
-              marginTop: "-0.6%",
-              marginLeft: "6%",
+              marginTop: "4%",
+              marginLeft: "8%",
               left,
               zIndex: "3",
               fontSize: "20px",
