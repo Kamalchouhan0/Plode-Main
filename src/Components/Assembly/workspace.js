@@ -226,6 +226,68 @@ class Workspace extends Component {
                 break;
               }
             }
+          }
+          if (
+            type == "linear_pot" ||
+            type == "temperature_sensor" ||
+            type == "humidity" ||
+            type == "gas" ||
+            type == "rain_sensor" ||
+            type == "pot" ||
+            type == "rotatory" ||
+            type == "tact_switch" ||
+            type == "touch_sensor" ||
+            type == "distance_sensor" ||
+            type == "light_sensor"
+          ) {
+            switch (component.connectedTo) {
+              case "A": {
+                PortConnections["A"] = { type, index };
+                PortConnections["A1"] = { type, index };
+                // PortConnections["A2"] = { type, index };
+                break;
+              }
+              case "B": {
+                PortConnections["B"] = { type, index };
+                PortConnections["B1"] = { type, index };
+                // PortConnections["B2"] = { type, index };
+                break;
+              }
+              case "C": {
+                PortConnections["C"] = { type, index };
+                PortConnections["C1"] = { type, index };
+                // PortConnections["C2"] = { type, index };
+                break;
+              }
+            }
+          }
+          if (
+            type == "metal_detector" ||
+            type == "joystick" ||
+            type == "dip_switch" ||
+            type == "extender" ||
+            type == "dual_switch"
+          ) {
+            switch (component.connectedTo) {
+              case "A": {
+                PortConnections["A"] = { type, index };
+                PortConnections["A1"] = { type, index };
+                PortConnections["A2"] = { type, index };
+                break;
+              }
+              case "B": {
+                PortConnections["B"] = { type, index };
+                PortConnections["B1"] = { type, index };
+                PortConnections["B2"] = { type, index };
+                break;
+              }
+              case "C": {
+                PortConnections["C"] = { type, index };
+                PortConnections["C1"] = { type, index };
+                PortConnections["C2"] = { type, index };
+                break;
+              }
+            }
           } else {
             PortConnections[component.connectedTo] = { type, index };
           }
@@ -297,7 +359,7 @@ class Workspace extends Component {
               };
             }
           }
-        } else if (type == "tact_switch_2c") {
+        } else if (type == "dip_switch") {
           if (component.connectedTo) {
             if (
               component.connectedTo == "A" ||
@@ -513,7 +575,31 @@ class Workspace extends Component {
               };
             }
           }
-        } else if (type == "tact_switch_2c") {
+        } else if (type == "dip_switch") {
+          if (component.connectedTo) {
+            if (
+              component.connectedTo == "A" ||
+              component.connectedTo == "B" ||
+              component.connectedTo == "C"
+            ) {
+              PortConnections[component.connectedTo] = {
+                type,
+                index,
+                signalType: SensorObj.signalType,
+              };
+              PortConnections[`${component.connectedTo}1`] = {
+                type,
+                index,
+                signalType: SensorObj.signalType,
+              };
+              PortConnections[`${component.connectedTo}2`] = {
+                type,
+                index,
+                signalType: SensorObj.signalType,
+              };
+            }
+          }
+        } else if (type == "metal_detector") {
           if (component.connectedTo) {
             if (
               component.connectedTo == "A" ||
@@ -661,6 +747,30 @@ class Workspace extends Component {
               };
             }
           }
+        } else if (type == "extender") {
+          if (component.connectedTo) {
+            if (
+              component.connectedTo == "A" ||
+              component.connectedTo == "B" ||
+              component.connectedTo == "C"
+            ) {
+              PortConnections[component.connectedTo] = {
+                type,
+                index,
+                signalType: SensorObj.signalType,
+              };
+              PortConnections[`${component.connectedTo}1`] = {
+                type,
+                index,
+                signalType: SensorObj.signalType,
+              };
+              PortConnections[`${component.connectedTo}2`] = {
+                type,
+                index,
+                signalType: SensorObj.signalType,
+              };
+            }
+          }
         } else if (type == "ultrasonic_sensor") {
           if (component.connectedTo) {
             if (component.connectedTo == "A" || component.connectedTo == "C") {
@@ -677,6 +787,90 @@ class Workspace extends Component {
             }
           }
         } else if (type == "rotatory") {
+          if (component.connectedTo) {
+            PortConnections[component.connectedTo] = {
+              type,
+              index,
+              signalType: SensorObj.signalType,
+            };
+            PortConnections[`${component.connectedTo}1`] = {
+              type,
+              index,
+              signalType: SensorObj.signalType,
+            };
+          }
+        } else if (type == "pot") {
+          if (component.connectedTo) {
+            PortConnections[component.connectedTo] = {
+              type,
+              index,
+              signalType: SensorObj.signalType,
+            };
+            PortConnections[`${component.connectedTo}1`] = {
+              type,
+              index,
+              signalType: SensorObj.signalType,
+            };
+          }
+        } else if (type == "linear_pot") {
+          if (component.connectedTo) {
+            if (
+              component.connectedTo == "A" ||
+              component.connectedTo == "B" ||
+              component.connectedTo == "C"
+            ) {
+              PortConnections[component.connectedTo] = {
+                type,
+                index,
+                signalType: SensorObj.signalType,
+              };
+              PortConnections[`${component.connectedTo}1`] = {
+                type,
+                index,
+                signalType: SensorObj.signalType,
+              };
+            }
+          }
+        } else if (type == "rain_sensor") {
+          if (component.connectedTo) {
+            PortConnections[component.connectedTo] = {
+              type,
+              index,
+              signalType: SensorObj.signalType,
+            };
+            PortConnections[`${component.connectedTo}1`] = {
+              type,
+              index,
+              signalType: SensorObj.signalType,
+            };
+          }
+        } else if (type == "humidity") {
+          if (component.connectedTo) {
+            PortConnections[component.connectedTo] = {
+              type,
+              index,
+              signalType: SensorObj.signalType,
+            };
+            PortConnections[`${component.connectedTo}1`] = {
+              type,
+              index,
+              signalType: SensorObj.signalType,
+            };
+          }
+        } else if (type == "temperature_sensor") {
+          if (component.connectedTo) {
+            PortConnections[component.connectedTo] = {
+              type,
+              index,
+              signalType: SensorObj.signalType,
+            };
+            PortConnections[`${component.connectedTo}1`] = {
+              type,
+              index,
+              signalType: SensorObj.signalType,
+            };
+          }
+        } else if (type == "gas") {
           if (component.connectedTo) {
             PortConnections[component.connectedTo] = {
               type,

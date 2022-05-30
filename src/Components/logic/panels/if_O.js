@@ -407,17 +407,30 @@ class IfPanel extends Component {
               if (Type == "ultrasonic_sensor") {
                 bytesData[2] = "U".charCodeAt();
                 // bytesData[3] = "I".charCodeAt();
-              } else if (signalType == "digital") {
+              } else if (
+                Type == "tact_switch" ||
+                Type == "touch_sensor" ||
+                Type == "dual_switch" ||
+                Type == "dip_switch" ||
+                Type == "light_sensor" ||
+                Type == "joystick" ||
+                Type == "metal_detector" ||
+                Type == "distance_sensor"
+              ) {
                 bytesData[2] = "I".charCodeAt();
                 bytesData[3] = "I".charCodeAt();
               } else if (
-                Type == "tact_switch" ||
-                Type == "dual_switch" ||
-                Type == "touch_sensor" ||
                 Type == "rotatory" ||
                 Type == "light_sensor" ||
                 Type == "joystick" ||
-                Type == "distance_sensor"
+                Type == "distance_sensor" ||
+                Type == "temperature_sensor" ||
+                Type == "gas" ||
+                Type == "linear_pot" ||
+                Type == "pot" ||
+                Type == "humidity" ||
+                Type == "extender" ||
+                Type == "rain_sensor"
               ) {
                 bytesData[2] = "A".charCodeAt();
                 bytesData[3] = "A".charCodeAt();
@@ -434,17 +447,30 @@ class IfPanel extends Component {
               let Type = portdata.PortConnections[port].type;
 
               if (
-                Type == "tact_switch" ||
-                Type == "dual_switch" ||
-                Type == "touch_sensor" ||
                 Type == "rotatory" ||
                 Type == "light_sensor" ||
                 Type == "joystick" ||
-                Type == "distance_sensor"
+                Type == "distance_sensor" ||
+                Type == "temperature_sensor" ||
+                Type == "gas" ||
+                Type == "linear_pot" ||
+                Type == "pot" ||
+                Type == "humidity" ||
+                Type == "extender" ||
+                Type == "rain_sensor"
               ) {
                 bytesData[4] = "A".charCodeAt();
                 bytesData[5] = "A".charCodeAt();
-              } else if (signalType == "digital") {
+              } else if (
+                Type == "tact_switch" ||
+                Type == "touch_sensor" ||
+                Type == "dual_switch" ||
+                Type == "dip_switch" ||
+                Type == "light_sensor" ||
+                Type == "metal_detector" ||
+                Type == "joystick" ||
+                Type == "distance_sensor"
+              ) {
                 bytesData[4] = "I".charCodeAt();
                 bytesData[5] = "I".charCodeAt();
               }
@@ -461,17 +487,30 @@ class IfPanel extends Component {
               if (Type == "ultrasonic_sensor") {
                 bytesData[6] = "U".charCodeAt();
                 // bytesData[7] = "A".charCodeAt();
-              } else if (signalType == "digital") {
+              } else if (
+                Type == "tact_switch" ||
+                Type == "touch_sensor" ||
+                Type == "dual_switch" ||
+                Type == "dip_switch" ||
+                Type == "light_sensor" ||
+                Type == "metal_detector" ||
+                Type == "joystick" ||
+                Type == "distance_sensor"
+              ) {
                 bytesData[6] = "I".charCodeAt();
                 bytesData[7] = "I".charCodeAt();
               } else if (
-                Type == "tact_switch" ||
-                Type == "dual_switch" ||
-                Type == "touch_sensor" ||
                 Type == "rotatory" ||
                 Type == "light_sensor" ||
                 Type == "joystick" ||
-                Type == "distance_sensor"
+                Type == "distance_sensor" ||
+                Type == "temperature_sensor" ||
+                Type == "gas" ||
+                Type == "linear_pot" ||
+                Type == "pot" ||
+                Type == "humidity" ||
+                Type == "extender" ||
+                Type == "rain_sensor"
               ) {
                 bytesData[6] = "A".charCodeAt();
                 bytesData[7] = "A".charCodeAt();
@@ -737,6 +776,8 @@ class IfPanel extends Component {
   // call just after components updates
   // STORING RANGE/SEEK bar value with this method
   static getDerivedStateFromProps(props, state) {
+    console.log("propsIF", props);
+
     let mainProps = props.state;
 
     let data = props.state.source;
@@ -975,6 +1016,7 @@ class IfPanel extends Component {
   };
 
   render() {
+    console.log("IF CONDITION PROPS", this.state);
     const { state, startState, PortConnections, componentProps } = this.props;
     var portsConnectedArray = [];
     for (var eachConnection in PortConnections) {
