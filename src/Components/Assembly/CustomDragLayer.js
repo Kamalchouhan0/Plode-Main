@@ -3,7 +3,6 @@ import { DragLayer } from "react-dnd-old";
 import DraggingInfo from "./DraggingInfo";
 import ItemTypes from "./ItemTypes";
 import ImageSizes from "./ImageSizes";
-
 import Sizes from "../../helpers/Sizes";
 
 import Connections from "./Connections";
@@ -204,7 +203,7 @@ class CustomDragLayer extends Component {
       top: top,
     };
     var extraComponent, connectedTo;
-
+    console.log("ItemType", itemType);
     //EXTRACOMPONENT IS FOR when we DnD to workSpace from slider like LED,BEEP then it will created with obj of top,left,type
     if (this.props.currentOffset && isDragging) {
       var { x, y } = this.props.currentOffset;

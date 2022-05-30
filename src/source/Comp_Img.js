@@ -27,9 +27,12 @@ import dual_splitter from "../Assets/Bisoft_UI/Accessories/newComponents/compone
 import dc_motor from "../Assets/Bisoft_UI/Accessories/newComponents/component_dc_motor.png";
 import geared_motor from "../Assets/Bisoft_UI/Accessories/newComponents/component_geared_motor.png";
 import mini_geared_motor from "../Assets/Bisoft_UI/Accessories/newComponents/component_mini_geared_motor.png";
-
+import play_shield from "../Assets/Bisoft_UI/Accessories/newComponents/component_play_shield.png";
 function renderCompImg(name) {
   switch (name) {
+    case "play_shield":
+      var type = play_shield;
+      return type;
     case "rotatory":
       var type = Type;
       return type;

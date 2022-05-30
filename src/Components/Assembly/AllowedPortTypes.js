@@ -9,7 +9,23 @@ var PortConnections_B = JSON.parse(sessionStorage.getItem("assembly"))
 
 if (Device == "Ace") {
   module.exports = {
-    led: ["A", "B", "C", "D", "A1", "A2", "B1", "B2", "D1", "D2", "C1", "C2"],
+    led: [
+      "A",
+      "B",
+      "C",
+      "D",
+      "A1",
+      "A2",
+      "B1",
+      "B2",
+      "D1",
+      "D2",
+      "C1",
+      "C2",
+      "F",
+      "F1",
+      "F2",
+    ],
     led_1c: [
       "A",
       "B",
@@ -23,6 +39,9 @@ if (Device == "Ace") {
       "C2",
       "B2",
       "D2",
+      "F",
+      "F1",
+      "F2",
     ],
     laser: ["A", "B", "C", "D", "A1", "B1", "D1", "C1"],
     beeper: ["A", "B", "D", "A1", "A2", "B1", "B2", "D1", "D2"],
@@ -41,7 +60,7 @@ if (Device == "Ace") {
       "D2",
     ],
 
-    dual_splitter: ["A", "B", "D", "C"],
+    dual_splitter: ["A", "B", "D", "C", "F"],
 
     pc_motor_driver: ["D", "B", "A", "C"],
 
@@ -108,7 +127,7 @@ if (Device == "Ace") {
     //PC MOTOR DRIVER
     geared_motor: ["A1", "C1", "B1", "D1"],
     mini_geared_motor: ["A1", "C1", "B1", "D1"],
-    dc_motor: ["A1", "C1", "B1", "D1"],
+    dc_motor: ["A1", "C1", "B1", "D1", "M1", "M3"],
     servo_motor: ["A1", "A2", "C1", "C2", "B2", "B1", "D2", "D1"],
 
     servo_motor_360: ["A1", "A2", "C1", "C2", "B2", "B1", "D2", "D1"],

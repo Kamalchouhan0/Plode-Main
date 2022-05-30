@@ -68,7 +68,7 @@ class Assembly extends Component {
         selected: false,
         port: {},
       },
-
+      refresh: false,
       reConnecting: false,
       flag: false,
       k: false,
@@ -674,7 +674,7 @@ class Assembly extends Component {
         document.getElementById(`${val}`).checked = sessionDataCheckbox[val];
       });
     }
-    sessionStorage.setItem("shield", "false");
+    // sessionStorage.setItem("shield", "false");
 
     let data = JSON.parse(sessionStorage.getItem("user"));
 
@@ -939,9 +939,6 @@ class Assembly extends Component {
     var { workspace } = this.props.assembly;
     workspace.components[item.type].splice(item.index, 1);
     this.props.assemblyComponent(workspace);
-    if (item.type == "play_shield") {
-      window.location.reload(false);
-    }
   };
   /**
    * Pan event handler with throttling
@@ -1025,7 +1022,7 @@ class Assembly extends Component {
     const { clientX, clientY, deltaY } = e;
     // if (deltaY > 0) this.zoom(5 / 6, clientX, clientY);
     // else this.zoom(6 / 5, clientX, clientY);
-    e.preventDefault();
+    //e.preventDefault();
     return false;
   };
   close = () => {

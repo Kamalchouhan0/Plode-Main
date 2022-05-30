@@ -100,7 +100,7 @@ const workspaceTarget = {
       else component.updateOldComponent(currentOffset.x, currentOffset.y);
     }
     if (item.type == "play_shield") {
-      window.location.reload(false); ///cheat to force react to re render
+      // window.location.reload(false); ///cheat to force react to re render
     }
   },
 };

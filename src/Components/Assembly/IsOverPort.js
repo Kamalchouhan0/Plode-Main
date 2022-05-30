@@ -7,7 +7,7 @@
 
 import ItemTypes from "./ItemTypes";
 import ImageSizes from "./ImageSizes";
-import Ports from "./Ports";
+import Ports from "./PortData";
 import PortTypes from "./PortTypes";
 
 import AllowedPortTypes from "./AllowedPortTypes";
@@ -273,8 +273,8 @@ var IsOverPort = function (
                   LeftPort = componentConnected.left;
                   TopPort = componentConnected.top;
 
-                  l = Ports[port][0] + LeftPort;
-                  t = Ports[port][1] + TopPort;
+                  l = Ports(port)[0] + LeftPort;
+                  t = Ports(port)[1] + TopPort;
                 }
               });
             } else if (key == "servo_extender") {
@@ -283,8 +283,8 @@ var IsOverPort = function (
                   LeftPort = componentConnected.left;
                   TopPort = componentConnected.top;
 
-                  l = Ports[port][0] + LeftPort;
-                  t = Ports[port][1] + TopPort;
+                  l = Ports(port)[0] + LeftPort;
+                  t = Ports(port)[1] + TopPort;
                 }
               });
             }
@@ -298,9 +298,20 @@ var IsOverPort = function (
                     LeftPort = componentConnected.left;
                     TopPort = componentConnected.top;
 
-                    l = Ports[port][0] + LeftPort;
-                    t = Ports[port][1] + TopPort;
+                    l = Ports(port)[0] + LeftPort;
+                    t = Ports(port)[1] + TopPort;
                   }
+                }
+              );
+            }
+            if (dual_splitter == "play_shield") {
+              componentConnected[dual_splitter].map(
+                (componentConnected, index) => {
+                  LeftPort = componentConnected.left;
+                  TopPort = componentConnected.top;
+
+                  l = Ports(port)[0] + bibox.left;
+                  t = Ports(port)[1] + bibox.top;
                 }
               );
             }
@@ -346,8 +357,8 @@ var IsOverPort = function (
                             // console.log("GOOD");
                           } else {
                             // console.log("BAD");
-                            l = Ports[port][0] + LeftPort - 70;
-                            t = Ports[port][1] + TopPort + 30;
+                            l = Ports(port)[0] + LeftPort - 70;
+                            t = Ports(port)[1] + TopPort + 30;
                           }
 
                           break;
@@ -367,14 +378,14 @@ var IsOverPort = function (
                           } else {
                             switch (port) {
                               case "A1": {
-                                l = Ports[port][0] + LeftPort - 30;
-                                t = Ports[port][1] + TopPort;
+                                l = Ports(port)[0] + LeftPort - 30;
+                                t = Ports(port)[1] + TopPort;
                                 break;
                               }
 
                               case "A2": {
-                                l = Ports[port][0] + LeftPort - 10;
-                                t = Ports[port][1] + TopPort;
+                                l = Ports(port)[0] + LeftPort - 10;
+                                t = Ports(port)[1] + TopPort;
                                 break;
                               }
                             }
@@ -399,8 +410,8 @@ var IsOverPort = function (
                     LeftPort = componentConnected.left;
                     TopPort = componentConnected.top;
 
-                    l = Ports[port][0] + LeftPort;
-                    t = Ports[port][1] + TopPort;
+                    l = Ports(port)[0] + LeftPort;
+                    t = Ports(port)[1] + TopPort;
                   }
                 }
               );
@@ -415,8 +426,8 @@ var IsOverPort = function (
                     LeftPort = componentConnected.left;
                     TopPort = componentConnected.top;
 
-                    l = Ports[port][0] + LeftPort;
-                    t = Ports[port][1] + TopPort;
+                    l = Ports(port)[0] + LeftPort;
+                    t = Ports(port)[1] + TopPort;
                   }
                 }
               );
@@ -431,8 +442,8 @@ var IsOverPort = function (
                     LeftPort = componentConnected.left;
                     TopPort = componentConnected.top;
 
-                    l = Ports[port][0] + LeftPort;
-                    t = Ports[port][1] + TopPort;
+                    l = Ports(port)[0] + LeftPort;
+                    t = Ports(port)[1] + TopPort;
                   }
                 }
               );
@@ -443,17 +454,25 @@ var IsOverPort = function (
             if (dual_splitter == "dual_splitter") {
               componentConnected[dual_splitter].map(
                 (componentConnected, index) => {
-                  if (componentConnected.connectedTo == "D") {
-                    LeftPort = componentConnected.left;
-                    TopPort = componentConnected.top;
+                  LeftPort = componentConnected.left;
+                  TopPort = componentConnected.top;
 
-                    l = Ports[port][0] + LeftPort;
-                    t = Ports[port][1] + TopPort;
-                  }
+                  l = Ports(port)[0] + LeftPort;
+                  t = Ports(port)[1] + TopPort;
                 }
               );
             }
+            if (dual_splitter == "play_shield") {
+              componentConnected[dual_splitter].map(
+                (componentConnected, index) => {
+                  LeftPort = componentConnected.left;
+                  TopPort = componentConnected.top;
 
+                  l = Ports(port)[0] + bibox.left;
+                  t = Ports(port)[1] + bibox.top;
+                }
+              );
+            }
             if (
               dual_splitter == "pc_motor_driver" &&
               JSON.parse(sessionStorage.getItem("assembly")).PortConnections
@@ -490,8 +509,8 @@ var IsOverPort = function (
                             // console.log("GOOD");
                           } else {
                             // console.log("BAD");
-                            l = Ports[port][0] + LeftPort + 125;
-                            t = Ports[port][1] + TopPort + 30;
+                            l = Ports(port)[0] + LeftPort + 125;
+                            t = Ports(port)[1] + TopPort + 30;
                           }
 
                           break;
@@ -512,14 +531,14 @@ var IsOverPort = function (
                           } else {
                             switch (port) {
                               case "D1": {
-                                l = Ports[port][0] + LeftPort + 60;
-                                t = Ports[port][1] + TopPort;
+                                l = Ports(port)[0] + LeftPort + 60;
+                                t = Ports(port)[1] + TopPort;
                                 break;
                               }
 
                               case "D2": {
-                                l = Ports[port][0] + LeftPort + 80;
-                                t = Ports[port][1] + TopPort;
+                                l = Ports(port)[0] + LeftPort + 80;
+                                t = Ports(port)[1] + TopPort;
                                 break;
                               }
                             }
@@ -543,9 +562,20 @@ var IsOverPort = function (
                     LeftPort = componentConnected.left;
                     TopPort = componentConnected.top;
 
-                    l = Ports[port][0] + LeftPort;
-                    t = Ports[port][1] + TopPort;
+                    l = Ports(port)[0] + LeftPort;
+                    t = Ports(port)[1] + TopPort;
                   }
+                }
+              );
+            }
+            if (dual_splitter == "play_shield") {
+              componentConnected[dual_splitter].map(
+                (componentConnected, index) => {
+                  LeftPort = componentConnected.left;
+                  TopPort = componentConnected.top;
+
+                  l = Ports(port)[0] + bibox.left;
+                  t = Ports(port)[1] + bibox.top;
                 }
               );
             }
@@ -588,8 +618,8 @@ var IsOverPort = function (
                             // console.log("GOOD");
                           } else {
                             // console.log("BAD");
-                            l = Ports[port][0] + LeftPort + 125;
-                            t = Ports[port][1] + TopPort + 30;
+                            l = Ports(port)[0] + LeftPort + 125;
+                            t = Ports(port)[1] + TopPort + 30;
                           }
 
                           break;
@@ -610,14 +640,14 @@ var IsOverPort = function (
                           } else {
                             switch (port) {
                               case "C1": {
-                                l = Ports[port][0] + LeftPort + 60;
-                                t = Ports[port][1] + TopPort;
+                                l = Ports(port)[0] + LeftPort + 60;
+                                t = Ports(port)[1] + TopPort;
                                 break;
                               }
 
                               case "C2": {
-                                l = Ports[port][0] + LeftPort + 80;
-                                t = Ports[port][1] + TopPort;
+                                l = Ports(port)[0] + LeftPort + 80;
+                                t = Ports(port)[1] + TopPort;
                                 break;
                               }
                             }
@@ -641,9 +671,18 @@ var IsOverPort = function (
                   LeftPort = componentConnected.left;
                   TopPort = componentConnected.top;
 
-                  l = Ports[port][0] + LeftPort;
-                  t = Ports[port][1] + TopPort;
+                  l = Ports(port)[0] + LeftPort;
+                  t = Ports(port)[1] + TopPort;
                 }
+              });
+            }
+            if (key == "play_shield") {
+              componentConnected[key].map((componentConnected, index) => {
+                LeftPort = componentConnected.left;
+                TopPort = componentConnected.top;
+
+                l = Ports(port)[0] + bibox.left;
+                t = Ports(port)[1] + bibox.top;
               });
             }
             if (key == "servo_extender") {
@@ -652,8 +691,8 @@ var IsOverPort = function (
                   LeftPort = componentConnected.left;
                   TopPort = componentConnected.top;
 
-                  l = Ports[port][0] + LeftPort;
-                  t = Ports[port][1] + TopPort;
+                  l = Ports(port)[0] + LeftPort;
+                  t = Ports(port)[1] + TopPort;
                 }
               });
             }
@@ -694,8 +733,8 @@ var IsOverPort = function (
                           // console.log("GOOD");
                         } else {
                           // console.log("BAD");
-                          l = Ports[port][0] + LeftPort - 70;
-                          t = Ports[port][1] + TopPort + 30;
+                          l = Ports(port)[0] + LeftPort - 70;
+                          t = Ports(port)[1] + TopPort + 30;
                         }
                         break;
                       }
@@ -714,14 +753,103 @@ var IsOverPort = function (
                         } else {
                           switch (port) {
                             case "B1": {
-                              l = Ports[port][0] + LeftPort - 30;
-                              t = Ports[port][1] + TopPort;
+                              l = Ports(port)[0] + LeftPort - 30;
+                              t = Ports(port)[1] + TopPort;
                               break;
                             }
 
                             case "B2": {
-                              l = Ports[port][0] + LeftPort - 10;
-                              t = Ports[port][1] + TopPort;
+                              l = Ports(port)[0] + LeftPort - 10;
+                              t = Ports(port)[1] + TopPort;
+                              break;
+                            }
+                          }
+                        }
+
+                        break;
+                      }
+                    }
+                  }
+                });
+              }
+            }
+          });
+        } else if (port == "M1" || port == "M3") {
+          Object.keys(componentConnected).map((key) => {
+            if (key == "play_shield") {
+              componentConnected[key].map((componentConnected, index) => {
+                LeftPort = componentConnected.left;
+                TopPort = componentConnected.top;
+
+                l = Ports(port)[0] + bibox.left;
+                t = Ports(port)[1] + bibox.top;
+              });
+            }
+
+            if (
+              key == "pc_motor_driver" &&
+              JSON.parse(sessionStorage.getItem("assembly")).PortConnections
+                .B !== null
+            ) {
+              if (
+                JSON.parse(sessionStorage.getItem("assembly")).PortConnections.B
+                  .type == "pc_motor_driver"
+              ) {
+                componentConnected[key].map((componentConnected, index) => {
+                  if (
+                    componentConnected.connectedTo == "B" ||
+                    componentConnected.connectedTo == "D"
+                  ) {
+                    LeftPort = componentConnected.left;
+                    TopPort = componentConnected.top;
+
+                    switch (component.type) {
+                      case "mini_geared_motor":
+                      case "dc_motor":
+                      case "geared_motor": {
+                        let DataServoMotorConnected_BD =
+                          isServoMotorConnected_BD();
+
+                        let DataisStepperConnected = isStepperConnected();
+
+                        if (
+                          DataServoMotorConnected_BD == "B1" ||
+                          DataServoMotorConnected_BD == "B2" ||
+                          DataServoMotorConnected_BD == "D1" ||
+                          DataServoMotorConnected_BD == "D2" ||
+                          DataisStepperConnected == "STPM"
+                        ) {
+                          // console.log("GOOD");
+                        } else {
+                          // console.log("BAD");
+                          l = Ports(port)[0] + LeftPort - 70;
+                          t = Ports(port)[1] + TopPort + 30;
+                        }
+                        break;
+                      }
+
+                      case "servo_motor": {
+                        let DataGearedMotorConnected_BD =
+                          isGearedConnected_BD();
+                        let DataisStepperConnected = isStepperConnected();
+
+                        if (
+                          DataGearedMotorConnected_BD == "B1" ||
+                          DataGearedMotorConnected_BD == "D1" ||
+                          DataisStepperConnected == "STPM"
+                        ) {
+                          // console.log("GOOD");
+                        } else {
+                          switch (port) {
+                            case "B1": {
+                              l = Ports(port)[0] + LeftPort - 30;
+                              t = Ports(port)[1] + TopPort;
+                              break;
+                            }
+
+                            case "B2": {
+                              l = Ports(port)[0] + LeftPort - 10;
+                              t = Ports(port)[1] + TopPort;
                               break;
                             }
                           }
@@ -744,8 +872,8 @@ var IsOverPort = function (
                     LeftG = componentConnected.left;
                     TopG = componentConnected.top;
 
-                    l = Ports[port][0] + LeftG;
-                    t = Ports[port][1] + TopG;
+                    l = Ports(port)[0] + LeftG;
+                    t = Ports(port)[1] + TopG;
                   }
                 }
               );
@@ -776,8 +904,8 @@ var IsOverPort = function (
                       LeftG = componentConnected.left;
                       TopG = componentConnected.top;
 
-                      l = Ports[port][0] + LeftG;
-                      t = Ports[port][1] + TopG;
+                      l = Ports(port)[0] + LeftG;
+                      t = Ports(port)[1] + TopG;
                     }
                   } else if (
                     componentConnected.connectedTo == "A" ||
@@ -799,8 +927,8 @@ var IsOverPort = function (
                       LeftG = componentConnected.left;
                       TopG = componentConnected.top;
 
-                      l = Ports[port][0] + LeftG;
-                      t = Ports[port][1] + TopG;
+                      l = Ports(port)[0] + LeftG;
+                      t = Ports(port)[1] + TopG;
                     }
                   }
                 }
@@ -808,8 +936,8 @@ var IsOverPort = function (
             }
           });
         } else {
-          var l = Ports[port][0] + bibox.left;
-          var t = Ports[port][1] + bibox.top;
+          var l = Ports(port)[0] + bibox.left;
+          var t = Ports(port)[1] + bibox.top;
         }
 
         if (

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import Ports from "./Ports.js";
+import Ports from "./PortData";
 import ItemTypes from "./ItemTypes";
 import ImageSizes from "./ImageSizes";
 import PortTypes from "./PortTypes";
@@ -20,7 +20,6 @@ class Curve extends Component {
   render() {
     const { bibox, component, components } = this.props;
     const { connectedTo, left, top } = component;
-
     var Left, Top;
     var LeftF, TopF;
     var LeftO, TopO;
@@ -162,6 +161,7 @@ class Curve extends Component {
       //*************************************************** */
 
       // S1  .
+
       if (connectedTo == "A1" || connectedTo == "A2") {
         Object.keys(components).map((dual_splitter) => {
           if (dual_splitter == "dual_splitter") {
@@ -183,7 +183,26 @@ class Curve extends Component {
               }
             });
           }
-
+          if (dual_splitter == "play_shield") {
+            components[dual_splitter].map((component, index) => {
+              if (
+                this.props.componentName != "geared_motor" &&
+                this.props.componentName != "mini_geared_motor" &&
+                this.props.componentName != "dc_motor" &&
+                this.props.componentName != "servo_motor" &&
+                this.props.componentName != "servo_motor_360"
+              ) {
+                if (connectedTo == "A1") {
+                  LeftF = bibox.left;
+                  TopF = bibox.top;
+                }
+                if (connectedTo == "A2") {
+                  LeftF = bibox.left;
+                  TopF = bibox.top;
+                }
+              }
+            });
+          }
           /** */
           if (dual_splitter == "pc_motor_driver") {
             let sdasa = sessionStorage.getItem("dragingItem");
@@ -237,10 +256,11 @@ class Curve extends Component {
           /** */
         });
 
-        cx2 = LeftF + Ports[connectedTo][0];
-        cy2 = TopF + Ports[connectedTo][1];
-        cx2 += Ports[connectedTo][0] - ImageSizes[ItemTypes.COMPONENT][0] / 2;
-        cy2 += Ports[connectedTo][1] - ImageSizes[ItemTypes.COMPONENT][1] / 2;
+        cx2 = LeftF + Ports(connectedTo)[0];
+        cy2 = TopF + Ports(connectedTo)[1];
+        cx2 +=
+          Ports(connectedTo)[0] - ImageSizes[ItemTypes.COMPONENT][0] / 2 - 500;
+        cy2 += Ports(connectedTo)[1] - ImageSizes[ItemTypes.COMPONENT][1] / 2;
         return (
           <path
             d={
@@ -257,9 +277,9 @@ class Curve extends Component {
               "," +
               cy2 +
               " " +
-              (LeftF + Ports[connectedTo][0]) +
+              (LeftF + Ports(connectedTo)[0]) +
               "," +
-              (TopF + Ports[connectedTo][1])
+              (TopF + Ports(connectedTo)[1])
             }
           />
         );
@@ -280,6 +300,20 @@ class Curve extends Component {
                 if (component.connectedTo == "D") {
                   LeftF = component.left + 28;
                   TopF = component.top + 6;
+                }
+              }
+            });
+          }
+
+          if (dual_splitter == "play_shield") {
+            components[dual_splitter].map((component, index) => {
+              if (
+                this.props.componentName == "servo_motor" ||
+                this.props.componentName == "servo_motor_360"
+              ) {
+                if (connectedTo == "D1" || connectedTo == "D2") {
+                  LeftF = bibox.left;
+                  TopF = bibox.top;
                 }
               }
             });
@@ -324,10 +358,10 @@ class Curve extends Component {
           }
         });
 
-        cx2 = LeftF + Ports[connectedTo][0];
-        cy2 = TopF + Ports[connectedTo][1];
-        cx2 += Ports[connectedTo][0] - ImageSizes[ItemTypes.COMPONENT][0] / 2;
-        cy2 += Ports[connectedTo][1] - ImageSizes[ItemTypes.COMPONENT][1] / 2;
+        cx2 = LeftF + Ports(connectedTo)[0];
+        cy2 = TopF + Ports(connectedTo)[1];
+        cx2 += Ports(connectedTo)[0] - ImageSizes[ItemTypes.COMPONENT][0] / 2;
+        cy2 += Ports(connectedTo)[1] - ImageSizes[ItemTypes.COMPONENT][1] / 2;
         return (
           <path
             d={
@@ -344,9 +378,9 @@ class Curve extends Component {
               "," +
               cy2 +
               " " +
-              (LeftF + Ports[connectedTo][0]) +
+              (LeftF + Ports(connectedTo)[0]) +
               "," +
-              (TopF + Ports[connectedTo][1])
+              (TopF + Ports(connectedTo)[1])
             }
           />
         );
@@ -367,10 +401,10 @@ class Curve extends Component {
           }
         });
 
-        cx2 = LeftF + Ports[connectedTo][0];
-        cy2 = TopF + Ports[connectedTo][1];
-        cx2 += Ports[connectedTo][0] - ImageSizes[ItemTypes.COMPONENT][0] / 2;
-        cy2 += Ports[connectedTo][1] - ImageSizes[ItemTypes.COMPONENT][1] / 2;
+        cx2 = LeftF + Ports(connectedTo)[0];
+        cy2 = TopF + Ports(connectedTo)[1];
+        cx2 += Ports(connectedTo)[0] - ImageSizes[ItemTypes.COMPONENT][0] / 2;
+        cy2 += Ports(connectedTo)[1] - ImageSizes[ItemTypes.COMPONENT][1] / 2;
         return (
           <path
             d={
@@ -387,9 +421,9 @@ class Curve extends Component {
               "," +
               cy2 +
               " " +
-              (LeftF + Ports[connectedTo][0]) +
+              (LeftF + Ports(connectedTo)[0]) +
               "," +
-              (TopF + Ports[connectedTo][1])
+              (TopF + Ports(connectedTo)[1])
             }
           />
         );
@@ -414,26 +448,19 @@ class Curve extends Component {
               }
             });
           }
-          // if (dual_splitter == "dual_splitter") {
-          //   components[dual_splitter].map((component, index) => {
-          //     console.log("abcdefgh", this.props.componentName);
-          //     if (
-          //       this.props.componentName == "mini_geared_motor" ||
-          //       this.props.componentName == "dc_motor"
-          //     ) {
-          //       if (component.connectedTo == "C") {
-          //         LeftF = component.left + 25;
-          //         TopF = component.top + 5;
-          //       }
-          //     }
-          //     if (this.props.componentName == "servo_motor") {
-          //       if (component.connectedTo == "C") {
-          //         LeftF = component.left - 25;
-          //         TopF = component.top + 5;
-          //       }
-          //     }
-          //   });
-          // }
+          if (dual_splitter == "play_shield") {
+            components[dual_splitter].map((component, index) => {
+              if (
+                this.props.componentName == "servo_motor" ||
+                this.props.componentName == "servo_motor_360"
+              ) {
+                if (connectedTo == "C1" || connectedTo == "C2") {
+                  LeftF = bibox.left;
+                  TopF = bibox.top;
+                }
+              }
+            });
+          }
 
           if (dual_splitter == "pc_motor_driver") {
             components[dual_splitter].map((component, index) => {
@@ -474,10 +501,10 @@ class Curve extends Component {
           }
         });
 
-        cx2 = LeftF + Ports[connectedTo][0];
-        cy2 = TopF + Ports[connectedTo][1];
-        cx2 += Ports[connectedTo][0] - ImageSizes[ItemTypes.COMPONENT][0] / 2;
-        cy2 += Ports[connectedTo][1] - ImageSizes[ItemTypes.COMPONENT][1] / 2;
+        cx2 = LeftF + Ports(connectedTo)[0];
+        cy2 = TopF + Ports(connectedTo)[1];
+        cx2 += Ports(connectedTo)[0] - ImageSizes[ItemTypes.COMPONENT][0] / 2;
+        cy2 += Ports(connectedTo)[1] - ImageSizes[ItemTypes.COMPONENT][1] / 2;
         return (
           <path
             d={
@@ -494,9 +521,9 @@ class Curve extends Component {
               "," +
               cy2 +
               " " +
-              (LeftF + Ports[connectedTo][0]) +
+              (LeftF + Ports(connectedTo)[0]) +
               "," +
-              (TopF + Ports[connectedTo][1])
+              (TopF + Ports(connectedTo)[1])
             }
           />
         );
@@ -522,7 +549,26 @@ class Curve extends Component {
               }
             });
           }
-
+          if (key == "play_shield") {
+            components[key].map((component, index) => {
+              if (
+                this.props.componentName != "geared_motor" &&
+                this.props.componentName != "mini_geared_motor" &&
+                this.props.componentName != "dc_motor" &&
+                this.props.componentName != "servo_motor" &&
+                this.props.componentName != "servo_motor_360"
+              ) {
+                if (connectedTo == "B1") {
+                  LeftF = bibox.left;
+                  TopF = bibox.top;
+                }
+                if (connectedTo == "B2") {
+                  LeftF = bibox.left;
+                  TopF = bibox.top;
+                }
+              }
+            });
+          }
           if (key == "servo_extender") {
             components[key].map((component, index) => {
               if (component.connectedTo == "B") {
@@ -583,10 +629,10 @@ class Curve extends Component {
           }
         });
 
-        cx2 = LeftF + Ports[connectedTo][0];
-        cy2 = TopF + Ports[connectedTo][1];
-        cx2 += Ports[connectedTo][0] - ImageSizes[ItemTypes.COMPONENT][0] / 2;
-        cy2 += Ports[connectedTo][1] - ImageSizes[ItemTypes.COMPONENT][1] / 2;
+        cx2 = LeftF + Ports(connectedTo)[0];
+        cy2 = TopF + Ports(connectedTo)[1];
+        cx2 += Ports(connectedTo)[0] - ImageSizes[ItemTypes.COMPONENT][0] / 2;
+        cy2 += Ports(connectedTo)[1] - ImageSizes[ItemTypes.COMPONENT][1] / 2;
         return (
           <path
             d={
@@ -603,9 +649,57 @@ class Curve extends Component {
               "," +
               cy2 +
               " " +
-              (LeftF + Ports[connectedTo][0]) +
+              (LeftF + Ports(connectedTo)[0]) +
               "," +
-              (TopF + Ports[connectedTo][1])
+              (TopF + Ports(connectedTo)[1])
+            }
+          />
+        );
+      } else if (connectedTo == "M1" || connectedTo == "M3") {
+        Object.keys(components).map((key) => {
+          if (key == "play_shield") {
+            components[key].map((component, index) => {
+              if (
+                this.props.componentName == "geared_motor" ||
+                this.props.componentName == "mini_geared_motor" ||
+                this.props.componentName == "dc_motor"
+              ) {
+                if (connectedTo == "M1") {
+                  LeftF = bibox.left;
+                  TopF = bibox.top;
+                }
+                if (connectedTo == "M3") {
+                  LeftF = bibox.left;
+                  TopF = bibox.top;
+                }
+              }
+            });
+          }
+        });
+
+        cx2 = LeftF + Ports(connectedTo)[0];
+        cy2 = TopF + Ports(connectedTo)[1];
+        cx2 += Ports(connectedTo)[0] - ImageSizes[ItemTypes.COMPONENT][0] / 2;
+        cy2 += Ports(connectedTo)[1] - ImageSizes[ItemTypes.COMPONENT][1] / 2;
+        return (
+          <path
+            d={
+              "M " +
+              (left - 10 + ImageSizes[ItemTypes.COMPONENT][0] / 2) +
+              "," +
+              (top + 85) +
+              " C " +
+              (left + ImageSizes[ItemTypes.COMPONENT][0] / 2) +
+              "," +
+              (top + 2 * ImageSizes[ItemTypes.COMPONENT][1]) +
+              " " +
+              cx2 +
+              "," +
+              cy2 +
+              " " +
+              (LeftF + Ports(connectedTo)[0]) +
+              "," +
+              (TopF + Ports(connectedTo)[1])
             }
           />
         );
@@ -621,10 +715,10 @@ class Curve extends Component {
           }
         });
 
-        cx2 = LeftF + Ports[connectedTo][0];
-        cy2 = TopF + Ports[connectedTo][1];
-        cx2 += Ports[connectedTo][0] - ImageSizes[ItemTypes.COMPONENT][0] / 2;
-        cy2 += Ports[connectedTo][1] - ImageSizes[ItemTypes.COMPONENT][1] / 2;
+        cx2 = LeftF + Ports(connectedTo)[0];
+        cy2 = TopF + Ports(connectedTo)[1];
+        cx2 += Ports(connectedTo)[0] - ImageSizes[ItemTypes.COMPONENT][0] / 2;
+        cy2 += Ports(connectedTo)[1] - ImageSizes[ItemTypes.COMPONENT][1] / 2;
         return (
           <path
             d={
@@ -641,9 +735,9 @@ class Curve extends Component {
               "," +
               cy2 +
               " " +
-              (LeftF + Ports[connectedTo][0]) +
+              (LeftF + Ports(connectedTo)[0]) +
               "," +
-              (TopF + Ports[connectedTo][1])
+              (TopF + Ports(connectedTo)[1])
             }
           />
         );
@@ -652,14 +746,15 @@ class Curve extends Component {
         connectedTo == "B" ||
         connectedTo == "C" ||
         connectedTo == "D" ||
-        connectedTo == "E"
+        connectedTo == "E" ||
+        connectedTo == "F"
       ) {
         Top = bibox.top;
         Left = bibox.left;
-        cx2 = Left + Ports[connectedTo][0];
-        cy2 = Top + Ports[connectedTo][1];
-        cx2 += Ports[connectedTo][0] - ImageSizes[ItemTypes.BIBOX][0] / 2;
-        cy2 += Ports[connectedTo][1] - ImageSizes[ItemTypes.BIBOX][1] / 2;
+        cx2 = Left + Ports(connectedTo)[0];
+        cy2 = Top + Ports(connectedTo)[1];
+        cx2 += Ports(connectedTo)[0] - ImageSizes[ItemTypes.BIBOX][0] / 2;
+        cy2 += Ports(connectedTo)[1] - ImageSizes[ItemTypes.BIBOX][1] / 2;
         if (this.props.componentName == "pc_motor_driver") {
           if (connectedTo == "A" || connectedTo == "C") {
             return (
@@ -679,9 +774,9 @@ class Curve extends Component {
                     "," +
                     cy2 +
                     " " +
-                    (Left + Ports["A"][0]) +
+                    (Left + Ports("A")[0]) +
                     "," +
-                    (Top + Ports["A"][1])
+                    (Top + Ports("A")[1])
                   }
                 />
                 <path
@@ -699,9 +794,9 @@ class Curve extends Component {
                     "," +
                     cy2 +
                     " " +
-                    (Left + Ports["C"][0]) +
+                    (Left + Ports("C")[0]) +
                     "," +
-                    (Top + Ports["C"][1])
+                    (Top + Ports("C")[1])
                   }
                 />
               </>
@@ -726,9 +821,9 @@ class Curve extends Component {
                     "," +
                     cy2 +
                     " " +
-                    (Left + Ports["B"][0]) +
+                    (Left + Ports("B")[0]) +
                     "," +
-                    (Top + Ports["B"][1])
+                    (Top + Ports("B")[1])
                   }
                 />
                 <path
@@ -746,9 +841,9 @@ class Curve extends Component {
                     "," +
                     cy2 +
                     " " +
-                    (Left + Ports["D"][0]) +
+                    (Left + Ports("D")[0]) +
                     "," +
-                    (Top + Ports["D"][1])
+                    (Top + Ports("D")[1])
                   }
                 />
               </>
@@ -771,9 +866,9 @@ class Curve extends Component {
                 "," +
                 cy2 +
                 " " +
-                (Left + Ports[connectedTo][0]) +
+                (Left + Ports(connectedTo)[0]) +
                 "," +
-                (Top + Ports[connectedTo][1])
+                (Top + Ports(connectedTo)[1])
               }
             />
           );
@@ -794,9 +889,9 @@ class Curve extends Component {
                 "," +
                 cy2 +
                 " " +
-                (Left + Ports[connectedTo][0]) +
+                (Left + Ports(connectedTo)[0]) +
                 "," +
-                (Top + Ports[connectedTo][1])
+                (Top + Ports(connectedTo)[1])
               }
             />
           );
@@ -808,10 +903,10 @@ class Curve extends Component {
       //     let asd = sessionStorage.getItem("dragingItem");
       //     Top = bibox.top;
       //     Left = bibox.left;
-      //     cx2 = Left + Ports[connectedTo][0];
-      //     cy2 = Top + Ports[connectedTo][1];
-      //     cx2 += Ports[connectedTo][0] - ImageSizes[ItemTypes.BIBOX][0] / 2;
-      //     cy2 += Ports[connectedTo][1] - ImageSizes[ItemTypes.BIBOX][1] / 2;
+      //     cx2 = Left + Ports(connectedTo)[0];
+      //     cy2 = Top + Ports(connectedTo)[1];
+      //     cx2 += Ports(connectedTo)[0] - ImageSizes[ItemTypes.BIBOX][0] / 2;
+      //     cy2 += Ports(connectedTo)[1] - ImageSizes[ItemTypes.BIBOX][1] / 2;
 
       //
       //     return dualWireDriveMotor(connectedTo);
@@ -824,10 +919,10 @@ class Curve extends Component {
 
       //   Top = bibox.top;
       //   Left = bibox.left;
-      //   cx2 = Left + Ports[connectedTo][0];
-      //   cy2 = Top + Ports[connectedTo][1];
-      //   cx2 += Ports[connectedTo][0] - ImageSizes[ItemTypes.BIBOX][0] / 2;
-      //   cy2 += Ports[connectedTo][1] - ImageSizes[ItemTypes.BIBOX][1] / 2;
+      //   cx2 = Left + Ports(connectedTo)[0];
+      //   cy2 = Top + Ports(connectedTo)[1];
+      //   cx2 += Ports(connectedTo)[0] - ImageSizes[ItemTypes.BIBOX][0] / 2;
+      //   cy2 += Ports(connectedTo)[1] - ImageSizes[ItemTypes.BIBOX][1] / 2;
       //   return (
       //     <path
       //       d={
@@ -844,9 +939,9 @@ class Curve extends Component {
       //         "," +
       //         cy2 +
       //         " " +
-      //         (Left + Ports[connectedTo][0]) +
+      //         (Left + Ports(connectedTo)[0]) +
       //         "," +
-      //         (Top + Ports[connectedTo][1])
+      //         (Top + Ports(connectedTo)[1])
       //       }
       //     />
       //   );
@@ -864,10 +959,10 @@ class Curve extends Component {
           }
         });
 
-        cx2 = LeftF + Ports[connectedTo][0];
-        cy2 = TopF + Ports[connectedTo][1];
-        cx2 += Ports[connectedTo][0] - ImageSizes[ItemTypes.COMPONENT][0] / 2;
-        cy2 += Ports[connectedTo][1] - ImageSizes[ItemTypes.COMPONENT][1] / 2;
+        cx2 = LeftF + Ports(connectedTo)[0];
+        cy2 = TopF + Ports(connectedTo)[1];
+        cx2 += Ports(connectedTo)[0] - ImageSizes[ItemTypes.COMPONENT][0] / 2;
+        cy2 += Ports(connectedTo)[1] - ImageSizes[ItemTypes.COMPONENT][1] / 2;
         return (
           <path
             d={
@@ -884,9 +979,9 @@ class Curve extends Component {
               "," +
               cy2 +
               " " +
-              (LeftF + Ports[connectedTo][0]) +
+              (LeftF + Ports(connectedTo)[0]) +
               "," +
-              (TopF + Ports[connectedTo][1])
+              (TopF + Ports(connectedTo)[1])
             }
           />
         );
@@ -902,10 +997,10 @@ class Curve extends Component {
           }
         });
 
-        cx2 = LeftF + Ports[connectedTo][0];
-        cy2 = TopF + Ports[connectedTo][1];
-        cx2 += Ports[connectedTo][0] - ImageSizes[ItemTypes.COMPONENT][0] / 2;
-        cy2 += Ports[connectedTo][1] - ImageSizes[ItemTypes.COMPONENT][1] / 2;
+        cx2 = LeftF + Ports(connectedTo)[0];
+        cy2 = TopF + Ports(connectedTo)[1];
+        cx2 += Ports(connectedTo)[0] - ImageSizes[ItemTypes.COMPONENT][0] / 2;
+        cy2 += Ports(connectedTo)[1] - ImageSizes[ItemTypes.COMPONENT][1] / 2;
         return (
           <path
             d={
@@ -922,9 +1017,9 @@ class Curve extends Component {
               "," +
               cy2 +
               " " +
-              (LeftF + Ports[connectedTo][0]) +
+              (LeftF + Ports(connectedTo)[0]) +
               "," +
-              (TopF + Ports[connectedTo][1])
+              (TopF + Ports(connectedTo)[1])
             }
           />
         );
@@ -940,10 +1035,10 @@ class Curve extends Component {
           }
         });
 
-        cx2 = LeftF + Ports[connectedTo][0];
-        cy2 = TopF + Ports[connectedTo][1];
-        cx2 += Ports[connectedTo][0] - ImageSizes[ItemTypes.COMPONENT][0] / 2;
-        cy2 += Ports[connectedTo][1] - ImageSizes[ItemTypes.COMPONENT][1] / 2;
+        cx2 = LeftF + Ports(connectedTo)[0];
+        cy2 = TopF + Ports(connectedTo)[1];
+        cx2 += Ports(connectedTo)[0] - ImageSizes[ItemTypes.COMPONENT][0] / 2;
+        cy2 += Ports(connectedTo)[1] - ImageSizes[ItemTypes.COMPONENT][1] / 2;
         return (
           <path
             d={
@@ -960,9 +1055,9 @@ class Curve extends Component {
               "," +
               cy2 +
               " " +
-              (LeftF + Ports[connectedTo][0]) +
+              (LeftF + Ports(connectedTo)[0]) +
               "," +
-              (TopF + Ports[connectedTo][1])
+              (TopF + Ports(connectedTo)[1])
             }
           />
         );
@@ -985,10 +1080,10 @@ class Curve extends Component {
           }
         });
 
-        cx2 = LeftF + Ports[connectedTo][0];
-        cy2 = TopF + Ports[connectedTo][1];
-        cx2 += Ports[connectedTo][0] - ImageSizes[ItemTypes.COMPONENT][0] / 2;
-        cy2 += Ports[connectedTo][1] - ImageSizes[ItemTypes.COMPONENT][1] / 2;
+        cx2 = LeftF + Ports(connectedTo)[0];
+        cy2 = TopF + Ports(connectedTo)[1];
+        cx2 += Ports(connectedTo)[0] - ImageSizes[ItemTypes.COMPONENT][0] / 2;
+        cy2 += Ports(connectedTo)[1] - ImageSizes[ItemTypes.COMPONENT][1] / 2;
         return (
           <path
             d={
@@ -1005,9 +1100,9 @@ class Curve extends Component {
               "," +
               cy2 +
               " " +
-              (LeftF + Ports[connectedTo][0]) +
+              (LeftF + Ports(connectedTo)[0]) +
               "," +
-              (TopF + Ports[connectedTo][1])
+              (TopF + Ports(connectedTo)[1])
             }
           />
         );
@@ -1023,10 +1118,10 @@ class Curve extends Component {
           }
         });
 
-        cx2 = LeftF + Ports[connectedTo][0];
-        cy2 = TopF + Ports[connectedTo][1];
-        cx2 += Ports[connectedTo][0] - ImageSizes[ItemTypes.COMPONENT][0] / 2;
-        cy2 += Ports[connectedTo][1] - ImageSizes[ItemTypes.COMPONENT][1] / 2;
+        cx2 = LeftF + Ports(connectedTo)[0];
+        cy2 = TopF + Ports(connectedTo)[1];
+        cx2 += Ports(connectedTo)[0] - ImageSizes[ItemTypes.COMPONENT][0] / 2;
+        cy2 += Ports(connectedTo)[1] - ImageSizes[ItemTypes.COMPONENT][1] / 2;
         return (
           <path
             d={
@@ -1043,19 +1138,19 @@ class Curve extends Component {
               "," +
               cy2 +
               " " +
-              (LeftF + Ports[connectedTo][0]) +
+              (LeftF + Ports(connectedTo)[0]) +
               "," +
-              (TopF + Ports[connectedTo][1])
+              (TopF + Ports(connectedTo)[1])
             }
           />
         );
       } else {
         Top = bibox.top;
         Left = bibox.left;
-        cx2 = Left + Ports[connectedTo][0];
-        cy2 = Top + Ports[connectedTo][1];
-        cx2 += Ports[connectedTo][0] - ImageSizes[ItemTypes.BIBOX][0] / 2;
-        cy2 += Ports[connectedTo][1] - ImageSizes[ItemTypes.BIBOX][1] / 2;
+        cx2 = Left + Ports(connectedTo)[0];
+        cy2 = Top + Ports(connectedTo)[1];
+        cx2 += Ports(connectedTo)[0] - ImageSizes[ItemTypes.BIBOX][0] / 2;
+        cy2 += Ports(connectedTo)[1] - ImageSizes[ItemTypes.BIBOX][1] / 2;
 
         return (
           <path
@@ -1073,9 +1168,9 @@ class Curve extends Component {
               "," +
               cy2 +
               " " +
-              (Left + Ports[connectedTo][0]) +
+              (Left + Ports(connectedTo)[0]) +
               "," +
-              (Top + Ports[connectedTo][1])
+              (Top + Ports(connectedTo)[1])
             }
           />
         );
@@ -1100,10 +1195,10 @@ class Curve extends Component {
           }
         });
 
-        cx2 = LeftF + Ports[connectedTo][0];
-        cy2 = TopF + Ports[connectedTo][1];
-        cx2 += Ports[connectedTo][0] - ImageSizes[ItemTypes.COMPONENT][0] / 2;
-        cy2 += Ports[connectedTo][1] - ImageSizes[ItemTypes.COMPONENT][1] / 2;
+        cx2 = LeftF + Ports(connectedTo)[0];
+        cy2 = TopF + Ports(connectedTo)[1];
+        cx2 += Ports(connectedTo)[0] - ImageSizes[ItemTypes.COMPONENT][0] / 2;
+        cy2 += Ports(connectedTo)[1] - ImageSizes[ItemTypes.COMPONENT][1] / 2;
         return (
           <path
             d={
@@ -1120,9 +1215,9 @@ class Curve extends Component {
               "," +
               cy2 +
               " " +
-              (LeftF + Ports[connectedTo][0]) +
+              (LeftF + Ports(connectedTo)[0]) +
               "," +
-              (TopF + Ports[connectedTo][1])
+              (TopF + Ports(connectedTo)[1])
             }
           />
         );
@@ -1138,10 +1233,10 @@ class Curve extends Component {
           }
         });
 
-        cx2 = LeftF + Ports[connectedTo][0];
-        cy2 = TopF + Ports[connectedTo][1];
-        cx2 += Ports[connectedTo][0] - ImageSizes[ItemTypes.COMPONENT][0] / 2;
-        cy2 += Ports[connectedTo][1] - ImageSizes[ItemTypes.COMPONENT][1] / 2;
+        cx2 = LeftF + Ports(connectedTo)[0];
+        cy2 = TopF + Ports(connectedTo)[1];
+        cx2 += Ports(connectedTo)[0] - ImageSizes[ItemTypes.COMPONENT][0] / 2;
+        cy2 += Ports(connectedTo)[1] - ImageSizes[ItemTypes.COMPONENT][1] / 2;
         return (
           <path
             d={
@@ -1158,9 +1253,9 @@ class Curve extends Component {
               "," +
               cy2 +
               " " +
-              (LeftF + Ports[connectedTo][0]) +
+              (LeftF + Ports(connectedTo)[0]) +
               "," +
-              (TopF + Ports[connectedTo][1])
+              (TopF + Ports(connectedTo)[1])
             }
           />
         );
@@ -1176,10 +1271,10 @@ class Curve extends Component {
           }
         });
 
-        cx2 = LeftF + Ports[connectedTo][0];
-        cy2 = TopF + Ports[connectedTo][1];
-        cx2 += Ports[connectedTo][0] - ImageSizes[ItemTypes.COMPONENT][0] / 2;
-        cy2 += Ports[connectedTo][1] - ImageSizes[ItemTypes.COMPONENT][1] / 2;
+        cx2 = LeftF + Ports(connectedTo)[0];
+        cy2 = TopF + Ports(connectedTo)[1];
+        cx2 += Ports(connectedTo)[0] - ImageSizes[ItemTypes.COMPONENT][0] / 2;
+        cy2 += Ports(connectedTo)[1] - ImageSizes[ItemTypes.COMPONENT][1] / 2;
         return (
           <path
             d={
@@ -1196,9 +1291,9 @@ class Curve extends Component {
               "," +
               cy2 +
               " " +
-              (LeftF + Ports[connectedTo][0]) +
+              (LeftF + Ports(connectedTo)[0]) +
               "," +
-              (TopF + Ports[connectedTo][1])
+              (TopF + Ports(connectedTo)[1])
             }
           />
         );
@@ -1214,10 +1309,10 @@ class Curve extends Component {
           }
         });
 
-        cx2 = LeftF + Ports[connectedTo][0];
-        cy2 = TopF + Ports[connectedTo][1];
-        cx2 += Ports[connectedTo][0] - ImageSizes[ItemTypes.COMPONENT][0] / 2;
-        cy2 += Ports[connectedTo][1] - ImageSizes[ItemTypes.COMPONENT][1] / 2;
+        cx2 = LeftF + Ports(connectedTo)[0];
+        cy2 = TopF + Ports(connectedTo)[1];
+        cx2 += Ports(connectedTo)[0] - ImageSizes[ItemTypes.COMPONENT][0] / 2;
+        cy2 += Ports(connectedTo)[1] - ImageSizes[ItemTypes.COMPONENT][1] / 2;
         return (
           <path
             d={
@@ -1234,9 +1329,9 @@ class Curve extends Component {
               "," +
               cy2 +
               " " +
-              (LeftF + Ports[connectedTo][0]) +
+              (LeftF + Ports(connectedTo)[0]) +
               "," +
-              (TopF + Ports[connectedTo][1])
+              (TopF + Ports(connectedTo)[1])
             }
           />
         );
@@ -1252,10 +1347,10 @@ class Curve extends Component {
           }
         });
 
-        cx2 = LeftF + Ports[connectedTo][0];
-        cy2 = TopF + Ports[connectedTo][1];
-        cx2 += Ports[connectedTo][0] - ImageSizes[ItemTypes.COMPONENT][0] / 2;
-        cy2 += Ports[connectedTo][1] - ImageSizes[ItemTypes.COMPONENT][1] / 2;
+        cx2 = LeftF + Ports(connectedTo)[0];
+        cy2 = TopF + Ports(connectedTo)[1];
+        cx2 += Ports(connectedTo)[0] - ImageSizes[ItemTypes.COMPONENT][0] / 2;
+        cy2 += Ports(connectedTo)[1] - ImageSizes[ItemTypes.COMPONENT][1] / 2;
         return (
           <path
             d={
@@ -1272,9 +1367,9 @@ class Curve extends Component {
               "," +
               cy2 +
               " " +
-              (LeftF + Ports[connectedTo][0]) +
+              (LeftF + Ports(connectedTo)[0]) +
               "," +
-              (TopF + Ports[connectedTo][1])
+              (TopF + Ports(connectedTo)[1])
             }
           />
         );
@@ -1290,10 +1385,10 @@ class Curve extends Component {
           }
         });
 
-        cx2 = LeftF + Ports[connectedTo][0];
-        cy2 = TopF + Ports[connectedTo][1];
-        cx2 += Ports[connectedTo][0] - ImageSizes[ItemTypes.COMPONENT][0] / 2;
-        cy2 += Ports[connectedTo][1] - ImageSizes[ItemTypes.COMPONENT][1] / 2;
+        cx2 = LeftF + Ports(connectedTo)[0];
+        cy2 = TopF + Ports(connectedTo)[1];
+        cx2 += Ports(connectedTo)[0] - ImageSizes[ItemTypes.COMPONENT][0] / 2;
+        cy2 += Ports(connectedTo)[1] - ImageSizes[ItemTypes.COMPONENT][1] / 2;
         return (
           <path
             d={
@@ -1310,9 +1405,9 @@ class Curve extends Component {
               "," +
               cy2 +
               " " +
-              (LeftF + Ports[connectedTo][0]) +
+              (LeftF + Ports(connectedTo)[0]) +
               "," +
-              (TopF + Ports[connectedTo][1])
+              (TopF + Ports(connectedTo)[1])
             }
           />
         );
@@ -1328,10 +1423,10 @@ class Curve extends Component {
           }
         });
 
-        cx2 = LeftF + Ports[connectedTo][0];
-        cy2 = TopF + Ports[connectedTo][1];
-        cx2 += Ports[connectedTo][0] - ImageSizes[ItemTypes.COMPONENT][0] / 2;
-        cy2 += Ports[connectedTo][1] - ImageSizes[ItemTypes.COMPONENT][1] / 2;
+        cx2 = LeftF + Ports(connectedTo)[0];
+        cy2 = TopF + Ports(connectedTo)[1];
+        cx2 += Ports(connectedTo)[0] - ImageSizes[ItemTypes.COMPONENT][0] / 2;
+        cy2 += Ports(connectedTo)[1] - ImageSizes[ItemTypes.COMPONENT][1] / 2;
         return (
           <path
             d={
@@ -1348,9 +1443,9 @@ class Curve extends Component {
               "," +
               cy2 +
               " " +
-              (LeftF + Ports[connectedTo][0]) +
+              (LeftF + Ports(connectedTo)[0]) +
               "," +
-              (TopF + Ports[connectedTo][1])
+              (TopF + Ports(connectedTo)[1])
             }
           />
         );
@@ -1373,10 +1468,10 @@ class Curve extends Component {
           }
         });
 
-        cx2 = LeftF + Ports[connectedTo][0];
-        cy2 = TopF + Ports[connectedTo][1];
-        cx2 += Ports[connectedTo][0] - ImageSizes[ItemTypes.COMPONENT][0] / 2;
-        cy2 += Ports[connectedTo][1] - ImageSizes[ItemTypes.COMPONENT][1] / 2;
+        cx2 = LeftF + Ports(connectedTo)[0];
+        cy2 = TopF + Ports(connectedTo)[1];
+        cx2 += Ports(connectedTo)[0] - ImageSizes[ItemTypes.COMPONENT][0] / 2;
+        cy2 += Ports(connectedTo)[1] - ImageSizes[ItemTypes.COMPONENT][1] / 2;
         return (
           <path
             d={
@@ -1393,9 +1488,9 @@ class Curve extends Component {
               "," +
               cy2 +
               " " +
-              (LeftF + Ports[connectedTo][0]) +
+              (LeftF + Ports(connectedTo)[0]) +
               "," +
-              (TopF + Ports[connectedTo][1])
+              (TopF + Ports(connectedTo)[1])
             }
           />
         );
@@ -1411,10 +1506,10 @@ class Curve extends Component {
           }
         });
 
-        cx2 = LeftF + Ports[connectedTo][0];
-        cy2 = TopF + Ports[connectedTo][1];
-        cx2 += Ports[connectedTo][0] - ImageSizes[ItemTypes.COMPONENT][0] / 2;
-        cy2 += Ports[connectedTo][1] - ImageSizes[ItemTypes.COMPONENT][1] / 2;
+        cx2 = LeftF + Ports(connectedTo)[0];
+        cy2 = TopF + Ports(connectedTo)[1];
+        cx2 += Ports(connectedTo)[0] - ImageSizes[ItemTypes.COMPONENT][0] / 2;
+        cy2 += Ports(connectedTo)[1] - ImageSizes[ItemTypes.COMPONENT][1] / 2;
         return (
           <path
             d={
@@ -1431,9 +1526,9 @@ class Curve extends Component {
               "," +
               cy2 +
               " " +
-              (LeftF + Ports[connectedTo][0]) +
+              (LeftF + Ports(connectedTo)[0]) +
               "," +
-              (TopF + Ports[connectedTo][1])
+              (TopF + Ports(connectedTo)[1])
             }
           />
         );
@@ -1450,10 +1545,10 @@ class Curve extends Component {
       //         }
       //     });
 
-      //     cx2 = LeftF + Ports[connectedTo][0];
-      //     cy2 = TopF + Ports[connectedTo][1];
-      //     cx2 += Ports[connectedTo][0] - ImageSizes[ItemTypes.COMPONENT][0] / 2;
-      //     cy2 += Ports[connectedTo][1] - ImageSizes[ItemTypes.COMPONENT][1] / 2;
+      //     cx2 = LeftF + Ports(connectedTo)[0];
+      //     cy2 = TopF + Ports(connectedTo)[1];
+      //     cx2 += Ports(connectedTo)[0] - ImageSizes[ItemTypes.COMPONENT][0] / 2;
+      //     cy2 += Ports(connectedTo)[1] - ImageSizes[ItemTypes.COMPONENT][1] / 2;
       //     return (
       //         <path
       //             d={
@@ -1470,9 +1565,9 @@ class Curve extends Component {
       //                 "," +
       //                 cy2 +
       //                 " " +
-      //                 (LeftF + Ports[connectedTo][0]) +
+      //                 (LeftF + Ports(connectedTo)[0]) +
       //                 "," +
-      //                 (TopF + Ports[connectedTo][1])
+      //                 (TopF + Ports(connectedTo)[1])
       //             }
       //         />
       //     );
@@ -1489,10 +1584,10 @@ class Curve extends Component {
       //         }
       //     });
 
-      //     cx2 = LeftF + Ports[connectedTo][0];
-      //     cy2 = TopF + Ports[connectedTo][1];
-      //     cx2 += Ports[connectedTo][0] - ImageSizes[ItemTypes.COMPONENT][0] / 2;
-      //     cy2 += Ports[connectedTo][1] - ImageSizes[ItemTypes.COMPONENT][1] / 2;
+      //     cx2 = LeftF + Ports(connectedTo)[0];
+      //     cy2 = TopF + Ports(connectedTo)[1];
+      //     cx2 += Ports(connectedTo)[0] - ImageSizes[ItemTypes.COMPONENT][0] / 2;
+      //     cy2 += Ports(connectedTo)[1] - ImageSizes[ItemTypes.COMPONENT][1] / 2;
       //     return (
       //         <path
       //             d={
@@ -1509,9 +1604,9 @@ class Curve extends Component {
       //                 "," +
       //                 cy2 +
       //                 " " +
-      //                 (LeftF + Ports[connectedTo][0]) +
+      //                 (LeftF + Ports(connectedTo)[0]) +
       //                 "," +
-      //                 (TopF + Ports[connectedTo][1])
+      //                 (TopF + Ports(connectedTo)[1])
       //             }
       //         />
       //     );
@@ -1519,10 +1614,10 @@ class Curve extends Component {
       else {
         Top = bibox.top;
         Left = bibox.left;
-        cx2 = Left + Ports[connectedTo][0];
-        cy2 = Top + Ports[connectedTo][1];
-        cx2 += Ports[connectedTo][0] - ImageSizes[ItemTypes.BIBOX][0] / 2;
-        cy2 += Ports[connectedTo][1] - ImageSizes[ItemTypes.BIBOX][1] / 2;
+        cx2 = Left + Ports(connectedTo)[0];
+        cy2 = Top + Ports(connectedTo)[1];
+        cx2 += Ports(connectedTo)[0] - ImageSizes[ItemTypes.BIBOX][0] / 2;
+        cy2 += Ports(connectedTo)[1] - ImageSizes[ItemTypes.BIBOX][1] / 2;
         return (
           <path
             d={
@@ -1539,9 +1634,9 @@ class Curve extends Component {
               "," +
               cy2 +
               " " +
-              (Left + Ports[connectedTo][0]) +
+              (Left + Ports(connectedTo)[0]) +
               "," +
-              (Top + Ports[connectedTo][1])
+              (Top + Ports(connectedTo)[1])
             }
           />
         );
@@ -1626,6 +1721,7 @@ class Connections extends Component {
     const { bibox, components, extraComponent, Camera, PortConnections } =
       this.props;
     //console.log("konektion", this.props);
+    console.log("port", Ports("A1"));
     let connectedDevice = sessionStorage.getItem("connectedDevice");
 
     let internalAccessoriesData = JSON.parse(
@@ -1981,7 +2077,20 @@ class Connections extends Component {
                           }
                         });
                       }
-
+                      if (dual_splitter == "play_shield") {
+                        components[dual_splitter].map((component, index) => {
+                          if (
+                            extraComponent.type == "servo_motor" ||
+                            extraComponent.type == "servo_motor_360"
+                          ) {
+                            if (key == "D1" || key == "D2") {
+                              Left = bibox.left;
+                              Top = bibox.top;
+                              highlighted = true;
+                            }
+                          }
+                        });
+                      }
                       // MOTOR DRIVER
                       if (
                         dual_splitter == "pc_motor_driver" &&
@@ -2132,7 +2241,20 @@ class Connections extends Component {
                           }
                         });
                       }
-
+                      if (dual_splitter == "play_shield") {
+                        components[dual_splitter].map((component, index) => {
+                          if (
+                            extraComponent.type == "servo_motor" ||
+                            extraComponent.type == "servo_motor_360"
+                          ) {
+                            if (key == "C1" || key == "C2") {
+                              Left = bibox.left;
+                              Top = bibox.top;
+                              highlighted = true;
+                            }
+                          }
+                        });
+                      }
                       /** */
 
                       // MOTOR DRIVER
@@ -2266,6 +2388,7 @@ class Connections extends Component {
                   if (components) {
                     highlighted = false;
                     Object.keys(components).map((value) => {
+                      console.log("assemblComponents", value);
                       if (value == "dual_splitter") {
                         components[value].map((component, index) => {
                           if (
@@ -2287,7 +2410,28 @@ class Connections extends Component {
                           }
                         });
                       }
-
+                      if (value == "play_shield") {
+                        components[value].map((component, index) => {
+                          if (
+                            extraComponent.type != "geared_motor" &&
+                            extraComponent.type != "mini_geared_motor" &&
+                            extraComponent.type != "dc_motor" &&
+                            extraComponent.type != "servo_motor" &&
+                            extraComponent.type != "servo_motor_360"
+                          ) {
+                            if (key == "B1") {
+                              Left = bibox.left;
+                              Top = bibox.top;
+                              highlighted = true;
+                            }
+                            if (key == "B2") {
+                              Left = bibox.left;
+                              Top = bibox.top;
+                              highlighted = true;
+                            }
+                          }
+                        });
+                      }
                       if (value == "servo_extender") {
                         components[value].map((component, index) => {
                           if (component.connectedTo == "B") {
@@ -2442,6 +2586,29 @@ class Connections extends Component {
                           }
                         });
                       }
+                      if (dual_splitter == "play_shield") {
+                        components[dual_splitter].map((component, index) => {
+                          if (
+                            extraComponent.type != "geared_motor" &&
+                            extraComponent.type != "mini_geared_motor" &&
+                            extraComponent.type != "dc_motor" &&
+                            extraComponent.type != "servo_motor" &&
+                            extraComponent.type != "servo_motor_360"
+                          ) {
+                            console.log("play_shieldComp", component);
+                            if (key == "A1") {
+                              Left = bibox.left;
+                              Top = bibox.top;
+                              highlighted = true;
+                            }
+                            if (key == "A2") {
+                              Left = bibox.left;
+                              Top = bibox.top;
+                              highlighted = true;
+                            }
+                          }
+                        });
+                      }
 
                       /** */
                       // MOTOR DRIVER
@@ -2570,6 +2737,72 @@ class Connections extends Component {
                       }
 
                       /** */
+                    });
+                  }
+                } else if ((key == "F1" || key == "F2") && highlighted) {
+                  if (components) {
+                    highlighted = false;
+                    Object.keys(components).map((dual_splitter) => {
+                      if (dual_splitter == "dual_splitter") {
+                        components[dual_splitter].map((component, index) => {
+                          if (
+                            extraComponent.type != "geared_motor" &&
+                            extraComponent.type != "mini_geared_motor" &&
+                            extraComponent.type != "dc_motor"
+                          ) {
+                            if (component.connectedTo == "A") {
+                              Left = component.left;
+                              Top = component.top;
+                              highlighted = true;
+                            }
+                          } else {
+                            if (component.connectedTo == "A") {
+                              console.log("highlited true");
+                              Left = component.left + 28;
+                              Top = component.top + 5;
+                              highlighted = true;
+                            }
+                          }
+                        });
+                      }
+                    });
+                  }
+                } else if (key == "M1" && highlighted) {
+                  if (components) {
+                    highlighted = false;
+                    Object.keys(components).map((dual_splitter) => {
+                      if (dual_splitter == "play_shield") {
+                        components[dual_splitter].map((component, index) => {
+                          if (
+                            extraComponent.type == "geared_motor" ||
+                            extraComponent.type == "mini_geared_motor" ||
+                            extraComponent.type == "dc_motor"
+                          ) {
+                            Left = bibox.left;
+                            Top = bibox.top;
+                            highlighted = true;
+                          }
+                        });
+                      }
+                    });
+                  }
+                } else if (key == "M3" && highlighted) {
+                  if (components) {
+                    highlighted = false;
+                    Object.keys(components).map((dual_splitter) => {
+                      if (dual_splitter == "play_shield") {
+                        components[dual_splitter].map((component, index) => {
+                          if (
+                            extraComponent.type == "geared_motor" ||
+                            extraComponent.type == "mini_geared_motor" ||
+                            extraComponent.type == "dc_motor"
+                          ) {
+                            Left = bibox.left;
+                            Top = bibox.top;
+                            highlighted = true;
+                          }
+                        });
+                      }
                     });
                   }
                 } else if (key == "STPM" && highlighted) {
@@ -2924,19 +3157,19 @@ class Connections extends Component {
                         {PortTypes[key].ports.map(
                           (port) => (
                             // console.log(
-                            //   "Ports[port][0] AAAAA",
+                            //   "Ports(port)[0] AAAAA",
                             //   key,
-                            //   Ports[port],
+                            //   Ports(port),
                             //   port,
-                            //   Left + Ports[port][0]
+                            //   Left + Ports(port)[0]
                             // ),
                             // Ports.js helping the dual_spliter to assign dots on dual_spliter ex - D1,D2
                             // PPP
 
                             <PortCircle
                               style={{ visibility: "hidden" }}
-                              left={Left + Ports[port][0]}
-                              top={Top + Ports[port][1]}
+                              left={Left + Ports(port)[0]}
+                              top={Top + Ports(port)[1]}
                               key={port}
                               highlighted={
                                 !PortConnections[port] && highlighted
@@ -2971,8 +3204,8 @@ class Connections extends Component {
 
                             <PortCircle
                               style={{ visibility: "hidden" }}
-                              left={Left + Ports[port][0]}
-                              top={Top + Ports[port][1]}
+                              left={Left + Ports(port)[0]}
+                              top={Top + Ports(port)[1]}
                               key={port}
                               highlighted={
                                 !PortConnections[port] && highlighted
@@ -3007,8 +3240,8 @@ class Connections extends Component {
 
                             <PortCircle
                               style={{ visibility: "hidden" }}
-                              left={Left + Ports[port][0]}
-                              top={Top + Ports[port][1]}
+                              left={Left + Ports(port)[0]}
+                              top={Top + Ports(port)[1]}
                               key={port}
                               highlighted={
                                 !PortConnections[port] && highlighted
@@ -3043,8 +3276,8 @@ class Connections extends Component {
 
                             <PortCircle
                               style={{ visibility: "hidden" }}
-                              left={Left + Ports[port][0]}
-                              top={Top + Ports[port][1]}
+                              left={Left + Ports(port)[0]}
+                              top={Top + Ports(port)[1]}
                               key={port}
                               highlighted={
                                 !PortConnections[port] && highlighted
@@ -3073,18 +3306,18 @@ class Connections extends Component {
                             style={{ visibility: "hidden" }}
                             left={
                               CameraOffsetLeft == 0
-                                ? Left + Ports[port][0]
+                                ? Left + Ports(port)[0]
                                 : CameraOffsetLeft > 1
-                                ? Left + Ports[port][0] + 25
-                                : Left + Ports[port][0] - 30
+                                ? Left + Ports(port)[0] + 25
+                                : Left + Ports(port)[0] - 30
                             }
-                            // left={Left + Ports[port][0]}
+                            // left={Left + Ports(port)[0]}
                             top={
                               CameraOffsetLeft == 0
-                                ? Top + Ports[port][1]
+                                ? Top + Ports(port)[1]
                                 : CameraOffsetLeft > 1
-                                ? Top + Ports[port][1]
-                                : Top + Ports[port][1] - 10
+                                ? Top + Ports(port)[1]
+                                : Top + Ports(port)[1] - 10
                             }
                             key={port}
                             highlighted={!PortConnections[port] && highlighted}
@@ -3093,8 +3326,8 @@ class Connections extends Component {
                       : PortTypes[key].ports.map((port) => (
                           <PortCircle
                             style={{ visibility: "hidden" }}
-                            left={Left + Ports[port][0]}
-                            top={Top + Ports[port][1]}
+                            left={Left + Ports(port)[0]}
+                            top={Top + Ports(port)[1]}
                             key={port}
                             highlighted={!PortConnections[port] && highlighted}
                           />
@@ -3103,11 +3336,11 @@ class Connections extends Component {
                     {PortTypes[key].ports.map(
                       (port) => (
                         // console.log(
-                        //   "Ports[port][0] 3",
+                        //   "Ports(port)[0] 3",
                         //   key,
-                        //   Ports[port],
+                        //   Ports(port),
                         //   port,
-                        //   Left + Ports[port][0],
+                        //   Left + Ports(port)[0],
                         //   PortConnections,
                         //   PortConnections[port],
                         //   highlighted,
@@ -3121,8 +3354,8 @@ class Connections extends Component {
 
                         <PortCircle
                           style={{ visibility: "hidden" }}
-                          left={Left + Ports[port][0]}
-                          top={Top + Ports[port][1]}
+                          left={Left + Ports(port)[0]}
+                          top={Top + Ports(port)[1]}
                           key={port}
                           // highlighted={!PortConnections[port] && highlighted}
                           /**/
