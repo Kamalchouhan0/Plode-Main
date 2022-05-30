@@ -3,7 +3,7 @@ const IOComponents = {
   led_1c: { output: true, input: false },
   laser: { output: true, input: false },
   beeper: { output: true, input: false },
-
+  play_shield: { output: false, input: false },
   temp_dew: { output: false, input: true },
   temp_gas: { output: false, input: true },
 

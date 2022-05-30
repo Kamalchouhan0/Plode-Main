@@ -415,6 +415,10 @@ class Content extends Component {
     }
 
     redata[removeIndex].selected = false;
+    console.log(redata[removeIndex]);
+    if (redata[removeIndex].type == "play_shield") {
+      sessionStorage.setItem("shield", false);
+    }
     sessionStorage.setItem("AppDetails", JSON.stringify(this.state.Alldata));
     sessionStorage.setItem("Index", JSON.stringify(sidebarContents));
 
