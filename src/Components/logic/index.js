@@ -1217,6 +1217,7 @@ class Logic extends Component {
     // console.log("UPLOAD DATA", this.myRef.current.upload()); //it will call anyFun which is available at simulateLogic.js
   };
   render = () => {
+    console.log("Logic CONDITION PROPS", this.props);
     const { program, scale, offset, currentProgramGuide, active } =
       this.props.logic;
 

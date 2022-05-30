@@ -106,12 +106,19 @@ if (componentType == "Ace") {
       signalType: "analog",
     },
     {
-      type: "tact_switch_2c",
-      description:
-        "Button 2c: It is a simple tactile switch used for toggle operation",
+      type: "dip_switch",
+      description: "DIP Switch: DIP description ",
       color: "#ff8c19",
-      name: "Button 2c",
+      name: "DIP switch",
+      signalType: "digital",
     },
+    // {
+    //   type: "tact_switch_2c",
+    //   description:
+    //     "Button 2c: It is a simple tactile switch used for toggle operation",
+    //   color: "#ff8c19",
+    //   name: "Button 2c",
+    // },
 
     {
       type: "dual_switch",
@@ -128,18 +135,27 @@ if (componentType == "Ace") {
       name: "touch sensor",
       signalType: "analog",
     },
-    // {
-    //   type: "metal_detector",
-    //   description: "Metal Sensor: It detects metal upto 2cms distance",
-    //   color: "#ff8c19",
-    //   name: "metal_detector",
-    // },
     {
-      type: "rotatory",
+      type: "metal_detector",
+      description: "Metal Sensor: It detects metal upto 2cms distance",
+      color: "#ff8c19",
+      name: "Metal detector",
+    },
+    // {
+    //   type: "rotatory",
+    //   description:
+    //     "Rotatory: It is a Rotatory sensor used for sensing amount of rotation",
+    //   color: "#15909d",
+    //   name: "Rotatory",
+    //   signalType: "analog",
+    // },
+
+    {
+      type: "pot",
       description:
-        "Rotatory: It is a Rotatory sensor used for sensing amount of rotation",
+        "Pot: It is a Pot sensor used for sensing amount of rotation",
       color: "#15909d",
-      name: "Rotatory",
+      name: "Pot",
       signalType: "analog",
     },
 
@@ -167,21 +183,55 @@ if (componentType == "Ace") {
       name: "joystick",
       signalType: "analog",
     },
+    {
+      type: "temperature_sensor",
+      description: "Temperature: Measures temperature",
+      color: "#15909d",
+      name: "Temp",
+      signalType: "analog",
+    },
+    {
+      type: "humidity",
+      description: "Humidity: Measures Humidity",
+      color: "#15909d",
+      name: "humidity",
+      signalType: "analog",
+    },
+    {
+      type: "gas",
+      description: "Gas: Measures gas",
+      color: "#15909d",
+      name: "Gas",
+      signalType: "analog",
+    },
     // {
-    //   type: "temp",
-    //   description: "Temperature: Measures temperature",
+    //   type: "magnetic",
+    //   description: "magnetic description",
     //   color: "#15909d",
-    //   name: "Temp",
+    //   name: "Magnetic Sensor",
     //   signalType: "analog",
     // },
-    // {
-    //   type: "humidity",
-    //   description: "Humidity: Measures Humidity",
-    //   color: "#15909d",
-    //   name: "humidity",
-    //   signalType: "analog",
-    // },
-
+    {
+      type: "rain_sensor",
+      description: "RAIN   description",
+      color: "#15909d",
+      name: "Rain Sensor",
+      signalType: "analog",
+    },
+    {
+      type: "linear_pot",
+      description: "linear pot description",
+      color: "#15909d",
+      name: "Linear Pot",
+      signalType: "analog",
+    },
+    {
+      type: "extender",
+      description: "Extender: extender description",
+      color: "#15909d",
+      name: "Extender",
+      signalType: "analog",
+    },
     {
       type: "ultrasonic_sensor",
       description:
@@ -190,41 +240,7 @@ if (componentType == "Ace") {
       name: "ultrasonic sensor",
       signalType: "analog",
     },
-    // {
-    //   type: "DIP_switch",
-    //   description: "DIP Switch: DIP description ",
-    //   color: "#ff8c19",
-    //   name: "DIP switch",
-    //   signalType: "digital",
-    // },
-    // {
-    //   type: "gas",
-    //   description: "Gas: Measures gas",
-    //   color: "#15909d",
-    //   name: "Gas",
-    //   signalType: "analog",
-    // },
-    // {
-    //   type: "magnetic",
-    //   description: "magnetic description",
-    //   color: "#15909d",
-    //   name: "Magnetic Sensor",
-    //   signalType: "analog",
-    // },
-    // {
-    //   type: "Rain sensor",
-    //   description: "RAIN   description",
-    //   color: "#15909d",
-    //   name: "Rain Sensor",
-    //   signalType: "analog",
-    // },
-    // {
-    //   type: "linear_pot",
-    //   description: "linear pot description",
-    //   color: "#15909d",
-    //   name: "Linear Pot",
-    //   signalType: "analog",
-    // },
+
     // {
     //   type: "6-axis",
     //   description: "6-axis description",
