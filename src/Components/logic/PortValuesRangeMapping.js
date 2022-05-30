@@ -209,15 +209,15 @@ export default PortValuesRangeMapping = {
       return { min: 0, max: 1024 };
     },
     geared_motor: function (port) {
-      return { min: -20, max: +20 };
+      return { min: 0, max: 100 };
     },
 
     mini_geared_motor: function (port) {
-      return { min: -20, max: +20 };
+      return { min: 0, max: 100 };
     },
 
     dc_motor: function (port) {
-      return { min: -20, max: +20 };
+      return { min: 0, max: 100 };
     },
     servo_motor_360: function (port) {
       return { min: -100, max: +100 };
@@ -359,7 +359,15 @@ export default PortValuesRangeMapping = {
     stepper_motor: function (port) {
       return { min: 0, max: 1 };
     },
-
+    dc_motor: function (port) {
+      return { min: 0, max: 100 };
+    },
+    geared_motor: function (port) {
+      return { min: 0, max: 100 };
+    },
+    mini_geared_motor: function (port) {
+      return { min: 0, max: 100 };
+    },
     led: function (port) {
       return { min: 0, max: 100 };
     },
@@ -1582,7 +1590,15 @@ export default PortValuesRangeMapping = {
     stepper_motor: function (port) {
       return { min: 0, max: 1 };
     },
-
+    dc_motor: function (port) {
+      return { min: 0, max: 100 };
+    },
+    geared_motor: function (port) {
+      return { min: 0, max: 100 };
+    },
+    mini_geared_motor: function (port) {
+      return { min: 0, max: 100 };
+    },
     led: function (port) {
       return { min: 0, max: 100 };
     },
@@ -1697,13 +1713,13 @@ export default PortValuesRangeMapping = {
     },
 
     geared_motor: function (port) {
-      return { min: -20, max: +20 };
+      return { min: 0, max: 100 };
     },
     mini_geared_motor: function (port) {
-      return { min: -20, max: +20 };
+      return { min: 0, max: 100 };
     },
     dc_motor: function (port) {
-      return { min: -20, max: +20 };
+      return { min: 0, max: 100 };
     },
 
     led: function (port) {
@@ -1943,7 +1959,15 @@ export default PortValuesRangeMapping = {
     stepper_motor: function (port) {
       return { min: 0, max: 1 };
     },
-
+    dc_motor: function (port) {
+      return { min: 0, max: 100 };
+    },
+    geared_motor: function (port) {
+      return { min: 0, max: 100 };
+    },
+    mini_geared_motor: function (port) {
+      return { min: 0, max: 100 };
+    },
     led: function (port) {
       return { min: 0, max: 100 };
     },
@@ -2052,13 +2076,13 @@ export default PortValuesRangeMapping = {
       return { min: 0, max: 1024 };
     },
     geared_motor: function (port) {
-      return { min: -20, max: +20 };
+      return { min: 0, max: 100 };
     },
     mini_geared_motor: function (port) {
-      return { min: -20, max: +20 };
+      return { min: 0, max: 100 };
     },
     dc_motor: function (port) {
-      return { min: -20, max: +20 };
+      return { min: 0, max: 100 };
     },
     servo_motor_360: function (port) {
       return { min: -100, max: +100 };
@@ -2312,7 +2336,15 @@ export default PortValuesRangeMapping = {
     stepper_motor: function (port) {
       return { min: 0, max: 1 };
     },
-
+    dc_motor: function (port) {
+      return { min: 0, max: 100 };
+    },
+    geared_motor: function (port) {
+      return { min: 0, max: 100 };
+    },
+    mini_geared_motor: function (port) {
+      return { min: 0, max: 100 };
+    },
     led: function (port) {
       return { min: 0, max: 100 };
     },
@@ -2427,13 +2459,13 @@ export default PortValuesRangeMapping = {
       return { min: 0, max: 1024 };
     },
     geared_motor: function (port) {
-      return { min: -20, max: +20 };
+      return { min: 0, max: 100 };
     },
     mini_geared_motor: function (port) {
-      return { min: -20, max: +20 };
+      return { min: 0, max: 100 };
     },
     dc_motor: function (port) {
-      return { min: -20, max: +20 };
+      return { min: 0, max: 100 };
     },
 
     servo_motor_360: function (port) {

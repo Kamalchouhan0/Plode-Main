@@ -33,13 +33,30 @@ import extender from "../Assets/Bisoft_UI/Accessories/newComponents/component_ex
 
 import temp from "../Assets/Bisoft_UI/Accessories/newComponents/component_temperature_sensor.png";
 import gas from "../Assets/Bisoft_UI/Accessories/newComponents/component_gas.png";
-
+import pc_motor_driver from "../Assets/Bisoft_UI/Accessories/newComponents/component_pc_motor_driver.png";
+import dual_splitter from "../Assets/Bisoft_UI/Accessories/newComponents/component_dual_splitter.png";
+import dc_motor from "../Assets/Bisoft_UI/Accessories/newComponents/component_dc_motor.png";
+import geared_motor from "../Assets/Bisoft_UI/Accessories/newComponents/component_geared_motor.png";
+import mini_geared_motor from "../Assets/Bisoft_UI/Accessories/newComponents/component_mini_geared_motor.png";
+import play_shield from "../Assets/Bisoft_UI/Accessories/newComponents/component_play_shield.png";
 function renderCompImg(name) {
   switch (name) {
     case "pot":
       var type = Pot;
       return type;
+    case "play_shield":
+      var type = play_shield;
+      return type;
 
+    case "dc_motor":
+      var type = dc_motor;
+      return type;
+    case "geared_motor":
+      var type = geared_motor;
+      return type;
+    case "mini_geared_motor":
+      var type = mini_geared_motor;
+      return type;
     case "distance_sensor":
       var type = distanceSensor;
       return type;
@@ -142,6 +159,13 @@ function renderCompImg(name) {
 
     case "rain_sensor":
       var type = rainsensor;
+      return type;
+    case "pc_motor_driver":
+      var type = pc_motor_driver;
+      return type;
+
+    case "dual_splitter":
+      var type = dual_splitter;
       return type;
   }
 }

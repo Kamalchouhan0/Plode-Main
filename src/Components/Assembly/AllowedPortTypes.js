@@ -9,8 +9,40 @@ var PortConnections_B = JSON.parse(sessionStorage.getItem("assembly"))
 
 if (Device == "Ace") {
   module.exports = {
-    led: ["A", "B", "C", "D", "A1", "A2", "B1", "B2", "D1", "D2", "C1", "C2"],
-    led_1c: ["A", "B", "C", "D", "A1", "C1", "B1", "D1"],
+    led: [
+      "A",
+      "B",
+      "C",
+      "D",
+      "A1",
+      "A2",
+      "B1",
+      "B2",
+      "D1",
+      "D2",
+      "C1",
+      "C2",
+      "F",
+      "F1",
+      "F2",
+    ],
+    led_1c: [
+      "A",
+      "B",
+      "C",
+      "D",
+      "A1",
+      "C1",
+      "B1",
+      "D1",
+      "A2",
+      "C2",
+      "B2",
+      "D2",
+      "F",
+      "F1",
+      "F2",
+    ],
     laser: ["A", "B", "C", "D", "A1", "B1", "D1", "C1"],
     beeper: ["A", "B", "D", "A1", "A2", "B1", "B2", "D1", "D2"],
     replay_1_ch: [
@@ -28,7 +60,7 @@ if (Device == "Ace") {
       "D2",
     ],
 
-    dual_splitter: ["A", "B", "D", "C"],
+    dual_splitter: ["A", "B", "D", "C", "F"],
 
     pc_motor_driver: ["D", "B", "A", "C"],
 
@@ -73,9 +105,9 @@ if (Device == "Ace") {
     temp_dew: ["A", "B", "C", "A1", "A2", "B1", "B2", "C2", "C1"],
     temp_gas: ["A", "B", "C", "A1", "A2", "B1", "B2", "C2", "C1"],
     joystick: ["A", "B", "C", "A1", "A2", "B1", "B2", "C2", "C1"],
-    RGB: ["B", "B1", "B2"],
-    mp3: ["B", "B1", "B2"],
-    OLED: ["D", "D1", "D2"],
+    RGB: ["B"],
+    mp3: ["B"],
+    OLED: ["D"],
     // OLD ONEs
     temperature_sensor: [
       "A",
@@ -175,36 +207,10 @@ if (Device == "Ace") {
     //PC MOTOR DRIVER
     geared_motor: ["A1", "C1", "B1", "D1"],
     mini_geared_motor: ["A1", "C1", "B1", "D1"],
-    dc_motor: ["A1", "C1", "B1", "D1"],
-    servo_motor: [
-      "A",
-      "A1",
-      "A2",
-      "C",
-      "C1",
-      "C2",
-      "B",
-      "B2",
-      "B1",
-      "D",
-      "D2",
-      "D1",
-    ],
+    dc_motor: ["A1", "C1", "B1", "D1", "M1", "M3"],
+    servo_motor: ["A1", "A2", "C1", "C2", "B2", "B1", "D2", "D1"],
 
-    servo_motor_360: [
-      "A",
-      "A1",
-      // "A2",
-      "C",
-      "C1",
-      // "C2",
-      "B",
-      // "B2",
-      "B1",
-      "D",
-      // "D2",
-      "D1",
-    ],
+    servo_motor_360: ["A1", "A2", "C1", "C2", "B2", "B1", "D2", "D1"],
     stepper_motor: ["STPM"],
   };
 } else if (Device == "Humanoid") {
