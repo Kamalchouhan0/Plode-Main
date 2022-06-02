@@ -44,8 +44,8 @@ hr.solid {
 }
 
 .boxSim {
-  height: inherit;
-  width: inherit;
+  /* height: inherit; */
+  width: 226px;
   position: relative;
   margin: -20px auto;
   height: 175px;
