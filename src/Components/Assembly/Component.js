@@ -369,10 +369,10 @@ class Component1 extends Component {
         return null;
       }
 
-      var height = 100 * scale;
-      var width = 100 * scale;
-      left = left - 6;
-      top = top - 7;
+      var height = 110 * scale;
+      var width = 110 * scale;
+      left = left - 3;
+      top = top - 13;
 
       return connectDragSource(
         <div>
@@ -398,8 +398,8 @@ class Component1 extends Component {
             style={{
               position: "absolute",
               top,
-              marginTop: "-1.1%",
-              marginLeft: "1.1%",
+              marginTop: "2.5%",
+              marginLeft: "-1.1%",
               left,
               zIndex: "3",
               color: "#707070",
@@ -414,7 +414,7 @@ class Component1 extends Component {
               ? this.props.one
               : null}
           </p>
-          <p
+          {/* <p
             style={{
               position: "absolute",
               top,
@@ -433,7 +433,7 @@ class Component1 extends Component {
               : this.props.connectedTo == "C"
               ? this.props.two
               : null}
-          </p>
+          </p> */}
         </div>
       );
     } else if (this.props.type == "linear_pot") {
@@ -472,8 +472,8 @@ class Component1 extends Component {
             style={{
               position: "absolute",
               top,
-              marginTop: "-1.1%",
-              marginLeft: "1.1%",
+              marginTop: "2.5%",
+              marginLeft: "-3.5%",
               left,
               zIndex: "3",
               color: "#707070",
@@ -488,7 +488,7 @@ class Component1 extends Component {
               ? this.props.one
               : null}
           </p>
-          <p
+          {/* <p
             style={{
               position: "absolute",
               top,
@@ -507,7 +507,7 @@ class Component1 extends Component {
               : this.props.connectedTo == "C"
               ? this.props.two
               : null}
-          </p>
+          </p> */}
         </div>
       );
     } else if (this.props.type == "rain_sensor") {
@@ -517,10 +517,10 @@ class Component1 extends Component {
         return null;
       }
 
-      var height = 100 * scale;
-      var width = 100 * scale;
-      left = left - 6;
-      top = top - 7;
+      var height = 110 * scale;
+      var width = 110 * scale;
+      left = left - 5;
+      top = top - 10;
 
       return connectDragSource(
         <div>
@@ -546,8 +546,8 @@ class Component1 extends Component {
             style={{
               position: "absolute",
               top,
-              marginTop: "-1.1%",
-              marginLeft: "1.1%",
+              marginTop: "2.1%",
+              marginLeft: "-0.9%",
               left,
               zIndex: "3",
               color: "#707070",
@@ -562,7 +562,7 @@ class Component1 extends Component {
               ? this.props.one
               : null}
           </p>
-          <p
+          {/* <p
             style={{
               position: "absolute",
               top,
@@ -581,7 +581,7 @@ class Component1 extends Component {
               : this.props.connectedTo == "C"
               ? this.props.two
               : null}
-          </p>
+          </p> */}
         </div>
       );
     } else if (this.props.type == "humidity") {
@@ -694,8 +694,8 @@ class Component1 extends Component {
             style={{
               position: "absolute",
               top,
-              marginTop: "-1.1%",
-              marginLeft: "1.1%",
+              marginTop: "2.5%",
+              marginLeft: "-0.5%",
               left,
               zIndex: "3",
               color: "#707070",
@@ -710,7 +710,7 @@ class Component1 extends Component {
               ? this.props.one
               : null}
           </p>
-          <p
+          {/* <p
             style={{
               position: "absolute",
               top,
@@ -729,7 +729,7 @@ class Component1 extends Component {
               : this.props.connectedTo == "C"
               ? this.props.two
               : null}
-          </p>
+          </p> */}
         </div>
       );
     } else if (this.props.type == "gas") {
@@ -768,8 +768,8 @@ class Component1 extends Component {
             style={{
               position: "absolute",
               top,
-              marginTop: "-1.1%",
-              marginLeft: "1.1%",
+              marginTop: "2.1%",
+              marginLeft: "-1.1%",
               left,
               zIndex: "3",
               color: "#707070",
@@ -784,7 +784,7 @@ class Component1 extends Component {
               ? this.props.one
               : null}
           </p>
-          <p
+          {/* <p
             style={{
               position: "absolute",
               top,
@@ -803,7 +803,7 @@ class Component1 extends Component {
               : this.props.connectedTo == "C"
               ? this.props.two
               : null}
-          </p>
+          </p> */}
         </div>
       );
     } else if (this.props.type == "distance_sensor") {
@@ -818,10 +818,10 @@ class Component1 extends Component {
         return null;
       }
 
-      var height = 100 * scale;
-      var width = 100 * scale;
-      left = left + 2;
-      top = top - 4;
+      var height = 110 * scale;
+      var width = 110 * scale;
+      left = left - 4;
+      top = top - 8;
 
       return connectDragSource(
         <div>
@@ -849,7 +849,7 @@ class Component1 extends Component {
               position: "absolute",
               top,
               marginTop: "3%",
-              marginLeft: "-2%",
+              marginLeft: "-1%",
               left,
               zIndex: "3",
               fontSize: "20px",
@@ -864,7 +864,7 @@ class Component1 extends Component {
               ? this.props.one
               : null}
           </p>
-          <p
+          {/* <p
             style={{
               position: "absolute",
               top,
@@ -883,7 +883,7 @@ class Component1 extends Component {
               : this.props.connectedTo == "C"
               ? this.props.two
               : null}
-          </p>
+          </p> */}
         </div>
       );
     } else if (this.props.type == "RGB") {
@@ -976,8 +976,8 @@ class Component1 extends Component {
       //CONNECTION WIRE
       var height = 100 * scale;
       var width = 100 * scale;
-      top = top - 5;
-      left = left - 5;
+      top = top - 6;
+      left = left + 2;
 
       return connectDragSource(
         <div>
@@ -1592,7 +1592,7 @@ class Component1 extends Component {
               position: "absolute",
               top,
               marginTop: "3%",
-              marginLeft: "-3%",
+              marginLeft: "-2%",
               left,
               zIndex: "3",
               color: "#707070",
@@ -1607,7 +1607,7 @@ class Component1 extends Component {
               ? this.props.one
               : null}
           </p>
-          <p
+          {/* <p
             style={{
               position: "absolute",
               top,
@@ -1626,7 +1626,7 @@ class Component1 extends Component {
               : this.props.connectedTo == "C"
               ? this.props.two
               : null}
-          </p>
+          </p> */}
         </div>
       );
     } else if (this.props.type == "touch_sensor") {
@@ -1636,10 +1636,10 @@ class Component1 extends Component {
         return null;
       }
 
-      var height = 100 * scale;
-      var width = 100 * scale;
-      left = left;
-      top = top - 8;
+      var height = 110 * scale;
+      var width = 110 * scale;
+      left = left - 4;
+      top = top - 10;
 
       return connectDragSource(
         <div>
@@ -2057,6 +2057,7 @@ class Component1 extends Component {
 
       var height = 100 * scale;
       var width = 100 * scale;
+
       return connectDragSource(
         <div>
           <div

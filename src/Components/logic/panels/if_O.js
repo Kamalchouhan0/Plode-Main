@@ -206,17 +206,13 @@ class IfPanel extends Component {
   OpenReadComPort = async () => {
     const port = this.props.webSerial;
     console.log("PORTLIST", port);
-    // console.log(port, "pPort");
     try {
       await port.open({ baudRate: 120000 });
     } catch (e) {
       console.log(e);
     }
     await this.writePort("notWrite");
-
-    // try {
     await this.readdata();
-    // }, 1000);
   };
 
   async readdata() {
@@ -245,42 +241,28 @@ class IfPanel extends Component {
         // value is a string.
         if (value.length == 32) {
           var v = unicodeToChar(value);
-          // var v = value;
           console.log(v);
         }
-        // if (value.length == 23) {
-        //   var v = unicodeToChar(value);
-        //   // var v = value;
-        //   console.log(v);
-        // }
         if (value.length == 7) {
           var vi = unicodeToChar(value);
-          // var vi = value;
           console.log(vi);
         }
         if (value.length == 9) {
           var vi = unicodeToChar(value);
-          // var vi = value;
           console.log(vi);
         }
         if (value.length == 14) {
           var vi = unicodeToChar(value);
-          // var vi = value;
           console.log(vi);
         }
         if (value.length == 17) {
           var vi = unicodeToChar(value);
-          // var vi = value;
           console.log(vi);
         }
         if (value.length == 12) {
           var vi = unicodeToChar(value);
-          // var vi = value;
           console.log(vi);
         }
-        // if (value.lenght != 1) {
-        //   var vae = v + vi;
-        // }
         if ((value.lenght == 32 && value.lenght == 12) || value.lenght == 11) {
           var vae = v + " " + vi;
           console.log(vae, "ORRRR");
@@ -409,28 +391,30 @@ class IfPanel extends Component {
                 // bytesData[3] = "I".charCodeAt();
               } else if (
                 Type == "tact_switch" ||
-                Type == "touch_sensor" ||
                 Type == "dual_switch" ||
-                Type == "dip_switch" ||
-                Type == "light_sensor" ||
-                Type == "joystick" ||
-                Type == "metal_detector" ||
-                Type == "distance_sensor"
+                Type == "touch_sensor" ||
+                Type == "dip_switch"
               ) {
                 bytesData[2] = "I".charCodeAt();
                 bytesData[3] = "I".charCodeAt();
               } else if (
-                Type == "rotatory" ||
-                Type == "light_sensor" ||
-                Type == "joystick" ||
                 Type == "distance_sensor" ||
                 Type == "temperature_sensor" ||
                 Type == "gas" ||
+                Type == "light_sensor" ||
                 Type == "linear_pot" ||
                 Type == "pot" ||
-                Type == "humidity" ||
-                Type == "extender" ||
-                Type == "rain_sensor"
+                Type == "rain_sensor" ||
+                Type == "humidity"
+              ) {
+                bytesData[2] = "A".charCodeAt();
+                // bytesData[3] = "A".charCodeAt();
+                console.log("LIGHT 0000000000");
+              } else if (
+                Type == "rotatory" ||
+                Type == "joystick" ||
+                Type == "metal_detector" ||
+                Type == "extender"
               ) {
                 bytesData[2] = "A".charCodeAt();
                 bytesData[3] = "A".charCodeAt();
@@ -448,28 +432,30 @@ class IfPanel extends Component {
 
               if (
                 Type == "rotatory" ||
-                Type == "light_sensor" ||
                 Type == "joystick" ||
-                Type == "distance_sensor" ||
-                Type == "temperature_sensor" ||
-                Type == "gas" ||
-                Type == "linear_pot" ||
-                Type == "pot" ||
-                Type == "humidity" ||
                 Type == "extender" ||
-                Type == "rain_sensor"
+                Type == "metal_detector"
               ) {
                 bytesData[4] = "A".charCodeAt();
                 bytesData[5] = "A".charCodeAt();
               } else if (
+                Type == "distance_sensor" ||
+                Type == "temperature_sensor" ||
+                Type == "gas" ||
+                Type == "light_sensor" ||
+                Type == "linear_pot" ||
+                Type == "pot" ||
+                Type == "rain_sensor" ||
+                Type == "humidity"
+              ) {
+                bytesData[4] = "A".charCodeAt();
+                // bytesData[3] = "A".charCodeAt();
+                console.log("LIGHT 0000000000");
+              } else if (
                 Type == "tact_switch" ||
                 Type == "touch_sensor" ||
                 Type == "dual_switch" ||
-                Type == "dip_switch" ||
-                Type == "light_sensor" ||
-                Type == "metal_detector" ||
-                Type == "joystick" ||
-                Type == "distance_sensor"
+                Type == "dip_switch"
               ) {
                 bytesData[4] = "I".charCodeAt();
                 bytesData[5] = "I".charCodeAt();
@@ -491,31 +477,32 @@ class IfPanel extends Component {
                 Type == "tact_switch" ||
                 Type == "touch_sensor" ||
                 Type == "dual_switch" ||
-                Type == "dip_switch" ||
-                Type == "light_sensor" ||
-                Type == "metal_detector" ||
-                Type == "joystick" ||
-                Type == "distance_sensor"
+                Type == "dip_switch"
               ) {
                 bytesData[6] = "I".charCodeAt();
                 bytesData[7] = "I".charCodeAt();
               } else if (
-                Type == "rotatory" ||
-                Type == "light_sensor" ||
-                Type == "joystick" ||
                 Type == "distance_sensor" ||
                 Type == "temperature_sensor" ||
                 Type == "gas" ||
+                Type == "light_sensor" ||
                 Type == "linear_pot" ||
                 Type == "pot" ||
-                Type == "humidity" ||
-                Type == "extender" ||
-                Type == "rain_sensor"
+                Type == "rain_sensor" ||
+                Type == "humidity"
+              ) {
+                bytesData[6] = "A".charCodeAt();
+                // bytesData[3] = "A".charCodeAt();
+                console.log("LIGHT 0000000000");
+              } else if (
+                Type == "rotatory" ||
+                Type == "joystick" ||
+                Type == "metal_detector" ||
+                Type == "extender"
               ) {
                 bytesData[6] = "A".charCodeAt();
                 bytesData[7] = "A".charCodeAt();
               }
-
               console.log(signalType, "signlay type");
               break;
             }
@@ -568,21 +555,20 @@ class IfPanel extends Component {
       }
 
       console.log(bytesData);
-      //socket.emit("/codereadBytes", bytesData);
       this.writePort(bytesData);
       var v = BAR.split(" ");
-      console.log("RAJPUT", v);
-      if (v[13] > 255 || v[17] === 0) {
-        v[14] = v[13].slice(-2, 4);
-        v[13] = v[13].slice(0, 2);
 
-        v[18] = "0";
-      }
+      // if (v[13] > 255 || v[17] === 0) {
+      //   v[14] = v[13].slice(-2, 4);
+      //   v[13] = v[13].slice(0, 2);
+
+      // v[18] = "0";
+      // }
       console.log(v, "JJ");
 
-      if (v.length == "19") {
-        if (v[0] != "0" || v[2] != "0") {
-          if (v[0] != "0") {
+      if (v.length == "19" && v[0] != "") {
+        if (v[0] != null || v[2] != null) {
+          if (v[0] != null) {
             var byte_val1 = v[0] & 0xff;
             var byte_val2 = v[1] & 0xff;
             console.log(byte_val1, byte_val2, "A1");
@@ -592,7 +578,7 @@ class IfPanel extends Component {
               valrangeA1 = valOfSensor;
             }
           }
-          if (v[2] != "0") {
+          if (v[2] != null) {
             var byte_val1 = v[2] & 0xff;
             var byte_val2 = v[3] & 0xff;
             var valOfSensor = (byte_val2 << 8) + byte_val1;
@@ -600,15 +586,15 @@ class IfPanel extends Component {
             valrangeA2 = valOfSensor;
           }
         }
-        if (v[4] != "0" || v[6] != "0") {
-          if (v[4] != "0") {
+        if (v[4] != null || v[6] != null) {
+          if (v[4] != null) {
             var byte_val1 = v[4] & 0xff;
             var byte_val2 = v[5] & 0xff;
             var valOfSensor = (byte_val2 << 8) + byte_val1;
             console.log("LSB+MSB:-", valOfSensor);
             valtemp = valOfSensor;
           }
-          if (v[6] != "0") {
+          if (v[6] != null) {
             var byte_val1 = v[6] & 0xff;
             var byte_val2 = v[7] & 0xff;
             var valOfSensor = (byte_val2 << 8) + byte_val1;
@@ -616,15 +602,15 @@ class IfPanel extends Component {
             valgas = valOfSensor;
           }
         }
-        if (v[8] != "0" || v[10] != "0") {
-          if (v[8] != "0") {
+        if (v[8] != null || v[10] != null) {
+          if (v[8] != null) {
             var byte_val1 = v[8] & 0xff;
             var byte_val2 = v[9] & 0xff;
             var valOfSensor = (byte_val2 << 8) + byte_val1;
             console.log("LSB+MSB:-", valOfSensor);
             valone = valOfSensor;
           }
-          if (v[10] != "0") {
+          if (v[10] != null) {
             var byte_val1 = v[10] & 0xff;
             var byte_val2 = v[11] & 0xff;
             var valOfSensor = (byte_val2 << 8) + byte_val1;
@@ -1791,6 +1777,7 @@ class IfPanel extends Component {
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
+                  cursor: "pointer",
                 }}
                 onClick={() => this.handleRead()}
               >

@@ -171,6 +171,16 @@ class CustomDragLayer extends Component {
           height={ImageSizes[type][1] * scale - 20}
         />
       );
+    } else if (item.type == "linear_pot") {
+      url = renderCompImg(item.type);
+      return (
+        <img
+          src={url}
+          style={{ position: "absolute", top: 30, left: -5 }}
+          width={ImageSizes[type][0] * scale}
+          height={ImageSizes[type][1] * scale - 20}
+        />
+      );
     } else {
       // url = "images/oldImages/component_" + item.type + ".png";
 

@@ -185,21 +185,24 @@ if (componentType == "Ace") {
     },
     {
       type: "temperature_sensor",
-      description: "Temperature: Measures temperature",
+      description:
+        "Temperature:It is 2-in-1 sensor with temperature sensor on channel 1 and humidity on channel 2.",
       color: "#15909d",
       name: "Temp",
       signalType: "analog",
     },
     {
       type: "humidity",
-      description: "Humidity: Measures Humidity",
+      description:
+        "Humidity: It is used to detect the variations in water vapour(humidity) content in air.",
       color: "#15909d",
       name: "humidity",
       signalType: "analog",
     },
     {
       type: "gas",
-      description: "Gas: Measures gas",
+      description:
+        "Gas: It is used to detect variations in Alcohol or carbon monoxide levels in its environment.",
       color: "#15909d",
       name: "Gas",
       signalType: "analog",
@@ -213,7 +216,8 @@ if (componentType == "Ace") {
     // },
     {
       type: "rain_sensor",
-      description: "RAIN   description",
+      description:
+        "Rain Sensor: It is used to detect water drops on the sensor. Can also act as a bare hand touch sensor",
       color: "#15909d",
       name: "Rain Sensor",
       signalType: "analog",
