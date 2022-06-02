@@ -745,6 +745,7 @@ function InputSlider(props) {
                 <input
                   type="range"
                   className="rng"
+                  style={{ width: "43%" }}
                   min={0}
                   max={65535}
                   value={micValue}
