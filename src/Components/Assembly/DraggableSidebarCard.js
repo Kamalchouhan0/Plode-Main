@@ -61,6 +61,29 @@ class Card extends Component {
       leftPro = "22%";
     }
 
+    if (type == "play_shield" && this.props.shield == true) {
+      return (
+        <img
+          style={{
+            zIndex: "50",
+            opacity: "1",
+
+            width: widthSize,
+            position: "absolute",
+            top: "12%",
+            left: leftPro,
+            objectFit: "fill",
+            transform: "scale(1.45,1.45)",
+            opacity: 0.5,
+            // marginLeft: "-125px",
+            // marginTop: "20px",
+          }}
+          // src={`images/oldImages/component_` + type + ".png"}
+          src={renderCompImg(type)}
+        />
+      );
+    }
+
     return connectDragSource(
       // <img style={{ height: "120px", width: "80px", position: "absolute", marginLeft: "-125px", marginTop: "20px" }} src={`images/oldImages/component_` + type + '.png'} />
       // "dual_splitter"  "ultrasonic_sensor"

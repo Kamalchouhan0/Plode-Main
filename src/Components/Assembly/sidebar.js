@@ -117,7 +117,7 @@ class Sidebar extends Component {
                   height: Sizes.mainHeight - 14,
                   overflowY: "scroll",
                   width: "211px",
-                  height: "100vh",
+                  height: "89vh",
                   backgroundImage: `url("${renderPrgImage(
                     "leftComponentBar"
                   )}")`,
@@ -164,7 +164,12 @@ class Sidebar extends Component {
                             borderRadius: "16px 16px 16px 16px",
                           }}
                         >
-                          <Card height="150" key={index} type={indComp.type} />
+                          <Card
+                            height="150"
+                            key={index}
+                            type={indComp.type}
+                            shield={this.props.shield}
+                          />
                         </div>
                       </div>
                     </div>

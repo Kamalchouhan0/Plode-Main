@@ -18,7 +18,7 @@ let internalAccessoriesData = JSON.parse(
 
 class Curve extends Component {
   render() {
-    const { bibox, component, components } = this.props;
+    const { bibox, component, components, PortConnections } = this.props;
     const { connectedTo, left, top } = component;
     var Left, Top;
     var LeftF, TopF;
@@ -161,7 +161,7 @@ class Curve extends Component {
       //*************************************************** */
 
       // S1  .
-
+      console.log("connectedtoshield", connectedTo);
       if (connectedTo == "A1" || connectedTo == "A2") {
         Object.keys(components).map((dual_splitter) => {
           if (dual_splitter == "dual_splitter") {
@@ -174,6 +174,16 @@ class Curve extends Component {
                 if (component.connectedTo == "A") {
                   LeftF = component.left;
                   TopF = component.top;
+                }
+                if (component.connectedTo == "A" && this.props.shield == true) {
+                  if (connectedTo == "A1") {
+                    LeftF = component.left - 87;
+                    TopF = component.top - 252;
+                  }
+                  if (connectedTo == "A2") {
+                    LeftF = component.left - 32;
+                    TopF = component.top - 285;
+                  }
                 }
               } else {
                 if (component.connectedTo == "A") {
@@ -192,13 +202,15 @@ class Curve extends Component {
                 this.props.componentName != "servo_motor" &&
                 this.props.componentName != "servo_motor_360"
               ) {
-                if (connectedTo == "A1") {
-                  LeftF = bibox.left;
-                  TopF = bibox.top;
-                }
-                if (connectedTo == "A2") {
-                  LeftF = bibox.left;
-                  TopF = bibox.top;
+                if (PortConnections.A == null) {
+                  if (connectedTo == "A1") {
+                    LeftF = bibox.left;
+                    TopF = bibox.top;
+                  }
+                  if (connectedTo == "A2") {
+                    LeftF = bibox.left;
+                    TopF = bibox.top;
+                  }
                 }
               }
             });
@@ -258,8 +270,7 @@ class Curve extends Component {
 
         cx2 = LeftF + Ports(connectedTo)[0];
         cy2 = TopF + Ports(connectedTo)[1];
-        cx2 +=
-          Ports(connectedTo)[0] - ImageSizes[ItemTypes.COMPONENT][0] / 2 - 500;
+        cx2 += Ports(connectedTo)[0] - ImageSizes[ItemTypes.COMPONENT][0] / 2;
         cy2 += Ports(connectedTo)[1] - ImageSizes[ItemTypes.COMPONENT][1] / 2;
         return (
           <path
@@ -295,6 +306,16 @@ class Curve extends Component {
                 if (component.connectedTo == "D") {
                   LeftF = component.left;
                   TopF = component.top;
+                }
+                if (component.connectedTo == "D" && this.props.shield == true) {
+                  if (connectedTo == "D1") {
+                    LeftF = component.left - 195;
+                    TopF = component.top - 319;
+                  }
+                  if (connectedTo == "D2") {
+                    LeftF = component.left - 175;
+                    TopF = component.top - 315;
+                  }
                 }
               } else {
                 if (component.connectedTo == "D") {
@@ -437,8 +458,24 @@ class Curve extends Component {
                 this.props.componentName != "dc_motor"
               ) {
                 if (component.connectedTo == "C") {
-                  LeftF = component.left;
-                  TopF = component.top;
+                  if (connectedTo == "C1") {
+                    LeftF = component.left;
+                    TopF = component.top;
+                  }
+                  if (connectedTo == "C2") {
+                    LeftF = component.left;
+                    TopF = component.top;
+                  }
+                }
+                if (component.connectedTo == "C" && this.props.shield == true) {
+                  if (connectedTo == "C1") {
+                    LeftF = component.left - 125;
+                    TopF = component.top - 320;
+                  }
+                  if (connectedTo == "C2") {
+                    LeftF = component.left - 105;
+                    TopF = component.top - 315;
+                  }
                 }
               } else {
                 if (component.connectedTo == "C") {
@@ -541,6 +578,16 @@ class Curve extends Component {
                   LeftF = component.left;
                   TopF = component.top;
                 }
+                if (component.connectedTo == "B" && this.props.shield == true) {
+                  if (connectedTo == "B1") {
+                    LeftF = component.left - 268;
+                    TopF = component.top - 256;
+                  }
+                  if (connectedTo == "B2") {
+                    LeftF = component.left - 212;
+                    TopF = component.top - 287;
+                  }
+                }
               } else {
                 if (component.connectedTo == "B") {
                   LeftF = component.left + 28;
@@ -558,13 +605,19 @@ class Curve extends Component {
                 this.props.componentName != "servo_motor" &&
                 this.props.componentName != "servo_motor_360"
               ) {
-                if (connectedTo == "B1") {
-                  LeftF = bibox.left;
-                  TopF = bibox.top;
-                }
-                if (connectedTo == "B2") {
-                  LeftF = bibox.left;
-                  TopF = bibox.top;
+                if (
+                  JSON.parse(sessionStorage.getItem("assembly")).PortConnections
+                    .B == null
+                ) {
+                  if (connectedTo == "B1") {
+                    LeftF = bibox.left;
+                    TopF = bibox.top;
+                  }
+
+                  if (connectedTo == "B2") {
+                    LeftF = bibox.left;
+                    TopF = bibox.top;
+                  }
                 }
               }
             });
@@ -623,6 +676,66 @@ class Curve extends Component {
                 } else {
                   LeftF = component.left - 70;
                   TopF = component.top + 30;
+                }
+              }
+            });
+          }
+        });
+
+        cx2 = LeftF + Ports(connectedTo)[0];
+        cy2 = TopF + Ports(connectedTo)[1];
+        cx2 += Ports(connectedTo)[0] - ImageSizes[ItemTypes.COMPONENT][0] / 2;
+        cy2 += Ports(connectedTo)[1] - ImageSizes[ItemTypes.COMPONENT][1] / 2;
+        return (
+          <path
+            d={
+              "M " +
+              (left - 10 + ImageSizes[ItemTypes.COMPONENT][0] / 2) +
+              "," +
+              (top + 85) +
+              " C " +
+              (left + ImageSizes[ItemTypes.COMPONENT][0] / 2) +
+              "," +
+              (top + 2 * ImageSizes[ItemTypes.COMPONENT][1]) +
+              " " +
+              cx2 +
+              "," +
+              cy2 +
+              " " +
+              (LeftF + Ports(connectedTo)[0]) +
+              "," +
+              (TopF + Ports(connectedTo)[1])
+            }
+          />
+        );
+      } else if (connectedTo == "F1" || connectedTo == "F2") {
+        Object.keys(components).map((key) => {
+          if (key == "dual_splitter") {
+            // if(this.props.componentName = "")
+            components[key].map((component, index) => {
+              if (
+                this.props.componentName != "geared_motor" &&
+                this.props.componentName != "mini_geared_motor" &&
+                this.props.componentName != "dc_motor"
+              ) {
+                if (component.connectedTo == "F") {
+                  LeftF = component.left;
+                  TopF = component.top;
+                }
+                if (component.connectedTo == "F" && this.props.shield == true) {
+                  if (connectedTo == "F1") {
+                    LeftF = component.left + 5;
+                    TopF = component.top - 74;
+                  }
+                  if (connectedTo == "F2") {
+                    LeftF = component.left - 5;
+                    TopF = component.top - 68;
+                  }
+                }
+              } else {
+                if (component.connectedTo == "F") {
+                  LeftF = component.left + 28;
+                  TopF = component.top + 6;
                 }
               }
             });
@@ -741,9 +854,304 @@ class Curve extends Component {
             }
           />
         );
+      } else if (connectedTo == "A") {
+        Top = bibox.top;
+        Left = bibox.left;
+
+        cx2 = Left + Ports(connectedTo)[0];
+        cy2 = Top + Ports(connectedTo)[1];
+        cx2 += Ports(connectedTo)[0] - ImageSizes[ItemTypes.BIBOX][0] / 2;
+        cy2 += Ports(connectedTo)[1] - ImageSizes[ItemTypes.BIBOX][1] / 2;
+        if (this.props.componentName == "pc_motor_driver") {
+          if (connectedTo == "A" || connectedTo == "C") {
+            return (
+              <>
+                <path
+                  d={
+                    "M " +
+                    (left - 100 + ImageSizes[ItemTypes.COMPONENT][0] / 2) +
+                    "," +
+                    (top + 5) +
+                    " C " +
+                    (left + ImageSizes[ItemTypes.COMPONENT][0] / 2) +
+                    "," +
+                    (top - 2 * ImageSizes[ItemTypes.COMPONENT][1]) +
+                    " " +
+                    cx2 +
+                    "," +
+                    cy2 +
+                    " " +
+                    (Left + Ports("A")[0]) +
+                    "," +
+                    (Top + Ports("A")[1])
+                  }
+                />
+                <path
+                  d={
+                    "M " +
+                    (left + 100 + ImageSizes[ItemTypes.COMPONENT][0] / 2) +
+                    "," +
+                    (top + 5) +
+                    " C " +
+                    (left + ImageSizes[ItemTypes.COMPONENT][0] / 2) +
+                    "," +
+                    (top - 2 * ImageSizes[ItemTypes.COMPONENT][1]) +
+                    " " +
+                    cx2 +
+                    "," +
+                    cy2 +
+                    " " +
+                    (Left + Ports("C")[0]) +
+                    "," +
+                    (Top + Ports("C")[1])
+                  }
+                />
+              </>
+            );
+          }
+
+          if (connectedTo == "B" || connectedTo == "D") {
+            return (
+              <>
+                <path
+                  d={
+                    "M " +
+                    (left - 100 + ImageSizes[ItemTypes.COMPONENT][0] / 2) +
+                    "," +
+                    (top + 5) +
+                    " C " +
+                    (left + ImageSizes[ItemTypes.COMPONENT][0] / 2) +
+                    "," +
+                    (top - 2 * ImageSizes[ItemTypes.COMPONENT][1]) +
+                    " " +
+                    cx2 +
+                    "," +
+                    cy2 +
+                    " " +
+                    (Left + Ports("B")[0]) +
+                    "," +
+                    (Top + Ports("B")[1])
+                  }
+                />
+                <path
+                  d={
+                    "M " +
+                    (left + 100 + ImageSizes[ItemTypes.COMPONENT][0] / 2) +
+                    "," +
+                    (top + 5) +
+                    " C " +
+                    (left + ImageSizes[ItemTypes.COMPONENT][0] / 2) +
+                    "," +
+                    (top - 2 * ImageSizes[ItemTypes.COMPONENT][1]) +
+                    " " +
+                    cx2 +
+                    "," +
+                    cy2 +
+                    " " +
+                    (Left + Ports("D")[0]) +
+                    "," +
+                    (Top + Ports("D")[1])
+                  }
+                />
+              </>
+            );
+          }
+        } else if (this.props.componentName == "RGB") {
+          return (
+            <path
+              d={
+                "M " +
+                (left - 15 + ImageSizes[ItemTypes.COMPONENT][0] / 2) +
+                "," +
+                (top + 80) +
+                " C " +
+                (left - 120 + ImageSizes[ItemTypes.COMPONENT][0] / 2) +
+                "," +
+                (top + 2 * ImageSizes[ItemTypes.COMPONENT][1]) +
+                " " +
+                cx2 +
+                "," +
+                cy2 +
+                " " +
+                (Left + Ports(connectedTo)[0]) +
+                "," +
+                (Top + Ports(connectedTo)[1])
+              }
+            />
+          );
+        } else {
+          return (
+            <path
+              d={
+                "M " +
+                (left - 15 + ImageSizes[ItemTypes.COMPONENT][0] / 2) +
+                "," +
+                (top + 80) +
+                " C " +
+                (left + 60 + ImageSizes[ItemTypes.COMPONENT][0] / 2) +
+                "," +
+                (top + 2 * ImageSizes[ItemTypes.COMPONENT][1]) +
+                " " +
+                cx2 +
+                "," +
+                cy2 +
+                " " +
+                (Left + Ports(connectedTo)[0]) +
+                "," +
+                (Top + Ports(connectedTo)[1])
+              }
+            />
+          );
+        }
+      } else if (connectedTo == "B") {
+        Top = bibox.top;
+        Left = bibox.left;
+        cx2 = Left + Ports(connectedTo)[0];
+        cy2 = Top + Ports(connectedTo)[1];
+        cx2 += Ports(connectedTo)[0] - ImageSizes[ItemTypes.BIBOX][0] / 2;
+        cy2 += Ports(connectedTo)[1] - ImageSizes[ItemTypes.BIBOX][1] / 2;
+        if (this.props.componentName == "pc_motor_driver") {
+          if (connectedTo == "A" || connectedTo == "C") {
+            return (
+              <>
+                <path
+                  d={
+                    "M " +
+                    (left - 100 + ImageSizes[ItemTypes.COMPONENT][0] / 2) +
+                    "," +
+                    (top + 5) +
+                    " C " +
+                    (left + ImageSizes[ItemTypes.COMPONENT][0] / 2) +
+                    "," +
+                    (top - 2 * ImageSizes[ItemTypes.COMPONENT][1]) +
+                    " " +
+                    cx2 +
+                    "," +
+                    cy2 +
+                    " " +
+                    (Left + Ports("A")[0]) +
+                    "," +
+                    (Top + Ports("A")[1])
+                  }
+                />
+                <path
+                  d={
+                    "M " +
+                    (left + 100 + ImageSizes[ItemTypes.COMPONENT][0] / 2) +
+                    "," +
+                    (top + 5) +
+                    " C " +
+                    (left + ImageSizes[ItemTypes.COMPONENT][0] / 2) +
+                    "," +
+                    (top - 2 * ImageSizes[ItemTypes.COMPONENT][1]) +
+                    " " +
+                    cx2 +
+                    "," +
+                    cy2 +
+                    " " +
+                    (Left + Ports("C")[0]) +
+                    "," +
+                    (Top + Ports("C")[1])
+                  }
+                />
+              </>
+            );
+          }
+
+          if (connectedTo == "B" || connectedTo == "D") {
+            return (
+              <>
+                <path
+                  d={
+                    "M " +
+                    (left - 100 + ImageSizes[ItemTypes.COMPONENT][0] / 2) +
+                    "," +
+                    (top + 5) +
+                    " C " +
+                    (left + ImageSizes[ItemTypes.COMPONENT][0] / 2) +
+                    "," +
+                    (top - 2 * ImageSizes[ItemTypes.COMPONENT][1]) +
+                    " " +
+                    cx2 +
+                    "," +
+                    cy2 +
+                    " " +
+                    (Left + Ports("B")[0]) +
+                    "," +
+                    (Top + Ports("B")[1])
+                  }
+                />
+                <path
+                  d={
+                    "M " +
+                    (left + 100 + ImageSizes[ItemTypes.COMPONENT][0] / 2) +
+                    "," +
+                    (top + 5) +
+                    " C " +
+                    (left + ImageSizes[ItemTypes.COMPONENT][0] / 2) +
+                    "," +
+                    (top - 2 * ImageSizes[ItemTypes.COMPONENT][1]) +
+                    " " +
+                    cx2 +
+                    "," +
+                    cy2 +
+                    " " +
+                    (Left + Ports("D")[0]) +
+                    "," +
+                    (Top + Ports("D")[1])
+                  }
+                />
+              </>
+            );
+          }
+        } else if (this.props.componentName == "RGB") {
+          return (
+            <path
+              d={
+                "M " +
+                (left - 15 + ImageSizes[ItemTypes.COMPONENT][0] / 2) +
+                "," +
+                (top + 80) +
+                " C " +
+                (left - 120 + ImageSizes[ItemTypes.COMPONENT][0] / 2) +
+                "," +
+                (top + 2 * ImageSizes[ItemTypes.COMPONENT][1]) +
+                " " +
+                cx2 +
+                "," +
+                cy2 +
+                " " +
+                (Left + Ports(connectedTo)[0]) +
+                "," +
+                (Top + Ports(connectedTo)[1])
+              }
+            />
+          );
+        } else {
+          return (
+            <path
+              d={
+                "M " +
+                (left - 15 + ImageSizes[ItemTypes.COMPONENT][0] / 2) +
+                "," +
+                (top + 80) +
+                " C " +
+                (left + 60 + ImageSizes[ItemTypes.COMPONENT][0] / 2) +
+                "," +
+                (top + 2 * ImageSizes[ItemTypes.COMPONENT][1]) +
+                " " +
+                cx2 +
+                "," +
+                cy2 +
+                " " +
+                (Left + Ports(connectedTo)[0]) +
+                "," +
+                (Top + Ports(connectedTo)[1])
+              }
+            />
+          );
+        }
       } else if (
-        connectedTo == "A" ||
-        connectedTo == "B" ||
         connectedTo == "C" ||
         connectedTo == "D" ||
         connectedTo == "E" ||
@@ -1649,6 +2057,7 @@ class Curve extends Component {
 
 class PortCircle extends Component {
   renderhighlighted = () => {
+    const { PortConnections } = this.props;
     let internalAccessoriesData = JSON.parse(
       sessionStorage.getItem("concept")
     ).internalaccessories;
@@ -1656,13 +2065,17 @@ class PortCircle extends Component {
     if (
       this.props.portName == "A" &&
       (internalAccessoriesData.isTouchZero == true ||
-        internalAccessoriesData.isTouchZeroOutput == true)
+        internalAccessoriesData.isTouchZeroOutput == true ||
+        PortConnections["A1"] != null ||
+        PortConnections["A2"] != null)
     ) {
       return 0;
     } else if (
       this.props.portName == "B" &&
       (internalAccessoriesData.isTouchOne == true ||
-        internalAccessoriesData.isTouchOneOutput == true)
+        internalAccessoriesData.isTouchOneOutput == true ||
+        PortConnections["B1"] != null ||
+        PortConnections["B2"] != null)
     ) {
       return 0;
     } else if (
@@ -1709,10 +2122,12 @@ class PortCircle extends Component {
 class ComponentPort extends Component {
   render() {
     console.log("konektion", this.props);
-
+    const PortConnections = this.props.PortConnections;
     var { left, top } = this.props.component;
     left += ImageSizes[ItemTypes.COMPONENT][0] / 2;
-    return <PortCircle left={left} top={top} />;
+    return (
+      <PortCircle PortConnections={PortConnections} left={left} top={top} />
+    );
   }
 }
 
@@ -1928,6 +2343,8 @@ class Connections extends Component {
               components={components}
               key={connections.length}
               style={{ zIndex: -1 }}
+              PortConnections={PortConnections}
+              shield={this.props.shield}
             />
           );
           // }
@@ -1945,7 +2362,11 @@ class Connections extends Component {
           // PPP
 
           portCircles.push(
-            <ComponentPort component={component} key={portCircles.length} />
+            <ComponentPort
+              PortConnections={PortConnections}
+              component={component}
+              key={portCircles.length}
+            />
           );
         }
       });
@@ -1962,12 +2383,18 @@ class Connections extends Component {
             components={components}
             key={connections.length}
             componentName={extraComponent.type}
+            PortConnections={PortConnections}
+            shield={this.props.shield}
           />
         );
       }
       console.log("konekkk", extraComponent);
       portCircles.push(
-        <ComponentPort component={extraComponent} key={portCircles.length} />
+        <ComponentPort
+          PortConnections={PortConnections}
+          component={extraComponent}
+          key={portCircles.length}
+        />
       );
     }
     return (
@@ -2050,7 +2477,6 @@ class Connections extends Component {
                   : null;
 
               // S1
-
               if (Device == "Ace") {
                 if ((key == "D1" || key == "D2") && highlighted) {
                   if (components) {
@@ -2067,6 +2493,21 @@ class Connections extends Component {
                               Left = component.left;
                               Top = component.top;
                               highlighted = true;
+                            }
+                            if (
+                              component.connectedTo == "D" &&
+                              this.props.shield == true
+                            ) {
+                              if (key == "D1") {
+                                Left = component.left - 195;
+                                Top = component.top - 319;
+                                highlighted = true;
+                              }
+                              if (key == "D2") {
+                                Left = component.left - 175;
+                                Top = component.top - 315;
+                                highlighted = true;
+                              }
                             }
                           } else {
                             if (component.connectedTo == "D") {
@@ -2228,9 +2669,31 @@ class Connections extends Component {
                             extraComponent.type != "dc_motor"
                           ) {
                             if (component.connectedTo == "C") {
-                              Left = component.left;
-                              Top = component.top;
-                              highlighted = true;
+                              if (key == "C1") {
+                                Left = component.left;
+                                Top = component.top;
+                                highlighted = true;
+                              }
+                              if (key == "C2") {
+                                Left = component.left;
+                                Top = component.top;
+                                highlighted = true;
+                              }
+                            }
+                            if (
+                              component.connectedTo == "C" &&
+                              this.props.shield == true
+                            ) {
+                              if (key == "C1") {
+                                Left = component.left - 125;
+                                Top = component.top - 320;
+                                highlighted = true;
+                              }
+                              if (key == "C2") {
+                                Left = component.left - 105;
+                                Top = component.top - 315;
+                                highlighted = true;
+                              }
                             }
                           } else {
                             if (component.connectedTo == "C") {
@@ -2401,6 +2864,21 @@ class Connections extends Component {
                               Top = component.top;
                               highlighted = true;
                             }
+                            if (
+                              component.connectedTo == "B" &&
+                              this.props.shield == true
+                            ) {
+                              if (key == "B1") {
+                                Left = component.left - 268;
+                                Top = component.top - 256;
+                                highlighted = true;
+                              }
+                              if (key == "B2") {
+                                Left = component.left - 212;
+                                Top = component.top - 287;
+                                highlighted = true;
+                              }
+                            }
                           } else {
                             if (component.connectedTo == "B") {
                               Left = component.left + 28;
@@ -2419,15 +2897,18 @@ class Connections extends Component {
                             extraComponent.type != "servo_motor" &&
                             extraComponent.type != "servo_motor_360"
                           ) {
-                            if (key == "B1") {
-                              Left = bibox.left;
-                              Top = bibox.top;
-                              highlighted = true;
-                            }
-                            if (key == "B2") {
-                              Left = bibox.left;
-                              Top = bibox.top;
-                              highlighted = true;
+                            if (PortConnections.B == null) {
+                              if (key == "B1") {
+                                Left = bibox.left;
+                                Top = bibox.top;
+                                highlighted = true;
+                              }
+
+                              if (key == "B2") {
+                                Left = bibox.left;
+                                Top = bibox.top;
+                                highlighted = true;
+                              }
                             }
                           }
                         });
@@ -2576,9 +3057,23 @@ class Connections extends Component {
                               Top = component.top;
                               highlighted = true;
                             }
+                            if (
+                              component.connectedTo == "A" &&
+                              this.props.shield == true
+                            ) {
+                              if (key == "A1") {
+                                Left = component.left - 87;
+                                Top = component.top - 252;
+                                highlighted = true;
+                              }
+                              if (key == "A2") {
+                                Left = component.left - 32;
+                                Top = component.top - 285;
+                                highlighted = true;
+                              }
+                            }
                           } else {
                             if (component.connectedTo == "A") {
-                              console.log("highlited true");
                               Left = component.left + 28;
                               Top = component.top + 5;
                               highlighted = true;
@@ -2595,16 +3090,17 @@ class Connections extends Component {
                             extraComponent.type != "servo_motor" &&
                             extraComponent.type != "servo_motor_360"
                           ) {
-                            console.log("play_shieldComp", component);
-                            if (key == "A1") {
-                              Left = bibox.left;
-                              Top = bibox.top;
-                              highlighted = true;
-                            }
-                            if (key == "A2") {
-                              Left = bibox.left;
-                              Top = bibox.top;
-                              highlighted = true;
+                            if (PortConnections.A == null) {
+                              if (key == "A1") {
+                                Left = bibox.left;
+                                Top = bibox.top;
+                                highlighted = true;
+                              }
+                              if (key == "A2") {
+                                Left = bibox.left;
+                                Top = bibox.top;
+                                highlighted = true;
+                              }
                             }
                           }
                         });
@@ -2750,13 +3246,20 @@ class Connections extends Component {
                             extraComponent.type != "mini_geared_motor" &&
                             extraComponent.type != "dc_motor"
                           ) {
-                            if (component.connectedTo == "A") {
-                              Left = component.left;
-                              Top = component.top;
-                              highlighted = true;
+                            if (component.connectedTo == "F") {
+                              if (key == "F1") {
+                                Left = component.left + 5;
+                                Top = component.top - 74;
+                                highlighted = true;
+                              }
+                              if (key == "F2") {
+                                Left = component.left - 5;
+                                Top = component.top - 68;
+                                highlighted = true;
+                              }
                             }
                           } else {
-                            if (component.connectedTo == "A") {
+                            if (component.connectedTo == "F") {
                               console.log("highlited true");
                               Left = component.left + 28;
                               Top = component.top + 5;
@@ -3174,6 +3677,7 @@ class Connections extends Component {
                               highlighted={
                                 !PortConnections[port] && highlighted
                               }
+                              PortConnections={PortConnections}
                             />
                           )
 
@@ -3210,6 +3714,7 @@ class Connections extends Component {
                               highlighted={
                                 !PortConnections[port] && highlighted
                               }
+                              PortConnections={PortConnections}
                             />
                           )
 
@@ -3246,6 +3751,7 @@ class Connections extends Component {
                               highlighted={
                                 !PortConnections[port] && highlighted
                               }
+                              PortConnections={PortConnections}
                             />
                           )
 
@@ -3282,6 +3788,7 @@ class Connections extends Component {
                               highlighted={
                                 !PortConnections[port] && highlighted
                               }
+                              PortConnections={PortConnections}
                             />
                           )
 
@@ -3382,6 +3889,7 @@ class Connections extends Component {
                                 : !PortConnections[port] && highlighted
                               : !PortConnections[port] && highlighted
                           }
+                          PortConnections={PortConnections}
                           // highlighted={
                           //   sessionStorage.getItem("dragingItem") !=
                           //   "pc_motor_driver"

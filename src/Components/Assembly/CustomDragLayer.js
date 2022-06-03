@@ -153,14 +153,8 @@ class CustomDragLayer extends Component {
         />
       );
     } else if (item.type == "play_shield") {
-      url = renderCompImg(item.type);
-      return (
-        <img
-          src={url}
-          width={ImageSizes[type][0] * scale}
-          height={ImageSizes[type][1] * scale}
-        />
-      );
+      url = renderCompImg("play_shield_top");
+      return <img src={url} width={"20%"} style={{ position: "absolute" }} />;
     } else if (item.type == "ultrasonic_sensor") {
       url = renderCompImg(item.type);
       return (
@@ -227,9 +221,10 @@ class CustomDragLayer extends Component {
               extraComponent,
               bibox,
               components,
-              this.props.PortConnections
+              this.props.PortConnections,
+              this.props.shield
             ) || DraggingInfo.newComponentPort;
-
+          console.log("abcdefh", connectedTo);
           if (connectedTo)
             extraComponent.connectedTo = DraggingInfo.newComponentPort =
               connectedTo;
@@ -261,6 +256,7 @@ class CustomDragLayer extends Component {
             extraComponent={
               itemType === ItemTypes.COMPONENT ? extraComponent : null
             }
+            shield={this.props.shield}
           />
         </div>
         {/* DRAGING WITH IMG OF COMPONENTS LIKE (LED) */}

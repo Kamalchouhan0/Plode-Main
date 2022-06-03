@@ -205,9 +205,9 @@ if (Device == "Ace") {
     servo_extender: ["B"],
 
     //PC MOTOR DRIVER
-    geared_motor: ["A1", "C1", "B1", "D1"],
-    mini_geared_motor: ["A1", "C1", "B1", "D1"],
-    dc_motor: ["A1", "C1", "B1", "D1", "M1", "M3"],
+    geared_motor: ["A1", "C1", "B1", "D1", "M1", "M3"],
+    mini_geared_motor: ["A1", "C1", "B1", "D1", "M1", "M3"],
+    dc_motor: ["A1", "C1", "B1", "D1", "M1", "M3", "F1"],
     servo_motor: ["A1", "A2", "C1", "C2", "B2", "B1", "D2", "D1"],
 
     servo_motor_360: ["A1", "A2", "C1", "C2", "B2", "B1", "D2", "D1"],

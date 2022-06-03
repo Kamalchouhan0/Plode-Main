@@ -2005,8 +2005,60 @@ class Component1 extends Component {
           onDoubleClick={() => this.typeCheck(this)}
         />
       );
-    } else if (this.props.type == "play_shield") {
-      sessionStorage.setItem("shield", "true");
+    }
+    // else if (this.props.type == "play_shield") {
+    //   var { type, left, top, scale, connectDragSource, isDragging, children } =
+    //     this.props;
+    //   if (isDragging) {
+    //     return null;
+    //   }
+
+    //   var height = 300 * scale;
+    //   var width = 300 * scale;
+    //   top = top;
+    //   left = left;
+
+    //   return connectDragSource(
+    //     <div
+    //       id={this.props.type + this.props.index}
+    //       style={{
+    //         ...style,
+    //         left,
+    //         top,
+    //         // backgroundImage: "url(images/oldImages/component_" + type + ".png)",
+    //         backgroundImage: `url(${renderCompImg("play_shield_top")})`,
+
+    //         height,
+    //         width,
+    //       }}
+    //       onMouseDown={() => {
+    //         clickStartTimestamp = Date.now();
+    //       }}
+    //       onMouseUp={this.checkForLongPress}
+    //       onDoubleClick={() => this.typeCheck(this)}
+    //     />
+    //   );
+    // }
+    else if (this.props.type == "play_shield") {
+      const internalaccessories = JSON.parse(
+        sessionStorage.getItem("concept")
+      ).internalaccessories;
+      if (
+        internalaccessories.isTouchOneOutput == true ||
+        internalaccessories.isTouchTwoOutput == true ||
+        internalaccessories.isTouchZeroOutput == true ||
+        internalaccessories.isTouchOne == true ||
+        internalaccessories.isTouchTwo == true ||
+        internalaccessories.isTouchZero == true
+      ) {
+        sessionStorage.setItem("shield", "false");
+        this.props.setShield(false);
+        this.props.removeFromWorkspace({ type: "play_shield" });
+        return null;
+      } else {
+        sessionStorage.setItem("shield", "true");
+        this.props.setShield(true);
+      }
       //this.forceUpdate();
       var { type, left, top, scale, connectDragSource, isDragging, children } =
         this.props;

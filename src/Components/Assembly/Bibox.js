@@ -45,7 +45,6 @@ const biboxSource = {
 
 class Bibox extends Component {
   componentDidMount() {}
-  useEffect() {}
   typeCheck = () => {
     this.removeComponent();
   };
@@ -54,6 +53,7 @@ class Bibox extends Component {
     var shield = sessionStorage.getItem("shield");
     if (shield == "true") {
       sessionStorage.setItem("shield", "false");
+      this.props.setShield(false);
       this.props.removeFromWorkspace({ type: "play_shield" });
     }
 

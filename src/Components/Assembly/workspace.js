@@ -99,9 +99,6 @@ const workspaceTarget = {
         component.moveBibox(currentOffset.x, currentOffset.y);
       else component.updateOldComponent(currentOffset.x, currentOffset.y);
     }
-    if (item.type == "play_shield") {
-      // window.location.reload(false); ///cheat to force react to re render
-    }
   },
 };
 
@@ -1349,6 +1346,8 @@ class Workspace extends Component {
           gas={this.props.gas}
           one={this.props.one}
           two={this.props.two}
+          shield={this.props.shield}
+          setShield={this.props.setShield}
         />
 
         {/* USB detection is remove and the Zindex is also change from componentDidmount */}
@@ -1381,6 +1380,8 @@ class Workspace extends Component {
                     gas={this.props.gas}
                     one={this.props.one}
                     two={this.props.two}
+                    shield={this.props.shield}
+                    setShield={this.props.setShield}
                   />
                 );
               })}

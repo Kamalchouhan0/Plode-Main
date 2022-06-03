@@ -39,6 +39,7 @@ import dc_motor from "../Assets/Bisoft_UI/Accessories/newComponents/component_dc
 import geared_motor from "../Assets/Bisoft_UI/Accessories/newComponents/component_geared_motor.png";
 import mini_geared_motor from "../Assets/Bisoft_UI/Accessories/newComponents/component_mini_geared_motor.png";
 import play_shield from "../Assets/Bisoft_UI/Accessories/newComponents/component_play_shield.png";
+import play_shield_top from "../Assets/Bisoft_UI/Accessories/newComponents/component_play_shield_top.png";
 function renderCompImg(name) {
   switch (name) {
     case "pot":
@@ -47,7 +48,9 @@ function renderCompImg(name) {
     case "play_shield":
       var type = play_shield;
       return type;
-
+    case "play_shield_top":
+      var type = play_shield_top;
+      return type;
     case "dc_motor":
       var type = dc_motor;
       return type;

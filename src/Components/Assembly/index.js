@@ -93,6 +93,7 @@ class Assembly extends Component {
       light: "",
       gesture: "",
       distance: "",
+      shield: false,
     };
 
     window.addEventListener("load", async (e) => {
@@ -843,6 +844,9 @@ class Assembly extends Component {
     }
     return node;
   };
+  setShield = (e) => {
+    this.setState({ shield: e });
+  };
   removeFromWorkspace = (item) => {
     console.log("workspace remove", item);
     var prev_data = this.props;
@@ -1488,7 +1492,11 @@ class Assembly extends Component {
           </button> */}
 
           <div className="pure-u-1-5 user-select" style={{ marginTop: "5%" }}>
-            <Sidebar removeFromWorkspace={this.removeFromWorkspace} />
+            <Sidebar
+              removeFromWorkspace={this.removeFromWorkspace}
+              shield={this.state.shield}
+              setShield={this.setShield}
+            />
           </div>
 
           <div id="screenshotid" className="pure-u-4-5">
@@ -1527,6 +1535,8 @@ class Assembly extends Component {
                 gas={this.state.gas}
                 one={this.state.one}
                 two={this.state.two}
+                shield={this.state.shield}
+                setShield={this.setShield}
               />
             </div>
           </div>
@@ -1543,6 +1553,8 @@ class Assembly extends Component {
             width={this.props.width}
             workspace={this.props.assembly.workspace}
             PortConnections={this.props.assembly.PortConnections}
+            shield={this.state.shield}
+            setShield={this.setShield}
           />
           {this.state.readbytes ? (
             <img

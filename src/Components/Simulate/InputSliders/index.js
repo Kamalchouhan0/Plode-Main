@@ -221,9 +221,9 @@ function InputSlider(props) {
   for (const [key, value] of Object.entries(assembly.PortConnections)) {
     console.log(key, value);
     if (value != null) {
-      let range =
-        PortValuesRangeMapping[key][assembly.PortConnections[key].type]();
-      console.log("range", assembly.PortConnections[key].type, range);
+      //   let range =
+      //     PortValuesRangeMapping[key][assembly.PortConnections[key].type]();
+      //   console.log("range", assembly.PortConnections[key].type, range);
     }
     if (key == "A1" && value != null) {
       if (

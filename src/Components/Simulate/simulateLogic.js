@@ -726,7 +726,7 @@ class SimulateLogic extends Component {
   render = () => {
     // As according to app approx 11.5 hexagons in a row in the display
 
-    defaultScale = SizesHelper.width / (11.5 * Sizes.xdiff);
+    defaultScale = SizesHelper.width / (19 * Sizes.xdiff);
     const { program, scale, offset, currentProgramGuide, active } =
       this.props.logic;
     var { bottomPanel } = this.props.logic;

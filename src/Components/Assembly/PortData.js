@@ -42,7 +42,6 @@ function Ports(port) {
       case "A":
         return data.A;
       case "A1":
-        console.log("portA1", data.A1);
         return data.A1;
       case "A2":
         return data.A2;

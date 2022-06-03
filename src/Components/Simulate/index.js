@@ -14,6 +14,7 @@ import SimulatePrgm from "../ReusableComponents/PrgmSlider/SimulatePrgm/Simulate
 import CustomNodeFlow from "./DnD/Index";
 import CustomNodeFlowHumanoid from "./DnDHumanoid/Index";
 import SimulateLogic from "./simulateLogic";
+import InputSlider from "./InputSliders/index";
 
 var loopProgram = "",
   loopcount = 0,
@@ -1589,7 +1590,7 @@ class Simulate extends Component {
             }}
           >
             {" "}
-            {/* <InputSlider props={this.props}></InputSlider> */}
+            <InputSlider props={this.props}></InputSlider>
           </div>
 
           {/* Assembly scrren for the simulation screen */}
