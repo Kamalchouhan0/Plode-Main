@@ -1064,7 +1064,18 @@ class Workspace extends Component {
           type == "mini_geared_motor" ||
           type == "geared_motor"
         ) {
-          if (component.connectedTo) {
+          if (component.connectedTo == "M3") {
+            PortConnections["M3"] = {
+              type,
+              index,
+              signalType: SensorObj.signalType,
+            };
+            PortConnections["M4"] = {
+              type,
+              index,
+              signalType: SensorObj.signalType,
+            };
+          } else if (component.connectedTo) {
             PortConnections[component.connectedTo[0] + "1"] = {
               type,
               index,

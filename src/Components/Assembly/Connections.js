@@ -190,6 +190,10 @@ class Curve extends Component {
                   LeftF = component.left + 28;
                   TopF = component.top + 6;
                 }
+                if (component.connectedTo == "A" && this.props.shield == true) {
+                  LeftF = component.left - 60;
+                  TopF = component.top - 248;
+                }
               }
             });
           }
@@ -202,7 +206,10 @@ class Curve extends Component {
                 this.props.componentName != "servo_motor" &&
                 this.props.componentName != "servo_motor_360"
               ) {
-                if (PortConnections.A == null) {
+                if (
+                  PortConnections.A == null &&
+                  sessionStorage.getItem("dragingItem") != "dual_splitter"
+                ) {
                   if (connectedTo == "A1") {
                     LeftF = bibox.left;
                     TopF = bibox.top;
@@ -322,6 +329,10 @@ class Curve extends Component {
                   LeftF = component.left + 28;
                   TopF = component.top + 6;
                 }
+                if (component.connectedTo == "D" && this.props.shield == true) {
+                  LeftF = component.left - 168;
+                  TopF = component.top - 314;
+                }
               }
             });
           }
@@ -333,8 +344,12 @@ class Curve extends Component {
                 this.props.componentName == "servo_motor_360"
               ) {
                 if (connectedTo == "D1" || connectedTo == "D2") {
-                  LeftF = bibox.left;
-                  TopF = bibox.top;
+                  if (
+                    sessionStorage.getItem("dragingItem") != "dual_splitter"
+                  ) {
+                    LeftF = bibox.left;
+                    TopF = bibox.top;
+                  }
                 }
               }
             });
@@ -482,6 +497,10 @@ class Curve extends Component {
                   LeftF = component.left + 28;
                   TopF = component.top + 6;
                 }
+                if (component.connectedTo == "C" && this.props.shield == true) {
+                  LeftF = component.left - 100;
+                  TopF = component.top - 315;
+                }
               }
             });
           }
@@ -492,8 +511,12 @@ class Curve extends Component {
                 this.props.componentName == "servo_motor_360"
               ) {
                 if (connectedTo == "C1" || connectedTo == "C2") {
-                  LeftF = bibox.left;
-                  TopF = bibox.top;
+                  if (
+                    sessionStorage.getItem("dragingItem") != "dual_splitter"
+                  ) {
+                    LeftF = bibox.left;
+                    TopF = bibox.top;
+                  }
                 }
               }
             });
@@ -593,6 +616,10 @@ class Curve extends Component {
                   LeftF = component.left + 28;
                   TopF = component.top + 6;
                 }
+                if (component.connectedTo == "B" && this.props.shield == true) {
+                  LeftF = component.left - 240;
+                  TopF = component.top - 250;
+                }
               }
             });
           }
@@ -605,10 +632,7 @@ class Curve extends Component {
                 this.props.componentName != "servo_motor" &&
                 this.props.componentName != "servo_motor_360"
               ) {
-                if (
-                  JSON.parse(sessionStorage.getItem("assembly")).PortConnections
-                    .B == null
-                ) {
+                if (sessionStorage.getItem("dragingItem") != "dual_splitter") {
                   if (connectedTo == "B1") {
                     LeftF = bibox.left;
                     TopF = bibox.top;
@@ -2515,6 +2539,14 @@ class Connections extends Component {
                               Top = component.top + 5;
                               highlighted = true;
                             }
+                            if (
+                              component.connectedTo == "D" &&
+                              this.props.shield == true
+                            ) {
+                              Left = component.left - 168;
+                              Top = component.top - 314;
+                              highlighted = true;
+                            }
                           }
                         });
                       }
@@ -2701,6 +2733,14 @@ class Connections extends Component {
                               Top = component.top + 5;
                               highlighted = true;
                             }
+                            if (
+                              component.connectedTo == "C" &&
+                              this.props.shield == true
+                            ) {
+                              Left = component.left - 100;
+                              Top = component.top - 315;
+                              highlighted = true;
+                            }
                           }
                         });
                       }
@@ -2883,6 +2923,14 @@ class Connections extends Component {
                             if (component.connectedTo == "B") {
                               Left = component.left + 28;
                               Top = component.top + 5;
+                              highlighted = true;
+                            }
+                            if (
+                              component.connectedTo == "B" &&
+                              this.props.shield == true
+                            ) {
+                              Left = component.left - 240;
+                              Top = component.top - 250;
                               highlighted = true;
                             }
                           }
@@ -3076,6 +3124,14 @@ class Connections extends Component {
                             if (component.connectedTo == "A") {
                               Left = component.left + 28;
                               Top = component.top + 5;
+                              highlighted = true;
+                            }
+                            if (
+                              component.connectedTo == "A" &&
+                              this.props.shield == true
+                            ) {
+                              Left = component.left - 60;
+                              Top = component.top - 248;
                               highlighted = true;
                             }
                           }
