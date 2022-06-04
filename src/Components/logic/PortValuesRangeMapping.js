@@ -40,6 +40,74 @@ export default PortValuesRangeMapping = {
       return { min: -20, max: 20 };
     },
   },
+  M1: {
+    geared_motor: function (port) {
+      return { min: 0, max: 1 };
+    },
+    mini_geared_motor: function (port) {
+      return { min: 0, max: 1 };
+    },
+    dc_motor: function (port) {
+      return { min: 0, max: 1 };
+    },
+    relay: function (port) {
+      return { min: -20, max: 20 };
+    },
+    electromagnet: function (port) {
+      return { min: -20, max: 20 };
+    },
+  },
+  M2: {
+    geared_motor: function (port) {
+      return { min: 0, max: 1 };
+    },
+    mini_geared_motor: function (port) {
+      return { min: 0, max: 1 };
+    },
+    dc_motor: function (port) {
+      return { min: 0, max: 1 };
+    },
+    relay: function (port) {
+      return { min: -20, max: 20 };
+    },
+    electromagnet: function (port) {
+      return { min: -20, max: 20 };
+    },
+  },
+  M3: {
+    geared_motor: function (port) {
+      return { min: 0, max: 1 };
+    },
+    mini_geared_motor: function (port) {
+      return { min: 0, max: 1 };
+    },
+    dc_motor: function (port) {
+      return { min: 0, max: 1 };
+    },
+    relay: function (port) {
+      return { min: -20, max: 20 };
+    },
+    electromagnet: function (port) {
+      return { min: -20, max: 20 };
+    },
+  },
+  M4: {
+    geared_motor: function (port) {
+      return { min: 0, max: 1 };
+    },
+    mini_geared_motor: function (port) {
+      return { min: 0, max: 1 };
+    },
+    dc_motor: function (port) {
+      return { min: 0, max: 1 };
+    },
+    relay: function (port) {
+      return { min: -20, max: 20 };
+    },
+    electromagnet: function (port) {
+      return { min: -20, max: 20 };
+    },
+  },
   A: {
     joystick: function (port) {
       return { min: 0, max: 1024 };
@@ -1111,7 +1179,14 @@ export default PortValuesRangeMapping = {
   },
   F2: {
     led: function (port) {
-      return { min: 0, max: 1 };
+      return { min: 0, max: 100 };
+    },
+    led_1c: function (port) {
+      if (sessionStorage.getItem("connectedDevice") == "Ace") {
+        return { min: 0, max: 100 };
+      } else {
+        return { min: 0, max: 100 };
+      }
     },
     laser: function (port) {
       return { min: 0, max: 1 };
@@ -1188,7 +1263,14 @@ export default PortValuesRangeMapping = {
       return { min: 0, max: 180 };
     },
     led: function (port) {
-      return { min: 0, max: 65535 };
+      return { min: 0, max: 100 };
+    },
+    led_1c: function (port) {
+      if (sessionStorage.getItem("connectedDevice") == "Ace") {
+        return { min: 0, max: 100 };
+      } else {
+        return { min: 0, max: 100 };
+      }
     },
     laser: function (port) {
       return { min: 0, max: 1 };
@@ -1265,7 +1347,14 @@ export default PortValuesRangeMapping = {
       return { min: 0, max: 180 };
     },
     led: function (port) {
-      return { min: 0, max: 65535 };
+      return { min: 0, max: 100 };
+    },
+    led_1c: function (port) {
+      if (sessionStorage.getItem("connectedDevice") == "Ace") {
+        return { min: 0, max: 100 };
+      } else {
+        return { min: 0, max: 100 };
+      }
     },
     laser: function (port) {
       return { min: 0, max: 1 };
@@ -1337,7 +1426,14 @@ export default PortValuesRangeMapping = {
 
   E2: {
     led: function (port) {
-      return { min: 0, max: 1 };
+      return { min: 0, max: 100 };
+    },
+    led_1c: function (port) {
+      if (sessionStorage.getItem("connectedDevice") == "Ace") {
+        return { min: 0, max: 100 };
+      } else {
+        return { min: 0, max: 100 };
+      }
     },
     laser: function (port) {
       return { min: 0, max: 1 };
@@ -1408,7 +1504,14 @@ export default PortValuesRangeMapping = {
   },
   E1: {
     led: function (port) {
-      return { min: 0, max: 1 };
+      return { min: 0, max: 100 };
+    },
+    led_1c: function (port) {
+      if (sessionStorage.getItem("connectedDevice") == "Ace") {
+        return { min: 0, max: 100 };
+      } else {
+        return { min: 0, max: 100 };
+      }
     },
     laser: function (port) {
       return { min: 0, max: 1 };
@@ -1482,7 +1585,14 @@ export default PortValuesRangeMapping = {
       return { min: 0, max: 225 };
     },
     led: function (port) {
-      return { min: 0, max: 1 };
+      return { min: 0, max: 100 };
+    },
+    led_1c: function (port) {
+      if (sessionStorage.getItem("connectedDevice") == "Ace") {
+        return { min: 0, max: 100 };
+      } else {
+        return { min: 0, max: 100 };
+      }
     },
     laser: function (port) {
       return { min: 0, max: 1 };

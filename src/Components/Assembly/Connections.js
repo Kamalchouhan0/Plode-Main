@@ -2135,7 +2135,7 @@ class Connections extends Component {
   render() {
     const { bibox, components, extraComponent, Camera, PortConnections } =
       this.props;
-    //console.log("konektion", this.props);
+    console.log("konektion", this.props);
     console.log("port", Ports("A1"));
     let connectedDevice = sessionStorage.getItem("connectedDevice");
 

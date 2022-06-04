@@ -229,7 +229,7 @@ var IsOverPort = function (
     // led :[a,b,c,d.....]
     AllowedPortTypesTutor[component.type].some((portType) => {
       // A,B,C,D......
-      //console.log("motortest", PortTypes[portType]["ports"]);
+      console.log("motortest", PortTypes[portType]["ports"]);
       return PortTypes[portType]["ports"].some((port) => {
         if (PortConnections[port]) {
           // ABCD
