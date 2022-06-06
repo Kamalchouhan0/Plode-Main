@@ -359,6 +359,21 @@ class Workspace extends Component {
               PortConnections[component.connectedTo] = { type, index };
             }
           }
+        } else if (type == "dual_splitter") {
+          if (component.connectedTo) {
+            if (
+              component.connectedTo == "A" ||
+              component.connectedTo == "B" ||
+              component.connectedTo == "C" ||
+              component.connectedTo == "D"
+            ) {
+              PortConnections[component.connectedTo] = {
+                type,
+                index,
+                signalType: SensorObj.signalType,
+              };
+            }
+          }
         } else if (type == "dip_switch") {
           if (component.connectedTo) {
             if (
@@ -687,6 +702,21 @@ class Workspace extends Component {
               };
             } else {
               PortConnections[component.connectedTo] = { type, index };
+            }
+          }
+        } else if (type == "dual_splitter") {
+          if (component.connectedTo) {
+            if (
+              component.connectedTo == "A" ||
+              component.connectedTo == "B" ||
+              component.connectedTo == "C" ||
+              component.connectedTo == "D"
+            ) {
+              PortConnections[component.connectedTo] = {
+                type,
+                index,
+                signalType: SensorObj.signalType,
+              };
             }
           }
         } else if (type == "dip_switch") {
@@ -1236,6 +1266,19 @@ class Workspace extends Component {
               }
             }
           }
+        } else if (type == "dual_splitter") {
+          if (
+            component.connectedTo == "A" ||
+            component.connectedTo == "B" ||
+            component.connectedTo == "C" ||
+            component.connectedTo == "D"
+          ) {
+            PortConnections[component.connectedTo] = {
+              type,
+              index,
+              signalType: SensorObj.signalType,
+            };
+          }
         } else if (component.connectedTo) {
           if (
             type != "ultrasonic_sensor" &&
@@ -1399,51 +1442,6 @@ class Workspace extends Component {
             </div>
           );
         })}
-
-        {localStorage.getItem("programMode") == "learn" ? (
-          <div
-            style={{
-              height: "10%",
-              width: "65%",
-              border: "2px solid #bed5fa",
-              backgroundColor: "white",
-              borderRadius: "20px",
-              bottom: "3%",
-              left: "10%",
-              position: "inherit",
-            }}
-          >
-            <h3 style={{ marginLeft: "20px", marginTop: "2px" }}>
-              {Object.entries(this.state.tutorialDesc).map(([key, value]) => {
-                if (PortConnections[key]) {
-                  if (PortConnections[key].type == value) {
-                  }
-                } else {
-                  if (count == 0) {
-                    count++;
-                    this.props.nextVisbility("hidden");
-                    return (
-                      <div>
-                        {" "}
-                        Drag &amp; connect {value} to {key} port
-                      </div>
-                    );
-                  }
-                }
-              })}
-              {count == 0 ? (
-                <p>
-                  {this.props.nextVisbility("visible")}
-                  <div>Click on next</div>
-                </p>
-              ) : (
-                ""
-              )}
-            </h3>
-          </div>
-        ) : (
-          <div> </div>
-        )}
       </div>
     );
   }

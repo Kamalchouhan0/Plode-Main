@@ -16,6 +16,7 @@ const cardSource = {
   endDrag: () => {
     DraggingInfo.isDragging = false;
     DraggingInfo.newComponentPort = null;
+    sessionStorage.setItem("dragingItem", null);
   },
 };
 
