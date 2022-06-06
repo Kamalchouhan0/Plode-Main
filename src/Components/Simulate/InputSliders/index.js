@@ -265,7 +265,8 @@ function InputSlider(props) {
         assembly.PortConnections[key].type == "led" ||
         assembly.PortConnections[key].type == "laser" ||
         assembly.PortConnections[key].type == "led_1c" ||
-        assembly.PortConnections[key].type == "RGB"
+        assembly.PortConnections[key].type == "RGB" ||
+        assembly.PortConnections[key].type == "mp3"
       ) {
         b1State = false;
       } else {
@@ -313,7 +314,8 @@ function InputSlider(props) {
       if (
         assembly.PortConnections[key].type == "led" ||
         assembly.PortConnections[key].type == "laser" ||
-        assembly.PortConnections[key].type == "led_1c"
+        assembly.PortConnections[key].type == "led_1c" ||
+        assembly.PortConnections[key].type == "OLED"
       ) {
         d1State = false;
       } else {
