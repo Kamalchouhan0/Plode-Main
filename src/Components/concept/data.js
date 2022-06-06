@@ -82,14 +82,14 @@ if (componentType == "Ace") {
       color: "#15909d",
       name: "servo motor 360",
     },
-    {
-      type: "dual_splitter",
-      description:
-        "Motor Driver: Splits a single two channel port into two single channel port and allows connections to different types of motors.",
+    // {
+    //   type: "dual_splitter",
+    //   description:
+    //     "Motor Driver: Splits a single two channel port into two single channel port and allows connections to different types of motors.",
 
-      color: "#15909d",
-      name: "dual splitter",
-    },
+    //   color: "#15909d",
+    //   name: "dual splitter",
+    // },
     // {
     //   type: "pc_motor_driver",
     //   description:
@@ -259,13 +259,13 @@ if (componentType == "Ace") {
     //   name: "General Sensor",
     //   signalType: "analog",
     // },
-    {
-      type: "play_shield",
-      description: "Play Shield description goes here",
-      color: "#15909d",
-      name: "Play Shield",
-      signalType: "null",
-    },
+    // {
+    //   type: "play_shield",
+    //   description: "Play Shield description goes here",
+    //   color: "#15909d",
+    //   name: "Play Shield",
+    //   signalType: "null",
+    // },
     // NEW UI DATA LASER,LED,RANGE,9-Axis,Rotatory,touchSwitch,Temp-dew,button,light,temp-gas,ultrasonice,RGBled,DOTmatrix
 
     // {
