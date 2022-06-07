@@ -18,7 +18,7 @@ import unicodeToChar from "../../utils/unicodeToChar";
 import AssemblyPrgm from "../ReusableComponents/PrgmSlider/AssemblyPrgm/AssemblyPrgm";
 import { activeCheckBox } from "./CheckboxData";
 import CustomDragLayer from "./CustomDragLayer";
-
+import * as atatus from "atatus-spa";
 var zooming;
 var oldDeltaX, oldDeltaY, panning;
 const history = createBrowserHistory();
@@ -725,6 +725,7 @@ class Assembly extends Component {
   };
 
   async componentDidMount() {
+    atatus.beginTransaction("Assembly Screen");
     let sessionDataCheckbox = JSON.parse(
       sessionStorage.getItem("assemblyCheckbox")
     );
@@ -1123,6 +1124,7 @@ class Assembly extends Component {
   };
 
   componentWillUnmount() {
+    atatus.endTransaction("Assembly Screen");
     this.screenshotInitiate();
   }
   screenshotInitiate = () => {
