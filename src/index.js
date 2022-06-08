@@ -48,20 +48,18 @@ ReactDOM.render(
   <BrowserRouter>
     <Provider store={store}>
       {/* <React.StrictMode> */}
-      {supportedBrowser ? (
-        isMobile ? (
-          window.alert(
-            "Kindly head over to your PlayStore/AppStore to download the Plode app"
+      {isMobile
+        ? window.alert(
+            "If you would like to connect the hardware kindly use this website on a Desktop/Laptop or download the Plode App from the PlayStore/AppStore"
           )
-        ) : (
-          <App></App>
-        )
+        : null}{" "}
+      {supportedBrowser ? (
+        <App></App>
       ) : (
         window.alert(
           "Kindly use the latest version of Google Chrome or Microsoft Edge to view this website"
         )
       )}
-
       {/* </React.StrictMode> */}
     </Provider>
   </BrowserRouter>,
