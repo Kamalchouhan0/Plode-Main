@@ -232,7 +232,7 @@ class App extends Component {
 
           {/* <Route path="/Concept" component={CenterMode} /> */}
           <Route path="/logic" component={Logic} />
-          <Route path="/Loading" component={Load}></Route>
+          <Route path="/Learn" component={Load}></Route>
           <Route path="/Learn" component={Learn} />
           <Route path="/Program" component={Learn} />
           <Route path="/concepthelp" component={ConceptHelp} />
