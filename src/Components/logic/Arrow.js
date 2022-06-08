@@ -31,7 +31,7 @@ var Arrow = createReactClass({
             : "") +
           "translate(-17,-14)"
         }
-        fill={color}
+        fill={rotated != true && color != "#3FD0C1" ? "#039486" : color}
         stroke="none"
         // stroke={rotated && color != "#3FD0C1" ? "#000000" : "none"}
         strokeWidth="2"
