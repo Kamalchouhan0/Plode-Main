@@ -40,6 +40,7 @@ const componentSource = {
     DraggingInfo.isDragging = false;
     DraggingInfo.draggingComponentOld = null;
     DraggingInfo.newComponentPort = null;
+    sessionStorage.setItem("dragingItem", null);
   },
 };
 function collect(connect, monitor) {

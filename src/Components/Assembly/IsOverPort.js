@@ -253,12 +253,16 @@ var IsOverPort = function (
         } else if (
           port == "C" &&
           (internalAccessoriesData.isTouchTwo == true ||
-            internalAccessoriesData.isTouchTwoOutput == true)
+            internalAccessoriesData.isTouchTwoOutput == true ||
+            PortConnections["C1"] != null ||
+            PortConnections["C2"] != null)
         ) {
           return false;
         } else if (
           port == "D" &&
-          internalAccessoriesData.isFour_in_one_sensor == true
+          (internalAccessoriesData.isFour_in_one_sensor == true ||
+            PortConnections["D1"] != null ||
+            PortConnections["D2"] != null)
         ) {
           return false;
         }
@@ -327,8 +331,14 @@ var IsOverPort = function (
                   LeftPort = componentConnected.left;
                   TopPort = componentConnected.top;
 
-                  l = Ports(port)[0] + bibox.left;
-                  t = Ports(port)[1] + bibox.top;
+                  if (port == "A1") {
+                    l = Ports(port)[0] + bibox.left;
+                    t = Ports(port)[1] + bibox.top;
+                  }
+                  if (port == "A2") {
+                    l = Ports(port)[0] + bibox.left;
+                    t = Ports(port)[1] + bibox.top;
+                  }
                 }
               );
             }
@@ -494,13 +504,15 @@ var IsOverPort = function (
                 (componentConnected, index) => {
                   LeftPort = componentConnected.left;
                   TopPort = componentConnected.top;
-                  if (port == "D1") {
-                    l = Ports(port)[0] + bibox.left;
-                    t = Ports(port)[1] + bibox.top;
-                  }
-                  if (port == "D2") {
-                    l = Ports(port)[0] + bibox.left + 100;
-                    t = Ports(port)[1] + bibox.top;
+                  if (PortConnections.D == null) {
+                    if (port == "D1") {
+                      l = Ports(port)[0] + bibox.left;
+                      t = Ports(port)[1] + bibox.top;
+                    }
+                    if (port == "D2") {
+                      l = Ports(port)[0] + bibox.left + 100;
+                      t = Ports(port)[1] + bibox.top;
+                    }
                   }
                 }
               );
@@ -646,9 +658,10 @@ var IsOverPort = function (
                 (componentConnected, index) => {
                   LeftPort = componentConnected.left;
                   TopPort = componentConnected.top;
-
-                  l = Ports(port)[0] + bibox.left;
-                  t = Ports(port)[1] + bibox.top;
+                  if (PortConnections.C == null) {
+                    l = Ports(port)[0] + bibox.left;
+                    t = Ports(port)[1] + bibox.top;
+                  }
                 }
               );
             }

@@ -33,9 +33,12 @@ var Arrow = createReactClass({
         }
         fill={color}
         stroke="none"
+        // stroke={rotated && color != "#3FD0C1" ? "#000000" : "none"}
+        strokeWidth="2"
       >
         <polygon points="0,9 20,9 20,0 34,14 20,28 20,19 0,19" />
         <polyline
+          //stroke={rotated && color != "#3FD0C1" ? "none" : "white"}
           stroke="white"
           strokeWidth="1"
           fill="none"
