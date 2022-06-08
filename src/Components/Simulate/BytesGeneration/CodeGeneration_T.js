@@ -1380,6 +1380,10 @@ function genCodeString(logicComponents) {
                     portByteSelected == "TouchOne" ||
                     portByteSelected == "TouchTwo" ||
                     portByteSelected == "Mp3" ||
+                    portByteSelected == "M1" ||
+                    portByteSelected == "M2" ||
+                    portByteSelected == "M3" ||
+                    portByteSelected == "M4" ||
                     // humanoid
                     portByteSelected == "Attention" ||
                     portByteSelected == "Forward" ||

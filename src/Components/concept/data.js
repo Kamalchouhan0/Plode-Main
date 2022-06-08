@@ -90,6 +90,13 @@ if (componentType == "Ace") {
       color: "#15909d",
       name: "dual splitter",
     },
+    {
+      type: "play_shield",
+      description: "Play Shield description goes here",
+      color: "#15909d",
+      name: "Play Shield",
+      signalType: "null",
+    },
     // {
     //   type: "pc_motor_driver",
     //   description:
@@ -255,13 +262,7 @@ if (componentType == "Ace") {
     //   name: "General Sensor",
     //   signalType: "analog",
     // },
-    {
-      type: "play_shield",
-      description: "Play Shield description goes here",
-      color: "#15909d",
-      name: "Play Shield",
-      signalType: "null",
-    },
+
     // NEW UI DATA LASER,LED,RANGE,9-Axis,Rotatory,touchSwitch,Temp-dew,button,light,temp-gas,ultrasonice,RGBled,DOTmatrix
 
     // {
