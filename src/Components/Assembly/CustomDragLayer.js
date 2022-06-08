@@ -89,7 +89,8 @@ class CustomDragLayer extends Component {
     var url;
     let Device = sessionStorage.getItem("connectedDevice");
     const { scale } = this.props.workspace;
-    const { left, top } = this.props.workspace.bibox;
+    var { left, top } = this.props.workspace.bibox;
+    console.log("customDragAce", type);
     if (type === ItemTypes.BIBOX && Device == "Ace") {
       // url = "images/login/pc_1.png";
       if (sessionStorage.getItem("shield") == "false") {
@@ -107,6 +108,7 @@ class CustomDragLayer extends Component {
         );
       } else if (sessionStorage.getItem("shield") == "true") {
         url = renderPrgImage("PlayComputerwithShieldImg");
+
         return (
           <img
             style={{
@@ -116,10 +118,9 @@ class CustomDragLayer extends Component {
               width: "20%",
               left,
               top,
+              marginLeft: "50px",
             }}
             src={url}
-            width={ImageSizes[type][0] * scale}
-            height={ImageSizes[type][1] * scale}
           />
         );
       }

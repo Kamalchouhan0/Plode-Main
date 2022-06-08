@@ -1299,6 +1299,23 @@ class Workspace extends Component {
               signalType: SensorObj.signalType,
             };
           }
+        } else if (
+          type == "dc_motor" ||
+          type == "mini_geared_motor" ||
+          type == "geared_motor"
+        ) {
+          if (component.connectedTo) {
+            PortConnections[component.connectedTo[0] + "1"] = {
+              type,
+              index,
+              signalType: SensorObj.signalType,
+            };
+            PortConnections[component.connectedTo[0] + "2"] = {
+              type,
+              index,
+              signalType: SensorObj.signalType,
+            };
+          }
         } else if (component.connectedTo) {
           if (
             type != "ultrasonic_sensor" &&
@@ -1431,6 +1448,9 @@ class Workspace extends Component {
           return (
             <div key={key}>
               {components[key].map((component, index) => {
+                if (component == null) {
+                  return null;
+                }
                 const { left, top, connectedTo } = component;
                 return (
                   <Component1

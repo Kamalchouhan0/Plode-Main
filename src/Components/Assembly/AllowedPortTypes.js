@@ -253,7 +253,7 @@ if (Device == "Ace" && shield == "true") {
       "C2",
       "B2",
       "D2",
-      "E",
+
       // "E1","E2",
       "F",
       "F1",

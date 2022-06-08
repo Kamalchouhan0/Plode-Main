@@ -18,6 +18,7 @@ import unicodeToChar from "../../utils/unicodeToChar";
 import AssemblyPrgm from "../ReusableComponents/PrgmSlider/AssemblyPrgm/AssemblyPrgm";
 import { activeCheckBox } from "./CheckboxData";
 import CustomDragLayer from "./CustomDragLayer";
+import { remove } from "immutable";
 
 var zooming;
 var oldDeltaX, oldDeltaY, panning;
@@ -848,7 +849,7 @@ class Assembly extends Component {
     this.setState({ shield: e });
   };
   removeFromWorkspace = (item) => {
-    console.log("workspace remove", item);
+    console.log("workspace remove", this.props.assembly.workspace.components);
     var prev_data = this.props;
     var port = item.port;
     var updated_prog = this.ParseNodeList(
@@ -856,6 +857,7 @@ class Assembly extends Component {
       port,
       item.type
     );
+    var { components } = this.props.assembly.workspace;
     // var updated_flow_prog1 = this.ParseNodeList(prev_data.logicNew.cardConnections, port, item.type);
     // var updated_flow_prog2 = this.ParseNodeList(prev_data.logicNew.cards, port, item.type);
     prev_data.logic.program = updated_prog;
@@ -867,30 +869,6 @@ class Assembly extends Component {
 
       let sdad = JSON.parse(sessionStorage.getItem("assembly")).workspace
         .components;
-
-      // if (
-      //   JSON.parse(sessionStorage.getItem("assembly")).workspace.components[
-      //     "pc_motor_driver"
-      //   ] !== undefined
-      // ) {
-      //   if (
-      //     JSON.parse(sessionStorage.getItem("assembly")).workspace.components[
-      //       "pc_motor_driver"
-      //     ][0].connectedTo
-      //   ) {
-      //     var dataConnectTo = JSON.parse(sessionStorage.getItem("assembly"))
-      //       .workspace.components["pc_motor_driver"][0].connectedTo;
-      //     if (dataConnectTo == "A" || dataConnectTo == "C") {
-      //       prev_data.assembly.PortConnections["C"] = null;
-      //       prev_data.assembly.PortConnections["A"] = null;
-      //     }
-
-      //     if (dataConnectTo == "B" || dataConnectTo == "D") {
-      //       prev_data.assembly.PortConnections["B"] = null;
-      //       prev_data.assembly.PortConnections["D"] = null;
-      //     }
-      //   }
-      // }
 
       if (item.type == "pc_motor_driver") {
         if (item.connectedTo == "A" || item.connectedTo == "C") {
@@ -937,25 +915,214 @@ class Assembly extends Component {
           }
         }
       } else if (item.type == "dual_splitter") {
-        if (item.connectedTo == "A") {
+        if (item.port == "A") {
           prev_data.assembly.PortConnections["A"] = null;
           prev_data.assembly.PortConnections["A1"] = null;
           prev_data.assembly.PortConnections["A2"] = null;
+          for (const [key, value] of Object.entries(components)) {
+            for (const [innerKey, innerValue] of Object.entries(value)) {
+              if (
+                innerValue.connectedTo == "A1" ||
+                innerValue.connectedTo == "A2"
+              ) {
+                let itemrecurse = {
+                  type: key,
+                  port: components[key][innerKey].connectedTo,
+                };
+                this.removeFromWorkspace(itemrecurse);
+              }
+            }
+          }
         }
-        if (item.connectedTo == "B") {
+        if (item.port == "B") {
           prev_data.assembly.PortConnections["B"] = null;
           prev_data.assembly.PortConnections["B1"] = null;
           prev_data.assembly.PortConnections["B2"] = null;
+          for (const [key, value] of Object.entries(components)) {
+            for (const [innerKey, innerValue] of Object.entries(value)) {
+              if (
+                innerValue.connectedTo == "B1" ||
+                innerValue.connectedTo == "B2"
+              ) {
+                let itemrecurse = {
+                  type: key,
+                  port: components[key][innerKey].connectedTo,
+                };
+                this.removeFromWorkspace(itemrecurse);
+              }
+            }
+          }
         }
-        if (item.connectedTo == "C") {
+        if (item.port == "C") {
           prev_data.assembly.PortConnections["C"] = null;
           prev_data.assembly.PortConnections["C1"] = null;
           prev_data.assembly.PortConnections["C2"] = null;
+          for (const [key, value] of Object.entries(components)) {
+            for (const [innerKey, innerValue] of Object.entries(value)) {
+              if (
+                innerValue.connectedTo == "C1" ||
+                innerValue.connectedTo == "C2"
+              ) {
+                let itemrecurse = {
+                  type: key,
+                  port: components[key][innerKey].connectedTo,
+                };
+                this.removeFromWorkspace(itemrecurse);
+              }
+            }
+          }
         }
-        if (item.connectedTo == "D") {
+        if (item.port == "D") {
           prev_data.assembly.PortConnections["D"] = null;
           prev_data.assembly.PortConnections["D1"] = null;
           prev_data.assembly.PortConnections["D2"] = null;
+          for (const [key, value] of Object.entries(components)) {
+            for (const [innerKey, innerValue] of Object.entries(value)) {
+              if (
+                innerValue.connectedTo == "D1" ||
+                innerValue.connectedTo == "D2"
+              ) {
+                let itemrecurse = {
+                  type: key,
+                  port: components[key][innerKey].connectedTo,
+                };
+                this.removeFromWorkspace(itemrecurse);
+              }
+            }
+          }
+        }
+        if (item.port == "F") {
+          prev_data.assembly.PortConnections["F"] = null;
+          prev_data.assembly.PortConnections["F1"] = null;
+          prev_data.assembly.PortConnections["F2"] = null;
+          for (const [key, value] of Object.entries(components)) {
+            for (const [innerKey, innerValue] of Object.entries(value)) {
+              if (
+                innerValue.connectedTo == "F1" ||
+                innerValue.connectedTo == "F2"
+              ) {
+                let itemrecurse = {
+                  type: key,
+                  port: components[key][innerKey].connectedTo,
+                };
+                this.removeFromWorkspace(itemrecurse);
+              }
+            }
+          }
+        }
+      } else if (item.type == "play_shield") {
+        if (prev_data.assembly.PortConnections["A"] == null) {
+          prev_data.assembly.PortConnections["A1"] = null;
+          prev_data.assembly.PortConnections["A2"] = null;
+          for (const [key, value] of Object.entries(components)) {
+            for (const [innerKey, innerValue] of Object.entries(value)) {
+              if (
+                innerValue.connectedTo == "A1" ||
+                innerValue.connectedTo == "A2"
+              ) {
+                let itemrecurse = {
+                  type: key,
+                  port: components[key][innerKey].connectedTo,
+                };
+                this.removeFromWorkspace(itemrecurse);
+                // components[key][innerKey]
+              }
+            }
+          }
+        }
+        if (prev_data.assembly.PortConnections["B"] == null) {
+          prev_data.assembly.PortConnections["B1"] = null;
+          prev_data.assembly.PortConnections["B2"] = null;
+          for (const [key, value] of Object.entries(components)) {
+            for (const [innerKey, innerValue] of Object.entries(value)) {
+              if (
+                innerValue.connectedTo == "B1" ||
+                innerValue.connectedTo == "B2"
+              ) {
+                let itemrecurse = {
+                  type: key,
+                  port: components[key][innerKey].connectedTo,
+                };
+                this.removeFromWorkspace(itemrecurse);
+              }
+            }
+          }
+        }
+        if (prev_data.assembly.PortConnections["C"] == null) {
+          prev_data.assembly.PortConnections["C1"] = null;
+          prev_data.assembly.PortConnections["C2"] = null;
+          for (const [key, value] of Object.entries(components)) {
+            for (const [innerKey, innerValue] of Object.entries(value)) {
+              if (
+                innerValue.connectedTo == "C1" ||
+                innerValue.connectedTo == "C2"
+              ) {
+                let itemrecurse = {
+                  type: key,
+                  port: components[key][innerKey].connectedTo,
+                };
+                this.removeFromWorkspace(itemrecurse);
+              }
+            }
+          }
+        }
+        if (prev_data.assembly.PortConnections["D"] == null) {
+          prev_data.assembly.PortConnections["D1"] = null;
+          prev_data.assembly.PortConnections["D2"] = null;
+          for (const [key, value] of Object.entries(components)) {
+            for (const [innerKey, innerValue] of Object.entries(value)) {
+              if (
+                innerValue.connectedTo == "D1" ||
+                innerValue.connectedTo == "D2"
+              ) {
+                let itemrecurse = {
+                  type: key,
+                  port: components[key][innerKey].connectedTo,
+                };
+                this.removeFromWorkspace(itemrecurse);
+              }
+            }
+          }
+        }
+        if (prev_data.assembly.PortConnections["F"] == null) {
+          prev_data.assembly.PortConnections["F1"] = null;
+          prev_data.assembly.PortConnections["F2"] = null;
+          for (const [key, value] of Object.entries(components)) {
+            for (const [innerKey, innerValue] of Object.entries(value)) {
+              if (
+                innerValue.connectedTo == "F1" ||
+                innerValue.connectedTo == "F2"
+              ) {
+                let itemrecurse = {
+                  type: key,
+                  port: components[key][innerKey].connectedTo,
+                };
+                this.removeFromWorkspace(itemrecurse);
+              }
+            }
+          }
+        }
+        if (prev_data.assembly.PortConnections["M"] == null) {
+          prev_data.assembly.PortConnections["M1"] = null;
+          prev_data.assembly.PortConnections["M2"] = null;
+          prev_data.assembly.PortConnections["M3"] = null;
+          prev_data.assembly.PortConnections["M4"] = null;
+          for (const [key, value] of Object.entries(components)) {
+            for (const [innerKey, innerValue] of Object.entries(value)) {
+              if (
+                innerValue.connectedTo == "M1" ||
+                innerValue.connectedTo == "M2" ||
+                innerValue.connectedTo == "M4" ||
+                innerValue.connectedTo == "M3"
+              ) {
+                let itemrecurse = {
+                  type: key,
+                  port: components[key][innerKey].connectedTo,
+                };
+                this.removeFromWorkspace(itemrecurse);
+              }
+            }
+          }
         }
       } else if (
         item.type == "dc_motor" ||

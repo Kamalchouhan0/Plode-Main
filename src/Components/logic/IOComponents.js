@@ -70,5 +70,4 @@ const IOComponents = {
   OLED: { output: true, input: false },
   RGB: { output: true, input: false },
 };
-
-module.exports = IOComponents;
+export default IOComponents;
