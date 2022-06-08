@@ -7,7 +7,7 @@ import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import { browserName, browserVersion } from "react-device-detect";
+import { browserName, browserVersion, isMobile } from "react-device-detect";
 
 import { BrowserRouter, HashRouter } from "react-router-dom";
 import * as atatus from "atatus-spa";
@@ -49,7 +49,13 @@ ReactDOM.render(
     <Provider store={store}>
       {/* <React.StrictMode> */}
       {supportedBrowser ? (
-        <App />
+        isMobile ? (
+          window.alert(
+            "Kindly head over to your PlayStore/AppStore to download the Plode app"
+          )
+        ) : (
+          <App></App>
+        )
       ) : (
         window.alert(
           "Kindly use the latest version of Google Chrome or Microsoft Edge to view this website"
