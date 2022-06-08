@@ -93,7 +93,9 @@ const DeviceSelect = (props) => {
 
   useEffect(async () => {
     try {
-      const portList = await navigator.serial.getPorts();
+      const filter = [{ usbVendorId: 0x1a86, usbProductId: 0x7523 }];
+
+      const portList = await navigator.serial.getPorts({ filter });
 
       if (portList.length === 1) {
         console.log(portList, "Hardware connected");

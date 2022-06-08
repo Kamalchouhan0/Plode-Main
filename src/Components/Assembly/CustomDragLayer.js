@@ -92,7 +92,10 @@ class CustomDragLayer extends Component {
     const { left, top } = this.props.workspace.bibox;
     if (type === ItemTypes.BIBOX && Device == "Ace") {
       // url = "images/login/pc_1.png";
-      if (sessionStorage.getItem("shield") == "false") {
+      if (
+        sessionStorage.getItem("shield") == "false" ||
+        sessionStorage.getItem("shield") == null
+      ) {
         url = renderPrgImage("PlayComputerImg");
         return (
           <img
