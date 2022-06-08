@@ -7,13 +7,13 @@ import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import { browserName, browserVersion } from "react-device-detect";
+import { browserName, browserVersion, isMobile } from "react-device-detect";
 
 import { BrowserRouter, HashRouter } from "react-router-dom";
 import * as atatus from "atatus-spa";
 import $ from "jquery";
 
-atatus.config("bf5a70b588d943b2bcce5a4fc6558d42").install();
+atatus.config("58233b78a6cc477f9503096dfff86bb1").install();
 const store = createStore(
   allReducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ &&
@@ -48,14 +48,18 @@ ReactDOM.render(
   <BrowserRouter>
     <Provider store={store}>
       {/* <React.StrictMode> */}
+      {isMobile
+        ? window.alert(
+            "If you would like to connect the hardware kindly use this website on a Desktop/Laptop or download the Plode App from the PlayStore/AppStore"
+          )
+        : null}{" "}
       {supportedBrowser ? (
-        <App />
+        <App></App>
       ) : (
         window.alert(
           "Kindly use the latest version of Google Chrome or Microsoft Edge to view this website"
         )
       )}
-
       {/* </React.StrictMode> */}
     </Provider>
   </BrowserRouter>,
