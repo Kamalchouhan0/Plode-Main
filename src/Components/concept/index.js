@@ -819,7 +819,7 @@ class Content extends Component {
         <div
           style={{
             width: "17.5%",
-            height: "90%",
+            height: "100%",
             // border: "1px solid green",
             backgroundColor: "#F6F6F6",
             position: "absolute",

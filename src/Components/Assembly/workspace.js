@@ -973,6 +973,10 @@ class Workspace extends Component {
               index,
               signalType: SensorObj.signalType,
             };
+            PortConnections["A11"] = null;
+            PortConnections["A21"] = null;
+            PortConnections["B11"] = null;
+            PortConnections["B21"] = null;
           }
         } else if (type == "linear_pot") {
           if (component.connectedTo) {
@@ -1005,6 +1009,10 @@ class Workspace extends Component {
               index,
               signalType: SensorObj.signalType,
             };
+            PortConnections["A11"] = null;
+            PortConnections["A21"] = null;
+            PortConnections["B11"] = null;
+            PortConnections["B21"] = null;
           }
         } else if (type == "humidity") {
           if (component.connectedTo) {
@@ -1018,6 +1026,10 @@ class Workspace extends Component {
               index,
               signalType: SensorObj.signalType,
             };
+            PortConnections["A11"] = null;
+            PortConnections["A21"] = null;
+            PortConnections["B11"] = null;
+            PortConnections["B21"] = null;
           }
         } else if (type == "temperature_sensor") {
           if (component.connectedTo) {
@@ -1031,6 +1043,10 @@ class Workspace extends Component {
               index,
               signalType: SensorObj.signalType,
             };
+            PortConnections["A11"] = null;
+            PortConnections["A21"] = null;
+            PortConnections["B11"] = null;
+            PortConnections["B21"] = null;
           }
         } else if (type == "gas") {
           if (component.connectedTo) {
@@ -1044,6 +1060,10 @@ class Workspace extends Component {
               index,
               signalType: SensorObj.signalType,
             };
+            PortConnections["A11"] = null;
+            PortConnections["A21"] = null;
+            PortConnections["B11"] = null;
+            PortConnections["B21"] = null;
           }
         } else if (type == "RGB") {
           if (component.connectedTo) {
