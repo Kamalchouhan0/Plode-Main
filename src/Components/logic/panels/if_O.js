@@ -1030,6 +1030,11 @@ class IfPanel extends Component {
 
     var sourceOptionsOrder = [],
       sourceOptions = {};
+    sourceOptionsOrder.push("battery");
+    sourceOptions.battery = "Select Items";
+    if (this.props.state.source != "battery") {
+      sourceOptionsOrder.pop("battery");
+    }
     Object.keys(PortConnections).forEach((port) => {
       if (port != "undefined" && PortConnections[port]) {
         if (!PortConnections[port]) return;
@@ -1287,11 +1292,11 @@ class IfPanel extends Component {
       sourceOptions.remote = "BT Remote";
     }
 
-    sourceOptionsOrder.push("battery");
-    sourceOptions.battery = "Select Items";
-    if (this.props.state.source != "battery") {
-      sourceOptionsOrder.pop("battery");
-    }
+    // sourceOptionsOrder.push("battery");
+    // sourceOptions.battery = "Select Items";
+    // if (this.props.state.source != "battery") {
+    //   sourceOptionsOrder.pop("battery");
+    // }
 
     // sourceOptionsOrder.push('timeElapsed');
     // sourceOptions.timeElapsed = 'Time elapsed(sec)';
