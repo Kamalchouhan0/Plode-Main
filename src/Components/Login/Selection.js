@@ -36,7 +36,7 @@ function Selection(props) {
   const learnBtn = () => {
     // document.getElementById("Loadgni").style.opacity = 0.8;
     // window.location.assign("https://tinkerbunker.com/courses/play-computer/");
-    history.push("/Loading");
+    history.push("/Learn");
   };
 
   useEffect(() => {
