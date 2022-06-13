@@ -184,6 +184,16 @@ class CustomDragLayer extends Component {
           height={ImageSizes[type][1] * scale - 20}
         />
       );
+    } else if (item.type == "mp3") {
+      url = renderCompImg(item.type);
+      return (
+        <img
+          src={url}
+          style={{ position: "absolute", top: 20, left: 8.5 }}
+          width={ImageSizes[type][0] * scale}
+          height={ImageSizes[type][1] * scale - 20}
+        />
+      );
     } else {
       // url = "images/oldImages/component_" + item.type + ".png";
 

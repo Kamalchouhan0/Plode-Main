@@ -5,7 +5,7 @@ if (componentType == "Ace") {
     {
       type: "led_1c",
       description:
-        "Led 1c: It emits light when powered up, available in different colors",
+        "Led 1c: This is a 1 channel LED, emits light when powered up, available in different colors",
       color: "#15909d",
       name: "led 1c",
       signalType: "null",
@@ -13,7 +13,7 @@ if (componentType == "Ace") {
     {
       type: "led",
       description:
-        "Led 2c: It emits light when powered up, available in different colors",
+        "Led 2c: This is a 2 channel LED,which emits light when powered up, available in different colors",
       color: "#15909d",
       name: "led",
       signalType: "analog",
@@ -36,20 +36,22 @@ if (componentType == "Ace") {
     },
     {
       type: "mp3",
-      description: "MP3: Play Mp3 songs",
+      description:
+        "MP3: You can play songs using this module. Song selection can be controlled using PC",
       color: "#15909d",
       name: "mp3",
     },
     {
       type: "OLED",
-      description: "OLED: Dispay 3 lines of text on a display",
+      description:
+        "OLED display: This module can be used to display text or messages. upto 3 lines of text can be displayed",
       color: "#15909d",
       name: "OLED Display",
     },
     {
       type: "geared_motor",
       description:
-        "It is similar to DC motor, but with gears So it has more power to pull loads but lacks speed",
+        "Geared Motor: It is similar to DC motor, but with gears So it has more power to pull loads but lacks speed",
       color: "#15909d",
       name: "geared motor",
     },
@@ -85,8 +87,7 @@ if (componentType == "Ace") {
     {
       type: "dual_splitter",
       description:
-        "Motor Driver: Splits a single two channel port into two single channel port and allows connections to different types of motors.",
-
+        "Motor Bridge: This moodule is used to control DC motor or two Servo motors.It also splits a dual line port into two single line port.",
       color: "#15909d",
       name: "dual splitter",
     },
@@ -107,7 +108,8 @@ if (componentType == "Ace") {
     },
     {
       type: "dip_switch",
-      description: "DIP Switch: DIP description ",
+      description:
+        "DIP Switch: It is an input switch module with 2 slide switches for setting On/Off. ",
       color: "#ff8c19",
       name: "DIP switch",
       signalType: "digital",
@@ -130,14 +132,15 @@ if (componentType == "Ace") {
     {
       type: "touch_sensor",
       description:
-        "Touch Sensor: This is a button less switch, works on capacitive touch sensor",
+        "Touch Sensor: It is a touch enabled switch that works on capacitive touch interface",
       color: "#ff8c19",
       name: "touch sensor",
       signalType: "analog",
     },
     {
       type: "metal_detector",
-      description: "Metal Sensor: It detects metal upto 2cms distance",
+      description:
+        "Metal Sensor: This module can be used to detect metal objects around it. it detects at within 5cms range from the coil.",
       color: "#ff8c19",
       name: "Metal detector",
     },
@@ -186,7 +189,7 @@ if (componentType == "Ace") {
     {
       type: "temperature_sensor",
       description:
-        "Temperature:It is 2-in-1 sensor with temperature sensor on channel 1 and humidity on channel 2.",
+        "Temperature: This module can be used to detect temperature changes both hot and cold.",
       color: "#15909d",
       name: "Temp",
       signalType: "analog",
@@ -194,7 +197,7 @@ if (componentType == "Ace") {
     {
       type: "humidity",
       description:
-        "Humidity: It is used to detect the variations in water vapour(humidity) content in air.",
+        "Humidity: This module can detect increase in humidity in the atmosphere.",
       color: "#15909d",
       name: "humidity",
       signalType: "analog",
@@ -202,7 +205,7 @@ if (componentType == "Ace") {
     {
       type: "gas",
       description:
-        "Gas: It is used to detect variations in Alcohol or carbon monoxide levels in its environment.",
+        "Gas: This module can detect alcohol, VOC in air, smoke and natural gas in air.",
       color: "#15909d",
       name: "Gas",
       signalType: "analog",
@@ -224,14 +227,15 @@ if (componentType == "Ace") {
     },
     {
       type: "linear_pot",
-      description: "linear pot description",
+      description: "Linear pot: This is a linear motion detection sensor.",
       color: "#15909d",
       name: "Linear Pot",
       signalType: "analog",
     },
     {
       type: "extender",
-      description: "Extender: extender description",
+      description:
+        "Extender: This module can be used to connect any other 3v to 5v external sensor to the PC",
       color: "#15909d",
       name: "Extender",
       signalType: "analog",

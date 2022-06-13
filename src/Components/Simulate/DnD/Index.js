@@ -1017,7 +1017,12 @@ const CustomNodeFlow = ({ compo, img, assembly, updateState, indexChange }) => {
               alt=""
               nameComp={newArr[n]}
               id={`img_${port}`}
-              style={{ position: "absolute", top: "-33px", left: "-32px" }}
+              style={{
+                position: "absolute",
+                top: "-47px",
+                left: "9px",
+                rotate: "-30deg",
+              }}
             />
           </div>
         );
