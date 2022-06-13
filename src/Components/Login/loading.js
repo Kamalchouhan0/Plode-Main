@@ -8,7 +8,8 @@ function Load() {
   let history = useHistory();
   const [loading, setLoading] = useState(true);
   const gobackurl = () => {
-    window.location.assign("./Selection");
+    // window.location.assign("./Selection");
+    history.push("/Selection");
   };
 
   // useEffect(() => {
