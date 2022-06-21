@@ -100,7 +100,7 @@ const workspaceTarget = {
       else component.updateOldComponent(currentOffset.x, currentOffset.y);
     }
     if (item.type == "play_shield") {
-      window.location.reload(false); ///cheat to force react to re render
+      // window.location.reload(false); ///cheat to force react to re render
     }
   },
 };
@@ -226,6 +226,68 @@ class Workspace extends Component {
                 break;
               }
             }
+          }
+          if (
+            type == "linear_pot" ||
+            type == "temperature_sensor" ||
+            type == "humidity" ||
+            type == "gas" ||
+            type == "rain_sensor" ||
+            type == "pot" ||
+            type == "rotatory" ||
+            type == "tact_switch" ||
+            type == "touch_sensor" ||
+            type == "distance_sensor" ||
+            type == "light_sensor"
+          ) {
+            switch (component.connectedTo) {
+              case "A": {
+                PortConnections["A"] = { type, index };
+                PortConnections["A1"] = { type, index };
+                // PortConnections["A2"] = { type, index };
+                break;
+              }
+              case "B": {
+                PortConnections["B"] = { type, index };
+                PortConnections["B1"] = { type, index };
+                // PortConnections["B2"] = { type, index };
+                break;
+              }
+              case "C": {
+                PortConnections["C"] = { type, index };
+                PortConnections["C1"] = { type, index };
+                // PortConnections["C2"] = { type, index };
+                break;
+              }
+            }
+          }
+          if (
+            type == "metal_detector" ||
+            type == "joystick" ||
+            type == "dip_switch" ||
+            type == "extender" ||
+            type == "dual_switch"
+          ) {
+            switch (component.connectedTo) {
+              case "A": {
+                PortConnections["A"] = { type, index };
+                PortConnections["A1"] = { type, index };
+                PortConnections["A2"] = { type, index };
+                break;
+              }
+              case "B": {
+                PortConnections["B"] = { type, index };
+                PortConnections["B1"] = { type, index };
+                PortConnections["B2"] = { type, index };
+                break;
+              }
+              case "C": {
+                PortConnections["C"] = { type, index };
+                PortConnections["C1"] = { type, index };
+                PortConnections["C2"] = { type, index };
+                break;
+              }
+            }
           } else {
             PortConnections[component.connectedTo] = { type, index };
           }
@@ -273,6 +335,7 @@ class Workspace extends Component {
         let SensorObj = componentsDataSensor.find((o) => o.type === type);
         console.log(SensorObj);
         if (type == "led") {
+          console.log("led workspace new", component);
           if (component.connectedTo) {
             if (
               component.connectedTo == "A" ||
@@ -295,9 +358,11 @@ class Workspace extends Component {
                 index,
                 signalType: SensorObj.signalType,
               };
+            } else {
+              PortConnections[component.connectedTo] = { type, index };
             }
           }
-        } else if (type == "tact_switch_2c") {
+        } else if (type == "dip_switch") {
           if (component.connectedTo) {
             if (
               component.connectedTo == "A" ||
@@ -319,6 +384,92 @@ class Workspace extends Component {
                 index,
                 signalType: SensorObj.signalType,
               };
+            } else {
+              PortConnections[component.connectedTo] = { type, index };
+            }
+          }
+        } else if (type == "tact_switch") {
+          if (component.connectedTo) {
+            if (
+              component.connectedTo == "A" ||
+              component.connectedTo == "B" ||
+              component.connectedTo == "C"
+            ) {
+              PortConnections[component.connectedTo] = {
+                type,
+                index,
+                signalType: SensorObj.signalType,
+              };
+              PortConnections[`${component.connectedTo}1`] = {
+                type,
+                index,
+                signalType: SensorObj.signalType,
+              };
+            } else {
+              PortConnections[component.connectedTo] = { type, index };
+            }
+          }
+        } else if (type == "touch_sensor") {
+          if (component.connectedTo) {
+            if (
+              component.connectedTo == "A" ||
+              component.connectedTo == "B" ||
+              component.connectedTo == "C"
+            ) {
+              PortConnections[component.connectedTo] = {
+                type,
+                index,
+                signalType: SensorObj.signalType,
+              };
+              PortConnections[`${component.connectedTo}1`] = {
+                type,
+                index,
+                signalType: SensorObj.signalType,
+              };
+            } else {
+              PortConnections[component.connectedTo] = { type, index };
+            }
+          }
+        } else if (type == "light_sensor") {
+          if (component.connectedTo) {
+            if (
+              component.connectedTo == "A" ||
+              component.connectedTo == "B" ||
+              component.connectedTo == "C"
+            ) {
+              PortConnections[component.connectedTo] = {
+                type,
+                index,
+                signalType: SensorObj.signalType,
+              };
+              PortConnections[`${component.connectedTo}1`] = {
+                type,
+                index,
+                signalType: SensorObj.signalType,
+              };
+            } else {
+              PortConnections[component.connectedTo] = { type, index };
+            }
+          }
+        } else if (type == "distance_sensor") {
+          if (component.connectedTo) {
+            if (
+              component.connectedTo == "A" ||
+              component.connectedTo == "B" ||
+              component.connectedTo == "C"
+            ) {
+              PortConnections[component.connectedTo] = {
+                type,
+                index,
+                signalType: SensorObj.signalType,
+              };
+              PortConnections[`${component.connectedTo}1`] = {
+                type,
+                index,
+                signalType: SensorObj.signalType,
+              };
+            } else {
+              PortConnections[component.connectedTo] = { type, index };
             }
           }
         } else if (type == "dual_switch") {
@@ -343,6 +494,8 @@ class Workspace extends Component {
                 index,
                 signalType: SensorObj.signalType,
               };
+            } else {
+              PortConnections[component.connectedTo] = { type, index };
             }
           }
         } else if (type == "joystick") {
@@ -368,6 +521,8 @@ class Workspace extends Component {
                 signalType: SensorObj.signalType,
               };
             }
+          } else {
+            PortConnections[component.connectedTo] = { type, index };
           }
         } else if (type == "ultrasonic_sensor") {
           if (component.connectedTo) {
@@ -383,6 +538,8 @@ class Workspace extends Component {
                 signalType: SensorObj.signalType,
               };
             }
+          } else {
+            PortConnections[component.connectedTo] = { type, index };
           }
         } else if (type == "rotatory") {
           if (component.connectedTo) {
@@ -396,6 +553,8 @@ class Workspace extends Component {
               index,
               signalType: SensorObj.signalType,
             };
+          } else {
+            PortConnections[component.connectedTo] = { type, index };
           }
         } else if (type == "RGB") {
           if (component.connectedTo) {
@@ -441,6 +600,23 @@ class Workspace extends Component {
               signalType: SensorObj.signalType,
             };
           }
+        } else if (
+          type == "dc_motor" ||
+          type == "mini_geared_motor" ||
+          type == "geared_motor"
+        ) {
+          if (component.connectedTo) {
+            PortConnections[component.connectedTo[0] + "1"] = {
+              type,
+              index,
+              signalType: SensorObj.signalType,
+            };
+            PortConnections[component.connectedTo[0] + "2"] = {
+              type,
+              index,
+              signalType: SensorObj.signalType,
+            };
+          }
         } else if (component.connectedTo) {
           if (
             type != "servo_motor" ||
@@ -448,7 +624,7 @@ class Workspace extends Component {
             type != "dc_motor" ||
             type != "mini_geared_motor"
           ) {
-            console.log("component.connectedTo 1", component.connectedTo);
+            console.log("component.connectedTo 1", component.connectedTo, type);
             PortConnections[component.connectedTo] = { type, index };
           }
         }
@@ -489,6 +665,7 @@ class Workspace extends Component {
         let SensorObj = componentsDataSensor.find((o) => o.type === type);
         console.log(SensorObj, componentsDataSensor);
         if (type == "led") {
+          console.log("led workspace new", component);
           if (component.connectedTo) {
             if (
               component.connectedTo == "A" ||
@@ -511,9 +688,11 @@ class Workspace extends Component {
                 index,
                 signalType: SensorObj.signalType,
               };
+            } else {
+              PortConnections[component.connectedTo] = { type, index };
             }
           }
-        } else if (type == "tact_switch_2c") {
+        } else if (type == "dip_switch") {
           if (component.connectedTo) {
             if (
               component.connectedTo == "A" ||
@@ -537,6 +716,32 @@ class Workspace extends Component {
               };
             }
           }
+        } else if (type == "metal_detector") {
+          if (component.connectedTo) {
+            if (
+              component.connectedTo == "A" ||
+              component.connectedTo == "B" ||
+              component.connectedTo == "C"
+            ) {
+              PortConnections[component.connectedTo] = {
+                type,
+                index,
+                signalType: SensorObj.signalType,
+              };
+              PortConnections[`${component.connectedTo}1`] = {
+                type,
+                index,
+                signalType: SensorObj.signalType,
+              };
+              PortConnections[`${component.connectedTo}2`] = {
+                type,
+                index,
+                signalType: SensorObj.signalType,
+              };
+            } else {
+              PortConnections[component.connectedTo] = { type, index };
+            }
+          }
         } else if (type == "tact_switch") {
           if (component.connectedTo) {
             if (
@@ -554,6 +759,8 @@ class Workspace extends Component {
                 index,
                 signalType: SensorObj.signalType,
               };
+            } else {
+              PortConnections[component.connectedTo] = { type, index };
             }
           }
         } else if (type == "touch_sensor") {
@@ -573,6 +780,8 @@ class Workspace extends Component {
                 index,
                 signalType: SensorObj.signalType,
               };
+            } else {
+              PortConnections[component.connectedTo] = { type, index };
             }
           }
         } else if (type == "light_sensor") {
@@ -592,6 +801,8 @@ class Workspace extends Component {
                 index,
                 signalType: SensorObj.signalType,
               };
+            } else {
+              PortConnections[component.connectedTo] = { type, index };
             }
           }
         } else if (type == "distance_sensor") {
@@ -611,6 +822,8 @@ class Workspace extends Component {
                 index,
                 signalType: SensorObj.signalType,
               };
+            } else {
+              PortConnections[component.connectedTo] = { type, index };
             }
           }
         } else if (type == "dual_switch") {
@@ -635,9 +848,37 @@ class Workspace extends Component {
                 index,
                 signalType: SensorObj.signalType,
               };
+            } else {
+              PortConnections[component.connectedTo] = { type, index };
             }
           }
         } else if (type == "joystick") {
+          if (component.connectedTo) {
+            if (
+              component.connectedTo == "A" ||
+              component.connectedTo == "B" ||
+              component.connectedTo == "C"
+            ) {
+              PortConnections[component.connectedTo] = {
+                type,
+                index,
+                signalType: SensorObj.signalType,
+              };
+              PortConnections[`${component.connectedTo}1`] = {
+                type,
+                index,
+                signalType: SensorObj.signalType,
+              };
+              PortConnections[`${component.connectedTo}2`] = {
+                type,
+                index,
+                signalType: SensorObj.signalType,
+              };
+            }
+          } else {
+            PortConnections[component.connectedTo] = { type, index };
+          }
+        } else if (type == "extender") {
           if (component.connectedTo) {
             if (
               component.connectedTo == "A" ||
@@ -675,8 +916,96 @@ class Workspace extends Component {
                 signalType: SensorObj.signalType,
               };
             }
+          } else {
+            PortConnections[component.connectedTo] = { type, index };
           }
         } else if (type == "rotatory") {
+          if (component.connectedTo) {
+            PortConnections[component.connectedTo] = {
+              type,
+              index,
+              signalType: SensorObj.signalType,
+            };
+            PortConnections[`${component.connectedTo}1`] = {
+              type,
+              index,
+              signalType: SensorObj.signalType,
+            };
+          } else {
+            PortConnections[component.connectedTo] = { type, index };
+          }
+        } else if (type == "pot") {
+          if (component.connectedTo) {
+            PortConnections[component.connectedTo] = {
+              type,
+              index,
+              signalType: SensorObj.signalType,
+            };
+            PortConnections[`${component.connectedTo}1`] = {
+              type,
+              index,
+              signalType: SensorObj.signalType,
+            };
+          }
+        } else if (type == "linear_pot") {
+          if (component.connectedTo) {
+            if (
+              component.connectedTo == "A" ||
+              component.connectedTo == "B" ||
+              component.connectedTo == "C"
+            ) {
+              PortConnections[component.connectedTo] = {
+                type,
+                index,
+                signalType: SensorObj.signalType,
+              };
+              PortConnections[`${component.connectedTo}1`] = {
+                type,
+                index,
+                signalType: SensorObj.signalType,
+              };
+            }
+          }
+        } else if (type == "rain_sensor") {
+          if (component.connectedTo) {
+            PortConnections[component.connectedTo] = {
+              type,
+              index,
+              signalType: SensorObj.signalType,
+            };
+            PortConnections[`${component.connectedTo}1`] = {
+              type,
+              index,
+              signalType: SensorObj.signalType,
+            };
+          }
+        } else if (type == "humidity") {
+          if (component.connectedTo) {
+            PortConnections[component.connectedTo] = {
+              type,
+              index,
+              signalType: SensorObj.signalType,
+            };
+            PortConnections[`${component.connectedTo}1`] = {
+              type,
+              index,
+              signalType: SensorObj.signalType,
+            };
+          }
+        } else if (type == "temperature_sensor") {
+          if (component.connectedTo) {
+            PortConnections[component.connectedTo] = {
+              type,
+              index,
+              signalType: SensorObj.signalType,
+            };
+            PortConnections[`${component.connectedTo}1`] = {
+              type,
+              index,
+              signalType: SensorObj.signalType,
+            };
+          }
+        } else if (type == "gas") {
           if (component.connectedTo) {
             PortConnections[component.connectedTo] = {
               type,
@@ -733,6 +1062,23 @@ class Workspace extends Component {
               signalType: SensorObj.signalType,
             };
           }
+        } else if (
+          type == "dc_motor" ||
+          type == "mini_geared_motor" ||
+          type == "geared_motor"
+        ) {
+          if (component.connectedTo) {
+            PortConnections[component.connectedTo[0] + "1"] = {
+              type,
+              index,
+              signalType: SensorObj.signalType,
+            };
+            PortConnections[component.connectedTo[0] + "2"] = {
+              type,
+              index,
+              signalType: SensorObj.signalType,
+            };
+          }
         } else if (component.connectedTo) {
           if (
             type != "servo_motor" ||
@@ -740,7 +1086,7 @@ class Workspace extends Component {
             type != "dc_motor" ||
             type != "mini_geared_motor"
           ) {
-            console.log("component.connectedTo 1", component.connectedTo);
+            console.log("component.connectedTo 1", component.connectedTo, type);
             PortConnections[component.connectedTo] = { type, index };
           }
         }

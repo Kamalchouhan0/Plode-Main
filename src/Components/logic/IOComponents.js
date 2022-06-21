@@ -3,7 +3,7 @@ const IOComponents = {
   led_1c: { output: true, input: false },
   laser: { output: true, input: false },
   beeper: { output: true, input: false },
-
+  play_shield: { output: false, input: false },
   temp_dew: { output: false, input: true },
   temp_gas: { output: false, input: true },
 
@@ -43,10 +43,20 @@ const IOComponents = {
   color_sensor: { output: false, input: true },
   rain_sensor: { output: false, input: true },
   tact_switch: { output: false, input: true },
-  tact_switch_2c: { output: false, input: true },
+  // tact_switch_2c: { output: false, input: true },
+  dip_switch: { output: false, input: true },
+  metal_detector: { output: false, input: true },
   dual_switch: { output: false, input: true },
   rotatory: { output: false, input: true },
+  pot: { output: false, input: true },
+  linear_pot: { output: false, input: true },
+
+  humidity: { output: false, input: true },
+  temp: { output: false, input: true },
+  gas: { output: false, input: true },
+
   joystick: { output: false, input: true },
+  extender: { output: false, input: true },
   touch_sensor: { output: false, input: true },
   pir_sensor: { output: false, input: true },
   gesture_sensor: { output: false, input: true },
@@ -60,5 +70,4 @@ const IOComponents = {
   OLED: { output: true, input: false },
   RGB: { output: true, input: false },
 };
-
-module.exports = IOComponents;
+export default IOComponents;

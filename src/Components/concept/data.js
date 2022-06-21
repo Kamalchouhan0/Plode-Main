@@ -5,7 +5,7 @@ if (componentType == "Ace") {
     {
       type: "led_1c",
       description:
-        "Led 1c: It emits light when powered up, available in different colors",
+        "Led 1c: This is a 1 channel LED, emits light when powered up, available in different colors",
       color: "#15909d",
       name: "led 1c",
       signalType: "null",
@@ -13,7 +13,7 @@ if (componentType == "Ace") {
     {
       type: "led",
       description:
-        "Led 2c: It emits light when powered up, available in different colors",
+        "Led 2c: This is a 2 channel LED,which emits light when powered up, available in different colors",
       color: "#15909d",
       name: "led",
       signalType: "analog",
@@ -36,52 +36,61 @@ if (componentType == "Ace") {
     },
     {
       type: "mp3",
-      description: "MP3: Play Mp3 songs",
+      description:
+        "MP3: You can play songs using this module. Song selection can be controlled using PC",
       color: "#15909d",
       name: "mp3",
     },
     {
       type: "OLED",
-      description: "OLED: Dispay 3 lines of text on a display",
+      description:
+        "OLED display: This module can be used to display text or messages. upto 3 lines of text can be displayed",
       color: "#15909d",
       name: "OLED Display",
     },
-    // {
-    //   type: "mini_geared_motor",
-    //   description:
-    //     "Mini Geared Motor: It is similar to Geared motor, smaller in size and efficient but with metal gears",
-    //   color: "#15909d",
-    //   name: "mini geared motor",
-    // },
-    // {
-    //   type: "dc_motor",
-    //   description:
-    //     "DC Motor: It rotates when you power it up, speed and direction of rotation can be varied",
-    //   color: "#15909d",
-    //   name: "dc motor",
-    // },
-    // {
-    //   type: "servo_motor",
-    //   description:
-    //     "Servo Motor 180: It is a motor with angular control, you can control its rotation from 0 to 180 degree.",
-    //   color: "#15909d",
-    //   name: "servo motor",
-    // },
+    {
+      type: "geared_motor",
+      description:
+        "Geared Motor: It is similar to DC motor, but with gears So it has more power to pull loads but lacks speed",
+      color: "#15909d",
+      name: "geared motor",
+    },
+    {
+      type: "mini_geared_motor",
+      description:
+        "Mini Geared Motor: It is similar to Geared motor, smaller in size and efficient but with metal gears",
+      color: "#15909d",
+      name: "mini geared motor",
+    },
+    {
+      type: "dc_motor",
+      description:
+        "DC Motor: It rotates when you power it up, speed and direction of rotation can be varied",
+      color: "#15909d",
+      name: "dc motor",
+    },
+    {
+      type: "servo_motor",
+      description:
+        "Servo Motor 180: It is a motor with angular control, you can control its rotation from 0 to 180 degree.",
+      color: "#15909d",
+      name: "servo motor",
+    },
 
-    // {
-    //   type: "servo_motor_360",
-    //   description:
-    //     "Servo Motor 360: It is a continous rotation motor, You can control its rotation in both direction.",
-    //   color: "#15909d",
-    //   name: "servo motor 360",
-    // },
-    // {
-    //   type: "dual_splitter",
-    //   description:
-    //     "Dual Splitter: Splits a single two channel port into two single channel port",
-    //   color: "#15909d",
-    //   name: "dual splitter",
-    // },
+    {
+      type: "servo_motor_360",
+      description:
+        "Servo Motor 360: It is a continous rotation motor, You can control its rotation in both direction.",
+      color: "#15909d",
+      name: "servo motor 360",
+    },
+    {
+      type: "dual_splitter",
+      description:
+        "Motor Bridge: This moodule is used to control DC motor or two Servo motors.It also splits a dual line port into two single line port.",
+      color: "#15909d",
+      name: "dual splitter",
+    },
     // {
     //   type: "pc_motor_driver",
     //   description:
@@ -98,12 +107,20 @@ if (componentType == "Ace") {
       signalType: "analog",
     },
     {
-      type: "tact_switch_2c",
+      type: "dip_switch",
       description:
-        "Button 2c: It is a simple tactile switch used for toggle operation",
+        "DIP Switch: It is an input switch module with 2 slide switches for setting On/Off. ",
       color: "#ff8c19",
-      name: "Button 2c",
+      name: "DIP switch",
+      signalType: "digital",
     },
+    // {
+    //   type: "tact_switch_2c",
+    //   description:
+    //     "Button 2c: It is a simple tactile switch used for toggle operation",
+    //   color: "#ff8c19",
+    //   name: "Button 2c",
+    // },
 
     {
       type: "dual_switch",
@@ -115,24 +132,34 @@ if (componentType == "Ace") {
     {
       type: "touch_sensor",
       description:
-        "Touch Sensor: This is a button less switch, works on capacitive touch sensor",
+        "Touch Sensor: It is a touch enabled switch that works on capacitive touch interface",
       color: "#ff8c19",
       name: "touch sensor",
       signalType: "analog",
     },
-    // {
-    //   type: "metal_detector",
-    //   description: "Metal Sensor: It detects metal upto 2cms distance",
-    //   color: "#ff8c19",
-    //   name: "metal_detector",
-    // },
     {
-      type: "rotatory",
+      type: "metal_detector",
       description:
-        "Rotatory: It is a Rotatory sensor used for sensing amount of rotation",
+        "Metal Sensor: This module can be used to detect metal objects around it. it detects at within 5cms range from the coil.",
+      color: "#ff8c19",
+      name: "Metal detector",
+    },
+    // {
+    //   type: "rotatory",
+    //   description:
+    //     "Rotatory: It is a Rotatory sensor used for sensing amount of rotation",
+    //   color: "#15909d",
+    //   name: "Rotatory",
+    //   signalType: "analog",
+    // },
+
+    {
+      type: "pot",
+      description:
+        "Pot: It is a Pot sensor used for sensing amount of rotation",
       color: "#15909d",
-      name: "Rotatory",
-      signalType: "analog",
+      name: "Pot",
+      signalType: "digital",
     },
 
     {
@@ -159,21 +186,60 @@ if (componentType == "Ace") {
       name: "joystick",
       signalType: "analog",
     },
+    {
+      type: "temperature_sensor",
+      description:
+        "Temperature: This module can be used to detect temperature changes both hot and cold.",
+      color: "#15909d",
+      name: "Temp",
+      signalType: "analog",
+    },
+    {
+      type: "humidity",
+      description:
+        "Humidity: This module can detect increase in humidity in the atmosphere.",
+      color: "#15909d",
+      name: "humidity",
+      signalType: "analog",
+    },
+    {
+      type: "gas",
+      description:
+        "Gas: This module can detect alcohol, VOC in air, smoke and natural gas in air.",
+      color: "#15909d",
+      name: "Gas",
+      signalType: "analog",
+    },
     // {
-    //   type: "temp",
-    //   description: "Temperature: Measures temperature",
+    //   type: "magnetic",
+    //   description: "magnetic description",
     //   color: "#15909d",
-    //   name: "Temp",
+    //   name: "Magnetic Sensor",
     //   signalType: "analog",
     // },
-    // {
-    //   type: "humidity",
-    //   description: "Humidity: Measures Humidity",
-    //   color: "#15909d",
-    //   name: "humidity",
-    //   signalType: "analog",
-    // },
-
+    {
+      type: "rain_sensor",
+      description:
+        "Rain Sensor: It is used to detect water drops on the sensor. Can also act as a bare hand touch sensor",
+      color: "#15909d",
+      name: "Rain Sensor",
+      signalType: "analog",
+    },
+    {
+      type: "linear_pot",
+      description: "Linear pot: This is a linear motion detection sensor.",
+      color: "#15909d",
+      name: "Linear Pot",
+      signalType: "analog",
+    },
+    {
+      type: "extender",
+      description:
+        "Extender: This module can be used to connect any other 3v to 5v external sensor to the PC",
+      color: "#15909d",
+      name: "Extender",
+      signalType: "analog",
+    },
     {
       type: "ultrasonic_sensor",
       description:
@@ -182,41 +248,7 @@ if (componentType == "Ace") {
       name: "ultrasonic sensor",
       signalType: "analog",
     },
-    // {
-    //   type: "DIP_switch",
-    //   description: "DIP Switch: DIP description ",
-    //   color: "#ff8c19",
-    //   name: "DIP switch",
-    //   signalType: "digital",
-    // },
-    // {
-    //   type: "gas",
-    //   description: "Gas: Measures gas",
-    //   color: "#15909d",
-    //   name: "Gas",
-    //   signalType: "analog",
-    // },
-    // {
-    //   type: "magnetic",
-    //   description: "magnetic description",
-    //   color: "#15909d",
-    //   name: "Magnetic Sensor",
-    //   signalType: "analog",
-    // },
-    // {
-    //   type: "Rain sensor",
-    //   description: "RAIN   description",
-    //   color: "#15909d",
-    //   name: "Rain Sensor",
-    //   signalType: "analog",
-    // },
-    // {
-    //   type: "linear_pot",
-    //   description: "linear pot description",
-    //   color: "#15909d",
-    //   name: "Linear Pot",
-    //   signalType: "analog",
-    // },
+
     // {
     //   type: "6-axis",
     //   description: "6-axis description",
@@ -269,14 +301,6 @@ if (componentType == "Ace") {
     // },
 
     //
-
-    // {
-    //   type: "geared_motor",
-    //   description:
-    //     "It is similar to DC motor, but with gears So it has more power to pull loads but lacks speed",
-    //   color: "#15909d",
-    //   name: "geared motor",
-    // },
 
     // {
     //   type: "dc_motor",

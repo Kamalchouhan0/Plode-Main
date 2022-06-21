@@ -1012,6 +1012,7 @@ function InternalAccessoriesScreen(props) {
   const shouldErase = (info) => {
     if (info == "Yes") {
       sessionStorage.removeItem("Index");
+      sessionStorage.setItem("shield", "false");
       props.indexData.concept.Index = [];
       props.history.push("/programSelection");
       // window.location.reload(false);

@@ -362,6 +362,450 @@ class Component1 extends Component {
           </p>
         </div>
       );
+    } else if (this.props.type == "pot") {
+      var { type, left, top, scale, connectDragSource, isDragging, children } =
+        this.props;
+      if (isDragging) {
+        return null;
+      }
+
+      var height = 110 * scale;
+      var width = 110 * scale;
+      left = left - 3;
+      top = top - 13;
+
+      return connectDragSource(
+        <div>
+          <div
+            id={this.props.type + this.props.index}
+            style={{
+              ...style,
+              left,
+              top,
+              // backgroundImage: "url(images/oldImages/component_" + type + ".png)",
+              backgroundImage: `url(${renderCompImg(type)})`,
+
+              height,
+              width,
+            }}
+            onMouseDown={() => {
+              clickStartTimestamp = Date.now();
+            }}
+            onMouseUp={this.checkForLongPress}
+            onDoubleClick={() => this.typeCheck(this)}
+          />
+          <p
+            style={{
+              position: "absolute",
+              top,
+              marginTop: "2.5%",
+              marginLeft: "-1.1%",
+              left,
+              zIndex: "3",
+              color: "#707070",
+              fontSize: "20px",
+            }}
+          >
+            {this.props.connectedTo == "A"
+              ? this.props.rangeA1
+              : this.props.connectedTo == "B"
+              ? this.props.temp
+              : this.props.connectedTo == "C"
+              ? this.props.one
+              : null}
+          </p>
+          {/* <p
+            style={{
+              position: "absolute",
+              top,
+              marginTop: "0.1%",
+              marginLeft: "6.5%",
+              left,
+              zIndex: "3",
+              color: "#707070",
+              fontSize: "20px",
+            }}
+          >
+            {this.props.connectedTo == "A"
+              ? this.props.rangeA2
+              : this.props.connectedTo == "B"
+              ? this.props.gas
+              : this.props.connectedTo == "C"
+              ? this.props.two
+              : null}
+          </p> */}
+        </div>
+      );
+    } else if (this.props.type == "linear_pot") {
+      var { type, left, top, scale, connectDragSource, isDragging, children } =
+        this.props;
+      if (isDragging) {
+        return null;
+      }
+
+      var height = 100 * scale;
+      var width = 100 * scale;
+      left = left - 10;
+      top = top + 14;
+
+      return connectDragSource(
+        <div>
+          <div
+            id={this.props.type + this.props.index}
+            style={{
+              ...style,
+              left,
+              top,
+              // backgroundImage: "url(images/oldImages/component_" + type + ".png)",
+              backgroundImage: `url(${renderCompImg(type)})`,
+
+              height,
+              width,
+            }}
+            onMouseDown={() => {
+              clickStartTimestamp = Date.now();
+            }}
+            onMouseUp={this.checkForLongPress}
+            onDoubleClick={() => this.typeCheck(this)}
+          />
+          <p
+            style={{
+              position: "absolute",
+              top,
+              marginTop: "2.5%",
+              marginLeft: "-3.5%",
+              left,
+              zIndex: "3",
+              color: "#707070",
+              fontSize: "20px",
+            }}
+          >
+            {this.props.connectedTo == "A"
+              ? this.props.rangeA1
+              : this.props.connectedTo == "B"
+              ? this.props.temp
+              : this.props.connectedTo == "C"
+              ? this.props.one
+              : null}
+          </p>
+          {/* <p
+            style={{
+              position: "absolute",
+              top,
+              marginTop: "0.1%",
+              marginLeft: "6.5%",
+              left,
+              zIndex: "3",
+              color: "#707070",
+              fontSize: "20px",
+            }}
+          >
+            {this.props.connectedTo == "A"
+              ? this.props.rangeA2
+              : this.props.connectedTo == "B"
+              ? this.props.gas
+              : this.props.connectedTo == "C"
+              ? this.props.two
+              : null}
+          </p> */}
+        </div>
+      );
+    } else if (this.props.type == "rain_sensor") {
+      var { type, left, top, scale, connectDragSource, isDragging, children } =
+        this.props;
+      if (isDragging) {
+        return null;
+      }
+
+      var height = 110 * scale;
+      var width = 110 * scale;
+      left = left - 5;
+      top = top - 10;
+
+      return connectDragSource(
+        <div>
+          <div
+            id={this.props.type + this.props.index}
+            style={{
+              ...style,
+              left,
+              top,
+              // backgroundImage: "url(images/oldImages/component_" + type + ".png)",
+              backgroundImage: `url(${renderCompImg(type)})`,
+
+              height,
+              width,
+            }}
+            onMouseDown={() => {
+              clickStartTimestamp = Date.now();
+            }}
+            onMouseUp={this.checkForLongPress}
+            onDoubleClick={() => this.typeCheck(this)}
+          />
+          <p
+            style={{
+              position: "absolute",
+              top,
+              marginTop: "2.1%",
+              marginLeft: "-0.9%",
+              left,
+              zIndex: "3",
+              color: "#707070",
+              fontSize: "20px",
+            }}
+          >
+            {this.props.connectedTo == "A"
+              ? this.props.rangeA1
+              : this.props.connectedTo == "B"
+              ? this.props.temp
+              : this.props.connectedTo == "C"
+              ? this.props.one
+              : null}
+          </p>
+          {/* <p
+            style={{
+              position: "absolute",
+              top,
+              marginTop: "0.1%",
+              marginLeft: "6.5%",
+              left,
+              zIndex: "3",
+              color: "#707070",
+              fontSize: "20px",
+            }}
+          >
+            {this.props.connectedTo == "A"
+              ? this.props.rangeA2
+              : this.props.connectedTo == "B"
+              ? this.props.gas
+              : this.props.connectedTo == "C"
+              ? this.props.two
+              : null}
+          </p> */}
+        </div>
+      );
+    } else if (this.props.type == "humidity") {
+      var { type, left, top, scale, connectDragSource, isDragging, children } =
+        this.props;
+      if (isDragging) {
+        return null;
+      }
+
+      var height = 100 * scale;
+      var width = 100 * scale;
+      left = left;
+      top = top - 7;
+
+      return connectDragSource(
+        <div>
+          <div
+            id={this.props.type + this.props.index}
+            style={{
+              ...style,
+              left,
+              top,
+              // backgroundImage: "url(images/oldImages/component_" + type + ".png)",
+              backgroundImage: `url(${renderCompImg(type)})`,
+
+              height,
+              width,
+            }}
+            onMouseDown={() => {
+              clickStartTimestamp = Date.now();
+            }}
+            onMouseUp={this.checkForLongPress}
+            onDoubleClick={() => this.typeCheck(this)}
+          />
+          <p
+            style={{
+              position: "absolute",
+              top,
+              marginTop: "-1.1%",
+              marginLeft: "1.1%",
+              left,
+              zIndex: "3",
+              color: "#707070",
+              fontSize: "20px",
+            }}
+          >
+            {this.props.connectedTo == "A"
+              ? this.props.rangeA1
+              : this.props.connectedTo == "B"
+              ? this.props.temp
+              : this.props.connectedTo == "C"
+              ? this.props.one
+              : null}
+          </p>
+          <p
+            style={{
+              position: "absolute",
+              top,
+              marginTop: "0.1%",
+              marginLeft: "6.5%",
+              left,
+              zIndex: "3",
+              color: "#707070",
+              fontSize: "20px",
+            }}
+          >
+            {this.props.connectedTo == "A"
+              ? this.props.rangeA2
+              : this.props.connectedTo == "B"
+              ? this.props.gas
+              : this.props.connectedTo == "C"
+              ? this.props.two
+              : null}
+          </p>
+        </div>
+      );
+    } else if (this.props.type == "temperature_sensor") {
+      var { type, left, top, scale, connectDragSource, isDragging, children } =
+        this.props;
+      if (isDragging) {
+        return null;
+      }
+
+      var height = 110 * scale;
+      var width = 110 * scale;
+      left = left - 4;
+      top = top - 8;
+
+      return connectDragSource(
+        <div>
+          <div
+            id={this.props.type + this.props.index}
+            style={{
+              ...style,
+              left,
+              top,
+              // backgroundImage: "url(images/oldImages/component_" + type + ".png)",
+              backgroundImage: `url(${renderCompImg(type)})`,
+
+              height,
+              width,
+            }}
+            onMouseDown={() => {
+              clickStartTimestamp = Date.now();
+            }}
+            onMouseUp={this.checkForLongPress}
+            onDoubleClick={() => this.typeCheck(this)}
+          />
+          <p
+            style={{
+              position: "absolute",
+              top,
+              marginTop: "2.5%",
+              marginLeft: "-0.5%",
+              left,
+              zIndex: "3",
+              color: "#707070",
+              fontSize: "20px",
+            }}
+          >
+            {this.props.connectedTo == "A"
+              ? this.props.rangeA1
+              : this.props.connectedTo == "B"
+              ? this.props.temp
+              : this.props.connectedTo == "C"
+              ? this.props.one
+              : null}
+          </p>
+          {/* <p
+            style={{
+              position: "absolute",
+              top,
+              marginTop: "0.1%",
+              marginLeft: "6.5%",
+              left,
+              zIndex: "3",
+              color: "#707070",
+              fontSize: "20px",
+            }}
+          >
+            {this.props.connectedTo == "A"
+              ? this.props.rangeA2
+              : this.props.connectedTo == "B"
+              ? this.props.gas
+              : this.props.connectedTo == "C"
+              ? this.props.two
+              : null}
+          </p> */}
+        </div>
+      );
+    } else if (this.props.type == "gas") {
+      var { type, left, top, scale, connectDragSource, isDragging, children } =
+        this.props;
+      if (isDragging) {
+        return null;
+      }
+
+      var height = 110 * scale;
+      var width = 110 * scale;
+      left = left - 5;
+      top = top - 21;
+
+      return connectDragSource(
+        <div>
+          <div
+            id={this.props.type + this.props.index}
+            style={{
+              ...style,
+              left,
+              top,
+              // backgroundImage: "url(images/oldImages/component_" + type + ".png)",
+              backgroundImage: `url(${renderCompImg(type)})`,
+
+              height,
+              width,
+            }}
+            onMouseDown={() => {
+              clickStartTimestamp = Date.now();
+            }}
+            onMouseUp={this.checkForLongPress}
+            onDoubleClick={() => this.typeCheck(this)}
+          />
+          <p
+            style={{
+              position: "absolute",
+              top,
+              marginTop: "2.1%",
+              marginLeft: "-1.1%",
+              left,
+              zIndex: "3",
+              color: "#707070",
+              fontSize: "20px",
+            }}
+          >
+            {this.props.connectedTo == "A"
+              ? this.props.rangeA1
+              : this.props.connectedTo == "B"
+              ? this.props.temp
+              : this.props.connectedTo == "C"
+              ? this.props.one
+              : null}
+          </p>
+          {/* <p
+            style={{
+              position: "absolute",
+              top,
+              marginTop: "0.1%",
+              marginLeft: "6.5%",
+              left,
+              zIndex: "3",
+              color: "#707070",
+              fontSize: "20px",
+            }}
+          >
+            {this.props.connectedTo == "A"
+              ? this.props.rangeA2
+              : this.props.connectedTo == "B"
+              ? this.props.gas
+              : this.props.connectedTo == "C"
+              ? this.props.two
+              : null}
+          </p> */}
+        </div>
+      );
     } else if (this.props.type == "distance_sensor") {
       let connectedToPort = this.props.connectedTo;
       console.log(this.props.connectedTo, "<<<<:<:<:<:<:");
@@ -374,10 +818,10 @@ class Component1 extends Component {
         return null;
       }
 
-      var height = 100 * scale;
-      var width = 100 * scale;
-      left = left + 2;
-      top = top - 4;
+      var height = 110 * scale;
+      var width = 110 * scale;
+      left = left - 4;
+      top = top - 8;
 
       return connectDragSource(
         <div>
@@ -405,7 +849,7 @@ class Component1 extends Component {
               position: "absolute",
               top,
               marginTop: "3%",
-              marginLeft: "-2%",
+              marginLeft: "-1%",
               left,
               zIndex: "3",
               fontSize: "20px",
@@ -420,7 +864,7 @@ class Component1 extends Component {
               ? this.props.one
               : null}
           </p>
-          <p
+          {/* <p
             style={{
               position: "absolute",
               top,
@@ -439,7 +883,7 @@ class Component1 extends Component {
               : this.props.connectedTo == "C"
               ? this.props.two
               : null}
-          </p>
+          </p> */}
         </div>
       );
     } else if (this.props.type == "RGB") {
@@ -522,6 +966,168 @@ class Component1 extends Component {
           </p>
         </div>
       );
+    }
+    // else if (this.props.type == "OLED") {
+    //   let connectedToPort = this.props.connectedTo;
+    //   console.log(this.props.connectedTo, "<<<<:<:<:<:<:");
+
+    //   console.log(this.props.rangeA1, "<<<<:<:<:<:<:");
+
+    //   var { type, left, top, scale, connectDragSource, isDragging, children } =
+    //     this.props;
+    //   if (isDragging) {
+    //     return null;
+    //   }
+
+    //   var height = 100 * scale;
+    //   var width = 100 * scale;
+    //   left = left + 2;
+    //   top = top + 12;
+
+    //   return connectDragSource(
+    //     <div>
+    //       <div
+    //         id={this.props.type + this.props.index}
+    //         style={{
+    //           ...style,
+    //           left,
+    //           top,
+    //           // backgroundImage: "url(images/oldImages/component_" + type + ".png)",
+    //           backgroundImage: `url(${renderCompImg(type)})`,
+
+    //           height,
+    //           width,
+    //         }}
+    //         onMouseDown={() => {
+    //           clickStartTimestamp = Date.now();
+    //         }}
+    //         onMouseUp={this.checkForLongPress}
+    //         onDoubleClick={() => this.typeCheck(this)}
+    //       />
+
+    //       <p
+    //         style={{
+    //           position: "absolute",
+    //           top,
+    //           marginTop: "3%",
+    //           marginLeft: "-2%",
+    //           left,
+    //           zIndex: "3000000",
+    //           fontSize: "20px",
+    //           color: "#707070",
+    //         }}
+    //       >
+    //         {this.props.connectedTo == "A"
+    //           ? this.props.rangeA1
+    //           : this.props.connectedTo == "B"
+    //           ? this.props.temp
+    //           : this.props.connectedTo == "C"
+    //           ? this.props.one
+    //           : null}
+    //       </p>
+    //       <p
+    //         style={{
+    //           position: "absolute",
+    //           top,
+    //           marginTop: "3%",
+    //           marginLeft: "7%",
+    //           left,
+    //           zIndex: "3",
+    //           fontSize: "20px",
+    //           color: "#707070",
+    //         }}
+    //       >
+    //         {this.props.connectedTo == "A"
+    //           ? this.props.rangeA2
+    //           : this.props.connectedTo == "B"
+    //           ? this.props.gas
+    //           : this.props.connectedTo == "C"
+    //           ? this.props.two
+    //           : null}
+    //       </p>
+    //     </div>
+    //   );
+    // }
+    else if (this.props.type == "mp3") {
+      let connectedToPort = this.props.connectedTo;
+      console.log(this.props.connectedTo, "<<<<:<:<:<:<:");
+
+      console.log(this.props.rangeA1, "<<<<:<:<:<:<:");
+
+      var { type, left, top, scale, connectDragSource, isDragging, children } =
+        this.props;
+      if (isDragging) {
+        return null;
+      }
+
+      var height = 100 * scale;
+      var width = 100 * scale;
+      left = left + 13;
+      top = top + 14;
+
+      return connectDragSource(
+        <div>
+          <div
+            id={this.props.type + this.props.index}
+            style={{
+              ...style,
+              left,
+              top,
+              // backgroundImage: "url(images/oldImages/component_" + type + ".png)",
+              backgroundImage: `url(${renderCompImg(type)})`,
+
+              height,
+              width,
+            }}
+            onMouseDown={() => {
+              clickStartTimestamp = Date.now();
+            }}
+            onMouseUp={this.checkForLongPress}
+            onDoubleClick={() => this.typeCheck(this)}
+          />
+
+          <p
+            style={{
+              position: "absolute",
+              top,
+              marginTop: "3%",
+              marginLeft: "-2%",
+              left,
+              zIndex: "3000000",
+              fontSize: "20px",
+              color: "#707070",
+            }}
+          >
+            {this.props.connectedTo == "A"
+              ? this.props.rangeA1
+              : this.props.connectedTo == "B"
+              ? this.props.temp
+              : this.props.connectedTo == "C"
+              ? this.props.one
+              : null}
+          </p>
+          <p
+            style={{
+              position: "absolute",
+              top,
+              marginTop: "3%",
+              marginLeft: "7%",
+              left,
+              zIndex: "3",
+              fontSize: "20px",
+              color: "#707070",
+            }}
+          >
+            {this.props.connectedTo == "A"
+              ? this.props.rangeA2
+              : this.props.connectedTo == "B"
+              ? this.props.gas
+              : this.props.connectedTo == "C"
+              ? this.props.two
+              : null}
+          </p>
+        </div>
+      );
     } else if (this.props.type == "tact_switch") {
       var { type, left, top, scale, connectDragSource, isDragging, children } =
         this.props;
@@ -532,8 +1138,8 @@ class Component1 extends Component {
       //CONNECTION WIRE
       var height = 100 * scale;
       var width = 100 * scale;
-      top = top - 5;
-      left = left - 5;
+      top = top - 6;
+      left = left + 2;
 
       return connectDragSource(
         <div>
@@ -614,6 +1220,166 @@ class Component1 extends Component {
       var width = 100 * scale;
       top = top - 5;
       left = left - 5;
+
+      return connectDragSource(
+        <div>
+          <div
+            id={this.props.type + this.props.index}
+            style={{
+              ...style,
+              left,
+              top,
+              // backgroundImage: "url(images/oldImages/component_" + type + ".png)",
+              backgroundImage: `url(${renderCompImg(type)})`,
+
+              height,
+              width,
+
+              // border: "1px solid red",
+            }}
+            onMouseDown={() => {
+              clickStartTimestamp = Date.now();
+            }}
+            onMouseUp={this.checkForLongPress}
+            onDoubleClick={() => this.typeCheck(this)}
+          />
+
+          <p
+            style={{
+              position: "absolute",
+              top,
+              marginTop: "-0.5%",
+              marginLeft: "0.5%",
+              left,
+              zIndex: "3",
+              fontSize: "20px",
+              color: "#707070",
+            }}
+          >
+            {/* {this.props.one} */}
+            {this.props.connectedTo == "A"
+              ? this.props.rangeA1
+              : this.props.connectedTo == "B"
+              ? this.props.temp
+              : this.props.connectedTo == "C"
+              ? this.props.one
+              : null}
+          </p>
+          <p
+            style={{
+              position: "absolute",
+              top,
+              marginTop: "-0.1%",
+              marginLeft: "6%",
+              left,
+              zIndex: "3",
+              fontSize: "20px",
+              color: "#707070",
+            }}
+          >
+            {/* {this.props.two} */}
+            {this.props.connectedTo == "A"
+              ? this.props.rangeA2
+              : this.props.connectedTo == "B"
+              ? this.props.gas
+              : this.props.connectedTo == "C"
+              ? this.props.two
+              : null}
+          </p>
+        </div>
+      );
+    } else if (this.props.type == "dip_switch") {
+      var { type, left, top, scale, connectDragSource, isDragging, children } =
+        this.props;
+      if (isDragging) {
+        return null;
+      }
+
+      //CONNECTION WIRE
+      var height = 110 * scale;
+      var width = 110 * scale;
+      top = top - 18;
+      left = left - 3;
+
+      return connectDragSource(
+        <div>
+          <div
+            id={this.props.type + this.props.index}
+            style={{
+              ...style,
+              left,
+              top,
+              // backgroundImage: "url(images/oldImages/component_" + type + ".png)",
+              backgroundImage: `url(${renderCompImg(type)})`,
+
+              height,
+              width,
+
+              // border: "1px solid red",
+            }}
+            onMouseDown={() => {
+              clickStartTimestamp = Date.now();
+            }}
+            onMouseUp={this.checkForLongPress}
+            onDoubleClick={() => this.typeCheck(this)}
+          />
+
+          <p
+            style={{
+              position: "absolute",
+              top,
+              marginTop: "-1.2%",
+              marginLeft: "3%",
+              left,
+              zIndex: "3",
+              fontSize: "20px",
+              color: "#707070",
+            }}
+          >
+            {/* {this.props.one} */}
+            {this.props.connectedTo == "A"
+              ? this.props.rangeA1
+              : this.props.connectedTo == "B"
+              ? this.props.temp
+              : this.props.connectedTo == "C"
+              ? this.props.one
+              : null}
+          </p>
+          <p
+            style={{
+              position: "absolute",
+              top,
+              marginTop: "-0.7%",
+              marginLeft: "6.5%",
+              left,
+              zIndex: "3",
+              fontSize: "20px",
+              color: "#707070",
+            }}
+          >
+            {/* {this.props.two} */}
+            {this.props.connectedTo == "A"
+              ? this.props.rangeA2
+              : this.props.connectedTo == "B"
+              ? this.props.gas
+              : this.props.connectedTo == "C"
+              ? this.props.two
+              : null}
+          </p>
+        </div>
+      );
+    } else if (this.props.type == "metal_detector") {
+      var { type, left, top, scale, connectDragSource, isDragging, children } =
+        this.props;
+      if (isDragging) {
+        return null;
+      }
+
+      //CONNECTION WIRE
+      var height = 150 * scale;
+      var width = 150 * scale;
+      top = top - 52;
+      left = left - 15;
 
       return connectDragSource(
         <div>
@@ -822,6 +1588,82 @@ class Component1 extends Component {
           </p>
         </div>
       );
+    } else if (this.props.type == "extender") {
+      var { type, left, top, scale, connectDragSource, isDragging, children } =
+        this.props;
+      if (isDragging) {
+        return null;
+      }
+
+      var height = 110 * scale;
+      var width = 110 * scale;
+      left = left - 4;
+      top = top - 15;
+
+      return connectDragSource(
+        <div>
+          <div
+            id={this.props.type + this.props.index}
+            style={{
+              ...style,
+              left,
+              top,
+              // backgroundImage: "url(images/oldImages/component_" + type + ".png)",
+              backgroundImage: `url(${renderCompImg(type)})`,
+
+              height,
+              width,
+            }}
+            onMouseDown={() => {
+              clickStartTimestamp = Date.now();
+            }}
+            onMouseUp={this.checkForLongPress}
+            onDoubleClick={() => this.typeCheck(this)}
+          />
+          <p
+            style={{
+              position: "absolute",
+              top,
+              marginTop: "2%",
+              marginLeft: "-0.5%",
+              left,
+              zIndex: "3",
+              fontSize: "20px",
+              color: "#707070",
+            }}
+          >
+            {/* {this.props.one} */}
+            {this.props.connectedTo == "A"
+              ? this.props.rangeA1
+              : this.props.connectedTo == "B"
+              ? this.props.temp
+              : this.props.connectedTo == "C"
+              ? this.props.one
+              : null}
+          </p>
+          <p
+            style={{
+              position: "absolute",
+              top,
+              marginTop: "2%",
+              marginLeft: "7%",
+              left,
+              zIndex: "3",
+              fontSize: "20px",
+              color: "#707070",
+            }}
+          >
+            {/* {this.props.two} */}
+            {this.props.connectedTo == "A"
+              ? this.props.rangeA2
+              : this.props.connectedTo == "B"
+              ? this.props.gas
+              : this.props.connectedTo == "C"
+              ? this.props.two
+              : null}
+          </p>
+        </div>
+      );
     } else if (this.props.type == "ultrasonic_sensor") {
       var { type, left, top, scale, connectDragSource, isDragging, children } =
         this.props;
@@ -912,7 +1754,7 @@ class Component1 extends Component {
               position: "absolute",
               top,
               marginTop: "3%",
-              marginLeft: "-3%",
+              marginLeft: "-2%",
               left,
               zIndex: "3",
               color: "#707070",
@@ -927,7 +1769,7 @@ class Component1 extends Component {
               ? this.props.one
               : null}
           </p>
-          <p
+          {/* <p
             style={{
               position: "absolute",
               top,
@@ -946,7 +1788,7 @@ class Component1 extends Component {
               : this.props.connectedTo == "C"
               ? this.props.two
               : null}
-          </p>
+          </p> */}
         </div>
       );
     } else if (this.props.type == "touch_sensor") {
@@ -956,10 +1798,10 @@ class Component1 extends Component {
         return null;
       }
 
-      var height = 100 * scale;
-      var width = 100 * scale;
-      left = left;
-      top = top - 8;
+      var height = 110 * scale;
+      var width = 110 * scale;
+      left = left - 4;
+      top = top - 10;
 
       return connectDragSource(
         <div>
@@ -1030,10 +1872,10 @@ class Component1 extends Component {
         return null;
       }
 
-      var height = 100 * scale;
-      var width = 100 * scale;
-      left = left;
-      top = top - 4;
+      var height = 120 * scale;
+      var width = 120 * scale;
+      left = left - 8;
+      top = top - 15;
 
       return connectDragSource(
         <div>
@@ -1059,8 +1901,8 @@ class Component1 extends Component {
             style={{
               position: "absolute",
               top,
-              marginTop: "-1%",
-              marginLeft: "0%",
+              marginTop: "3.5%",
+              marginLeft: "1%",
               left,
               zIndex: "3",
               fontSize: "20px",
@@ -1079,8 +1921,8 @@ class Component1 extends Component {
             style={{
               position: "absolute",
               top,
-              marginTop: "-0.6%",
-              marginLeft: "6%",
+              marginTop: "4%",
+              marginLeft: "8%",
               left,
               zIndex: "3",
               fontSize: "20px",
@@ -1377,6 +2219,7 @@ class Component1 extends Component {
 
       var height = 100 * scale;
       var width = 100 * scale;
+
       return connectDragSource(
         <div>
           <div

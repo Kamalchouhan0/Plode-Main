@@ -176,6 +176,7 @@ function InputSlider(props) {
     ];
     sessionStorage.setItem("simulate", JSON.stringify(data));
   });
+  let range;
   const [a1Value, seta1Value] = useState(0);
   const [a2Value, seta2Value] = useState(0);
   const [b1Value, setb1Value] = useState(0);
@@ -221,9 +222,16 @@ function InputSlider(props) {
   for (const [key, value] of Object.entries(assembly.PortConnections)) {
     console.log(key, value);
     if (value != null) {
-      let range =
-        PortValuesRangeMapping[key][assembly.PortConnections[key].type]();
-      console.log("range", assembly.PortConnections[key].type, range);
+      if (
+        assembly.PortConnections[key].type == "OLED" ||
+        assembly.PortConnections[key].type == "RGB"
+      ) {
+        range = "0";
+      } else {
+        range =
+          PortValuesRangeMapping[key][assembly.PortConnections[key].type]();
+        console.log("range", assembly.PortConnections[key].type, range);
+      }
     }
     if (key == "A1" && value != null) {
       if (
@@ -231,7 +239,7 @@ function InputSlider(props) {
         assembly.PortConnections[key].type == "laser" ||
         assembly.PortConnections[key].type == "led_1c" ||
         assembly.PortConnections[key].type == "OLED" ||
-        assembly.PortConnections[key].type == "Mp3" ||
+        assembly.PortConnections[key].type == "mp3" ||
         assembly.PortConnections[key].type == "RGB"
       ) {
         a1State = false;
@@ -256,7 +264,9 @@ function InputSlider(props) {
       if (
         assembly.PortConnections[key].type == "led" ||
         assembly.PortConnections[key].type == "laser" ||
-        assembly.PortConnections[key].type == "led_1c"
+        assembly.PortConnections[key].type == "led_1c" ||
+        assembly.PortConnections[key].type == "RGB" ||
+        assembly.PortConnections[key].type == "mp3"
       ) {
         b1State = false;
       } else {
@@ -304,7 +314,8 @@ function InputSlider(props) {
       if (
         assembly.PortConnections[key].type == "led" ||
         assembly.PortConnections[key].type == "laser" ||
-        assembly.PortConnections[key].type == "led_1c"
+        assembly.PortConnections[key].type == "led_1c" ||
+        assembly.PortConnections[key].type == "OLED"
       ) {
         d1State = false;
       } else {
@@ -736,6 +747,7 @@ function InputSlider(props) {
                 <input
                   type="range"
                   className="rng"
+                  style={{ width: "43%" }}
                   min={0}
                   max={65535}
                   value={micValue}

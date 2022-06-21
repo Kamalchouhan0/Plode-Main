@@ -64,7 +64,10 @@ class Bibox extends Component {
     let Device = sessionStorage.getItem("connectedDevice");
     let shield = sessionStorage.getItem("shield");
 
-    if (Device == "Ace" && shield == "false") {
+    if (
+      Device == "Ace" &&
+      (shield == "false" || shield == null || shield == undefined)
+    ) {
       // Url = "images/login/pc_1.png";
       Url = renderPrgImage("PlayComputerImg");
     } else if (Device == "Ace" && shield == "true") {
@@ -72,9 +75,8 @@ class Bibox extends Component {
       Url = renderPrgImage("PlayComputerwithShieldImg");
     } else if (Device == "Humanoid") {
       Url = "images/login/humanoid_img.png";
-    } else {
-      Url = "images/login/login_illus_tern@2x.png";
     }
+
     var { left, top, scale, connectDragSource, isDragging, workspaceConnect } =
       this.props;
     console.log("bprops", this.props);
@@ -92,7 +94,7 @@ class Bibox extends Component {
       sessionStorage.getItem("connectedDevice") == "Ace" &&
       sessionStorage.getItem("shield") == "true"
     ) {
-      scale = 1;
+      scale = 1.4;
       var height = ImageSizes[ItemTypes.BIBOX][1] * scale;
       var width = ImageSizes[ItemTypes.BIBOX][0] * scale;
     } else {
@@ -147,7 +149,9 @@ class Bibox extends Component {
     };
 
     console.log("kkkkkkkkkkDATA:_____>>", height, width);
-    if (Device == "Ace" && shield == "false") {
+    console.log("kkkkkkkkkkDATA:_____>>", shield);
+
+    if (Device == "Ace" && (shield == "false" || shield === null)) {
       // if (left != 328 && top != 162) {
       //   //conditon to escape first load and values offset for mouse to center on PC image while dragging
       //   left = left - 120;
@@ -540,7 +544,7 @@ class Bibox extends Component {
         // />
         // </div>
       );
-    } else if (Device == "Ace" && shield == "true") {
+    } else if ((Device == "Ace" && shield == "true") || Device == "Ace") {
       return connectDragSource(
         // PLEASE NOTE THIS IS ONLY FOR ACE/PLAYCOMPUTER
         <div
@@ -789,6 +793,7 @@ class Bibox extends Component {
         // </div>
       );
     } else {
+      console.log("initial left nd right NULL", left, top);
       return connectDragSource(
         <img
           className="user-select"

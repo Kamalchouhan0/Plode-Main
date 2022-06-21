@@ -19,8 +19,8 @@
   width: 60px;
   position: absolute;
   cursor: pointer;
-  top: 30px;
-  left: 31px;
+  top: 2vh;
+  left: 2vw;
 }
 .Play_Comp {
   height: 20px;
@@ -171,9 +171,9 @@
   z-index: 100000;
 }
 .load_gif {
-  position: relative;
-  left: 45%;
-  top: 40%;
+  position: absolute;
+  top: 45vh;
+  left: 45vw;
 }
 
 @media only screen and (max-device-width: 1440px) {

@@ -977,7 +977,7 @@ const CustomNodeFlow = ({ compo, img, assembly, updateState, indexChange }) => {
           </div>
         );
       }
-      if (newArr[n] === "ultrasonic_sensor") {
+      if (newArr[n] === "ultrasonic_sensor" || newArr[n] === "linear_pot") {
         return (
           <div id={arr[n]}>
             <img
@@ -992,6 +992,42 @@ const CustomNodeFlow = ({ compo, img, assembly, updateState, indexChange }) => {
           </div>
         );
       }
+      if (newArr[n] === "RGB") {
+        return (
+          <div id={arr[n]}>
+            <img
+              // src={`/images/oldImages/component_${newArr[n]}.png`}
+              src={renderCompImg(newArr[n])}
+              width="70"
+              alt=""
+              nameComp={newArr[n]}
+              id={`img_${port}`}
+              style={{ position: "absolute", top: "-40px", left: "-1px" }}
+            />
+          </div>
+        );
+      }
+      if (newArr[n] === "mp3") {
+        return (
+          <div id={arr[n]}>
+            <img
+              // src={`/images/oldImages/component_${newArr[n]}.png`}
+              src={renderCompImg(newArr[n])}
+              width="70"
+              alt=""
+              nameComp={newArr[n]}
+              id={`img_${port}`}
+              style={{
+                position: "absolute",
+                top: "-47px",
+                left: "9px",
+                rotate: "-30deg",
+              }}
+            />
+          </div>
+        );
+      }
+
       if (newArr[n] === "OLED") {
         return (
           <div id={arr[n]}>

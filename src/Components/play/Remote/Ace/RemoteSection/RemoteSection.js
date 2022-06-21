@@ -518,7 +518,7 @@ function RemoteSection(props) {
 
     try {
       console.log("OPENED");
-      await p_Port.open({ baudRate: 115200 });
+      await p_Port.open({ baudRate: 120000 });
     } catch (e) {
       console.log(e);
       // p_Port.close();

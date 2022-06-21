@@ -49,7 +49,9 @@ function Speech(props) {
         console.log(transcript);
         if (e.results[i].isFinal) finalTranscript += transcript + " ";
       }
-      document.getElementById("final").innerHTML = finalTranscript;
+      try {
+        document.getElementById("final").innerHTML = finalTranscript;
+      } catch (e) {}
 
       const transcriptArray = finalTranscript.split(" ");
       const stopCmd = transcriptArray.slice(-4, -1);

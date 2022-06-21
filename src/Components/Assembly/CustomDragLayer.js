@@ -3,7 +3,6 @@ import { DragLayer } from "react-dnd-old";
 import DraggingInfo from "./DraggingInfo";
 import ItemTypes from "./ItemTypes";
 import ImageSizes from "./ImageSizes";
-
 import Sizes from "../../helpers/Sizes";
 
 import Connections from "./Connections";
@@ -93,7 +92,10 @@ class CustomDragLayer extends Component {
     const { left, top } = this.props.workspace.bibox;
     if (type === ItemTypes.BIBOX && Device == "Ace") {
       // url = "images/login/pc_1.png";
-      if (sessionStorage.getItem("shield") == "false") {
+      if (
+        sessionStorage.getItem("shield") == "false" ||
+        sessionStorage.getItem("shield") == null
+      ) {
         url = renderPrgImage("PlayComputerImg");
         return (
           <img
@@ -172,6 +174,26 @@ class CustomDragLayer extends Component {
           height={ImageSizes[type][1] * scale - 20}
         />
       );
+    } else if (item.type == "linear_pot") {
+      url = renderCompImg(item.type);
+      return (
+        <img
+          src={url}
+          style={{ position: "absolute", top: 30, left: -5 }}
+          width={ImageSizes[type][0] * scale}
+          height={ImageSizes[type][1] * scale - 20}
+        />
+      );
+    } else if (item.type == "mp3") {
+      url = renderCompImg(item.type);
+      return (
+        <img
+          src={url}
+          style={{ position: "absolute", top: 20, left: 8.5 }}
+          width={ImageSizes[type][0] * scale}
+          height={ImageSizes[type][1] * scale - 20}
+        />
+      );
     } else {
       // url = "images/oldImages/component_" + item.type + ".png";
 
@@ -204,7 +226,7 @@ class CustomDragLayer extends Component {
       top: top,
     };
     var extraComponent, connectedTo;
-
+    console.log("ItemType", itemType);
     //EXTRACOMPONENT IS FOR when we DnD to workSpace from slider like LED,BEEP then it will created with obj of top,left,type
     if (this.props.currentOffset && isDragging) {
       var { x, y } = this.props.currentOffset;
@@ -241,7 +263,6 @@ class CustomDragLayer extends Component {
     var zIndex;
     if (itemType === ItemTypes.BIBOX) zIndex = 1;
     else zIndex = 3;
-
     // connectedTo = IsOverPort(extraCompo nent, bibox, components) || DraggingInfo.newComponentPort;
     return (
       <div>

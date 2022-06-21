@@ -1,5 +1,6 @@
-import React, { useState, useLayoutEffect } from "react";
-
+import React, { useState, useEffect, useLayoutEffect } from "react";
+import Bottom from "./Bottom";
+import { Nav } from "react-bootstrap";
 import "./button.scss";
 
 import useLocalStorage from "../LocalStorage/LocalStorage";
@@ -10,6 +11,16 @@ import strokeImg from "../../Assets/img/button 52x52 - stroke.png";
 import connectionImg from "../../Assets/usb - off@2x.png";
 import { useHistory } from "react-router-dom";
 import renderPrgImage from "../../source/programImg";
+
+import { connect } from "react-redux";
+import { webSerialAction } from "../../redux/actions";
+
+import eyeInactiveImg from "../../Assets/internalAccessories/eye - inactive.484d85f3.svg";
+import teethImg from "../../Assets/internalAccessories/teeth - inactive.ff84b1d3.svg";
+import inImg from "../../Assets/internalAccessories/4 in 1 - inactive.ea3e994f.svg";
+import internalmicImg from "../../Assets/internalAccessories/internal mic - inactive.d43d2f36.svg";
+import buzzerImg from "../../Assets/internalAccessories/buzzer - inactive.872b79d8.svg";
+import touchpadsImg from "../../Assets/internalAccessories/touch pads - inactive.748c6933.svg";
 
 import PcinternalEYEActive from "../../Assets/internalAccessories/eye - active.svg";
 import PcinternalEYEInActive from "../../Assets/internalAccessories/eye - inactive.svg";
@@ -56,13 +67,89 @@ for (let i = 0; i < 16; i++) {
     bttnColor2[i] = "#717171";
   }
 }
-function InputOutput() {
+function InputOutput(props) {
   const history = useHistory();
   const backBtnAction = () => {
     history.push("/flow/selectports");
   };
   const next = () => {
     history.push("/flow/digital-analog");
+  };
+  const [isUsb, setUsb] = useState(false);
+  const [p1, setP1] = useState({
+    selected: false,
+    port: {},
+  });
+  const HdleUsb = async (e) => {
+    const filters = [{ usbVendorId: 0x1a86, usbProductId: 0x7523 }];
+    const port = await navigator.serial.requestPort({ filters });
+    if (port.onconnect == null) {
+      setUsb(true);
+    }
+  };
+  useEffect(() => {
+    let no_port = props.webSerial;
+    if (typeof no_port !== undefined) {
+      console.log("WORKING>>>>>>>>");
+      OpenReadComPort();
+    }
+    let data = JSON.parse(sessionStorage.getItem("user"));
+
+    if (data === 1) {
+      setUsb(true);
+    }
+    if (data === 0) {
+      setUsb(false);
+    }
+  });
+  useEffect(async () => {
+    navigator.serial.addEventListener("connect", (e) => {
+      setUsb(true);
+      var user = 1;
+      sessionStorage.setItem("user", JSON.stringify(user));
+    });
+
+    navigator.serial.addEventListener("disconnect", (e) => {
+      setUsb(false);
+      var user = 0;
+      sessionStorage.setItem("user", JSON.stringify(user));
+    });
+
+    try {
+      const portList = await navigator.serial.getPorts();
+
+      if (portList.length === 1) {
+        console.log(portList, "Hardware connected");
+
+        await props.webSerialAction({ port: portList[0] }); // dispatching function of redux
+
+        // setP1({
+        //   selected: true,
+        //   port: portList[0],
+        // });
+      } else {
+        console.log("No hardware");
+
+        // setP1({ p1 });
+      }
+    } catch (err) {
+      console.log(err.message);
+    }
+  });
+
+  const OpenReadComPort = async () => {
+    const p_Port = props.webSerial;
+
+    console.log(props, "p_Port");
+
+    try {
+      console.log("OPENED");
+      await p_Port.open({ baudRate: 120000 });
+    } catch (e) {
+      console.log(e);
+    }
+
+    console.log(p_Port, "p_Port");
   };
 
   useLayoutEffect(() => {
@@ -430,7 +517,12 @@ function InputOutput() {
                 style={{ width: "61px", height: "61px", marginRight: "10px" }}
                 src={strokeImg}
               ></img>
-              <img style={{ marginRight: "0px" }} src={connectionImg}></img>
+              {/* <img style={{ marginRight: "0px" }} src={connectionImg}></img> */}
+              {isUsb ? (
+                <img src={renderPrgImage("usbON")} onClick={HdleUsb} />
+              ) : (
+                <img src={renderPrgImage("usbOFF")} onClick={HdleUsb} />
+              )}
             </div>
           </div>
         </div>
@@ -1207,4 +1299,19 @@ function InputOutput() {
   );
 }
 
-export default InputOutput;
+// export default InputOutput;
+const mapStateToProps = (state) => {
+  console.log("mapStateToProps", state);
+
+  return state;
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    webSerialAction: (data) => {
+      console.log("mapDispatchToProps", data);
+      dispatch(webSerialAction(data));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(InputOutput);

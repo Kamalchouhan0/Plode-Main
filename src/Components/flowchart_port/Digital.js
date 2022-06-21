@@ -1,6 +1,9 @@
-import React, { useState, useLayoutEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect } from "react";
 import Bottom from "./Bottom";
 import Digitalbutton from "./Digitalbutton";
+import { connect } from "react-redux";
+import { webSerialAction } from "../../redux/actions";
+
 import { Nav, ButtonGroup, ToggleButton } from "react-bootstrap";
 import SwitchButton from "./SwitchButton/SwitchButtonDigital";
 import useLocalStorage from "../LocalStorage/LocalStorage";
@@ -66,12 +69,95 @@ for (let i = 0; i < 16; i++) {
     bttnColor2[i] = "#717171";
   }
 }
-function Digital() {
+function Digital(props) {
   const history = useHistory();
 
   const next = () => {
     history.push("/flow/flowchart");
   };
+
+  const [isUsb, setUsb] = useState(false);
+  const [p1, setP1] = useState({
+    selected: false,
+    port: {},
+  });
+  const HdleUsb = async (e) => {
+    const filters = [{ usbVendorId: 0x1a86, usbProductId: 0x7523 }];
+    const port = await navigator.serial.requestPort({ filters });
+    if (port.onconnect == null) {
+      setUsb(true);
+    }
+  };
+
+  useEffect(() => {
+    let no_port = props.webSerial;
+    if (typeof no_port !== undefined) {
+      console.log("WORKING>>>>>>>>");
+      OpenReadComPort();
+    }
+    let data = JSON.parse(sessionStorage.getItem("user"));
+
+    if (data === 1) {
+      setUsb(true);
+    }
+    if (data === 0) {
+      setUsb(false);
+    }
+  });
+
+  useEffect(async () => {
+    navigator.serial.addEventListener("connect", (e) => {
+      setUsb(true);
+      var user = 1;
+      sessionStorage.setItem("user", JSON.stringify(user));
+    });
+
+    navigator.serial.addEventListener("disconnect", (e) => {
+      setUsb(false);
+      var user = 0;
+      sessionStorage.setItem("user", JSON.stringify(user));
+    });
+
+    try {
+      const portList = await navigator.serial.getPorts();
+
+      if (portList.length === 1) {
+        console.log(portList, "Hardware connected");
+
+        await props.webSerialAction({ port: portList[0] }); // dispatching function of redux
+
+        // setP1({
+        //   selected: true,
+        //   port: portList[0],
+        // });
+      } else {
+        console.log("No hardware");
+
+        // setP1({ p1 });
+      }
+    } catch (err) {
+      console.log(err.message);
+    }
+  });
+
+  const OpenReadComPort = async () => {
+    const p_Port = props.webSerial;
+
+    console.log(props, "p_Port");
+
+    try {
+      console.log("OPENED");
+      await p_Port.open({ baudRate: 120000 });
+    } catch (e) {
+      console.log(e);
+      // p_Port.close();
+      // await p_Port.open({ baudRate: 120000 });
+    }
+
+    // writePort("notWrite");
+    console.log(p_Port, "p_Port");
+  };
+
   useLayoutEffect(() => {
     return () => {
       for (let i = 0; i < 16; i++) {
@@ -467,7 +553,12 @@ function Digital() {
                 style={{ width: "61px", height: "61px", marginRight: "10px" }}
                 src={strokeImg}
               ></img>
-              <img style={{ marginRight: "0px" }} src={connectionImg}></img>
+              {/* <img style={{ marginRight: "0px" }} src={connectionImg}></img> */}
+              {isUsb ? (
+                <img src={renderPrgImage("usbON")} onClick={HdleUsb} />
+              ) : (
+                <img src={renderPrgImage("usbOFF")} onClick={HdleUsb} />
+              )}
             </div>
           </div>
         </div>
@@ -1327,4 +1418,19 @@ function Digital() {
   );
 }
 
-export default Digital;
+// export default Digital;
+const mapStateToProps = (state) => {
+  console.log("mapStateToProps", state);
+
+  return state;
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    webSerialAction: (data) => {
+      console.log("mapDispatchToProps", data);
+      dispatch(webSerialAction(data));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Digital);

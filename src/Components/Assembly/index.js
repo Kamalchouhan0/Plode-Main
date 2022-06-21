@@ -18,7 +18,7 @@ import unicodeToChar from "../../utils/unicodeToChar";
 import AssemblyPrgm from "../ReusableComponents/PrgmSlider/AssemblyPrgm/AssemblyPrgm";
 import { activeCheckBox } from "./CheckboxData";
 import CustomDragLayer from "./CustomDragLayer";
-
+import * as atatus from "atatus-spa";
 var zooming;
 var oldDeltaX, oldDeltaY, panning;
 const history = createBrowserHistory();
@@ -68,7 +68,7 @@ class Assembly extends Component {
         selected: false,
         port: {},
       },
-
+      refresh: false,
       reConnecting: false,
       flag: false,
       k: false,
@@ -333,17 +333,32 @@ class Assembly extends Component {
               if (Type == "ultrasonic_sensor") {
                 bytesData[2] = "U".charCodeAt();
                 // bytesData[3] = "I".charCodeAt();
-              } else if (signalType == "digital") {
+              } else if (
+                Type == "tact_switch" ||
+                Type == "touch_sensor" ||
+                Type == "dual_switch" ||
+                Type == "dip_switch"
+              ) {
                 bytesData[2] = "I".charCodeAt();
                 bytesData[3] = "I".charCodeAt();
               } else if (
-                Type == "tact_switch" ||
-                Type == "dual_switch" ||
-                Type == "touch_sensor" ||
-                Type == "rotatory" ||
+                Type == "distance_sensor" ||
+                Type == "temperature_sensor" ||
+                Type == "gas" ||
                 Type == "light_sensor" ||
+                Type == "linear_pot" ||
+                Type == "pot" ||
+                Type == "rain_sensor" ||
+                Type == "humidity"
+              ) {
+                bytesData[2] = "A".charCodeAt();
+
+                console.log("LIGHT 0000000000");
+              } else if (
+                Type == "rotatory" ||
                 Type == "joystick" ||
-                Type == "distance_sensor"
+                Type == "metal_detector" ||
+                Type == "extender"
               ) {
                 bytesData[2] = "A".charCodeAt();
                 bytesData[3] = "A".charCodeAt();
@@ -360,17 +375,32 @@ class Assembly extends Component {
               let Type = portdata.PortConnections[port].type;
 
               if (
-                Type == "tact_switch" ||
-                Type == "dual_switch" ||
-                Type == "touch_sensor" ||
                 Type == "rotatory" ||
-                Type == "light_sensor" ||
                 Type == "joystick" ||
-                Type == "distance_sensor"
+                Type == "metal_detector" ||
+                Type == "extender"
               ) {
                 bytesData[4] = "A".charCodeAt();
                 bytesData[5] = "A".charCodeAt();
-              } else if (signalType == "digital") {
+              } else if (
+                Type == "distance_sensor" ||
+                Type == "temperature_sensor" ||
+                Type == "gas" ||
+                Type == "light_sensor" ||
+                Type == "linear_pot" ||
+                Type == "pot" ||
+                Type == "rain_sensor" ||
+                Type == "humidity"
+              ) {
+                bytesData[4] = "A".charCodeAt();
+                // bytesData[3] = "A".charCodeAt();
+                console.log("LIGHT 0000000000");
+              } else if (
+                Type == "tact_switch" ||
+                Type == "touch_sensor" ||
+                Type == "dual_switch" ||
+                Type == "dip_switch"
+              ) {
                 bytesData[4] = "I".charCodeAt();
                 bytesData[5] = "I".charCodeAt();
               }
@@ -387,17 +417,32 @@ class Assembly extends Component {
               if (Type == "ultrasonic_sensor") {
                 bytesData[6] = "U".charCodeAt();
                 // bytesData[7] = "A".charCodeAt();
-              } else if (signalType == "digital") {
+              } else if (
+                Type == "tact_switch" ||
+                Type == "touch_sensor" ||
+                Type == "dual_switch" ||
+                Type == "dip_switch"
+              ) {
                 bytesData[6] = "I".charCodeAt();
                 bytesData[7] = "I".charCodeAt();
               } else if (
-                Type == "tact_switch" ||
-                Type == "dual_switch" ||
-                Type == "touch_sensor" ||
-                Type == "rotatory" ||
+                Type == "distance_sensor" ||
+                Type == "temperature_sensor" ||
+                Type == "gas" ||
                 Type == "light_sensor" ||
+                Type == "linear_pot" ||
+                Type == "pot" ||
+                Type == "rain_sensor" ||
+                Type == "humidity"
+              ) {
+                bytesData[6] = "A".charCodeAt();
+                // bytesData[3] = "A".charCodeAt();
+                console.log("LIGHT 0000000000");
+              } else if (
+                Type == "rotatory" ||
                 Type == "joystick" ||
-                Type == "distance_sensor"
+                Type == "metal_detector" ||
+                Type == "extender"
               ) {
                 bytesData[6] = "A".charCodeAt();
                 bytesData[7] = "A".charCodeAt();
@@ -446,43 +491,43 @@ class Assembly extends Component {
 
       var v = BAR.split(" ");
 
-      if (v[13] > 255 || v[17] === 0) {
-        v[14] = v[13].slice(-2, 4);
-        v[13] = v[13].slice(0, 2);
+      // if (v[13] > 255 || v[17] === 0) {
+      //   v[14] = v[13].slice(-2, 4);
+      //   v[13] = v[13].slice(0, 2);
 
-        v[18] = "0";
-      }
+      //   v[18] = "0";
+      // }
       console.log(v, "JJ");
 
-      if (v.length == "19") {
-        if (v[0] != "0" || v[2] != "0") {
-          if (v[0] != "0") {
+      if (v.length == "19" && v[0] != "") {
+        if (v[0] != null || v[2] != null) {
+          if (v[0] != null) {
             var byte_val1 = v[0] & 0xff;
             var byte_val2 = v[1] & 0xff;
             console.log(byte_val1, byte_val2, "A1");
             var valOfSensor = (byte_val2 << 8) + byte_val1;
-            console.log("LSB+MSB:-", valOfSensor);
+            console.log("A1 LSB+MSB:-", valOfSensor);
             if (valOfSensor <= 1024) {
               valrangeA1 = valOfSensor;
             }
           }
-          if (v[2] != "0") {
+          if (v[2] != null) {
             var byte_val1 = v[2] & 0xff;
             var byte_val2 = v[3] & 0xff;
             var valOfSensor = (byte_val2 << 8) + byte_val1;
-            console.log("LSB+MSB:-", valOfSensor);
+            console.log("A2 LSB+MSB:-", valOfSensor);
             valrangeA2 = valOfSensor;
           }
         }
-        if (v[4] != "0" || v[6] != "0") {
-          if (v[4] != "0") {
+        if (v[4] != null || v[6] != null) {
+          if (v[4] != null) {
             var byte_val1 = v[4] & 0xff;
             var byte_val2 = v[5] & 0xff;
             var valOfSensor = (byte_val2 << 8) + byte_val1;
             console.log("LSB+MSB:-", valOfSensor);
             valtemp = valOfSensor;
           }
-          if (v[6] != "0") {
+          if (v[6] != null) {
             var byte_val1 = v[6] & 0xff;
             var byte_val2 = v[7] & 0xff;
             var valOfSensor = (byte_val2 << 8) + byte_val1;
@@ -490,15 +535,15 @@ class Assembly extends Component {
             valgas = valOfSensor;
           }
         }
-        if (v[8] != "0" || v[10] != "0") {
-          if (v[8] != "0") {
+        if (v[8] != null || v[10] != null) {
+          if (v[8] != null) {
             var byte_val1 = v[8] & 0xff;
             var byte_val2 = v[9] & 0xff;
             var valOfSensor = (byte_val2 << 8) + byte_val1;
             console.log("LSB+MSB:-", valOfSensor);
             valone = valOfSensor;
           }
-          if (v[10] != "0") {
+          if (v[10] != null) {
             var byte_val1 = v[10] & 0xff;
             var byte_val2 = v[11] & 0xff;
             var valOfSensor = (byte_val2 << 8) + byte_val1;
@@ -604,6 +649,21 @@ class Assembly extends Component {
       }
 
       setTimeout(() => {
+        if (!this.state.readbytes) {
+          valresponceTp0 = "";
+          valresponceTp1 = "";
+          valresponceTp2 = "";
+          valtouch_pad = "";
+          valtouch_pad2 = "";
+          valtactswitch = "";
+          valtemp = " ";
+          valone = " ";
+          valrangeA1 = "";
+          valrangeA2 = "";
+          valgas = "";
+          valtwo = "";
+          console.log("going---------------->");
+        }
         console.log("valrespnse 22222222", valresponceTp0);
 
         this.setState({
@@ -631,21 +691,21 @@ class Assembly extends Component {
         });
       }, 100);
     }
-    if (!this.state.readbytes) {
-      valresponceTp0 = "";
-      valresponceTp1 = "";
-      valresponceTp2 = "";
-      valtouch_pad = "";
-      valtouch_pad2 = "";
-      valtactswitch = "";
-      valtemp = " ";
-      valone = " ";
-      valrangeA1 = "";
-      valrangeA2 = "";
-      valgas = "";
-      valtwo = "";
-      console.log("going---------------->");
-    }
+    // if (!this.state.readbytes) {
+    //   valresponceTp0 = "";
+    //   valresponceTp1 = "";
+    //   valresponceTp2 = "";
+    //   valtouch_pad = "";
+    //   valtouch_pad2 = "";
+    //   valtactswitch = "";
+    //   valtemp = " ";
+    //   valone = " ";
+    //   valrangeA1 = " ";
+    //   valrangeA2 = " ";
+    //   valgas = "";
+    //   valtwo = "";
+    //   console.log("going---------------->");
+    // }
     console.log("valrespnse", valresponceTp0);
   }
 
@@ -665,6 +725,7 @@ class Assembly extends Component {
   };
 
   async componentDidMount() {
+    atatus.beginTransaction("Assembly Screen");
     let sessionDataCheckbox = JSON.parse(
       sessionStorage.getItem("assemblyCheckbox")
     );
@@ -674,7 +735,7 @@ class Assembly extends Component {
         document.getElementById(`${val}`).checked = sessionDataCheckbox[val];
       });
     }
-    sessionStorage.setItem("shield", "false");
+    // sessionStorage.setItem("shield", "false");
 
     let data = JSON.parse(sessionStorage.getItem("user"));
 
@@ -784,6 +845,18 @@ class Assembly extends Component {
               }
             }
           }
+          if (
+            type == "dc_motor" ||
+            type == "mini_geared_motor" ||
+            type == "geared_motor"
+          ) {
+            try {
+              delete node[nodeKey].state["assign" + port + "1"];
+              delete node[nodeKey].state["assign" + port + "2"];
+              delete node[nodeKey].state["value" + port + "1"];
+              delete node[nodeKey].state["value" + port + "2"];
+            } catch (e) {}
+          }
         }
       }
       if (node[nodeKey].subprogram) {
@@ -826,26 +899,26 @@ class Assembly extends Component {
       //     var dataConnectTo = JSON.parse(sessionStorage.getItem("assembly"))
       //       .workspace.components["pc_motor_driver"][0].connectedTo;
       //     if (dataConnectTo == "A" || dataConnectTo == "C") {
-      //       prev_data.PortConnections["C"] = null;
-      //       prev_data.PortConnections["A"] = null;
+      //       prev_data.assembly.PortConnections["C"] = null;
+      //       prev_data.assembly.PortConnections["A"] = null;
       //     }
 
       //     if (dataConnectTo == "B" || dataConnectTo == "D") {
-      //       prev_data.PortConnections["B"] = null;
-      //       prev_data.PortConnections["D"] = null;
+      //       prev_data.assembly.PortConnections["B"] = null;
+      //       prev_data.assembly.PortConnections["D"] = null;
       //     }
       //   }
       // }
 
       if (item.type == "pc_motor_driver") {
         if (item.connectedTo == "A" || item.connectedTo == "C") {
-          prev_data.PortConnections["C"] = null;
-          prev_data.PortConnections["A"] = null;
+          prev_data.assembly.PortConnections["C"] = null;
+          prev_data.assembly.PortConnections["A"] = null;
         }
 
         if (item.connectedTo == "B" || item.connectedTo == "D") {
-          prev_data.PortConnections["B"] = null;
-          prev_data.PortConnections["D"] = null;
+          prev_data.assembly.PortConnections["B"] = null;
+          prev_data.assembly.PortConnections["D"] = null;
         }
       } else if (item.type == "stepper_motor") {
         if (
@@ -857,11 +930,11 @@ class Assembly extends Component {
               .type == "pc_motor_driver"
           ) {
             if (item.connectedTo == "STPM") {
-              prev_data.PortConnections["B1"] = null;
-              prev_data.PortConnections["B2"] = null;
+              prev_data.assembly.PortConnections["B1"] = null;
+              prev_data.assembly.PortConnections["B2"] = null;
 
-              prev_data.PortConnections["D1"] = null;
-              prev_data.PortConnections["D2"] = null;
+              prev_data.assembly.PortConnections["D1"] = null;
+              prev_data.assembly.PortConnections["D2"] = null;
             }
           }
         } else if (
@@ -873,23 +946,53 @@ class Assembly extends Component {
               .type == "pc_motor_driver"
           ) {
             if (item.connectedTo == "STPM") {
-              prev_data.PortConnections["A1"] = null;
-              prev_data.PortConnections["A2"] = null;
+              prev_data.assembly.PortConnections["A1"] = null;
+              prev_data.assembly.PortConnections["A2"] = null;
 
-              prev_data.PortConnections["C1"] = null;
-              prev_data.PortConnections["C2"] = null;
+              prev_data.assembly.PortConnections["C1"] = null;
+              prev_data.assembly.PortConnections["C2"] = null;
             }
           }
         }
+      } else if (item.type == "dual_splitter") {
+        if (item.connectedTo == "A") {
+          prev_data.assembly.PortConnections["A"] = null;
+          prev_data.assembly.PortConnections["A1"] = null;
+          prev_data.assembly.PortConnections["A2"] = null;
+        }
+        if (item.connectedTo == "B") {
+          prev_data.assembly.PortConnections["B"] = null;
+          prev_data.assembly.PortConnections["B1"] = null;
+          prev_data.assembly.PortConnections["B2"] = null;
+        }
+        if (item.connectedTo == "C") {
+          prev_data.assembly.PortConnections["C"] = null;
+          prev_data.assembly.PortConnections["C1"] = null;
+          prev_data.assembly.PortConnections["C2"] = null;
+        }
+        if (item.connectedTo == "D") {
+          prev_data.assembly.PortConnections["D"] = null;
+          prev_data.assembly.PortConnections["D1"] = null;
+          prev_data.assembly.PortConnections["D2"] = null;
+        }
+      } else if (
+        item.type == "dc_motor" ||
+        item.type == "mini_geared_motor" ||
+        item.type == "geared_motor"
+      ) {
+        try {
+          prev_data.assembly.PortConnections[item.port[0] + "1"] = null;
+          prev_data.assembly.PortConnections[item.port[0] + "2"] = null;
+        } catch (e) {}
       } else {
-        prev_data.PortConnections[item.port] = null;
+        prev_data.assembly.PortConnections[item.port] = null;
       }
     } else {
-      prev_data.PortConnections[item.port] = null;
+      prev_data.assembly.PortConnections[item.port] = null;
     }
 
     // sessionStorage.setItem("AppDetails-new", JSON.stringify(prev_data));
-    // AppState.PortConnections = prev_data.PortConnections;
+    // AppState.PortConnections = prev_data.assembly.PortConnections;
     // AppState.logic = prev_data.logic;
     // AppState.logicNew = prev_data.logicNew;
     var { logic } = prev_data;
@@ -897,9 +1000,6 @@ class Assembly extends Component {
     var { workspace } = this.props.assembly;
     workspace.components[item.type].splice(item.index, 1);
     this.props.assemblyComponent(workspace);
-    if (item.type == "play_shield") {
-      window.location.reload(false);
-    }
   };
   /**
    * Pan event handler with throttling
@@ -983,7 +1083,7 @@ class Assembly extends Component {
     const { clientX, clientY, deltaY } = e;
     // if (deltaY > 0) this.zoom(5 / 6, clientX, clientY);
     // else this.zoom(6 / 5, clientX, clientY);
-    e.preventDefault();
+    //e.preventDefault();
     return false;
   };
   close = () => {
@@ -1024,6 +1124,7 @@ class Assembly extends Component {
   };
 
   componentWillUnmount() {
+    atatus.endTransaction("Assembly Screen");
     this.screenshotInitiate();
   }
   screenshotInitiate = () => {
@@ -1231,7 +1332,7 @@ class Assembly extends Component {
       console.log(this.state.responceTp0, "------------------------->>");
     });
     if (this.state.readbytes) {
-      window.location.reload(false);
+      // window.location.reload(false);
     }
     console.log("kamal", this.state.readbytes);
   };
@@ -1267,6 +1368,9 @@ class Assembly extends Component {
   };
 
   render() {
+    let vv = JSON.parse(sessionStorage.getItem("assembly"));
+    console.log(vv.PortConnections, "DATA OF PORTS");
+
     var selectionType = localStorage.getItem("programMode");
 
     if (selectionType == "program") {
@@ -1301,7 +1405,7 @@ class Assembly extends Component {
 
     console.log("GAYA", isTempratureSensor);
     return (
-      <>
+      <div div style={{ overflowY: "hidden" }}>
         {/* NAV BAR */}
         <div
           style={{
@@ -1309,6 +1413,7 @@ class Assembly extends Component {
             width: "100%",
             // border: "1px solid red",
             // background: "red",
+
             position: "absolute",
             userSelect: "none",
           }}
@@ -1816,7 +1921,7 @@ class Assembly extends Component {
             />
           </div>
         </div>
-      </>
+      </div>
     );
   }
 }

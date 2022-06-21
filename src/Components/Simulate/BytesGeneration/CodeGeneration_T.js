@@ -499,7 +499,6 @@ function genCodeString(logicComponents) {
 
   var PortBytesToComponentcode = {};
   PortBytesToComponentcode["RGB"] = "O";
-
   console.log("::MSG", connectionsList);
   for (var portname in PortsAndPortbytes) {
     // A1: ["A1"], B1: ["B1"],

@@ -79,6 +79,53 @@ class Checkbox extends Component {
           )}
         </div>
       );
+    } else if (label == "MINI GEARED MOTOR") {
+      return (
+        <div
+          className={`checkBox-conatiner renderClick${checked}`}
+          onClick={this.handleClickChecked}
+        >
+          {activePort !== undefined ? (
+            <>
+              <p
+                style={{
+                  textAlign: "center",
+                  position: "absolute",
+                  top: "20%",
+                  left: "8%",
+                  fontSize: "15px",
+                }}
+              >
+                Port {activePort} :
+              </p>
+              <p
+                style={{
+                  textAlign: "center",
+                  position: "absolute",
+                  top: "50%",
+                  left: "8%",
+                  fontSize: "14px",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                {label}{" "}
+              </p>
+            </>
+          ) : (
+            <p
+              style={{
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: `translate(-50%,-50%)`,
+                whiteSpace: "nowrap",
+              }}
+            >
+              {label}{" "}
+            </p>
+          )}
+        </div>
+      );
     } else {
       return (
         <div

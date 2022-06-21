@@ -32,7 +32,9 @@ class Slider extends Component {
     console.log("updateValue is Getting called", this.props);
     value = parseInt(value);
     // if (value === this.props.value) return;
-
+    if (isNaN(value)) {
+      value = 0;
+    }
     const { min, max } = this.props;
     if (value > max) value = max;
     else if (value < min) value = min;

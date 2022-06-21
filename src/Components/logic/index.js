@@ -21,6 +21,7 @@ import Modal from "react-modal";
 import "../../css/logic.css";
 import renderPrgImage from "../../source/programImg";
 import LogicPrgm from "../ReusableComponents/PrgmSlider/LogicPrgm/LogicPrgm";
+import * as atatus from "atatus-spa";
 
 var _ = require("lodash");
 var countLogic;
@@ -184,6 +185,7 @@ class Logic extends Component {
   }
 
   componentWillMount = () => {
+    atatus.beginTransaction("Logic Screen");
     const { program, end, insertState, currentProgramGuide, active } =
       this.props.logic;
 
@@ -200,7 +202,9 @@ class Logic extends Component {
       this.deleteNode
     );
   };
-
+  componentWillUnmount() {
+    atatus.endTransaction("Logic Screen");
+  }
   componentWillUpdate(nextProps, nextState) {
     const { program, end, insertState, currentProgramGuide, active } =
       this.props.logic;
@@ -1217,6 +1221,7 @@ class Logic extends Component {
     // console.log("UPLOAD DATA", this.myRef.current.upload()); //it will call anyFun which is available at simulateLogic.js
   };
   render = () => {
+    console.log("Logic CONDITION PROPS", this.props);
     const { program, scale, offset, currentProgramGuide, active } =
       this.props.logic;
 

@@ -10,6 +10,9 @@ import connectionImg from "../../Assets/usb - off@2x.png";
 import "./InternalAccessories.css";
 import "./style.css";
 
+import { connect } from "react-redux";
+import { webSerialAction } from "../../redux/actions";
+
 import popupcardImg from "../../Assets/internalAccessories/popupcard@2x.png";
 import pcImg from "../../Assets/internalAccessories/PC_image@3x.png";
 
@@ -63,7 +66,7 @@ import { Link, useHistory } from "react-router-dom";
 import { useLocalStorage } from "../LocalStorage/LocalStorage";
 import renderPrgImage from "../../source/programImg";
 var Panel = Panel1("");
-const InternalAccessories = () => {
+const InternalAccessories = (props) => {
   const history = useHistory();
   function findIndex(array, string) {
     var index = [];
@@ -74,6 +77,88 @@ const InternalAccessories = () => {
     }
     return index;
   }
+
+  const [isUsb, setUsb] = useState(false);
+  const [p1, setP1] = useState({
+    selected: false,
+    port: {},
+  });
+  const HdleUsb = async (e) => {
+    const filters = [{ usbVendorId: 0x1a86, usbProductId: 0x7523 }];
+    const port = await navigator.serial.requestPort({ filters });
+    if (port.onconnect == null) {
+      setUsb(true);
+    }
+  };
+
+  useEffect(() => {
+    let no_port = props.webSerial;
+    if (typeof no_port !== undefined) {
+      console.log("WORKING>>>>>>>>");
+      OpenReadComPort();
+    }
+    let data = JSON.parse(sessionStorage.getItem("user"));
+
+    if (data === 1) {
+      setUsb(true);
+    }
+    if (data === 0) {
+      setUsb(false);
+    }
+  });
+  useEffect(async () => {
+    navigator.serial.addEventListener("connect", (e) => {
+      setUsb(true);
+      var user = 1;
+      sessionStorage.setItem("user", JSON.stringify(user));
+    });
+
+    navigator.serial.addEventListener("disconnect", (e) => {
+      setUsb(false);
+      var user = 0;
+      sessionStorage.setItem("user", JSON.stringify(user));
+    });
+
+    try {
+      const portList = await navigator.serial.getPorts();
+
+      if (portList.length === 1) {
+        console.log(portList, "Hardware connected");
+
+        await props.webSerialAction({ port: portList[0] }); // dispatching function of redux
+
+        // setP1({
+        //   selected: true,
+        //   port: portList[0],
+        // });
+      } else {
+        console.log("No hardware");
+
+        // setP1({ p1 });
+      }
+    } catch (err) {
+      console.log(err.message);
+    }
+  });
+
+  const OpenReadComPort = async () => {
+    const p_Port = props.webSerial;
+
+    console.log(props, "p_Port");
+
+    try {
+      console.log("OPENED");
+      await p_Port.open({ baudRate: 120000 });
+    } catch (e) {
+      console.log(e);
+      // p_Port.close();
+      // await p_Port.open({ baudRate: 120000 });
+    }
+
+    // writePort("notWrite");
+    console.log(p_Port, "p_Port");
+  };
+
   const [isDistanceSensors, setDistanceSensors] = useLocalStorage(
     "isDistanceSensors",
     false
@@ -129,8 +214,6 @@ const InternalAccessories = () => {
   const [isSimeleFour, setSimleFour] = useLocalStorage("isSmileFour", false);
 
   const [erasedProgram, setErasedProgram] = useState(false);
-
-  const [isusb, setUsb] = useState(false);
 
   //gsk 28/2/2022 back button logic
   const [a1, setA1] = useLocalStorage(
@@ -881,7 +964,12 @@ const InternalAccessories = () => {
               style={{ width: "61px", height: "61px", marginRight: "10px" }}
               src={strokeImg}
             ></img>
-            <img style={{ marginRight: "0px" }} src={connectionImg}></img>
+            {/* <img style={{ marginRight: "0px" }} src={connectionImg}></img> */}
+            {isUsb ? (
+              <img src={renderPrgImage("usbON")} onClick={HdleUsb} />
+            ) : (
+              <img src={renderPrgImage("usbOFF")} onClick={HdleUsb} />
+            )}
           </div>
         </div>
       </div>
@@ -1476,4 +1564,23 @@ const InternalAccessories = () => {
   );
 };
 
-export default InternalAccessories;
+// export default InternalAccessories;
+
+const mapStateToProps = (state) => {
+  console.log("mapStateToProps", state);
+
+  return state;
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    webSerialAction: (data) => {
+      console.log("mapDispatchToProps", data);
+      dispatch(webSerialAction(data));
+    },
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(InternalAccessories);
