@@ -498,6 +498,7 @@ function genCodeString(logicComponents) {
   console.log(MAX_OUTPUT_PORT_CODE, "MAX_OUTPUT_PORT_CODE");
 
   var PortBytesToComponentcode = {};
+  PortBytesToComponentcode["RGB"] = "O";
 
   console.log("::MSG", connectionsList);
   for (var portname in PortsAndPortbytes) {

@@ -65,7 +65,15 @@ import renderPrgImage from "../../source/programImg";
 var Panel = Panel1("");
 const InternalAccessories = () => {
   const history = useHistory();
-
+  function findIndex(array, string) {
+    var index = [];
+    for (var i = 0; i < array.length; i++) {
+      if (array[i].indexOf(string) > -1) {
+        index.push(i);
+      }
+    }
+    return index;
+  }
   const [isDistanceSensors, setDistanceSensors] = useLocalStorage(
     "isDistanceSensors",
     false
@@ -317,6 +325,15 @@ const InternalAccessories = () => {
     "M4DIGI",
     JSON.parse(sessionStorage.getItem("M4DIGI"))
   );
+  function findIndex_new(array, string) {
+    var index = [];
+    for (var i = 0; i < array.length; i++) {
+      if (array[i].indexOf(string) > -1 && array[i].indexOf("countRGB") == -1) {
+        index.push(i);
+      }
+    }
+    return index;
+  }
   const handleEventsClick = (e) => {
     switch (e.target.alt) {
       case "mic": {
@@ -347,8 +364,7 @@ const InternalAccessories = () => {
       }
 
       case "touch0": {
-        if(JSON.parse(sessionStorage.getItem("A1")))
-        return
+        if (JSON.parse(sessionStorage.getItem("A1"))) return;
         var x = document.getElementById("snackbar3");
         x.className = "show";
         setTimeout(function () {
@@ -364,8 +380,7 @@ const InternalAccessories = () => {
       }
 
       case "touch1": {
-        if(JSON.parse(sessionStorage.getItem("B1")))
-          return
+        if (JSON.parse(sessionStorage.getItem("B1"))) return;
         var x = document.getElementById("snackbar4");
         x.className = "show";
         setTimeout(function () {
@@ -380,8 +395,7 @@ const InternalAccessories = () => {
         break;
       }
       case "touch2": {
-        if(JSON.parse(sessionStorage.getItem("C1")))
-          return
+        if (JSON.parse(sessionStorage.getItem("C1"))) return;
         var x = document.getElementById("snackbar5");
         x.className = "show";
         setTimeout(function () {
@@ -397,8 +411,7 @@ const InternalAccessories = () => {
       }
 
       case "touch0Output": {
-        if(JSON.parse(sessionStorage.getItem("A1")))
-          return
+        if (JSON.parse(sessionStorage.getItem("A1"))) return;
         var x = document.getElementById("snackbar6");
         x.className = "show";
         setTimeout(function () {
@@ -410,11 +423,15 @@ const InternalAccessories = () => {
           setTouchZeroOutput(true);
           setTouchZero(false);
         }
+        let a = findIndex(Object.keys(sessionStorage), "t0");
+        console.log("gsk", a);
+        for (let i in a) {
+          sessionStorage.setItem(Object.keys(sessionStorage)[a[i]], 0);
+        }
         break;
       }
       case "touch1Output": {
-        if(JSON.parse(sessionStorage.getItem("B1")))
-          return
+        if (JSON.parse(sessionStorage.getItem("B1"))) return;
         var x = document.getElementById("snackbar7");
         x.className = "show";
         setTimeout(function () {
@@ -426,12 +443,16 @@ const InternalAccessories = () => {
           setTouchOneOutput(true);
           setTouchOne(false);
         }
+        let a = findIndex(Object.keys(sessionStorage), "t1");
+        console.log("gsk", a);
+        for (let i in a) {
+          sessionStorage.setItem(Object.keys(sessionStorage)[a[i]], 0);
+        }
         break;
       }
 
       case "touch2Output": {
-        if(JSON.parse(sessionStorage.getItem("C1")))
-          return
+        if (JSON.parse(sessionStorage.getItem("C1"))) return;
         var x = document.getElementById("snackbar8");
         x.className = "show";
         setTimeout(function () {
@@ -442,6 +463,11 @@ const InternalAccessories = () => {
         } else {
           setTouchTwoOutput(true);
           setTouchTwo(false);
+        }
+        let a = findIndex(Object.keys(sessionStorage), "t2");
+        console.log("gsk", a);
+        for (let i in a) {
+          sessionStorage.setItem(Object.keys(sessionStorage)[a[i]], 0);
         }
         break;
       }
@@ -457,6 +483,11 @@ const InternalAccessories = () => {
         } else {
           setEyeLeft(true);
         }
+        let a = findIndex(Object.keys(sessionStorage), "le");
+        console.log("gsk", a);
+        for (let i in a) {
+          sessionStorage.setItem(Object.keys(sessionStorage)[a[i]], 0);
+        }
         break;
       }
 
@@ -470,6 +501,11 @@ const InternalAccessories = () => {
           setEyeRight(false);
         } else {
           setEyeRight(true);
+        }
+        let a = findIndex(Object.keys(sessionStorage), "re");
+        console.log("gsk", a);
+        for (let i in a) {
+          sessionStorage.setItem(Object.keys(sessionStorage)[a[i]], 0);
         }
         break;
       }
@@ -485,12 +521,16 @@ const InternalAccessories = () => {
         } else {
           setbuzzer(true);
         }
+        let a = findIndex(Object.keys(sessionStorage), "buzz");
+        console.log("gsk", a);
+        for (let i in a) {
+          sessionStorage.setItem(Object.keys(sessionStorage)[a[i]], 0);
+        }
         break;
       }
 
       case "smile1": {
-        if(JSON.parse(sessionStorage.getItem("M1")))
-          return
+        if (JSON.parse(sessionStorage.getItem("M1"))) return;
         var x = document.getElementById("snackbar12");
         x.className = "show";
         setTimeout(function () {
@@ -501,13 +541,17 @@ const InternalAccessories = () => {
         } else {
           setSimleOne(true);
         }
+        let a = findIndex(Object.keys(sessionStorage), "s1");
+        console.log("gsk", a);
+        for (let i in a) {
+          sessionStorage.setItem(Object.keys(sessionStorage)[a[i]], 0);
+        }
         break;
       }
 
       case "smile2": {
-        if(JSON.parse(sessionStorage.getItem("M2")))
-          return
-        
+        if (JSON.parse(sessionStorage.getItem("M2"))) return;
+
         var x = document.getElementById("snackbar13");
         x.className = "show";
         setTimeout(function () {
@@ -518,13 +562,17 @@ const InternalAccessories = () => {
         } else {
           setSimleTwo(true);
         }
+        let a = findIndex(Object.keys(sessionStorage), "s2");
+        console.log("gsk", a);
+        for (let i in a) {
+          sessionStorage.setItem(Object.keys(sessionStorage)[a[i]], 0);
+        }
         break;
       }
 
       case "smile3": {
-        if(JSON.parse(sessionStorage.getItem("M3")))
-        return
-      
+        if (JSON.parse(sessionStorage.getItem("M3"))) return;
+
         var x = document.getElementById("snackbar14");
         x.className = "show";
         setTimeout(function () {
@@ -535,14 +583,17 @@ const InternalAccessories = () => {
         } else {
           setSimleThree(true);
         }
-
+        let a = findIndex(Object.keys(sessionStorage), "s3");
+        console.log("gsk", a);
+        for (let i in a) {
+          sessionStorage.setItem(Object.keys(sessionStorage)[a[i]], 0);
+        }
         break;
       }
 
       case "smile4": {
-        if(JSON.parse(sessionStorage.getItem("M4")))
-        return
-      
+        if (JSON.parse(sessionStorage.getItem("s4"))) return;
+
         var x = document.getElementById("snackbar15");
         x.className = "show";
         setTimeout(function () {
@@ -559,8 +610,7 @@ const InternalAccessories = () => {
   const handleFounInOneSensor = (e) => {
     switch (e.target.alt) {
       case "distancesensors": {
-        if(JSON.parse(sessionStorage.getItem("D1")))
-        return
+        if (JSON.parse(sessionStorage.getItem("D1"))) return;
         var x = document.getElementById("snackbar16");
         x.className = "show";
         setTimeout(function () {
@@ -578,8 +628,7 @@ const InternalAccessories = () => {
         break;
       }
       case "gesturesensor": {
-        if(JSON.parse(sessionStorage.getItem("D1")))
-        return
+        if (JSON.parse(sessionStorage.getItem("D1"))) return;
         var x = document.getElementById("snackbar17");
         x.className = "show";
         setTimeout(function () {
@@ -596,8 +645,7 @@ const InternalAccessories = () => {
         break;
       }
       case "lightsensor": {
-        if(JSON.parse(sessionStorage.getItem("D1")))
-        return
+        if (JSON.parse(sessionStorage.getItem("D1"))) return;
         var x = document.getElementById("snackbar18");
         x.className = "show";
         setTimeout(function () {
@@ -614,8 +662,7 @@ const InternalAccessories = () => {
         break;
       }
       case "colorsensor": {
-        if(JSON.parse(sessionStorage.getItem("D1")))
-        return
+        if (JSON.parse(sessionStorage.getItem("D1"))) return;
         var x = document.getElementById("snackbar19");
         x.className = "show";
         setTimeout(function () {
@@ -654,78 +701,97 @@ const InternalAccessories = () => {
   };
   const shouldErase = (info) => {
     if (info == "Yes") {
+      // localStorage.clear();
+      // sessionStorage.clear();
+
+      var arr = Object.keys(sessionStorage);
+      for (const i of arr) {
+        if (
+          i != "connectedDevice" &&
+          i != "Hardware" &&
+          i != "userData" &&
+          i != "concept" &&
+          i != "webSerialPortList"
+        ) {
+          //arr.push(i);
+          sessionStorage.removeItem(i);
+          // console.log(i, "sess");
+        }
+      }
+      //sessionStorage.setItem("testarr", JSON.stringify(arr));
+
       // sessionStorage.removeItem("Index");
       // props.indexData.concept.Index = [];
       // props.history.push("/programSelection");
-      setDistanceSensors(false);
-      setGestureSensor(false);
-      setLightSensor(false);
-      setColorSensor(false);
-      setTemperature(false);
-      setMic(false);
-      setTouchZero(false);
-      setTouchOne(false);
-      setTouchTwo(false);
-      setTouchZeroOutput(false);
-      setTouchOneOutput(false);
-      setTouchTwoOutput(false);
-      setEyeLeft(false);
-      setEyeRight(false);
-      setbuzzer(false);
-      setSimleOne(false);
-      setSimleTwo(false);
-      setSimleThree(false);
-      setSimleFour(false);
-      setA1(false);
-      setA1Checked(false);
-      setA1Digi(false);
-      setA2(false);
-      setA2Checked(false);
-      setA2Digi(false);
-      setB1(false);
-      setB1Checked(false);
-      setB1Digi(false);
-      setB2(false);
-      setB2Checked(false);
-      setB2Digi(false);
-      setC1(false);
-      setC1Checked(false);
-      setC1Digi(false);
-      setC2(false);
-      setC2Checked(false);
-      setC2Digi(false);
-      setD1(false);
-      setD1Checked(false);
-      setD1Digi(false);
-      setD2(false);
-      setD2Checked(false);
-      setD2Digi(false);
-      setE1(false);
-      setE1Checked(false);
-      setE1Digi(false);
-      setE2(false);
-      setE2Checked(false);
-      setE2Digi(false);
-      setF1(false);
-      setF1Checked(false);
-      setF1Digi(false);
-      setF2(false);
-      setF2Checked(false);
-      setF2Digi(false);
-      setM1(false);
-      setM1Checked(false);
-      setM1Digi(false);
-      setM2(false);
-      setM2Checked(false);
-      setM2Digi(false);
-      setM3(false);
-      setM3Checked(false);
-      setM3Digi(false);
-      setM4(false);
-      setM4Checked(false);
-      setM4Digi(false);
-      sessionStorage.setItem("flowchart-elements",null)
-      sessionStorage.setItem("flowchart-elements-id",null)
+      // setDistanceSensors(false);
+      // setGestureSensor(false);
+      // setLightSensor(false);
+      // setColorSensor(false);
+      // setTemperature(false);
+      // setMic(false);
+      // setTouchZero(false);
+      // setTouchOne(false);
+      // setTouchTwo(false);
+      // setTouchZeroOutput(false);
+      // setTouchOneOutput(false);
+      // setTouchTwoOutput(false);
+      // setEyeLeft(false);
+      // setEyeRight(false);
+      // setbuzzer(false);
+      // setSimleOne(false);
+      // setSimleTwo(false);
+      // setSimleThree(false);
+      // setSimleFour(false);
+      // setA1(false);
+      // setA1Checked(false);
+      // setA1Digi(false);
+      // setA2(false);
+      // setA2Checked(false);
+      // setA2Digi(false);
+      // setB1(false);
+      // setB1Checked(false);
+      // setB1Digi(false);
+      // setB2(false);
+      // setB2Checked(false);
+      // setB2Digi(false);
+      // setC1(false);
+      // setC1Checked(false);
+      // setC1Digi(false);
+      // setC2(false);
+      // setC2Checked(false);
+      // setC2Digi(false);
+      // setD1(false);
+      // setD1Checked(false);
+      // setD1Digi(false);
+      // setD2(false);
+      // setD2Checked(false);
+      // setD2Digi(false);
+      // setE1(false);
+      // setE1Checked(false);
+      // setE1Digi(false);
+      // setE2(false);
+      // setE2Checked(false);
+      // setE2Digi(false);
+      // setF1(false);
+      // setF1Checked(false);
+      // setF1Digi(false);
+      // setF2(false);
+      // setF2Checked(false);
+      // setF2Digi(false);
+      // setM1(false);
+      // setM1Checked(false);
+      // setM1Digi(false);
+      // setM2(false);
+      // setM2Checked(false);
+      // setM2Digi(false);
+      // setM3(false);
+      // setM3Checked(false);
+      // setM3Digi(false);
+      // setM4(false);
+      // setM4Checked(false);
+      // setM4Digi(false);
+      // sessionStorage.setItem("flowchart-elements", null);
+      // sessionStorage.setItem("flowchart-elements-id", null);
       history.push("/flow");
       window.location.reload();
     } else {
