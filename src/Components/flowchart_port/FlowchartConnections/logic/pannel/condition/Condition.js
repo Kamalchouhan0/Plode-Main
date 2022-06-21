@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import renderPrgImage  from "../../../../../../source/programImg";
+import renderPrgImage from "../../../../../../source/programImg";
 import Select from "../helpers/Select";
 import Slider from "../helpers/Slider";
 
@@ -49,17 +49,28 @@ let isIb = [];
 let selected = [],
   selectedTwo = [];
 
-for (let i = 0; i < 1000; i++) selected[i] = "null";
+for (let i = 0; i < 1000; i++)
+  selected[i] = sessionStorage.getItem(`ifSelect${i}`) || "null";
 class Condition extends Component {
   constructor(props) {
     super(props);
     this.state = {
       state: false,
-      isGraterThan: isG[this.props.check],
-      isLessThan: isL[this.props.check],
-      isNotequalTo: isNe[this.props.check],
-      isEqualTo: isE[this.props.check],
-      isInBtween: isIb[this.props.check],
+      isGraterThan: Boolean(
+        sessionStorage.getItem(`gt${this.props.check}`) == "true"
+      ),
+      isLessThan: Boolean(
+        sessionStorage.getItem(`lt${this.props.check}`) == "true"
+      ),
+      isNotequalTo: Boolean(
+        sessionStorage.getItem(`ne${this.props.check}`) == "true"
+      ),
+      isEqualTo: Boolean(
+        sessionStorage.getItem(`eq${this.props.check}`) == "true"
+      ),
+      isInBtween: Boolean(
+        sessionStorage.getItem(`bw${this.props.check}`) == "true"
+      ),
       isRead: false,
 
       responceTp0: "",
@@ -82,10 +93,10 @@ class Condition extends Component {
       gesture: "",
       distance: "",
       readToggel: "",
-      value: count[this.props.check],
-      value1: count1[this.props.check],
+      value: parseInt(sessionStorage.getItem(`ifValue${this.props.check}`)),
+      value1: parseInt(sessionStorage.getItem(`ifValue2${this.props.check}`)),
       max: 1,
-      selected: selected[this.props.check],
+      selected: sessionStorage.getItem(`ifSelect${this.props.check}`) || "null",
       selectedTwo: selectedTwo[this.props.check],
     };
   }
@@ -209,7 +220,9 @@ class Condition extends Component {
       } else if (val == "port M4") {
         if (m4Digi) this.setState({ max: 1024 });
         else this.setState({ max: 1 });
-      } else {
+      } else if (val == "ultra A" || val == "ultra C")
+        this.setState({ max: 400 });
+      else {
         if (!a1Checked) {
           this.onChange("hi", "port A1");
         } else if (!a2Checked) {

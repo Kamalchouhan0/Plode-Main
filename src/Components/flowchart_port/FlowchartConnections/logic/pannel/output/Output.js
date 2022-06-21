@@ -1,5 +1,7 @@
-import React, { useState, useLayoutEffect } from "react";
+import React, { useState, useLayoutEffect, useEffect } from "react";
 import Slider from "../helpers/Slider";
+import TextRow from "../helpers/TextRow";
+import renderImage from "../../../../../../source/importImg";
 import { useLocalStorage } from "../../../../../LocalStorage/LocalStorage";
 import "./output.css";
 var _0to60 = {},
@@ -8,247 +10,428 @@ var _0to60 = {},
 for (let i = 0; i < 24; i++) _0to24[i] = i;
 for (let i = 0; i < 60; i++) _0to60[i] = i;
 for (let i = 0; i < 1000; i += 50) _0to1000[i] = i;
-let a1 = [],
-  a2 = [],
-  b1 = [],
-  b2 = [],
-  c1 = [],
-  c2 = [],
-  d1 = [],
-  d2 = [],
-  e1 = [],
-  e2 = [],
-  f1 = [],
-  f2 = [],
-  m1 = [],
-  m2 = [],
-  m3 = [],
-  m4 = [],
-  t0 = [],
-  t1 = [],
-  t2 = [],
-  le = [],
-  leR = [],
-  leG = [],
-  leB = [],
-  re = [],
-  reR = [],
-  reG = [],
-  reB = [],
-  buzz = [],
-  s1 = [],
-  s2 = [],
-  s3 = [],
-  s4 = [],
-  a1Chk = [],
-  a2Chk = [],
-  b1Chk = [],
-  b2Chk = [],
-  c1Chk = [],
-  c2Chk = [],
-  d1Chk = [],
-  d2Chk = [],
-  e1Chk = [],
-  e2Chk = [],
-  f1Chk = [],
-  f2Chk = [],
-  m1Chk = [],
-  m2Chk = [],
-  m3Chk = [],
-  m4Chk = [],
-  s1Chk = [],
-  s2Chk = [],
-  s3Chk = [],
-  s4Chk = [],
-  t0Chk = [],
-  t1Chk = [],
-  t2Chk = [],
-  buzzChk = [];
-for (let i = 0; i < 1000; i++) {
-  a1[i] = 0;
-  a2[i] = 0;
-  b1[i] = 0;
-  b2[i] = 0;
-  c1[i] = 0;
-  c2[i] = 0;
-  d1[i] = 0;
-  d2[i] = 0;
-  t0[i] = 0;
-  t1[i] = 0;
-  t2[i] = 0;
-  e1[i] = 0;
-  e2[i] = 0;
-  f1[i] = 0;
-  f2[i] = 0;
-  m1[i] = 0;
-  m2[i] = 0;
-  m3[i] = 0;
-  m4[i] = 0;
-  le[i] = 0;
-  re[i] = 0;
-  buzz[i] = 0;
-  s1[i] = 0;
-  s2[i] = 0;
-  s3[i] = 0;
-  s4[i] = 0;
-  a1Chk[i] = 0;
-  a2Chk[i] = 0;
-  b1Chk[i] = 0;
-  b2Chk[i] = 0;
-  c1Chk[i] = 0;
-  c2Chk[i] = 0;
-  d1Chk[i] = 0;
-  d2Chk[i] = 0;
-  e1Chk[i] = 0;
-  e2Chk[i] = 0;
-  f1Chk[i] = 0;
-  f2Chk[i] = 0;
-  m1Chk[i] = 0;
-  m2Chk[i] = 0;
-  m3Chk[i] = 0;
-  m4Chk[i] = 0;
-  s1Chk[i] = 0;
-  s2Chk[i] = 0;
-  s3Chk[i] = 0;
-  s4Chk[i] = 0;
-  t0Chk[i] = 0;
-  t1Chk[i] = 0;
-  t2Chk[i] = 0;
-  leR[i] = 0;
-  leG[i] = 0;
-  leB[i] = 0;
-  reR[i] = 0;
-  reG[i] = 0;
-  reB[i] = 0;
-  buzzChk[i] = 0;
-}
-var ms = 0;
+
 const OutputPanel = (props) => {
-  useLayoutEffect(() => {
-    return () => {
-      a1[props.check] = valA1;
-      a2[props.check] = valA2;
-      b1[props.check] = valB1;
-      b2[props.check] = valB2;
-      c1[props.check] = valC1;
-      c2[props.check] = valC2;
-      d1[props.check] = valD1;
-      d2[props.check] = valD2;
-      e1[props.check] = valE1;
-      e2[props.check] = valE2;
-      f1[props.check] = valF1;
-      f2[props.check] = valF2;
-      m1[props.check] = valM1;
-      m2[props.check] = valM2;
-      m3[props.check] = valM3;
-      m4[props.check] = valM4;
-      t0[props.check] = valT0;
-      t1[props.check] = valT1;
-      t2[props.check] = valT2;
-      le[props.check] = valLeye;
-      leR[props.check] = valLeyeR;
-      leG[props.check] = valLeyeG;
-      leB[props.check] = valLeyeB;
+  const [valA1, setvalA1] = useState(
+    parseInt(sessionStorage.getItem(`a1${props.check}`)) || 0
+  );
+  const [valA2, setvalA2] = useState(
+    parseInt(sessionStorage.getItem(`a2${props.check}`)) || 0
+  );
+  const [valB1, setvalB1] = useState(
+    parseInt(sessionStorage.getItem(`b1${props.check}`)) || 0
+  );
+  const [valB2, setvalB2] = useState(
+    parseInt(sessionStorage.getItem(`b2${props.check}`)) || 0
+  );
+  const [valC1, setvalC1] = useState(
+    parseInt(sessionStorage.getItem(`c1${props.check}`)) || 0
+  );
+  const [valC2, setvalC2] = useState(
+    parseInt(sessionStorage.getItem(`c2${props.check}`)) || 0
+  );
+  const [valD1, setvalD1] = useState(
+    parseInt(sessionStorage.getItem(`d1${props.check}`)) || 0
+  );
+  const [valD2, setvalD2] = useState(
+    parseInt(sessionStorage.getItem(`d2${props.check}`)) || 0
+  );
+  const [valE1, setvalE1] = useState(
+    parseInt(sessionStorage.getItem(`e1${props.check}`)) || 0
+  );
+  const [valE2, setvalE2] = useState(
+    parseInt(sessionStorage.getItem(`e2${props.check}`)) || 0
+  );
+  const [valF1, setvalF1] = useState(
+    parseInt(sessionStorage.getItem(`f1${props.check}`)) || 0
+  );
+  const [valF2, setvalF2] = useState(
+    parseInt(sessionStorage.getItem(`f2${props.check}`)) || 0
+  );
+  const [valM1, setvalM1] = useState(
+    parseInt(sessionStorage.getItem(`m1${props.check}`)) || 0
+  );
+  const [valM2, setvalM2] = useState(
+    parseInt(sessionStorage.getItem(`m2${props.check}`)) || 0
+  );
+  const [valM3, setvalM3] = useState(
+    parseInt(sessionStorage.getItem(`m3${props.check}`)) || 0
+  );
+  const [valM4, setvalM4] = useState(
+    parseInt(sessionStorage.getItem(`m4${props.check}`)) || 0
+  );
+  const [valT0, setvalT0] = useState(
+    parseInt(sessionStorage.getItem(`t0${props.check}`)) || 0
+  );
+  const [valT1, setvalT1] = useState(
+    parseInt(sessionStorage.getItem(`t1${props.check}`)) || 0
+  );
+  const [valT2, setvalT2] = useState(
+    parseInt(sessionStorage.getItem(`t2${props.check}`)) || 0
+  );
 
-      re[props.check] = valReye;
-      reR[props.check] = valReyeR;
-      reG[props.check] = valReyeG;
-      reB[props.check] = valReyeB;
+  const [isClickOLED1, setIsClickOLED1] = useState(
+    Boolean(
+      sessionStorage.getItem(`oledChk1${props.check}`) == "1" ||
+        sessionStorage.getItem(`oledChk1${props.check}`) == "true"
+    ) || false
+  );
+  const [isClickOLED2, setIsClickOLED2] = useState(
+    Boolean(
+      sessionStorage.getItem(`oledChk2${props.check}`) == "1" ||
+        sessionStorage.getItem(`oledChk2${props.check}`) == "true"
+    ) || false
+  );
+  const [isClickOLED3, setIsClickOLED3] = useState(
+    Boolean(
+      sessionStorage.getItem(`oledChk3${props.check}`) == "1" ||
+        sessionStorage.getItem(`oledChk3${props.check}`) == "true"
+    ) || false
+  );
+  const [curValOLED1, setCurValOLED1] = useState(
+    sessionStorage.getItem(`oled1${props.check}`) || ""
+  );
+  const [curValOLED2, setCurValOLED2] = useState(
+    sessionStorage.getItem(`oled2${props.check}`) || ""
+  );
+  const [curValOLED3, setCurValOLED3] = useState(
+    sessionStorage.getItem(`oled3${props.check}`) || ""
+  );
 
-      buzz[props.check] = valBuzz;
-      buzzChk[props.check] = buzzCheckbox;
+  const [valLeye, setvalLeye] = useState(
+    Boolean(
+      sessionStorage.getItem(`le${props.check}`) == "1" ||
+        sessionStorage.getItem(`le${props.check}`) == "true"
+    ) || false
+  );
+  const [valLeyeR, setvalLeyeR] = useState(
+    parseInt(sessionStorage.getItem(`leR${props.check}`)) || 0
+  );
+  const [valLeyeG, setvalLeyeG] = useState(
+    parseInt(sessionStorage.getItem(`leG${props.check}`)) || 0
+  );
+  const [valLeyeB, setvalLeyeB] = useState(
+    parseInt(sessionStorage.getItem(`leB${props.check}`)) || 0
+  );
 
-      s1[props.check] = valSm1;
-      s2[props.check] = valSm2;
-      s3[props.check] = valSm3;
-      s4[props.check] = valSm4;
-      a1Chk[props.check] = a1Checkbox;
-      a2Chk[props.check] = a2Checkbox;
-      b1Chk[props.check] = b1Checkbox;
-      b2Chk[props.check] = b2Checkbox;
-      c1Chk[props.check] = c1Checkbox;
-      c2Chk[props.check] = c2Checkbox;
-      d1Chk[props.check] = d1Checkbox;
-      d2Chk[props.check] = d2Checkbox;
-      e1Chk[props.check] = e1Checkbox;
-      e2Chk[props.check] = e2Checkbox;
-      f1Chk[props.check] = f1Checkbox;
-      f2Chk[props.check] = f2Checkbox;
-      m1Chk[props.check] = m1Checkbox;
-      m2Chk[props.check] = m2Checkbox;
-      m3Chk[props.check] = m3Checkbox;
-      m4Chk[props.check] = m4Checkbox;
-      s1Chk[props.check] = s1Checkbox;
-      s2Chk[props.check] = s2Checkbox;
-      s3Chk[props.check] = s3Checkbox;
-      s4Chk[props.check] = s4Checkbox;
-      t0Chk[props.check] = t0Checkbox;
-      t1Chk[props.check] = t1Checkbox;
-      t2Chk[props.check] = t2Checkbox;
+  const [valReye, setvalReye] = useState(
+    Boolean(
+      sessionStorage.getItem(`re${props.check}`) == "1" ||
+        sessionStorage.getItem(`re${props.check}`) == "true"
+    ) || false
+  );
+  const [valReyeR, setvalReyeR] = useState(
+    parseInt(sessionStorage.getItem(`reR${props.check}`)) || 0
+  );
+  const [valReyeG, setvalReyeG] = useState(
+    parseInt(sessionStorage.getItem(`reG${props.check}`)) || 0
+  );
+  const [valReyeB, setvalReyeB] = useState(
+    parseInt(sessionStorage.getItem(`reB${props.check}`)) || 0
+  );
 
-      console.log("=====>props=====>======>", a1[props.check]);
-    };
-  });
-  const [valA1, setvalA1] = useState(a1[props.check]);
-  const [valA2, setvalA2] = useState(a2[props.check]);
-  const [valB1, setvalB1] = useState(b1[props.check]);
-  const [valB2, setvalB2] = useState(b2[props.check]);
-  const [valC1, setvalC1] = useState(c1[props.check]);
-  const [valC2, setvalC2] = useState(c2[props.check]);
-  const [valD1, setvalD1] = useState(d1[props.check]);
-  const [valD2, setvalD2] = useState(d2[props.check]);
-  const [valE1, setvalE1] = useState(e1[props.check]);
-  const [valE2, setvalE2] = useState(e2[props.check]);
-  const [valF1, setvalF1] = useState(f1[props.check]);
-  const [valF2, setvalF2] = useState(f2[props.check]);
-  const [valM1, setvalM1] = useState(m1[props.check]);
-  const [valM2, setvalM2] = useState(m2[props.check]);
-  const [valM3, setvalM3] = useState(m3[props.check]);
-  const [valM4, setvalM4] = useState(m4[props.check]);
-  const [valT0, setvalT0] = useState(t0[props.check]);
-  const [valT1, setvalT1] = useState(t1[props.check]);
-  const [valT2, setvalT2] = useState(t2[props.check]);
-  const [valLeye, setvalLeye] = useState(le[props.check]);
-  const [valLeyeR, setvalLeyeR] = useState(leR[props.check]);
-  const [valLeyeG, setvalLeyeG] = useState(leG[props.check]);
-  const [valLeyeB, setvalLeyeB] = useState(leB[props.check]);
+  const [valBuzz, setvalBuzz] = useState(
+    parseInt(sessionStorage.getItem(`buzz${props.check}`)) || 0
+  );
+  const [buzzCheckbox, setBuzzCheckbox] = useState(
+    Boolean(
+      sessionStorage.getItem(`buzzChk${props.check}`) == "1" ||
+        sessionStorage.getItem(`buzzChk${props.check}`) == "true"
+    ) || false
+  );
+  const [valSm1, setvalSm1] = useState(
+    parseInt(sessionStorage.getItem(`s1${props.check}`)) || 0
+  );
+  const [valSm2, setvalSm2] = useState(
+    parseInt(sessionStorage.getItem(`s2${props.check}`)) || 0
+  );
+  const [valSm3, setvalSm3] = useState(
+    parseInt(sessionStorage.getItem(`s3${props.check}`)) || 0
+  );
+  const [valSm4, setvalSm4] = useState(
+    parseInt(sessionStorage.getItem(`s4${props.check}`)) || 0
+  );
+  const [a1Checkbox, setA1Checkbox] = useState(
+    Boolean(
+      sessionStorage.getItem(`a1Chk${props.check}`) == "1" ||
+        sessionStorage.getItem(`a1Chk${props.check}`) == "true"
+    ) || false
+  );
+  const [a2Checkbox, setA2Checkbox] = useState(
+    Boolean(
+      sessionStorage.getItem(`a2Chk${props.check}`) == "1" ||
+        sessionStorage.getItem(`a3Chk${props.check}`) == "true"
+    ) || false
+  );
+  const [b1Checkbox, setB1Checkbox] = useState(
+    Boolean(
+      sessionStorage.getItem(`b1Chk${props.check}`) == "1" ||
+        sessionStorage.getItem(`b1Chk${props.check}`) == "true"
+    ) || false
+  );
+  const [b2Checkbox, setB2Checkbox] = useState(
+    Boolean(
+      sessionStorage.getItem(`b2Chk${props.check}`) == "1" ||
+        sessionStorage.getItem(`b2Chk${props.check}`) == "true"
+    ) || false
+  );
+  const [c1Checkbox, setC1Checkbox] = useState(
+    Boolean(
+      sessionStorage.getItem(`c1Chk${props.check}`) == "1" ||
+        sessionStorage.getItem(`c1Chk${props.check}`) == "true"
+    ) || false
+  );
+  const [c2Checkbox, setC2Checkbox] = useState(
+    Boolean(
+      sessionStorage.getItem(`c2Chk${props.check}`) == "1" ||
+        sessionStorage.getItem(`c2Chk${props.check}`) == "true"
+    ) || false
+  );
+  const [d1Checkbox, setD1Checkbox] = useState(
+    Boolean(
+      sessionStorage.getItem(`d1Chk${props.check}`) == "1" ||
+        sessionStorage.getItem(`d1Chk${props.check}`) == "true"
+    ) || false
+  );
+  const [d2Checkbox, setD2Checkbox] = useState(
+    Boolean(
+      sessionStorage.getItem(`d2Chk${props.check}`) == "1" ||
+        sessionStorage.getItem(`d2Chk${props.check}`) == "true"
+    ) || false
+  );
+  const [e1Checkbox, setE1Checkbox] = useState(
+    Boolean(
+      sessionStorage.getItem(`e1Chk${props.check}`) == "1" ||
+        sessionStorage.getItem(`e1Chk${props.check}`) == "true"
+    ) || false
+  );
+  const [e2Checkbox, setE2Checkbox] = useState(
+    Boolean(
+      sessionStorage.getItem(`e2Chk${props.check}`) == "1" ||
+        sessionStorage.getItem(`e2Chk${props.check}`) == "true"
+    ) || false
+  );
+  const [f1Checkbox, setF1Checkbox] = useState(
+    Boolean(
+      sessionStorage.getItem(`f1Chk${props.check}`) == "1" ||
+        sessionStorage.getItem(`f1Chk${props.check}`) == "true"
+    ) || false
+  );
+  const [f2Checkbox, setF2Checkbox] = useState(
+    Boolean(
+      sessionStorage.getItem(`f2Chk${props.check}`) == "1" ||
+        sessionStorage.getItem(`f2Chk${props.check}`) == "true"
+    ) || false
+  );
+  const [m1Checkbox, setM1Checkbox] = useState(
+    Boolean(
+      sessionStorage.getItem(`m1Chk${props.check}`) == "1" ||
+        sessionStorage.getItem(`m1Chk${props.check}`) == "true"
+    ) || false
+  );
+  const [m2Checkbox, setM2Checkbox] = useState(
+    Boolean(
+      sessionStorage.getItem(`m2Chk${props.check}`) == "1" ||
+        sessionStorage.getItem(`m2Chk${props.check}`) == "true"
+    ) || false
+  );
+  const [m3Checkbox, setM3Checkbox] = useState(
+    Boolean(
+      sessionStorage.getItem(`m3Chk${props.check}`) == "1" ||
+        sessionStorage.getItem(`m3Chk${props.check}`) == "true"
+    ) || false
+  );
+  const [m4Checkbox, setM4Checkbox] = useState(
+    Boolean(
+      sessionStorage.getItem(`m4Chk${props.check}`) == "1" ||
+        sessionStorage.getItem(`m4Chk${props.check}`) == "true"
+    ) || false
+  );
+  const [s1Checkbox, setS1Checkbox] = useState(
+    Boolean(
+      sessionStorage.getItem(`s1Chk${props.check}`) == "1" ||
+        sessionStorage.getItem(`s1Chk${props.check}`) == "true"
+    ) || false
+  );
+  const [s2Checkbox, setS2Checkbox] = useState(
+    Boolean(
+      sessionStorage.getItem(`s2Chk${props.check}`) == "1" ||
+        sessionStorage.getItem(`s2Chk${props.check}`) == "true"
+    ) || false
+  );
+  const [s3Checkbox, setS3Checkbox] = useState(
+    Boolean(
+      sessionStorage.getItem(`s3Chk${props.check}`) == "1" ||
+        sessionStorage.getItem(`s3Chk${props.check}`) == "true"
+    ) || false
+  );
+  const [s4Checkbox, setS4Checkbox] = useState(
+    Boolean(
+      sessionStorage.getItem(`s4Chk${props.check}`) == "1" ||
+        sessionStorage.getItem(`s4Chk${props.check}`) == "true"
+    ) || false
+  );
+  const [t0Checkbox, setT0Checkbox] = useState(
+    Boolean(
+      sessionStorage.getItem(`t0Chk${props.check}`) == "1" ||
+        sessionStorage.getItem(`t0Chk${props.check}`) == "true"
+    ) || false
+  );
+  const [t1Checkbox, setT1Checkbox] = useState(
+    Boolean(
+      sessionStorage.getItem(`t1Chk${props.check}`) == "1" ||
+        sessionStorage.getItem(`t1Chk${props.check}`) == "true"
+    ) || false
+  );
+  const [t2Checkbox, setT2Checkbox] = useState(
+    Boolean(
+      sessionStorage.getItem(`t2Chk${props.check}`) == "1" ||
+        sessionStorage.getItem(`t2Chk${props.check}`) == "true"
+    ) || false
+  );
+  const [valMP3, setvalMP3] = useState(
+    parseInt(sessionStorage.getItem(`mp3${props.check}`)) || 0
+  );
+  const [mp3Checkbox, setMP3Checkbox] = useState(
+    Boolean(
+      sessionStorage.getItem(`mp3Chk${props.check}`) == "1" ||
+        sessionStorage.getItem(`mp3Chk${props.check}`) == "true"
+    ) || false
+  );
+  const [countRGBComp, setCountRGBComp] = useState(
+    parseInt(sessionStorage.getItem(`countRGB${props.check}`)) || 1
+  );
+  let rgbArray1 = JSON.parse(sessionStorage.getItem(`valRGB1${props.check}`)),
+    rgbArray2 = JSON.parse(sessionStorage.getItem(`valRGB2${props.check}`)),
+    rgbArray3 = JSON.parse(sessionStorage.getItem(`valRGB3${props.check}`)),
+    rgbArray4 = JSON.parse(sessionStorage.getItem(`valRGB4${props.check}`)),
+    rgbArray5 = JSON.parse(sessionStorage.getItem(`valRGB5${props.check}`)),
+    rgbArray6 = JSON.parse(sessionStorage.getItem(`valRGB6${props.check}`)),
+    rgbArray7 = JSON.parse(sessionStorage.getItem(`valRGB7${props.check}`)),
+    rgbArray8 = JSON.parse(sessionStorage.getItem(`valRGB8${props.check}`)),
+    rgbArray9 = JSON.parse(sessionStorage.getItem(`valRGB9${props.check}`)),
+    rgbArray10 = JSON.parse(sessionStorage.getItem(`valRGB10${props.check}`));
+  if (rgbArray1 == null) rgbArray1 = { r: 0, g: 0, b: 0 };
+  if (rgbArray2 == null) rgbArray2 = { r: 0, g: 0, b: 0 };
+  if (rgbArray3 == null) rgbArray3 = { r: 0, g: 0, b: 0 };
+  if (rgbArray4 == null) rgbArray4 = { r: 0, g: 0, b: 0 };
+  if (rgbArray5 == null) rgbArray5 = { r: 0, g: 0, b: 0 };
+  if (rgbArray6 == null) rgbArray6 = { r: 0, g: 0, b: 0 };
+  if (rgbArray7 == null) rgbArray7 = { r: 0, g: 0, b: 0 };
+  if (rgbArray8 == null) rgbArray8 = { r: 0, g: 0, b: 0 };
+  if (rgbArray9 == null) rgbArray9 = { r: 0, g: 0, b: 0 };
+  if (rgbArray10 == null) rgbArray10 = { r: 0, g: 0, b: 0 };
+  const [valRgb1, setValRgb1] = useState([
+    rgbArray1.r || 0,
+    rgbArray1.g || 0,
+    rgbArray1.b || 0,
+  ]);
+  const [valRgb2, setValRgb2] = useState([
+    rgbArray2.r || 0,
+    rgbArray2.g || 0,
+    rgbArray2.b || 0,
+  ]);
+  const [valRgb3, setValRgb3] = useState([
+    rgbArray3.r || 0,
+    rgbArray3.g || 0,
+    rgbArray3.b || 0,
+  ]);
+  const [valRgb4, setValRgb4] = useState([
+    rgbArray4.r || 0,
+    rgbArray4.g || 0,
+    rgbArray4.b || 0,
+  ]);
+  const [valRgb5, setValRgb5] = useState([
+    rgbArray5.r || 0,
+    rgbArray5.g || 0,
+    rgbArray5.b || 0,
+  ]);
+  const [valRgb6, setValRgb6] = useState([
+    rgbArray6.r || 0,
+    rgbArray6.g || 0,
+    rgbArray6.b || 0,
+  ]);
+  const [valRgb7, setValRgb7] = useState([
+    rgbArray7.r || 0,
+    rgbArray7.g || 0,
+    rgbArray7.b || 0,
+  ]);
+  const [valRgb8, setValRgb8] = useState([
+    rgbArray8.r || 0,
+    rgbArray8.g || 0,
+    rgbArray8.b || 0,
+  ]);
+  const [valRgb9, setValRgb9] = useState([
+    rgbArray9.r || 0,
+    rgbArray9.g || 0,
+    rgbArray9.b || 0,
+  ]);
+  const [valRgb10, setValRgb10] = useState([
+    rgbArray10.r || 0,
+    rgbArray10.g || 0,
+    rgbArray10.b || 0,
+  ]);
+  const [rgb1, setRgb1] = useState(
+    Boolean(
+      sessionStorage.getItem(`rgb1Chk${props.check}`) == "1" ||
+        sessionStorage.getItem(`rgb1Chk${props.check}`) == "true"
+    ) || false
+  );
+  const [rgb2, setRgb2] = useState(
+    Boolean(
+      sessionStorage.getItem(`rgb2Chk${props.check}`) == "1" ||
+        sessionStorage.getItem(`rgb2Chk${props.check}`) == "true"
+    ) || false
+  );
+  const [rgb3, setRgb3] = useState(
+    Boolean(
+      sessionStorage.getItem(`rgb3Chk${props.check}`) == "1" ||
+        sessionStorage.getItem(`rgb3Chk${props.check}`) == "true"
+    ) || false
+  );
+  const [rgb4, setRgb4] = useState(
+    Boolean(
+      sessionStorage.getItem(`rgb4Chk${props.check}`) == "1" ||
+        sessionStorage.getItem(`rgb4Chk${props.check}`) == "true"
+    ) || false
+  );
+  const [rgb5, setRgb5] = useState(
+    Boolean(
+      sessionStorage.getItem(`rgb5Chk${props.check}`) == "1" ||
+        sessionStorage.getItem(`rgb5Chk${props.check}`) == "true"
+    ) || false
+  );
+  const [rgb6, setRgb6] = useState(
+    Boolean(
+      sessionStorage.getItem(`rgb6Chk${props.check}`) == "1" ||
+        sessionStorage.getItem(`rgb6Chk${props.check}`) == "true"
+    ) || false
+  );
+  const [rgb7, setRgb7] = useState(
+    Boolean(
+      sessionStorage.getItem(`rgb7Chk${props.check}`) == "1" ||
+        sessionStorage.getItem(`rgb7Chk${props.check}`) == "true"
+    ) || false
+  );
+  const [rgb8, setRgb8] = useState(
+    Boolean(
+      sessionStorage.getItem(`rgb8Chk${props.check}`) == "1" ||
+        sessionStorage.getItem(`rgb8Chk${props.check}`) == "true"
+    ) || false
+  );
+  const [rgb9, setRgb9] = useState(
+    Boolean(
+      sessionStorage.getItem(`rgb9Chk${props.check}`) == "1" ||
+        sessionStorage.getItem(`rgb9Chk${props.check}`) == "true"
+    ) || false
+  );
+  const [rgb10, setRgb10] = useState(
+    Boolean(
+      sessionStorage.getItem(`rgb10Chk${props.check}`) == "1" ||
+        sessionStorage.getItem(`rgb10Chk${props.check}`) == "true"
+    ) || false
+  );
 
-  const [valReye, setvalReye] = useState(re[props.check]);
-  const [valReyeR, setvalReyeR] = useState(reR[props.check]);
-  const [valReyeG, setvalReyeG] = useState(reG[props.check]);
-  const [valReyeB, setvalReyeB] = useState(reB[props.check]);
-
-  const [valBuzz, setvalBuzz] = useState(buzz[props.check]);
-  const [buzzCheckbox, setBuzzCheckbox] = useState(buzzChk[props.check]);
-  const [valSm1, setvalSm1] = useState(s1[props.check]);
-  const [valSm2, setvalSm2] = useState(s2[props.check]);
-  const [valSm3, setvalSm3] = useState(s3[props.check]);
-  const [valSm4, setvalSm4] = useState(s4[props.check]);
-  const [a1Checkbox, setA1Checkbox] = useState(a1Chk[props.check]);
-  const [a2Checkbox, setA2Checkbox] = useState(a2Chk[props.check]);
-  const [b1Checkbox, setB1Checkbox] = useState(b1Chk[props.check]);
-  const [b2Checkbox, setB2Checkbox] = useState(b2Chk[props.check]);
-  const [c1Checkbox, setC1Checkbox] = useState(c1Chk[props.check]);
-  const [c2Checkbox, setC2Checkbox] = useState(c2Chk[props.check]);
-  const [d1Checkbox, setD1Checkbox] = useState(d1Chk[props.check]);
-  const [d2Checkbox, setD2Checkbox] = useState(d2Chk[props.check]);
-  const [e1Checkbox, setE1Checkbox] = useState(e1Chk[props.check]);
-  const [e2Checkbox, setE2Checkbox] = useState(e2Chk[props.check]);
-  const [f1Checkbox, setF1Checkbox] = useState(f1Chk[props.check]);
-  const [f2Checkbox, setF2Checkbox] = useState(f2Chk[props.check]);
-  const [m1Checkbox, setM1Checkbox] = useState(m1Chk[props.check]);
-  const [m2Checkbox, setM2Checkbox] = useState(m2Chk[props.check]);
-  const [m3Checkbox, setM3Checkbox] = useState(m3Chk[props.check]);
-  const [m4Checkbox, setM4Checkbox] = useState(m4Chk[props.check]);
-  const [s1Checkbox, setS1Checkbox] = useState(s1Chk[props.check]);
-  const [s2Checkbox, setS2Checkbox] = useState(s2Chk[props.check]);
-  const [s3Checkbox, setS3Checkbox] = useState(s3Chk[props.check]);
-  const [s4Checkbox, setS4Checkbox] = useState(s4Chk[props.check]);
-  const [t0Checkbox, setT0Checkbox] = useState(t0Chk[props.check]);
-  const [t1Checkbox, setT1Checkbox] = useState(t1Chk[props.check]);
-  const [t2Checkbox, setT2Checkbox] = useState(t2Chk[props.check]);
-  // const [a1Checked] = useLocalStorage("a1-I/O");
-  // const [a1Digi] = useLocalStorage("A1DIGI");
   const a1Checked = JSON.parse(sessionStorage.getItem("a1-I/O"));
   const a1Digi = JSON.parse(sessionStorage.getItem("A1DIGI"));
   const a2Checked = JSON.parse(sessionStorage.getItem("a2-I/O"));
@@ -297,7 +480,9 @@ const OutputPanel = (props) => {
   const M2 = JSON.parse(sessionStorage.getItem("M2"));
   const M3 = JSON.parse(sessionStorage.getItem("M3"));
   const M4 = JSON.parse(sessionStorage.getItem("M4"));
-
+  const MP3 = JSON.parse(sessionStorage.getItem("BMP3"));
+  const OLED = JSON.parse(sessionStorage.getItem("DOLED"));
+  const RGB = JSON.parse(sessionStorage.getItem("BRGB"));
   let isTouchZeroOutput = JSON.parse(
     sessionStorage.getItem("isTouchZeroOutput")
   );
@@ -311,9 +496,6 @@ const OutputPanel = (props) => {
   let isEyeRight = JSON.parse(sessionStorage.getItem("isEyeRight"));
   let isBuzzer = JSON.parse(sessionStorage.getItem("isBuzzer"));
 
-  // const [a1Digi, seta1d] = useState(
-  //   JSON.parse(sessionStorage.getItem("A1DIGI"))
-  // );
   const onChange = (key, value) => {
     if (key === "a1") {
       setvalA1(value);
@@ -397,6 +579,8 @@ const OutputPanel = (props) => {
       setvalSm3(value);
     } else if (key === "sm4") {
       setvalSm4(value);
+    } else if (key === "mp3") {
+      setvalMP3(value);
     } else if (key === "a1Checkbox") {
       setA1Checkbox(!a1Checkbox);
     } else if (key === "a2Checkbox") {
@@ -441,8 +625,33 @@ const OutputPanel = (props) => {
       setT0Checkbox(!t0Checkbox);
     } else if (key === "t1Checkbox") {
       setT1Checkbox(!t1Checkbox);
-    } else if (key === "t2Checkbox") {
+    } else if (key === "st2Checkbox") {
       setT2Checkbox(!t2Checkbox);
+    } else if (key === "mp3Checkbox") {
+      setMP3Checkbox(!mp3Checkbox);
+    } else if (key === "RGB1") {
+      console.log("gsk ************", key);
+      setRgb1(!rgb1);
+    } else if (key === "RGB2") {
+      console.log("gsk ************", key);
+      setRgb2(!rgb2);
+    } else if (key === "RGB3") {
+      console.log("gsk ************", key);
+      setRgb3(!rgb3);
+    } else if (key === "RGB4") {
+      setRgb4(!rgb4);
+    } else if (key === "RGB5") {
+      setRgb5(!rgb5);
+    } else if (key === "RGB6") {
+      setRgb6(!rgb6);
+    } else if (key === "RGB7") {
+      setRgb7(!rgb7);
+    } else if (key === "RGB8") {
+      setRgb8(!rgb8);
+    } else if (key === "RGB9") {
+      setRgb9(!rgb9);
+    } else if (key === "RGB10") {
+      setRgb10(!rgb10);
     }
   };
 
@@ -506,6 +715,420 @@ const OutputPanel = (props) => {
   sessionStorage.setItem(`s2Chk${props.check}`, s2Checkbox);
   sessionStorage.setItem(`s3Chk${props.check}`, s3Checkbox);
   sessionStorage.setItem(`s4Chk${props.check}`, s4Checkbox);
+
+  sessionStorage.setItem(`mp3${props.check}`, valMP3);
+  sessionStorage.setItem(`mp3Chk${props.check}`, mp3Checkbox);
+  sessionStorage.setItem(`oled1${props.check}`, curValOLED1);
+  sessionStorage.setItem(`oledChk1${props.check}`, isClickOLED1);
+  sessionStorage.setItem(`oled2${props.check}`, curValOLED2);
+  sessionStorage.setItem(`oledChk2${props.check}`, isClickOLED2);
+  sessionStorage.setItem(`oled3${props.check}`, curValOLED3);
+  sessionStorage.setItem(`oledChk3${props.check}`, isClickOLED3);
+  sessionStorage.setItem(`countRGB${props.check}`, countRGBComp);
+  sessionStorage.setItem(`rgb1Chk${props.check}`, rgb1);
+  sessionStorage.setItem(`rgb2Chk${props.check}`, rgb2);
+  sessionStorage.setItem(`rgb3Chk${props.check}`, rgb3);
+  sessionStorage.setItem(`rgb4Chk${props.check}`, rgb4);
+  sessionStorage.setItem(`rgb5Chk${props.check}`, rgb5);
+  sessionStorage.setItem(`rgb6Chk${props.check}`, rgb6);
+  sessionStorage.setItem(`rgb7Chk${props.check}`, rgb7);
+  sessionStorage.setItem(`rgb8Chk${props.check}`, rgb8);
+  sessionStorage.setItem(`rgb8Chk${props.check}`, rgb9);
+  sessionStorage.setItem(`rgb10Chk${props.check}`, rgb10);
+  sessionStorage.setItem(
+    `valRGB1${props.check}`,
+    JSON.stringify({
+      r: valRgb1[0],
+      g: valRgb1[1],
+      b: valRgb1[2],
+    })
+  );
+  sessionStorage.setItem(
+    `valRGB2${props.check}`,
+    JSON.stringify({
+      r: valRgb2[0],
+      g: valRgb2[1],
+      b: valRgb2[2],
+    })
+  );
+  sessionStorage.setItem(
+    `valRGB3${props.check}`,
+    JSON.stringify({
+      r: valRgb3[0],
+      g: valRgb3[1],
+      b: valRgb3[2],
+    })
+  );
+  sessionStorage.setItem(
+    `valRGB4${props.check}`,
+    JSON.stringify({
+      r: valRgb4[0],
+      g: valRgb4[1],
+      b: valRgb4[2],
+    })
+  );
+  sessionStorage.setItem(
+    `valRGB5${props.check}`,
+    JSON.stringify({
+      r: valRgb5[0],
+      g: valRgb5[1],
+      b: valRgb5[2],
+    })
+  );
+  sessionStorage.setItem(
+    `valRGB6${props.check}`,
+    JSON.stringify({
+      r: valRgb6[0],
+      g: valRgb6[1],
+      b: valRgb6[2],
+    })
+  );
+  sessionStorage.setItem(
+    `valRGB7${props.check}`,
+    JSON.stringify({
+      r: valRgb7[0],
+      g: valRgb7[1],
+      b: valRgb7[2],
+    })
+  );
+  sessionStorage.setItem(
+    `valRGB8${props.check}`,
+    JSON.stringify({
+      r: valRgb8[0],
+      g: valRgb8[1],
+      b: valRgb8[2],
+    })
+  );
+  sessionStorage.setItem(
+    `valRGB9${props.check}`,
+    JSON.stringify({
+      r: valRgb9[0],
+      g: valRgb9[1],
+      b: valRgb9[2],
+    })
+  );
+  sessionStorage.setItem(
+    `valRGB10${props.check}`,
+    JSON.stringify({
+      r: valRgb10[0],
+      g: valRgb10[1],
+      b: valRgb10[2],
+    })
+  );
+  const onOLED1Handle = () => {
+    setIsClickOLED1(!isClickOLED1);
+  };
+
+  const onOLED2Handle = () => {
+    setIsClickOLED2(!isClickOLED2);
+  };
+  const onOLED3Handle = () => {
+    setIsClickOLED3(!isClickOLED3);
+  };
+  const onOLED1HandleText = (e) => {
+    setCurValOLED1(e.target.value);
+  };
+  const onOLED2HandleText = (e) => {
+    setCurValOLED2(e.target.value);
+  };
+  const onOLED3HandleText = (e) => {
+    setCurValOLED3(e.target.value);
+  };
+  var styleAdd = {
+    backgroundImage: `url(${renderImage("add3x")}`,
+    backgroundPosition: "center",
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+    height: 40,
+    width: 40,
+    position: "relative",
+    margin: "auto",
+    marginLeft: "60%",
+  };
+  var styleRemove = {
+    backgroundImage: `url(${renderImage("remove3x")}`,
+    backgroundPosition: "center",
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+    height: 40,
+    width: 40,
+    position: "relative",
+    margin: "auto",
+    marginLeft: "70%",
+  };
+  const [valRGB, setvalRGB] = useState([
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+  ]);
+
+  const onRGBCompIncrease = () => {
+    if (countRGBComp < 10) setCountRGBComp(countRGBComp + 1);
+  };
+  const onRGBCompDecrease = () => {
+    if (countRGBComp > 1) {
+      //setRgb2(false);
+
+      let a = `rgb${countRGBComp}Chk${props.check}`;
+      console.log("program", a, typeof a);
+      eval(`setRgb${countRGBComp}(${false})`);
+      eval(`setValRgb${countRGBComp}(${[0, 0, 0]})`);
+      //sessionStorage.setItem(a, false);
+
+      //sessionStorage.setItem(`valRGB${2}${props.check}`, null);
+      setCountRGBComp(countRGBComp - 1);
+    }
+  };
+
+  const rgbHandle = (e) => {
+    if (e.includes("RGB 1")) setRgb1(!rgb1);
+    if (e.includes("RGB 2")) setRgb2(!rgb2);
+    if (e.includes("RGB 3")) setRgb3(!rgb3);
+    if (e.includes("RGB 4")) setRgb4(!rgb4);
+    if (e.includes("RGB 5")) setRgb5(!rgb5);
+    if (e.includes("RGB 6")) setRgb6(!rgb6);
+    if (e.includes("RGB 7")) setRgb7(!rgb7);
+    if (e.includes("RGB 8")) setRgb8(!rgb8);
+    if (e.includes("RGB 9")) setRgb9(!rgb9);
+    if (e.includes("RGB 10")) setRgb10(!rgb10);
+  };
+  const rgbHandleValue = (e, value) => {
+    try {
+      let a = [];
+      if (e[0] == "R") {
+        a = eval("valRgb" + e[1]);
+        a[0] = value;
+      }
+      if (e[0] == "G") {
+        a = eval("valRgb" + e[1]);
+        a[1] = value;
+      }
+      if (e[0] == "B") {
+        a = eval("valRgb" + e[1]);
+        a[2] = value;
+      }
+      switch (e[1]) {
+        case "1":
+          setValRgb1(a);
+          break;
+        case "2":
+          setValRgb2(a);
+          break;
+        case "3":
+          setValRgb3(a);
+          break;
+        case "4":
+          setValRgb4(a);
+          break;
+        case "5":
+          setValRgb5(a);
+          break;
+        case "6":
+          setValRgb6(a);
+          break;
+        case "7":
+          setValRgb7(a);
+          break;
+        case "8":
+          setValRgb8(a);
+          break;
+        case "9":
+          setValRgb9(a);
+          break;
+        case "10":
+          setValRgb10(a);
+          break;
+      }
+    } catch (e) {}
+
+    console.log(
+      "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%",
+      valRgb1,
+      valRgb2,
+      valRgb3
+    );
+  };
+  var totalSliders = [];
+  for (var i = 1; i <= countRGBComp; i++) {
+    console.log("loopRGB", countRGBComp);
+
+    var slidr = (
+      <>
+        <div
+          className="slider-item1-flowchart"
+          style={{ position: "relative" }}
+        >
+          <div className="portDetails-flowchart">
+            <div
+              id={i}
+              onClick={(e) => rgbHandle(e.target.innerHTML)}
+              className={
+                "renderClick" +
+                (eval("rgb" + i) || false) +
+                "  checkBox-conatiner"
+              }
+            >
+              <p
+                style={{
+                  position: "absolute",
+                  top: "50%",
+                  left: "50%",
+                  transform: "translate(-50%, -50%)",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                RGB {i}
+              </p>
+            </div>
+          </div>
+          {/* <input type ="checkbox" id="re" checked={valReye} onChange={() => onChange("reye")}></input>      
+                <span className="hardwareText">Right Eye</span> */}
+
+          <div
+            className={
+              "portSlider-flowchart" +
+              " isActivePortInfo" +
+              (eval("rgb" + i) || false)
+            }
+            style={{
+              position: "relative",
+              height: "250px",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-around",
+            }}
+          >
+            <div
+              style={{ position: "relative", height: "auto", width: "100%" }}
+            >
+              <Slider
+                value={eval("valRgb" + i + "[0]") || 0}
+                min={0}
+                max={100}
+                renderIn="hardwarePropertyPanel"
+                sliderName={`R${i}`}
+                onChange={(e, id) => rgbHandleValue(id, e)}
+                disabled={!eval("rgb" + i)}
+              />
+              <p
+                style={{
+                  position: "absolute",
+                  top: "55%",
+                  left: "33%",
+                  fontSize: "16px",
+                }}
+              >
+                0
+              </p>
+              <p
+                style={{
+                  position: "absolute",
+                  top: "55%",
+
+                  fontSize: "16px",
+                  right: "13%",
+                }}
+              >
+                100
+              </p>
+            </div>
+            <div
+              style={{ position: "relative", height: "auto", width: "100%" }}
+            >
+              <Slider
+                id={i}
+                value={eval("valRgb" + i + "[1]") || 0}
+                min={0}
+                max={100}
+                renderIn="hardwarePropertyPanel"
+                sliderName={`G${i}`}
+                onChange={(e, id) => rgbHandleValue(id, e)}
+                disabled={!eval("rgb" + i)}
+              />
+              <p
+                style={{
+                  position: "absolute",
+                  top: "55%",
+                  left: "33%",
+                  fontSize: "16px",
+                }}
+              >
+                0
+              </p>
+              <p
+                style={{
+                  position: "absolute",
+                  top: "55%",
+
+                  fontSize: "16px",
+                  right: "13%",
+                }}
+              >
+                100
+              </p>
+            </div>
+            <div
+              style={{ position: "relative", height: "auto", width: "100%" }}
+            >
+              <Slider
+                value={eval("valRgb" + i + "[2]") || 0}
+                min={0}
+                max={100}
+                renderIn="hardwarePropertyPanel"
+                sliderName={`B${i}`}
+                onChange={(e, id) => rgbHandleValue(id, e)}
+                disabled={!eval("rgb" + i)}
+              />
+              <p
+                style={{
+                  position: "absolute",
+                  top: "55%",
+                  left: "33%",
+                  fontSize: "16px",
+                }}
+              >
+                0
+              </p>
+              <p
+                style={{
+                  position: "absolute",
+                  top: "55%",
+
+                  fontSize: "16px",
+                  right: "13%",
+                }}
+              >
+                100
+              </p>
+            </div>
+          </div>
+        </div>
+        <br></br>
+      </>
+    );
+
+    totalSliders = [...totalSliders, slidr];
+  }
+
+  if (countRGBComp == 10) {
+    styleAdd = {
+      ...styleAdd,
+      backgroundImage: `url(${renderImage("add3xIA")}`,
+    };
+  }
+  if (countRGBComp == 1) {
+    styleRemove = {
+      ...styleRemove,
+      backgroundImage: `url(${renderImage("remove3xIA")}`,
+    };
+  }
 
   return (
     <div className="outertabDiv-output">
@@ -767,289 +1390,6 @@ const OutputPanel = (props) => {
                     renderIn="hardwarePropertyPanel"
                     onChange={(value) => onChange("a2", value)}
                     disabled={!a2Checkbox}
-                  />
-                  <p
-                    style={{
-                      position: "absolute",
-                      top: "55%",
-                      left: "33%",
-                      fontSize: "16px",
-                    }}
-                  >
-                    0
-                  </p>
-                  <p
-                    style={{
-                      position: "absolute",
-                      top: "55%",
-
-                      fontSize: "16px",
-                      right: "13%",
-                    }}
-                  >
-                    100
-                  </p>
-                </div>
-              </>
-            )}
-          </div>
-        ) : null}
-
-        {b1Checked && B1 ? (
-          <div
-            className="slider-item1-flowchart"
-            style={{ position: "relative" }}
-          >
-            {!b1Digi ? (
-              <>
-                <div className="portDetails-flowchart">
-                  <div
-                    id="b1"
-                    onClick={() => onChange("b1Checkbox")}
-                    className={
-                      "renderClick" +
-                      (b1Checkbox || false) +
-                      "  checkBox-conatiner"
-                    }
-                  >
-                    <p
-                      style={{
-                        position: "absolute",
-                        top: "50%",
-                        left: "50%",
-                        transform: "translate(-50%, -50%)",
-                        whiteSpace: "nowrap",
-                      }}
-                    >
-                      B1 Digital
-                    </p>
-                  </div>
-                </div>
-                {/* <input type ="checkbox" id="b1" checked={b1Checkbox} onChange={() => onChange("b1Checkbox")}></input>
-                    <span className="hardwareText">B1 Digital</span> */}
-                <div
-                  className={
-                    "portSlider-flowchart" +
-                    " isActivePortInfo" +
-                    (b1Checkbox || false)
-                  }
-                >
-                  <Slider
-                    title="Intensity"
-                    value={valB1 || 0}
-                    min={0}
-                    max={1}
-                    disabled={!b1Checkbox}
-                    renderIn="hardwarePropertyPanel"
-                    onChange={(value) => onChange("b1", value)}
-                  />
-                  <p
-                    style={{
-                      position: "absolute",
-                      top: "55%",
-                      left: "33%",
-                      fontSize: "16px",
-                    }}
-                  >
-                    0
-                  </p>
-                  <p
-                    style={{
-                      position: "absolute",
-                      top: "55%",
-
-                      fontSize: "16px",
-                      right: "13%",
-                    }}
-                  >
-                    1
-                  </p>
-                </div>
-              </>
-            ) : (
-              <>
-                <div className="portDetails-flowchart">
-                  <div
-                    id="b1"
-                    onClick={() => onChange("b1Checkbox")}
-                    className={
-                      "renderClick" +
-                      (b1Checkbox || false) +
-                      "  checkBox-conatiner"
-                    }
-                  >
-                    <p
-                      style={{
-                        position: "absolute",
-                        top: "50%",
-                        left: "50%",
-                        transform: "translate(-50%, -50%)",
-                        whiteSpace: "nowrap",
-                      }}
-                    >
-                      B1 Analog
-                    </p>
-                  </div>
-                </div>
-
-                {/* <input type ="checkbox" id="B1" checked={b1Checkbox} onChange={() => onChange("b1Checkbox")}></input>
-                    <span className="hardwareText">B1 Analog</span> */}
-                <div
-                  className={
-                    "portSlider-flowchart" +
-                    " isActivePortInfo" +
-                    (b1Checkbox || false)
-                  }
-                >
-                  <Slider
-                    title="Intensity"
-                    value={valB1 || 0}
-                    min={0}
-                    max={100}
-                    renderIn="hardwarePropertyPanel"
-                    onChange={(value) => onChange("b1", value)}
-                    disabled={!b1Checkbox}
-                  />
-                  <p
-                    style={{
-                      position: "absolute",
-                      top: "55%",
-                      left: "33%",
-                      fontSize: "16px",
-                    }}
-                  >
-                    0
-                  </p>
-                  <p
-                    style={{
-                      position: "absolute",
-                      top: "55%",
-
-                      fontSize: "16px",
-                      right: "13%",
-                    }}
-                  >
-                    100
-                  </p>
-                </div>
-              </>
-            )}
-          </div>
-        ) : null}
-
-        {b2Checked && B2 ? (
-          <div
-            className="slider-item1-flowchart"
-            style={{ position: "relative" }}
-          >
-            {!b2Digi ? (
-              <>
-                <div className="portDetails-flowchart">
-                  <div
-                    id="B2"
-                    onClick={() => onChange("b2Checkbox")}
-                    className={
-                      "renderClick" +
-                      (b2Checkbox || false) +
-                      "  checkBox-conatiner"
-                    }
-                  >
-                    <p
-                      style={{
-                        position: "absolute",
-                        top: "50%",
-                        left: "50%",
-                        transform: "translate(-50%, -50%)",
-                        whiteSpace: "nowrap",
-                      }}
-                    >
-                      B2 Digital
-                    </p>
-                  </div>
-                </div>
-                {/* <input type ="checkbox" id="B2" checked={b2Checkbox} onChange={() => onChange("b2Checkbox")}></input>
-                    <span className="hardwareText">B2 Digital</span> */}
-                <div
-                  className={
-                    "portSlider-flowchart" +
-                    " isActivePortInfo" +
-                    (b2Checkbox || false)
-                  }
-                >
-                  <Slider
-                    title="Intensity"
-                    value={valB2 || 0}
-                    min={0}
-                    max={1}
-                    renderIn="hardwarePropertyPanel"
-                    onChange={(value) => onChange("b2", value)}
-                    disabled={!b2Checkbox}
-                  />
-                  <p
-                    style={{
-                      position: "absolute",
-                      top: "55%",
-                      left: "33%",
-                      fontSize: "16px",
-                    }}
-                  >
-                    0
-                  </p>
-                  <p
-                    style={{
-                      position: "absolute",
-                      top: "55%",
-
-                      fontSize: "16px",
-                      right: "13%",
-                    }}
-                  >
-                    1
-                  </p>
-                </div>
-              </>
-            ) : (
-              <>
-                <div className="portDetails-flowchart">
-                  <div
-                    id="B2"
-                    onClick={() => onChange("b2Checkbox")}
-                    className={
-                      "renderClick" +
-                      (b2Checkbox || false) +
-                      "  checkBox-conatiner"
-                    }
-                  >
-                    <p
-                      style={{
-                        position: "absolute",
-                        top: "50%",
-                        left: "50%",
-                        transform: "translate(-50%, -50%)",
-                        whiteSpace: "nowrap",
-                      }}
-                    >
-                      B2 Analog
-                    </p>
-                  </div>
-                </div>
-                {/* <input type ="checkbox" id="B2" checked={b2Checkbox} onChange={() => onChange("b2Checkbox")}></input>
-                    <span className="hardwareText">B2 Analog</span> */}
-                <div
-                  className={
-                    "portSlider-flowchart" +
-                    " isActivePortInfo" +
-                    (b2Checkbox || false)
-                  }
-                >
-                  <Slider
-                    title="Intensity"
-                    value={valB2 || 0}
-                    min={0}
-                    max={100}
-                    renderIn="hardwarePropertyPanel"
-                    onChange={(value) => onChange("b2", value)}
-                    disabled={!b2Checkbox}
                   />
                   <p
                     style={{
@@ -1360,290 +1700,330 @@ const OutputPanel = (props) => {
             )}
           </div>
         ) : null}
+        {D1 && D2 && OLED ? (
+          <>
+            <TextRow
+              name={"OLED"}
+              port={"D"}
+              assign={isClickOLED1}
+              key={"D"}
+              handlecheckbox={onOLED1Handle}
+              textValue={curValOLED1}
+              //onChange={onChange}
+              label={"OLED Line 1"}
+              handleTextChange={onOLED1HandleText}
+            />
+            <TextRow
+              name={"OLED"}
+              port={"D"}
+              assign={isClickOLED2}
+              key={"D"}
+              handlecheckbox={onOLED2Handle}
+              textValue={curValOLED2}
+              // onChange={onChange}
+              label={"OLED Line 2"}
+              handleTextChange={onOLED2HandleText}
+            />
+            <TextRow
+              name={"OLED"}
+              port={"D"}
+              assign={isClickOLED3}
+              key={"D"}
+              handlecheckbox={onOLED3Handle}
+              textValue={curValOLED3}
+              // onChange={onChange}
+              label={"OLED Line 3"}
+              handleTextChange={onOLED3HandleText}
+            />
+          </>
+        ) : (
+          <>
+            {" "}
+            {d1Checked && D1 ? (
+              <div
+                className="slider-item1-flowchart"
+                style={{ position: "relative" }}
+              >
+                {!d1Digi ? (
+                  <>
+                    <div className="portDetails-flowchart">
+                      <div
+                        id="D1"
+                        onClick={() => onChange("d1Checkbox")}
+                        className={
+                          "renderClick" +
+                          (d1Checkbox || false) +
+                          "  checkBox-conatiner"
+                        }
+                      >
+                        <p
+                          style={{
+                            position: "absolute",
+                            top: "50%",
+                            left: "50%",
+                            transform: "translate(-50%, -50%)",
+                            whiteSpace: "nowrap",
+                          }}
+                        >
+                          D1 Digital
+                        </p>
+                      </div>
+                    </div>
 
-        {d1Checked && D1 ? (
-          <div
-            className="slider-item1-flowchart"
-            style={{ position: "relative" }}
-          >
-            {!d1Digi ? (
-              <>
-                <div className="portDetails-flowchart">
-                  <div
-                    id="D1"
-                    onClick={() => onChange("d1Checkbox")}
-                    className={
-                      "renderClick" +
-                      (d1Checkbox || false) +
-                      "  checkBox-conatiner"
-                    }
-                  >
-                    <p
-                      style={{
-                        position: "absolute",
-                        top: "50%",
-                        left: "50%",
-                        transform: "translate(-50%, -50%)",
-                        whiteSpace: "nowrap",
-                      }}
-                    >
-                      D1 Digital
-                    </p>
-                  </div>
-                </div>
-
-                {/* <input type ="checkbox" id="D1" checked={d1Checkbox} onChange={() => onChange("d1Checkbox")}></input>
+                    {/* <input type ="checkbox" id="D1" checked={d1Checkbox} onChange={() => onChange("d1Checkbox")}></input>
                     <span className="hardwareText">D1 Digital</span> */}
-                <div
-                  className={
-                    "portSlider-flowchart" +
-                    " isActivePortInfo" +
-                    (d1Checkbox || false)
-                  }
-                >
-                  <Slider
-                    title="Intensity"
-                    value={valD1 || 0}
-                    min={0}
-                    max={1}
-                    disabled={!d1Checkbox}
-                    renderIn="hardwarePropertyPanel"
-                    onChange={(value) => onChange("d1", value)}
-                  />
-                  <p
-                    style={{
-                      position: "absolute",
-                      top: "55%",
-                      left: "33%",
-                      fontSize: "16px",
-                    }}
-                  >
-                    0
-                  </p>
-                  <p
-                    style={{
-                      position: "absolute",
-                      top: "55%",
-
-                      fontSize: "16px",
-                      right: "13%",
-                    }}
-                  >
-                    1
-                  </p>
-                </div>
-              </>
-            ) : (
-              <>
-                <div className="portDetails-flowchart">
-                  <div
-                    id="D1"
-                    onClick={() => onChange("d1Checkbox")}
-                    className={
-                      "renderClick" +
-                      (d1Checkbox || false) +
-                      "  checkBox-conatiner"
-                    }
-                  >
-                    <p
-                      style={{
-                        position: "absolute",
-                        top: "50%",
-                        left: "50%",
-                        transform: "translate(-50%, -50%)",
-                        whiteSpace: "nowrap",
-                      }}
+                    <div
+                      className={
+                        "portSlider-flowchart" +
+                        " isActivePortInfo" +
+                        (d1Checkbox || false)
+                      }
                     >
-                      D1 Analog
-                    </p>
-                  </div>
-                </div>
-                {/* <input type ="checkbox" id="D1" checked={d1Checkbox} onChange={() => onChange("d1Checkbox")}></input>
+                      <Slider
+                        title="Intensity"
+                        value={valD1 || 0}
+                        min={0}
+                        max={1}
+                        disabled={!d1Checkbox}
+                        renderIn="hardwarePropertyPanel"
+                        onChange={(value) => onChange("d1", value)}
+                      />
+                      <p
+                        style={{
+                          position: "absolute",
+                          top: "55%",
+                          left: "33%",
+                          fontSize: "16px",
+                        }}
+                      >
+                        0
+                      </p>
+                      <p
+                        style={{
+                          position: "absolute",
+                          top: "55%",
+
+                          fontSize: "16px",
+                          right: "13%",
+                        }}
+                      >
+                        1
+                      </p>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className="portDetails-flowchart">
+                      <div
+                        id="D1"
+                        onClick={() => onChange("d1Checkbox")}
+                        className={
+                          "renderClick" +
+                          (d1Checkbox || false) +
+                          "  checkBox-conatiner"
+                        }
+                      >
+                        <p
+                          style={{
+                            position: "absolute",
+                            top: "50%",
+                            left: "50%",
+                            transform: "translate(-50%, -50%)",
+                            whiteSpace: "nowrap",
+                          }}
+                        >
+                          D1 Analog
+                        </p>
+                      </div>
+                    </div>
+                    {/* <input type ="checkbox" id="D1" checked={d1Checkbox} onChange={() => onChange("d1Checkbox")}></input>
                     <span className="hardwareText">D1 Analog</span> */}
-                <div
-                  className={
-                    "portSlider-flowchart" +
-                    " isActivePortInfo" +
-                    (d1Checkbox || false)
-                  }
-                >
-                  <Slider
-                    title="Intensity"
-                    value={valD1 || 0}
-                    min={0}
-                    max={100}
-                    renderIn="hardwarePropertyPanel"
-                    onChange={(value) => onChange("d1", value)}
-                    disabled={!d1Checkbox}
-                  />
-                  <p
-                    style={{
-                      position: "absolute",
-                      top: "55%",
-                      left: "33%",
-                      fontSize: "16px",
-                    }}
-                  >
-                    0
-                  </p>
-                  <p
-                    style={{
-                      position: "absolute",
-                      top: "55%",
-
-                      fontSize: "16px",
-                      right: "13%",
-                    }}
-                  >
-                    100
-                  </p>
-                </div>
-              </>
-            )}
-          </div>
-        ) : null}
-
-        {d2Checked && D2 ? (
-          <div
-            className="slider-item1-flowchart"
-            style={{ position: "relative" }}
-          >
-            {!d2Digi ? (
-              <>
-                <div className="portDetails-flowchart">
-                  <div
-                    id="D2"
-                    onClick={() => onChange("d2Checkbox")}
-                    className={
-                      "renderClick" +
-                      (d2Checkbox || false) +
-                      "  checkBox-conatiner"
-                    }
-                  >
-                    <p
-                      style={{
-                        position: "absolute",
-                        top: "50%",
-                        left: "50%",
-                        transform: "translate(-50%, -50%)",
-                        whiteSpace: "nowrap",
-                      }}
+                    <div
+                      className={
+                        "portSlider-flowchart" +
+                        " isActivePortInfo" +
+                        (d1Checkbox || false)
+                      }
                     >
-                      D2 Digital
-                    </p>
-                  </div>
-                </div>
+                      <Slider
+                        title="Intensity"
+                        value={valD1 || 0}
+                        min={0}
+                        max={100}
+                        renderIn="hardwarePropertyPanel"
+                        onChange={(value) => onChange("d1", value)}
+                        disabled={!d1Checkbox}
+                      />
+                      <p
+                        style={{
+                          position: "absolute",
+                          top: "55%",
+                          left: "33%",
+                          fontSize: "16px",
+                        }}
+                      >
+                        0
+                      </p>
+                      <p
+                        style={{
+                          position: "absolute",
+                          top: "55%",
 
-                {/* <input type ="checkbox" id="D2" checked={d2Checkbox} onChange={() => onChange("d2Checkbox")}></input>
+                          fontSize: "16px",
+                          right: "13%",
+                        }}
+                      >
+                        100
+                      </p>
+                    </div>
+                  </>
+                )}
+              </div>
+            ) : null}
+            {d2Checked && D2 ? (
+              <div
+                className="slider-item1-flowchart"
+                style={{ position: "relative" }}
+              >
+                {!d2Digi ? (
+                  <>
+                    <div className="portDetails-flowchart">
+                      <div
+                        id="D2"
+                        onClick={() => onChange("d2Checkbox")}
+                        className={
+                          "renderClick" +
+                          (d2Checkbox || false) +
+                          "  checkBox-conatiner"
+                        }
+                      >
+                        <p
+                          style={{
+                            position: "absolute",
+                            top: "50%",
+                            left: "50%",
+                            transform: "translate(-50%, -50%)",
+                            whiteSpace: "nowrap",
+                          }}
+                        >
+                          D2 Digital
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* <input type ="checkbox" id="D2" checked={d2Checkbox} onChange={() => onChange("d2Checkbox")}></input>
                     <span className="hardwareText">D2 Digital</span> */}
-                <div
-                  className={
-                    "portSlider-flowchart" +
-                    " isActivePortInfo" +
-                    (d2Checkbox || false)
-                  }
-                >
-                  <Slider
-                    title="Intensity"
-                    value={valD2 || 0}
-                    min={0}
-                    max={1}
-                    renderIn="hardwarePropertyPanel"
-                    onChange={(value) => onChange("d2", value)}
-                    diagonal={!d2Checkbox}
-                  />
-                  <p
-                    style={{
-                      position: "absolute",
-                      top: "55%",
-                      left: "33%",
-                      fontSize: "16px",
-                    }}
-                  >
-                    0
-                  </p>
-                  <p
-                    style={{
-                      position: "absolute",
-                      top: "55%",
-
-                      fontSize: "16px",
-                      right: "13%",
-                    }}
-                  >
-                    1
-                  </p>
-                </div>
-              </>
-            ) : (
-              <>
-                <div className="portDetails-flowchart">
-                  <div
-                    id="D2"
-                    onClick={() => onChange("d2Checkbox")}
-                    className={
-                      "renderClick" +
-                      (d2Checkbox || false) +
-                      "  checkBox-conatiner"
-                    }
-                  >
-                    <p
-                      style={{
-                        position: "absolute",
-                        top: "50%",
-                        left: "50%",
-                        transform: "translate(-50%, -50%)",
-                        whiteSpace: "nowrap",
-                      }}
+                    <div
+                      className={
+                        "portSlider-flowchart" +
+                        " isActivePortInfo" +
+                        (d2Checkbox || false)
+                      }
                     >
-                      D2 Analog
-                    </p>
-                  </div>
-                </div>
-                {/* <input type ="checkbox" id="D2" checked={d2Checkbox} onChange={() => onChange("d2Checkbox")}></input>
-                    <span className="hardwareText">D2 Analog</span> */}
-                <div
-                  className={
-                    "portSlider-flowchart" +
-                    " isActivePortInfo" +
-                    (d2Checkbox || false)
-                  }
-                >
-                  <Slider
-                    title="Intensity"
-                    value={valD2 || 0}
-                    min={0}
-                    max={100}
-                    renderIn="hardwarePropertyPanel"
-                    onChange={(value) => onChange("d2", value)}
-                    diagonal={!d2Checkbox}
-                  />
-                  <p
-                    style={{
-                      position: "absolute",
-                      top: "55%",
-                      left: "33%",
-                      fontSize: "16px",
-                    }}
-                  >
-                    0
-                  </p>
-                  <p
-                    style={{
-                      position: "absolute",
-                      top: "55%",
+                      <Slider
+                        title="Intensity"
+                        value={valD2 || 0}
+                        min={0}
+                        max={1}
+                        renderIn="hardwarePropertyPanel"
+                        onChange={(value) => onChange("d2", value)}
+                        diagonal={!d2Checkbox}
+                      />
+                      <p
+                        style={{
+                          position: "absolute",
+                          top: "55%",
+                          left: "33%",
+                          fontSize: "16px",
+                        }}
+                      >
+                        0
+                      </p>
+                      <p
+                        style={{
+                          position: "absolute",
+                          top: "55%",
 
-                      fontSize: "16px",
-                      right: "13%",
-                    }}
-                  >
-                    100
-                  </p>
-                </div>
-              </>
-            )}
-          </div>
-        ) : null}
+                          fontSize: "16px",
+                          right: "13%",
+                        }}
+                      >
+                        1
+                      </p>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className="portDetails-flowchart">
+                      <div
+                        id="D2"
+                        onClick={() => onChange("d2Checkbox")}
+                        className={
+                          "renderClick" +
+                          (d2Checkbox || false) +
+                          "  checkBox-conatiner"
+                        }
+                      >
+                        <p
+                          style={{
+                            position: "absolute",
+                            top: "50%",
+                            left: "50%",
+                            transform: "translate(-50%, -50%)",
+                            whiteSpace: "nowrap",
+                          }}
+                        >
+                          D2 Analog
+                        </p>
+                      </div>
+                    </div>
+                    {/* <input type ="checkbox" id="D2" checked={d2Checkbox} onChange={() => onChange("d2Checkbox")}></input>
+                    <span className="hardwareText">D2 Analog</span> */}
+                    <div
+                      className={
+                        "portSlider-flowchart" +
+                        " isActivePortInfo" +
+                        (d2Checkbox || false)
+                      }
+                    >
+                      <Slider
+                        title="Intensity"
+                        value={valD2 || 0}
+                        min={0}
+                        max={100}
+                        renderIn="hardwarePropertyPanel"
+                        onChange={(value) => onChange("d2", value)}
+                        diagonal={!d2Checkbox}
+                      />
+                      <p
+                        style={{
+                          position: "absolute",
+                          top: "55%",
+                          left: "33%",
+                          fontSize: "16px",
+                        }}
+                      >
+                        0
+                      </p>
+                      <p
+                        style={{
+                          position: "absolute",
+                          top: "55%",
+
+                          fontSize: "16px",
+                          right: "13%",
+                        }}
+                      >
+                        100
+                      </p>
+                    </div>
+                  </>
+                )}
+              </div>
+            ) : null}
+          </>
+        )}
+
         {e1Checked && E1 ? (
           <div
             className="slider-item1-flowchart"
@@ -3280,7 +3660,378 @@ const OutputPanel = (props) => {
             </div>
           </div>
         ) : null}
+        {MP3 && B1 && B2 ? (
+          <>
+            <div
+              className="slider-item1-flowchart"
+              style={{ position: "relative" }}
+            >
+              <div className="portDetails-flowchart">
+                <div
+                  id="MP3"
+                  onClick={() => onChange("mp3Checkbox")}
+                  className={
+                    "renderClick" +
+                    (mp3Checkbox || false) +
+                    "  checkBox-conatiner"
+                  }
+                >
+                  <p
+                    style={{
+                      position: "absolute",
+                      top: "50%",
+                      left: "50%",
+                      transform: "translate(-50%, -50%)",
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    Port B: MP3
+                  </p>
+                </div>
+              </div>
+              {/* <input type ="checkbox" id="b1" checked={b1Checkbox} onChange={() => onChange("b1Checkbox")}></input>
+                    <span className="hardwareText">B1 Digital</span> */}
+              <div
+                className={
+                  "portSlider-flowchart" +
+                  " isActivePortInfo" +
+                  (mp3Checkbox || false)
+                }
+              >
+                <Slider
+                  title="Intensity"
+                  value={valMP3 || 0}
+                  min={0}
+                  max={255}
+                  disabled={!mp3Checkbox}
+                  renderIn="hardwarePropertyPanel"
+                  onChange={(value) => onChange("mp3", value)}
+                />
+                <p
+                  style={{
+                    position: "absolute",
+                    top: "55%",
+                    left: "33%",
+                    fontSize: "16px",
+                  }}
+                >
+                  0
+                </p>
+                <p
+                  style={{
+                    position: "absolute",
+                    top: "55%",
 
+                    fontSize: "16px",
+                    right: "13%",
+                  }}
+                >
+                  255
+                </p>
+              </div>
+            </div>
+          </>
+        ) : RGB && B1 && B2 ? (
+          <>
+            {totalSliders}
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: " repeat(2, 75px)",
+                marginLeft: "50%",
+                marginBottom: "5%",
+              }}
+            >
+              <div style={styleAdd} onClick={onRGBCompIncrease}></div>
+              <div style={styleRemove} onClick={onRGBCompDecrease}></div>
+            </div>
+          </>
+        ) : (
+          <>
+            {b1Checked && B1 ? (
+              <div
+                className="slider-item1-flowchart"
+                style={{ position: "relative" }}
+              >
+                {!b1Digi ? (
+                  <>
+                    <div className="portDetails-flowchart">
+                      <div
+                        id="b1"
+                        onClick={() => onChange("b1Checkbox")}
+                        className={
+                          "renderClick" +
+                          (b1Checkbox || false) +
+                          "  checkBox-conatiner"
+                        }
+                      >
+                        <p
+                          style={{
+                            position: "absolute",
+                            top: "50%",
+                            left: "50%",
+                            transform: "translate(-50%, -50%)",
+                            whiteSpace: "nowrap",
+                          }}
+                        >
+                          B1 Digital
+                        </p>
+                      </div>
+                    </div>
+                    {/* <input type ="checkbox" id="b1" checked={b1Checkbox} onChange={() => onChange("b1Checkbox")}></input>
+                    <span className="hardwareText">B1 Digital</span> */}
+                    <div
+                      className={
+                        "portSlider-flowchart" +
+                        " isActivePortInfo" +
+                        (b1Checkbox || false)
+                      }
+                    >
+                      <Slider
+                        title="Intensity"
+                        value={valB1 || 0}
+                        min={0}
+                        max={1}
+                        disabled={!b1Checkbox}
+                        renderIn="hardwarePropertyPanel"
+                        onChange={(value) => onChange("b1", value)}
+                      />
+                      <p
+                        style={{
+                          position: "absolute",
+                          top: "55%",
+                          left: "33%",
+                          fontSize: "16px",
+                        }}
+                      >
+                        0
+                      </p>
+                      <p
+                        style={{
+                          position: "absolute",
+                          top: "55%",
+
+                          fontSize: "16px",
+                          right: "13%",
+                        }}
+                      >
+                        1
+                      </p>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className="portDetails-flowchart">
+                      <div
+                        id="b1"
+                        onClick={() => onChange("b1Checkbox")}
+                        className={
+                          "renderClick" +
+                          (b1Checkbox || false) +
+                          "  checkBox-conatiner"
+                        }
+                      >
+                        <p
+                          style={{
+                            position: "absolute",
+                            top: "50%",
+                            left: "50%",
+                            transform: "translate(-50%, -50%)",
+                            whiteSpace: "nowrap",
+                          }}
+                        >
+                          B1 Analog
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* <input type ="checkbox" id="B1" checked={b1Checkbox} onChange={() => onChange("b1Checkbox")}></input>
+                    <span className="hardwareText">B1 Analog</span> */}
+                    <div
+                      className={
+                        "portSlider-flowchart" +
+                        " isActivePortInfo" +
+                        (b1Checkbox || false)
+                      }
+                    >
+                      <Slider
+                        title="Intensity"
+                        value={valB1 || 0}
+                        min={0}
+                        max={100}
+                        renderIn="hardwarePropertyPanel"
+                        onChange={(value) => onChange("b1", value)}
+                        disabled={!b1Checkbox}
+                      />
+                      <p
+                        style={{
+                          position: "absolute",
+                          top: "55%",
+                          left: "33%",
+                          fontSize: "16px",
+                        }}
+                      >
+                        0
+                      </p>
+                      <p
+                        style={{
+                          position: "absolute",
+                          top: "55%",
+
+                          fontSize: "16px",
+                          right: "13%",
+                        }}
+                      >
+                        100
+                      </p>
+                    </div>
+                  </>
+                )}
+              </div>
+            ) : null}
+
+            {b2Checked && B2 ? (
+              <div
+                className="slider-item1-flowchart"
+                style={{ position: "relative" }}
+              >
+                {!b2Digi ? (
+                  <>
+                    <div className="portDetails-flowchart">
+                      <div
+                        id="B2"
+                        onClick={() => onChange("b2Checkbox")}
+                        className={
+                          "renderClick" +
+                          (b2Checkbox || false) +
+                          "  checkBox-conatiner"
+                        }
+                      >
+                        <p
+                          style={{
+                            position: "absolute",
+                            top: "50%",
+                            left: "50%",
+                            transform: "translate(-50%, -50%)",
+                            whiteSpace: "nowrap",
+                          }}
+                        >
+                          B2 Digital
+                        </p>
+                      </div>
+                    </div>
+                    {/* <input type ="checkbox" id="B2" checked={b2Checkbox} onChange={() => onChange("b2Checkbox")}></input>
+                    <span className="hardwareText">B2 Digital</span> */}
+                    <div
+                      className={
+                        "portSlider-flowchart" +
+                        " isActivePortInfo" +
+                        (b2Checkbox || false)
+                      }
+                    >
+                      <Slider
+                        title="Intensity"
+                        value={valB2 || 0}
+                        min={0}
+                        max={1}
+                        renderIn="hardwarePropertyPanel"
+                        onChange={(value) => onChange("b2", value)}
+                        disabled={!b2Checkbox}
+                      />
+                      <p
+                        style={{
+                          position: "absolute",
+                          top: "55%",
+                          left: "33%",
+                          fontSize: "16px",
+                        }}
+                      >
+                        0
+                      </p>
+                      <p
+                        style={{
+                          position: "absolute",
+                          top: "55%",
+
+                          fontSize: "16px",
+                          right: "13%",
+                        }}
+                      >
+                        1
+                      </p>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className="portDetails-flowchart">
+                      <div
+                        id="B2"
+                        onClick={() => onChange("b2Checkbox")}
+                        className={
+                          "renderClick" +
+                          (b2Checkbox || false) +
+                          "  checkBox-conatiner"
+                        }
+                      >
+                        <p
+                          style={{
+                            position: "absolute",
+                            top: "50%",
+                            left: "50%",
+                            transform: "translate(-50%, -50%)",
+                            whiteSpace: "nowrap",
+                          }}
+                        >
+                          B2 Analog
+                        </p>
+                      </div>
+                    </div>
+                    {/* <input type ="checkbox" id="B2" checked={b2Checkbox} onChange={() => onChange("b2Checkbox")}></input>
+                    <span className="hardwareText">B2 Analog</span> */}
+                    <div
+                      className={
+                        "portSlider-flowchart" +
+                        " isActivePortInfo" +
+                        (b2Checkbox || false)
+                      }
+                    >
+                      <Slider
+                        title="Intensity"
+                        value={valB2 || 0}
+                        min={0}
+                        max={100}
+                        renderIn="hardwarePropertyPanel"
+                        onChange={(value) => onChange("b2", value)}
+                        disabled={!b2Checkbox}
+                      />
+                      <p
+                        style={{
+                          position: "absolute",
+                          top: "55%",
+                          left: "33%",
+                          fontSize: "16px",
+                        }}
+                      >
+                        0
+                      </p>
+                      <p
+                        style={{
+                          position: "absolute",
+                          top: "55%",
+
+                          fontSize: "16px",
+                          right: "13%",
+                        }}
+                      >
+                        100
+                      </p>
+                    </div>
+                  </>
+                )}
+              </div>
+            ) : null}
+          </>
+        )}
         {isBuzzer ? (
           <div
             className="slider-item1-flowchart"

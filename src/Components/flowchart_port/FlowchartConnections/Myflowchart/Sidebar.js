@@ -1,20 +1,18 @@
-import React, {
-  useState,
-  memo,
-  useEffect,
-} from "react";
+import React, { useState, memo, useEffect } from "react";
 import { useDrag } from "react-dnd-latest";
 import { getEmptyImage } from "react-dnd-html5-backend-latest";
 import { useHistory } from "react-router-dom";
 import "./dnd.css";
 
-let flagI = -1,offset, elements;
+let flagI = -1,
+  offset,
+  elements;
 let sourceHandle;
 const Sidebar = memo(function Sidebar(props) {
   const history = useHistory();
   let title, left, top;
   const [id, setId] = useState("nan");
- 
+
   const [{ isDragging }, drag, preview] = useDrag(
     () => ({
       type: "yellow",
@@ -27,112 +25,181 @@ const Sidebar = memo(function Sidebar(props) {
     [id, left, top, title]
   );
 
-  var index1,index2,index3,index4;
+  var index1, index2, index3, index4;
+  function getCoords(elem) {
+    // crossbrowser version
+
+    var box = elem.getBoundingClientRect();
+
+    var body = document.body;
+    var docEl = document.documentElement;
+
+    var scrollTop = window.pageYOffset || docEl.scrollTop || body.scrollTop;
+    var scrollLeft = window.pageXOffset || docEl.scrollLeft || body.scrollLeft;
+
+    var clientTop = docEl.clientTop || body.clientTop || 0;
+    var clientLeft = docEl.clientLeft || body.clientLeft || 0;
+
+    var top = box.top + scrollTop - clientTop;
+    var left = box.left + scrollLeft - clientLeft;
+
+    return {
+      x: Math.round(left) - 145,
+      y: Math.round(top) - 96,
+      id: parseInt(elem.dataset.id),
+    };
+  }
+  let zoom;
   const onDragStart = async (event, nodeType) => {
-  
- 
+    zoom = JSON.parse(sessionStorage.getItem("planeOffset")) || 1;
+
+    if (zoom != 1) zoom = zoom.zoom;
+    let global = document.getElementsByClassName("react-flow__nodes")[0];
+
     let zoomVal = document.querySelector(".react-flow__nodes");
     let edgeZoom = document.querySelector(".react-flow__edges");
     console.log("zoom", edgeZoom.children[1]);
-    document.querySelector(".react-flow__nodes").style.transform =
-      document
-        .querySelector(".react-flow__nodes")
-        .style.transform.slice(0, zoomVal.style.transform.search("scale") - 1) +
-      " scale(1)";
-    document.querySelector(".react-flow__edges").children[1].style.transform =
-      document
-        .querySelector(".react-flow__edges")
-        .children[1].style.transform.slice(
-          0,
-          zoomVal.style.transform.search("scale") - 1
-        ) + " scale(1)";
+    // document.querySelector(".react-flow__nodes").style.transform =
+    //   document
+    //     .querySelector(".react-flow__nodes")
+    //     .style.transform.slice(0, zoomVal.style.transform.search("scale") - 1) +
+    //   " scale(1)";
+    // document.querySelector(".react-flow__edges").children[1].style.transform =
+    //   document
+    //     .querySelector(".react-flow__edges")
+    //     .children[1].style.transform.slice(
+    //       0,
+    //       zoomVal.style.transform.search("scale") - 1
+    //     ) + " scale(1)";
     offset = JSON.parse(sessionStorage.getItem("planeOffset"));
     flagI = -1;
     sessionStorage.setItem("application/reactflow/connect", flagI);
     elements = JSON.parse(sessionStorage.getItem("flowchart-elements"));
     event.dataTransfer.setData("application/reactflow", nodeType);
     event.dataTransfer.effectAllowed = "move";
-
+    try {
+      global = global.childNodes;
+      for (let i = 0; i < global.length; i++) {
+        let temp = await getCoords(global[i]);
+        let index = await elements.findIndex((e) => e.id === `${temp.id}`);
+        globalpass[index] = temp;
+      }
+      console.log(globalpass, "getCoords");
+    } catch (e) {}
     if (nodeType === "start") {
       setTimeout(function () {
         document.querySelector("#foo").classList.add("myClass");
       }, 200);
     }
   };
+  let globalpass = []; //= document.getElementsByClassName("react-flow__nodes")[0];
+
   const onDrag = async (event, nodeType) => {
-    console.log(window.devicePixelRatio,window.screen.width,window.screen.height, "sidebar===>");
-    let screenOffsetX=0,screenOffsetY=0
-    if(window.screen.width!=1920&&window.screen.height!=1080){
-      screenOffsetX=0;screenOffsetY=-27;
-    }else{
-      screenOffsetX=0;screenOffsetY=0
+    console.log(
+      window.devicePixelRatio,
+      window.screen.width,
+      window.screen.height,
+      globalpass,
+      "sidebar===>"
+    );
+    let screenOffsetX = 0,
+      screenOffsetY = 0;
+    if (window.screen.width != 1920 && window.screen.height != 1080) {
+      screenOffsetX = 0;
+      screenOffsetY = -27;
+    } else {
+      screenOffsetX = 0;
+      screenOffsetY = 0;
     }
     let xOffset = 0,
       yOffset = 0;
 
-    if (offset != null) {
-      xOffset = offset.x;
-      yOffset = offset.y;
-    }
+    // if (offset != null) {
+    //   xOffset = offset.x;
+    //   yOffset = offset.y;
+    // }
+    console.time("sidebar_autoconnect");
+
     for (let i = 0; i < Object.keys(elements).length; i++) {
       if (elements[i] != null && elements[i] != undefined) {
         if (elements[i].data != null && elements[i].data != undefined) {
           console.log(
-            "GSKTRUE",
-            event.clientX - (elements[i].position.x + xOffset),
-            event.clientY - (elements[i].position.y + yOffset),
-            "xc,yc",
-            event.clientX,
-            event.clientY,
-            "xe,ye",
-            elements[i].position.x + 204,
-            elements[i].position.y + 80
-          );
-          let m, d;
-          console.log(
-            "after position calc",
-            event.clientX - (elements[i].position.x + xOffset),
-            event.clientY - (elements[i].position.y + yOffset),
-
-            xOffset,
-            yOffset
+            "after position calc ",
+            event.clientX - globalpass[i].x,
+            event.clientY - globalpass[i].y,
+            "after position calc d",
+            event.clientX - globalpass[i].x - 62 * (zoom - 1),
+            event.clientY - globalpass[i].y - 62 * (zoom - 1),
+            "after position calc rNo",
+            event.clientX - globalpass[i].x - 117 * (zoom - 1),
+            event.clientY - globalpass[i].y - 62 * (zoom - 1)
           );
           if (
-            event.clientX - (elements[i].position.x + xOffset) >= 200 &&
-            event.clientX - (elements[i].position.x + xOffset) <= 270 &&
-            event.clientY - (elements[i].position.y + yOffset) >= 115+screenOffsetY &&
-            event.clientY - (elements[i].position.y + yOffset) <= 165+screenOffsetY
+            event.clientX - (globalpass[i].x + xOffset) - 61 * (zoom - 1) >=
+              200 &&
+            event.clientX - (globalpass[i].x + xOffset) - 61 * (zoom - 1) <=
+              325 &&
+            event.clientY - (globalpass[i].y + yOffset) - 61 * (zoom - 1) >=
+              90 + screenOffsetY &&
+            event.clientY - (globalpass[i].y + yOffset) - 61 * (zoom - 1) <=
+              165 + screenOffsetY
           ) {
             if (elements[i].data.specificElType == "if") {
               if (
-                event.clientX - (elements[i].position.x + xOffset) <= 204 + 5 &&
-                event.clientX - (elements[i].position.x + xOffset) >= 204 - 5
+                event.clientX - (globalpass[i].x + xOffset) - 61 * (zoom - 1) <=
+                  204 + 5 &&
+                event.clientX - (globalpass[i].x + xOffset) - 61 * (zoom - 1) >=
+                  204 - 5
               )
                 sourceHandle = "d";
               if (
-                event.clientX - (elements[i].position.x + xOffset) <= 261 + 5 &&
-                event.clientX - (elements[i].position.x + xOffset) >= 261 - 5 &&
-                event.clientY - (elements[i].position.y + yOffset) <= 125 + 5+screenOffsetY &&
-                event.clientY - (elements[i].position.y + yOffset) >= 125 - 5+screenOffsetY
+                event.clientX -
+                  (globalpass[i].x + xOffset) -
+                  115 * (zoom - 1) <=
+                  261 + 5 &&
+                event.clientX -
+                  (globalpass[i].x + xOffset) -
+                  115 * (zoom - 1) >=
+                  261 - 5 &&
+                event.clientY - (globalpass[i].y + yOffset) - 30 * (zoom - 1) <=
+                  125 + 5 + screenOffsetY &&
+                event.clientY - (globalpass[i].y + yOffset) - 30 * (zoom - 1) >=
+                  125 - 5 + screenOffsetY
               ) {
                 sourceHandle = "rYes";
               } else if (
-                event.clientX - (elements[i].position.x + xOffset) <= 261 + 5 &&
-                event.clientX - (elements[i].position.x + xOffset) >= 261 - 5 &&
-                event.clientY - (elements[i].position.y + yOffset) <= 146 + 5+screenOffsetY &&
-                event.clientY - (elements[i].position.y + yOffset) >= 146 - 5+screenOffsetY
+                event.clientX -
+                  (globalpass[i].x + xOffset) -
+                  115 * (zoom - 1) <=
+                  261 + 5 &&
+                event.clientX -
+                  (globalpass[i].x + xOffset) -
+                  115 * (zoom - 1) >=
+                  261 - 5 &&
+                event.clientY - (globalpass[i].y + yOffset) - 50 * (zoom - 1) <=
+                  146 + 5 + screenOffsetY &&
+                event.clientY - (globalpass[i].y + yOffset) - 50 * (zoom - 1) >=
+                  146 - 5 + screenOffsetY
               ) {
                 sourceHandle = "rNo";
               }
             } else if (elements[i].data.specificElType == "loop") {
               if (
-                event.clientX - (elements[i].position.x + xOffset) <= 261 + 5 &&
-                event.clientX - (elements[i].position.x + xOffset) >= 261 - 5
+                event.clientX -
+                  (globalpass[i].x + xOffset) -
+                  117 * (zoom - 1) <=
+                  261 + 5 &&
+                event.clientX -
+                  (globalpass[i].x + xOffset) -
+                  117 * (zoom - 1) >=
+                  261 - 5
               ) {
                 sourceHandle = await "r";
               } else if (
-                event.clientX - (elements[i].position.x + xOffset) <= 205 + 5 &&
-                event.clientX - (elements[i].position.x + xOffset) >= 205 - 5
+                event.clientX - (globalpass[i].x + xOffset) - 61 * (zoom - 1) <=
+                  205 + 5 &&
+                event.clientX - (globalpass[i].x + xOffset) - 61 * (zoom - 1) >=
+                  205 - 5
               ) {
                 sourceHandle = await "d";
               }
@@ -149,61 +216,62 @@ const Sidebar = memo(function Sidebar(props) {
               );
               console.log("gsk handle", sourceHandle, flagI);
             }
-              index1 =-await elements.findIndex(
-                (e) =>
-                  e.source === elements[flagI].id && e.sourceHandle === "d"
-              );
-              index2 =-await elements.findIndex(
-                (e) =>
-                  e.source === elements[flagI].id && e.sourceHandle === "rYes"
-              );
-              index3 =-await elements.findIndex(
-                (e) =>
-                  e.source === elements[flagI].id && e.sourceHandle === "rNo"
-              );
-              index4 =-await elements.findIndex(
-                (e) =>
-                  e.source === elements[flagI].id && e.sourceHandle === "r"
-              );
+            index1 = -(await elements.findIndex(
+              (e) => e.source === elements[flagI].id && e.sourceHandle === "d"
+            ));
+            index2 = -(await elements.findIndex(
+              (e) =>
+                e.source === elements[flagI].id && e.sourceHandle === "rYes"
+            ));
+            index3 = -(await elements.findIndex(
+              (e) => e.source === elements[flagI].id && e.sourceHandle === "rNo"
+            ));
+            index4 = -(await elements.findIndex(
+              (e) => e.source === elements[flagI].id && e.sourceHandle === "r"
+            ));
             break;
           }
         }
       }
     }
+
+    console.timeEnd("sidebar_autoconnect");
     try {
       var c = document.getElementById("myCanvas");
       var ctx = c.getContext("2d");
-      console.log("gsk index",index1,index2,index3)
+      console.log("gsk index", index1, index2, index3);
       // var index2 = await elements.findIndex(
       //   (e) =>
       //     e.target === params.target && e.targetHandle === params.targetHandle
       // );
-      if (flagI != -1 ) {
+      if (flagI != -1) {
         let mx = 0,
           my = 0;
-        if (flagI == 0&&index1>=0) {
-          mx = 60;
+        if (flagI == 0 && index1 >= 0) {
+          mx = 60 * zoom;
           my = 0;
-        } else if (sourceHandle == "d"&&index1>=0) {
-          mx = 60;
-          my = 40;
-        } else if (sourceHandle == "rYes"&&index2>=0) {
-          mx = 115;
-          my = 10;
-        } else if (sourceHandle == "rNo"&&index3>=0) {
-          mx = 115;
-          my = 30;
-        }else if(sourceHandle == "r"&&index4>=0) {
-          
-          mx = 115;
-          my = 20;
-        }else {ctx.clearRect(0, 0, 1775, 884);return;}
+        } else if (sourceHandle == "d" && index1 >= 0) {
+          mx = 60 * zoom;
+          my = 40 * zoom;
+        } else if (sourceHandle == "rYes" && index2 >= 0) {
+          mx = 115 * zoom;
+          my = 10 * zoom;
+        } else if (sourceHandle == "rNo" && index3 >= 0) {
+          mx = 115 * zoom;
+          my = 30 * zoom;
+        } else if (sourceHandle == "r" && index4 >= 0) {
+          mx = 115 * zoom;
+          my = 20 * zoom;
+        } else {
+          ctx.clearRect(0, 0, 1775, 884);
+          return;
+        }
         console.log("gskconnect", mx, my, sourceHandle);
-       
+
         ctx.beginPath();
         ctx.moveTo(
-          elements[flagI].position.x + xOffset + mx,
-          elements[flagI].position.y + yOffset + my
+          globalpass[flagI].x + xOffset + mx,
+          globalpass[flagI].y + yOffset + my
         );
         // ctx.bezierCurveTo(
         //   10,
@@ -216,23 +284,31 @@ const Sidebar = memo(function Sidebar(props) {
 
         // xOffset += elements[flagI].position.x;
         // yOffset += elements[flagI].position.y;
-        console.log("planeOffset", xOffset, yOffset);
+        console.log("planeOffset", event.clientX, yOffset);
+        if (event.clientX == 0 || event.clientY == 0) return;
         let cx =
-          Math.abs(
-            event.clientX - 124 - (elements[flagI].position.x + xOffset) + 60
-          ) / 2;
+          Math.abs(event.clientX - 124 - (globalpass[flagI].x + xOffset) + 60) /
+          2;
         let cy =
           Math.abs(
-            event.clientY + -105 -screenOffsetY- (elements[flagI].position.y + yOffset)
+            event.clientY +
+              -105 -
+              screenOffsetY -
+              (globalpass[flagI].y + yOffset)
           ) / 2;
-        if (event.clientX - 144 < elements[flagI].position.x + xOffset + 60)
+        if (event.clientX - 144 < globalpass[flagI].x + xOffset + 60)
           cx = cx + event.clientX - 144;
-        else cx = cx + elements[flagI].position.x + xOffset;
-        if (event.clientY - 105 -screenOffsetY< elements[flagI].position.y + yOffset)
-          cy = cy + event.clientY - 105-screenOffsetY;
-        else cy = cy + elements[flagI].position.y + yOffset;
-        ctx.quadraticCurveTo(cx, cy, event.clientX - 144, event.clientY - 118+13-screenOffsetY);
-        ctx.lineWidth = 2.725;
+        else cx = cx + globalpass[flagI].x + xOffset;
+        if (event.clientY - 105 - screenOffsetY < globalpass[flagI].y + yOffset)
+          cy = cy + event.clientY - 105 - screenOffsetY;
+        else cy = cy + globalpass[flagI].y + yOffset;
+        ctx.quadraticCurveTo(
+          cx,
+          cy,
+          event.clientX - 144,
+          event.clientY - 118 + 13 - screenOffsetY
+        );
+        ctx.lineWidth = 2.725 * zoom;
         ctx.strokeStyle = "green";
         ctx.clearRect(0, 0, 1775, 884);
         ctx.stroke();
@@ -255,13 +331,19 @@ const Sidebar = memo(function Sidebar(props) {
       "application/reactflow/connect",
       JSON.stringify(send)
     );
-    if(sessionStorage.getItem("planeOffset")!=null)
-    if(sessionStorage.getItem("planeOffset").zoom!=1){
-      console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@gsk")
-      setTimeout(()=>{history.push("/flow/digital-analog");
-      history.push("/flow/flowchart");},0)
-      sessionStorage.setItem("planeOffset",null)
-    }
+    // let zoom;
+
+    // if (sessionStorage.getItem("planeOffset") != "null")
+    //   zoom = JSON.parse(sessionStorage.getItem("planeOffset")).zoom;
+    // else zoom = 1;
+
+    // if (zoom != 1) {
+    //   setTimeout(() => {
+    //     history.push("/flow/digital-analog");
+    //     history.push("/flow/flowchart");
+    //   }, 0);
+    //   sessionStorage.setItem("planeOffset", null);
+    // }
   };
   useEffect(() => {
     preview(getEmptyImage(), { captureDraggingState: true });
