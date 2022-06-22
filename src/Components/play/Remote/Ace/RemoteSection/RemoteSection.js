@@ -27,11 +27,14 @@ const RstyleDevicePC = {
 
 function RemoteSection(props) {
   let history = useHistory();
-
+  let dataa = ["M".charCodeAt(), "8".charCodeAt()];
+  writePort(dataa);
   const gobackUrl = () => {
     // setTimeout(function () {
     //   window.location.reload();
     // }, 100);
+    let data = ["M".charCodeAt(), "8".charCodeAt()];
+    writePort(data);
     history.goBack();
     // window.location.reload();
     // Portclose();

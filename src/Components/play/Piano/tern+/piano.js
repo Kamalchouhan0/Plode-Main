@@ -11,7 +11,9 @@ function Music(props) {
   let history = useHistory();
 
   const gobackUrl = () => {
-    handlePcPiano();
+    if (isPcPiano) {
+      handlePcPiano();
+    }
     history.goBack();
   };
 

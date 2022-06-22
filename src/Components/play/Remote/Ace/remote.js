@@ -633,6 +633,7 @@ class RemotePage extends Component {
           <div
             className="backBtn"
             style={{ backgroundImage: `url(${buttonBackSrc})` }}
+            onClick={() => {}}
           ></div>
         </Link>
         <div>
