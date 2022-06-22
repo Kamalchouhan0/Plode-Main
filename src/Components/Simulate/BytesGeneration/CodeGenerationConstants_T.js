@@ -316,6 +316,12 @@ let PortByteNumericalValuesIf = {
   FOUR_in_ONE_Sensor_RED: "23",
   FOUR_in_ONE_Sensor_GREEN: "24",
   FOUR_in_ONE_Sensor_BLUE: "25",
+  // "4-IN-1 SENSOR  →  DIST": "26",
+  // "4-IN-1 SENSOR  →  GESTURE": "28",
+  // "4-IN-1 SENSOR  →  LIGHT": "27",
+  // "4-IN-1 SENSOR  →  RED": "23",
+  // "4-IN-1 SENSOR  →  GREEN": "24",
+  // "4-IN-1 SENSOR  →  BLUE": "25",
 
   MICROPHONE: "29",
   TEMPERATURE: "34",
