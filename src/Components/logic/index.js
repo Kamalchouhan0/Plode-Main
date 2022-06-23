@@ -227,7 +227,7 @@ class Logic extends Component {
     console.log("PORTLIST", port);
     // console.log(port, "pPort");
     try {
-      await port.open({ baudRate: 115200 });
+      await port.open({ baudRate: 120000 });
     } catch (e) {
       console.log(e);
     }

@@ -26,15 +26,15 @@ const writePort = async (data) => {
   }
 };
 function VisualProgram() {
-  const CREATE = [
-    "C".charCodeAt(),
-    "R".charCodeAt(),
-    "E".charCodeAt(),
-    "A".charCodeAt(),
-    "T".charCodeAt(),
-    "E".charCodeAt(),
-  ];
-  writePort(CREATE);
+  // const CREATE = [
+  //   "C".charCodeAt(),
+  //   "R".charCodeAt(),
+  //   "E".charCodeAt(),
+  //   "A".charCodeAt(),
+  //   "T".charCodeAt(),
+  //   "E".charCodeAt(),
+  // ];
+  // writePort(CREATE);
 
   const item1Styl = {
     backgroundImage: `url("${renderPrgImage("flowchartbasedgroupbutton")}")`,
