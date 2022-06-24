@@ -552,7 +552,7 @@ class Logic extends Component {
   add = (type) => {
     // alert("ADD()");
     console.log("checking add", type);
-    if (type == "repeat") {
+    if (type == "repeat" || type == "end") {
       this.setState({ readyForSimulation: type });
       sessionStorage.setItem("programEnd", type);
     }
