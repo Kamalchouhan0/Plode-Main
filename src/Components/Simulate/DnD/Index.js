@@ -1065,21 +1065,21 @@ const CustomNodeFlow = ({ compo, img, assembly, updateState, indexChange }) => {
               <div
                 className="OLEDLINE1"
                 style={{
-                  height: "28%",
+                  height: "19%",
                   width: "100%",
                 }}
               ></div>
               <div
                 className="OLEDLINE2"
                 style={{
-                  height: "28%",
+                  height: "19%",
                   width: "100%",
                 }}
               ></div>
               <div
                 className="OLEDLINE3"
                 style={{
-                  height: "28%",
+                  height: "19%",
                   width: "100%",
                 }}
               ></div>
