@@ -156,7 +156,7 @@ class login extends Component {
               fontFamily: "Halcyon_Regular",
             }}
           >
-            Version: 1.0.0.1
+            Version: 0.1.1
           </span>
         </div>
       </div>
