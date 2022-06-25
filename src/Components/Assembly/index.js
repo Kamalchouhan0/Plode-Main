@@ -874,7 +874,7 @@ class Assembly extends Component {
   };
   removeFromWorkspace = (item) => {
     console.log("workspace remove", item);
-    sessionStorage.setItem("name", null);
+    // sessionStorage.setItem("name", null);
 
     var prev_data = this.props;
     var port = item.port;
@@ -883,7 +883,7 @@ class Assembly extends Component {
       port,
       item.type
     );
-    console.log("prev", prev_data);
+    // console.log("prev", prev_data);
     // var updated_flow_prog1 = this.ParseNodeList(prev_data.logicNew.cardConnections, port, item.type);
     // var updated_flow_prog2 = this.ParseNodeList(prev_data.logicNew.cards, port, item.type);
     prev_data.logic.program = updated_prog;
@@ -1384,8 +1384,8 @@ class Assembly extends Component {
   };
 
   render() {
-    let vv = JSON.parse(localStorage.getItem("SavedData"));
-    console.log(vv[4].assembly, "DATA OF PORTS");
+    // let vv = JSON.parse(localStorage.getItem("SavedData"));
+    // console.log(vv[4].assembly, "DATA OF PORTS");
 
     var selectionType = localStorage.getItem("programMode");
 
@@ -1960,16 +1960,18 @@ const mapDispatchToProps = (dispatch) => {
   return {
     assemblyComponent: (data) => {
       dispatch({ type: "ASSEMBLY_SELECTION", payload: data });
-      console.log("=======================>", data);
+      // console.log("=======================>", data);
       // let v = JSON.parse(localStorage.getItem("SavedData"));
       // let vn = sessionStorage.getItem("name");
-      // for (let i = 0; i < v.length; i++) {
-      //   if (vn == v[i].name) {
-      //     console.log("KEYS", v[i].assembly.workspace);
-      //     data = v[i].assembly.workspace;
-      //     dispatch({ type: "ASSEMBLY_SELECTION", payload: data });
-      //   } else {
-      //     dispatch({ type: "ASSEMBLY_SELECTION", payload: data });
+      // if (v != null) {
+      //   for (let i = 0; i < v.length; i++) {
+      //     if (vn == v[i].name) {
+      //       console.log("KEYS", v[i].assembly.workspace);
+      //       data = v[i].assembly.workspace;
+      //       dispatch({ type: "ASSEMBLY_SELECTION", payload: data });
+      //     } else {
+      //       dispatch({ type: "ASSEMBLY_SELECTION", payload: data });
+      //     }
       //   }
       // }
     },
@@ -1980,16 +1982,19 @@ const mapDispatchToProps = (dispatch) => {
       console.log("=======================>", data);
       // let v = JSON.parse(localStorage.getItem("SavedData"));
       // let vn = sessionStorage.getItem("name");
-      // for (let i = 0; i < v.length; i++) {
-      //   if (vn == v[i].name) {
-      //     console.log("KEYS", v[i].assembly.PortConnections);
-      //     data = v[i].assembly.PortConnections;
-      //     dispatch({ type: "PORT_CONNECTION", payload: data });
-      //     // sessionStorage.setItem("name", null);
-      //   } else {
-      //     dispatch({ type: "PORT_CONNECTION", payload: data });
+      // if (v != null) {
+      //   for (let i = 0; i < v.length; i++) {
+      //     if (vn == v[i].name) {
+      //       console.log("KEYS", v[i].assembly.PortConnections);
+      //       data = v[i].assembly.PortConnections;
+      //       dispatch({ type: "PORT_CONNECTION", payload: data });
+      //       // sessionStorage.setItem("name", null);
+      //     } else {
+      //       dispatch({ type: "PORT_CONNECTION", payload: data });
+      //     }
       //   }
       // }
+
       // data = JSON.parse(localStorage.getItem("SavedData"));
       // // console.log(v[4].assembly, "DATA OF PORTS");
       // let v = data[4].assembly.PortConnections;
