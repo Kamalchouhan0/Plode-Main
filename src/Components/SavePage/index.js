@@ -1,10 +1,13 @@
 import html2canvas from "html2canvas";
 import React, { Component } from "react";
+import { createBrowserHistory } from "history";
+import { Link } from "react-router-dom";
 import renderPrgImage from "../../source/programImg";
 import SavePrgm from "../ReusableComponents/PrgmSlider/SavePrgm/SavePrgm";
 import "./save.css";
 
 const axios = require("axios");
+const history = createBrowserHistory();
 
 class SaveProgram extends Component {
   constructor(props) {
@@ -15,15 +18,41 @@ class SaveProgram extends Component {
       link: "",
       imgURL: "",
       isHelp: false,
+      keys: false,
+      l: false,
     };
   }
   componentDidMount = () => {
+    console.log(sessionStorage.length);
     var self = this;
-    var div = document.getElementById("assemblyShot");
 
+    if (JSON.parse(sessionStorage.getItem("saveProps")) != null) {
+      var div = (document.getElementById("assemblyShot").style.visibility =
+        "hidden");
+    } else {
+      var div = document.getElementById("assemblyShot");
+
+      for (let i = 0; i < sessionStorage.length; i++) {
+        const keyss = sessionStorage.key(i);
+        const ll = sessionStorage.getItem(keyss);
+        this.setState({ keys: keyss });
+        // localStorage.setItem(keyss, ll);
+        this.setState({ l: ll });
+        // this.state.keys = keyss;
+        // this.state.l = ll;
+        // const l = sessionStorage.getItem(keys);
+
+        // const values = sessionStorage.value(i);
+        // console.log(`${keyss}: ${sessionStorage.getItem(keyss)}`);
+        // sessionStorage.setItem(`${keys}`, l);
+      }
+    }
+    console.log("dataas", this.state.keys, this.state.l);
+    // console.log("dataas", `${keyss}`, `${ll}`);
     if (
       sessionStorage.getItem("assempblyImageHTML") &&
-      sessionStorage.getItem("assempblyImageHTML") != ""
+      sessionStorage.getItem("assempblyImageHTML") != "" &&
+      JSON.parse(sessionStorage.getItem("saveProps")) == null
     ) {
       div.innerHTML = sessionStorage.getItem("assempblyImageHTML");
       html2canvas(div).then(function (canvas) {
@@ -35,8 +64,8 @@ class SaveProgram extends Component {
         imgTag.src = img;
       });
     }
-    // var div=document.getElementById('assemblyShot');
-    // div.innerHTML=sessionStorage.getItem("assempblyImageHTML");
+    var div = document.getElementById("assemblyShot");
+    div.innerHTML = sessionStorage.getItem("assempblyImageHTML");
   };
 
   handleChange = (event) => {
@@ -51,6 +80,18 @@ class SaveProgram extends Component {
       ...this.state,
       bytes: JSON.parse(sessionStorage.getItem("Bytes")),
     };
+    // console.log("DATA BATA:", allData);
+    let formData = JSON.parse(localStorage.getItem("projectData")) || [];
+    formData.push(allData);
+    localStorage.setItem("projectData", JSON.stringify(formData));
+    // sessionStorage.setItem("projectData", JSON.stringify(allData));
+
+    var x = document.getElementById("SaveAlert");
+    x.className = "show";
+    setTimeout(function () {
+      x.className = x.className.replace("show", "");
+    }, 1500);
+
     axios
       .post("http://localhost:3008/saveProject", allData)
       .then(function (response) {
@@ -62,10 +103,78 @@ class SaveProgram extends Component {
       });
 
     let history = {
+      name: this.state.name,
+      Reload: JSON.parse(sessionStorage.getItem("Reload")),
+      assemblyCheckbox: JSON.parse(sessionStorage.getItem("assemblyCheckbox")),
+      flatPrograms: JSON.parse(sessionStorage.getItem("flatPrograms")),
+      AppDetails: JSON.parse(sessionStorage.getItem("AppDetails")),
+
+      planeOffset: JSON.parse(sessionStorage.getItem("planeOffset")),
+      shield: JSON.parse(sessionStorage.getItem("shield")),
+      connectedDevice: sessionStorage.getItem("connectedDevice"),
+      programEnd: sessionStorage.getItem("programEnd"),
+
+      convert_Bytes: sessionStorage.getItem("convert_Bytes"),
+      Hardware: sessionStorage.getItem("Hardware"),
+      pageReloadConcept: sessionStorage.getItem("pageReloadConcept"),
+      coverflowActive: sessionStorage.getItem("coverflowActive"),
+      simulate: JSON.parse(sessionStorage.getItem("simulate")),
+
+      play_btn: sessionStorage.getItem("play_btn"),
+
+      flowlogic: JSON.parse(sessionStorage.getItem("flow-logic")),
+
+      assempblyImageURI: sessionStorage.getItem("assempblyImageURI"),
       concept: JSON.parse(sessionStorage.getItem("concept")),
       assembly: JSON.parse(sessionStorage.getItem("assembly")),
       logic: JSON.parse(sessionStorage.getItem("logic")),
     };
+    console.log(history.concept, "kghjfgyjhresg");
+
+    let saveData = JSON.parse(localStorage.getItem("SavedData")) || [];
+    saveData.push(history);
+    localStorage.setItem("SavedData", JSON.stringify(saveData));
+    // localStorage.setItem("SavedData", JSON.stringify(history));
+
+    // const saveFile = async (blob) => {
+    //   // const a = document.createElement("a");
+    //   // console.log("OBJECT", this.state);
+    //   // let aaa = this.state.name;
+    //   // a.download = `${aaa}.json`;
+    //   // a.href = URL.createObjectURL(blob);
+    //   // a.addEventListener("click", (e) => {
+    //   //   setTimeout(() => URL.revokeObjectURL(a.href), 30 * 1000);
+    //   // });
+    //   // a.click();
+    // };
+
+    // const blob = new Blob([JSON.stringify(history, null, 2)], {
+    //   type: "application/json",
+    // });
+
+    // saveFile(blob);
+    // if (sessionStorage.getItem("saveProps") == null) {
+    //   Object.keys(history).map((key, value) => {
+    //     console.log("KEYS", key, value);
+    //     switch (key) {
+    //       case "concept": {
+    //         sessionStorage.setItem("concept", history.concept);
+    //       }
+    //       case "assembly": {
+    //         sessionStorage.setItem("assembly", history.assembly);
+    //       }
+    //       case "logic": {
+    //         sessionStorage.setItem("logic", history.logic);
+    //       }
+    //       // case "concept": {
+    //       //   sessionStorage.setItem("concept", history.concept);
+    //       // }
+    //       // case "concept": {
+    //       //   sessionStorage.setItem("concept", history.concept);
+    //       // }
+    //     }
+    //   });
+    // }
 
     axios
       .post("http://localhost:3008/saveHistory", history)
@@ -77,7 +186,61 @@ class SaveProgram extends Component {
         console.log("ERROR", error.message);
       });
   };
+
+  saveData = () => {
+    console.log("dataas NEXT BTN", this.state.keys, this.state.l);
+    let hhh = JSON.parse(localStorage.getItem("SavedData"));
+    console.log("Names", hhh[0].name);
+
+    let names = JSON.parse(sessionStorage.getItem("saveProps")) || null;
+    console.log("KK", names);
+
+    for (let i = 0; i < hhh.length; i++) {
+      if (names.name == hhh[i].name) {
+        console.log("KK", hhh[i].concept);
+        Object.keys(hhh[i]).map((key, value) => {
+          console.log("KEYS", key, value);
+          switch (key) {
+            case "concept": {
+              sessionStorage.setItem("concept", JSON.stringify(hhh[i].concept));
+            }
+            case "assembly": {
+              sessionStorage.setItem(
+                "assembly",
+                JSON.stringify(hhh[i].assembly)
+              );
+            }
+            case "logic": {
+              sessionStorage.setItem("logic", JSON.stringify(hhh[i].logic));
+            }
+            // case "concept": {
+            //   sessionStorage.setItem("concept", history.concept);
+            // }
+            // case "concept": {
+            //   sessionStorage.setItem("concept", history.concept);
+            // }
+          }
+        });
+      }
+    }
+
+    this.props.history.push("/selectScreen/InternalAccessories");
+
+    // console.log(history, "kghjfgyjhresg");
+    // for (let i = 0; i < sessionStorage.length; i++) {
+    //   const keys = sessionStorage.key(i);
+    //   const l = sessionStorage.getItem(keys);
+    //   // console.log("dataas", l);
+    //   // const values = sessionStorage.value(i);
+    //   // console.log(`${key}: ${sessionStorage.getItem(key)}`);
+    //   sessionStorage.setItem(`${keys}`, l);
+    // }
+  };
+
   render() {
+    // console.log("dtat", this.props.location.data.props);
+
+    let v = JSON.parse(sessionStorage.getItem("saveProps")) || null;
     return (
       <div
         style={{ height: "100vh", width: "100vw", position: "relative" }}
@@ -98,12 +261,39 @@ class SaveProgram extends Component {
             position: "relative",
           }}
         >
-          <img
+          {v != null ? (
+            <Link to="/savedprogram">
+              <img
+                className="iconBtnSize imgBackBtn"
+                src={renderPrgImage("backBtn")}
+                style={{
+                  marginTop: "1%",
+                  marginRight: "3%",
+                  cursor: "pointer",
+                }}
+                // onClick={() => (window.location.href = "/savedprogram")}
+              />
+            </Link>
+          ) : (
+            <Link to="/simulate">
+              <img
+                className="iconBtnSize imgBackBtn"
+                src={renderPrgImage("backBtn")}
+                style={{
+                  marginTop: "1%",
+                  marginRight: "3%",
+                  cursor: "pointer",
+                }}
+                // onClick={() => (window.location.href = "/simulate")}
+              />
+            </Link>
+          )}
+          {/* <img
             className="iconBtnSize imgBackBtn"
             src={renderPrgImage("backBtn")}
             style={{ marginTop: "1%", marginRight: "3%", cursor: "pointer" }}
             onClick={() => (window.location.href = "/simulate")}
-          />
+          /> */}
           <p className="saveHeadingTxt">Save Your Project</p>
 
           {this.state.isHelp ? (
@@ -135,54 +325,179 @@ class SaveProgram extends Component {
         </div>
         <div className="item-2">
           <div className="SavePageinputdetails">
-            <input
+            {v != null ? (
+              <input
+                className="nameInputDetails saveHeadingTxt2"
+                type="text"
+                name="name"
+                value={"Name" + " ".repeat(23) + v.name}
+                onChange={this.handleChange}
+              />
+            ) : (
+              <input
+                className="nameInputDetails saveHeadingTxt2"
+                type="text"
+                name="name"
+                placeholder="Name"
+                onChange={this.handleChange}
+              />
+            )}
+            {/* <input
               className="nameInputDetails saveHeadingTxt2"
               type="text"
+              name="name"
               placeholder="Name"
               onChange={this.handleChange}
-            />
-            <textarea
+            /> */}
+
+            {v != null ? (
+              <textarea
+                className="descriptionInputDetails saveHeadingTxt2"
+                name="discription"
+                placeholder="Description"
+                value={"Description" + "\n \n" + v.des}
+                onChange={this.handleChange}
+              />
+            ) : (
+              <textarea
+                className="descriptionInputDetails saveHeadingTxt2"
+                name="discription"
+                placeholder="Description"
+                onChange={this.handleChange}
+              />
+            )}
+            {/* <textarea
               className="descriptionInputDetails saveHeadingTxt2"
+              name="discription"
               placeholder="Description"
               onChange={this.handleChange}
-            />
-            <input
+            /> */}
+
+            {v != null ? (
+              <input
+                className="nameInputDetails saveHeadingTxt2"
+                type="text"
+                name="link"
+                value={"Video Link" + " ".repeat(23) + v.link}
+                onChange={this.handleChange}
+              />
+            ) : (
+              <input
+                className="nameInputDetails saveHeadingTxt2"
+                type="text"
+                name="link"
+                placeholder="Video Link"
+                onChange={this.handleChange}
+              />
+            )}
+
+            {/* <input
               className="nameInputDetails saveHeadingTxt2"
               type="text"
+              name="link"
               placeholder="Video Link.."
               onChange={this.handleChange}
-            />
+            /> */}
           </div>
           <div className="SavePageImgdetails saveHeadingTxt2">
             <p>Add Images</p>
-            <div
+            {/* <div
               style={{
                 height: "70%",
                 width: "90%",
                 backgroundColor: "#F5F5F5",
                 marginTop: "15px",
+                border: "1px solid red",
               }}
-            >
-              {" "}
-              <img
+            > */}{" "}
+            {v != null ? (
+              <div
+                style={{
+                  height: "70%",
+                  width: "90%",
+                  backgroundColor: "#F5F5F5",
+                  marginTop: "15px",
+                  // border: "1px solid red",
+                }}
+              >
+                <img
+                  style={{
+                    height: "100%",
+                    width: "100%",
+                    borderRadius: "30px",
+                  }}
+                  src={v.ig}
+                />
+              </div>
+            ) : (
+              <div
+                style={{
+                  height: "70%",
+                  width: "90%",
+                  backgroundColor: "#F5F5F5",
+                  marginTop: "15px",
+                  // border: "1px solid red",
+                }}
+              >
+                <img
+                  id="screenshot"
+                  style={{
+                    height: "100%",
+                    width: "100%",
+                    borderRadius: "30px",
+                  }}
+                  src={this.state.imgURL}
+                />
+              </div>
+            )}
+            {/* <img
                 id="screenshot"
                 style={{ height: "100%", width: "100%", borderRadius: "30px" }}
                 src={this.state.imgURL}
-              />
-            </div>
-            <img
-              src={renderPrgImage("saveBtn")}
-              style={{
-                height: "75px",
-                width: "75px",
-                position: "absolute",
-                bottom: "0",
-                right: "0",
-                cursor: "pointer",
-              }}
-              onClick={this.save}
-            />
+              /> */}
+            {/* </div> */}
+            {v != null ? (
+              <Link
+                to={{
+                  pathname: "/selectScreen/InternalAccessories",
+                  data: v.name,
+                }}
+              >
+                <img
+                  style={{
+                    height: "60px",
+                    width: "60px",
+                    position: "absolute",
+                    bottom: "0",
+                    right: "0",
+                    zIndex: "100",
+                    cursor: "pointer",
+                  }}
+                  src={renderPrgImage("nextBtn")}
+                  // onClick={() =>
+                  //   (window.location.href = "/selectScreen/InternalAccessories")
+                  // }
+                  onClick={this.saveData}
+                />
+              </Link>
+            ) : (
+              <Link to="/simulate">
+                <img
+                  src={renderPrgImage("saveBtn")}
+                  style={{
+                    height: "75px",
+                    width: "75px",
+                    position: "absolute",
+                    bottom: "0",
+                    right: "0",
+                    cursor: "pointer",
+                  }}
+                  onClick={this.save}
+                />
+              </Link>
+            )}
             <div id="assemblyShot"></div>
+            <div id="SaveAlert">Your Project has been Saved</div>
           </div>
         </div>
       </div>

@@ -210,11 +210,48 @@ function InternalAccessoriesScreen(props) {
     setMic(props.indexData.concept.internalaccessories.isMic);
   });
   useEffect(() => {
+    console.log("PROPS", props.location.data);
+
+    // if(props.location.data)
+    let hhh = JSON.parse(localStorage.getItem("SavedData"));
+    console.log("Names", hhh[0].name);
+
+    for (let i = 0; i < hhh.length; i++) {
+      if (props.location.data == hhh[i].name) {
+        sessionStorage.setItem("pip", true);
+        sessionStorage.setItem("name", props.location.data);
+        console.log("KK", hhh[i].concept.internalaccessories.isTouchOne);
+        Object.keys(hhh[i]).map((key, value) => {
+          console.log("KEYS", key, value);
+          switch (key) {
+            case "concept": {
+              sessionStorage.setItem("concept", JSON.stringify(hhh[i].concept));
+            }
+            case "assembly": {
+              sessionStorage.setItem(
+                "assembly",
+                JSON.stringify(hhh[i].assembly)
+              );
+            }
+            case "logic": {
+              sessionStorage.setItem("logic", JSON.stringify(hhh[i].logic));
+            }
+            // case "concept": {
+            //   sessionStorage.setItem("concept", history.concept);
+            // }
+            // case "concept": {
+            //   sessionStorage.setItem("concept", history.concept);
+            // }
+          }
+        });
+        window.location.reload();
+      }
+    }
     // socket.emit("_usbDetection", "Hi i am firoz");
     // socket.on("/usbDetection1", (data) => {
     //   console.log("...............1", data);
-    //   // let kill = Array.from(data);
-    //   // console.log("...............5", kill);
+    // let kill = Array.from(data);
+    // console.log("...............5", kill);
     //   if (data == 1) {
     //     setUsb(true);
     //     console.log("LLLLLLLLLLLLLLL", data);
@@ -996,7 +1033,13 @@ function InternalAccessoriesScreen(props) {
   };
 
   const backBtnAction = () => {
-    setErasedProgram(true);
+    if (JSON.parse(sessionStorage.getItem("pip")) == true) {
+      setErasedProgram(true);
+      sessionStorage.setItem("pip", false);
+      sessionStorage.setItem("name", "null");
+    } else {
+      setErasedProgram(true);
+    }
   };
 
   const [isHelp, setHelp] = useState(false);

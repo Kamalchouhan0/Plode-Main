@@ -138,6 +138,7 @@ class Workspace extends Component {
     let componentsDataSensor = JSON.parse(
       sessionStorage.getItem("concept")
     ).counter;
+    console.log("KAMAL KA PROPS", this.props);
     // Move Bibox to center
     // this.moveBibox(340, 90);
 

@@ -765,6 +765,8 @@ class Assembly extends Component {
     // Reset panning and pinching variables
     this.panEnd();
     this.pinchEnd();
+
+    // this.props.assemblyComponent(workspace);
   }
 
   /**
@@ -872,6 +874,8 @@ class Assembly extends Component {
   };
   removeFromWorkspace = (item) => {
     console.log("workspace remove", item);
+    sessionStorage.setItem("name", null);
+
     var prev_data = this.props;
     var port = item.port;
     var updated_prog = this.ParseNodeList(
@@ -879,6 +883,7 @@ class Assembly extends Component {
       port,
       item.type
     );
+    console.log("prev", prev_data);
     // var updated_flow_prog1 = this.ParseNodeList(prev_data.logicNew.cardConnections, port, item.type);
     // var updated_flow_prog2 = this.ParseNodeList(prev_data.logicNew.cards, port, item.type);
     prev_data.logic.program = updated_prog;
@@ -1226,6 +1231,7 @@ class Assembly extends Component {
             window.scrollTo(scrollX, scrollY);
           });
         }
+
         (function () {
           window.URL = window.URL || window.webkitURL;
           BLOB = screenshotPage();
@@ -1236,19 +1242,19 @@ class Assembly extends Component {
         // exports.generate = generate;
       })(window);
       // generate();
-      //var div=document.createElement("div");
+      var div = document.createElement("div");
       // you need to create an empty div element with some id and use that id here.
       var div = document.getElementById("assemblyShot");
       div.innerHTML = URL;
       sessionStorage.setItem("assempblyImageHTML", URL);
-      // html2canvas(div, {
-      //   onrendered: function(canvas) {
-      //     div.innerHTML="";
-      //     var img = canvas.toDataURL("image/png");
-      //
-      //     sessionStorage.setItem("assempblyImageURI",img);
-      //   }
-      // });
+      html2canvas(div, {
+        onrendered: function (canvas) {
+          div.innerHTML = "";
+          var img = canvas.toDataURL("image/png");
+
+          sessionStorage.setItem("assempblyImageURI", img);
+        },
+      });
 
       html2canvas(div).then(function (canvas) {
         div.innerHTML = "";
@@ -1378,8 +1384,8 @@ class Assembly extends Component {
   };
 
   render() {
-    let vv = JSON.parse(sessionStorage.getItem("assembly"));
-    console.log(vv.PortConnections, "DATA OF PORTS");
+    let vv = JSON.parse(localStorage.getItem("SavedData"));
+    console.log(vv[4].assembly, "DATA OF PORTS");
 
     var selectionType = localStorage.getItem("programMode");
 
@@ -1954,12 +1960,39 @@ const mapDispatchToProps = (dispatch) => {
   return {
     assemblyComponent: (data) => {
       dispatch({ type: "ASSEMBLY_SELECTION", payload: data });
+      console.log("=======================>", data);
+      // let v = JSON.parse(localStorage.getItem("SavedData"));
+      // let vn = sessionStorage.getItem("name");
+      // for (let i = 0; i < v.length; i++) {
+      //   if (vn == v[i].name) {
+      //     console.log("KEYS", v[i].assembly.workspace);
+      //     data = v[i].assembly.workspace;
+      //     dispatch({ type: "ASSEMBLY_SELECTION", payload: data });
+      //   } else {
+      //     dispatch({ type: "ASSEMBLY_SELECTION", payload: data });
+      //   }
+      // }
     },
     logicComponent: (data) => {
       dispatch({ type: "LOGIC_SELECTION", payload: data });
     },
     PortConnections: (data) => {
-      // console.log("=======================>", data);
+      console.log("=======================>", data);
+      // let v = JSON.parse(localStorage.getItem("SavedData"));
+      // let vn = sessionStorage.getItem("name");
+      // for (let i = 0; i < v.length; i++) {
+      //   if (vn == v[i].name) {
+      //     console.log("KEYS", v[i].assembly.PortConnections);
+      //     data = v[i].assembly.PortConnections;
+      //     dispatch({ type: "PORT_CONNECTION", payload: data });
+      //     // sessionStorage.setItem("name", null);
+      //   } else {
+      //     dispatch({ type: "PORT_CONNECTION", payload: data });
+      //   }
+      // }
+      // data = JSON.parse(localStorage.getItem("SavedData"));
+      // // console.log(v[4].assembly, "DATA OF PORTS");
+      // let v = data[4].assembly.PortConnections;
       dispatch({ type: "PORT_CONNECTION", payload: data });
     },
     webSerialAction: (data) => {
