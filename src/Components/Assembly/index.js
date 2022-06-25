@@ -498,155 +498,160 @@ class Assembly extends Component {
       //   v[18] = "0";
       // }
       console.log(v, "JJ");
-
-      if (v.length == "19" && v[0] != "") {
-        if (v[0] != null || v[2] != null) {
-          if (v[0] != null) {
-            var byte_val1 = v[0] & 0xff;
-            var byte_val2 = v[1] & 0xff;
-            console.log(byte_val1, byte_val2, "A1");
-            var valOfSensor = (byte_val2 << 8) + byte_val1;
-            console.log("A1 LSB+MSB:-", valOfSensor);
-            if (valOfSensor <= 1024) {
-              valrangeA1 = valOfSensor;
+      try {
+        if (v.length == "19" && v[0] != "") {
+          if (v[0] != null || v[2] != null) {
+            if (v[0] != null) {
+              var byte_val1 = v[0] & 0xff;
+              var byte_val2 = v[1] & 0xff;
+              console.log(byte_val1, byte_val2, "A1");
+              var valOfSensor = (byte_val2 << 8) + byte_val1;
+              console.log("A1 LSB+MSB:-", valOfSensor);
+              if (valOfSensor <= 1024) {
+                valrangeA1 = valOfSensor;
+              }
+            }
+            if (v[2] != null) {
+              var byte_val1 = v[2] & 0xff;
+              var byte_val2 = v[3] & 0xff;
+              var valOfSensor = (byte_val2 << 8) + byte_val1;
+              console.log("A2 LSB+MSB:-", valOfSensor);
+              valrangeA2 = valOfSensor;
             }
           }
-          if (v[2] != null) {
-            var byte_val1 = v[2] & 0xff;
-            var byte_val2 = v[3] & 0xff;
-            var valOfSensor = (byte_val2 << 8) + byte_val1;
-            console.log("A2 LSB+MSB:-", valOfSensor);
-            valrangeA2 = valOfSensor;
+          if (v[4] != null || v[6] != null) {
+            if (v[4] != null) {
+              var byte_val1 = v[4] & 0xff;
+              var byte_val2 = v[5] & 0xff;
+              var valOfSensor = (byte_val2 << 8) + byte_val1;
+              console.log("LSB+MSB:-", valOfSensor);
+              valtemp = valOfSensor;
+            }
+            if (v[6] != null) {
+              var byte_val1 = v[6] & 0xff;
+              var byte_val2 = v[7] & 0xff;
+              var valOfSensor = (byte_val2 << 8) + byte_val1;
+              console.log("LSB+MSB:-", valOfSensor);
+              valgas = valOfSensor;
+            }
           }
-        }
-        if (v[4] != null || v[6] != null) {
-          if (v[4] != null) {
+          if (v[8] != null || v[10] != null) {
+            if (v[8] != null) {
+              var byte_val1 = v[8] & 0xff;
+              var byte_val2 = v[9] & 0xff;
+              var valOfSensor = (byte_val2 << 8) + byte_val1;
+              console.log("LSB+MSB:-", valOfSensor);
+              valone = valOfSensor;
+            }
+            if (v[10] != null) {
+              var byte_val1 = v[10] & 0xff;
+              var byte_val2 = v[11] & 0xff;
+              var valOfSensor = (byte_val2 << 8) + byte_val1;
+              console.log("LSB+MSB:-", valOfSensor);
+              valtwo = valOfSensor;
+            } else {
+              valtwo = 0;
+            }
+          }
+
+          if (
+            sessionData.internalaccessories.Four_in_one_sensor.isLightSensor
+          ) {
+            if (v[12] != "0" && v[12] <= "255") {
+              var data = v[12];
+
+              vallight = data;
+              console.log(" 23 DISTANCE SENSOR:--", valdis);
+            }
+          }
+          if (
+            sessionData.internalaccessories.Four_in_one_sensor.isDistanceSensors
+          ) {
+            if (v[13] != "0" && v[13] <= "255") {
+              var data = v[13];
+
+              valdis = data;
+              console.log(" 23 DISTANCE SENSOR:--", valdis);
+            }
+          }
+          if (
+            sessionData.internalaccessories.Four_in_one_sensor.isGestureSensor
+          ) {
+            if (v[14] != "0") {
+              var data = v[14];
+
+              valges = data;
+              console.log(" 23 DISTANCE SENSOR:--", valdis);
+            }
+          }
+          if (sessionData.internalaccessories.isMic) {
+            if (v[15] != "0" || v[16] != "0") {
+              var byte_val1 = v[15] & 0xff;
+              var byte_val2 = v[16] & 0xff;
+              var valOfSensor = (byte_val2 << 8) + byte_val1;
+              console.log("LSB+MSB MIC:-", valOfSensor);
+              valmic = valOfSensor;
+            }
+          }
+          if (
+            sessionData.internalaccessories.Four_in_one_sensor.isColorSensor
+          ) {
+            if (v[12] != "0") {
+              var data = v[12];
+
+              valred = data;
+              console.log(" 23 DISTANCE SENSOR:--", valdis);
+            }
+            if (v[13] != "0" && v[13] < 256) {
+              var data = v[13];
+
+              valgreen = data;
+              console.log(" 23 DISTANCE SENSOR:--", valdis);
+            }
+            if (v[14] != "0" && v[14] < 256) {
+              var data = v[14];
+
+              valblue = data;
+              console.log(" 23 DISTANCE SENSOR:--", valdis);
+            }
+          }
+          if (sessionData.internalaccessories.isTemperature) {
+            if (v[17] != 0) {
+              var byte_val1 = v[17] & 0xff;
+              var byte_val2 = v[18] & 0xff;
+              var valOfSensor = (byte_val2 << 8) + byte_val1;
+              console.log("LSB+MSB TEMP:-", valOfSensor);
+              valtemprature = valOfSensor;
+            } else {
+              var byte_val2 = v[18];
+
+              console.log("LSB+MSB TEMP:-", valOfSensor);
+              valtemprature = byte_val2;
+            }
+          }
+          if (sessionData.internalaccessories.isTouchZero) {
+            var byte_val1 = v[0] & 0xff;
+            var byte_val2 = v[1] & 0xff;
+            var valOfSensor = (byte_val2 << 8) + byte_val1;
+            console.log("LSB+MSB:-", valOfSensor);
+            valrangeA1 = valOfSensor;
+          }
+          if (sessionData.internalaccessories.isTouchOne) {
             var byte_val1 = v[4] & 0xff;
             var byte_val2 = v[5] & 0xff;
             var valOfSensor = (byte_val2 << 8) + byte_val1;
             console.log("LSB+MSB:-", valOfSensor);
             valtemp = valOfSensor;
           }
-          if (v[6] != null) {
-            var byte_val1 = v[6] & 0xff;
-            var byte_val2 = v[7] & 0xff;
-            var valOfSensor = (byte_val2 << 8) + byte_val1;
-            console.log("LSB+MSB:-", valOfSensor);
-            valgas = valOfSensor;
-          }
-        }
-        if (v[8] != null || v[10] != null) {
-          if (v[8] != null) {
+          if (sessionData.internalaccessories.isTouchTwo) {
             var byte_val1 = v[8] & 0xff;
             var byte_val2 = v[9] & 0xff;
             var valOfSensor = (byte_val2 << 8) + byte_val1;
             console.log("LSB+MSB:-", valOfSensor);
-            valone = valOfSensor;
-          }
-          if (v[10] != null) {
-            var byte_val1 = v[10] & 0xff;
-            var byte_val2 = v[11] & 0xff;
-            var valOfSensor = (byte_val2 << 8) + byte_val1;
-            console.log("LSB+MSB:-", valOfSensor);
-            valtwo = valOfSensor;
-          } else {
-            valtwo = 0;
+            if (valOfSensor == null) valone = valOfSensor;
           }
         }
-
-        if (sessionData.internalaccessories.Four_in_one_sensor.isLightSensor) {
-          if (v[12] != "0" && v[12] <= "255") {
-            var data = v[12];
-
-            vallight = data;
-            console.log(" 23 DISTANCE SENSOR:--", valdis);
-          }
-        }
-        if (
-          sessionData.internalaccessories.Four_in_one_sensor.isDistanceSensors
-        ) {
-          if (v[13] != "0" && v[13] <= "255") {
-            var data = v[13];
-
-            valdis = data;
-            console.log(" 23 DISTANCE SENSOR:--", valdis);
-          }
-        }
-        if (
-          sessionData.internalaccessories.Four_in_one_sensor.isGestureSensor
-        ) {
-          if (v[14] != "0") {
-            var data = v[14];
-
-            valges = data;
-            console.log(" 23 DISTANCE SENSOR:--", valdis);
-          }
-        }
-        if (sessionData.internalaccessories.isMic) {
-          if (v[15] != "0" || v[16] != "0") {
-            var byte_val1 = v[15] & 0xff;
-            var byte_val2 = v[16] & 0xff;
-            var valOfSensor = (byte_val2 << 8) + byte_val1;
-            console.log("LSB+MSB MIC:-", valOfSensor);
-            valmic = valOfSensor;
-          }
-        }
-        if (sessionData.internalaccessories.Four_in_one_sensor.isColorSensor) {
-          if (v[12] != "0") {
-            var data = v[12];
-
-            valred = data;
-            console.log(" 23 DISTANCE SENSOR:--", valdis);
-          }
-          if (v[13] != "0" && v[13] < 256) {
-            var data = v[13];
-
-            valgreen = data;
-            console.log(" 23 DISTANCE SENSOR:--", valdis);
-          }
-          if (v[14] != "0" && v[14] < 256) {
-            var data = v[14];
-
-            valblue = data;
-            console.log(" 23 DISTANCE SENSOR:--", valdis);
-          }
-        }
-        if (sessionData.internalaccessories.isTemperature) {
-          if (v[17] != 0) {
-            var byte_val1 = v[17] & 0xff;
-            var byte_val2 = v[18] & 0xff;
-            var valOfSensor = (byte_val2 << 8) + byte_val1;
-            console.log("LSB+MSB TEMP:-", valOfSensor);
-            valtemprature = valOfSensor;
-          } else {
-            var byte_val2 = v[18];
-
-            console.log("LSB+MSB TEMP:-", valOfSensor);
-            valtemprature = byte_val2;
-          }
-        }
-        if (sessionData.internalaccessories.isTouchZero) {
-          var byte_val1 = v[0] & 0xff;
-          var byte_val2 = v[1] & 0xff;
-          var valOfSensor = (byte_val2 << 8) + byte_val1;
-          console.log("LSB+MSB:-", valOfSensor);
-          valrangeA1 = valOfSensor;
-        }
-        if (sessionData.internalaccessories.isTouchOne) {
-          var byte_val1 = v[4] & 0xff;
-          var byte_val2 = v[5] & 0xff;
-          var valOfSensor = (byte_val2 << 8) + byte_val1;
-          console.log("LSB+MSB:-", valOfSensor);
-          valtemp = valOfSensor;
-        }
-        if (sessionData.internalaccessories.isTouchTwo) {
-          var byte_val1 = v[8] & 0xff;
-          var byte_val2 = v[9] & 0xff;
-          var valOfSensor = (byte_val2 << 8) + byte_val1;
-          console.log("LSB+MSB:-", valOfSensor);
-          if (valOfSensor == null) valone = valOfSensor;
-        }
-      }
+      } catch (e) {}
 
       setTimeout(() => {
         if (!this.state.readbytes) {
@@ -1128,124 +1133,129 @@ class Assembly extends Component {
     this.screenshotInitiate();
   }
   screenshotInitiate = () => {
-    var URL, BLOB;
-    (function (exports) {
-      function urlsToAbsolute(nodeList) {
-        if (!nodeList.length) {
-          return [];
-        }
-        var attrName = "href";
-        if (
-          nodeList[0].__proto__ === HTMLImageElement.prototype ||
-          nodeList[0].__proto__ === HTMLScriptElement.prototype
-        ) {
-          attrName = "src";
-        }
-        nodeList = [].map.call(nodeList, function (el, i) {
-          var attr = el.getAttribute(attrName);
-          if (!attr) {
-            return;
+    try {
+      var URL, BLOB;
+      (function (exports) {
+        function urlsToAbsolute(nodeList) {
+          if (!nodeList.length) {
+            return [];
           }
-          var absURL = /^(https?|data):/i.test(attr);
-          if (absURL) {
-            return el;
-          } else {
-            return el;
+          var attrName = "href";
+          if (
+            nodeList[0].__proto__ === HTMLImageElement.prototype ||
+            nodeList[0].__proto__ === HTMLScriptElement.prototype
+          ) {
+            attrName = "src";
           }
-        });
-        return nodeList;
-      }
-
-      function screenshotPage() {
-        if (JSON.parse(sessionStorage.getItem("Index"))) {
-          urlsToAbsolute(document.images);
-          urlsToAbsolute(document.querySelectorAll("link[rel='stylesheet']"));
-          var screenshot = document
-            .getElementById("assemblyscreenid")
-            .cloneNode(true);
-          try {
-            screenshot.getElementsByClassName("assemblySidebar")[0].innerHTML =
-              "";
-          } catch (e) {}
-          $(screenshot)
-            .find(".assemblySidebar")
-            .css("background-color", "transparent");
-          $(screenshot).find(".assemblySidebar").css("border", "none");
-          $(screenshot).find(".assemblySidebar").css("box-shadow", "none");
-
-          $(screenshot).find(".nextButton").css("display", "none");
-          $(screenshot).find(".navbarContainer_assem").css("display", "none");
-          $(screenshot)
-            .find(".navbarContainer_assembly")
-            .css("display", "none");
-
-          //screenshot.getElementsByClassName("assemblyScreen")[0].style.backgroundImage='';
-          $(screenshot)
-            .find(".assemblyScreen")
-            .css("background-color", "black");
-          $(screenshot).find(".assemblyScreen").css("background-image", "none");
-
-          // var b = document.createElement('base');
-          // b.href = document.location.protocol + '//' + location.host;
-          var head = screenshot.querySelector("head");
-          // head.insertBefore(b, head.firstChild);
-          screenshot.style.pointerEvents = "none";
-          screenshot.style.overflow = "hidden";
-          screenshot.style.webkitUserSelect = "none";
-          screenshot.style.mozUserSelect = "none";
-          screenshot.style.msUserSelect = "none";
-          screenshot.style.oUserSelect = "none";
-          screenshot.style.userSelect = "none";
-          screenshot.dataset.scrollX = window.scrollX;
-          screenshot.dataset.scrollY = window.scrollY;
-          var script = document.createElement("script");
-          script.textContent = "(" + addOnPageLoad_.toString() + ")();";
-          // screenshot.querySelector('body').appendChild(script);
-
-          var blob = new Blob([screenshot.outerHTML], {
-            type: "text/html",
+          nodeList = [].map.call(nodeList, function (el, i) {
+            var attr = el.getAttribute(attrName);
+            if (!attr) {
+              return;
+            }
+            var absURL = /^(https?|data):/i.test(attr);
+            if (absURL) {
+              return el;
+            } else {
+              return el;
+            }
           });
-          //screenshot.getElementsByClassName("pure-u-1-5")[0].style.display='none';
-          URL = screenshot.outerHTML;
-          return blob;
+          return nodeList;
         }
-      }
-      function addOnPageLoad_() {
-        window.addEventListener("DOMContentLoaded", function (e) {
-          var scrollX = document.documentElement.dataset.scrollX || 0;
-          var scrollY = document.documentElement.dataset.scrollY || 0;
-          window.scrollTo(scrollX, scrollY);
-        });
-      }
-      (function () {
-        window.URL = window.URL || window.webkitURL;
-        BLOB = screenshotPage();
-        // window.open(window.URL.createObjectURL(screenshotPage()));
-      })();
 
-      exports.screenshotPage = screenshotPage;
-      // exports.generate = generate;
-    })(window);
-    // generate();
-    //var div=document.createElement("div");
-    // you need to create an empty div element with some id and use that id here.
-    var div = document.getElementById("assemblyShot");
-    div.innerHTML = URL;
-    sessionStorage.setItem("assempblyImageHTML", URL);
-    // html2canvas(div, {
-    //   onrendered: function(canvas) {
-    //     div.innerHTML="";
-    //     var img = canvas.toDataURL("image/png");
-    //
-    //     sessionStorage.setItem("assempblyImageURI",img);
-    //   }
-    // });
+        function screenshotPage() {
+          if (JSON.parse(sessionStorage.getItem("Index"))) {
+            urlsToAbsolute(document.images);
+            urlsToAbsolute(document.querySelectorAll("link[rel='stylesheet']"));
+            var screenshot = document
+              .getElementById("assemblyscreenid")
+              .cloneNode(true);
+            try {
+              screenshot.getElementsByClassName(
+                "assemblySidebar"
+              )[0].innerHTML = "";
+            } catch (e) {}
+            $(screenshot)
+              .find(".assemblySidebar")
+              .css("background-color", "transparent");
+            $(screenshot).find(".assemblySidebar").css("border", "none");
+            $(screenshot).find(".assemblySidebar").css("box-shadow", "none");
 
-    html2canvas(div).then(function (canvas) {
-      div.innerHTML = "";
-      var img = canvas.toDataURL("image/png");
-      sessionStorage.setItem("assempblyImageURI", img);
-    });
+            $(screenshot).find(".nextButton").css("display", "none");
+            $(screenshot).find(".navbarContainer_assem").css("display", "none");
+            $(screenshot)
+              .find(".navbarContainer_assembly")
+              .css("display", "none");
+
+            //screenshot.getElementsByClassName("assemblyScreen")[0].style.backgroundImage='';
+            $(screenshot)
+              .find(".assemblyScreen")
+              .css("background-color", "black");
+            $(screenshot)
+              .find(".assemblyScreen")
+              .css("background-image", "none");
+
+            // var b = document.createElement('base');
+            // b.href = document.location.protocol + '//' + location.host;
+            var head = screenshot.querySelector("head");
+            // head.insertBefore(b, head.firstChild);
+            screenshot.style.pointerEvents = "none";
+            screenshot.style.overflow = "hidden";
+            screenshot.style.webkitUserSelect = "none";
+            screenshot.style.mozUserSelect = "none";
+            screenshot.style.msUserSelect = "none";
+            screenshot.style.oUserSelect = "none";
+            screenshot.style.userSelect = "none";
+            screenshot.dataset.scrollX = window.scrollX;
+            screenshot.dataset.scrollY = window.scrollY;
+            var script = document.createElement("script");
+            script.textContent = "(" + addOnPageLoad_.toString() + ")();";
+            // screenshot.querySelector('body').appendChild(script);
+
+            var blob = new Blob([screenshot.outerHTML], {
+              type: "text/html",
+            });
+            //screenshot.getElementsByClassName("pure-u-1-5")[0].style.display='none';
+            URL = screenshot.outerHTML;
+            return blob;
+          }
+        }
+        function addOnPageLoad_() {
+          window.addEventListener("DOMContentLoaded", function (e) {
+            var scrollX = document.documentElement.dataset.scrollX || 0;
+            var scrollY = document.documentElement.dataset.scrollY || 0;
+            window.scrollTo(scrollX, scrollY);
+          });
+        }
+        (function () {
+          window.URL = window.URL || window.webkitURL;
+          BLOB = screenshotPage();
+          // window.open(window.URL.createObjectURL(screenshotPage()));
+        })();
+
+        exports.screenshotPage = screenshotPage;
+        // exports.generate = generate;
+      })(window);
+      // generate();
+      //var div=document.createElement("div");
+      // you need to create an empty div element with some id and use that id here.
+      var div = document.getElementById("assemblyShot");
+      div.innerHTML = URL;
+      sessionStorage.setItem("assempblyImageHTML", URL);
+      // html2canvas(div, {
+      //   onrendered: function(canvas) {
+      //     div.innerHTML="";
+      //     var img = canvas.toDataURL("image/png");
+      //
+      //     sessionStorage.setItem("assempblyImageURI",img);
+      //   }
+      // });
+
+      html2canvas(div).then(function (canvas) {
+        div.innerHTML = "";
+        var img = canvas.toDataURL("image/png");
+        sessionStorage.setItem("assempblyImageURI", img);
+      });
+    } catch (e) {}
   };
   handleAssemblyCheckbox = (e) => {
     let isCheckedValue = e.target.value;

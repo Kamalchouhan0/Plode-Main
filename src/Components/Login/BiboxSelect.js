@@ -79,6 +79,17 @@ function BiboxSelection() {
           </div>
         )}
       </div>
+      <div style={{ position: "absolute", bottom: "2px", right: "5px" }}>
+        <span
+          style={{
+            fontSize: "15px",
+            color: "grey",
+            fontFamily: "Halcyon_Regular",
+          }}
+        >
+          Version: 1.0.0.1
+        </span>
+      </div>
     </div>
   );
 }
