@@ -1149,7 +1149,7 @@ class IfPanel extends Component {
     Object.keys(internalaccessoriesData).map((val, index) => {
       if (val == "isTouchZero") {
         if (internalaccessoriesData[val]) {
-          var positionPorts = ["TOUCH PAD 0"];
+          var positionPorts = ["TouchZero"];
           for (var i = 0; i < positionPorts.length; i++) {
             console.log(positionPorts, "positionPorts");
             console.log("i", i);
@@ -1159,7 +1159,7 @@ class IfPanel extends Component {
       }
       if (val == "isTouchOne") {
         if (internalaccessoriesData[val]) {
-          var positionPorts = ["TOUCH PAD 1"];
+          var positionPorts = ["TouchOne"];
           for (var i = 0; i < positionPorts.length; i++) {
             sourceOptionsOrder.push(positionPorts[i]);
           }
@@ -1167,7 +1167,7 @@ class IfPanel extends Component {
       }
       if (val == "isTouchTwo") {
         if (internalaccessoriesData[val]) {
-          var positionPorts = ["TOUCH PAD 2"];
+          var positionPorts = ["TouchTwo"];
           for (var i = 0; i < positionPorts.length; i++) {
             sourceOptionsOrder.push(positionPorts[i]);
           }
@@ -1388,11 +1388,11 @@ class IfPanel extends Component {
           range = PortValuesRangeMapping[Originalport]();
         } else if (Originalport == "TEMPERATURE") {
           range = PortValuesRangeMapping[Originalport]();
-        } else if (Originalport == "TOUCH PAD 0") {
+        } else if (Originalport == "TouchZero") {
           range = PortValuesRangeMapping["TOUCHZERO"]();
-        } else if (Originalport == "TOUCH PAD 1") {
+        } else if (Originalport == "TouchOne") {
           range = PortValuesRangeMapping["TOUCHONE"]();
-        } else if (Originalport == "TOUCH PAD 2") {
+        } else if (Originalport == "TouchTwo") {
           range = PortValuesRangeMapping["TOUCHTWO"]();
         } else if (Originalport == "4-IN-1 SENSOR  →  DIST") {
           range = PortValuesRangeMapping["FOUR_in_ONE_Sensor_DIST_"]();

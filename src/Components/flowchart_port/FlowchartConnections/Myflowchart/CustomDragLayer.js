@@ -27,6 +27,9 @@ function getItemStyles(initialOffset, currentOffset, xOffset, yOffset, type) {
       display: "none",
     };
   }
+  let zoom = JSON.parse(sessionStorage.getItem("planeOffset")) || 1;
+
+  if (zoom != 1) zoom = zoom.zoom;
   let height = 52,
     width = 120;
 
@@ -34,7 +37,7 @@ function getItemStyles(initialOffset, currentOffset, xOffset, yOffset, type) {
   x = x - xOffset;
   y = y - yOffset;
 
-  const transform = `translate(${x}px, ${y}px)`;
+  const transform = `translate(${x}px, ${y}px) scale(${zoom})`;
   return {
     backgroundImage: `url(${Background}) `,
     height: `${height}px`,
@@ -42,7 +45,7 @@ function getItemStyles(initialOffset, currentOffset, xOffset, yOffset, type) {
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
     backgroundSize: "contain",
-  
+
     transform,
     WebkitTransform: transform,
   };
@@ -74,11 +77,10 @@ export const CustomDragLayer = (props) => {
       case "if":
         return (
           <div
-           
             style={getItemStyles(initialOffset, currentOffset, 158, 35, "if")}
             id="if_dot"
           ></div>
-        ); 
+        );
       case "loop":
         return (
           <div

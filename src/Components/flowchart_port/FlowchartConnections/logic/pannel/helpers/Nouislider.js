@@ -162,11 +162,11 @@ class Nouislider extends Component {
       backgroundImage: `url("${
         this.props.sliderName == undefined
           ? renderPrgImage("propertypanelSlider")
-          : this.props.sliderName == "R" && this.props.value > 0
+          : this.props.sliderName.includes("R") && this.props.value > 0
           ? renderPrgImage("propertypanelRedSlider")
-          : this.props.sliderName == "B" && this.props.value > 0
+          : this.props.sliderName.includes("B") && this.props.value > 0
           ? renderPrgImage("propertypanelBlueSlider")
-          : this.props.sliderName == "G" && this.props.value > 0
+          : this.props.sliderName.includes("G") && this.props.value > 0
           ? renderPrgImage("propertypanelGreenSlider")
           : renderPrgImage("propertypanelInactiveSlider")
       }")`,

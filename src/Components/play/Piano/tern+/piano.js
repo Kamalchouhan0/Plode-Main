@@ -11,6 +11,9 @@ function Music(props) {
   let history = useHistory();
 
   const gobackUrl = () => {
+    if (isPcPiano) {
+      handlePcPiano();
+    }
     history.goBack();
   };
 
@@ -141,7 +144,6 @@ function Music(props) {
 
     console.log(p_Port, "p_Port");
   };
-  const timer = (ms) => new Promise((res) => setTimeout(res, ms));
   async function readLoop() {
     const port = props.webSerial;
 

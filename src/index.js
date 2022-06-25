@@ -20,7 +20,6 @@ const store = createStore(
     window.__REDUX_DEVTOOLS_EXTENSION__({ trace: true, traceLimit: 25 })
 );
 var supportedBrowser = false;
-console.log(browserName, browserVersion);
 if (
   browserName == "Chrome" ||
   browserName == "Edge" ||
@@ -69,4 +68,4 @@ ReactDOM.render(
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+serviceWorker.register();

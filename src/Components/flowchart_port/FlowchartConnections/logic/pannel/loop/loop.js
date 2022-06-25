@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import InputNumber from "../helpers/InputNumber";
 import "./loop.css";
 let count = [];
-for (let i = 0; i < 1000; i++) count[i] = 0;
+for (let i = 0; i < 1000; i++) count[i] = parseInt(sessionStorage.getItem(`loop${i}`))||0;
 class LoopPanel extends Component {
   constructor(props) {
     super(props);

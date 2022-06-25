@@ -68,6 +68,15 @@ import renderPrgImage from "../../source/programImg";
 var Panel = Panel1("");
 const InternalAccessories = (props) => {
   const history = useHistory();
+  function findIndex(array, string) {
+    var index = [];
+    for (var i = 0; i < array.length; i++) {
+      if (array[i].indexOf(string) > -1) {
+        index.push(i);
+      }
+    }
+    return index;
+  }
 
   const [isUsb, setUsb] = useState(false);
   const [p1, setP1] = useState({
@@ -399,6 +408,15 @@ const InternalAccessories = (props) => {
     "M4DIGI",
     JSON.parse(sessionStorage.getItem("M4DIGI"))
   );
+  function findIndex_new(array, string) {
+    var index = [];
+    for (var i = 0; i < array.length; i++) {
+      if (array[i].indexOf(string) > -1 && array[i].indexOf("countRGB") == -1) {
+        index.push(i);
+      }
+    }
+    return index;
+  }
   const handleEventsClick = (e) => {
     switch (e.target.alt) {
       case "mic": {
@@ -488,6 +506,11 @@ const InternalAccessories = (props) => {
           setTouchZeroOutput(true);
           setTouchZero(false);
         }
+        let a = findIndex(Object.keys(sessionStorage), "t0");
+        console.log("gsk", a);
+        for (let i in a) {
+          sessionStorage.setItem(Object.keys(sessionStorage)[a[i]], 0);
+        }
         break;
       }
       case "touch1Output": {
@@ -502,6 +525,11 @@ const InternalAccessories = (props) => {
         } else {
           setTouchOneOutput(true);
           setTouchOne(false);
+        }
+        let a = findIndex(Object.keys(sessionStorage), "t1");
+        console.log("gsk", a);
+        for (let i in a) {
+          sessionStorage.setItem(Object.keys(sessionStorage)[a[i]], 0);
         }
         break;
       }
@@ -519,6 +547,11 @@ const InternalAccessories = (props) => {
           setTouchTwoOutput(true);
           setTouchTwo(false);
         }
+        let a = findIndex(Object.keys(sessionStorage), "t2");
+        console.log("gsk", a);
+        for (let i in a) {
+          sessionStorage.setItem(Object.keys(sessionStorage)[a[i]], 0);
+        }
         break;
       }
 
@@ -532,6 +565,11 @@ const InternalAccessories = (props) => {
           setEyeLeft(false);
         } else {
           setEyeLeft(true);
+        }
+        let a = findIndex(Object.keys(sessionStorage), "le");
+        console.log("gsk", a);
+        for (let i in a) {
+          sessionStorage.setItem(Object.keys(sessionStorage)[a[i]], 0);
         }
         break;
       }
@@ -547,6 +585,11 @@ const InternalAccessories = (props) => {
         } else {
           setEyeRight(true);
         }
+        let a = findIndex(Object.keys(sessionStorage), "re");
+        console.log("gsk", a);
+        for (let i in a) {
+          sessionStorage.setItem(Object.keys(sessionStorage)[a[i]], 0);
+        }
         break;
       }
 
@@ -560,6 +603,11 @@ const InternalAccessories = (props) => {
           setbuzzer(false);
         } else {
           setbuzzer(true);
+        }
+        let a = findIndex(Object.keys(sessionStorage), "buzz");
+        console.log("gsk", a);
+        for (let i in a) {
+          sessionStorage.setItem(Object.keys(sessionStorage)[a[i]], 0);
         }
         break;
       }
@@ -575,6 +623,11 @@ const InternalAccessories = (props) => {
           setSimleOne(false);
         } else {
           setSimleOne(true);
+        }
+        let a = findIndex(Object.keys(sessionStorage), "s1");
+        console.log("gsk", a);
+        for (let i in a) {
+          sessionStorage.setItem(Object.keys(sessionStorage)[a[i]], 0);
         }
         break;
       }
@@ -592,6 +645,11 @@ const InternalAccessories = (props) => {
         } else {
           setSimleTwo(true);
         }
+        let a = findIndex(Object.keys(sessionStorage), "s2");
+        console.log("gsk", a);
+        for (let i in a) {
+          sessionStorage.setItem(Object.keys(sessionStorage)[a[i]], 0);
+        }
         break;
       }
 
@@ -608,12 +666,16 @@ const InternalAccessories = (props) => {
         } else {
           setSimleThree(true);
         }
-
+        let a = findIndex(Object.keys(sessionStorage), "s3");
+        console.log("gsk", a);
+        for (let i in a) {
+          sessionStorage.setItem(Object.keys(sessionStorage)[a[i]], 0);
+        }
         break;
       }
 
       case "smile4": {
-        if (JSON.parse(sessionStorage.getItem("M4"))) return;
+        if (JSON.parse(sessionStorage.getItem("s4"))) return;
 
         var x = document.getElementById("snackbar15");
         x.className = "show";
@@ -722,78 +784,97 @@ const InternalAccessories = (props) => {
   };
   const shouldErase = (info) => {
     if (info == "Yes") {
+      // localStorage.clear();
+      // sessionStorage.clear();
+
+      var arr = Object.keys(sessionStorage);
+      for (const i of arr) {
+        if (
+          i != "connectedDevice" &&
+          i != "Hardware" &&
+          i != "userData" &&
+          i != "concept" &&
+          i != "webSerialPortList"
+        ) {
+          //arr.push(i);
+          sessionStorage.removeItem(i);
+          // console.log(i, "sess");
+        }
+      }
+      //sessionStorage.setItem("testarr", JSON.stringify(arr));
+
       // sessionStorage.removeItem("Index");
       // props.indexData.concept.Index = [];
       // props.history.push("/programSelection");
-      setDistanceSensors(false);
-      setGestureSensor(false);
-      setLightSensor(false);
-      setColorSensor(false);
-      setTemperature(false);
-      setMic(false);
-      setTouchZero(false);
-      setTouchOne(false);
-      setTouchTwo(false);
-      setTouchZeroOutput(false);
-      setTouchOneOutput(false);
-      setTouchTwoOutput(false);
-      setEyeLeft(false);
-      setEyeRight(false);
-      setbuzzer(false);
-      setSimleOne(false);
-      setSimleTwo(false);
-      setSimleThree(false);
-      setSimleFour(false);
-      setA1(false);
-      setA1Checked(false);
-      setA1Digi(false);
-      setA2(false);
-      setA2Checked(false);
-      setA2Digi(false);
-      setB1(false);
-      setB1Checked(false);
-      setB1Digi(false);
-      setB2(false);
-      setB2Checked(false);
-      setB2Digi(false);
-      setC1(false);
-      setC1Checked(false);
-      setC1Digi(false);
-      setC2(false);
-      setC2Checked(false);
-      setC2Digi(false);
-      setD1(false);
-      setD1Checked(false);
-      setD1Digi(false);
-      setD2(false);
-      setD2Checked(false);
-      setD2Digi(false);
-      setE1(false);
-      setE1Checked(false);
-      setE1Digi(false);
-      setE2(false);
-      setE2Checked(false);
-      setE2Digi(false);
-      setF1(false);
-      setF1Checked(false);
-      setF1Digi(false);
-      setF2(false);
-      setF2Checked(false);
-      setF2Digi(false);
-      setM1(false);
-      setM1Checked(false);
-      setM1Digi(false);
-      setM2(false);
-      setM2Checked(false);
-      setM2Digi(false);
-      setM3(false);
-      setM3Checked(false);
-      setM3Digi(false);
-      setM4(false);
-      setM4Checked(false);
-      setM4Digi(false);
-      sessionStorage.setItem("flowchart-elements", null);
-      sessionStorage.setItem("flowchart-elements-id", null);
+      // setDistanceSensors(false);
+      // setGestureSensor(false);
+      // setLightSensor(false);
+      // setColorSensor(false);
+      // setTemperature(false);
+      // setMic(false);
+      // setTouchZero(false);
+      // setTouchOne(false);
+      // setTouchTwo(false);
+      // setTouchZeroOutput(false);
+      // setTouchOneOutput(false);
+      // setTouchTwoOutput(false);
+      // setEyeLeft(false);
+      // setEyeRight(false);
+      // setbuzzer(false);
+      // setSimleOne(false);
+      // setSimleTwo(false);
+      // setSimleThree(false);
+      // setSimleFour(false);
+      // setA1(false);
+      // setA1Checked(false);
+      // setA1Digi(false);
+      // setA2(false);
+      // setA2Checked(false);
+      // setA2Digi(false);
+      // setB1(false);
+      // setB1Checked(false);
+      // setB1Digi(false);
+      // setB2(false);
+      // setB2Checked(false);
+      // setB2Digi(false);
+      // setC1(false);
+      // setC1Checked(false);
+      // setC1Digi(false);
+      // setC2(false);
+      // setC2Checked(false);
+      // setC2Digi(false);
+      // setD1(false);
+      // setD1Checked(false);
+      // setD1Digi(false);
+      // setD2(false);
+      // setD2Checked(false);
+      // setD2Digi(false);
+      // setE1(false);
+      // setE1Checked(false);
+      // setE1Digi(false);
+      // setE2(false);
+      // setE2Checked(false);
+      // setE2Digi(false);
+      // setF1(false);
+      // setF1Checked(false);
+      // setF1Digi(false);
+      // setF2(false);
+      // setF2Checked(false);
+      // setF2Digi(false);
+      // setM1(false);
+      // setM1Checked(false);
+      // setM1Digi(false);
+      // setM2(false);
+      // setM2Checked(false);
+      // setM2Digi(false);
+      // setM3(false);
+      // setM3Checked(false);
+      // setM3Digi(false);
+      // setM4(false);
+      // setM4Checked(false);
+      // setM4Digi(false);
+      // sessionStorage.setItem("flowchart-elements", null);
+      // sessionStorage.setItem("flowchart-elements-id", null);
       history.push("/flow");
       window.location.reload();
     } else {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useLayoutEffect } from "react";
+import React, { useLayoutEffect, useState, useEffect } from "react";
 import Bottom from "./Bottom";
 import { Nav } from "react-bootstrap";
 import { useLocalStorage } from "../LocalStorage/LocalStorage";
@@ -207,6 +207,19 @@ const Port = (props) => {
     "AUltra",
     JSON.parse(sessionStorage.getItem("AUltra"))
   );
+  const [bRGB, setBRGB] = useLocalStorage(
+    "BRGB",
+    JSON.parse(sessionStorage.getItem("BRGB"))
+  );
+  const [bMP3, setBMP3] = useLocalStorage(
+    "BMP3",
+    JSON.parse(sessionStorage.getItem("BMP3"))
+  );
+  const [dOLED, setDOLED] = useLocalStorage(
+    "DOLED",
+    JSON.parse(sessionStorage.getItem("DOLED"))
+  );
+
   const [cUltra, setCUltra] = useLocalStorage(
     "CUltra",
     JSON.parse(sessionStorage.getItem("CUltra"))
@@ -408,18 +421,43 @@ const Port = (props) => {
       setN(false);
     }
   };
-
+  function findIndex(array, string) {
+    var index = [];
+    for (var i = 0; i < array.length; i++) {
+      if (
+        array[i].indexOf(string) > -1 &&
+        array[i].indexOf("rgb1") == -1 &&
+        array[i].indexOf("rgb2") == -1 &&
+        array[i].indexOf(`${string}-I/O`) == -1
+      ) {
+        index.push(i);
+      }
+    }
+    return index;
+  }
+  function findIndex_new(array, string) {
+    var index = [];
+    for (var i = 0; i < array.length; i++) {
+      if (array[i].indexOf(string) > -1 && array[i].indexOf("countRGB") == -1) {
+        index.push(i);
+      }
+    }
+    return index;
+  }
   const myFunction1 = async () => {
     await JSON.parse(sessionStorage.getItem("A1"));
     if (await JSON.parse(sessionStorage.getItem("A1"))) {
       document.getElementById("foo1").style.cssText = "color: white; ";
-
-      //  a1color="white"
     } else {
       document.getElementById("foo1").style.cssText = "color: black; ";
       //  a1color="black"
       setAUltra(false);
       setA1Servo(false);
+    }
+    let a = findIndex(Object.keys(sessionStorage), "a1");
+    console.log("gsk", a);
+    for (let i in a) {
+      sessionStorage.setItem(Object.keys(sessionStorage)[a[i]], 0);
     }
   };
   const myFunction2 = async () => {
@@ -432,6 +470,12 @@ const Port = (props) => {
       setAUltra(false);
       setA2Servo(false);
     }
+
+    let a = findIndex(Object.keys(sessionStorage), "a2");
+    console.log("gsk", a);
+    for (let i in a) {
+      sessionStorage.setItem(Object.keys(sessionStorage)[a[i]], 0);
+    }
   };
   const myFunction3 = async () => {
     await JSON.parse(sessionStorage.getItem("B1"));
@@ -439,8 +483,24 @@ const Port = (props) => {
       document.getElementById("foo3").style.cssText = "color: white; ";
     } else {
       document.getElementById("foo3").style.cssText = "color: black; ";
-      setAUltra(false);
+      // setAUltra(false)
+      setBRGB(false);
+      setBMP3(false);
       setB1Servo(false);
+    }
+
+    let a = findIndex(Object.keys(sessionStorage), "b1");
+    console.log("gsk", a);
+    for (let i in a) {
+      sessionStorage.setItem(Object.keys(sessionStorage)[a[i]], 0);
+    }
+    let b = [
+      ...findIndex_new(Object.keys(sessionStorage), "mp3"),
+      ...findIndex_new(Object.keys(sessionStorage), "rgb"),
+      ...findIndex_new(Object.keys(sessionStorage), "RGB"),
+    ];
+    for (let i in b) {
+      sessionStorage.setItem(Object.keys(sessionStorage)[b[i]], 0);
     }
   };
   const myFunction4 = async () => {
@@ -449,7 +509,22 @@ const Port = (props) => {
       document.getElementById("foo4").style.cssText = "color: white; ";
     } else {
       document.getElementById("foo4").style.cssText = "color: black; ";
+      setBRGB(false);
       setB2Servo(false);
+    }
+
+    let a = findIndex(Object.keys(sessionStorage), "b2");
+    let b = [
+      ...findIndex_new(Object.keys(sessionStorage), "mp3"),
+      ...findIndex_new(Object.keys(sessionStorage), "rgb"),
+      ...findIndex_new(Object.keys(sessionStorage), "RGB"),
+    ];
+    console.log("gsk", a);
+    for (let i in a) {
+      sessionStorage.setItem(Object.keys(sessionStorage)[a[i]], 0);
+    }
+    for (let i in b) {
+      sessionStorage.setItem(Object.keys(sessionStorage)[b[i]], 0);
     }
   };
   const myFunction5 = async () => {
@@ -461,6 +536,12 @@ const Port = (props) => {
       setCUltra(false);
       setC1Servo(false);
     }
+
+    let a = findIndex(Object.keys(sessionStorage), "c1");
+    console.log("gsk", a);
+    for (let i in a) {
+      sessionStorage.setItem(Object.keys(sessionStorage)[a[i]], 0);
+    }
   };
   const myFunction6 = async () => {
     await JSON.parse(sessionStorage.getItem("C2"));
@@ -471,6 +552,12 @@ const Port = (props) => {
       setCUltra(false);
       setC2Servo(false);
     }
+
+    let a = findIndex(Object.keys(sessionStorage), "c2");
+    console.log("gsk", a);
+    for (let i in a) {
+      sessionStorage.setItem(Object.keys(sessionStorage)[a[i]], 0);
+    }
   };
   const myFunction7 = async () => {
     await JSON.parse(sessionStorage.getItem("D1"));
@@ -479,6 +566,21 @@ const Port = (props) => {
     } else {
       document.getElementById("foo7").style.cssText = "color: black; ";
       setD1Servo(false);
+      setDOLED(false);
+    }
+
+    let a = findIndex(Object.keys(sessionStorage), "d1");
+    console.log("gsk", a);
+    for (let i in a) {
+      sessionStorage.setItem(Object.keys(sessionStorage)[a[i]], 0);
+    }
+    let b = findIndex_new(Object.keys(sessionStorage), "oled");
+    for (let i in b) {
+      sessionStorage.setItem(Object.keys(sessionStorage)[b[i]], "");
+    }
+    b = findIndex_new(Object.keys(sessionStorage), "oledChk");
+    for (let i in b) {
+      sessionStorage.setItem(Object.keys(sessionStorage)[b[i]], 0);
     }
   };
   const myFunction8 = async () => {
@@ -488,6 +590,21 @@ const Port = (props) => {
     } else {
       document.getElementById("foo8").style.cssText = "color: black; ";
       setD2Servo(false);
+      setDOLED(false);
+    }
+
+    let a = findIndex(Object.keys(sessionStorage), "d2");
+    console.log("gsk", a);
+    for (let i in a) {
+      sessionStorage.setItem(Object.keys(sessionStorage)[a[i]], 0);
+    }
+    let b = findIndex_new(Object.keys(sessionStorage), "oled");
+    for (let i in b) {
+      sessionStorage.setItem(Object.keys(sessionStorage)[b[i]], 0);
+    }
+    b = findIndex_new(Object.keys(sessionStorage), "oledChk");
+    for (let i in b) {
+      sessionStorage.setItem(Object.keys(sessionStorage)[b[i]], 0);
     }
   };
   const myFunction9 = async () => {
@@ -497,6 +614,12 @@ const Port = (props) => {
     } else {
       document.getElementById("foo9").style.cssText = "color: black; ";
     }
+
+    let a = findIndex(Object.keys(sessionStorage), "e1");
+    console.log("gsk", a);
+    for (let i in a) {
+      sessionStorage.setItem(Object.keys(sessionStorage)[a[i]], 0);
+    }
   };
   const myFunction10 = async () => {
     await JSON.parse(sessionStorage.getItem("E2"));
@@ -504,6 +627,12 @@ const Port = (props) => {
       document.getElementById("foo10").style.cssText = "color: white; ";
     } else {
       document.getElementById("foo10").style.cssText = "color: black; ";
+    }
+
+    let a = findIndex(Object.keys(sessionStorage), "e2");
+    console.log("gsk", a);
+    for (let i in a) {
+      sessionStorage.setItem(Object.keys(sessionStorage)[a[i]], 0);
     }
   };
   const myFunction11 = async () => {
@@ -513,6 +642,12 @@ const Port = (props) => {
     } else {
       document.getElementById("foo11").style.cssText = "color: black; ";
     }
+
+    let a = findIndex(Object.keys(sessionStorage), "f1");
+    console.log("gsk", a);
+    for (let i in a) {
+      sessionStorage.setItem(Object.keys(sessionStorage)[a[i]], 0);
+    }
   };
   const myFunction12 = async () => {
     await JSON.parse(sessionStorage.getItem("F2"));
@@ -520,6 +655,12 @@ const Port = (props) => {
       document.getElementById("foo12").style.cssText = "color: white; ";
     } else {
       document.getElementById("foo12").style.cssText = "color: black; ";
+    }
+
+    let a = findIndex(Object.keys(sessionStorage), "f2");
+    console.log("gsk", a);
+    for (let i in a) {
+      sessionStorage.setItem(Object.keys(sessionStorage)[a[i]], 0);
     }
   };
   const myFunction13 = async () => {
@@ -529,6 +670,12 @@ const Port = (props) => {
     } else {
       document.getElementById("foo13").style.cssText = "color: black; ";
     }
+
+    let a = findIndex(Object.keys(sessionStorage), "m1");
+    console.log("gsk", a);
+    for (let i in a) {
+      sessionStorage.setItem(Object.keys(sessionStorage)[a[i]], 0);
+    }
   };
   const myFunction14 = async () => {
     await JSON.parse(sessionStorage.getItem("M2"));
@@ -536,6 +683,12 @@ const Port = (props) => {
       document.getElementById("foo14").style.cssText = "color: white; ";
     } else {
       document.getElementById("foo14").style.cssText = "color: black; ";
+    }
+
+    let a = findIndex(Object.keys(sessionStorage), "m2");
+    console.log("gsk", a);
+    for (let i in a) {
+      sessionStorage.setItem(Object.keys(sessionStorage)[a[i]], 0);
     }
   };
   const myFunction15 = async () => {
@@ -545,6 +698,12 @@ const Port = (props) => {
     } else {
       document.getElementById("foo15").style.cssText = "color: black; ";
     }
+
+    let a = findIndex(Object.keys(sessionStorage), "m3");
+    console.log("gsk", a);
+    for (let i in a) {
+      sessionStorage.setItem(Object.keys(sessionStorage)[a[i]], 0);
+    }
   };
   const myFunction16 = async () => {
     await JSON.parse(sessionStorage.getItem("M4"));
@@ -552,6 +711,12 @@ const Port = (props) => {
       document.getElementById("foo16").style.cssText = "color: white; ";
     } else {
       document.getElementById("foo16").style.cssText = "color: black; ";
+    }
+
+    let a = findIndex(Object.keys(sessionStorage), "m4");
+    console.log("gsk", a);
+    for (let i in a) {
+      sessionStorage.setItem(Object.keys(sessionStorage)[a[i]], 0);
     }
   };
   return (

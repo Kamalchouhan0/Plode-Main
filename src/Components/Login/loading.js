@@ -12,9 +12,9 @@ function Load() {
     history.push("/Selection");
   };
 
-  // useEffect(() => {
-  //   window.location.assign("https://tinkerbunker.com/courses/play-computer/");
-  // });
+  useEffect(() => {
+    window.location.assign("https://tinkerbunker.com/courses/play-computer/");
+  });
 
   return (
     <div>
@@ -43,7 +43,7 @@ function Load() {
         {/* <h1 className={SelectionStyle.load_gif}>Loading</h1> */}
       </div>
 
-      <Iframe
+      {/* <Iframe
         url="https://tinkerbunker.com/courses/play-computer/"
         width={window.innerWidth}
         height={window.innerHeight}
@@ -54,7 +54,7 @@ function Load() {
         className="myClassname"
         display="initial"
         position="relative"
-      />
+      /> */}
     </div>
   );
 }

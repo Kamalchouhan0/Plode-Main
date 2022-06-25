@@ -13,10 +13,10 @@ var _0to60 = {},
   _0to24 = {},
   _0to1000 = {};
 for (let i = 0; i < 244; i++) {
-  h[i] = 0;
-  m[i] = 0;
-  s[i] = 0;
-  ms[i] = 0;
+  h[i] =parseInt(sessionStorage.getItem(`hr${i}`))|| 0;
+  m[i] =parseInt(sessionStorage.getItem(`min${i}`))|| 0;
+  s[i] = parseInt(sessionStorage.getItem(`sec${i}`))||0;
+  ms[i] = parseInt(sessionStorage.getItem(`milliSec${i}`))|| 0;
 }
 for (let i = 0; i < 24; i++) _0to24[i] = i;
 for (let i = 0; i < 60; i++) _0to60[i] = i;

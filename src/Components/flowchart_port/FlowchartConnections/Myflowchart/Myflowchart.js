@@ -947,7 +947,9 @@ const DnDFlow = (props) => {
     let a = [];
     a.push(sessionStorage.getItem(`a1${i}`));
     a.push(sessionStorage.getItem(`a2${i}`));
-    a.push(sessionStorage.getItem(`b1${i}`));
+    if (sessionStorage.getItem(`BMP3`))
+      a.push(sessionStorage.getItem(`mp3${i}`));
+    else a.push(sessionStorage.getItem(`b1${i}`));
     a.push(sessionStorage.getItem(`b2${i}`));
     a.push(sessionStorage.getItem(`c1${i}`));
     a.push(sessionStorage.getItem(`c2${i}`));
@@ -965,7 +967,9 @@ const DnDFlow = (props) => {
     a.push(sessionStorage.getItem(`s4${i}`));
     a.push(sessionStorage.getItem(`a1Chk${i}`));
     a.push(sessionStorage.getItem(`a2Chk${i}`));
-    a.push(sessionStorage.getItem(`b1Chk${i}`));
+    if (sessionStorage.getItem(`BMP3`))
+      a.push(sessionStorage.getItem(`mp3Chk${i}`));
+    else a.push(sessionStorage.getItem(`b1Chk${i}`));
     a.push(sessionStorage.getItem(`b2Chk${i}`));
     a.push(sessionStorage.getItem(`c1Chk${i}`));
     a.push(sessionStorage.getItem(`c2Chk${i}`));
@@ -985,6 +989,101 @@ const DnDFlow = (props) => {
     a.push(sessionStorage.getItem(`s2Chk${i}`));
     a.push(sessionStorage.getItem(`s3Chk${i}`));
     a.push(sessionStorage.getItem(`s4Chk${i}`));
+    if (JSON.parse(sessionStorage.getItem(`valRGB1${i}`)) == null) {
+      a.push(0);
+      a.push(0);
+      a.push(0);
+    } else {
+      a.push(JSON.parse(sessionStorage.getItem(`valRGB1${i}`)).r);
+      a.push(JSON.parse(sessionStorage.getItem(`valRGB1${i}`)).g);
+      a.push(JSON.parse(sessionStorage.getItem(`valRGB1${i}`)).b);
+    }
+    if (JSON.parse(sessionStorage.getItem(`valRGB2${i}`)) == null) {
+      a.push(0);
+      a.push(0);
+      a.push(0);
+    } else {
+      a.push(JSON.parse(sessionStorage.getItem(`valRGB2${i}`)).r);
+      a.push(JSON.parse(sessionStorage.getItem(`valRGB2${i}`)).g);
+      a.push(JSON.parse(sessionStorage.getItem(`valRGB2${i}`)).b);
+    }
+    if (JSON.parse(sessionStorage.getItem(`valRGB3${i}`)) == null) {
+      a.push(0);
+      a.push(0);
+      a.push(0);
+    } else {
+      a.push(JSON.parse(sessionStorage.getItem(`valRGB3${i}`)).r);
+      a.push(JSON.parse(sessionStorage.getItem(`valRGB3${i}`)).g);
+      a.push(JSON.parse(sessionStorage.getItem(`valRGB3${i}`)).b);
+    }
+    if (JSON.parse(sessionStorage.getItem(`valRGB4${i}`)) == null) {
+      a.push(0);
+      a.push(0);
+      a.push(0);
+    } else {
+      a.push(JSON.parse(sessionStorage.getItem(`valRGB4${i}`)).r);
+      a.push(JSON.parse(sessionStorage.getItem(`valRGB4${i}`)).g);
+      a.push(JSON.parse(sessionStorage.getItem(`valRGB4${i}`)).b);
+    }
+    if (JSON.parse(sessionStorage.getItem(`valRGB5${i}`)) == null) {
+      a.push(0);
+      a.push(0);
+      a.push(0);
+    } else {
+      a.push(JSON.parse(sessionStorage.getItem(`valRGB5${i}`)).r);
+      a.push(JSON.parse(sessionStorage.getItem(`valRGB5${i}`)).g);
+      a.push(JSON.parse(sessionStorage.getItem(`valRGB5${i}`)).b);
+    }
+    if (JSON.parse(sessionStorage.getItem(`valRGB6${i}`)) == null) {
+      a.push(0);
+      a.push(0);
+      a.push(0);
+    } else {
+      a.push(JSON.parse(sessionStorage.getItem(`valRGB6${i}`)).r);
+      a.push(JSON.parse(sessionStorage.getItem(`valRGB6${i}`)).g);
+      a.push(JSON.parse(sessionStorage.getItem(`valRGB6${i}`)).b);
+    }
+    if (JSON.parse(sessionStorage.getItem(`valRGB7${i}`)) == null) {
+      a.push(0);
+      a.push(0);
+      a.push(0);
+    } else {
+      a.push(JSON.parse(sessionStorage.getItem(`valRGB7${i}`)).r);
+      a.push(JSON.parse(sessionStorage.getItem(`valRGB7${i}`)).g);
+      a.push(JSON.parse(sessionStorage.getItem(`valRGB7${i}`)).b);
+    }
+    if (JSON.parse(sessionStorage.getItem(`valRGB8${i}`)) == null) {
+      a.push(0);
+      a.push(0);
+      a.push(0);
+    } else {
+      a.push(JSON.parse(sessionStorage.getItem(`valRGB8${i}`)).r);
+      a.push(JSON.parse(sessionStorage.getItem(`valRGB8${i}`)).g);
+      a.push(JSON.parse(sessionStorage.getItem(`valRGB8${i}`)).b);
+    }
+    if (JSON.parse(sessionStorage.getItem(`valRGB9${i}`)) == null) {
+      a.push(0);
+      a.push(0);
+      a.push(0);
+    } else {
+      a.push(JSON.parse(sessionStorage.getItem(`valRGB9${i}`)).r);
+      a.push(JSON.parse(sessionStorage.getItem(`valRGB9${i}`)).g);
+      a.push(JSON.parse(sessionStorage.getItem(`valRGB9${i}`)).b);
+    }
+    if (JSON.parse(sessionStorage.getItem(`valRGB10${i}`)) == null) {
+      a.push(0);
+      a.push(0);
+      a.push(0);
+    } else {
+      a.push(JSON.parse(sessionStorage.getItem(`valRGB10${i}`)).r);
+      a.push(JSON.parse(sessionStorage.getItem(`valRGB10${i}`)).g);
+      a.push(JSON.parse(sessionStorage.getItem(`valRGB10${i}`)).b);
+    }
+    console.log(
+      "output check completed gsk CALLED",
+      a,
+      sessionStorage.getItem(`BMP3`)
+    );
     return a;
   };
   const ifArray = (i) => {
@@ -1047,6 +1146,41 @@ const DnDFlow = (props) => {
           type: "tact_switch",
           index: 0,
         };
+      if (JSON.parse(sessionStorage.getItem(`${n[0]}Ultra`))) {
+        if (n == "A1" || n == "C1") {
+          obj = {
+            type: "ultrasonic_sensor",
+            index: 0,
+          };
+        } else obj = null;
+      }
+      if (JSON.parse(sessionStorage.getItem(`${n[0]}MP3`)))
+        if (n == "B1" || n == "B")
+          obj = {
+            type: "mp3",
+            index: 0,
+          };
+        else obj = null;
+      if (JSON.parse(sessionStorage.getItem(`${n[0]}RGB`)))
+        if (n == "B1" || n == "B")
+          obj = {
+            type: "RGB",
+            index: 0,
+          };
+        else obj = null;
+      if (JSON.parse(sessionStorage.getItem(`${n[0]}OLED`))) {
+        if (n == "D1" || n == "B")
+          obj = {
+            type: "OLED",
+            index: 0,
+          };
+        else if (n == "DOLED")
+          obj = {
+            type: "OLED",
+            index: 0,
+          };
+        else obj = null;
+      }
     }
 
     return obj;
@@ -1115,6 +1249,9 @@ const DnDFlow = (props) => {
       TouchZero: null,
       TouchOne: null,
       TouchTwo: null,
+      OLEDOne: portInfo("DOLED"),
+      OLEDTwo: portInfo("DOLED"),
+      OLEDThree: portInfo("DOLED"),
     },
 
     internalaccessories: {
@@ -1229,6 +1366,98 @@ const DnDFlow = (props) => {
             valueD1: parseInt(a[6]),
             assignD2: Boolean(a[25] === "true" || parseInt(a[25])),
             valueD2: parseInt(a[7]),
+            assignOLEDOne:
+              Boolean(
+                sessionStorage.getItem(`oledChk1${testSingleD[i].id}`) == "true"
+              ) || false,
+            assignOLEDTwo:
+              Boolean(
+                sessionStorage.getItem(`oledChk2${testSingleD[i].id}`) == "true"
+              ) || false,
+            assignOLEDThree:
+              Boolean(
+                sessionStorage.getItem(`oledChk3${testSingleD[i].id}`) == "true"
+              ) || false,
+            valueOLEDOne:
+              sessionStorage.getItem(`oled1${testSingleD[i].id}`) || "",
+            valueOLEDTwo:
+              sessionStorage.getItem(`oled2${testSingleD[i].id}`) || "",
+            valueOLEDThree:
+              sessionStorage.getItem(`oled3${testSingleD[i].id}`) || "",
+            assignRGBComp1:
+              Boolean(
+                sessionStorage.getItem(`rgb1Chk${testSingleD[i].id}`) == "true"
+              ) || false,
+            valueRGBComp1R: parseInt(a[40]),
+            valueRGBComp1G: parseInt(a[41]),
+            valueRGBComp1B: parseInt(a[42]),
+            countRGBComp: parseInt(
+              sessionStorage.getItem(`countRGB${testSingleD[i].id}`)
+            ),
+
+            assignRGBComp2:
+              Boolean(
+                sessionStorage.getItem(`rgb2Chk${testSingleD[i].id}`) == "true"
+              ) || false,
+            valueRGBComp2R: parseInt(a[43]),
+            valueRGBComp2G: parseInt(a[44]),
+            valueRGBComp2B: parseInt(a[45]),
+            assignRGBComp3:
+              Boolean(
+                sessionStorage.getItem(`rgb3Chk${testSingleD[i].id}`) == "true"
+              ) || false,
+            valueRGBComp3R: parseInt(a[46]),
+            valueRGBComp3G: parseInt(a[47]),
+            valueRGBComp3B: parseInt(a[48]),
+            assignRGBComp4:
+              Boolean(
+                sessionStorage.getItem(`rgb4Chk${testSingleD[i].id}`) == "true"
+              ) || false,
+            valueRGBComp4R: parseInt(a[49]),
+            valueRGBComp4G: parseInt(a[50]),
+            valueRGBComp4B: parseInt(a[51]),
+            assignRGBComp5:
+              Boolean(
+                sessionStorage.getItem(`rgb5Chk${testSingleD[i].id}`) == "true"
+              ) || false,
+            valueRGBComp5R: parseInt(a[52]),
+            valueRGBComp5G: parseInt(a[53]),
+            valueRGBComp5B: parseInt(a[54]),
+            assignRGBComp6:
+              Boolean(
+                sessionStorage.getItem(`rgb6Chk${testSingleD[i].id}`) == "true"
+              ) || false,
+            valueRGBComp6R: parseInt(a[55]),
+            valueRGBComp6G: parseInt(a[56]),
+            valueRGBComp6B: parseInt(a[57]),
+            assignRGBComp7:
+              Boolean(
+                sessionStorage.getItem(`rgb7Chk${testSingleD[i].id}`) == "true"
+              ) || false,
+            valueRGBComp7R: parseInt(a[58]),
+            valueRGBComp7G: parseInt(a[59]),
+            valueRGBComp7B: parseInt(a[60]),
+            assignRGBComp8:
+              Boolean(
+                sessionStorage.getItem(`rgb8Chk${testSingleD[i].id}`) == "true"
+              ) || false,
+            valueRGBComp8R: parseInt(a[61]),
+            valueRGBComp8G: parseInt(a[62]),
+            valueRGBComp8B: parseInt(a[63]),
+            assignRGBComp9:
+              Boolean(
+                sessionStorage.getItem(`rgb9Chk${testSingleD[i].id}`) == "true"
+              ) || false,
+            valueRGBComp9R: parseInt(a[64]),
+            valueRGBComp9G: parseInt(a[65]),
+            valueRGBComp9B: parseInt(a[66]),
+            assignRGBComp10:
+              Boolean(
+                sessionStorage.getItem(`rgb10Chk${testSingleD[i].id}`) == "true"
+              ) || false,
+            valueRGBComp10R: parseInt(a[67]),
+            valueRGBComp10G: parseInt(a[68]),
+            valueRGBComp10B: parseInt(a[69]),
           },
         });
       } else if (testSingleD[i].data.specificElType === "loop") {
@@ -1267,11 +1496,11 @@ const DnDFlow = (props) => {
         else if (a[0] === "colorSensorGreen")
           source = "4-IN-1 SENSOR  →  GREEN";
         else if (a[0] === "colorSensorBlue") source = "4-IN-1 SENSOR  →  BLUE";
-        else if (a[0] === "port A1") source = "A1";
+        else if (a[0] === "port A1" || a[0] === "ultra A") source = "A1";
         else if (a[0] === "port A2") source = "A2";
         else if (a[0] === "port B1") source = "B1";
         else if (a[0] === "port B2") source = "B2";
-        else if (a[0] === "port C1") source = "C1";
+        else if (a[0] === "port C1" || a[0] === "ultra C") source = "C1";
         else if (a[0] === "port C2") source = "C2";
         else if (a[0] === "port D1") source = "D1";
         else if (a[0] === "port D2") source = "D2";
@@ -1325,6 +1554,22 @@ const DnDFlow = (props) => {
         else if (a[0] === "colorSensorGreen")
           source = "4-IN-1 SENSOR  →  GREEN";
         else if (a[0] === "colorSensorBlue") source = "4-IN-1 SENSOR  →  BLUE";
+        else if (a[0] === "port A1" || a[0] === "ultra A") source = "A1";
+        else if (a[0] === "port A2") source = "A2";
+        else if (a[0] === "port B1") source = "B1";
+        else if (a[0] === "port B2") source = "B2";
+        else if (a[0] === "port C1" || a[0] === "ultra C") source = "C1";
+        else if (a[0] === "port C2") source = "C2";
+        else if (a[0] === "port D1") source = "D1";
+        else if (a[0] === "port D2") source = "D2";
+        else if (a[0] === "port E1") source = "E1";
+        else if (a[0] === "port E2") source = "E2";
+        else if (a[0] === "port F1") source = "F1";
+        else if (a[0] === "port F2") source = "M2";
+        else if (a[0] === "port M1") source = "M1";
+        else if (a[0] === "port M2") source = "M2";
+        else if (a[0] === "port M3") source = "M3";
+        else if (a[0] === "port M4") source = "M4";
         if (a[3] === "true") condition = "lt";
         else if (a[4] === "true") condition = "gt";
         else if (a[6] === "true") condition = "ne";

@@ -806,13 +806,17 @@ function Digital(props) {
                 <label className={"input upper-label-input"}>
                   <span className="textsp">B1</span>
                   <div
-                    class={"switch-button-" + ((B1DIGI && !b1Servo) || false)}
+                    class={"switch-button-" + ((B1DIGI && !b1Servo&&
+                      !JSON.parse(sessionStorage.getItem("BRGB"))&&
+                      !JSON.parse(sessionStorage.getItem("BMP3"))) || false)}
                     id={"s3"}
                     style={{ color: bttnColor[2] }}
                   >
                     <input
                       active={b1Digi}
-                      disabled={!B1DIGI || b1Servo || false}
+                      disabled={!B1DIGI || b1Servo||
+                        JSON.parse(sessionStorage.getItem("BRGB"))||
+                        JSON.parse(sessionStorage.getItem("BMP3")) || false}
                       class="switch-button-checkbox"
                       type="checkbox"
                       onChange={toggleB1}
@@ -834,7 +838,9 @@ function Digital(props) {
                   className={"input upper-label-input upper-label-input-servo"}
                 >
                   <div
-                    className={"switch-button-servo-" + (b1Servo || false)}
+                    className={"switch-button-servo-" + (b1Servo&&
+                      !JSON.parse(sessionStorage.getItem("BRGB"))&&
+                      !JSON.parse(sessionStorage.getItem("BMP3")) || false)}
                     id="s2"
                   >
                     <input
@@ -842,7 +848,9 @@ function Digital(props) {
                       type="checkbox"
                       disabled={
                         !JSON.parse(sessionStorage.getItem("B1")) ||
-                        !JSON.parse(sessionStorage.getItem("b1-I/O"))
+                        !JSON.parse(sessionStorage.getItem("b1-I/O"))||
+                        JSON.parse(sessionStorage.getItem("BRGB"))||
+                        JSON.parse(sessionStorage.getItem("BMP3"))
                       }
                       checked={b1Servo}
                       onChange={ServoB1}
@@ -853,13 +861,17 @@ function Digital(props) {
                 <label className={"input upper-label-input"}>
                   <span className="textsp">B2</span>
                   <div
-                    class={"switch-button-" + ((B2DIGI && !b2Servo) || false)}
+                    class={"switch-button-" + ((B2DIGI && !b2Servo&&
+                      !JSON.parse(sessionStorage.getItem("BRGB"))&&
+                      !JSON.parse(sessionStorage.getItem("BMP3"))) || false)}
                     id={"s4"}
                     style={{ color: bttnColor[3] }}
                   >
                     <input
                       active={b2Digi}
-                      disabled={!B2DIGI || b2Servo || false}
+                      disabled={!B2DIGI || b2Servo||
+                        JSON.parse(sessionStorage.getItem("BRGB"))||
+                        JSON.parse(sessionStorage.getItem("BMP3")) || false}
                       class="switch-button-checkbox"
                       type="checkbox"
                       onChange={toggleB2}
@@ -881,7 +893,9 @@ function Digital(props) {
                   className={"input upper-label-input upper-label-input-servo"}
                 >
                   <div
-                    className={"switch-button-servo-" + (b2Servo || false)}
+                    className={"switch-button-servo-" + (b2Servo&&
+                      !JSON.parse(sessionStorage.getItem("BRGB"))&&
+                      !JSON.parse(sessionStorage.getItem("BMP3")) || false)}
                     id="s2"
                   >
                     <input
@@ -889,7 +903,9 @@ function Digital(props) {
                       type="checkbox"
                       disabled={
                         !JSON.parse(sessionStorage.getItem("B2")) ||
-                        !JSON.parse(sessionStorage.getItem("b2-I/O"))
+                        !JSON.parse(sessionStorage.getItem("b2-I/O"))||
+                        JSON.parse(sessionStorage.getItem("BRGB"))||
+                        JSON.parse(sessionStorage.getItem("BMP3"))
                       }
                       checked={b2Servo}
                       onChange={ServoB2}
@@ -1155,7 +1171,8 @@ function Digital(props) {
                   <label className={"input upper-label-input"}>
                     <span className="textsp">D1</span>
                     <div
-                      class={"switch-button-" + ((D1DIGI && !d1Servo) || false)}
+                      class={"switch-button-" + ((D1DIGI && !d1Servo&&
+                        !JSON.parse(sessionStorage.getItem("DOLED"))) || false)}
                       id="s7"
                       style={{ color: bttnColor[6] }}
                     >
@@ -1164,7 +1181,8 @@ function Digital(props) {
                         active={d1Digi}
                         disabled={
                           !JSON.parse(sessionStorage.getItem("D1")) ||
-                          !JSON.parse(sessionStorage.getItem("d1-I/O"))
+                          !JSON.parse(sessionStorage.getItem("d1-I/O"))||
+                          JSON.parse(sessionStorage.getItem("DOLED"))
                         }
                         class="switch-button-checkbox"
                         type="checkbox"
@@ -1188,13 +1206,15 @@ function Digital(props) {
                     }
                   >
                     <div
-                      className={"switch-button-servo-" + (d1Servo || false)}
+                      className={"switch-button-servo-" + (d1Servo&&
+                        !JSON.parse(sessionStorage.getItem("DOLED")) || false)}
                       id="s2"
                     >
                       <input
                         className="switch-button-checkbox-servo"
                         type="checkbox"
-                        disabled={!JSON.parse(sessionStorage.getItem("D1"))}
+                        disabled={!JSON.parse(sessionStorage.getItem("D1"))||
+                        JSON.parse(sessionStorage.getItem("DOLED"))}
                         checked={d1Servo}
                         onChange={ServoD1}
                       ></input>
@@ -1205,7 +1225,8 @@ function Digital(props) {
                   <label className={"input upper-label-input"}>
                     <span className="textsp">D2</span>
                     <div
-                      class={"switch-button-" + ((D2DIGI && !d2Servo) || false)}
+                      class={"switch-button-" + ((D2DIGI && !d2Servo)&&
+                      !JSON.parse(sessionStorage.getItem("DOLED")) || false)}
                       id="s8"
                       style={{ color: bttnColor[7] }}
                     >
@@ -1214,7 +1235,8 @@ function Digital(props) {
                         active={d2Digi}
                         disabled={
                           !JSON.parse(sessionStorage.getItem("D2")) ||
-                          !JSON.parse(sessionStorage.getItem("d2-I/O"))
+                          !JSON.parse(sessionStorage.getItem("d2-I/O"))||
+                          JSON.parse(sessionStorage.getItem("DOLED"))
                         }
                         class="switch-button-checkbox"
                         type="checkbox"
@@ -1238,13 +1260,15 @@ function Digital(props) {
                     }
                   >
                     <div
-                      className={"switch-button-servo-" + (d2Servo || false)}
+                      className={"switch-button-servo-" + (d2Servo&&
+                        !JSON.parse(sessionStorage.getItem("DOLED")) || false)}
                       id="s2"
                     >
                       <input
                         className="switch-button-checkbox-servo"
                         type="checkbox"
-                        disabled={!JSON.parse(sessionStorage.getItem("D2"))}
+                        disabled={!JSON.parse(sessionStorage.getItem("D2"))||
+                        JSON.parse(sessionStorage.getItem("DOLED"))}
                         checked={d2Servo}
                         onChange={ServoD2}
                       ></input>

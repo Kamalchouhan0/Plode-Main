@@ -16,6 +16,10 @@ import CamSlider from "../../../ReusableComponents/CamSlider/CamSlider";
 import { drawMesh } from "./utilities";
 
 function Camera(props) {
+  useEffect(() => {
+    let data = ["C".charCodeAt(0), "0".charCodeAt(0)];
+    writePort(data);
+  }, []);
   const connectedACE = {
     height: "90%",
     width: "100%",
@@ -29,6 +33,8 @@ function Camera(props) {
   let history = useHistory();
 
   const gobackUrl = () => {
+    let data = ["C".charCodeAt(0), "0".charCodeAt(0)];
+    writePort(data);
     history.goBack();
   };
 

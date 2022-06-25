@@ -40,7 +40,7 @@ let f1Checked = JSON.parse(sessionStorage.getItem("f1-I/O"));
 let f1Digi = JSON.parse(sessionStorage.getItem("F1DIGI"));
 let f2Checked = JSON.parse(sessionStorage.getItem("f2-I/O"));
 let f2Digi = JSON.parse(sessionStorage.getItem("F2DIGI"));
-let m1Checked = JSON.parse(sessionStorage.getItem("m1-I/O"));
+let m1Checked = JSON.parse(sessionStorage.getItem("m1-I/O")) || false;
 let m1Digi = JSON.parse(sessionStorage.getItem("M1DIGI"));
 let m2Checked = JSON.parse(sessionStorage.getItem("m2-I/O"));
 let m2Digi = JSON.parse(sessionStorage.getItem("M2DIGI"));
@@ -60,6 +60,8 @@ let isTouchZeroOutput = JSON.parse(sessionStorage.getItem("isTouchZeroOutput"));
 let isTouchOneOutput = JSON.parse(sessionStorage.getItem("isTouchOneOutput"));
 let isTouchTwoOutput = JSON.parse(sessionStorage.getItem("isTouchTwoOutput"));
 let isTouchZero = JSON.parse(sessionStorage.getItem("isTouchZero"));
+let ultraA = JSON.parse(sessionStorage.getItem("AUltra"));
+let ultraC = JSON.parse(sessionStorage.getItem("CUltra"));
 class Select extends Component {
   constructor(props) {
     super(props);
@@ -76,6 +78,14 @@ class Select extends Component {
     b2Checked = JSON.parse(sessionStorage.getItem("b2-I/O"));
     C1 = JSON.parse(sessionStorage.getItem("C1"));
     C2 = JSON.parse(sessionStorage.getItem("C2"));
+    E1 = JSON.parse(sessionStorage.getItem("E1"));
+    E2 = JSON.parse(sessionStorage.getItem("E2"));
+    F1 = JSON.parse(sessionStorage.getItem("F1"));
+    F2 = JSON.parse(sessionStorage.getItem("F2"));
+    M1 = JSON.parse(sessionStorage.getItem("M1"));
+    M2 = JSON.parse(sessionStorage.getItem("M2"));
+    M3 = JSON.parse(sessionStorage.getItem("M3"));
+    M4 = JSON.parse(sessionStorage.getItem("M4"));
     c1Checked = JSON.parse(sessionStorage.getItem("c1-I/O"));
     c2Checked = JSON.parse(sessionStorage.getItem("c2-I/O"));
     e1Checked = JSON.parse(sessionStorage.getItem("e1-I/O"));
@@ -86,7 +96,7 @@ class Select extends Component {
     f1Digi = JSON.parse(sessionStorage.getItem("F1DIGI"));
     f2Checked = JSON.parse(sessionStorage.getItem("f2-I/O"));
     f2Digi = JSON.parse(sessionStorage.getItem("F2DIGI"));
-    m1Checked = JSON.parse(sessionStorage.getItem("m1-I/O"));
+    m1Checked = JSON.parse(sessionStorage.getItem("m1-I/O")) || false;
     m1Digi = JSON.parse(sessionStorage.getItem("M1DIGI"));
     m2Checked = JSON.parse(sessionStorage.getItem("m2-I/O"));
     m2Digi = JSON.parse(sessionStorage.getItem("M2DIGI"));
@@ -106,6 +116,8 @@ class Select extends Component {
     isTouchZeroOutput = JSON.parse(sessionStorage.getItem("isTouchZeroOutput"));
     isTouchOneOutput = JSON.parse(sessionStorage.getItem("isTouchOneOutput"));
     isTouchTwoOutput = JSON.parse(sessionStorage.getItem("isTouchTwoOutput"));
+    ultraA = JSON.parse(sessionStorage.getItem("AUltra"));
+    ultraC = JSON.parse(sessionStorage.getItem("CUltra"));
   }
 
   onChange = (e) => {
@@ -134,21 +146,30 @@ class Select extends Component {
           style={style}
           value={this.props.selected}
         >
-          <option value="null"></option>
-          {!a1Checked && A1 ? (
+          <option value="null">Select Items</option>
+          {ultraA ? (
             <>
-              <option value="port A1">PORT A1</option>
+              <option value="ultra A">ULTRASONIC A -> A1</option>
             </>
           ) : (
-            <></>
-          )}
-          {!a2Checked && A2 ? (
             <>
-              <option value="port A2">PORT A2</option>
+              {!a1Checked && A1 ? (
+                <>
+                  <option value="port A1">PORT A1</option>
+                </>
+              ) : (
+                <></>
+              )}
+              {!a2Checked && A2 ? (
+                <>
+                  <option value="port A2">PORT A2</option>
+                </>
+              ) : (
+                <></>
+              )}
             </>
-          ) : (
-            <></>
           )}
+
           {!b1Checked && B1 ? (
             <>
               <option value="port B1">PORT B1</option>
@@ -163,20 +184,29 @@ class Select extends Component {
           ) : (
             <></>
           )}
-          {!c1Checked && C1 ? (
+          {ultraC ? (
             <>
-              <option value="port C1">PORT C1</option>
+              <option value="ultra C">ULTRASONIC C -> C1</option>
             </>
           ) : (
-            <></>
-          )}
-          {!c2Checked && C2 ? (
             <>
-              <option value="port C2">PORT C2</option>
+              {!c1Checked && C1 ? (
+                <>
+                  <option value="port C1">PORT C1</option>
+                </>
+              ) : (
+                <></>
+              )}
+              {!c2Checked && C2 ? (
+                <>
+                  <option value="port C2">PORT C2</option>
+                </>
+              ) : (
+                <></>
+              )}
             </>
-          ) : (
-            <></>
           )}
+
           {!e1Checked && E1 ? (
             <>
               <option value="port E1">PORT E1</option>
@@ -205,7 +235,7 @@ class Select extends Component {
           ) : (
             <></>
           )}
-          {!m1Checked && M1 ? (
+          {/* {!m1Checked && M1 ? (
             <>
               <option value="port M1">PORT M1</option>
             </>
@@ -232,7 +262,7 @@ class Select extends Component {
             </>
           ) : (
             <></>
-          )}
+          )} */}
           {isMic ? (
             <>
               <option value="microphone">Microphone</option>
