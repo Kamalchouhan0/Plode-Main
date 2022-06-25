@@ -319,9 +319,10 @@ let PortByteNumericalValuesIf = {
 
   MICROPHONE: "29",
   TEMPERATURE: "34",
-  TouchZero: "30",
-  TouchOne: "31",
-  TouchTwo: "32",
+
+  "TOUCH PAD 0": "30",
+  "TOUCH PAD 1": "31",
+  "TOUCH PAD 2": "32",
 };
 
 let PortByteNumericalValuesOutput = {

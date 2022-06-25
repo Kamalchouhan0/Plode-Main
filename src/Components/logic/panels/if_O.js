@@ -1032,9 +1032,9 @@ class IfPanel extends Component {
       sourceOptions = {};
     sourceOptionsOrder.push("battery");
     sourceOptions.battery = "Select Items";
-    if (this.props.state.source != "battery") {
-      sourceOptionsOrder.pop("battery");
-    }
+    // if (this.props.state.source != "battery") {
+    //   sourceOptionsOrder.pop("battery");
+    // }
     Object.keys(PortConnections).forEach((port) => {
       if (port != "undefined" && PortConnections[port]) {
         if (!PortConnections[port]) return;

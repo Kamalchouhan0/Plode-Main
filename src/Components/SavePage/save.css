@@ -11,6 +11,8 @@
   font-family: "Halcyon_Regular" !important;
 }
 .saveHeadingTxt {
+  font-size: 23px;
+  margin-top: 2%;
   font-family: "Halcyon_SemiBold" !important;
 }
 .main > div {
@@ -48,9 +50,9 @@
   left: 37%;
 }
 .project_card {
-  border: 2px solid black !important;
+  /* border: 2px solid black !important;
   border-radius: 5% !important;
-  box-shadow: 5px 5px lightgrey;
+  box-shadow: 5px 5px lightgrey; */
 }
 
 .savedProgramContainer {
@@ -59,30 +61,64 @@
   margin-right: auto;
   margin-left: auto;
 }
-
+#SaveAlert {
+  visibility: hidden;
+  min-width: 160px;
+  margin-left: -75px;
+  background-color: #e8e6e6;
+  color: #000;
+  text-align: center;
+  border-radius: 25px;
+  font-family: "Halcyon_Regular" !important;
+  padding: 12px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 10%;
+  font-size: 17px;
+}
+#SaveAlert.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
 .SavedProgramRow {
-  display: flex;
-  flex-wrap: wrap;
+  height: 72%;
+  width: 82%;
+  display: grid;
+  margin: 7% 0% 0% 5%;
+  grid-template-columns: repeat(5, 20%);
+  grid-template-rows: repeat(3, 33.3%);
+
+  column-gap: 35px;
+  row-gap: 30px;
+  /* flex-wrap: wrap; */
 }
 
 .SavedProgramCard {
-  width: 22.6%;
-  height: 325px;
-  margin-left: 14px;
+  width: 17.6%;
+  height: 165px;
+  top: 13%;
+  left: 8%;
+  position: absolute;
+  /* margin-left: 14px;
   margin-right: 1%;
-  margin-bottom: 1%;
-  position: relative;
-  background-color: #f8f9fa;
-  border: 1px solid rgba(0, 0, 0, 0.125);
-  border-radius: 0.25rem;
-  display: grid;
+  margin-bottom: 1%; */
+  /* position: relative; */
+  background-image: url("../../Assets/Bisoft_UI/Program/PNG/default image.png");
+  /* background-color: #f8f9fa; */
+  /* border: 1px solid rgba(0, 0, 0, 0.125); */
+  /* border-radius: 0.25rem; */
+  /* display: grid;
   grid-template-columns: 100%;
-  grid-template-rows: 53% 45%;
+  grid-template-rows: 53% 45%; */
 }
 
 .cardImg {
-  height: 100%;
-  width: 100%;
+  height: 148%;
+  width: 117%;
+  margin-left: -8%;
+  margin-top: -16%;
   border-radius: 0.25rem;
 }
 

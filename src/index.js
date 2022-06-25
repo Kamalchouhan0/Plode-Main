@@ -13,7 +13,7 @@ import { BrowserRouter, HashRouter } from "react-router-dom";
 import * as atatus from "atatus-spa";
 import $ from "jquery";
 
-atatus.config("58233b78a6cc477f9503096dfff86bb1").install();
+// atatus.config("58233b78a6cc477f9503096dfff86bb1").install();
 const store = createStore(
   allReducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ &&

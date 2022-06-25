@@ -1176,7 +1176,15 @@ class Simulate extends Component {
   };
 
   saveProgram = () => {
-    this.props.history.push("/saveprogram");
+    if (JSON.parse(sessionStorage.getItem("pip")) == true) {
+      var x = document.getElementById("SaveAlert1");
+      x.className = "show";
+      setTimeout(function () {
+        x.className = x.className.replace("show", "");
+      }, 1500);
+    } else {
+      this.props.history.push("/saveprogram");
+    }
   };
 
   uploadProgram = () => {
@@ -1384,12 +1392,12 @@ class Simulate extends Component {
           />
 
           <div className="navbar-Action">
-            {/* <img
+            <img
               src={renderPrgImage("saveBtnInActive")}
               className="iconBtnSize"
               style={{ marginRight: "25px" }}
               onClick={this.saveProgram}
-            /> */}
+            />
 
             {/* <img
               className="iconBtnSize"
@@ -1620,6 +1628,7 @@ class Simulate extends Component {
               </React.Fragment>
             )}
           </div>
+          <div id="SaveAlert1">Your Project has been Saved</div>
         </div>
       </div>
     );
