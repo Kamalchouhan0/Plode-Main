@@ -765,8 +765,13 @@ class Assembly extends Component {
     // Reset panning and pinching variables
     this.panEnd();
     this.pinchEnd();
+    let hhh = JSON.parse(localStorage.getItem("SavedData"));
+    let name = sessionStorage.getItem("name");
 
-    // this.props.assemblyComponent(workspace);
+    if (name == hhh[4].name) {
+      this.props.assemblyComponent(hhh[4].assembly.workspace);
+      this.props.PortConnections(hhh[4].assembly.PortConnections);
+    }
   }
 
   /**

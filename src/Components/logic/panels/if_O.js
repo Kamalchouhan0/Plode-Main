@@ -1108,7 +1108,12 @@ class IfPanel extends Component {
     let sessiondataassemblyCheckbox = JSON.parse(
       sessionStorage.getItem("assemblyCheckbox")
     );
+    let sessiondataLogic = JSON.parse(sessionStorage.getItem("logic"));
 
+    if (sessiondataLogic.bottomPanel == "border" && this.state.isRead == true) {
+      console.log("read", this.state.isRead);
+      this.setState({ isRead: !this.state.isRead });
+    }
     // NEW UI DATA
     let internalaccessoriesData = JSON.parse(
       sessionStorage.getItem("concept")

@@ -239,6 +239,18 @@ function InternalAccessoriesScreen(props) {
               case "logic": {
                 sessionStorage.setItem("logic", JSON.stringify(hhh[i].logic));
               }
+              case "programEnd": {
+                sessionStorage.setItem(
+                  "programEnd",
+                  JSON.stringify(hhh[i].programEnd)
+                );
+              }
+              case "SelectedStatus": {
+                sessionStorage.setItem(
+                  "SelectedStatus",
+                  JSON.stringify(hhh[i].SelectedStatus)
+                );
+              }
               // case "concept": {
               //   sessionStorage.setItem("concept", history.concept);
               // }
