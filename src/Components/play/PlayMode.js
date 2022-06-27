@@ -11,7 +11,6 @@ const writePort = async (data) => {
     const filters = [{ usbVendorId: 0x1a86, usbProductId: 0x7523 }];
     const ports = await navigator.serial.getPorts({ filters });
     console.log("portsss", ports);
-
     console.log("portsss", ports[0].writable);
     // const outputStream = ports[0].writable,
     const writer = ports[0].writable.getWriter();
