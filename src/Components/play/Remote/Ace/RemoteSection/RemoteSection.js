@@ -463,6 +463,7 @@ function RemoteSection(props) {
 
     if (data === 1) {
       setUsb(true);
+
       console.log("LLLLLLLLLLLLLLL", data);
     } else {
       setUsb(false);
@@ -488,6 +489,16 @@ function RemoteSection(props) {
       setUsb(true);
       var user = 1;
       sessionStorage.setItem("user", JSON.stringify(user));
+
+      const PLAY = [
+        "P".charCodeAt(),
+        "L".charCodeAt(),
+        "A".charCodeAt(),
+        "Y".charCodeAt(),
+      ];
+      setTimeout(() => {
+        writePort(PLAY);
+      }, 1000);
     });
 
     navigator.serial.addEventListener("disconnect", (e) => {
