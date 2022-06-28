@@ -1,4 +1,5 @@
 import { React, useEffect } from "react";
+import { webSerialAction } from "../../../redux/actions/index";
 
 import "./ExternalAccessories.css";
 
@@ -23,8 +24,21 @@ function ExternalAccessoriesScreen(props) {
       setHelp(true);
     }
   };
-
+  const HdleUsb = async (e) => {
+    const filters = [{ usbVendorId: 0x1a86, usbProductId: 0x7523 }];
+    const port = await navigator.serial.requestPort({ filters });
+    if (port.onconnect == null) {
+      // window.location.reload();
+      setUsb(true);
+    }
+  };
   useEffect(() => {
+    let no_port = props.webserialPort;
+    if (typeof no_port !== undefined) {
+      console.log("WORKING>>>>>>>>");
+      OpenReadComPort();
+    }
+
     let data = JSON.parse(sessionStorage.getItem("user"));
 
     if (data === 1) {
@@ -34,6 +48,70 @@ function ExternalAccessoriesScreen(props) {
       setUsb(false);
     }
   });
+  useEffect(async () => {
+    navigator.serial.addEventListener("connect", (e) => {
+      setUsb(true);
+      var user = 1;
+      sessionStorage.setItem("user", JSON.stringify(user));
+      window.location.reload();
+      // const PLAY = [
+      //   "P".charCodeAt(),
+      //   "L".charCodeAt(),
+      //   "A".charCodeAt(),
+      //   "Y".charCodeAt(),
+      // ];
+      // setTimeout(() => {
+      //   writePort(PLAY);
+      // }, 1000);
+    });
+
+    navigator.serial.addEventListener("disconnect", async (e) => {
+      setUsb(false);
+      var user = 0;
+      sessionStorage.setItem("user", JSON.stringify(user));
+      const p_Port = props.webSerial;
+      try {
+        await p_Port.close();
+      } catch (e) {}
+    });
+
+    try {
+      const filters = [{ usbVendorId: 0x1a86, usbProductId: 0x7523 }];
+      const portList = await navigator.serial.getPorts({ filters });
+
+      if (portList.length === 1) {
+        console.log(portList, "Hardware connected");
+
+        await props.webSerialAction({ port: portList[0] }); // dispatching function of redux
+
+        // setP1({
+        //   selected: true,
+        //   port: portList[0],
+        // });
+      } else {
+        console.log("No hardware");
+
+        // setP1({ p1 });
+      }
+    } catch (err) {
+      console.log(err.message);
+    }
+  });
+  const OpenReadComPort = async () => {
+    const p_Port = props.webSerial;
+
+    console.log(props, "p_Port");
+
+    try {
+      console.log("OPENED");
+      await p_Port.open({ baudRate: 120000 });
+    } catch (e) {
+      console.log(e);
+      // p_Port.close();
+      // await p_Port.open({ baudRate: 120000 });
+    }
+    console.log(p_Port, "p_Port");
+  };
 
   return (
     <div className="ExternalAccessories-Main">
@@ -85,9 +163,9 @@ function ExternalAccessoriesScreen(props) {
           ) : null}
 
           {isusb ? (
-            <img src={renderPrgImage("usbON")}></img>
+            <img src={renderPrgImage("usbON")} onClick={HdleUsb}></img>
           ) : (
-            <img src={renderPrgImage("usbOFF")}></img>
+            <img src={renderPrgImage("usbOFF")} onClick={HdleUsb}></img>
           )}
         </div>
       </div>
@@ -107,5 +185,17 @@ const mapStateToProps = (state) => {
 
   return state;
 };
-export default connect(mapStateToProps)(ExternalAccessoriesScreen);
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    webSerialAction: (data) => {
+      console.log("mapDispatchToProps", data);
+      dispatch(webSerialAction(data));
+    },
+  };
+};
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ExternalAccessoriesScreen);
 // export default ExternalAccessoriesScreen;

@@ -156,10 +156,14 @@ class Logic extends Component {
         window.location.reload(false);
       });
 
-      navigator.serial.addEventListener("disconnect", (e) => {
+      navigator.serial.addEventListener("disconnect", async (e) => {
         var user = 0;
         sessionStorage.setItem("user", JSON.stringify(user));
         this.handleUsb();
+        const p_Port = this.props.webSerial;
+        try {
+          await p_Port.close();
+        } catch (e) {}
       });
       try {
         const portList = await navigator.serial.getPorts();

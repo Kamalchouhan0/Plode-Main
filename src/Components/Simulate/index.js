@@ -133,16 +133,20 @@ class Simulate extends Component {
     window.addEventListener("load", async (e) => {
       console.log("HEY_CALIIN", this.props.state);
       navigator.serial.addEventListener("connect", (e) => {
-        window.location.reload(false);
         var user = 1;
         sessionStorage.setItem("user", JSON.stringify(user));
         this.handleUsb();
+        window.location.reload(false);
       });
 
-      navigator.serial.addEventListener("disconnect", (e) => {
+      navigator.serial.addEventListener("disconnect", async (e) => {
         var user = 0;
         sessionStorage.setItem("user", JSON.stringify(user));
         this.handleUsb();
+        const p_Port = this.props.webSerial;
+        try {
+          await p_Port.close();
+        } catch (e) {}
       });
 
       try {
@@ -300,6 +304,16 @@ class Simulate extends Component {
       console.log(JSON.parse(sessionStorage.getItem("webSerialPortList")));
       console.log("SERIAL PORT NOT CONNECTED");
     }
+
+    navigator.serial.addEventListener("connect", (e) => {
+      var user = 1;
+      sessionStorage.setItem("user", JSON.stringify(user));
+    });
+
+    navigator.serial.addEventListener("disconnect", (e) => {
+      var user = 0;
+      sessionStorage.setItem("user", JSON.stringify(user));
+    });
   }
   componentDidMount() {
     //var socket = io.connect("http://localhost:3008");
