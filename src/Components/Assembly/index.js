@@ -97,6 +97,22 @@ class Assembly extends Component {
 
     window.addEventListener("load", async (e) => {
       console.log("HEY_CALIIN", this.props.state);
+      navigator.serial.addEventListener("connect", (e) => {
+        var user = 1;
+        sessionStorage.setItem("user", JSON.stringify(user));
+        this.handleUsb();
+        window.location.reload(false);
+      });
+
+      navigator.serial.addEventListener("disconnect", async (e) => {
+        var user = 0;
+        sessionStorage.setItem("user", JSON.stringify(user));
+        this.handleUsb();
+        const p_Port = this.props.webSerial;
+        try {
+          await p_Port.close();
+        } catch (e) {}
+      });
 
       try {
         const portList = await navigator.serial.getPorts();
@@ -233,13 +249,15 @@ class Assembly extends Component {
 
   async componentDidUpdate() {
     navigator.serial.addEventListener("connect", (e) => {
+      console.log("CONNected");
       window.location.reload(false);
       var user = 1;
       sessionStorage.setItem("user", JSON.stringify(user));
       this.handleUsb();
     });
 
-    navigator.serial.addEventListener("disconnect", (e) => {
+    navigator.serial.addEventListener("disconnect", async (e) => {
+      console.log("DISconnected");
       var user = 0;
       sessionStorage.setItem("user", JSON.stringify(user));
       this.handleUsb();
@@ -767,10 +785,13 @@ class Assembly extends Component {
     this.pinchEnd();
     let hhh = JSON.parse(localStorage.getItem("SavedData"));
     let name = sessionStorage.getItem("name");
-
-    if (name == hhh[4].name) {
-      this.props.assemblyComponent(hhh[4].assembly.workspace);
-      this.props.PortConnections(hhh[4].assembly.PortConnections);
+    if (name != null) {
+      for (let i = 0; i < hhh.length; i++) {
+        if (name == hhh[i].name) {
+          this.props.assemblyComponent(hhh[i].assembly.workspace);
+          this.props.PortConnections(hhh[i].assembly.PortConnections);
+        }
+      }
     }
   }
 
@@ -1315,10 +1336,10 @@ class Assembly extends Component {
     // Prompt user to select an Arduino Uno device.
     const port = await navigator.serial.requestPort({ filters });
     console.log("Ye Mera Port hai", port);
-    // if (port.onconnect == null) {
-    //   window.location.reload(false);
-    //   // this.OpenReadComPort();
-    // }
+    if (port.onconnect == null) {
+      window.location.reload(false);
+      // this.OpenReadComPort();
+    }
   };
 
   handleFourInOneSensor = (e) => {
