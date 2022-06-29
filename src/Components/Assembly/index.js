@@ -38,6 +38,7 @@ const customStyles = {
   },
 };
 var nextVisbilityButton;
+var reader;
 
 class Assembly extends Component {
   constructor(props) {
@@ -160,69 +161,110 @@ class Assembly extends Component {
 
     await this.writePort("notWrite");
 
-    await this.readLoop();
+    // await this.readLoop();
   };
   async readLoop() {
     const port = this.props.webSerial;
-
+    // eslint-disable-next-line no-undef
+    const textDecoder = new TextDecoderStream();
     try {
-      const reader = port.readable.getReader();
-      var i = 1;
-      var combiBytes = [];
-      // Listen to data coming from the serial device.
-      while (true) {
-        const { value, done } = await reader.read();
-        combiBytes = [...combiBytes, ...value];
-        i++;
-        if (this.state.k === true) {
-          console.log("MAI CHAL GAYA");
-          reader.releaseLock();
-          break;
-        }
-        if (i == 2) {
-          console.log("PABYTES", unicodeToChar(combiBytes));
-          reader.releaseLock();
-          this.state.flag = unicodeToChar(combiBytes);
-          break;
-        }
-        // console.log("PABYTES", unicodeToChar(value));
-        // value is a string.
-        if (value.length == 32) {
-          var v = unicodeToChar(value);
-          console.log(v);
-        }
+      // eslint-disable-next-line no-undef
+      const readableStreamClosed = port.readable.pipeTo(textDecoder.writable);
+    } catch {}
 
-        if (value.length == 7) {
-          var vi = unicodeToChar(value);
-          console.log(vi);
-        }
-        if (value.length == 9) {
-          var vi = unicodeToChar(value);
-          console.log(vi);
-        }
-        if (value.length == 14) {
-          var vi = unicodeToChar(value);
-          console.log(vi);
-        }
-        if (value.length == 17) {
-          var vi = unicodeToChar(value);
-          console.log(vi);
-        }
-        if (value.length == 12) {
-          var vi = unicodeToChar(value);
-          console.log(vi);
-        }
+    // const readableStreamClosed = port.readable.pipeTo(textDecoder.writable);
+    reader = textDecoder.readable.getReader();
+    var i = 1;
+    var combiBytes = [];
+    // Listen to data coming from the serial device.
+    while (true) {
+      const { value, done } = await reader.read();
+      console.log("VALUES", value);
 
-        if ((value.lenght == 32 && value.lenght == 12) || value.lenght == 11) {
-          var vae = v + " " + vi;
-          console.log(vae, "ORRRR");
-        }
-        var vae = v + vi;
-        console.log("ADDED", vae);
+      // combiBytes = [...combiBytes, ...value];
+      // i++;
+      // console.log("lxlxl", value);
+      // console.log("lxlxl", combiBytes.join(""));
+      if (this.state.k == true) {
+        console.log("MAI CHAL GAYA");
+        reader.releaseLock();
+        break;
       }
-    } catch (e) {
-      console.log(e);
+      // if (i == 2) {
+      //   console.log("PABYTES", combiBytes);
+      //   reader.releaseLock();
+      this.state.flag = value;
+      //   break;
+      // }
+      if (done) {
+        // Allow the serial port to be closed later.
+        reader.releaseLock();
+        break;
+      }
+      // value is a string.
+      console.log(value);
     }
+
+    // try {
+    //   const reader = port.readable.getReader();
+    //   var i = 1;
+    //   var combiBytes = [];
+    //   // Listen to data coming from the serial device.
+    //   while (true) {
+    //     const { value, done } = await reader.read();
+    //     combiBytes = [...combiBytes, ...value];
+    //     i++;
+    // console.log("lxlxl", combiBytes);
+    // console.log("lxlxl", combiBytes.toString());
+    // if (this.state.k === true) {
+    //   console.log("MAI CHAL GAYA");
+    //   reader.releaseLock();
+    //   break;
+    // }
+    // if (i == 2) {
+    //   console.log("PABYTES", unicodeToChar(combiBytes));
+    //   reader.releaseLock();
+    //   this.state.flag = unicodeToChar(combiBytes);
+    //   break;
+    // }
+    //     // console.log("PABYTES", unicodeToChar(value));
+    //     // value is a string.
+    //     if (value.length == 32) {
+    //       var v = unicodeToChar(value);
+    //       console.log(v);
+    //     }
+
+    //     if (value.length == 7) {
+    //       var vi = unicodeToChar(value);
+    //       console.log(vi);
+    //     }
+    //     if (value.length == 9) {
+    //       var vi = unicodeToChar(value);
+    //       console.log(vi);
+    //     }
+    //     if (value.length == 14) {
+    //       var vi = unicodeToChar(value);
+    //       console.log(vi);
+    //     }
+    //     if (value.length == 17) {
+    //       var vi = unicodeToChar(value);
+    //       console.log(vi);
+    //     }
+    //     if (value.length == 12) {
+    //       var vi = unicodeToChar(value);
+    //       console.log(vi);
+    //     }
+
+    //     if ((value.lenght == 32 && value.lenght == 12) || value.lenght == 11) {
+    //       var vae = v + " " + vi;
+    //       console.log(vae, "ORRRR");
+    //     }
+    //     var vae = v + vi;
+    //     console.log("ADDED", vae);
+    //   }
+    // } catch (e) {
+    //   console.log(e);
+    // }
   }
 
   async writePort(data) {
@@ -274,7 +316,13 @@ class Assembly extends Component {
       console.log(JSON.parse(sessionStorage.getItem("webSerialPortList")));
       console.log("SERIAL PORT NOT CONNECTED");
     }
-    let BAR = this.state.flag.toString();
+    console.log("FLAG", this.state.flag);
+    if (this.state.flag != undefined) {
+      var BAR = this.state.flag.toString();
+    } else {
+      var BAR = "176 1 0 0 210 1 0 0 189 1 0 0 0 0 0 0 0 0 0";
+    }
+
     console.log(BAR, "VAlies");
     console.log("componentDidUpdate");
     if (this.state.readbytes) {
@@ -1365,7 +1413,7 @@ class Assembly extends Component {
     }
   };
 
-  handleReadByte = () => {
+  handleReadByte = async () => {
     let sessionData = JSON.parse(sessionStorage.getItem("concept"));
     console.log(sessionData);
     console.log(sessionData.internalaccessories, "Internal data");
@@ -1377,6 +1425,29 @@ class Assembly extends Component {
       // window.location.reload(false);
     }
     console.log("kamal", this.state.readbytes);
+    if (this.state.readbytes == false) {
+      console.log(
+        "TRUE>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>",
+        this.state.readbytes
+      );
+      // try {
+      //   await reader.releaseLock();
+      // } catch (e) {}
+      this.readLoop();
+    } else {
+      console.log(
+        "FALSE>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>",
+        this.state.readbytes
+      );
+      // const port = this.props.webSerial;
+      // reader.releaseLock();
+      // const reader = port.readable.getReader();
+      // reader.releaseLock();
+      // console.log("LOCK RELEASED");
+      reader.cancel();
+      this.state.flag = [0];
+      // this.readLoop(false);
+    }
   };
 
   renderImg = (e) => {
@@ -1611,6 +1682,7 @@ class Assembly extends Component {
           />
           {this.state.readbytes ? (
             <img
+              id="img"
               src={renderPrgImage("readPCActive")}
               // className="iconBtnSize1"
               style={{
@@ -1627,6 +1699,7 @@ class Assembly extends Component {
             />
           ) : (
             <img
+              id="img"
               src={renderPrgImage("readPCInActive")}
               // className="iconBtnSize1"
               style={{
@@ -1645,6 +1718,7 @@ class Assembly extends Component {
           {isFourInOneSensor ? (
             this.state.isClickFourInOneSensor == false ? (
               <img
+                id="img"
                 src={renderPrgImage("readPCInActive")}
                 style={{
                   position: "absolute",
@@ -1807,6 +1881,7 @@ class Assembly extends Component {
 
                 <div className="propertyPanel-closeBtn">
                   <img
+                    id="img"
                     src={renderPrgImage("readPCActive")}
                     style={{
                       position: "absolute",
@@ -1868,6 +1943,7 @@ class Assembly extends Component {
                   </div>
                   <div className="propertyPanel-closeBtn">
                     <img
+                      id="img"
                       src={renderPrgImage("readPCActive")}
                       style={{
                         position: "absolute",
@@ -1888,6 +1964,7 @@ class Assembly extends Component {
                 </div>
               ) : (
                 <img
+                  id="img"
                   src={renderPrgImage("readPCInActive")}
                   style={{
                     position: "absolute",

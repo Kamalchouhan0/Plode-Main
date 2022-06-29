@@ -53,7 +53,7 @@ function ExternalAccessoriesScreen(props) {
       setUsb(true);
       var user = 1;
       sessionStorage.setItem("user", JSON.stringify(user));
-      window.location.reload();
+      // window.location.reload();
       // const PLAY = [
       //   "P".charCodeAt(),
       //   "L".charCodeAt(),
@@ -101,7 +101,6 @@ function ExternalAccessoriesScreen(props) {
     const p_Port = props.webSerial;
 
     console.log(props, "p_Port");
-
     try {
       console.log("OPENED");
       await p_Port.open({ baudRate: 120000 });

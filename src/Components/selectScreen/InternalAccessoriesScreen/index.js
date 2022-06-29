@@ -308,7 +308,7 @@ function InternalAccessoriesScreen(props) {
       setUsb(true);
       var user = 1;
       sessionStorage.setItem("user", JSON.stringify(user));
-      window.location.reload();
+      // window.location.reload();
       // const PLAY = [
       //   "P".charCodeAt(),
       //   "L".charCodeAt(),
@@ -356,7 +356,11 @@ function InternalAccessoriesScreen(props) {
     const p_Port = props.indexData.webSerial;
 
     console.log(props, "p_Port");
-
+    if (p_Port.onconnect == null) {
+      console.log("TRUE");
+      let v = 1;
+      sessionStorage.setItem("user", JSON.stringify(v));
+    }
     try {
       console.log("OPENED");
       await p_Port.open({ baudRate: 120000 });
