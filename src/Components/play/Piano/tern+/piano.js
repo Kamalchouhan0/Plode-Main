@@ -154,8 +154,14 @@ function Music(props) {
     try {
       const portReader = port.readable.getReader();
 
+      //eslint-disable-next-line no-undef
+      // const textDecoder = new TextDecoderStream();
+      // const readableStreamClosed = port.readable.pipeTo(textDecoder.writable);
+      // const reader = textDecoder.readable.getReader();
+
       while (true) {
         const { value, done } = await portReader.read();
+        // const { value, done } = await reader.read();
 
         var piano = JSON.parse(sessionStorage.getItem("piano"));
         console.log("done", piano.isPcPiano);
@@ -164,49 +170,71 @@ function Music(props) {
         let str = strg.trim();
 
         console.log(str, "uniCodeTOCHAR");
-
-        if (str === "K494848") {
+        if (
+          sessionStorage.getItem("pcPianoCounter") ==
+          ("45" || undefined || null)
+        ) {
+          sessionStorage.setItem("pcPianoCounter", "0");
+        }
+        if (str.includes("K")) {
+          var ctr = parseInt(sessionStorage.getItem("pcPianoCounter")) + 1;
+          sessionStorage.setItem("pcPianoCounter", ctr);
+        }
+        if (parseInt(sessionStorage.getItem("pcPianoCounter")) == 45) {
+          let data = ["K".charCodeAt(), "P".charCodeAt()];
+          writePort(data);
+        }
+        if (str == sessionStorage.getItem("prevPianoStr")) {
+        } else if (str === "K494848") {
           console.log("VALUE IS COMING");
           var audio = new Audio(`${renderImage("AudioC")}`);
           audio.play();
-          let data = ["K".charCodeAt(), "P".charCodeAt()];
-          writePort(data);
+          sessionStorage.setItem("prevPianoStr", str);
+          //let data = ["K".charCodeAt(), "P".charCodeAt()];
+          //     writePort(data);
         } else if (str === "K484948") {
           var audio = new Audio(`${renderImage("AudioD")}`);
           audio.play();
-          let data = ["K".charCodeAt(), "P".charCodeAt()];
-          writePort(data);
+          sessionStorage.setItem("prevPianoStr", str);
+          //let data = ["K".charCodeAt(), "P".charCodeAt()];
+          //     writePort(data);
         } else if (str === "K484849") {
           var audio = new Audio(`${renderImage("AudioE")}`);
           audio.play();
-          let data = ["K".charCodeAt(), "P".charCodeAt()];
-          writePort(data);
+          sessionStorage.setItem("prevPianoStr", str);
+          //let data = ["K".charCodeAt(), "P".charCodeAt()];
+          //     writePort(data);
         } else if (str === "K494948") {
           var audio = new Audio(`${renderImage("AudioF")}`);
           audio.play();
-          let data = ["K".charCodeAt(), "P".charCodeAt()];
-          writePort(data);
+          sessionStorage.setItem("prevPianoStr", str);
+          //let data = ["K".charCodeAt(), "P".charCodeAt()];
+          //     writePort(data);
         } else if (str === "K484949") {
           var audio = new Audio(`${renderImage("AudioG")}`);
           audio.play();
-          let data = ["K".charCodeAt(), "P".charCodeAt()];
-          writePort(data);
+          sessionStorage.setItem("prevPianoStr", str);
+          //let data = ["K".charCodeAt(), "P".charCodeAt()];
+          //     writePort(data);
         } else if (str === "K494849") {
           var audio = new Audio(`${renderImage("AudioA")}`);
           audio.play();
-          let data = ["K".charCodeAt(), "P".charCodeAt()];
-          writePort(data);
+          sessionStorage.setItem("prevPianoStr", str);
+          //let data = ["K".charCodeAt(), "P".charCodeAt()];
+          //     writePort(data);
         } else if (str === "K494949") {
           var audio = new Audio(`${renderImage("AudioB")}`);
           audio.play();
-          let data = ["K".charCodeAt(), "P".charCodeAt()];
-          writePort(data);
+          sessionStorage.setItem("prevPianoStr", str);
+          //let data = ["K".charCodeAt(), "P".charCodeAt()];
+          //     writePort(data);
         } else if (str === "K484848") {
-          let data = ["K".charCodeAt(), "P".charCodeAt()];
-          writePort(data);
+          sessionStorage.setItem("prevPianoStr", str);
+          //let data = ["K".charCodeAt(), "P".charCodeAt()];
+          //     writePort(data);
         } else {
-          let data = ["K".charCodeAt(), "P".charCodeAt()];
-          writePort(data);
+          //let data = ["K".charCodeAt(), "P".charCodeAt()];
+          //     writePort(data);
         }
       }
       portReader.releaseLock();
@@ -236,11 +264,18 @@ function Music(props) {
       console.log(e);
     }
   }
+  function writeLoop(i) {
+    setTimeout(() => {
+      let data = ["K".charCodeAt(), "P".charCodeAt()];
 
+      writePort(data);
+    }, 500 * i);
+  }
   if (isPcPiano) {
     let data = ["K".charCodeAt(), "P".charCodeAt()];
 
     writePort(data);
+    sessionStorage.setItem("pcPianoCounter", "0");
     readLoop();
     console.log("pcpiano on");
   }
