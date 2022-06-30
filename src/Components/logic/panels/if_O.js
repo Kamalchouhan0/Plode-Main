@@ -793,22 +793,6 @@ class IfPanel extends Component {
 
   componentDidMount() {
     // console.log("CALLING componentDidMount :");
-    let a = [11, 12, 14, 15, 18, 19];
-    let n = a.length;
-    let diff = a[0] - 0;
-
-    for (let i = 0; i < n; i++) {
-      // Check if diff and arr[i]-i
-      // both are equal or not
-      if (a[i] - i != diff) {
-        // Loop for consecutive
-        // missing elements
-        while (diff < a[i] - i) {
-          document.write(i + diff + " ");
-          diff++;
-        }
-      }
-    }
   }
 
   // call just after components updates
