@@ -1500,10 +1500,10 @@ class Simulate extends Component {
                     }
                   />
                 )}{" "}
-                <img
+                {/* <img
                   className="iconBtnSize simulateBtn"
                   src={renderPrgImage("oneXspeedInActive")}
-                />{" "}
+                />{" "} */}
                 {/* PLAY PAUSE */}
                 <div
                   className="iconBtnSize simulateBtn"
@@ -1512,7 +1512,12 @@ class Simulate extends Component {
                   }}
                 >
                   <img
-                    style={{ height: "100%", width: "100%" }}
+                    style={{
+                      height: "100%",
+                      width: "100%",
+                      position: "relative",
+                      marginLeft: -50,
+                    }}
                     id="paly_pause_btn"
                     src={
                       sessionStorage.getItem("play_btn") == "true"

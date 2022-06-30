@@ -181,9 +181,8 @@ function Speech(props) {
           };
         }, 1500);
       }
-
       //Small Letters
-      if (
+      else if (
         (stopCmd[0] === "light" || stopCmd[0] === "lights") &&
         stopCmd[1] === "off"
       ) {
@@ -262,15 +261,23 @@ function Speech(props) {
             console.log("Stopped listening per click");
           };
         }, 1500);
-      }
-
-      if (stopCmd[0] === "stop" && stopCmd[1] === "listening") {
+      } else if (stopCmd[0] === "stop" && stopCmd[1] === "listening") {
         recognition.stop();
         recognition.onend = () => {
           console.log("Stopped listening per command");
           const finalText = transcriptArray.slice(0, -3).join(" ");
           document.getElementById("final").innerHTML = finalText;
         };
+      } else {
+        setTimeout(() => {
+          setMic(false);
+          recognition.stop();
+          recognition.onend = () => {
+            const finalText =
+              "I did'nt quite catch that, click on the mic to try again. ";
+            document.getElementById("final").innerHTML = finalText;
+          };
+        }, 2500);
       }
     };
     recognition.onerror = (event) => {
