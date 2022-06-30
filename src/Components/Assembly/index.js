@@ -179,21 +179,70 @@ class Assembly extends Component {
     // Listen to data coming from the serial device.
     while (true) {
       const { value, done } = await reader.read();
-      console.log("VALUES", value);
+      // console.log("VALUES", value, value.length);
 
-      // combiBytes = [...combiBytes, ...value];
+      try {
+        combiBytes = [...combiBytes, ...value];
+      } catch (e) {}
+
+      if (combiBytes.includes(`\n`)) {
+        this.state.flag = combiBytes.join("");
+        console.log(combiBytes.join(""), "comb");
+        combiBytes = [];
+      }
       // i++;
       // console.log("lxlxl", value);
-      // console.log("lxlxl", combiBytes.join(""));
+      console.log("lxlxl", combiBytes);
       if (this.state.k == true) {
         console.log("MAI CHAL GAYA");
         reader.releaseLock();
         break;
       }
+      // this.state.flag = value;
       // if (i == 2) {
       //   console.log("PABYTES", combiBytes);
-      //   reader.releaseLock();
-      this.state.flag = value;
+      //   this.state.flag = combiBytes;
+      //   combiBytes = "";
+      // }
+      //   reader.releaseLock();}
+      // if (value != undefined) {
+      //   if (value.length == 32) {
+      //     var v = value;
+      //     console.log(v);
+      //   }
+
+      //   if (value.length == 7) {
+      //     var vi = value;
+      //     console.log(vi);
+      //   }
+      //   if (value.length == 9) {
+      //     var vi = value;
+      //     console.log(vi);
+      //   }
+      //   if (value.length == 14) {
+      //     var vi = value;
+      //     console.log(vi);
+      //   }
+      //   if (value.length == 17) {
+      //     var vi = value;
+      //     console.log(vi);
+      //   }
+      //   if (value.length == 12) {
+      //     var vi = value;
+      //     console.log(vi);
+      //   }
+
+      //   if ((value.length == 32 && value.length == 12) || value.length == 11) {
+      //     var vae = v + " " + vi;
+      //     console.log(vae, "ORRRR");
+      //   }
+      //   var vae = v + vi;
+      //   console.log("ADDED", vae);
+
+      //   this.state.flag = vae;
+      // }
+
+      // this.state.flag = combiBytes;
       //   break;
       // }
       if (done) {
@@ -557,12 +606,13 @@ class Assembly extends Component {
 
       var v = BAR.split(" ");
 
-      // if (v[13] > 255 || v[17] === 0) {
-      //   v[14] = v[13].slice(-2, 4);
-      //   v[13] = v[13].slice(0, 2);
+      if (v[13] > 255 || v[17] === 0) {
+        v[14] = v[13].slice(-2, 4);
+        v[13] = v[13].slice(0, 2);
 
-      //   v[18] = "0";
-      // }
+        v[18] = "0";
+      }
+
       console.log(v, "JJ");
       try {
         if (v.length == "19" && v[0] != "") {
@@ -1993,7 +2043,6 @@ class Assembly extends Component {
                 value="RGB"
                 handleAssemblyCheckbox={this.handleAssemblyCheckbox}
               />
-
               <CheckboxAssembly
                 title="4-in-1 Sensor"
                 handleAssemblyCheckbox={this.handleAssemblyCheckbox}
@@ -2004,7 +2053,6 @@ class Assembly extends Component {
                 handleAssemblyCheckbox={this.handleAssemblyCheckbox}
                 value="Buzzer"
               />
-
               <CheckboxAssembly
                 title="Microphone"
                 handleAssemblyCheckbox={this.handleAssemblyCheckbox}
