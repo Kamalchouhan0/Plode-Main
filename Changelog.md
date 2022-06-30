@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.11] - 30-06-2022
+
+### Fixed
+
+- Fixed read bytes speed in assemblu screen.
+- Fixed and restructred pcpiano mode to read values from PC.
+- Fixed issue of speech recognition not ending on wrong input command.
+- Fixed Port closing issue on all screens when PC disconnects.
+
+### Removed
+
+- Removed 1x button in simulation screen.
+
 ## [0.1.11] - 27-06-2022
 
 ### Added
