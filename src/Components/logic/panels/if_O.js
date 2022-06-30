@@ -127,6 +127,8 @@ const minutes = {
   59: 59,
 };
 
+var reader;
+
 class IfPanel extends Component {
   constructor(props) {
     super(props);
@@ -212,69 +214,109 @@ class IfPanel extends Component {
       console.log(e);
     }
     await this.writePort("notWrite");
-    await this.readdata();
+    // await this.readdata();
   };
 
   async readdata() {
     const port = this.props.webSerial;
-
+    // eslint-disable-next-line no-undef
+    const textDecoder = new TextDecoderStream();
     try {
-      const reader = port.readable.getReader();
-      var i = 1;
-      var combiBytes = [];
-      // Listen to data coming from the serial device.
-      while (true) {
-        const { value, done } = await reader.read();
-        combiBytes = [...combiBytes, ...value];
-        i++;
-        if (this.state.k === true) {
-          console.log("MAI CHAL GAYA");
-          reader.releaseLock();
-          break;
-        }
-        if (i == 2) {
-          console.log("PABYTES", unicodeToChar(combiBytes));
-          reader.releaseLock();
-          this.state.Bytes = unicodeToChar(combiBytes);
-          break;
-        }
-        // value is a string.
-        if (value.length == 32) {
-          var v = unicodeToChar(value);
-          console.log(v);
-        }
-        if (value.length == 7) {
-          var vi = unicodeToChar(value);
-          console.log(vi);
-        }
-        if (value.length == 9) {
-          var vi = unicodeToChar(value);
-          console.log(vi);
-        }
-        if (value.length == 14) {
-          var vi = unicodeToChar(value);
-          console.log(vi);
-        }
-        if (value.length == 17) {
-          var vi = unicodeToChar(value);
-          console.log(vi);
-        }
-        if (value.length == 12) {
-          var vi = unicodeToChar(value);
-          console.log(vi);
-        }
-        if ((value.lenght == 32 && value.lenght == 12) || value.lenght == 11) {
-          var vae = v + " " + vi;
-          console.log(vae, "ORRRR");
-        }
-        var vae = v + vi;
+      // eslint-disable-next-line no-undef
+      const readableStreamClosed = port.readable.pipeTo(textDecoder.writable);
+    } catch {}
 
-        console.log("ADDED I", vae);
-        // this.state.Bytes = vae;
+    // const readableStreamClosed = port.readable.pipeTo(textDecoder.writable);
+    reader = textDecoder.readable.getReader();
+    var i = 1;
+    var combiBytes = [];
+    while (true) {
+      const { value, done } = await reader.read();
+      // console.log("VALUES", value, value.length);
+
+      try {
+        combiBytes = [...combiBytes, ...value];
+      } catch (e) {}
+
+      if (combiBytes.includes(`\n`)) {
+        this.state.Bytes = combiBytes.join("");
+        console.log(combiBytes.join(""), "comb");
+        combiBytes = [];
       }
-    } catch (e) {
-      console.log(e);
+      // i++;
+      // console.log("lxlxl", value);
+      console.log("lxlxl", combiBytes);
+      if (this.state.k == true) {
+        console.log("MAI CHAL GAYA");
+        reader.releaseLock();
+        break;
+      }
+
+      if (done) {
+        // Allow the serial port to be closed later.
+        reader.releaseLock();
+        break;
+      }
+      // value is a string.
+      console.log(value);
     }
+    // try {
+    //   const reader = port.readable.getReader();
+    //   var i = 1;
+    //   var combiBytes = [];
+    //   // Listen to data coming from the serial device.
+    //   while (true) {
+    //     const { value, done } = await reader.read();
+    //     combiBytes = [...combiBytes, ...value];
+    //     i++;
+    //     if (this.state.k === true) {
+    //       console.log("MAI CHAL GAYA");
+    //       reader.releaseLock();
+    //       break;
+    //     }
+    //     if (i == 2) {
+    //       console.log("PABYTES", unicodeToChar(combiBytes));
+    //       reader.releaseLock();
+    //       this.state.Bytes = unicodeToChar(combiBytes);
+    //       break;
+    //     }
+    //     // value is a string.
+    //     if (value.length == 32) {
+    //       var v = unicodeToChar(value);
+    //       console.log(v);
+    //     }
+    //     if (value.length == 7) {
+    //       var vi = unicodeToChar(value);
+    //       console.log(vi);
+    //     }
+    //     if (value.length == 9) {
+    //       var vi = unicodeToChar(value);
+    //       console.log(vi);
+    //     }
+    //     if (value.length == 14) {
+    //       var vi = unicodeToChar(value);
+    //       console.log(vi);
+    //     }
+    //     if (value.length == 17) {
+    //       var vi = unicodeToChar(value);
+    //       console.log(vi);
+    //     }
+    //     if (value.length == 12) {
+    //       var vi = unicodeToChar(value);
+    //       console.log(vi);
+    //     }
+    //     if ((value.lenght == 32 && value.lenght == 12) || value.lenght == 11) {
+    //       var vae = v + " " + vi;
+    //       console.log(vae, "ORRRR");
+    //     }
+    //     var vae = v + vi;
+
+    //     console.log("ADDED I", vae);
+    //     // this.state.Bytes = vae;
+    //   }
+    // } catch (e) {
+    //   console.log(e);
+    // }
   }
   async writePort(data) {
     try {
@@ -310,7 +352,11 @@ class IfPanel extends Component {
       console.log("SERIAL PORT NOT CONNECTED");
     }
     console.log("BYTES KI VALUE:--", this.state.Bytes);
-    let BAR = this.state.Bytes.toString();
+    if (this.state.Bytes != undefined) {
+      var BAR = this.state.Bytes.toString();
+    } else {
+      var BAR = "176 1 0 0 210 1 0 0 189 1 0 0 0 0 0 0 0 0 0";
+    }
     // let BAR = "153 1 142 2 237 2 122 1 233 1 0 0 100 100 124 20 10 0 0";
     console.log(BAR, "VAlies");
     if (this.state.isRead) {
@@ -622,37 +668,31 @@ class IfPanel extends Component {
         }
 
         if (sessionData.internalaccessories.Four_in_one_sensor.isLightSensor) {
-          if (v[12] != "0") {
+          if (v[12] <= "255") {
             var data = v[12];
 
             vallight = data;
             console.log(" 23 DISTANCE SENSOR:--", valdis);
-          } else {
-            vallight = " ";
           }
         }
         if (
           sessionData.internalaccessories.Four_in_one_sensor.isDistanceSensors
         ) {
-          if (v[13] != "0" && v[13] <= "255") {
+          if (v[13] <= "255") {
             var data = v[13];
 
             valdis = data;
             console.log(" 23 DISTANCE SENSOR:--", valdis);
-          } else {
-            valdis = " ";
           }
         }
         if (
           sessionData.internalaccessories.Four_in_one_sensor.isGestureSensor
         ) {
-          if (v[14] != "0") {
+          if (v[14] <= "255") {
             var data = v[14];
 
             valges = data;
             console.log(" 23 DISTANCE SENSOR:--", valdis);
-          } else {
-            valges = " ";
           }
         }
         if (sessionData.internalaccessories.isMic) {
@@ -665,27 +705,23 @@ class IfPanel extends Component {
           }
         }
         if (sessionData.internalaccessories.Four_in_one_sensor.isColorSensor) {
-          if (v[12] != "0") {
+          if (v[12] <= "255") {
             var data = v[12];
 
             valred = data;
             console.log(" 23 DISTANCE SENSOR:--", valdis);
           }
-          if (v[13] != "0" && v[13] < 256) {
+          if (v[13] < 256) {
             var data = v[13];
 
             valgreen = data;
             console.log(" 23 DISTANCE SENSOR:--", valdis);
-          } else {
-            valgreen = 115;
           }
-          if (v[14] != "0" && v[14] < 256) {
+          if (v[14] < 256) {
             var data = v[14];
 
             valblue = data;
             console.log(" 23 DISTANCE SENSOR:--", valdis);
-          } else {
-            valblue = 105;
           }
         }
         if (sessionData.internalaccessories.isTemperature) {
@@ -751,12 +787,28 @@ class IfPanel extends Component {
           distance: valdis,
           temprature: valtemprature,
         });
-      }, 1000);
+      }, 300);
     }
   }
 
   componentDidMount() {
     // console.log("CALLING componentDidMount :");
+    let a = [11, 12, 14, 15, 18, 19];
+    let n = a.length;
+    let diff = a[0] - 0;
+
+    for (let i = 0; i < n; i++) {
+      // Check if diff and arr[i]-i
+      // both are equal or not
+      if (a[i] - i != diff) {
+        // Loop for consecutive
+        // missing elements
+        while (diff < a[i] - i) {
+          document.write(i + diff + " ");
+          diff++;
+        }
+      }
+    }
   }
 
   // call just after components updates
@@ -999,6 +1051,13 @@ class IfPanel extends Component {
 
   handleRead = (e) => {
     this.setState({ isRead: !this.state.isRead });
+    console.log("READ FRAUD", this.state.isRead);
+
+    if (this.state.isRead) {
+      reader.cancel();
+    } else {
+      this.readdata();
+    }
   };
 
   render() {
@@ -1751,11 +1810,11 @@ class IfPanel extends Component {
                   <p style={{ marginTop: "20%" }}>{this.state.one}</p>
                 ) : this.state.readToggel == "C2" ? (
                   <p style={{ marginTop: "20%" }}>{this.state.two}</p>
-                ) : this.state.readToggel == "TOUCH PAD 0" ? (
+                ) : this.state.readToggel == "TouchZero" ? (
                   <p style={{ marginTop: "20%" }}>{this.state.rangeA1}</p>
-                ) : this.state.readToggel == "TOUCH PAD 1" ? (
+                ) : this.state.readToggel == "TouchOne" ? (
                   <p style={{ marginTop: "20%" }}>{this.state.temp}</p>
-                ) : this.state.readToggel == "TOUCH PAD 2" ? (
+                ) : this.state.readToggel == "TouchTwo" ? (
                   <p style={{ marginTop: "20%" }}>{this.state.one}</p>
                 ) : this.state.readToggel == "MICROPHONE" ? (
                   <p style={{ marginTop: "20%" }}>{this.state.mic}</p>
