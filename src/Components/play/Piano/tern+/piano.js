@@ -100,6 +100,15 @@ function Music(props) {
       setUsb(true);
       var user = 1;
       sessionStorage.setItem("user", JSON.stringify(user));
+      const PLAY = [
+        "P".charCodeAt(),
+        "L".charCodeAt(),
+        "A".charCodeAt(),
+        "Y".charCodeAt(),
+      ];
+      setTimeout(() => {
+        writePort(PLAY);
+      }, 2000);
     });
 
     navigator.serial.addEventListener("disconnect", async (e) => {

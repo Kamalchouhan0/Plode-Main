@@ -33,7 +33,10 @@ function Play(props) {
     "A".charCodeAt(),
     "Y".charCodeAt(),
   ];
-  writePort(PLAY);
+  setTimeout(() => {
+    writePort(PLAY);
+  }, 1000);
+
   let history = useHistory();
 
   const gobackUrl = () => {
