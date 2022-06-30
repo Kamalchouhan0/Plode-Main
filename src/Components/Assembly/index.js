@@ -104,7 +104,6 @@ class Assembly extends Component {
         this.handleUsb();
         window.location.reload(false);
       });
-
       navigator.serial.addEventListener("disconnect", async (e) => {
         var user = 0;
         sessionStorage.setItem("user", JSON.stringify(user));
@@ -606,12 +605,12 @@ class Assembly extends Component {
 
       var v = BAR.split(" ");
 
-      if (v[13] > 255 || v[17] === 0) {
-        v[14] = v[13].slice(-2, 4);
-        v[13] = v[13].slice(0, 2);
+      // if (v[13] > 255 || v[17] === 0) {
+      //   v[14] = v[13].slice(-2, 4);
+      //   v[13] = v[13].slice(0, 2);
 
-        v[18] = "0";
-      }
+      //   v[18] = "0";
+      // }
 
       console.log(v, "JJ");
       try {
@@ -673,7 +672,7 @@ class Assembly extends Component {
           if (
             sessionData.internalaccessories.Four_in_one_sensor.isLightSensor
           ) {
-            if (v[12] != "0" && v[12] <= "255") {
+            if (v[12] <= "255") {
               var data = v[12];
 
               vallight = data;
@@ -683,7 +682,7 @@ class Assembly extends Component {
           if (
             sessionData.internalaccessories.Four_in_one_sensor.isDistanceSensors
           ) {
-            if (v[13] != "0" && v[13] <= "255") {
+            if (v[13] <= "255") {
               var data = v[13];
 
               valdis = data;
@@ -779,6 +778,7 @@ class Assembly extends Component {
           valtactswitch = "";
           valtemp = " ";
           valone = " ";
+          valmic = "";
           valrangeA1 = "";
           valrangeA2 = "";
           valgas = "";
@@ -883,7 +883,7 @@ class Assembly extends Component {
     this.pinchEnd();
     let hhh = JSON.parse(localStorage.getItem("SavedData"));
     let name = sessionStorage.getItem("name");
-    if (name != null) {
+    if (name != "null") {
       for (let i = 0; i < hhh.length; i++) {
         if (name == hhh[i].name) {
           this.props.assemblyComponent(hhh[i].assembly.workspace);
