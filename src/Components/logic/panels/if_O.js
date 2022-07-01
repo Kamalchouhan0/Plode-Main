@@ -603,7 +603,9 @@ class IfPanel extends Component {
       console.log(bytesData);
       this.writePort(bytesData);
       var v = BAR.split(" ");
-
+      if (v[0] == "") {
+        v.shift();
+      }
       // if (v[13] > 255 || v[17] === 0) {
       //   v[14] = v[13].slice(-2, 4);
       //   v[13] = v[13].slice(0, 2);
@@ -1038,6 +1040,7 @@ class IfPanel extends Component {
     console.log("READ FRAUD", this.state.isRead);
 
     if (this.state.isRead) {
+      console.log("READER CANCELED");
       reader.cancel();
     } else {
       this.readdata();
@@ -1156,6 +1159,7 @@ class IfPanel extends Component {
     if (sessiondataLogic.bottomPanel == "border" && this.state.isRead == true) {
       console.log("read", this.state.isRead);
       this.setState({ isRead: !this.state.isRead });
+      reader.cancel();
     }
     // NEW UI DATA
     let internalaccessoriesData = JSON.parse(
