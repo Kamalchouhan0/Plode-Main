@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Changed icon for reset program in hex screen
+- Changed address of blockbased from scratch.plode.org to blockbased.plode.org
 
 ### Removed
 
