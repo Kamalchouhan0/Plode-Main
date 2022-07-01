@@ -17,6 +17,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fixed issue of speech recognition not ending on wrong input command.
 - Fixed Port closing issue on all screens when PC disconnects.
 
+### Changed
+
+- Changed icon for reset program in hex screen
+
 ### Removed
 
 - Removed 1x button in simulation screen.
