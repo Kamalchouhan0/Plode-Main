@@ -9,7 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- Fixed read bytes speed in assemblu screen.
+- Fixed right arrow position in help screens.
+- Fixed Read bytes issue in if condition property panel
+- Fixed Camera not openinig in camera mode in play screen, for low end devicesZzZ
+- Fixed read bytes speed in assembly screen.
 - Fixed and restructred pcpiano mode to read values from PC.
 - Fixed issue of speech recognition not ending on wrong input command.
 - Fixed Port closing issue on all screens when PC disconnects.
