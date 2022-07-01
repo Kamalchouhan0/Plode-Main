@@ -1,31 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 import renderImage from "../../source/importImg";
-// import { webSerialAction } from "../../redux/actions/index";
+import { webSerialAction } from "../../redux/actions/index";
 import ImgSlider from "../ReusableComponents/ImgSlider/ImgSlider";
 import "./PlayMode.css";
 
-const writePort = async (data) => {
-  try {
-    const filters = [{ usbVendorId: 0x1a86, usbProductId: 0x7523 }];
-    const ports = await navigator.serial.getPorts({ filters });
-    console.log("portsss", ports);
-    console.log("portsss", ports[0].writable);
-    // const outputStream = ports[0].writable,
-    const writer = ports[0].writable.getWriter();
-    // writer = outputStream.getWriter();
-    const sata = data;
-    const data1 = new Uint8Array(sata); // hello// 82, 76, 0, 0, 0, 82, 0, 0, 0, 66, 0, 0, 1, 0, 1,
-    console.log("send data:+", data1);
-
-    await writer.write(data1);
-
-    writer.releaseLock();
-  } catch (e) {
-    console.log(e);
-  }
-};
 function Play(props) {
   const PLAY = [
     "P".charCodeAt(),
@@ -43,6 +24,7 @@ function Play(props) {
     history.goBack();
   };
   const [isHelp, setHelp] = useState(false);
+  const [isUsb, setUsb] = useState(false);
 
   const handleHelpBtn = (e) => {
     if (isHelp == true) {
@@ -73,35 +55,101 @@ function Play(props) {
     history.push("/camera");
   };
 
-  // const [p1, setP1] = useState({
-  //   selected: false,
-  //   port: {},
-  // });
+  async function writePort(data) {
+    console.log("Wdata", data);
+    try {
+      const filters = [{ usbVendorId: 0x1a86, usbProductId: 0x7523 }];
+      const ports = await navigator.serial.getPorts({ filters });
 
-  // useEffect(async () => {
-  //   try {
-  //     const portList = await navigator.serial.getPorts();
+      console.log("portsss", ports);
 
-  //     if (portList.length === 1) {
-  //       console.log(portList, "Hardware connected");
+      console.log("portsss", ports[0].writable);
+      // const outputStream = ports[0].writable,
+      const writer = ports[0].writable.getWriter();
+      // writer = outputStream.getWriter();
+      if (data != "notWrite") {
+        const Wdata = data;
 
-  //       props.webSerialAction({ port: portList[0] });
+        console.log("Wdata", Wdata);
 
-  //       setP1({
-  //         selected: true,
-  //         port: portList[0],
-  //       });
-  //     } else {
-  //       console.log("No hardware");
+        const data1 = new Uint8Array(Wdata); //  82, 76, 0, 0, 0, 82, 0, 0, 0, 66, 0, 0, 1, 0, 1,
 
-  //       setP1({ p1 });
-  //     }
-  //   } catch (err) {
-  //     console.log(err.message);
-  //   }
-  // }, []);
+        console.log("send data:+", data1);
+        await writer.write(data1);
+      }
+      writer.releaseLock();
+    } catch (e) {
+      console.log(e);
+    }
+  }
+  useEffect(() => {
+    let no_port = props.webSerial;
+    if (typeof no_port !== undefined) {
+      console.log("WORKING>>>>>>>>");
+      OpenReadComPort();
+    }
+  });
 
-  // console.log(p1, "render");
+  useEffect(async () => {
+    navigator.serial.addEventListener("connect", (e) => {
+      setUsb(true);
+      // var user = 1;
+      // sessionStorage.setItem("user", JSON.stringify(user));
+    });
+
+    navigator.serial.addEventListener("disconnect", async (e) => {
+      setUsb(false);
+      // var user = 0;
+      // sessionStorage.setItem("user", JSON.stringify(user));
+      const p_Port = props.webSerial;
+      try {
+        await p_Port.close();
+      } catch (e) {}
+    });
+
+    try {
+      const portList = await navigator.serial.getPorts();
+
+      if (portList.length === 1) {
+        console.log(portList, "Hardware connected");
+
+        await props.webSerialAction({ port: portList[0] }); // dispatching function of redux
+
+        // setP1({
+        //   selected: true,
+        //   port: portList[0],
+        // });
+      } else {
+        console.log("No hardware");
+
+        // setP1({ p1 });
+      }
+    } catch (err) {
+      console.log(err.message);
+    }
+  });
+
+  const OpenReadComPort = async () => {
+    const p_Port = props.webSerial;
+
+    console.log(props, "p_Port");
+    if (p_Port.onconnect == null) {
+      console.log("TRUE");
+      let v = 1;
+      sessionStorage.setItem("user", JSON.stringify(v));
+    }
+    try {
+      console.log("OPENED");
+      await p_Port.open({ baudRate: 120000 });
+    } catch (e) {
+      console.log(e);
+      // p_Port.close();
+      // await p_Port.open({ baudRate: 120000 });
+    }
+
+    writePort("notWrite");
+    console.log(p_Port, "p_Port");
+  };
   return (
     <div className="Main_Play">
       <div>
@@ -245,20 +293,18 @@ function Play(props) {
   );
 }
 
-export default Play;
-// const mapStateToProps = (state) => {
-//   return {
-//     webserialPort: state.webSerial,
-//   };
-// };
+// export default Play;
+const mapStateToProps = (state) => {
+  return state;
+};
 
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     webSerialAction: (data) => {
-//       console.log("mapDispatchToProps", data);
-//       dispatch(webSerialAction(data));
-//     },
-//   };
-// };
+const mapDispatchToProps = (dispatch) => {
+  return {
+    webSerialAction: (data) => {
+      console.log("mapDispatchToProps", data);
+      dispatch(webSerialAction(data));
+    },
+  };
+};
 
-// export default connect(mapStateToProps, mapDispatchToProps)(Play);
+export default connect(mapStateToProps, mapDispatchToProps)(Play);
