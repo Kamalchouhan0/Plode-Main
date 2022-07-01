@@ -29,7 +29,7 @@ function SampleNextArrow(props) {
         className={"slick-arrow"}
         style={{
           ...style,
-          right: "-320px",
+          right: "-290px",
           height: "25%",
           zIndex: "0",
           width: "25%",
