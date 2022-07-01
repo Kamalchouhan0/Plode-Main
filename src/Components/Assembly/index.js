@@ -611,7 +611,9 @@ class Assembly extends Component {
 
       //   v[18] = "0";
       // }
-
+      if (v[0] == "") {
+        v.shift();
+      }
       console.log(v, "JJ");
       try {
         if (v.length == "19" && v[0] != "") {
