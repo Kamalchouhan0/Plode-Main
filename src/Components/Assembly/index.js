@@ -883,7 +883,8 @@ class Assembly extends Component {
     this.pinchEnd();
     let hhh = JSON.parse(localStorage.getItem("SavedData"));
     let name = sessionStorage.getItem("name");
-    if (name != "null") {
+    console.log(name, "kkklmo");
+    if (name != "null" && name != undefined && name != null) {
       for (let i = 0; i < hhh.length; i++) {
         if (name == hhh[i].name) {
           this.props.assemblyComponent(hhh[i].assembly.workspace);
