@@ -113,7 +113,7 @@ function VisualProgram() {
         src={renderPrgImage("programmenucard")}
         className="VP-programmenucard"
       />
-      <p className="VP-txt-Menu">Program</p>
+      <p className="VP-txt-Menu">Code</p>
 
       <p className="VP-txt-Heading"> Visual Programming</p>
 

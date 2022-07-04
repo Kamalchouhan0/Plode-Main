@@ -158,7 +158,7 @@ class ProgramSelection extends Component {
             src={renderPrgImage("programmenucard")}
             className="PS-programmenucard"
           />
-          <p className="PS-txt-Menu">Program</p>
+          <p className="PS-txt-Menu">Code</p>
           {this.state.isHelp ? (
             <div className="PS-S_slide">
               <PrgmSelection />
