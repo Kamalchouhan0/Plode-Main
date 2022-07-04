@@ -21,7 +21,7 @@ class Input extends Component {
   render() {
     const { disabled, value, min, max } = this.props;
     var style = {
-      width: "56px",
+      width: "60px",
       height: "25px",
       display: "inline-block",
       textAlign: "center",

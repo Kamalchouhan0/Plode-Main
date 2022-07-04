@@ -149,7 +149,7 @@ class Select extends Component {
           <option value="null">Select Items</option>
           {ultraA ? (
             <>
-              <option value="ultra A">ULTRASONIC A -> A1</option>
+              <option value="ultra A">ULTRASONIC A {"\u2192"} A1</option>
             </>
           ) : (
             <>
@@ -186,7 +186,7 @@ class Select extends Component {
           )}
           {ultraC ? (
             <>
-              <option value="ultra C">ULTRASONIC C -> C1</option>
+              <option value="ultra C">ULTRASONIC C {"\u2192"} C1</option>
             </>
           ) : (
             <>

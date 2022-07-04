@@ -288,8 +288,8 @@ function InternalAccessoriesScreen(props) {
     //     setUsb(false);
     //   }
     // });
-    let no_port = props.webserialPort;
-    if (typeof no_port !== undefined) {
+    let no_port = props.indexData.webSerial;
+    if (no_port != undefined) {
       console.log("WORKING>>>>>>>>");
       OpenReadComPort();
     }
@@ -358,8 +358,9 @@ function InternalAccessoriesScreen(props) {
     console.log(props, "p_Port");
     if (p_Port.onconnect == null) {
       console.log("TRUE");
-      let v = 1;
-      sessionStorage.setItem("user", JSON.stringify(v));
+      // setUsb(true);
+      // let v = 1;
+      // sessionStorage.setItem("user", JSON.stringify(v));
     }
     try {
       console.log("OPENED");
