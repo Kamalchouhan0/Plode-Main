@@ -1,6 +1,7 @@
 import html2canvas from "html2canvas";
 import React, { Component } from "react";
 import { createBrowserHistory } from "history";
+import CustomNodeFlow from "../Simulate/DnD/Index";
 import { Link } from "react-router-dom";
 import renderPrgImage from "../../source/programImg";
 import SavePrgm from "../ReusableComponents/PrgmSlider/SavePrgm/SavePrgm";
@@ -48,24 +49,26 @@ class SaveProgram extends Component {
       }
     }
     console.log("dataas", this.state.keys, this.state.l);
-    // console.log("dataas", `${keyss}`, `${ll}`);
-    if (
-      sessionStorage.getItem("assempblyImageHTML") &&
-      sessionStorage.getItem("assempblyImageHTML") != "" &&
-      JSON.parse(sessionStorage.getItem("saveProps")) == null
-    ) {
-      div.innerHTML = sessionStorage.getItem("assempblyImageHTML");
-      html2canvas(div).then(function (canvas) {
-        div.innerHTML = "";
-        var img = canvas.toDataURL("image/png");
-        sessionStorage.setItem("assempblyImageURI", img);
-        var imgTag = document.getElementById("screenshot");
-        self.setState({ imgURL: img });
-        imgTag.src = img;
-      });
-    }
-    var div = document.getElementById("assemblyShot");
-    div.innerHTML = sessionStorage.getItem("assempblyImageHTML");
+
+    var img = sessionStorage.getItem("IMGEURL");
+    console.log("dataas", img);
+    // if (
+    //   sessionStorage.getItem("assempblyImageHTML") &&
+    //   sessionStorage.getItem("assempblyImageHTML") != "" &&
+    //   JSON.parse(sessionStorage.getItem("saveProps")) == null
+    // ) {
+    //   div.innerHTML = sessionStorage.getItem("assempblyImageHTML");
+    //   html2canvas(div).then(function (canvas) {
+    //     div.innerHTML = "";
+    //     var img = canvas.toDataURL("image/png");
+    //     sessionStorage.setItem("assempblyImageURI", img);
+    //     var imgTag = document.getElementById("screenshot");
+    self.setState({ imgURL: img });
+    //     imgTag.src = img;
+    //   });
+    // }
+    // var div = document.getElementById("assemblyShot");
+    // div.innerHTML = sessionStorage.getItem("assempblyImageHTML");
   };
 
   handleChange = (event) => {

@@ -352,6 +352,13 @@ function InternalAccessoriesScreen(props) {
       console.log(err.message);
     }
   });
+  useEffect(() => {
+    const p_Port = props.indexData.webSerial;
+    if (p_Port.readable != null) {
+      let v = 1;
+      sessionStorage.setItem("user", JSON.stringify(v));
+    }
+  }, []);
   const OpenReadComPort = async () => {
     const p_Port = props.indexData.webSerial;
 
