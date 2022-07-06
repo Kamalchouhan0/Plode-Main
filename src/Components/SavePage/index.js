@@ -5,10 +5,49 @@ import { Link } from "react-router-dom";
 import renderPrgImage from "../../source/programImg";
 import SavePrgm from "../ReusableComponents/PrgmSlider/SavePrgm/SavePrgm";
 import "./save.css";
+import { loadGoogleScript } from "../Login/GoogleApiLoadScript";
+import { func } from "prop-types";
 
+const googleClientId =
+  "798914613502-eeirsjatcut3f8pljkbknd1hdkampga8.apps.googleusercontent.com";
+const DISCOVERY_DOC =
+  "https://www.googleapis.com/discovery/v1/apis/drive/v3/rest";
 const axios = require("axios");
 const history = createBrowserHistory();
+async function intializeGapiClient(_gapi) {
+  await window.gapi.client.init({
+    apiKey: "AIzaSyBNXW73e0C_wzGc2B7g_BMiUwe7hX2f4_s",
+    discoveryDocs: [DISCOVERY_DOC],
+    scope: "drive profile",
+  });
+  await window.gapi.client.load("drive", "v3");
+  // gapiInited = true;
+  // maybeEnableButtons();
+}
+function gapiLoad() {
+  //window.gapi is available at this point
+  window.onGoogleScriptLoad = () => {
+    const _gapi = window.gapi;
+    // setGapi(_gapi);
+    _gapi.load("auth2", () => {
+      (async () => {
+        const _googleAuth = await _gapi.auth2.init({
+          client_id: googleClientId,
+        });
+        console.log("auth", _googleAuth);
+        // setGoogleAuth(_googleAuth);
+        // renderSigninButton(_gapi);
+      })();
+    });
 
+    _gapi.load("client", () => {
+      intializeGapiClient(_gapi);
+    });
+  };
+
+  //ensure everything is set before loading the script
+  loadGoogleScript();
+}
 class SaveProgram extends Component {
   constructor(props) {
     super(props);
@@ -25,7 +64,7 @@ class SaveProgram extends Component {
   componentDidMount = () => {
     console.log(sessionStorage.length);
     var self = this;
-
+    gapiLoad(); ///function to load gapi and initiliz the client
     if (JSON.parse(sessionStorage.getItem("saveProps")) != null) {
       var div = (document.getElementById("assemblyShot").style.visibility =
         "hidden");
@@ -74,33 +113,146 @@ class SaveProgram extends Component {
   helpBtn = (e) => {
     this.setState({ isHelp: !this.state.isHelp });
   };
-  save = () => {
+  save = async () => {
     console.log("SAVE BTN CLICK");
+    var x = document.getElementById("SaveAlert");
+    x.className = "show";
+
+    /////////////////
+    //   CREATING A NEW FOLDER NAME PLODE ON GDRIVE
+    var accessToken = window.gapi.auth.getToken().access_token;
+
+    let folderFlag = true;
+    let folderid;
+    let list;
+    try {
+      list = await window.gapi.client.drive.files.list({
+        pageSize: 10,
+        fields: "files(id, name)",
+        q: `mimeType='application/vnd.google-apps.folder' and name='PlodeAppData'`,
+      });
+    } catch (e) {
+      console.error(e);
+      return;
+    }
+    console.log("listed files", list);
+    const files = list.result.files;
+
+    if (!files || files.length == 0) {
+      folderFlag = false;
+    } else {
+      folderFlag = true;
+      folderid = files[0].id;
+    }
+    if (folderFlag == false) {
+      const FolderMeta = {
+        name: "PlodeAppData",
+        mimeType: "application/vnd.google-apps.folder",
+      };
+      var folderform = new FormData();
+      folderform.append(
+        "metadata",
+        new Blob([JSON.stringify(FolderMeta)], {
+          type: "application/json",
+        })
+      );
+      await fetch(
+        "https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&supportsAllDrives=true",
+        {
+          method: "POST",
+          headers: new Headers({ Authorization: "Bearer " + accessToken }),
+          body: folderform,
+        }
+      )
+        .then((res) => {
+          return res.json();
+        })
+        .then(function (val) {
+          folderid = val.id;
+        });
+    }
+
+    /////////////////////////
+
+    /////updating PROJECTDATA IN GDRIVE
     let allData = {
       ...this.state,
       bytes: JSON.parse(sessionStorage.getItem("Bytes")),
     };
     // console.log("DATA BATA:", allData);
-    let formData = JSON.parse(localStorage.getItem("projectData")) || [];
-    formData.push(allData);
-    localStorage.setItem("projectData", JSON.stringify(formData));
-    // sessionStorage.setItem("projectData", JSON.stringify(allData));
-
-    var x = document.getElementById("SaveAlert");
-    x.className = "show";
-    setTimeout(function () {
-      x.className = x.className.replace("show", "");
-    }, 1500);
-
-    axios
-      .post("http://localhost:3008/saveProject", allData)
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        // console.log(response.data);
-        console.log("ERROR", error.message);
+    let listProjectData,
+      idProjectData = false;
+    try {
+      listProjectData = await window.gapi.client.drive.files.list({
+        pageSize: 10,
+        fields: "files(id, name)",
+        q: ` name='ProjectData.pld'`,
       });
+    } catch (e) {
+      console.error(e);
+      return;
+    }
+    console.log("listed files", listProjectData);
+    const projectData = listProjectData.result.files;
+
+    if (!projectData || projectData.length == 0) {
+      console.log("Project Data not found", projectData);
+      idProjectData = false;
+    } else {
+      idProjectData = projectData[0].id;
+      console.log("Project Data found", projectData);
+    }
+    let getProjectData;
+    let formData;
+    if (idProjectData != false) {
+      try {
+        getProjectData = await window.gapi.client.drive.files.get({
+          fileId: idProjectData,
+          alt: "media",
+        });
+        console.log(getProjectData);
+        formData = getProjectData.result;
+      } catch (error) {}
+    } else {
+      formData = [];
+    }
+
+    // let formData = JSON.parse(localStorage.getItem("projectData")) || [];
+    formData.push(allData);
+    const projectDataBlob = new Blob([JSON.stringify(formData)], {
+      type: "application/json",
+    });
+    const projectDataMetadata = {
+      name: `ProjectData.pld`,
+      parents: [folderid],
+    };
+    var projectform = new FormData();
+    projectform.append(
+      "metadata",
+      new Blob([JSON.stringify(projectDataMetadata)], {
+        type: "application/json",
+      })
+    );
+    projectform.append("file", projectDataBlob);
+    await fetch(
+      "https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&supportsAllDrives=true",
+      {
+        method: "POST",
+        headers: new Headers({ Authorization: "Bearer " + accessToken }),
+        body: projectform,
+      }
+    )
+      .then((res) => {
+        return res.json();
+      })
+      .then(function (val) {
+        console.log(val);
+      });
+
+    //////////////////////////////
+
+    // localStorage.setItem("projectData", JSON.stringify(formData));
+    // sessionStorage.setItem("projectData", JSON.stringify(allData));
 
     let history = {
       name: this.state.name,
@@ -131,9 +283,48 @@ class SaveProgram extends Component {
     };
     console.log(history.concept, "kghjfgyjhresg");
 
-    let saveData = JSON.parse(localStorage.getItem("SavedData")) || [];
+    /////////UPDATING SAVED DATA TO GDRIVE
+    let listSaveData;
+    let idSaveData = false;
+    try {
+      listSaveData = await window.gapi.client.drive.files.list({
+        pageSize: 10,
+        fields: "files(id, name)",
+        q: ` name='SaveData.pld'`,
+      });
+    } catch (e) {
+      console.error(e);
+      return;
+    }
+    console.log("listed files", listProjectData);
+    const SaveData = listSaveData.result.files;
+    if (!SaveData || SaveData.length == 0) {
+      console.log("Save Data not found", SaveData);
+      idSaveData = false;
+    } else {
+      idProjectData = SaveData[0].id;
+      console.log("Save Data found", SaveData);
+    }
+    let getSaveData;
+    let saveData;
+    if (idSaveData != false) {
+      try {
+        getSaveData = await window.gapi.client.drive.files.get({
+          fileId: idProjectData,
+          alt: "media",
+        });
+        console.log(getSaveData);
+        saveData = getSaveData.result;
+      } catch (error) {}
+    } else {
+      saveData = [];
+    }
+    // let saveData = JSON.parse(localStorage.getItem("SavedData")) || [];
     saveData.push(history);
-    localStorage.setItem("SavedData", JSON.stringify(saveData));
+    // localStorage.setItem("SavedData", JSON.stringify(saveData));
+    const saveDataBlob = new Blob([JSON.stringify(saveData)], {
+      type: "application/json",
+    });
     // localStorage.setItem("SavedData", JSON.stringify(history));
 
     // const saveFile = async (blob) => {
@@ -148,10 +339,35 @@ class SaveProgram extends Component {
     //   // a.click();
     // };
 
-    // const blob = new Blob([JSON.stringify(history, null, 2)], {
-    //   type: "application/json",
-    // });
-
+    const fileMetadata = {
+      name: `SaveData.pld`,
+      parents: [folderid],
+    };
+    var form = new FormData();
+    form.append(
+      "metadata",
+      new Blob([JSON.stringify(fileMetadata)], { type: "application/json" })
+    );
+    form.append("file", saveDataBlob);
+    await fetch(
+      "https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&supportsAllDrives=true",
+      {
+        method: "POST",
+        headers: new Headers({ Authorization: "Bearer " + accessToken }),
+        body: form,
+      }
+    )
+      .then((res) => {
+        return res.json();
+      })
+      .then(function (val) {
+        console.log("file saved", val);
+        x.innerHTML = "Your project has been saved";
+        setTimeout(function () {
+          x.className = x.className.replace("show", "");
+          this.history.push("/simulate");
+        }, 1500);
+      });
     // saveFile(blob);
     // if (sessionStorage.getItem("saveProps") == null) {
     //   Object.keys(history).map((key, value) => {
@@ -175,18 +391,9 @@ class SaveProgram extends Component {
     //     }
     //   });
     // }
-
-    axios
-      .post("http://localhost:3008/saveHistory", history)
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        // console.log(response.data);
-        console.log("ERROR", error.message);
-      });
   };
 
+  ///function to retrive data from local storage
   saveData = () => {
     console.log("dataas NEXT BTN", this.state.keys, this.state.l);
     let hhh = JSON.parse(localStorage.getItem("SavedData"));
@@ -481,23 +688,21 @@ class SaveProgram extends Component {
                 />
               </Link>
             ) : (
-              <Link to="/simulate">
-                <img
-                  src={renderPrgImage("saveBtn")}
-                  style={{
-                    height: "75px",
-                    width: "75px",
-                    position: "absolute",
-                    bottom: "0",
-                    right: "0",
-                    cursor: "pointer",
-                  }}
-                  onClick={this.save}
-                />
-              </Link>
+              <img
+                src={renderPrgImage("saveBtn")}
+                style={{
+                  height: "75px",
+                  width: "75px",
+                  position: "absolute",
+                  bottom: "0",
+                  right: "0",
+                  cursor: "pointer",
+                }}
+                onClick={this.save}
+              />
             )}
             <div id="assemblyShot"></div>
-            <div id="SaveAlert">Your Project has been Saved</div>
+            <div id="SaveAlert">Saving Project...</div>
           </div>
         </div>
       </div>

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { createBrowserHistory } from "history";
 import renderPrgImage from "../../source/programImg";
 import SaveCard from "../Reusable/SaveCard/SaveCard";
-
+import { loadGoogleScript } from "../Login/GoogleApiLoadScript";
 const history = createBrowserHistory();
 
 // class SavedProgram extends Component {
@@ -114,7 +114,49 @@ const history = createBrowserHistory();
 //     );
 //   }
 // }
-
+const googleClientId =
+  "798914613502-eeirsjatcut3f8pljkbknd1hdkampga8.apps.googleusercontent.com";
+const DISCOVERY_DOC =
+  "https://www.googleapis.com/discovery/v1/apis/drive/v3/rest";
+async function intializeGapiClient(_gapi) {
+  await window.gapi.client.init({
+    apiKey: "AIzaSyBNXW73e0C_wzGc2B7g_BMiUwe7hX2f4_s",
+    discoveryDocs: [DISCOVERY_DOC],
+    scope: "drive profile",
+  });
+  await window.gapi.client.load("drive", "v3");
+  // gapiInited = true;
+  // maybeEnableButtons();
+}
+async function listFiles() {
+  let response;
+  try {
+    response = await window.gapi.client.drive.files.list({
+      pageSize: 10,
+      fields: "files(id, name)",
+      q: "name = 'SaveData.pld'",
+    });
+    // download = await window.gapi.client.drive.files.get({
+    //   fileId: response.result.files[0].id,
+    //   alt: "media",
+    // });
+  } catch (err) {
+    console.log(err);
+    return;
+  }
+  // console.log("dwn", download);
+  const files = response.result.files;
+  if (!files || files.length == 0) {
+    console.log("No files found.");
+    return;
+  }
+  // Flatten to string to display
+  const output = files.reduce(
+    (str, file) => `${str}${file.name} (${file.id}\n`,
+    "Files:\n"
+  );
+  console.log(files);
+}
 class SavedProgram extends Component {
   constructor(props) {
     super(props);
@@ -126,6 +168,29 @@ class SavedProgram extends Component {
   componentDidMount = () => {
     let self = this;
     self.getProject();
+
+    //window.gapi is available at this point
+    window.onGoogleScriptLoad = () => {
+      const _gapi = window.gapi;
+      // setGapi(_gapi);
+      _gapi.load("auth2", () => {
+        (async () => {
+          const _googleAuth = await _gapi.auth2.init({
+            client_id: googleClientId,
+          });
+          console.log("auth", _googleAuth);
+          // setGoogleAuth(_googleAuth);
+          // renderSigninButton(_gapi);
+        })();
+      });
+
+      _gapi.load("client", () => {
+        intializeGapiClient(_gapi);
+      });
+    };
+
+    //ensure everything is set before loading the script
+    loadGoogleScript();
   };
 
   getProject = () => {
@@ -309,6 +374,7 @@ class SavedProgram extends Component {
                   No Saved Projects!!!! <br />
                   Once you Save project,it will be shown here{" "}
                 </h1>
+                <button onClick={listFiles}>List</button>
                 {/* <ReactLoading
                   type="bubbles"
                   color="blue"

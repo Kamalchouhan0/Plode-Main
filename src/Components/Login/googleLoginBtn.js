@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import { loadGoogleScript } from "./GoogleApiLoadScript";
 import * as atatus from "atatus-spa";
 import { exp } from "@tensorflow/tfjs-core";
-const googleClientId =
-  "798914613502-eeirsjatcut3f8pljkbknd1hdkampga8.apps.googleusercontent.com";
+const googleClientId = "";
 const DISCOVERY_DOC =
   "https://www.googleapis.com/discovery/v1/apis/drive/v3/rest";
 
@@ -47,7 +46,7 @@ function GoogleLoginBtn(props) {
   };
   async function intializeGapiClient(_gapi) {
     await window.gapi.client.init({
-      apiKey: "AIzaSyBNXW73e0C_wzGc2B7g_BMiUwe7hX2f4_s",
+      apiKey: "",
       discoveryDocs: [DISCOVERY_DOC],
       scope: "drive profile",
     });

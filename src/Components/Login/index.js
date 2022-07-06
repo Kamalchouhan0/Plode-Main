@@ -8,6 +8,7 @@ import PortConnections from "../Assembly/PortConnections";
 import components from "../concept/data"; //component details
 import "./googleloginbtn.scss";
 import "./login.css";
+import GoogleLoginBtn from "./googleLoginBtn";
 import animationStyle from "./loginAnimation.module.css";
 
 class login extends Component {
@@ -121,8 +122,10 @@ class login extends Component {
           ></img>
           {/* </Link> */}
         </div>
+
         <div className={animationStyle.Google_Login}>
-          <GoogleLogin
+          <GoogleLoginBtn history={this.props.history}></GoogleLoginBtn>
+          {/* <GoogleLogin
             clientId="798914613502-eeirsjatcut3f8pljkbknd1hdkampga8.apps.googleusercontent.com"
             buttonText="Login"
             render={(renderProps) => (
@@ -146,7 +149,7 @@ class login extends Component {
             onSuccess={loginSuccess}
             onFailure={loginFail}
             cookiePolicy={"single_host_origin"}
-          />
+          /> */}
         </div>
         <div style={{ position: "absolute", bottom: "2px", right: "5px" }}>
           <span
