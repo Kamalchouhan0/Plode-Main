@@ -1922,10 +1922,14 @@ const DnDFlow = (props) => {
       sessionStorage.setItem("user", JSON.stringify(user));
     });
 
-    navigator.serial.addEventListener("disconnect", (e) => {
+    navigator.serial.addEventListener("disconnect", async (e) => {
       setUsb(false);
       var user = 0;
       sessionStorage.setItem("user", JSON.stringify(user));
+      let port = props.webSerial;
+      try {
+        await port.close();
+      } catch (e) {}
     });
 
     try {

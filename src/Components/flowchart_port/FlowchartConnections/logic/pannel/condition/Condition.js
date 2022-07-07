@@ -95,7 +95,7 @@ class Condition extends Component {
       light: "",
       gesture: "",
       distance: "",
-      readToggel: "",
+      readToggel: false,
       value: parseInt(sessionStorage.getItem(`ifValue${this.props.check}`)),
       value1: parseInt(sessionStorage.getItem(`ifValue2${this.props.check}`)),
       max: 1,
@@ -140,7 +140,7 @@ class Condition extends Component {
     await this.writePort("notWrite");
     // await this.readdata();
 
-    console.log("READABLE", port.readable.locked);
+    // console.log("READABLE", port.readable.locked);
   };
 
   async readdata() {
@@ -211,7 +211,7 @@ class Condition extends Component {
 
   async componentDidUpdate() {
     let no_port = this.props.webSerial;
-    console.log("potf", no_port.readable.locked);
+    // console.log("potf", no_port.readable.locked);
 
     if (typeof no_port !== undefined) {
       console.log("WORKING>>>>>>>>");
@@ -280,17 +280,6 @@ class Condition extends Component {
 
       bytesData.unshift("A".charCodeAt());
       bytesData.unshift("P".charCodeAt());
-
-      let sessionData = JSON.parse(sessionStorage.getItem("concept"));
-      console.log(sessionData);
-      console.log(sessionData.internalaccessories, "Internal data");
-
-      let portdata = JSON.parse(sessionStorage.getItem("assembly"));
-      console.log(
-        portdata.PortConnections,
-        "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<DATA>>>>>>>>>>>>>>>>>"
-      );
-      console.log(portdata.PortConnections, ">>???>>>>????<<<<");
 
       let A1 = JSON.parse(sessionStorage.getItem("A1"));
       let A2 = JSON.parse(sessionStorage.getItem("A2"));
@@ -617,27 +606,27 @@ class Condition extends Component {
             valtemprature = byte_val2;
           }
         }
-        if (sessionData.internalaccessories.isTouchZero) {
-          var byte_val1 = v[0] & 0xff;
-          var byte_val2 = v[1] & 0xff;
-          var valOfSensor = (byte_val2 << 8) + byte_val1;
-          console.log("LSB+MSB:-", valOfSensor);
-          valrangeA1 = valOfSensor;
-        }
-        if (sessionData.internalaccessories.isTouchOne) {
-          var byte_val1 = v[4] & 0xff;
-          var byte_val2 = v[5] & 0xff;
-          var valOfSensor = (byte_val2 << 8) + byte_val1;
-          console.log("LSB+MSB:-", valOfSensor);
-          valtemp = valOfSensor;
-        }
-        if (sessionData.internalaccessories.isTouchTwo) {
-          var byte_val1 = v[8] & 0xff;
-          var byte_val2 = v[9] & 0xff;
-          var valOfSensor = (byte_val2 << 8) + byte_val1;
-          console.log("LSB+MSB:-", valOfSensor);
-          valone = valOfSensor;
-        }
+        // if (JSON.parse(sessionStorage.getItem("isTouchZero"))) {
+        //   var byte_val1 = v[0] & 0xff;
+        //   var byte_val2 = v[1] & 0xff;
+        //   var valOfSensor = (byte_val2 << 8) + byte_val1;
+        //   console.log("LSB+MSB:-", valOfSensor);
+        //   valrangeA1 = valOfSensor;
+        // }
+        // if (JSON.parse(sessionStorage.getItem("isTouchOne"))) {
+        //   var byte_val1 = v[4] & 0xff;
+        //   var byte_val2 = v[5] & 0xff;
+        //   var valOfSensor = (byte_val2 << 8) + byte_val1;
+        //   console.log("LSB+MSB:-", valOfSensor);
+        //   valtemp = valOfSensor;
+        // }
+        // if (JSON.parse(sessionStorage.getItem("isTouchTwo"))) {
+        //   var byte_val1 = v[8] & 0xff;
+        //   var byte_val2 = v[9] & 0xff;
+        //   var valOfSensor = (byte_val2 << 8) + byte_val1;
+        //   console.log("LSB+MSB:-", valOfSensor);
+        //   valone = valOfSensor;
+        // }
       }
 
       setTimeout(() => {
@@ -656,7 +645,6 @@ class Condition extends Component {
           gas: valgas,
           one: valone,
           two: valtwo,
-          activePort: "A1",
           mic: valmic,
           red: valred,
           green: valgreen,
@@ -705,9 +693,15 @@ class Condition extends Component {
   }
   componentWillUnmount() {
     let no_port = this.props.webSerial;
-    if (no_port.readable.locked != false) {
-      reader.cancel();
+    console.log(no_port.readable);
+    if (no_port.name != "Not Connected") {
+      if (no_port.readable != null) {
+        if (no_port.readable.locked != false) {
+          reader.cancel();
+        }
+      }
     }
+
     count[this.props.check] = this.state.value;
     selected[this.props.check] = this.state.selected;
     selectedTwo[this.props.check] = this.state.selectedTwo;
@@ -912,12 +906,28 @@ class Condition extends Component {
     sessionStorage.setItem(`ne${this.props.check}`, this.state.isNotequalTo);
 
     let sessionFlowLogic = JSON.parse(sessionStorage.getItem("flow-logic"));
+    console.log("KML@@@+++", this.state.readToggel);
 
-    // if (sessionFlowLogic.bottomPanel == "border" && this.state.isRead == true) {
-    //   console.log("read", this.state.isRead);
-    //   // this.setState({ isRead: !this.state.isRead });
-    //   reader.cancel();
-    // }
+    if (this.state.readToggel == false || this.state.readToggel == "null") {
+      if (this.state.readToggel == "null" && this.state.isRead == true) {
+        this.state.isRead = false;
+        reader.cancel();
+      }
+      setTimeout(() => {
+        try {
+          document.getElementById("ID").style.pointerEvents = "none";
+        } catch (e) {}
+      }, 100);
+
+      console.log("FALLLLSSSE");
+    } else {
+      console.log("TRUUUUUUUUUUUUUUUUUUUEEEEE");
+      // setTimeout(() => {
+      try {
+        document.getElementById("ID").style.pointerEvents = "auto";
+      } catch (e) {}
+      // }, 100);
+    }
 
     return (
       <div className="outertabDiv-Condition">
@@ -1132,6 +1142,7 @@ class Condition extends Component {
               </div>
             ) : (
               <div
+                id="ID"
                 style={{
                   width: "120px",
                   height: "45px",
@@ -1141,6 +1152,7 @@ class Condition extends Component {
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
+                  cursor: "pointer",
                 }}
                 onClick={() => this.handleRead()}
               >

@@ -174,7 +174,7 @@ class IfPanel extends Component {
       light: "",
       gesture: "",
       distance: "",
-      readToggel: "",
+      readToggel: false,
     };
     window.addEventListener("load", async (e) => {
       console.log("HEY_CALIIN", this.props.state);
@@ -211,7 +211,7 @@ class IfPanel extends Component {
     try {
       await port.open({ baudRate: 120000 });
     } catch (e) {
-      console.log(e);
+      // console.log(e);
     }
     await this.writePort("notWrite");
     // await this.readdata();
@@ -336,7 +336,7 @@ class IfPanel extends Component {
 
       writer.releaseLock();
     } catch (e) {
-      console.log(e);
+      // console.log(e);
     }
   }
 
@@ -1639,6 +1639,28 @@ class IfPanel extends Component {
     }
 
     var defaultsourceOptions = ({} = sourceOptions);
+    // console.log("KML@@@+++", this.state.readToggel);
+
+    if (this.state.readToggel == false || this.state.readToggel == "battery") {
+      if (this.state.readToggel == "battery" && this.state.isRead == true) {
+        this.state.isRead = false;
+        reader.cancel();
+      }
+      setTimeout(() => {
+        try {
+          document.getElementById("ID").style.pointerEvents = "none";
+        } catch (e) {}
+      }, 100);
+
+      console.log("FALLLLSSSE");
+    } else {
+      console.log("TRUUUUUUUUUUUUUUUUUUUEEEEE");
+      setTimeout(() => {
+        try {
+          document.getElementById("ID").style.pointerEvents = "auto";
+        } catch (e) {}
+      }, 100);
+    }
 
     return (
       <div className="outertabDiv-Condation">
@@ -1648,7 +1670,7 @@ class IfPanel extends Component {
             <Select
               onChange={(value) => {
                 this.onChange("source", value);
-                //console.log(value, "gsk+++@@@@@");
+                // console.log(value, "gsk+++@@@@@");
               }}
               color={HexTypes["if"].color}
               options={sourceOptions}
@@ -1824,6 +1846,7 @@ class IfPanel extends Component {
               </div>
             ) : (
               <div
+                id="ID"
                 style={{
                   width: "120px",
                   height: "45px",
