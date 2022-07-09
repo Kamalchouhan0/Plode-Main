@@ -5,6 +5,7 @@ import { createBrowserHistory } from "history";
 import renderPrgImage from "../../source/programImg";
 import SaveCard from "../Reusable/SaveCard/SaveCard";
 import { loadGoogleScript } from "../Login/GoogleApiLoadScript";
+import ReactLoading from "react-loading";
 const history = createBrowserHistory();
 
 // class SavedProgram extends Component {
@@ -129,12 +130,13 @@ async function intializeGapiClient(_gapi) {
   // maybeEnableButtons();
 }
 async function listFiles() {
+  console.log("listFiles");
   let response;
   try {
     response = await window.gapi.client.drive.files.list({
       pageSize: 10,
       fields: "files(id, name)",
-      q: "name = 'SaveData.pld'",
+      q: "name = 'ProjectData.pld'",
     });
     // download = await window.gapi.client.drive.files.get({
     //   fileId: response.result.files[0].id,
@@ -148,27 +150,22 @@ async function listFiles() {
   const files = response.result.files;
   if (!files || files.length == 0) {
     console.log("No files found.");
-    return;
+    return null;
   }
   // Flatten to string to display
-  const output = files.reduce(
-    (str, file) => `${str}${file.name} (${file.id}\n`,
-    "Files:\n"
-  );
-  console.log(files);
+  const fileId = files[0].id;
+  return fileId;
 }
 class SavedProgram extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      allSavedProgrm: [JSON.parse(localStorage.getItem("projectData"))],
+      allSavedProgrm: [],
+      noSavedProgrm: false,
     };
   }
 
   componentDidMount = () => {
-    let self = this;
-    self.getProject();
-
     //window.gapi is available at this point
     window.onGoogleScriptLoad = () => {
       const _gapi = window.gapi;
@@ -184,33 +181,16 @@ class SavedProgram extends Component {
         })();
       });
 
-      _gapi.load("client", () => {
-        intializeGapiClient(_gapi);
+      _gapi.load("client", async () => {
+        await intializeGapiClient(_gapi);
       });
     };
 
     //ensure everything is set before loading the script
     loadGoogleScript();
-  };
-
-  getProject = () => {
-    //   self.props.assemblyComponent(response.data.assembly.workspace);
-    //   self.props.PortConnections(response.data.assembly.PortConnections);
-    //   self.props.update(response.data.logic);
-
-    // self.props.assemblyComponent(response.data.assembly.workspace);
-    // self.props.PortConnections(response.data.assembly.PortConnections);
-    // self.props.update(response.data.logic);
-
-    let self = this;
-    axios
-      .get(`http://localhost:3008/getProject`)
-      .then(function (response) {
-        self.setState({ allSavedProgrm: response.data });
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    setTimeout(() => {
+      this.listProjectFiles();
+    }, 2000);
   };
 
   deleteProject = (id) => {
@@ -224,6 +204,32 @@ class SavedProgram extends Component {
       .catch(function (error) {
         console.log(error);
       });
+  };
+  listProjectFiles = async () => {
+    // console.log(e);
+    let id = await listFiles();
+    console.log(id);
+    if (id != null) {
+      let getProjectData;
+      let formData;
+      try {
+        getProjectData = await window.gapi.client.drive.files.get({
+          fileId: id,
+          alt: "media",
+        });
+        console.log(getProjectData);
+        formData = JSON.parse(getProjectData.body);
+        console.log(JSON.stringify(formData));
+      } catch (e) {}
+
+      if (JSON.stringify(formData) != "[]") {
+        this.setState({ allSavedProgrm: [formData] });
+      } else {
+        this.setState({ noSavedProgrm: true });
+      }
+    } else {
+      this.setState({ noSavedProgrm: true });
+    }
   };
   backbtn = (e) => {
     this.props.history.push("/programSelection");
@@ -364,22 +370,24 @@ class SavedProgram extends Component {
               }}
             >
               <div className="loading">
-                <h1
-                  style={{
-                    textAlign: "center",
-                    color: "gray",
-                    fontSize: "25px",
-                  }}
-                >
-                  No Saved Projects!!!! <br />
-                  Once you Save project,it will be shown here{" "}
-                </h1>
-                <button onClick={listFiles}>List</button>
-                {/* <ReactLoading
-                  type="bubbles"
-                  color="blue"
-                  className="loading_gif"
-                /> */}
+                {this.state.noSavedProgrm ? (
+                  <h1
+                    style={{
+                      textAlign: "center",
+                      color: "gray",
+                      fontSize: "25px",
+                    }}
+                  >
+                    No Saved Projects!!!! <br />
+                    Once you save a project,it will be shown here.{" "}
+                  </h1>
+                ) : (
+                  <ReactLoading
+                    type="spin"
+                    color="orange"
+                    className="loading_gif"
+                  />
+                )}
               </div>
             </div>
           </div>

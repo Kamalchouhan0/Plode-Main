@@ -129,6 +129,7 @@ function InternalAccessoriesScreen(props) {
   const [erasedProgram, setErasedProgram] = useState(false);
 
   const [isusb, setUsb] = useState(false);
+  const [reloaded, setReloaded] = useState(false);
 
   // const [isColorSensor, setColorSensor] = useState(false);
 
@@ -225,13 +226,14 @@ function InternalAccessoriesScreen(props) {
     console.log("PROPS", props.location.data);
 
     // if(props.location.data)
-    let hhh = JSON.parse(localStorage.getItem("SavedData"));
+    let hhh = JSON.parse(sessionStorage.getItem("SavedGDriveData"));
     // console.log("Names", hhh[0].name);
     if (hhh != null) {
+      let names = JSON.parse(sessionStorage.getItem("saveProps")) || null;
       for (let i = 0; i < hhh.length; i++) {
-        if (props.location.data == hhh[i].name) {
+        if (names.name == hhh[i].name) {
           sessionStorage.setItem("pip", true);
-          sessionStorage.setItem("name", props.location.data);
+          sessionStorage.setItem("name", names.name);
           console.log("KK", hhh[i].concept.internalaccessories.isTouchOne);
           Object.keys(hhh[i]).map((key, value) => {
             console.log("KEYS", key, value);
@@ -271,9 +273,13 @@ function InternalAccessoriesScreen(props) {
               // }
             }
           });
-          window.location.reload();
+          if (sessionStorage.getItem("internalAcessoriesReload") == "true") {
+            sessionStorage.setItem("internalAcessoriesReload", false);
+            window.location.reload();
+          }
         }
       }
+      // window.location.reload();
     }
 
     // socket.emit("_usbDetection", "Hi i am firoz");

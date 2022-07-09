@@ -883,7 +883,7 @@ class Assembly extends Component {
     // Reset panning and pinching variables
     this.panEnd();
     this.pinchEnd();
-    let hhh = JSON.parse(localStorage.getItem("SavedData"));
+    let hhh = JSON.parse(sessionStorage.getItem("SavedGDriveData"));
     let name = sessionStorage.getItem("name");
     console.log(name, "kkklmo");
     if (name != "null" && name != undefined && name != null) {
