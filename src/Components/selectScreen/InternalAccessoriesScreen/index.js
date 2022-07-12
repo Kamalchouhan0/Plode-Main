@@ -227,9 +227,9 @@ function InternalAccessoriesScreen(props) {
 
     // if(props.location.data)
     let hhh = JSON.parse(sessionStorage.getItem("SavedGDriveData"));
+    let names = JSON.parse(sessionStorage.getItem("saveProps")) || null;
     // console.log("Names", hhh[0].name);
-    if (hhh != null) {
-      let names = JSON.parse(sessionStorage.getItem("saveProps")) || null;
+    if (hhh != null && names != null) {
       for (let i = 0; i < hhh.length; i++) {
         if (names.name == hhh[i].name) {
           sessionStorage.setItem("pip", true);
