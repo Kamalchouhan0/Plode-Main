@@ -29,6 +29,7 @@ const useStyle = makeStyles((theme) => ({
     left: "5.7vw",
     height: "60px",
     width: "60px",
+    border: "1px solid red",
   },
   btnHelp: {
     position: "absolute",

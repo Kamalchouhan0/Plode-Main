@@ -768,6 +768,7 @@ h1 {
   position: relative;
   /* border: 1px solid red; */
   cursor: pointer;
+  /* border: 1px solid yellow; */
 }
 
 .PS-item1 {
@@ -810,6 +811,7 @@ h1 {
   height: 175px;
   width: 20%;
   user-select: none; /* Likely future */
+  /* border: 1px solid green; */
 }
 
 .PS-txt-Menu {
@@ -822,6 +824,7 @@ h1 {
   font-family: Halcyon_SemiBold !important;
   font-size: 18px;
   user-select: none; /* Likely future */
+  /* border: 1px solid red; */
 }
 
 .pg_selection_div_learn > div {
@@ -872,7 +875,7 @@ h1 {
   left: 7px;
 }
 
-@media only screen and (max-device-width: 1440px) {
+@media only screen and (min-device-width: 1025px) and (max-device-width: 1440px) {
   /* .new_project{left:5vw;}
         .saved_project{left:22vw;} */
 
@@ -921,7 +924,7 @@ h1 {
   }
 }
 
-@media only screen and (max-device-width: 1024px) {
+@media only screen and (min-device-width: 769px) and (max-device-width: 1024px) {
   /* .new_project{left:5vw;}
         .saved_project{left:22vw;} */
 
@@ -937,14 +940,20 @@ h1 {
   .PS-txt-Menu {
     /* position: absolute; */
     /* z-index: 3; */
-    top: 4.5%;
-    left: 11%;
+    /* changes start */
+    top: 5.5%;
+    /* changes end */
+    left: 13%;
+    /* border: 1px solid purple; */
   }
   .PS-programmenucard {
     /* position: absolute; */
     /* z-index: 1; */
-    top: -3%;
-    left: 5%;
+    /* changes start */
+    top: -6%;
+    /* changes end */
+    left: 7%;
+    /* border: 1px solid red; */
   }
 }
 
@@ -958,4 +967,40 @@ h1 {
   .ImgSelectMod {
     margin-top: -5%;
   }
+  /* changes start */
+  .PS-flowchartbased {
+    height: 47%;
+    width: 30%;
+    /* position: relative; */
+    /* border: 1px solid red; */
+    cursor: pointer;
+    /* border: 1px solid yellow; */
+  }
+  .PS-item1 {
+    position: absolute;
+    top: 50%;
+    left: 34%;
+    transform: translate(-34%, -50%);
+  }
+  .PS-item2 {
+    position: absolute;
+    top: 50%;
+    left: 65%;
+    transform: translate(-65%, -50%);
+  }
+  .PS-programmenucard {
+    /* position: absolute; */
+    /* z-index: 1; */
+    top: -7%;
+    left: 7%;
+    /* border: 1px solid red; */
+  }
+  .PS-txt-Menu {
+    /* position: absolute; */
+    /* z-index: 3; */
+    top: 4.5%;
+    left: 13%;
+    /* border: 1px solid purple; */
+  }
 }
+/* changes end */

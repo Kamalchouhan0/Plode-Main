@@ -6,6 +6,7 @@
   grid-template-rows: 100%;
   grid-template-columns: 60% 40%;
   user-select: none; /* Likely future */
+  /* border: 1px solid blue; */
 }
 
 .visualProgram-container .VP-backbtn {
@@ -41,23 +42,33 @@
 .visualProgram-container .VP-programmenucard {
   position: absolute;
   z-index: 1;
-  top: -4%;
-  left: 4%;
+  /* changes start */
+  top: 15%;
+  left: -10%;
+  transform: translate(10%, -15%);
+  /* transform: translate(-4%, 6%); */
+  /* changes end */
   height: 175px;
   width: 20%;
   user-select: none; /* Likely future */
+  /* border: 1px solid red; */
 }
 
 .visualProgram-container .VP-txt-Menu {
   position: absolute;
   z-index: 3;
-
-  top: 5.5%;
-  left: 11%;
+  /* changes start */
+  top: 5%;
+  left: 15%;
+  transform: translate(-15%, -5%);
+  /* changes end */
+  /* top: 5.5%;
+  left: 5%; */
   color: #fff;
   font-family: Halcyon_SemiBold !important;
   font-size: 18px;
   user-select: none; /* Likely future */
+  /* border: 1px solid red; */
 }
 
 .visualProgram-container .VP-txt-Heading {
@@ -67,37 +78,49 @@
   position: absolute;
   top: 20%;
   left: 10%;
+  transform: translate(-10%, -20%);
 }
 
 .visualProgram-container .VP-hr {
   width: 80px;
   height: 4px;
   position: absolute;
-  top: 20%;
-  left: 28%;
+  /* border: 1px solid red; */
   background: #30a8ce;
-  outline: none;
-  border: none;
+  /* outline: none; */
+  /* border: none; */
+  /* changes start */
+  top: 19%;
+  left: 190%;
+  transform: translate(190%, -19%);
 }
+/* changes start */
 
 .visualProgram-container .VP-txt-Heading2 {
   font-size: 28px;
   color: #000;
   font-family: Halcyon_Medium !important;
   position: absolute;
+  /* changes start */
   top: 20%;
-  right: 22%;
+  right: 15%;
+  transform: translate(-15%, -20%);
+  /* changes end */
 }
 
 .visualProgram-container .VP-hr2 {
   width: 80px;
   height: 4px;
   position: absolute;
-  top: 20%;
-  right: 15.5%;
+  /* changes start */
+  top: 19%;
+  right: 9%;
+  transform: translate(-9%, -19%);
+  /* changes end */
   background: #30a8ce;
   outline: none;
   border: none;
+  /* border: 1px solid blueviolet; */
 }
 
 .visualProgram-container .VP-flowchartbased,
@@ -230,8 +253,8 @@
 
 @media only screen and (max-device-width: 1440px) {
   .visualProgram-container .VP-programmenucard {
-    top: -5%;
-    left: 4%;
+    top: -1.5%;
+    left: 2%;
   }
 
   .visualProgram-container .VP-txt-Menu {
@@ -243,7 +266,7 @@
     /* width: 80px;
     height: 4px;
     position: absolute; */
-    left: 30%;
+    left: 18%;
     /* top: 23%; */
   }
 }
@@ -271,20 +294,67 @@
     left: 9%;
   }
 }
-@media only screen and (max-device-width: 1024px) {
+@media only screen and (min-device-width: 769px) and (max-device-width: 1024px) {
+  /* changes start */
+  .VP-programmenucard {
+    margin-top: 0%;
+    margin-left: 1.5%;
+    /* border: 1px solid yellow; */
+  }
+  /* changes end */
   .visualProgram-container .VP-txt-Menu {
     top: 4.5%;
     /* left: 12%; */
   }
+  /* changes start */
+
+  .visualProgram-container .VP-hr {
+    /* width: 80px;
+    height: 4px;
+    position: absolute; */
+    left: 20%;
+    top: 19%;
+  }
+  .visualProgram-container .VP-hr2 {
+    right: -0%;
+    top: 19%;
+  }
+  .VP-txt-Heading2 {
+    margin-right: -8%;
+  }
+  .VP-txt-Menu {
+    margin-top: 0%;
+    margin-left: 1.5%;
+  }
+}
+@media only screen and (max-device-width: 768px) {
   .visualProgram-container .VP-programmenucard {
-    top: -3%;
-    left: 5%;
+    top: -1.5%;
+    left: 2%;
+    width: 27%;
+  }
+
+  .VP-txt-Menu {
+    margin-left: 3%;
+  }
+  .VP-txt-Heading2 {
+    top: 0%;
+    left: 65%;
+    transform: translate(-65%, 0%);
+    width: 50%;
+    /* font-size: 10px; */
+    /* border: 1px solid red; */
+    /* margin-right: -10%; */
+    /* font-size: 20px; */
   }
   .visualProgram-container .VP-hr {
     /* width: 80px;
     height: 4px;
     position: absolute; */
-    left: 38%;
-    top: 23%;
+    left: 22%;
+  }
+  .visualProgram-container .VP-hr2 {
+    right: -3%;
   }
 }
+/* changes end */

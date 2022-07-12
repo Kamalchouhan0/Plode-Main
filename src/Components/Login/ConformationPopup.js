@@ -32,7 +32,9 @@ function ConformationPopup() {
   return (
     <div className={ConformationPopupStyle.Main_Div}>
       <div className={ConformationPopupStyle.Div_Panel}>
-        <div>
+        {/* changes start */}
+        <div className={ConformationPopupStyle.Nav_bar}>
+          {/* changes end */}
           <img
             className={ConformationPopupStyle.Back_Button}
             src={renderImage("backBtn")}

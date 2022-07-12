@@ -1,4 +1,3 @@
-
 .flowchart-navbarContainer {
   /* height: 61px; */
   height: 10vh;
@@ -22,30 +21,31 @@
   font-family: "Halcyon_SemiBold" !important;
 }
 
-.navbar_right{
+.navbar_right {
   display: inline-block;
 }
 
-.flowchart-iconBtnSize{
+.flowchart-iconBtnSize {
   position: relative;
   right: 0vw;
   height: 60px;
   width: 60px;
   cursor: pointer;
+  top: -6px;
+  /* border: 1px solid red; */
 }
-
 
 .isActive {
   color: #fff;
 }
 
 @media screen and (max-width: 1200px) {
-  .flowchart-navbar_new{
+  .flowchart-navbar_new {
     width: 150px !important;
   }
 }
 @media screen and (max-width: 1000px) {
-  .flowchart-navbar_new{
+  .flowchart-navbar_new {
     width: 130px !important;
   }
 }

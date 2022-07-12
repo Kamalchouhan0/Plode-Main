@@ -1278,7 +1278,7 @@ function InternalAccessoriesScreen(props) {
             <img
               className="iconBtnSize"
               src={renderPrgImage("helpBtnInActive")}
-              style={{ marginRight: "2%", marginTop: "1%" }}
+              style={{ marginRight: "2%", marginTop: "0.5%" }}
               onClick={handleHelpBtn}
             ></img>
           ) : (
@@ -1469,7 +1469,9 @@ function InternalAccessoriesScreen(props) {
         </div>
 
         <div className="InternalAccessoriesScreen-Item2">
-          <div className="input" style={styleInput}>
+          /* changes start make the new class name */
+          <div className="input input_one" style={styleInput}>
+            /* changes end */
             <p className="inputText" style={{ fontFamily: "Halcyon_SemiBold" }}>
               Inputs
             </p>
@@ -1725,7 +1727,6 @@ function InternalAccessoriesScreen(props) {
               )}
             </div>
           </div>
-
           <div className="onput" style={styleoutput}>
             <p className="txtTitle">Outputs</p>
             <div className="outputContiner">

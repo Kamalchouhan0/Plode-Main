@@ -20,7 +20,9 @@
 .back_btn {
   text-align: center;
   height: auto;
-  width: 4%;
+  /* changes start*/
+  width: 4.5%;
+  /* changes start */
   position: absolute;
   cursor: pointer;
   top: 4%;
@@ -34,8 +36,11 @@
   height: auto;
   width: 18%;
   position: absolute;
-  top: 5.5%;
+  /* changes start*/
+  top: 5.2%;
   left: 7%;
+  /* changes end */
+  /* border: 1px solid red; */
   /* font-weight: bold; */
   font-family: "Halcyon_SemiBold";
   /* margin-top: 7.5%; */
@@ -232,6 +237,9 @@
 @media only screen and (max-device-width: 1024px) {
   .PlayComp_txt {
     font-size: 19px;
+    /* changes start*/
+    margin-bottom: 10px;
+    /* changes end */
     /* margin-top: 8%;
       margin-left: 4%; */
   }
@@ -254,7 +262,9 @@
 @media (max-width: 768px) {
   .PlayComp_txt {
     font-size: 16px;
-    top: 5%;
+    /* changes start*/
+    top: 4.5%;
+    /* changes end */
     /* margin-top: 10%;
       margin-left: 13%; */
   }
@@ -306,7 +316,9 @@
   cursor: pointer;
 
   top: 74%;
-  left: 47%;
+  /* changes start */
+  left: 50%;
+  /* changes end */
   transform: translate(-50%, -50%);
 }
 .Scan_txt {
@@ -319,7 +331,10 @@
   cursor: pointer;
   text-align: center;
   position: absolute;
-  top: 74%;
-  left: 47%;
+  /* changes start*/
+  top: 74.5%;
+  /* changes end */
+  left: 50%;
   transform: translate(-50%, -50%);
+  /* border: 1px solid red; */
 }

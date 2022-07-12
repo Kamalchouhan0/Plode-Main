@@ -16,6 +16,7 @@
   width: 30%;
   position: relative;
   left: 35%;
+  /* border: 1px solid yellow; */
 }
 .ll {
   /* height: 90%;
@@ -25,11 +26,21 @@
   left: 5.5%; */
   /* border: 1px solid blue; */
 }
+/* changes start */
+.Nav_bar {
+  position: relative;
+  /* border: 1px solid purple; */
+  width: 100%;
+  height: auto;
+}
+/* changes end */
 .Back_Button {
   height: 60px;
   width: 60px;
   position: absolute;
-  top: 30px;
+  /* changes start */
+  top: 28px;
+  /* changes end */
   left: 31px;
   cursor: pointer;
 }
@@ -38,11 +49,12 @@
   width: 160px;
   font-size: 23px;
   font-family: "Halcyon_SemiBold" !important;
-
   position: absolute;
-  top: 5.5%;
-  left: 7%;
-  transform: translate(-4%, 7.5%);
+  /* changes start */
+  top: 27%;
+  left: 8%;
+  transform: translate(-8%, -27%);
+  /* changes end */
 }
 .Popup_Card {
   height: 100%;
@@ -65,8 +77,11 @@
   width: 15%;
   position: absolute;
   top: 5%;
-  right: 0%;
+  /* changes start */
+  right: 2.5%;
+  /* changes end */
   cursor: pointer;
+  /* border: 1px solid red; */
   /* transform: translate(2%, -6%); */
 }
 .Reconnect_Button {
@@ -145,8 +160,10 @@
     top: 40%;
   }
   .Play_Com {
-    top: 4.5%;
-    left: 7%;
+    /* changes start */
+    margin-top: -0.6%;
+    margin-left: -3%;
+    /* changes end */
   }
   .Close_Button {
     top: 14%;
@@ -160,13 +177,58 @@
     left: 38%;
   }
 }
-@media only screen and (max-device-width: 1024px) and (min-device-width: 768px) {
-  .Close_Button {
-    height: 12%;
-    width: 17%;
+/* changes start */
+@media (max-width: 768px) {
+  .Play_Com {
+    /* border: 1px solid red; */
+    position: absolute !important;
+    left: 14% !important;
+    top: 32%;
+  }
+  .Popup_Alert {
+    width: 174px;
+    height: 70px;
+    font-size: 16px;
 
-    top: 23%;
-    right: -2%;
+    top: 45%;
+    left: 52%;
+  }
+  .Reconnect_Button {
+    width: 105px;
+    /* changes start */
+    top: 65%;
+    /* changes end */
+    left: 51%;
+  }
+  .Reconnect_txt {
+    width: 90px;
+    height: 14px;
+    font-size: 15px;
+    /* changes start */
+    top: 62%;
+    left: 30%;
+    /* changes end */
+  }
+  .Close_Button {
+    height: 12.5%;
+    width: 17%;
+    /* changes start */
+    top: 20%;
+    right: -1%;
+    /* changes end */
+    /* border: 1px solid red; */
+  }
+}
+/* changes end */
+@media (max-device-width: 1024px) and (min-device-width: 769px) {
+  .Close_Button {
+    height: 12.5%;
+    width: 17%;
+    /* changes start */
+    top: 20%;
+    right: -1%;
+    /* changes end */
+    /* border: 1px solid red; */
   }
   .Popup_Alert {
     width: 174px;
@@ -178,18 +240,40 @@
   }
   .Reconnect_Button {
     width: 107px;
-
-    top: 61%;
+    /* changes start */
+    top: 65%;
+    /* changes end */
     left: 51%;
   }
   .Reconnect_txt {
     width: 90px;
     height: 14px;
     font-size: 15px;
-    top: 59.5%;
-    left: 34.5%;
+    /* changes start */
+    top: 63%;
+    left: 35%;
+  }
+  .Play_Com {
+    left: 12%;
+    top: 30%;
   }
 }
+/* changes end */
+
+/* .Back_Button {
+  height: 60px;
+  width: 60px;
+  position: absolute;
+  top: 30px;
+  left: 31px;
+  cursor: pointer;
+} */
+/* .Play_Com { */
+/* changes start */
+/* top: 30%;
+  left: 7%; */
+/* changes end */
+/* } */
 
 /* .Main_Div {
   height: 100vh;
@@ -208,7 +292,7 @@
   top: 30px;
   left: 31px;
   cursor: pointer;
-}
+} 
 .Play_Com {
   height: 20px;
   width: 160px;

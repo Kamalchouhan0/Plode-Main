@@ -2046,20 +2046,35 @@ const DnDFlow = (props) => {
             />
             <div className="flowchart-navbar-Action navbar-Action">
               <img
-                className="flowchart-iconBtnSize iconBtnSize"
-                style={{ width: "61px", height: "61px", marginRight: "10px" }}
+                className=""
+                style={{
+                  width: "61px",
+                  height: "61px",
+                  marginRight: "10px",
+                  marginTop: "-1px",
+                }}
                 src={alignImage}
                 onClick={align}
               ></img>
               <img
                 className="flowchart-iconBtnSize iconBtnSize"
-                style={{ width: "61px", height: "61px", marginRight: "10px" }}
+                style={{
+                  width: "61px",
+                  height: "61px",
+                  marginRight: "10px",
+                  marginTop: "-12px",
+                }}
                 src={clearImage}
                 onClick={clear}
               ></img>
               <img
                 className="flowchart-iconBtnSize iconBtnSize"
-                style={{ width: "61px", height: "61px", marginRight: "10px" }}
+                style={{
+                  width: "61px",
+                  height: "61px",
+                  marginRight: "10px",
+                  marginTop: "-12px",
+                }}
                 src={secondaryImg}
               ></img>
               {isUsb ? (
