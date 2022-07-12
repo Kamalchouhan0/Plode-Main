@@ -1,6 +1,8 @@
 import html2canvas from "html2canvas";
 import React, { Component } from "react";
 
+import { createBrowserHistory } from "history";
+import CustomNodeFlow from "../Simulate/DnD/Index";
 import { Link } from "react-router-dom";
 import renderPrgImage from "../../source/programImg";
 
@@ -141,24 +143,26 @@ class SaveProgram extends Component {
       }
     }
     console.log("dataas", this.state.keys, this.state.l);
-    // console.log("dataas", `${keyss}`, `${ll}`);
-    if (
-      sessionStorage.getItem("assempblyImageHTML") &&
-      sessionStorage.getItem("assempblyImageHTML") != "" &&
-      JSON.parse(sessionStorage.getItem("saveProps")) == null
-    ) {
-      div.innerHTML = sessionStorage.getItem("assempblyImageHTML");
-      html2canvas(div).then(function (canvas) {
-        div.innerHTML = "";
-        var img = canvas.toDataURL("image/png");
-        sessionStorage.setItem("assempblyImageURI", img);
-        var imgTag = document.getElementById("screenshot");
-        self.setState({ imgURL: img });
-        imgTag.src = img;
-      });
-    }
-    var div = document.getElementById("assemblyShot");
-    div.innerHTML = sessionStorage.getItem("assempblyImageHTML");
+
+    var img = sessionStorage.getItem("IMGEURL");
+    console.log("dataas", img);
+    // if (
+    //   sessionStorage.getItem("assempblyImageHTML") &&
+    //   sessionStorage.getItem("assempblyImageHTML") != "" &&
+    //   JSON.parse(sessionStorage.getItem("saveProps")) == null
+    // ) {
+    //   div.innerHTML = sessionStorage.getItem("assempblyImageHTML");
+    //   html2canvas(div).then(function (canvas) {
+    //     div.innerHTML = "";
+    //     var img = canvas.toDataURL("image/png");
+    //     sessionStorage.setItem("assempblyImageURI", img);
+    //     var imgTag = document.getElementById("screenshot");
+    self.setState({ imgURL: img });
+    //     imgTag.src = img;
+    //   });
+    // }
+    // var div = document.getElementById("assemblyShot");
+    // div.innerHTML = sessionStorage.getItem("assempblyImageHTML");
   };
   handleNameChange = (event) => {
     let names = sessionStorage.getItem("gdrivenames") || "";
@@ -929,24 +933,6 @@ class SaveProgram extends Component {
                       // onClick={() => (window.location.href = "/savedprogram")}
                     />
                   </Link>
-                  <img
-                    style={{
-                      height: "60px",
-                      width: "60px",
-                      position: "absolute",
-                      top: "85vh",
-                      left: "0px",
-                      zIndex: "100",
-                      cursor: "pointer",
-                    }}
-                    src={renderPrgImage("clearProgram")}
-                    // onClick={() =>
-                    //   (window.location.href = "/selectScreen/InternalAccessories")
-                    // }
-                    onClick={() => {
-                      this.delete(v);
-                    }}
-                  />
                 </>
               ) : (
                 <>
@@ -1168,53 +1154,53 @@ class SaveProgram extends Component {
                 src={this.state.imgURL}
               /> */}
                 {/* </div> */}
-                {v != null ? (
-                  <>
-                    <img
-                      style={{
-                        height: "60px",
-                        width: "60px",
-                        position: "absolute",
-                        bottom: "0",
-                        right: "0",
-                        zIndex: "100",
-                        cursor: "pointer",
-                      }}
-                      src={renderPrgImage("nextBtn")}
-                      // onClick={() =>
-                      //   (window.location.href = "/selectScreen/InternalAccessories")
-                      // }
-                      onClick={this.saveData}
-                    />
-                  </>
-                ) : this.state.nameError ? (
-                  <img
-                    src={renderPrgImage("saveBtn")}
-                    style={{
-                      height: "75px",
-                      width: "75px",
-                      position: "absolute",
-                      bottom: "0",
-                      right: "0",
-                    }}
-                  />
-                ) : (
-                  <img
-                    src={renderPrgImage("saveBtn")}
-                    style={{
-                      height: "75px",
-                      width: "75px",
-                      position: "absolute",
-                      bottom: "0",
-                      right: "0",
-                      cursor: "pointer",
-                    }}
-                    onClick={this.save}
-                  />
-                )}
                 <div id="assemblyShot"></div>
                 <div id="SaveAlert">Saving Project...</div>
               </div>
+              {v != null ? (
+                <>
+                  <img
+                    style={{
+                      height: "60px",
+                      width: "60px",
+                      position: "absolute",
+                      bottom: "10px",
+                      right: "35px",
+                      zIndex: "100",
+                      cursor: "pointer",
+                    }}
+                    src={renderPrgImage("nextBtn")}
+                    // onClick={() =>
+                    //   (window.location.href = "/selectScreen/InternalAccessories")
+                    // }
+                    onClick={this.saveData}
+                  />
+                </>
+              ) : this.state.nameError ? (
+                <img
+                  src={renderPrgImage("saveBtn")}
+                  style={{
+                    height: "75px",
+                    width: "75px",
+                    position: "absolute",
+                    bottom: "10px",
+                    right: "35px",
+                  }}
+                />
+              ) : (
+                <img
+                  src={renderPrgImage("saveBtn")}
+                  style={{
+                    height: "75px",
+                    width: "75px",
+                    position: "absolute",
+                    bottom: "10px",
+                    right: "35px",
+                    cursor: "pointer",
+                  }}
+                  onClick={this.save}
+                />
+              )}
             </div>
           </div>
         )}

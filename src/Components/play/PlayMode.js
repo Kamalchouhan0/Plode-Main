@@ -84,7 +84,7 @@ function Play(props) {
   }
   useEffect(() => {
     let no_port = props.webSerial;
-    if (typeof no_port !== undefined) {
+    if (no_port.name != "Not Connected" || no_port.readable != null) {
       console.log("WORKING>>>>>>>>");
       OpenReadComPort();
     }
@@ -108,7 +108,8 @@ function Play(props) {
     });
 
     try {
-      const portList = await navigator.serial.getPorts();
+      const filters = [{ usbVendorId: 0x1a86, usbProductId: 0x7523 }];
+      const portList = await navigator.serial.getPorts({ filters });
 
       if (portList.length === 1) {
         console.log(portList, "Hardware connected");

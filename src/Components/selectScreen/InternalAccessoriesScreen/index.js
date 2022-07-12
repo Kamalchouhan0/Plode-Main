@@ -294,8 +294,8 @@ function InternalAccessoriesScreen(props) {
     //     setUsb(false);
     //   }
     // });
-    let no_port = props.webserialPort;
-    if (typeof no_port !== undefined) {
+    let no_port = props.indexData.webSerial;
+    if (no_port != undefined) {
       console.log("WORKING>>>>>>>>");
       OpenReadComPort();
     }
@@ -358,14 +358,22 @@ function InternalAccessoriesScreen(props) {
       console.log(err.message);
     }
   });
+  useEffect(() => {
+    const p_Port = props.indexData.webSerial;
+    if (p_Port.readable != null) {
+      let v = 1;
+      sessionStorage.setItem("user", JSON.stringify(v));
+    }
+  }, []);
   const OpenReadComPort = async () => {
     const p_Port = props.indexData.webSerial;
 
     console.log(props, "p_Port");
     if (p_Port.onconnect == null) {
       console.log("TRUE");
-      let v = 1;
-      sessionStorage.setItem("user", JSON.stringify(v));
+      // setUsb(true);
+      // let v = 1;
+      // sessionStorage.setItem("user", JSON.stringify(v));
     }
     try {
       console.log("OPENED");

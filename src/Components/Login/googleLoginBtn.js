@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { loadGoogleScript } from "./GoogleApiLoadScript";
 import * as atatus from "atatus-spa";
 import { exp } from "@tensorflow/tfjs-core";
+import ReactLoading from "react-loading";
 const googleClientId =
   "798914613502-eeirsjatcut3f8pljkbknd1hdkampga8.apps.googleusercontent.com";
 const DISCOVERY_DOC =
@@ -123,6 +124,7 @@ function GoogleLoginBtn(props) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [imageUrl, setImageUrl] = useState();
+  const [isLoading, setIsLoading] = useState(false);
 
   const onSuccess = async (googleUser) => {
     console.log(googleUser);
@@ -134,7 +136,9 @@ function GoogleLoginBtn(props) {
     setImageUrl(profile.getImageUrl());
     sessionStorage.setItem("userData", JSON.stringify(profile));
     atatus.setUser(profile.getId(), email, name);
-    readProjectData();
+    setIsLoading(true);
+    await readProjectData();
+    setIsLoading(false);
     props.history.push("/biboxSelection");
   };
   const onFailure = () => {
@@ -190,7 +194,17 @@ function GoogleLoginBtn(props) {
     loadGoogleScript();
   }, []);
 
-  return <>{!isLoggedIn && <div id="google-signin"></div>}</>;
+  return (
+    <>
+      {isLoading ? (
+        <div style={{ marginRight: "30px" }}>
+          <ReactLoading type="spin" color="orange" height={40} width={40} />
+        </div>
+      ) : (
+        !isLoggedIn && <div id="google-signin"></div>
+      )}
+    </>
+  );
 }
 
 export default GoogleLoginBtn;

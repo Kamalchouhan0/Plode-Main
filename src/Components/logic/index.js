@@ -292,12 +292,16 @@ class Logic extends Component {
     let data = JSON.parse(sessionStorage.getItem("user"));
 
     if (data === 1) {
-      this.handleUsb();
+      this.setState({
+        isusb: true,
+      });
       console.log("Logic AD !!");
       // this.setState({ isusb: true });
     }
     if (data === 0) {
-      this.handleUsb();
+      this.setState({
+        isusb: false,
+      });
       console.log("Logic AD");
       // this.setState({ isusb: false });
     }

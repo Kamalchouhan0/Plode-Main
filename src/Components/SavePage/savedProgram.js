@@ -129,14 +129,14 @@ async function intializeGapiClient(_gapi) {
   // gapiInited = true;
   // maybeEnableButtons();
 }
-async function listFiles() {
+async function listFiles(filname) {
   console.log("listFiles");
   let response;
   try {
     response = await window.gapi.client.drive.files.list({
       pageSize: 10,
       fields: "files(id, name)",
-      q: "name = 'ProjectData.pld'",
+      q: `name = '${filname}'`,
     });
     // download = await window.gapi.client.drive.files.get({
     //   fileId: response.result.files[0].id,
@@ -207,7 +207,7 @@ class SavedProgram extends Component {
   };
   listProjectFiles = async () => {
     // console.log(e);
-    let id = await listFiles();
+    let id = await listFiles("ProjectData.pld");
     console.log(id);
     if (id != null) {
       let getProjectData;
@@ -223,12 +223,44 @@ class SavedProgram extends Component {
       } catch (e) {}
 
       if (JSON.stringify(formData) != "[]") {
-        this.setState({ allSavedProgrm: [formData] });
+        let savefile = await this.listSaveFiles();
+        if (savefile == true) {
+          console.log("savefile", savefile);
+          this.setState({ allSavedProgrm: [formData] });
+        } else {
+          this.setState({ noSavedProgrm: true });
+        }
       } else {
         this.setState({ noSavedProgrm: true });
       }
     } else {
       this.setState({ noSavedProgrm: true });
+    }
+  };
+  listSaveFiles = async () => {
+    // console.log(e);
+    let id = await listFiles("SaveData.pld");
+    console.log(id);
+    if (id != null) {
+      let getProjectData;
+      let formData;
+      try {
+        getProjectData = await window.gapi.client.drive.files.get({
+          fileId: id,
+          alt: "media",
+        });
+        console.log(getProjectData);
+        formData = JSON.parse(getProjectData.body);
+        console.log(JSON.stringify(formData));
+      } catch (e) {}
+
+      if (JSON.stringify(formData) != "[]") {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
     }
   };
   backbtn = (e) => {
@@ -378,7 +410,7 @@ class SavedProgram extends Component {
                       fontSize: "25px",
                     }}
                   >
-                    No Saved Projects!!!! <br />
+                    No Saved Projects. <br />
                     Once you save a project,it will be shown here.{" "}
                   </h1>
                 ) : (
