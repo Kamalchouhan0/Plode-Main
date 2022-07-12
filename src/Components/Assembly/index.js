@@ -863,10 +863,14 @@ class Assembly extends Component {
     let data = JSON.parse(sessionStorage.getItem("user"));
 
     if (data === 1) {
-      this.handleUsb();
+      this.setState({
+        isusb: true,
+      });
     }
     if (data === 0) {
-      this.handleUsb();
+      this.setState({
+        isusb: false,
+      });
     }
     Sizes._update(document.body.clientWidth, document.body.clientHeight);
     window.addEventListener("resize", (e) => {
@@ -883,7 +887,7 @@ class Assembly extends Component {
     // Reset panning and pinching variables
     this.panEnd();
     this.pinchEnd();
-    let hhh = JSON.parse(localStorage.getItem("SavedData"));
+    let hhh = JSON.parse(sessionStorage.getItem("SavedGDriveData"));
     let name = sessionStorage.getItem("name");
     console.log(name, "kkklmo");
     if (name != "null" && name != undefined && name != null) {
@@ -1250,6 +1254,14 @@ class Assembly extends Component {
     } else {
       this.props.history.push("/logic");
     }
+    // let ab = document.getElementById("assemblyConnections");
+    html2canvas(document.body).then((canvas) => {
+      let a = document.createElement("a");
+      a.download = "ss.png";
+      a.href = canvas.toDataURL("image/png");
+      sessionStorage.setItem("IMGEURL", a.href);
+      // a.click();
+    });
   };
 
   backBtn = () => {

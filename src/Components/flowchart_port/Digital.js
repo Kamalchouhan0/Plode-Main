@@ -112,10 +112,14 @@ function Digital(props) {
       sessionStorage.setItem("user", JSON.stringify(user));
     });
 
-    navigator.serial.addEventListener("disconnect", (e) => {
+    navigator.serial.addEventListener("disconnect", async (e) => {
       setUsb(false);
       var user = 0;
       sessionStorage.setItem("user", JSON.stringify(user));
+      const p_Port = props.webSerial;
+      try {
+        await p_Port.close();
+      } catch (e) {}
     });
 
     try {

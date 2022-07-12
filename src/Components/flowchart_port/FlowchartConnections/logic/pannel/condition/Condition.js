@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-
+import { connect } from "react-redux";
+import { webSerialAction } from "../../../../../../redux/actions";
 import renderPrgImage from "../../../../../../source/programImg";
 import Select from "../helpers/Select";
 import Slider from "../helpers/Slider";
@@ -49,6 +50,8 @@ let isIb = [];
 let selected = [],
   selectedTwo = [];
 
+var reader;
+
 for (let i = 0; i < 1000; i++)
   selected[i] = sessionStorage.getItem(`ifSelect${i}`) || "null";
 class Condition extends Component {
@@ -72,13 +75,13 @@ class Condition extends Component {
         sessionStorage.getItem(`bw${this.props.check}`) == "true"
       ),
       isRead: false,
-
+      Bytes: false,
       responceTp0: "",
       responceTp1: "",
       responceTp2: "",
       touch_pad: "",
       touch_pad2: "",
-      rangeA1: "252",
+      rangeA1: "",
       rangeA2: "",
       tactswitch: "",
       mic: "",
@@ -92,14 +95,569 @@ class Condition extends Component {
       light: "",
       gesture: "",
       distance: "",
-      readToggel: "",
+      readToggel: false,
       value: parseInt(sessionStorage.getItem(`ifValue${this.props.check}`)),
       value1: parseInt(sessionStorage.getItem(`ifValue2${this.props.check}`)),
       max: 1,
       selected: sessionStorage.getItem(`ifSelect${this.props.check}`) || "null",
       selectedTwo: selectedTwo[this.props.check],
     };
+
+    window.addEventListener("load", async (e) => {
+      console.log("HEY_CALIIN", this.props.state);
+
+      try {
+        const portList = await navigator.serial.getPorts();
+
+        if (portList.length === 1) {
+          console.log(portList, "Hardware connected");
+
+          await props.webSerialAction({ port: portList[0] }); // dispatching function of redux
+
+          this.setState.p1({
+            selected: true,
+            port: portList[0],
+          });
+        } else {
+          console.log("No hardware");
+
+          this.setState.p1(this.state.p1);
+        }
+      } catch (err) {
+        console.log(err.message);
+      }
+    });
   }
+
+  OpenReadComPort = async () => {
+    const port = this.props.webSerial;
+    console.log("PORTLIST", port);
+    try {
+      await port.open({ baudRate: 120000 });
+    } catch (e) {
+      // console.log(e);
+    }
+    await this.writePort("notWrite");
+    // await this.readdata();
+
+    // console.log("READABLE", port.readable.locked);
+  };
+
+  async readdata() {
+    const port = this.props.webSerial;
+    // eslint-disable-next-line no-undef
+    const textDecoder = new TextDecoderStream();
+    try {
+      // eslint-disable-next-line no-undef
+      const readableStreamClosed = port.readable.pipeTo(textDecoder.writable);
+    } catch {}
+
+    // const readableStreamClosed = port.readable.pipeTo(textDecoder.writable);
+    reader = textDecoder.readable.getReader();
+    var i = 1;
+    var combiBytes = [];
+    while (true) {
+      const { value, done } = await reader.read();
+      // console.log("VALUES", value, value.length);
+
+      try {
+        combiBytes = [...combiBytes, ...value];
+      } catch (e) {}
+
+      if (combiBytes.includes(`\n`)) {
+        this.state.Bytes = combiBytes.join("");
+        console.log(combiBytes.join(""), "comb");
+        combiBytes = [];
+      }
+      // i++;
+      // console.log("lxlxl", value);
+      console.log("lxlxl", combiBytes);
+      if (this.state.k == true) {
+        console.log("MAI CHAL GAYA");
+        reader.releaseLock();
+        break;
+      }
+
+      if (done) {
+        // Allow the serial port to be closed later.
+        reader.releaseLock();
+        break;
+      }
+      // value is a string.
+      console.log(value);
+    }
+  }
+  async writePort(data) {
+    try {
+      const filters = [{ usbVendorId: 0x1a86, usbProductId: 0x7523 }];
+      const ports = await navigator.serial.getPorts({ filters });
+      console.log("portsss", ports);
+
+      console.log("portsss", ports[0].writable);
+      // const outputStream = ports[0].writable,
+      const writer = ports[0].writable.getWriter();
+      // writer = outputStream.getWriter();
+      const sata = data;
+      const data1 = new Uint8Array(sata); // hello// 82, 76, 0, 0, 0, 82, 0, 0, 0, 66, 0, 0, 1, 0, 1,
+      console.log("send data:+", data1);
+
+      await writer.write(data1);
+
+      writer.releaseLock();
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  async componentDidUpdate() {
+    let no_port = this.props.webSerial;
+    // console.log("potf", no_port.readable.locked);
+
+    if (typeof no_port !== undefined) {
+      console.log("WORKING>>>>>>>>");
+      this.OpenReadComPort();
+    } else {
+      // this.OpenReadComPort();
+      console.log(JSON.parse(sessionStorage.getItem("webSerialPortList")));
+      console.log("SERIAL PORT NOT CONNECTED");
+    }
+
+    console.log("BYTES KI VALUE:--", this.state.Bytes);
+    if (this.state.Bytes != undefined) {
+      var BAR = this.state.Bytes.toString();
+    } else {
+      var BAR = "176 1 0 0 210 1 0 0 189 1 0 0 0 0 0 0 0 0 0";
+    }
+    // let BAR = "153 1 142 2 237 2 122 1 233 1 0 0 100 100 124 20 10 0 0";
+    console.log(BAR, "VAlies");
+    if (this.state.isRead) {
+      var valresponceTp0 = this.state.responceTp0;
+      var valresponceTp1 = this.state.responceTp1;
+      var valresponceTp2 = this.state.responceTp2;
+      var valtouch_pad = this.state.touch_pad;
+      var valtouch_pad2 = this.state.touch_pad2,
+        valrangeA1 = this.state.rangeA1,
+        valrangeA2 = this.state.rangeA2,
+        valtactswitch = this.state.tactswitch,
+        valtemp = this.state.temp,
+        valgas = this.state.gas,
+        valone = this.state.one,
+        valtwo = this.state.two,
+        valmic = this.state.mic,
+        valtemprature = this.state.temprature,
+        valred = this.state.red,
+        valgreen = this.state.green,
+        valblue = this.state.blue,
+        vallight = this.state.light,
+        valges = this.state.gesture,
+        valdis = this.state.distance;
+    } else {
+      var valresponceTp0 = "";
+      var valresponceTp1 = "";
+      var valresponceTp2 = "";
+      var valtouch_pad = "";
+      var valtouch_pad2 = "",
+        valrangeA1 = "",
+        valrangeA2 = "",
+        valtactswitch = "",
+        valtemp = "",
+        valgas = "",
+        valone = "",
+        valtwo = "",
+        valmic = "",
+        valtemprature = "",
+        valred = "",
+        valgreen = "",
+        valblue = "",
+        vallight = "",
+        valges = "",
+        valdis = "";
+    }
+
+    if (this.state.isRead) {
+      // var socket = socketIOClient.connect("http://localhost:3008");
+      let bytesData = Array(9).fill("O".charCodeAt());
+
+      bytesData.unshift("A".charCodeAt());
+      bytesData.unshift("P".charCodeAt());
+
+      let A1 = JSON.parse(sessionStorage.getItem("A1"));
+      let A2 = JSON.parse(sessionStorage.getItem("A2"));
+
+      let A1DIGI = JSON.parse(sessionStorage.getItem("A1DIGI"));
+      let A2DIGI = JSON.parse(sessionStorage.getItem("A2DIGI"));
+
+      let AUltra = JSON.parse(sessionStorage.getItem("AUltra"));
+
+      let B1 = JSON.parse(sessionStorage.getItem("B1"));
+      let B2 = JSON.parse(sessionStorage.getItem("B2"));
+
+      let B1DIGI = JSON.parse(sessionStorage.getItem("B1DIGI"));
+      let B2DIGI = JSON.parse(sessionStorage.getItem("B2DIGI"));
+
+      let BRGB = JSON.parse(sessionStorage.getItem("BRGB"));
+      let BMP3 = JSON.parse(sessionStorage.getItem("BMP3"));
+
+      let C1 = JSON.parse(sessionStorage.getItem("C1"));
+      let C2 = JSON.parse(sessionStorage.getItem("C2"));
+
+      let C1DIGI = JSON.parse(sessionStorage.getItem("C1DIGI"));
+      let C2DIGI = JSON.parse(sessionStorage.getItem("C2DIGI"));
+
+      let CUltra = JSON.parse(sessionStorage.getItem("CUltra"));
+
+      if (JSON.parse(sessionStorage.getItem("A"))) {
+        console.log("A1:", A1);
+        console.log("A2:", A2);
+        console.log("A1DIGI:", A1DIGI);
+        console.log("A2DIGI:", A2DIGI);
+        if (A1 == true && A2 == true) {
+          bytesData[2] = "I".charCodeAt();
+          bytesData[3] = "I".charCodeAt();
+        }
+
+        if (A1DIGI == true && A2DIGI == true) {
+          bytesData[2] = "A".charCodeAt();
+          bytesData[3] = "A".charCodeAt();
+        }
+      }
+      if (A1 == true) {
+        bytesData[2] = "I".charCodeAt();
+        // bytesData[3] = "I".charCodeAt();
+      }
+      if (A1 == true && A1DIGI == true) {
+        bytesData[2] = "A".charCodeAt();
+      }
+
+      if (A2 == true) {
+        bytesData[3] = "I".charCodeAt();
+        // bytesData[3] = "I".charCodeAt();
+      }
+      if (A2 == true && A2DIGI == true) {
+        bytesData[3] = "A".charCodeAt();
+      }
+      if (A1 == true && AUltra == true) {
+        bytesData[2] = "U".charCodeAt();
+        bytesData[3] = "O".charCodeAt();
+      }
+      if (JSON.parse(sessionStorage.getItem("B"))) {
+        if (B1 == true && B2 == true && BMP3 != true && BRGB != true) {
+          bytesData[4] = "I".charCodeAt();
+          bytesData[5] = "I".charCodeAt();
+        }
+
+        if (B1DIGI == true && B2DIGI == true && BMP3 != true && BRGB != true) {
+          bytesData[4] = "A".charCodeAt();
+          bytesData[5] = "A".charCodeAt();
+        }
+      }
+
+      if (B1 == true) {
+        bytesData[4] = "I".charCodeAt();
+        // bytesData[3] = "I".charCodeAt();
+      }
+      if (B1 == true && B1DIGI == true) {
+        bytesData[4] = "A".charCodeAt();
+      }
+
+      if (B2 == true) {
+        bytesData[5] = "I".charCodeAt();
+        // bytesData[3] = "I".charCodeAt();
+      }
+      if (B2 == true && B2DIGI == true) {
+        bytesData[5] = "A".charCodeAt();
+      }
+      if (JSON.parse(sessionStorage.getItem("C"))) {
+        if (C1 == true && C2 == true) {
+          bytesData[6] = "I".charCodeAt();
+          bytesData[7] = "I".charCodeAt();
+        }
+
+        if (C1DIGI == true && C2DIGI == true) {
+          bytesData[6] = "A".charCodeAt();
+          bytesData[7] = "A".charCodeAt();
+        }
+      }
+
+      if (C1 == true) {
+        bytesData[6] = "I".charCodeAt();
+        // bytesData[3] = "I".charCodeAt();
+      }
+      if (C1 == true && C1DIGI == true) {
+        bytesData[6] = "A".charCodeAt();
+      }
+
+      if (C2 == true) {
+        bytesData[7] = "I".charCodeAt();
+        // bytesData[3] = "I".charCodeAt();
+      }
+      if (C2 == true && C2DIGI == true) {
+        bytesData[7] = "A".charCodeAt();
+      }
+      if (C1 == true && CUltra == true) {
+        bytesData[6] = "U".charCodeAt();
+        bytesData[7] = "O".charCodeAt();
+      }
+      if (JSON.parse(sessionStorage.getItem("isMic"))) {
+        bytesData[9] = "M".charCodeAt();
+      }
+      if (JSON.parse(sessionStorage.getItem("isTemperature"))) {
+        bytesData[10] = "T".charCodeAt();
+      }
+      if (JSON.parse(sessionStorage.getItem("isTouchZero"))) {
+        bytesData[2] = "T".charCodeAt();
+        // bytesData[3] = "T".charCodeAt();
+      }
+      if (JSON.parse(sessionStorage.getItem("isTouchOne"))) {
+        bytesData[4] = "T".charCodeAt();
+        // bytesData[5] = "T".charCodeAt();
+      }
+      if (JSON.parse(sessionStorage.getItem("isTouchTwo"))) {
+        bytesData[6] = "T".charCodeAt();
+        // bytesData[7] = "T".charCodeAt();
+      }
+
+      // if (sessionData.internalaccessories.isTouchZero) {
+      //   bytesData[8] = "T".charCodeAt();
+      // }
+      // if (sessionData.internalaccessories.isTouchOne) {
+      //   bytesData[9] = "T".charCodeAt();
+      // }
+      // if (sessionData.internalaccessories.isTouchTwo) {
+      //   bytesData[10] = "T".charCodeAt();
+      // }
+      if (JSON.parse(sessionStorage.getItem("isDistanceSensors"))) {
+        bytesData[8] = "D".charCodeAt();
+      }
+      if (JSON.parse(sessionStorage.getItem("isGestureSensor"))) {
+        bytesData[8] = "G".charCodeAt();
+      }
+      if (JSON.parse(sessionStorage.getItem("isColorSensor"))) {
+        bytesData[8] = "C".charCodeAt();
+      }
+      if (JSON.parse(sessionStorage.getItem("isLightSensor"))) {
+        // bytesData[8] = "L".charCodeAt();
+        bytesData[8] = "L".charCodeAt();
+      }
+
+      console.log(bytesData);
+      this.writePort(bytesData);
+      var v = BAR.split(" ");
+
+      if (v[0] == "") {
+        v.shift();
+      }
+
+      if (v.length == "16") {
+        function insert(v, ...items) {
+          v.unshift(...items);
+        }
+
+        insert(v, "0", "0", "0");
+        console.log(v);
+      }
+      // if (v[6] == "installed") {
+      //   v = v.filter((vw, idx) => idx >= 6);
+      //   // console.log("VARR", vw);
+      //   // v.shift();
+      //   // v.shift();
+      //   // v.shift();
+      //   // v.shift();
+      //   // v[4] = 0;
+      //   // v[5] = 0;
+      //   // v[6] = 0;
+
+      //   function insert(v, ...items) {
+      //     v.unshift(...items);
+      //   }
+
+      //   insert(v, 1, 2, 3);
+      //   console.log(v);
+      //   console.log("VARR", v);
+      // }
+
+      // if (v[13] > 255 || v[17] === 0) {
+      //   v[14] = v[13].slice(-2, 4);
+      //   v[13] = v[13].slice(0, 2);
+
+      // v[18] = "0";
+      // }
+      console.log(v, "JJ");
+
+      if (v.length == "19" && v[0] != "") {
+        if (v[0] != null || v[2] != null) {
+          if (v[0] != null) {
+            var byte_val1 = v[0] & 0xff;
+            var byte_val2 = v[1] & 0xff;
+            console.log(byte_val1, byte_val2, "A1");
+            var valOfSensor = (byte_val2 << 8) + byte_val1;
+            console.log("LSB+MSB:-", valOfSensor);
+            if (valOfSensor <= 1024) {
+              valrangeA1 = valOfSensor;
+            }
+          }
+          if (v[2] != null) {
+            var byte_val1 = v[2] & 0xff;
+            var byte_val2 = v[3] & 0xff;
+            var valOfSensor = (byte_val2 << 8) + byte_val1;
+            console.log("LSB+MSB:-", valOfSensor);
+            valrangeA2 = valOfSensor;
+          }
+        }
+        if (v[4] != null || v[6] != null) {
+          if (v[4] != null) {
+            var byte_val1 = v[4] & 0xff;
+            var byte_val2 = v[5] & 0xff;
+            var valOfSensor = (byte_val2 << 8) + byte_val1;
+            console.log("LSB+MSB:-", valOfSensor);
+            valtemp = valOfSensor;
+          }
+          if (v[6] != null) {
+            var byte_val1 = v[6] & 0xff;
+            var byte_val2 = v[7] & 0xff;
+            var valOfSensor = (byte_val2 << 8) + byte_val1;
+            console.log("LSB+MSB:-", valOfSensor);
+            valgas = valOfSensor;
+          }
+        }
+        if (v[8] != null || v[10] != null) {
+          if (v[8] != null) {
+            var byte_val1 = v[8] & 0xff;
+            var byte_val2 = v[9] & 0xff;
+            var valOfSensor = (byte_val2 << 8) + byte_val1;
+            console.log("LSB+MSB:-", valOfSensor);
+            valone = valOfSensor;
+          }
+          if (v[10] != null) {
+            var byte_val1 = v[10] & 0xff;
+            var byte_val2 = v[11] & 0xff;
+            var valOfSensor = (byte_val2 << 8) + byte_val1;
+            console.log("LSB+MSB:-", valOfSensor);
+            valtwo = valOfSensor;
+          } else {
+            valtwo = 0;
+          }
+        }
+
+        if (JSON.parse(sessionStorage.getItem("isLightSensor"))) {
+          if (v[12] <= "255") {
+            var data = v[12];
+
+            vallight = data;
+            console.log(" 23 DISTANCE SENSOR:--", valdis);
+          }
+        }
+        if (JSON.parse(sessionStorage.getItem("isDistanceSensors"))) {
+          if (v[13] <= "255") {
+            var data = v[13];
+
+            valdis = data;
+            console.log(" 23 DISTANCE SENSOR:--", valdis);
+          }
+        }
+        if (JSON.parse(sessionStorage.getItem("isGestureSensor"))) {
+          if (v[14] <= "255") {
+            var data = v[14];
+
+            valges = data;
+            console.log(" 23 DISTANCE SENSOR:--", valdis);
+          }
+        }
+        if (JSON.parse(sessionStorage.getItem("isMic"))) {
+          if (v[15] != "0" || v[16] != "0") {
+            var byte_val1 = v[15] & 0xff;
+            var byte_val2 = v[16] & 0xff;
+            var valOfSensor = (byte_val2 << 8) + byte_val1;
+            console.log("LSB+MSB:-", valOfSensor);
+            valmic = valOfSensor;
+          }
+        }
+        if (JSON.parse(sessionStorage.getItem("isColorSensor"))) {
+          if (v[12] <= "255") {
+            var data = v[12];
+
+            valred = data;
+            console.log(" 23 DISTANCE SENSOR:--", valdis);
+          }
+          if (v[13] < 256) {
+            var data = v[13];
+
+            valgreen = data;
+            console.log(" 23 DISTANCE SENSOR:--", valdis);
+          }
+          if (v[14] < 256) {
+            var data = v[14];
+
+            valblue = data;
+            console.log(" 23 DISTANCE SENSOR:--", valdis);
+          }
+        }
+        if (JSON.parse(sessionStorage.getItem("isTemperature"))) {
+          if (v[17] != 0) {
+            var byte_val1 = v[17] & 0xff;
+            var byte_val2 = v[18] & 0xff;
+            var valOfSensor = (byte_val2 << 8) + byte_val1;
+            console.log("LSB+MSB TEMP:-", valOfSensor);
+            valtemprature = valOfSensor;
+          } else {
+            var byte_val2 = v[18];
+
+            console.log("LSB+MSB TEMP:-", valOfSensor);
+            valtemprature = byte_val2;
+          }
+        }
+        // if (JSON.parse(sessionStorage.getItem("isTouchZero"))) {
+        //   var byte_val1 = v[0] & 0xff;
+        //   var byte_val2 = v[1] & 0xff;
+        //   var valOfSensor = (byte_val2 << 8) + byte_val1;
+        //   console.log("LSB+MSB:-", valOfSensor);
+        //   valrangeA1 = valOfSensor;
+        // }
+        // if (JSON.parse(sessionStorage.getItem("isTouchOne"))) {
+        //   var byte_val1 = v[4] & 0xff;
+        //   var byte_val2 = v[5] & 0xff;
+        //   var valOfSensor = (byte_val2 << 8) + byte_val1;
+        //   console.log("LSB+MSB:-", valOfSensor);
+        //   valtemp = valOfSensor;
+        // }
+        // if (JSON.parse(sessionStorage.getItem("isTouchTwo"))) {
+        //   var byte_val1 = v[8] & 0xff;
+        //   var byte_val2 = v[9] & 0xff;
+        //   var valOfSensor = (byte_val2 << 8) + byte_val1;
+        //   console.log("LSB+MSB:-", valOfSensor);
+        //   valone = valOfSensor;
+        // }
+      }
+
+      setTimeout(() => {
+        console.log("valrespnse 22222222", valresponceTp0);
+
+        this.setState({
+          responceTp0: valresponceTp0,
+          responceTp1: valresponceTp1,
+          responceTp2: valresponceTp2,
+          touch_pad: valtouch_pad,
+          touch_pad2: valtouch_pad2,
+          rangeA1: valrangeA1,
+          rangeA2: valrangeA2,
+          tactswitch: valtactswitch,
+          temp: valtemp,
+          gas: valgas,
+          one: valone,
+          two: valtwo,
+          mic: valmic,
+          red: valred,
+          green: valgreen,
+          blue: valblue,
+          light: vallight,
+          gesture: valges,
+          distance: valdis,
+          temprature: valtemprature,
+        });
+      }, 300);
+    }
+  }
+
   componentWillMount() {
     a1Checked = JSON.parse(sessionStorage.getItem("a1-I/O"));
     a1Digi = JSON.parse(sessionStorage.getItem("A1DIGI"));
@@ -134,6 +692,16 @@ class Condition extends Component {
     this.onChange("hi", selected[this.props.check]);
   }
   componentWillUnmount() {
+    let no_port = this.props.webSerial;
+    console.log(no_port.readable);
+    if (no_port.name != "Not Connected") {
+      if (no_port.readable != null) {
+        if (no_port.readable.locked != false) {
+          reader.cancel();
+        }
+      }
+    }
+
     count[this.props.check] = this.state.value;
     selected[this.props.check] = this.state.selected;
     selectedTwo[this.props.check] = this.state.selectedTwo;
@@ -258,6 +826,14 @@ class Condition extends Component {
     else if (name == "sourceTwo") this.setState({ selectedTwo: val });
     // if (this.state.value > this.state.max) this.setState({ value: 0 });
   };
+
+  onChangeRead = (key, value) => {
+    console.log("value=====>", value);
+    this.setState({ readToggel: value.trim() });
+
+    // state[key] = value;
+  };
+
   handleOperators(val) {
     if (val == "greaterThan")
       if (this.state.isGraterThan) this.setState({ isGraterThan: false });
@@ -306,6 +882,16 @@ class Condition extends Component {
         this.setState({ isEqualTo: false });
       }
   }
+  handleRead = (e) => {
+    this.setState({ isRead: !this.state.isRead });
+    if (this.state.isRead) {
+      console.log("READER CANCELED");
+      reader.cancel();
+    } else {
+      this.readdata();
+    }
+  };
+
   render() {
     min = 0;
     sessionStorage.setItem(`ifSelect${this.props.check}`, this.state.selected);
@@ -318,6 +904,30 @@ class Condition extends Component {
     sessionStorage.setItem(`bw${this.props.check}`, this.state.isInBtween);
     sessionStorage.setItem(`eq${this.props.check}`, this.state.isEqualTo);
     sessionStorage.setItem(`ne${this.props.check}`, this.state.isNotequalTo);
+
+    let sessionFlowLogic = JSON.parse(sessionStorage.getItem("flow-logic"));
+    console.log("KML@@@+++", this.state.readToggel);
+
+    if (this.state.readToggel == false || this.state.readToggel == "null") {
+      if (this.state.readToggel == "null" && this.state.isRead == true) {
+        this.state.isRead = false;
+        reader.cancel();
+      }
+      setTimeout(() => {
+        try {
+          document.getElementById("ID").style.pointerEvents = "none";
+        } catch (e) {}
+      }, 100);
+
+      console.log("FALLLLSSSE");
+    } else {
+      console.log("TRUUUUUUUUUUUUUUUUUUUEEEEE");
+      // setTimeout(() => {
+      try {
+        document.getElementById("ID").style.pointerEvents = "auto";
+      } catch (e) {}
+      // }, 100);
+    }
 
     return (
       <div className="outertabDiv-Condition">
@@ -436,6 +1046,13 @@ class Condition extends Component {
             renderIn="conditionPropertyPanel"
           />
           <span>{this.state.max}</span>
+          <p style={{ position: "absolute", marginTop: "3%", left: "18%" }}>
+            {min}
+          </p>
+
+          <p style={{ position: "absolute", marginTop: "3%", right: "8%" }}>
+            {this.state.max}
+          </p>
         </div>
         {this.state.isInBtween ? (
           <div className="select-slider margin-section">
@@ -448,6 +1065,13 @@ class Condition extends Component {
               renderIn="conditionPropertyPanel"
             />
             <span>{this.state.max}</span>
+            <p style={{ position: "absolute", marginTop: "3%", left: "18%" }}>
+              {min}
+            </p>
+
+            <p style={{ position: "absolute", marginTop: "3%", right: "8%" }}>
+              {this.state.max}
+            </p>
           </div>
         ) : (
           <></>
@@ -457,7 +1081,7 @@ class Condition extends Component {
           <span>
             Read the
             <Select
-              onChange={(value) => this.onChange("sourceTwo", value)}
+              onChange={(value) => this.onChangeRead("sourceTwo", value)}
               componetName="flowchart"
               selected={this.state.selectedTwo}
             />
@@ -476,55 +1100,61 @@ class Condition extends Component {
                   justifyContent: "center",
                   alignItems: "center",
                 }}
-                //   onClick={() => this.handleRead()}
+                onClick={() => this.handleRead()}
               >
-                {this.state.readToggel == "A1" ? (
-                  <p>{this.state.rangeA1}</p>
-                ) : this.state.readToggel == "A2" ? (
-                  <p>{this.state.rangeA2}</p>
-                ) : this.state.readToggel == "B1" ? (
-                  <p>{this.state.temp}</p>
-                ) : this.state.readToggel == "B2" ? (
-                  <p>{this.state.gas}</p>
-                ) : this.state.readToggel == "C1" ? (
-                  <p>{this.state.one}</p>
-                ) : this.state.readToggel == "C2" ? (
-                  <p>{this.state.two}</p>
-                ) : this.state.readToggel == "TOUCH PAD 0" ? (
-                  <p>{this.state.rangeA1}</p>
-                ) : this.state.readToggel == "TOUCH PAD 1" ? (
-                  <p>{this.state.temp}</p>
-                ) : this.state.readToggel == "TOUCH PAD 2" ? (
-                  <p>{this.state.one}</p>
-                ) : this.state.readToggel == "MICROPHONE" ? (
-                  <p>{this.state.mic}</p>
-                ) : this.state.readToggel == "4-IN-1 SENSOR  →  BLUE" ? (
-                  <p>{this.state.blue}</p>
-                ) : this.state.readToggel == "4-IN-1 SENSOR  →  GREEN" ? (
-                  <p>{this.state.green}</p>
-                ) : this.state.readToggel == "4-IN-1 SENSOR  →  RED" ? (
-                  <p>{this.state.red}</p>
-                ) : this.state.readToggel == "4-IN-1 SENSOR  →  LIGHT" ? (
-                  <p>{this.state.light}</p>
-                ) : this.state.readToggel == "4-IN-1 SENSOR  →  GESTURE" ? (
-                  <p>{this.state.gesture}</p>
-                ) : this.state.readToggel == "4-IN-1 SENSOR  →  DIST" ? (
-                  <p>{this.state.distance}</p>
+                {this.state.readToggel == "port A1" ||
+                this.state.readToggel == "ultra A" ? (
+                  <p style={{ marginTop: "18%" }}>{this.state.rangeA1}</p>
+                ) : this.state.readToggel == "port A2" ? (
+                  <p style={{ marginTop: "18%" }}>{this.state.rangeA2}</p>
+                ) : this.state.readToggel == "port B1" ? (
+                  <p style={{ marginTop: "18%" }}>{this.state.temp}</p>
+                ) : this.state.readToggel == "port B2" ? (
+                  <p style={{ marginTop: "18%" }}>{this.state.gas}</p>
+                ) : this.state.readToggel == "port C1" ||
+                  this.state.readToggel == "ultra C" ? (
+                  <p style={{ marginTop: "18%" }}>{this.state.one}</p>
+                ) : this.state.readToggel == "port C2" ? (
+                  <p style={{ marginTop: "18%" }}>{this.state.two}</p>
+                ) : this.state.readToggel == "touchZero" ? (
+                  <p style={{ marginTop: "18%" }}>{this.state.rangeA1}</p>
+                ) : this.state.readToggel == "touchOne" ? (
+                  <p style={{ marginTop: "18%" }}>{this.state.temp}</p>
+                ) : this.state.readToggel == "touchTwo" ? (
+                  <p style={{ marginTop: "18%" }}>{this.state.one}</p>
+                ) : this.state.readToggel == "microphone" ? (
+                  <p style={{ marginTop: "18%" }}>{this.state.mic}</p>
+                ) : this.state.readToggel == "temperature" ? (
+                  <p style={{ marginTop: "18%" }}>{this.state.temprature}</p>
+                ) : this.state.readToggel == "colorSensorBlue" ? (
+                  <p style={{ marginTop: "18%" }}>{this.state.blue}</p>
+                ) : this.state.readToggel == "colorSensorGreen" ? (
+                  <p style={{ marginTop: "18%" }}>{this.state.green}</p>
+                ) : this.state.readToggel == "colorSensorRed" ? (
+                  <p style={{ marginTop: "18%" }}>{this.state.red}</p>
+                ) : this.state.readToggel == "lightSensor" ? (
+                  <p style={{ marginTop: "18%" }}>{this.state.light}</p>
+                ) : this.state.readToggel == "gestureSensor" ? (
+                  <p style={{ marginTop: "18%" }}>{this.state.gesture}</p>
+                ) : this.state.readToggel == "distanceSensor" ? (
+                  <p style={{ marginTop: "18%" }}>{this.state.distance}</p>
                 ) : null}
               </div>
             ) : (
               <div
+                id="ID"
                 style={{
                   width: "120px",
                   height: "45px",
-                  background: "#25245E",
+                  background: "#30A8CE",
                   borderRadius: "15px",
                   color: "#fff",
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
+                  cursor: "pointer",
                 }}
-                //   onClick={() => this.handleRead()}
+                onClick={() => this.handleRead()}
               >
                 Read
               </div>
@@ -552,4 +1182,18 @@ class Condition extends Component {
   }
 }
 
-export default Condition;
+// export default Condition;
+const mapStateToProps = (state) => {
+  return state;
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    webSerialAction: (data) => {
+      console.log("mapDispatchToProps", data);
+      dispatch(webSerialAction(data));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Condition);

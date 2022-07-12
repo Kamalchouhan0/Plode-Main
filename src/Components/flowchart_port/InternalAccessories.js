@@ -113,15 +113,19 @@ const InternalAccessories = (props) => {
       sessionStorage.setItem("user", JSON.stringify(user));
     });
 
-    navigator.serial.addEventListener("disconnect", (e) => {
+    navigator.serial.addEventListener("disconnect", async (e) => {
       setUsb(false);
       var user = 0;
       sessionStorage.setItem("user", JSON.stringify(user));
+      const p_Port = props.webSerial;
+      try {
+        await p_Port.close();
+      } catch (e) {}
     });
 
     try {
-      const portList = await navigator.serial.getPorts();
-
+      const filters = [{ usbVendorId: 0x1a86, usbProductId: 0x7523 }];
+      const portList = await navigator.serial.getPorts({ filters });
       if (portList.length === 1) {
         console.log(portList, "Hardware connected");
 
@@ -140,7 +144,14 @@ const InternalAccessories = (props) => {
       console.log(err.message);
     }
   });
-
+  useEffect(() => {
+    const p_Port = props.webSerial;
+    if (p_Port.readable != null) {
+      console.log("Comp Did Mount");
+      let v = 1;
+      sessionStorage.setItem("user", JSON.stringify(v));
+    }
+  }, []);
   const OpenReadComPort = async () => {
     const p_Port = props.webSerial;
 
@@ -794,7 +805,8 @@ const InternalAccessories = (props) => {
           i != "Hardware" &&
           i != "userData" &&
           i != "concept" &&
-          i != "webSerialPortList"
+          i != "webSerialPortList" &&
+          i != "user"
         ) {
           //arr.push(i);
           sessionStorage.removeItem(i);
@@ -876,7 +888,7 @@ const InternalAccessories = (props) => {
       // sessionStorage.setItem("flowchart-elements", null);
       // sessionStorage.setItem("flowchart-elements-id", null);
       history.push("/flow");
-      window.location.reload();
+      // window.location.reload();
     } else {
       setErasedProgram(false);
     }
