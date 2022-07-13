@@ -1483,9 +1483,7 @@ function InternalAccessoriesScreen(props) {
         </div>
 
         <div className="InternalAccessoriesScreen-Item2">
-          /* changes start make the new class name */
           <div className="input input_one" style={styleInput}>
-            /* changes end */
             <p className="inputText" style={{ fontFamily: "Halcyon_SemiBold" }}>
               Inputs
             </p>
