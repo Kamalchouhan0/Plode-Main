@@ -6,7 +6,7 @@
   grid-template-rows: 100%;
   grid-template-columns: 60% 40%;
   user-select: none; /* Likely future */
-  /* border: 1px solid blue; */
+  /* border: 2px solid blue; */
 }
 
 .visualProgram-container .VP-backbtn {
@@ -14,7 +14,8 @@
   top: 3%;
   left: 3%;
   z-index: 2;
-  user-select: none; /* Likely future */
+  user-select: none;
+  /* Likely future */
 }
 .helpiconBtnSize {
   position: absolute;
@@ -29,6 +30,7 @@
   left: 0%;
   z-index: 100000;
   background: #fff;
+  /* border: 2px solid green; */
 }
 .helpClose {
   position: absolute;
@@ -38,29 +40,38 @@
   width: 4%;
   z-index: 100000;
 }
-
 .visualProgram-container .VP-programmenucard {
   position: absolute;
   z-index: 1;
-  /* changes start */
-  top: 15%;
-  left: -10%;
-  transform: translate(10%, -15%);
-  /* transform: translate(-4%, 6%); */
-  /* changes end */
+  top: -4%;
+  left: 4%;
   height: 175px;
   width: 20%;
   user-select: none; /* Likely future */
-  /* border: 1px solid red; */
 }
+
+/* .visualProgram-container .VP-programmenucard {
+  position: relative;
+  z-index: 1;
+  changes start
+  top: -8%;
+  left: 10%;
+  transform: translate(-10%, 8%);
+  changes end
+  height: 175px;
+  width: 30%;
+  user-select: none; 
+  Likely future
+  border: 1px solid red;
+} */
 
 .visualProgram-container .VP-txt-Menu {
   position: absolute;
   z-index: 3;
   /* changes start */
   top: 5%;
-  left: 15%;
-  transform: translate(-15%, -5%);
+  left: 11%;
+  transform: translate(-11%, -5%);
   /* changes end */
   /* top: 5.5%;
   left: 5%; */
@@ -68,7 +79,7 @@
   font-family: Halcyon_SemiBold !important;
   font-size: 18px;
   user-select: none; /* Likely future */
-  /* border: 1px solid red; */
+  /* border: 1px solid blue; */
 }
 
 .visualProgram-container .VP-txt-Heading {
@@ -87,12 +98,12 @@
   position: absolute;
   /* border: 1px solid red; */
   background: #30a8ce;
-  /* outline: none; */
-  /* border: none; */
+  outline: none;
+  border: none;
   /* changes start */
   top: 19%;
-  left: 190%;
-  transform: translate(190%, -19%);
+  left: 32%;
+  transform: translate(-32%, -19%);
 }
 /* changes start */
 
@@ -114,15 +125,14 @@
   position: absolute;
   /* changes start */
   top: 19%;
-  right: 9%;
-  transform: translate(-9%, -19%);
+  right: 10%;
+  transform: translate(-10%, -19%);
   /* changes end */
   background: #30a8ce;
   outline: none;
   border: none;
   /* border: 1px solid blueviolet; */
 }
-
 .visualProgram-container .VP-flowchartbased,
 .VP-programbased,
 .VP-blockbased,
@@ -130,9 +140,20 @@
 .VP-pythoncodingbutton {
   height: 47%;
   width: 22%;
-  position: relative;
+  position: absolute;
   /* border: 1px solid red; */
 }
+
+/* .visualProgram-container .VP-flowchartbased,
+.VP-programbased,
+.VP-blockbased,
+.VP-CCoding,
+.VP-pythoncodingbutton {
+  height: 47%;
+  width: 22%;
+  position: relative;
+  border: 1px solid red;
+} */
 
 .visualProgram-container .vp-item1 {
   position: absolute;
@@ -250,23 +271,27 @@
   position: absolute;
   top: 55%;
 }
-
+/* tablet 768px  
+laptop 1024px
+desktop 1440px
+*/
+/* large screen */
 @media only screen and (max-device-width: 1440px) {
   .visualProgram-container .VP-programmenucard {
-    top: -1.5%;
-    left: 2%;
+    top: -5%;
+    left: 4%;
   }
 
   .visualProgram-container .VP-txt-Menu {
     top: 4.5%;
     font-size: 20px;
-    left: 10.5%;
+    left: 12.5%;
   }
   .visualProgram-container .VP-hr {
     /* width: 80px;
     height: 4px;
     position: absolute; */
-    left: 18%;
+    left: 30%;
     /* top: 23%; */
   }
 }
@@ -294,67 +319,52 @@
     left: 9%;
   }
 }
-@media only screen and (min-device-width: 769px) and (max-device-width: 1024px) {
-  /* changes start */
-  .VP-programmenucard {
-    margin-top: 0%;
-    margin-left: 1.5%;
-    /* border: 1px solid yellow; */
-  }
-  /* changes end */
-  .visualProgram-container .VP-txt-Menu {
-    top: 4.5%;
-    /* left: 12%; */
-  }
-  /* changes start */
-
-  .visualProgram-container .VP-hr {
-    /* width: 80px;
-    height: 4px;
-    position: absolute; */
-    left: 20%;
-    top: 19%;
-  }
-  .visualProgram-container .VP-hr2 {
-    right: -0%;
-    top: 19%;
-  }
-  .VP-txt-Heading2 {
-    margin-right: -8%;
-  }
-  .VP-txt-Menu {
-    margin-top: 0%;
-    margin-left: 1.5%;
-  }
-}
-@media only screen and (max-device-width: 768px) {
+@media only screen and (max-device-width: 1024px) {
   .visualProgram-container .VP-programmenucard {
-    top: -1.5%;
-    left: 2%;
-    width: 27%;
+    width: 180px;
+    left: 6%;
+    top: -4.5%;
   }
-
-  .VP-txt-Menu {
-    margin-left: 3%;
-  }
-  .VP-txt-Heading2 {
-    top: 0%;
-    left: 65%;
-    transform: translate(-65%, 0%);
-    width: 50%;
-    /* font-size: 10px; */
-    /* border: 1px solid red; */
-    /* margin-right: -10%; */
-    /* font-size: 20px; */
+  .visualProgram-container .VP-txt-Heading,
+  .visualProgram-container .VP-txt-Heading2 {
+    font-size: 22px;
+    top: 21%;
   }
   .visualProgram-container .VP-hr {
-    /* width: 80px;
-    height: 4px;
-    position: absolute; */
-    left: 22%;
+    top: 20%;
+    left: 32%;
   }
   .visualProgram-container .VP-hr2 {
-    right: -3%;
+    top: 20%;
+    right: 8%;
   }
 }
-/* changes end */
+@media (max-width: 768px) {
+  .visualProgram-container .VP-programmenucard {
+    width: 180px;
+    left: 8%;
+    top: -7%;
+  }
+  .visualProgram-container .VP-txt-Menu {
+    left: 15%;
+  }
+  .visualProgram-container .VP-txt-Heading,
+  .visualProgram-container .VP-txt-Heading2 {
+    font-size: 2.6vw;
+  }
+  .visualProgram-container .VP-hr {
+    top: 19%;
+    left: 36%;
+  }
+  .visualProgram-container .VP-hr2 {
+    top: 19%;
+    right: 6%;
+  }
+  .VP-sub2 .VP-sub2-txt,
+  .VP-sub1 .VP-sub-txt,
+  .VP-sub3 .VP-sub3-txt,
+  .VP-sub4 .VP-sub4-txt,
+  .VP-sub5 .VP-sub5-txt {
+    font-size: 18px;
+  }
+}

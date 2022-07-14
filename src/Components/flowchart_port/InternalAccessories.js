@@ -905,14 +905,17 @@ const InternalAccessories = (props) => {
         <button
           className="BtnPopup"
           onClick={() => shouldErase("Yes")}
-          style={{ position: "relative", top: "-7px" }}
+          style={{
+            position: "relative",
+            top: "-22px",
+          }}
         >
           Yes
         </button>
         <button
           className="BtnPopup"
           onClick={() => shouldErase("No")}
-          style={{ position: "relative", top: "-7px", left: "10px" }}
+          style={{ position: "relative", top: "-22px", left: "10px" }}
         >
           No
         </button>

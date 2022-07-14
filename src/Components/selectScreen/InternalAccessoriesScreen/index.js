@@ -1226,14 +1226,14 @@ function InternalAccessoriesScreen(props) {
         <button
           className="BtnPopup"
           onClick={() => shouldErase("Yes")}
-          style={{ position: "relative", top: "-7px" }}
+          style={{ position: "relative", top: "-22px" }}
         >
           Yes
         </button>
         <button
           className="BtnPopup"
           onClick={() => shouldErase("No")}
-          style={{ position: "relative", top: "-7px", left: "10px" }}
+          style={{ position: "relative", top: "-22px", left: "10px" }}
         >
           No
         </button>
@@ -1483,9 +1483,7 @@ function InternalAccessoriesScreen(props) {
         </div>
 
         <div className="InternalAccessoriesScreen-Item2">
-          /* changes start make the new class name */
           <div className="input input_one" style={styleInput}>
-            /* changes end */
             <p className="inputText" style={{ fontFamily: "Halcyon_SemiBold" }}>
               Inputs
             </p>

@@ -10,6 +10,7 @@
   display: grid;
   grid-template-columns: 35% 65%;
   grid-template-rows: 100%;
+  /* border: 2px solid red; */
 }
 
 .flowchart-InternalAccessoriesScreen-Item1 {
@@ -18,7 +19,7 @@
   width: 100%;
   top: 50%;
   transform: translate(-0%, -50%);
-  /* border: 1px solid red; */
+  /* border: 1px solid blue; */
 }
 
 .flowchart-InternalAccessoriesScreen-Item2 {
@@ -36,7 +37,7 @@
   left: 50%;
   -webkit-transform: translate(-50%, -10%);
   transform: translate(-50%, -10%);
-  /* border: 1px solid blue; */
+  /* border: 1px solid green; */
 }
 
 .flowchart-InternalAccessoriesScreen-Item2 .input .flowchart-inputText {
@@ -119,13 +120,16 @@
 
 .flowchart-device .deviceContainer .imgStyleMic {
   width: 80px;
-  height: 91px !important;
+  height: 85px !important;
   position: absolute;
-  top: -35% !important;
-  left: 48%;
+  /* Changes start */
+  top: -80% !important;
+  left: 50%;
   -webkit-transform: translate(-48%, -5%);
-  transform: translate(-48%, -5%);
+  transform: translate(-50%, 80%);
+  /* changes end */
   z-index: -1 !important;
+  /* border: 1px solid red; */
 }
 
 .flowchart-device .deviceContainer .imgStyleBuzzer {
@@ -252,13 +256,24 @@
 }
 /* changes start */
 
+@media (max-width: 1024px) and (min-width: 769px) {
+  .flowchart-navbar_new {
+    margin: 10px;
+    padding: 20px;
+    top: -11%;
+    left: -10;
+    transform: translate(10%, 11%);
+    /* border: 2px solid red; */
+  }
+}
+
 @media (max-width: 768px) {
   .flowchart-navbarContainer {
     /* height: 61px; */
     height: 10vh;
     width: 100%;
     background-color: #f0f7fa;
-    position: relative;
+    /* position: relative; */
     z-index: 80000;
     /* border: 5px solid green; */
     /* top: 20px; */
@@ -274,13 +289,4 @@
   }
 }
 
-@media (max-width: 1024px) and (min-width: 769px) {
-  .flowchart-navbar_new {
-    margin: 10px;
-    padding: 20px;
-    top: -11%;
-    left: -10;
-    transform: translate(10%, 11%);
-  }
-}
 /* changes end */

@@ -4,6 +4,7 @@
   display: grid;
   grid-template-columns: 100%;
   grid-template-rows: 10% 80% 10%;
+  /* border: 1px solid red; */
 }
 
 .Camera_Header {
@@ -28,6 +29,12 @@
   -webkit-animation: spin 2s linear infinite; /* Safari */
   animation: spin 2s linear infinite;
 }
+/* changes start */
+.Camera123 {
+  position: relative;
+  /* border: 2px solid green; */
+}
+/* changes end */
 .loaderText {
   position: absolute;
   z-index: 100;
@@ -106,8 +113,20 @@
   width: 5%;
   z-index: 100000;
 }
+/* changes start */
+@media (max-width: 2560px) and (min-width: 1441px) {
+  .Camera_Ace {
+    height: auto;
+    width: 16%;
+    position: absolute;
+    top: 33%;
+    left: 65%;
+    /* border: 1px solid red; */
+  }
+}
+/* changes end */
 
-@media screen and (max-width: 1445px) and (min-width: 1025px) {
+@media screen and (max-width: 1440px) and (min-width: 1025px) {
   .Camera_Ace {
     height: auto;
     width: 16%;
