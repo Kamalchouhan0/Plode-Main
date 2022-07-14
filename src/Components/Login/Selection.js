@@ -7,8 +7,20 @@ import program from "../../Assets/program button.png";
 import renderImage from "../../source/importImg";
 import SMSlider from "../ReusableComponents/SelectModeSlider/SMSlider";
 import SelectionStyle from "./Selection.module.css";
-import ReactLoading from "react-loading";
-
+async function loadAssets(assetList) {
+  console.time("Time to cache images");
+  const promises = assetList.map((src) => {
+    return new Promise(function (resolve, reject) {
+      const img = new Image();
+      // console.log(src);
+      img.src = src;
+      img.onload = resolve();
+      img.onerror = reject();
+    });
+  });
+  Promise.all(promises);
+  console.timeEnd("Time to cache images");
+}
 function Selection(props) {
   let history = useHistory();
 
@@ -70,7 +82,16 @@ function Selection(props) {
 
     console.log(p_Port, "p_Port");
   };
-
+  let assetList = [
+    renderImage("backBtn"),
+    renderImage("helpBtnInActive"),
+    renderImage("PlayCard_Svg"),
+    renderImage("RemoteCard_Svg"),
+    renderImage("SpeechCard_Svg"),
+    renderImage("MusicCard_Svg"),
+    renderImage("CameraCard_Svg"),
+  ];
+  loadAssets(assetList);
   return (
     <div className={SelectionStyle.Main_Select}>
       <div className={SelectionStyle.Select_Header}>
