@@ -349,9 +349,12 @@
   .device {
     margin-top: 45px;
   }
-  .input {
-    top: 65px;
+  /* changes start */
+  .input_one {
+    top: 65px !important;
+    /* border: 1px solid red; */
   }
+  /* changes end */
   .onput {
     top: 65px;
   }

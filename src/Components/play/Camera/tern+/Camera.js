@@ -487,7 +487,7 @@ function Camera(props) {
 
       <div>
         <h3 className="Camera_Instruc">
-          Tilt your head in different directions to see the Play Coumputer
+          Tilt your head in different directions to see the Play Computer
           respond
         </h3>
       </div>

@@ -180,8 +180,11 @@
   .Play_Comp {
     /* width: 180px;
     font-size: 27px; */
-    top: 5.5%;
+    /* changes start */
+    margin-top: 0.5%;
+    /* changes end */
     left: 8%;
+    /* border: 1px solid red; */
   }
 
   .Play_Button {
@@ -410,7 +413,11 @@
   }
   .Play_Comp {
     font-size: 18px;
-    left: 13%;
+    /* changes start */
+    margin-top: 1.5%;
+    left: 11%;
+    /* changes end */
+    /* border: 1px solid red; */
   }
   .Help_Bttn {
     height: 55px;

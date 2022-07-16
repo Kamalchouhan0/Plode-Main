@@ -4,6 +4,7 @@
   display: grid;
   grid-template-columns: 100%;
   grid-template-rows: 10% 80% 10%;
+  /* border: 1px solid red; */
 }
 
 .Camera_Header {
@@ -28,6 +29,12 @@
   -webkit-animation: spin 2s linear infinite; /* Safari */
   animation: spin 2s linear infinite;
 }
+/* changes start */
+.Camera123 {
+  position: relative;
+  /* border: 2px solid green; */
+}
+/* changes end */
 .loaderText {
   position: absolute;
   z-index: 100;
@@ -69,12 +76,18 @@
   height: auto;
   width: 16%;
   position: absolute;
-  top: 31%;
-  left: 61%;
+  /* changes start */
+  top: 10%;
+  left: 10%;
+  transform: translate(-10%, -10%);
+  /* border: 1px solid red; */
 }
+/* changes end */
 .Camera_Instruc {
   height: auto;
-  width: 38%;
+  /* chnages start */
+  width: 45%;
+  /* changes end */
   font-size: 18px;
   font-family: "Halcyon_Medium" !important;
   color: #707070;
@@ -100,8 +113,20 @@
   width: 5%;
   z-index: 100000;
 }
+/* changes start */
+@media (max-width: 2560px) and (min-width: 1441px) {
+  .Camera_Ace {
+    height: auto;
+    width: 16%;
+    position: absolute;
+    top: 33%;
+    left: 65%;
+    /* border: 1px solid red; */
+  }
+}
+/* changes end */
 
-@media screen and (max-width: 1445px) and (min-width: 1025px) {
+@media screen and (max-width: 1440px) and (min-width: 1025px) {
   .Camera_Ace {
     height: auto;
     width: 16%;
@@ -116,15 +141,19 @@
 
 @media screen and (max-width: 1024px) and (min-width: 769px) {
   .Camera_Ace {
-    top: 37%;
+    /* changes start */
+    top: 40%;
+    margin-left: 60%;
   }
+  /* chnages end */
   .PopUp_Card {
     width: 32%;
   }
   .Camera_Instruc {
-    width: 41%;
+    /* changes start */
+    width: 50%;
+    /* changes end */
     font-size: 16px;
-
     left: 29%;
   }
   .canvas {
@@ -134,15 +163,19 @@
 
 @media (max-width: 768px) {
   .Camera_Ace {
-    top: 42%;
+    /* changes start */
+    top: 40%;
+    margin-left: 60%;
+    /* chnages end */
   }
   .Camera_Disconnected {
     top: 51%;
   }
   .Camera_Instruc {
-    width: 48%;
+    /* changes start */
+    width: 60%;
+    /* changes end */
     font-size: 14px;
-
     left: 24%;
   }
   .canvas {

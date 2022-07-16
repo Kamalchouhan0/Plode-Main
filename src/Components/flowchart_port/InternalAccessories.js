@@ -1269,14 +1269,17 @@ const InternalAccessories = (props) => {
         <button
           className="BtnPopup"
           onClick={() => shouldErase("Yes")}
-          style={{ position: "relative", top: "-7px" }}
+          style={{
+            position: "relative",
+            top: "-22px",
+          }}
         >
           Yes
         </button>
         <button
           className="BtnPopup"
           onClick={() => shouldErase("No")}
-          style={{ position: "relative", top: "-7px", left: "10px" }}
+          style={{ position: "relative", top: "-22px", left: "10px" }}
         >
           No
         </button>
@@ -1332,12 +1335,26 @@ const InternalAccessories = (props) => {
           <div className="flowchart-navbar-Action navbar-Action">
             <img
               className="flowchart-iconBtnSize iconBtnSize"
-              style={{ width: "61px", height: "61px", marginRight: "10px" }}
+              style={{
+                width: "61px",
+                height: "61px",
+                marginRight: "10px",
+                // changes start
+                marginTop: "-12px",
+                // changes end
+              }}
               src={secondaryImg}
             ></img>
             <img
               className="flowchart-iconBtnSize iconBtnSize"
-              style={{ width: "61px", height: "61px", marginRight: "10px" }}
+              style={{
+                width: "61px",
+                height: "61px",
+                marginRight: "10px",
+                // changes start
+                marginTop: "-12px",
+                // changes end
+              }}
               src={strokeImg}
             ></img>
             {/* <img style={{ marginRight: "0px" }} src={connectionImg}></img> */}

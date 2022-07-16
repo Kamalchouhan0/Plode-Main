@@ -119,3 +119,12 @@
     left: 49.5%;
   }
 }
+/* changes start */
+@media only screen and (max-device-width: 768px) {
+  .Title {
+    /* top: 10%; */
+    left: 55%;
+    /* transform: translate(-50%, -10%); */
+  }
+}
+/* changes end */

@@ -6,6 +6,7 @@
   grid-template-rows: 100%;
   grid-template-columns: 60% 40%;
   user-select: none; /* Likely future */
+  /* border: 2px solid blue; */
 }
 
 .visualProgram-container .VP-backbtn {
@@ -13,7 +14,8 @@
   top: 3%;
   left: 3%;
   z-index: 2;
-  user-select: none; /* Likely future */
+  user-select: none;
+  /* Likely future */
 }
 .helpiconBtnSize {
   position: absolute;
@@ -28,6 +30,7 @@
   left: 0%;
   z-index: 100000;
   background: #fff;
+  /* border: 2px solid green; */
 }
 .helpClose {
   position: absolute;
@@ -37,7 +40,6 @@
   width: 4%;
   z-index: 100000;
 }
-
 .visualProgram-container .VP-programmenucard {
   position: absolute;
   z-index: 1;
@@ -48,16 +50,36 @@
   user-select: none; /* Likely future */
 }
 
+/* .visualProgram-container .VP-programmenucard {
+  position: relative;
+  z-index: 1;
+  changes start
+  top: -8%;
+  left: 10%;
+  transform: translate(-10%, 8%);
+  changes end
+  height: 175px;
+  width: 30%;
+  user-select: none; 
+  Likely future
+  border: 1px solid red;
+} */
+
 .visualProgram-container .VP-txt-Menu {
   position: absolute;
   z-index: 3;
-
-  top: 5.5%;
+  /* changes start */
+  top: 5%;
   left: 11%;
+  transform: translate(-11%, -5%);
+  /* changes end */
+  /* top: 5.5%;
+  left: 5%; */
   color: #fff;
   font-family: Halcyon_SemiBold !important;
   font-size: 18px;
   user-select: none; /* Likely future */
+  /* border: 1px solid blue; */
 }
 
 .visualProgram-container .VP-txt-Heading {
@@ -67,39 +89,50 @@
   position: absolute;
   top: 20%;
   left: 10%;
+  transform: translate(-10%, -20%);
 }
 
 .visualProgram-container .VP-hr {
   width: 80px;
   height: 4px;
   position: absolute;
-  top: 20%;
-  left: 28%;
+  /* border: 1px solid red; */
   background: #30a8ce;
   outline: none;
   border: none;
+  /* changes start */
+  top: 19%;
+  left: 32%;
+  transform: translate(-32%, -19%);
 }
+/* changes start */
 
 .visualProgram-container .VP-txt-Heading2 {
   font-size: 28px;
   color: #000;
   font-family: Halcyon_Medium !important;
   position: absolute;
+  /* changes start */
   top: 20%;
-  right: 22%;
+  right: 15%;
+  transform: translate(-15%, -20%);
+  /* changes end */
 }
 
 .visualProgram-container .VP-hr2 {
   width: 80px;
   height: 4px;
   position: absolute;
-  top: 20%;
-  right: 15.5%;
+  /* changes start */
+  top: 19%;
+  right: 10%;
+  transform: translate(-10%, -19%);
+  /* changes end */
   background: #30a8ce;
   outline: none;
   border: none;
+  /* border: 1px solid blueviolet; */
 }
-
 .visualProgram-container .VP-flowchartbased,
 .VP-programbased,
 .VP-blockbased,
@@ -107,9 +140,20 @@
 .VP-pythoncodingbutton {
   height: 47%;
   width: 22%;
-  position: relative;
+  position: absolute;
   /* border: 1px solid red; */
 }
+
+/* .visualProgram-container .VP-flowchartbased,
+.VP-programbased,
+.VP-blockbased,
+.VP-CCoding,
+.VP-pythoncodingbutton {
+  height: 47%;
+  width: 22%;
+  position: relative;
+  border: 1px solid red;
+} */
 
 .visualProgram-container .vp-item1 {
   position: absolute;
@@ -227,7 +271,11 @@
   position: absolute;
   top: 55%;
 }
-
+/* tablet 768px  
+laptop 1024px
+desktop 1440px
+*/
+/* large screen */
 @media only screen and (max-device-width: 1440px) {
   .visualProgram-container .VP-programmenucard {
     top: -5%;
@@ -237,7 +285,7 @@
   .visualProgram-container .VP-txt-Menu {
     top: 4.5%;
     font-size: 20px;
-    left: 10.5%;
+    left: 12.5%;
   }
   .visualProgram-container .VP-hr {
     /* width: 80px;
@@ -272,19 +320,51 @@
   }
 }
 @media only screen and (max-device-width: 1024px) {
-  .visualProgram-container .VP-txt-Menu {
-    top: 4.5%;
-    /* left: 12%; */
-  }
   .visualProgram-container .VP-programmenucard {
-    top: -3%;
-    left: 5%;
+    width: 180px;
+    left: 6%;
+    top: -4.5%;
+  }
+  .visualProgram-container .VP-txt-Heading,
+  .visualProgram-container .VP-txt-Heading2 {
+    font-size: 22px;
+    top: 21%;
   }
   .visualProgram-container .VP-hr {
-    /* width: 80px;
-    height: 4px;
-    position: absolute; */
-    left: 38%;
-    top: 23%;
+    top: 20%;
+    left: 32%;
+  }
+  .visualProgram-container .VP-hr2 {
+    top: 20%;
+    right: 8%;
+  }
+}
+@media (max-width: 768px) {
+  .visualProgram-container .VP-programmenucard {
+    width: 180px;
+    left: 8%;
+    top: -7%;
+  }
+  .visualProgram-container .VP-txt-Menu {
+    left: 15%;
+  }
+  .visualProgram-container .VP-txt-Heading,
+  .visualProgram-container .VP-txt-Heading2 {
+    font-size: 2.6vw;
+  }
+  .visualProgram-container .VP-hr {
+    top: 19%;
+    left: 36%;
+  }
+  .visualProgram-container .VP-hr2 {
+    top: 19%;
+    right: 6%;
+  }
+  .VP-sub2 .VP-sub2-txt,
+  .VP-sub1 .VP-sub-txt,
+  .VP-sub3 .VP-sub3-txt,
+  .VP-sub4 .VP-sub4-txt,
+  .VP-sub5 .VP-sub5-txt {
+    font-size: 18px;
   }
 }

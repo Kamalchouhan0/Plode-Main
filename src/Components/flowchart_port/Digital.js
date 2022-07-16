@@ -549,12 +549,26 @@ function Digital(props) {
             <div className="flowchart-navbar-Action navbar-Action">
               <img
                 className="flowchart-iconBtnSize iconBtnSize"
-                style={{ width: "61px", height: "61px", marginRight: "10px" }}
+                style={{
+                  width: "61px",
+                  height: "61px",
+                  marginRight: "10px",
+                  // changes start
+                  marginTop: "-12px",
+                  // changes end
+                }}
                 src={secondaryImg}
               ></img>
               <img
                 className="flowchart-iconBtnSize iconBtnSize"
-                style={{ width: "61px", height: "61px", marginRight: "10px" }}
+                style={{
+                  width: "61px",
+                  height: "61px",
+                  marginRight: "10px",
+                  // changes start
+                  marginTop: "-12px",
+                  // changes end
+                }}
                 src={strokeImg}
               ></img>
               {/* <img style={{ marginRight: "0px" }} src={connectionImg}></img> */}

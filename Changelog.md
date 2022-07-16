@@ -17,16 +17,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
--
+- Google Drive Save feature in Project Mode
 
 ### Changed
 
--
--
+- Css enhancements for responsiveness
 
 ### Removed
 
--
+- Local Storage saving for the project mode
 
 ## [0.1.11] - 05-07-2022
 
