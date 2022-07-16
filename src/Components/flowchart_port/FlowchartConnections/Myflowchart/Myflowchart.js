@@ -1887,6 +1887,13 @@ const DnDFlow = (props) => {
   const backBtnAction = () => {
     history.push("/flow/digital-analog");
   };
+  const saveFlow = () => {
+    history.push("/flow/save");
+    // history.push({
+    //   pathname: "/flow/save",
+    //   state: { check: modal },
+    // });
+  };
 
   const [p1, setP1] = useState({
     selected: false,
@@ -2065,6 +2072,7 @@ const DnDFlow = (props) => {
                 className="flowchart-iconBtnSize iconBtnSize"
                 style={{ width: "61px", height: "61px", marginRight: "10px" }}
                 src={secondaryImg}
+                onClick={saveFlow}
               ></img>
               {isUsb ? (
                 <img src={renderPrgImage("usbON")} onClick={HdleUsb} />

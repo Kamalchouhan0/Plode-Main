@@ -16,7 +16,7 @@ class ProgramSelection extends Component {
     if (info == "new") {
       this.props.history.push("/flow/InternalAccessories");
     } else if (info == "saved") {
-      this.props.history.push("/savedprogram");
+      this.props.history.push("/flow/savedFlow");
     }
   };
 

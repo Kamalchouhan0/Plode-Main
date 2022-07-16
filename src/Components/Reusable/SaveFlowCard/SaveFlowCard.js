@@ -1,33 +1,34 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router";
-import "./SaveCard.css";
+import savedFlowcss from "./SaveFlowCard.module.css";
 import renderPrgImage from "../../../source/programImg";
 
-function SaveCard(props) {
+function SaveFlowCard(props) {
   console.log("DA", props);
   let history = useHistory();
+
   const SaveProps = () => {
-    history.push("/saveprogram");
-    sessionStorage.setItem("saveProps", JSON.stringify(props));
+    history.push("/flow/save");
+    sessionStorage.setItem("saveFlowProps", JSON.stringify(props));
   };
 
-  const deletePrgIndex = () => {
+  const deleteIndex = () => {
     console.log("ID YE HAI", props.id);
-    let deletedSession = JSON.parse(localStorage.getItem("projectData"));
+    let deletedSession = JSON.parse(localStorage.getItem("FlowData"));
     console.log(deletedSession);
     deletedSession.splice(props.id, 1);
     console.log(deletedSession, "NEW deletedSession ARRAY");
-    localStorage.setItem("projectData", JSON.stringify(deletedSession));
+    localStorage.setItem("FlowData", JSON.stringify(deletedSession));
     ///
     ///
     ///
     ///
-    let deleted = JSON.parse(localStorage.getItem("SavedData"));
+    let deleted = JSON.parse(localStorage.getItem("SavedFlowData"));
     console.log(typeof deleted);
     deleted.splice(props.id, 1);
     console.log(deleted, "NEW deleted ARRAY");
-    localStorage.setItem("SavedData", JSON.stringify(deleted));
+    localStorage.setItem("SavedFlowData", JSON.stringify(deleted));
     setTimeout(() => {
       window.location.reload(false);
     }, 100);
@@ -35,24 +36,24 @@ function SaveCard(props) {
 
   return (
     // <Link to={{ pathname: "/saveprogram", data: { props } }}>
-    <div className="Savecard_main">
+    <div className={savedFlowcss.Savecard_main}>
       <img
-        className="Save_deleted"
+        className={savedFlowcss.Save_delete}
         src={renderPrgImage("closed")}
-        onClick={deletePrgIndex}
+        onClick={deleteIndex}
       ></img>
       <img
-        className="img_Save"
+        className={savedFlowcss.img_Save}
         src={renderPrgImage("SaveProg")}
         height="100%"
         width="100%"
         onClick={SaveProps}
       ></img>
-      <h4 className="Save_Names">
+      <h4 className={savedFlowcss.Save_Names}>
         {props.name} <br />{" "}
       </h4>
     </div>
     // </Link>
   );
 }
-export default SaveCard;
+export default SaveFlowCard;

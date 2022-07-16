@@ -92,6 +92,370 @@ const InternalAccessories = (props) => {
   };
 
   useEffect(() => {
+    console.log("PROPS", props.location.data);
+
+    // if(props.location.data)
+    let hhh = JSON.parse(localStorage.getItem("SavedFlowData"));
+    // console.log("Names", hhh[0].name);
+    if (hhh != null) {
+      for (let i = 0; i < hhh.length; i++) {
+        if (props.location.data == hhh[i].name) {
+          sessionStorage.setItem("pip", true);
+          sessionStorage.setItem("name", props.location.data);
+          // console.log("KK", hhh[i].concept.internalaccessories.isTouchOne);
+          Object.keys(hhh[i]).map((key, value) => {
+            console.log("KEYS", key, value);
+            switch (key) {
+              case "isSmileOne": {
+                sessionStorage.setItem(
+                  "isSmileOne",
+                  JSON.stringify(hhh[i].isSmileOne)
+                );
+              }
+              case "isSmileTwo": {
+                sessionStorage.setItem(
+                  "isSmileTwo",
+                  JSON.stringify(hhh[i].isSmileTwo)
+                );
+              }
+              case "isSmileThree": {
+                sessionStorage.setItem(
+                  "isSmileThree",
+                  JSON.stringify(hhh[i].isSmileThree)
+                );
+              }
+              case "isSmileFour": {
+                sessionStorage.setItem(
+                  "isSmileFour",
+                  JSON.stringify(hhh[i].isSmileFour)
+                );
+              }
+              case "isColorSensor": {
+                sessionStorage.setItem(
+                  "isColorSensor",
+                  JSON.stringify(hhh[i].isColorSensor)
+                );
+              }
+              case "isGestureSensor": {
+                sessionStorage.setItem(
+                  "isGestureSensor",
+                  JSON.stringify(hhh[i].isGestureSensor)
+                );
+              }
+              case "isDistanceSensors": {
+                sessionStorage.setItem(
+                  "isDistanceSensors",
+                  JSON.stringify(hhh[i].isDistanceSensors)
+                );
+              }
+              case "isLightSensor": {
+                sessionStorage.setItem(
+                  "isLightSensor",
+                  JSON.stringify(hhh[i].isLightSensor)
+                );
+              }
+              case "A1": {
+                sessionStorage.setItem("A1", JSON.stringify(hhh[i].A1));
+              }
+              case "A2": {
+                sessionStorage.setItem("A2", JSON.stringify(hhh[i].A2));
+              }
+              case "A1DIGI": {
+                sessionStorage.setItem("A1DIGI", JSON.stringify(hhh[i].A1DIGI));
+              }
+              case "A2DIGI": {
+                sessionStorage.setItem("A2DIGI", JSON.stringify(hhh[i].A2DIGI));
+              }
+
+              case "B1": {
+                sessionStorage.setItem("B1", JSON.stringify(hhh[i].B1));
+              }
+              case "B2": {
+                sessionStorage.setItem("B2", JSON.stringify(hhh[i].B2));
+              }
+
+              case "B1DIGI": {
+                sessionStorage.setItem("B1DIGI", JSON.stringify(hhh[i].B1DIGI));
+              }
+              case "B2DIGI": {
+                sessionStorage.setItem("B2DIGI", JSON.stringify(hhh[i].B2DIGI));
+              }
+
+              case "C1": {
+                sessionStorage.setItem("C1", JSON.stringify(hhh[i].C1));
+              }
+              case "C2": {
+                sessionStorage.setItem("C2", JSON.stringify(hhh[i].C2));
+              }
+              case "C1DIGI": {
+                sessionStorage.setItem("C1DIGI", JSON.stringify(hhh[i].C1DIGI));
+              }
+              case "C2DIGI": {
+                sessionStorage.setItem("C2DIGI", JSON.stringify(hhh[i].C2DIGI));
+              }
+              case "isTemperature": {
+                sessionStorage.setItem(
+                  "isTemperature",
+                  JSON.stringify(hhh[i].isTemperature)
+                );
+              }
+              case "isEyeLeft": {
+                sessionStorage.setItem(
+                  "isEyeLeft",
+                  JSON.stringify(hhh[i].isEyeLeft)
+                );
+              }
+              case "isEyeRight": {
+                sessionStorage.setItem(
+                  "isEyeRight",
+                  JSON.stringify(hhh[i].isEyeRight)
+                );
+              }
+              case "isMic": {
+                sessionStorage.setItem("isMic", JSON.stringify(hhh[i].isMic));
+              }
+              case "isTouchZeroOutput": {
+                sessionStorage.setItem(
+                  "isTouchZeroOutput",
+                  JSON.stringify(hhh[i].isTouchZeroOutput)
+                );
+              }
+              case "isTouchOneOutput": {
+                sessionStorage.setItem(
+                  "isTouchOneOutput",
+                  JSON.stringify(hhh[i].isTouchOneOutput)
+                );
+              }
+              case "isTouchTwoOutput": {
+                sessionStorage.setItem(
+                  "isTouchTwoOutput",
+                  JSON.stringify(hhh[i].isTouchTwoOutput)
+                );
+              }
+              case "isTouchZero": {
+                sessionStorage.setItem(
+                  "isTouchZero",
+                  JSON.stringify(hhh[i].isTouchZero)
+                );
+              }
+              case "isTouchOne": {
+                sessionStorage.setItem(
+                  "isTouchOne",
+                  JSON.stringify(hhh[i].isTouchOne)
+                );
+              }
+              case "isTouchTwo": {
+                sessionStorage.setItem(
+                  "isTouchTwo",
+                  JSON.stringify(hhh[i].isTouchTwo)
+                );
+              }
+
+              case "a1IO": {
+                sessionStorage.setItem("a1-I/O", JSON.stringify(hhh[i].a1IO));
+              }
+              case "a2IO": {
+                sessionStorage.setItem("a2-I/O", JSON.stringify(hhh[i].a2IO));
+              }
+              case "b1IO": {
+                sessionStorage.setItem("b1-I/O", JSON.stringify(hhh[i].b1IO));
+              }
+              case "b2IO": {
+                sessionStorage.setItem("b2-I/O", JSON.stringify(hhh[i].b2IO));
+              }
+              case "c1IO": {
+                sessionStorage.setItem("c1-I/O", JSON.stringify(hhh[i].c1IO));
+              }
+              case "c2IO": {
+                sessionStorage.setItem("c1-I/O", JSON.stringify(hhh[i].c2IO));
+              }
+              case "m1IO": {
+                sessionStorage.setItem("m1-I/O", JSON.stringify(hhh[i].m1IO));
+              }
+              case "m2IO": {
+                sessionStorage.setItem("m2-I/O", JSON.stringify(hhh[i].m2IO));
+              }
+              case "m3IO": {
+                sessionStorage.setItem("m3-I/O", JSON.stringify(hhh[i].m3IO));
+              }
+              case "m4IO": {
+                sessionStorage.setItem("m4-I/O", JSON.stringify(hhh[i].m4IO));
+              }
+
+              case "M1DIGI": {
+                sessionStorage.setItem("M1DIGI", JSON.stringify(hhh[i].M1DIGI));
+              }
+              case "M2DIGI": {
+                sessionStorage.setItem("M2DIGI", JSON.stringify(hhh[i].M2DIGI));
+              }
+              case "M3DIGI": {
+                sessionStorage.setItem("M3DIGI", JSON.stringify(hhh[i].M3DIGI));
+              }
+              case "M4DIGI": {
+                sessionStorage.setItem("M4DIGI", JSON.stringify(hhh[i].M4DIGI));
+              }
+              case "flowchartelements": {
+                sessionStorage.setItem(
+                  "flowchart-elements",
+                  JSON.stringify(hhh[i].flowchartelements)
+                );
+              }
+            }
+            if (key.includes("ifValue")) {
+              sessionStorage.setItem(key, hhh[i][key]);
+            }
+            if (key.includes("ifSelect")) {
+              sessionStorage.setItem(key, hhh[i][key]);
+            }
+            if (key.includes("gt")) {
+              sessionStorage.setItem(key, hhh[i][key]);
+            }
+            if (key.includes("lt")) {
+              sessionStorage.setItem(key, hhh[i][key]);
+            }
+            if (key.includes("ne")) {
+              sessionStorage.setItem(key, hhh[i][key]);
+            }
+            if (key.includes("eq")) {
+              sessionStorage.setItem(key, hhh[i][key]);
+            }
+            if (key.includes("bw")) {
+              sessionStorage.setItem(key, hhh[i][key]);
+            }
+
+            if (key.includes("a1")) {
+              sessionStorage.setItem(key, hhh[i][key]);
+            }
+            if (key.includes("a2")) {
+              sessionStorage.setItem(key, hhh[i][key]);
+            }
+            if (key.includes("b1")) {
+              sessionStorage.setItem(key, hhh[i][key]);
+            }
+            if (key.includes("b2")) {
+              sessionStorage.setItem(key, hhh[i][key]);
+            }
+            if (key.includes("c1")) {
+              sessionStorage.setItem(key, hhh[i][key]);
+            }
+            if (key.includes("c2")) {
+              sessionStorage.setItem(key, hhh[i][key]);
+            }
+            if (key.includes("d1")) {
+              sessionStorage.setItem(key, hhh[i][key]);
+            }
+            if (key.includes("d2")) {
+              sessionStorage.setItem(key, hhh[i][key]);
+            }
+            if (key.includes("e1")) {
+              sessionStorage.setItem(key, hhh[i][key]);
+            }
+            if (key.includes("e2")) {
+              sessionStorage.setItem(key, hhh[i][key]);
+            }
+            if (key.includes("f1")) {
+              sessionStorage.setItem(key, hhh[i][key]);
+            }
+            if (key.includes("f2")) {
+              sessionStorage.setItem(key, hhh[i][key]);
+            }
+            if (key.includes("m1")) {
+              sessionStorage.setItem(key, hhh[i][key]);
+            }
+            if (key.includes("m2")) {
+              sessionStorage.setItem(key, hhh[i][key]);
+            }
+            if (key.includes("m3")) {
+              sessionStorage.setItem(key, hhh[i][key]);
+            }
+            if (key.includes("m4")) {
+              sessionStorage.setItem(key, hhh[i][key]);
+            }
+
+            if (key.includes("t0")) {
+              sessionStorage.setItem(key, hhh[i][key]);
+            }
+            if (key.includes("t1")) {
+              sessionStorage.setItem(key, hhh[i][key]);
+            }
+            if (key.includes("t2")) {
+              sessionStorage.setItem(key, hhh[i][key]);
+            }
+
+            if (key.includes("le")) {
+              sessionStorage.setItem(key, hhh[i][key]);
+            }
+            if (key.includes("re")) {
+              sessionStorage.setItem(key, hhh[i][key]);
+            }
+            if (key.includes("buzz")) {
+              sessionStorage.setItem(key, hhh[i][key]);
+            }
+
+            if (key.includes("s1")) {
+              sessionStorage.setItem(key, hhh[i][key]);
+            }
+            if (key.includes("s2")) {
+              sessionStorage.setItem(key, hhh[i][key]);
+            }
+            if (key.includes("s3")) {
+              sessionStorage.setItem(key, hhh[i][key]);
+            }
+            if (key.includes("s4")) {
+              sessionStorage.setItem(key, hhh[i][key]);
+            }
+
+            if (key.includes("mp3")) {
+              sessionStorage.setItem(key, hhh[i][key]);
+            }
+            if (key.includes("oled")) {
+              sessionStorage.setItem(key, hhh[i][key]);
+            }
+            if (key.includes("countRGB")) {
+              sessionStorage.setItem(key, hhh[i][key]);
+            }
+            if (key.includes("rgb")) {
+              sessionStorage.setItem(key, hhh[i][key]);
+            }
+
+            if (key.includes("valRGB1")) {
+              sessionStorage.setItem(key, hhh[i][key]);
+            }
+            if (key.includes("valRGB2")) {
+              sessionStorage.setItem(key, hhh[i][key]);
+            }
+            if (key.includes("valRGB3")) {
+              sessionStorage.setItem(key, hhh[i][key]);
+            }
+            if (key.includes("valRGB4")) {
+              sessionStorage.setItem(key, hhh[i][key]);
+            }
+            if (key.includes("valRGB5")) {
+              sessionStorage.setItem(key, hhh[i][key]);
+            }
+            if (key.includes("valRGB6")) {
+              sessionStorage.setItem(key, hhh[i][key]);
+            }
+            if (key.includes("valRGB7")) {
+              sessionStorage.setItem(key, hhh[i][key]);
+            }
+            if (key.includes("valRGB8")) {
+              sessionStorage.setItem(key, hhh[i][key]);
+            }
+            if (key.includes("valRGB9")) {
+              sessionStorage.setItem(key, hhh[i][key]);
+            }
+            if (key.includes("valRGB10")) {
+              sessionStorage.setItem(key, hhh[i][key]);
+            }
+          });
+          window.location.reload();
+        }
+      }
+    }
+  });
+
+  useEffect(() => {
     let no_port = props.webSerial;
     if (typeof no_port !== undefined) {
       console.log("WORKING>>>>>>>>");
@@ -888,7 +1252,7 @@ const InternalAccessories = (props) => {
       // sessionStorage.setItem("flowchart-elements", null);
       // sessionStorage.setItem("flowchart-elements-id", null);
       history.push("/flow");
-      // window.location.reload();
+      window.location.reload();
     } else {
       setErasedProgram(false);
     }

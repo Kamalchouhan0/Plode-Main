@@ -17,12 +17,13 @@
   height: 100%;
   /* background: url("../../../Assets/Bisoft_UI/Program/PNG/default image.png"); */
 }
-.Save_deleted {
+.Save_delete {
   position: absolute;
   width: 15px;
   margin-left: 15%;
   z-index: 100;
 }
+
 .Save_Names {
   font-size: 1.5rem;
   margin: -18% 0 0 0%;

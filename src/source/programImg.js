@@ -156,6 +156,7 @@ import timericon from "../Assets/Bisoft_UI/Program/PNG/timericon@2x.png";
 
 import closeBtn from "../Assets/Bisoft_UI/Program/PNG/close@2x.png";
 import close from "../Assets/Bisoft_UI/Program/PNG/close.png";
+import closed from "../Assets/Bisoft_UI/Program/PNG/closed.png";
 import closBtn from "../Assets/Bisoft_UI/Program/PNG/close@2x.png";
 import closeBtnShadow from "../Assets/Bisoft_UI/Buttons/Active with shadow/close@2x.png";
 
@@ -577,6 +578,9 @@ function renderPrgImage(imageName) {
 
     case "SaveProg":
       return SaveProg;
+
+    case "closed":
+      return closed;
   }
 }
 
