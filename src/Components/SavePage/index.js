@@ -17,6 +17,7 @@ const DISCOVERY_DOC =
   "https://www.googleapis.com/discovery/v1/apis/drive/v3/rest";
 const axios = require("axios");
 
+//function to initilaize gapi client and assign to window object
 async function intializeGapiClient(_gapi) {
   await window.gapi.client.init({
     apiKey: "AIzaSyBNXW73e0C_wzGc2B7g_BMiUwe7hX2f4_s",
@@ -27,6 +28,7 @@ async function intializeGapiClient(_gapi) {
   // gapiInited = true;
   // maybeEnableButtons();
 }
+//function to load and initialize google api client
 function gapiLoad() {
   //window.gapi is available at this point
   window.onGoogleScriptLoad = () => {
@@ -51,6 +53,8 @@ function gapiLoad() {
   //ensure everything is set before loading the script
   loadGoogleScript();
 }
+
+//function to list saved files from google drive
 async function listSaveFiles() {
   console.log("listFiles");
   let response;
@@ -519,7 +523,8 @@ class SaveProgram extends Component {
       })
       .then(function (val) {
         console.log("file saved", val);
-        x.innerHTML = "Your project has been saved";
+        x.innerHTML =
+          "This project has been sucessfully saved to your Google Drive";
         setTimeout(function () {
           x.className = x.className.replace("show", "");
           props.history.push("/simulate");
@@ -1155,7 +1160,7 @@ class SaveProgram extends Component {
               /> */}
                 {/* </div> */}
                 <div id="assemblyShot"></div>
-                <div id="SaveAlert">Saving Project...</div>
+                <div id="SaveAlert">Saving Project to your Google drive...</div>
               </div>
               {v != null ? (
                 <>

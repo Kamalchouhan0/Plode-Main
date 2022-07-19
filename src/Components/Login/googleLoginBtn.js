@@ -137,7 +137,7 @@ function GoogleLoginBtn(props) {
     sessionStorage.setItem("userData", JSON.stringify(profile));
     atatus.setUser(profile.getId(), email, name);
     setIsLoading(true);
-    await readProjectData();
+    await readProjectData(); //reading project data from gdrive during sign in
     setIsLoading(false);
     props.history.push("/biboxSelection");
   };

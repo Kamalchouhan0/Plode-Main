@@ -36,11 +36,11 @@ function SaveCard(props) {
   return (
     // <Link to={{ pathname: "/saveprogram", data: { props } }}>
     <div className="Savecard_main">
-      <img
+      {/* <img
         className="Save_deleted"
         src={renderPrgImage("closed")}
         onClick={deletePrgIndex}
-      ></img>
+      ></img> */}
       <img
         className="img_Save"
         src={renderPrgImage("SaveProg")}
