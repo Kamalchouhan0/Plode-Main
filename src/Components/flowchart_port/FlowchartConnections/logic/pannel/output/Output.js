@@ -3364,7 +3364,7 @@ const OutputPanel = (props) => {
         {isEyeLeft ? (
           <div
             className="slider-item1-flowchart"
-            style={{ position: "relative", height: "300px" }}
+            style={{ position: "relative" }}
           >
             <div className="portDetails-flowchart">
               <div
